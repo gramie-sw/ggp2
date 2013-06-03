@@ -42,6 +42,9 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    countries (0.9.2)
+      currencies (>= 0.4.0)
+    currencies (0.4.1)
     diff-lcs (1.2.4)
     erubis (2.7.0)
     execjs (1.4.0)
@@ -177,6 +180,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
+  countries
   factory_girl_rails
   forgery
   guard-rspec

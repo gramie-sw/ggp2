@@ -1,4 +1,4 @@
 ggp2
 ====
 
-Gaming Guessing Portal Version 2
+Game Guessing Portal 2

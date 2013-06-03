@@ -44,12 +44,14 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem "rspec-rails", :group => [:test, :development]
-gem "guard-rspec", :group => [:test, :development]
+gem 'countries'
+
+gem 'rspec-rails', :group => [:test, :development]
+gem 'guard-rspec', :group => [:test, :development]
 
 group :test do
-  gem "capybara"
-  gem "factory_girl_rails"
-  gem "shoulda-matchers", "2.1.0"
-  gem "forgery"
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'shoulda-matchers', "2.1.0"
+  gem 'forgery'
 end
