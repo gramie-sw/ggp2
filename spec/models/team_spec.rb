@@ -6,15 +6,16 @@ describe Team do
     create(:team).should be_valid
   end
 
-  #describe 'validation' do
-  #  it { should validate_presence_of(:project) }
-  #  it { should validate_uniqueness_of(:role_id).scoped_to(:project_id) }
-  #  it { should validate_presence_of(:role) }
-  #end
-  #
-  #describe 'associations' do
-  #  it { should belong_to(:role) }
-  #  it { should belong_to(:project) }
-  #end
+  describe 'validations' do
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:abbreviation) }
+    it { should validate_uniqueness_of(:name) }
+    it { should validate_uniqueness_of(:abbreviation) }
+  end
+
+  describe 'associations' do
+    it { should have_many(:team_1_games).class_name('Game') }
+    it { should have_many(:team_2_games).class_name('Game') }
+  end
 end
 

@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130602183357) do
+ActiveRecord::Schema.define(version: 20130604192333) do
+
+  create_table "aggregates", force: true do |t|
+    t.integer  "position"
+    t.string   "name"
+    t.string   "ancestry"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "games", force: true do |t|
+    t.integer  "game_number"
+    t.integer  "aggregate_id"
+    t.integer  "team_1_id"
+    t.integer  "team_2_id"
+    t.integer  "score_team_1"
+    t.integer  "score_team_2"
+    t.string   "placeholder_team_1"
+    t.string   "placeholder_team_2"
+    t.datetime "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "teams", force: true do |t|
     t.string   "name"
