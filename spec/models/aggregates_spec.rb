@@ -7,6 +7,7 @@ describe Aggregate do
   end
 
   describe 'validations' do
+
     it { should validate_presence_of(:position) }
     it { should validate_uniqueness_of(:position).scoped_to(:ancestry) }
     it { should ensure_inclusion_of(:position).in_range(1..1000) }
@@ -20,14 +21,18 @@ describe Aggregate do
     it { should have_many(:games).dependent(:destroy) }
   end
 
-  it 'should order by position as default' do
-    aggregates = []
-    aggregates << create(:aggregate, name: "Aggregate 1", position: 2)
-    aggregates << create(:aggregate, name: "Aggregate 2", position: 3)
-    aggregates << create(:aggregate, name: "Aggregate 3", position: 1)
+  describe 'scope' do
 
-    sorted_aggregates = Aggregate.all
-    sorted_aggregates.first.id.should eq aggregates[2].id
-    sorted_aggregates.last.id.should eq aggregates[1].id
+    describe 'order_by_position' do
+
+      it "should order by position" do
+        create(:aggregate, name: "Aggregate 1", position: 2)
+        aggregate_2 = create(:aggregate, name: "Aggregate 2", position: 1)
+        create(:aggregate, name: "Aggregate 3", position: 3)
+
+        aggregates = Aggregate.order_by_position
+        aggregates.first.should eq aggregate_2
+      end
+    end
   end
 end

@@ -6,7 +6,6 @@ class Aggregate < ActiveRecord::Base
   validates :position, presence: true, uniqueness: {scope: :ancestry}, numericality: {only_integer: true}, inclusion: {in: 1..1000}
   validates :name, presence: true, uniqueness: {scope: :ancestry}, length: {minimum: 3, maximum: 32}
 
-  default_scope { order('position') }
-
+  scope :order_by_position, -> { order('position ASC') }
 
 end
