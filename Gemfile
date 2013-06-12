@@ -46,6 +46,8 @@ end
 # gem 'debugger', group: [:development, :test]
 
 
+gem 'bootstrap-sass', '~> 2.3.2'
+
 gem 'rspec-rails', :group => [:test, :development]
 gem 'guard-rspec', :group => [:test, :development]
 gem 'spring', '0.0.9', :group => [:test, :development]
