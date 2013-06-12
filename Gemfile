@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0.rc1'
+gem 'rails', '4.0.0.rc2'
 
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0.rc1'
+gem 'sass-rails', '~> 4.0.0.rc2'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -25,7 +25,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.0.1'
+gem 'jbuilder', '~>1.2'
+#gem 'jbuilder', '~> 1.4.2'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -47,6 +48,7 @@ end
 
 gem 'rspec-rails', :group => [:test, :development]
 gem 'guard-rspec', :group => [:test, :development]
+gem 'spring', '0.0.9', :group => [:test, :development]
 
 group :test do
   gem 'capybara'
