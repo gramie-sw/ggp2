@@ -59,5 +59,5 @@ group :test do
   gem 'forgery'
 end
 
-gem 'countries'
+gem 'countries', :git => 'git://github.com/hexorx/countries.git'
 gem 'ancestry'

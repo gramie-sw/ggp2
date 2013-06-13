@@ -1,7 +1,9 @@
 FactoryGirl.define do
 
   factory :team do
-    name { Country.countries.sample[0] }
+    sequence :name do |n|
+      Country.countries[n][0]
+    end
     abbreviation { Country.find_country_by_name(name).alpha3 }
   end
 end
