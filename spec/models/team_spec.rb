@@ -11,6 +11,7 @@ describe Team do
     it { should validate_presence_of(:abbreviation) }
     it { should validate_uniqueness_of(:name) }
     it { should validate_uniqueness_of(:abbreviation) }
+    it { should ensure_length_of(:abbreviation).is_equal_to(3) }
   end
 
   describe 'associations' do
