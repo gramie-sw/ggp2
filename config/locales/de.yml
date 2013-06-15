@@ -1,0 +1,39 @@
+de:
+  errors:
+    messages:
+      model_not_saved: 'Konnte %{model} nicht speichern: %{count} Fehler'
+      team_to_delete_is_associated_to_games: 'Team konnte nicht gelöscht werden, da es in mindestens in einem Spiel gesetzt ist'
+  time:
+    formats:
+      short_full: ! '%d.%m.%Y, %H:%M:%S Uhr'
+
+  messages:
+      model:
+        added:  '%{model} wurde hinzugefügt.'
+        all: Alle %{models}
+        created: '%{model} wurde erstellt.'
+        destroy: '%{model} löschen'
+        destroyed: '%{model} wurde gelöscht.'
+        destroy_really: 'Wollen Sie %{model} wirklich löschen?'
+        edit: '%{model} bearbeiten'
+        export: '%{model} exportieren'
+        import: '%{model} importieren'
+        new: '%{model} anlegen'
+        remove: '%{model} entfernen'
+        removed:  '%{model} wurde entfernt'
+        remove_really: 'Wollen Sie %{model} wirklich entfernen?'
+        updated: '%{model} wurde geändert.'
+      models:
+        not_existing: Keine %{models} vorhanden
+
+  general:
+    back: Zurück
+    cancel: Abbrechen
+    category: Kategorie
+    edit: Bearbeiten
+    destroy: Löschen
+    settings: Einstellungen
+    "no": Nein
+    "yes": Ja
+    search: Suchen
+    searchterm: Suchbegriff

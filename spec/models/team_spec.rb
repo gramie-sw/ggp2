@@ -19,7 +19,7 @@ describe Team do
     it { should have_many(:team_2_games).class_name('Game') }
   end
 
-  describe 'scope' do
+  describe 'scopes' do
     describe '#order_by_name' do
       it 'should order by name' do
         create(:team, name: Country.new('US').translations['de'])
@@ -28,6 +28,23 @@ describe Team do
 
         teams = Team.order_by_name
         teams[0].should eq team_1
+      end
+    end
+  end
+
+  describe 'callbacks' do
+    describe '#before_destroy' do
+      it 'should prevent deletion if team has associated games' do
+        team = create(:team)
+        create(:game, team_1_id: team.id)
+        team.destroy
+        team.should_not be_destroyed
+      end
+
+      it 'should allow deletion if team has no associated games' do
+        team = create(:team)
+        team.destroy
+        team.should be_destroyed
       end
     end
   end

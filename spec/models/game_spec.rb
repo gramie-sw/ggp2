@@ -16,7 +16,7 @@ describe Game do
     it { should belong_to(:team_2).class_name('Team') }
   end
 
-  describe 'scope' do
+  describe 'scopes' do
     describe '#order_by_game_number' do
       it 'should order by game number' do
         aggregate = create(:aggregate)

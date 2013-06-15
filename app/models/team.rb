@@ -8,4 +8,13 @@ class Team < ActiveRecord::Base
 
   scope :order_by_name, lambda { order('name ASC') }
 
+  before_destroy :before_destroy
+
+  def before_destroy
+    unless team_1_games.empty? && team_2_games.empty?
+      errors.add :base, I18n.t('errors.messages.team_to_delete_is_associated_to_games')
+      false
+    end
+  end
+
 end

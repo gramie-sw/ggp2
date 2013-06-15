@@ -45,8 +45,11 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-
 gem 'bootstrap-sass', '~> 2.3.2'
+gem 'rails-i18n'
+
+gem 'countries', :git => 'git://github.com/hexorx/countries.git'
+gem 'ancestry'
 
 gem 'rspec-rails', :group => [:test, :development]
 gem 'guard-rspec', :group => [:test, :development]
@@ -59,5 +62,3 @@ group :test do
   gem 'forgery'
 end
 
-gem 'countries', :git => 'git://github.com/hexorx/countries.git'
-gem 'ancestry'

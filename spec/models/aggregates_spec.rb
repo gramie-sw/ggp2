@@ -22,7 +22,7 @@ describe Aggregate do
     it { should have_many(:games).dependent(:destroy) }
   end
 
-  describe 'scope' do
+  describe 'scopes' do
     describe '#order_by_position' do
       it 'should order by position' do
         create(:aggregate, name: "Aggregate 1", position: 2)
