@@ -1,6 +1,7 @@
 de:
   errors:
     messages:
+      not_allowed_chars: 'Enthält unerlaubte Zeiche'
       model_not_saved: 'Konnte %{model} nicht speichern: %{count} Fehler'
       team_to_delete_is_associated_to_games: 'Team konnte nicht gelöscht werden, da es in mindestens in einem Spiel gesetzt ist'
   time:

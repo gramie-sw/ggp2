@@ -199,13 +199,13 @@ DEPENDENCIES
   countries!
   factory_girl_rails
   forgery
-  guard-rspec
+  guard-rspec (~> 3.0.0)
   jbuilder (~> 1.2)
   jquery-rails
   mysql2
   rails (= 4.0.0.rc2)
   rails-i18n
-  rspec-rails
+  rspec-rails (~> 2.13.0)
   sass-rails (~> 4.0.0.rc2)
   sdoc
   shoulda-matchers (= 2.1.0)

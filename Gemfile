@@ -51,8 +51,8 @@ gem 'rails-i18n'
 gem 'countries', :git => 'git://github.com/hexorx/countries.git'
 gem 'ancestry'
 
-gem 'rspec-rails', :group => [:test, :development]
-gem 'guard-rspec', :group => [:test, :development]
+gem 'rspec-rails', '~>2.13.0',  :group => [:test, :development]
+gem 'guard-rspec', '~>3.0.0', :group => [:test, :development]
 gem 'spring', '0.0.9', :group => [:test, :development]
 
 group :test do
@@ -61,4 +61,3 @@ group :test do
   gem 'shoulda-matchers', "2.1.0"
   gem 'forgery'
 end
-

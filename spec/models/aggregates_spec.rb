@@ -8,14 +8,18 @@ describe Aggregate do
   end
 
   describe 'validations' do
-    it { should validate_presence_of(:position) }
-    it { should validate_uniqueness_of(:position).scoped_to(:ancestry) }
-    it { should ensure_inclusion_of(:position).in_range(1..1000) }
-    it { should validate_numericality_of(:position).only_integer }
-    it { should validate_presence_of(:name) }
-    it { should validate_uniqueness_of(:name).scoped_to(:ancestry) }
-    it { should ensure_length_of(:name).is_at_least(3).is_at_most(32) }
-    it { should_not allow_value('Name%').for(:name) }
+    describe '#position' do
+      it { should validate_presence_of(:position) }
+      it { should validate_uniqueness_of(:position).scoped_to(:ancestry) }
+      it { should ensure_inclusion_of(:position).in_range(1..1000) }
+      it { should validate_numericality_of(:position).only_integer }
+    end
+    describe '#name' do
+      it { should validate_presence_of(:name) }
+      it { should validate_uniqueness_of(:name).scoped_to(:ancestry) }
+      it { should ensure_length_of(:name).is_at_least(3).is_at_most(32) }
+      it { should_not allow_value('Name%').for(:name) }
+    end
   end
 
   describe 'associations' do
