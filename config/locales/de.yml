@@ -2,6 +2,8 @@ de:
   errors:
     messages:
       not_allowed_chars: 'Enthält unerlaubte Zeiche'
+      must_not_equals_team_1_placeholder: 'darf nicht gleich Platzhalter Team 1 sein'
+      must_not_equals_team_1: 'darf nicht gleich Team 1 sein'
       model_not_saved: 'Konnte %{model} nicht speichern: %{count} Fehler'
       team_to_delete_is_associated_to_games: 'Team konnte nicht gelöscht werden, da es in mindestens in einem Spiel gesetzt ist'
   time:

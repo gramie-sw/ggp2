@@ -53,10 +53,47 @@ describe Game do
       it { should ensure_inclusion_of(:score_team_2).in_range(0..1000).allow_nil }
     end
 
-    #describe '#placeholder_team_1' do
-    #  #it { should }
-    #end
+    describe '#placeholder_team_1' do
+      it { should ensure_length_of(:placeholder_team_1).is_at_least(3).is_at_most(64) }
+      it { should_not allow_value('Test%').for(:placeholder_team_1) }
 
+      it 'should allow blank if team_1 is set' do
+        build(:game, placeholder_team_1: '').should be_valid
+      end
+
+      it 'should not allow blank if team_1 is not set' do
+        build(:game, team_1_id: 0, placeholder_team_1: '').should_not be_valid
+      end
+    end
+
+    describe '#placeholder_team_2' do
+      it { should ensure_length_of(:placeholder_team_2).is_at_least(3).is_at_most(64) }
+      it { should_not allow_value('Test%').for(:placeholder_team_2) }
+
+      it 'should allow blank if team_2 is set' do
+        build(:game, placeholder_team_2: '').should be_valid
+      end
+
+      it 'should not allow blank if team_2 is not set' do
+        build(:game, team_1_id: 0, placeholder_team_2: '').should_not be_valid
+      end
+    end
+
+    describe '#date' do
+      it { should validate_presence_of(:date) }
+    end
+
+    it 'should validate_dummy_team_1_not_equals_dummy_team_2_besides_nil_or_blank' do
+      build(:game, placeholder_team_1: 'dummy', placeholder_team_2: 'dummy').should_not be_valid
+      build(:game, placeholder_team_1: nil, placeholder_team_2: nil).should be_valid
+      build(:game, placeholder_team_1: '', placeholder_team_2: '').should be_valid
+    end
+
+    it 'should validate_team_1_not_equal_team_2' do
+      team = create(:team)
+      build(:game, team_1_id: team.id, team_2_id: team.id).should_not be_valid
+      build(:game, team_1_id: team.id, team_2_id: create(:team).id).should be_valid
+    end
   end
 
   describe 'associations' do
@@ -80,9 +117,14 @@ describe Game do
     end
   end
 
-  #describe '#has_team_1' do
-  #  it 'should return true if has_team_1' do
-  #      build(:game, team_1: build(:team)).has_team_1? should be_true
-  #  end
-  #end
+  describe '#has_team_1' do
+    #it 'returns true when game has team_1' do
+    #  game = build(:game, team_1_id: 1)
+    #  game.has_team_1?.should be_true
+    #end
+
+    #it 'returns false when game has no team_1' do
+    #  build(:game, team_1_id: nil).has_team_1?.should == false
+    #end
+  end
 end
