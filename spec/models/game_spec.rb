@@ -117,14 +117,27 @@ describe Game do
     end
   end
 
-  describe '#has_team_1' do
-    #it 'returns true when game has team_1' do
-    #  game = build(:game, team_1_id: 1)
-    #  game.has_team_1?.should be_true
-    #end
+  describe '#team_1?' do
+    it 'returns true when game has team_1' do
+      team = build(:team)
+      game = build(:game, team_1: team)
+      game.team_1?.should be_true
+    end
 
-    #it 'returns false when game has no team_1' do
-    #  build(:game, team_1_id: nil).has_team_1?.should == false
-    #end
+    it 'returns false when game has no team_1' do
+      build(:game, team_1: nil).team_1?.should be_false
+    end
+  end
+
+  describe '#team_2?' do
+    it 'returns true when game has team_2' do
+      team = build(:team)
+      game = build(:game, team_2: team)
+      game.team_2?.should be_true
+    end
+
+    it 'returns false when game has no team_2' do
+      build(:game, team_2: nil).team_2?.should be_false
+    end
   end
 end
