@@ -45,8 +45,10 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'bootstrap-sass', '~> 2.3.2'
 gem 'rails-i18n'
+gem 'bootstrap-sass', '~> 2.3.2'
+gem 'simple_form', '>= 3.0.0.rc'
+
 
 gem 'countries', :git => 'git://github.com/hexorx/countries.git'
 gem 'ancestry'
