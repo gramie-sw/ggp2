@@ -1,6 +1,5 @@
 module ApplicationHelper
 
-
   #TODO test over feature spec
   def display_base_errors resource
     return '' if (resource.errors.empty?) or (resource.errors[:base].empty?)

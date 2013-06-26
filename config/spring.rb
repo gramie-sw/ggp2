@@ -1,1 +1,2 @@
-Spring::Commands::RSpec.preloads = []
+#not-needed_in_version_0.0.10
+#Spring::Commands::RSpec.preloads = []

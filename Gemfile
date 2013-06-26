@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0.rc2'
+gem 'rails', '4.0.0'
 
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0.rc2'
+gem 'sass-rails', '~> 4.0.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -47,15 +47,15 @@ end
 
 gem 'rails-i18n'
 gem 'bootstrap-sass', '~> 2.3.2'
-gem 'simple_form', '>= 3.0.0.rc'
-
+#gem 'simple_form', '>= 3.0.0.rc'
+gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
 
 gem 'countries', :git => 'git://github.com/hexorx/countries.git'
 gem 'ancestry'
 
 gem 'rspec-rails', '~>2.13.0',  :group => [:test, :development]
 gem 'guard-rspec', '~>3.0.0', :group => [:test, :development]
-gem 'spring', '0.0.9', :group => [:test, :development]
+gem 'spring', '0.0.10', :group => [:test, :development]
 
 group :test do
   gem 'capybara'
