@@ -31,7 +31,12 @@
           <%= yield %>
         </div>
       </div>
-      <footer>
+      <footer class="navbar navbar-fixed-bottom">
+        <nav class="navbar-inner">
+          <div class="container">
+            <%= render 'layouts/footer' %>
+          </div>
+        </nav>
       </footer>
     </div>
   </div>

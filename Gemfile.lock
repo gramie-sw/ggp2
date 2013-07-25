@@ -5,14 +5,6 @@ GIT
     countries (0.9.1)
       currencies (~> 0.4.2)
 
-GIT
-  remote: git://github.com/plataformatec/simple_form.git
-  revision: 9b2018052e9a7706fd4b2e28cca0d04560c0f1ec
-  specs:
-    simple_form (3.0.0.rc)
-      actionpack (>= 4.0.0, < 4.1)
-      activemodel (>= 4.0.0, < 4.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -97,7 +89,7 @@ GEM
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
       rb-kqueue (>= 0.2)
-    lumberjack (1.0.3)
+    lumberjack (1.0.4)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -114,6 +106,8 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    puma (2.1.1)
+      rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -166,6 +160,9 @@ GEM
       rdoc (~> 3.10)
     shoulda-matchers (2.1.0)
       activesupport (>= 3.0.0)
+    simple_form (3.0.0.rc)
+      actionpack (>= 4.0.0.rc1, < 4.1)
+      activemodel (>= 4.0.0.rc1, < 4.1)
     slop (3.4.5)
     spring (0.0.10)
     sprockets (2.10.0)
@@ -211,13 +208,14 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   mysql2
+  puma
   rails (= 4.0.0)
   rails-i18n
   rspec-rails (~> 2.13.0)
   sass-rails (~> 4.0.0)
   sdoc
   shoulda-matchers (= 2.1.0)
-  simple_form!
+  simple_form (>= 3.0.0.rc)
   spring (= 0.0.10)
   therubyracer
   turbolinks

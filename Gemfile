@@ -47,8 +47,7 @@ end
 
 gem 'rails-i18n'
 gem 'bootstrap-sass', '~> 2.3.2'
-#gem 'simple_form', '>= 3.0.0.rc'
-gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
+gem 'simple_form', '>= 3.0.0.rc'
 
 gem 'countries', :git => 'git://github.com/hexorx/countries.git'
 gem 'ancestry'
@@ -56,6 +55,8 @@ gem 'ancestry'
 gem 'rspec-rails', '~>2.13.0',  :group => [:test, :development]
 gem 'guard-rspec', '~>3.0.0', :group => [:test, :development]
 gem 'spring', '0.0.10', :group => [:test, :development]
+
+gem 'puma', group: [:test, :development]
 
 group :test do
   gem 'capybara'
