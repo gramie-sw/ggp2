@@ -1,25 +1,35 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require_self
- *= require_tree .
- */
-//
-//.content {
-//  background-color: #eee;
-//  padding: 20px;
-//  margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
-//  -webkit-border-radius: 0 0 6px 6px;
-//  -moz-border-radius: 0 0 6px 6px;
-//  border-radius: 0 0 6px 6px;
-//  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-//  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-//  box-shadow: 0 1px 2px rgba(0,0,0,.15);
-//}
+@import 'bootstrap_and_overrides';
+
+#header_and_content {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  //Negative indent footer by its height
+  margin: 0 auto -60px;
+  //Pad bottom by footer height
+  padding: 0 0 60px;
+}
+
+#header {
+  height: 61px;
+}
+
+.ggp2_port_featureImg {
+  //margin-top: 60px;
+  background-image: url(image_path('teaser.jpg'));
+  background-size: cover;
+  height: 300px;
+}
+
+#footer {
+  padding: 10px 0 10px 0;
+  height: 60px;
+  background-color: #ededed;
+
+}
+
+.content {
+  margin-top: -150px;
+  background-color: transparentize(white, 0.40)
+}
+

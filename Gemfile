@@ -46,17 +46,18 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'rails-i18n'
-gem 'bootstrap-sass', '~> 2.3.2'
+#gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '3'
+gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git'
 gem 'simple_form', '>= 3.0.0.rc'
 
 gem 'countries', :git => 'git://github.com/hexorx/countries.git'
 gem 'ancestry'
 
 gem 'rspec-rails', '~>2.13.0',  :group => [:test, :development]
-gem 'guard-rspec', '~>3.0.0', :group => [:test, :development]
+gem 'guard-rspec', '~>3.0.2', :group => [:test, :development]
 gem 'spring', '0.0.10', :group => [:test, :development]
 
-gem 'puma', group: [:test, :development]
+gem 'puma', '~>2.6.0'
 
 group :test do
   gem 'capybara'

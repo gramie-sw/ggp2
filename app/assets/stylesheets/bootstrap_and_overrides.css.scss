@@ -1,25 +1,59 @@
-$headerBackgroundColor: #333;
-$headerPrimaryColor: #fff;
+//font size
+$font-size-base: 16px;
 
-$navbarBackground: white;
-$navbarHeight: 100px;
+//colors
+$ggp2-color-green: #89c200;
+$ggp2-color-grey-white: #ededed;
+$ggp2-color-grey-dark: #5a5a5a;
+
+$ggp2-navbar-top-border-color: $ggp2-color-green;
+$ggp2-navbar-hover-color: $ggp2-color-green;
+
+$navbar-height: 50px;
+$navbar-bg: $ggp2-color-grey-white;
+$navbar-default-color: $ggp2-color-grey-dark;
+$navbar-default-bg: $ggp2-color-grey-white;
+$navbar-default-link-active-color: $ggp2-color-green;
+$navbar-default-link-active-bg: $ggp2-color-grey-white;
+$navbar-default-link-hover-bg: lighten($ggp2-color-grey-white, 2%);
+
+$navbar-default-brand-color: $ggp2-color-green;
+$navbar-default-brand-hover-color: $ggp2-color-green;
+$navbar-default-link-color: $ggp2-color-grey-dark;
+$navbar-default-link-hover-color: $ggp2-color-green;
+
+
+//$body-bg: #876543;
+$brand-primary: $ggp2-color-grey-dark;
+$text-color: $ggp2-color-grey-dark;
+$link-hover-color: $ggp2-color-green;
+
+//height
+$ggp2-border-top-height: 10px;
 
 @import "bootstrap";
+
+html,
 body {
-  padding-top: 88px
+  height: 100%;
 }
 
-@import "bootstrap-responsive";
+
+.ggp2-navbar-fixed-top {
+  @extend .navbar-fixed-top;
+  opacity: 0.95;
+  border-top: $ggp2-border-top-height solid $ggp2-navbar-top-border-color;
+}
 
 /*=== main application layout ===*/
 
 /*BOOTSTRAP OVERWRITE*/
-.navbar-fixed-top .navbar-inner {
-  background-color: transparent;
-  background-image: none;
-  border: 0;
-  box-shadow: none;
-}
+//.navbar-fixed-top .navbar-inner {
+//  background-color: transparent;
+//  background-image: none;
+//  border: 0;
+//  box-shadow: none;
+//}
 
 //@media (max-width: 767px) {
 //    [class*="span"].pull-right {
@@ -28,29 +62,29 @@ body {
 //    }
 //}
 
-#main-logo-area {
-	margin-top: 0px;
-	text-align: left;
-}
+//#main-logo-area {
+//	margin-top: 0px;
+//	text-align: left;
+//}
 
-#main-login-area {
-	margin-top: 0px;
-	text-align: right;
-}
-
-/* Landscape phone to portrait tablet */
-@media (max-width: 767px) {
-
-	#main-logo-area {
-		@extend .pull-left;
-        width: 60%;
-	}
-
-	#main-login-area {
-		width: 40%;
-		@extend .pull-right;
-	}
-}
+//#main-login-area {
+//	margin-top: 0px;
+//	text-align: right;
+//}
+//
+///* Landscape phone to portrait tablet */
+//@media (max-width: 767px) {
+//
+//	#main-logo-area {
+//		@extend .pull-left;
+//        width: 60%;
+//	}
+//
+//	#main-login-area {
+//		width: 40%;
+//		@extend .pull-right;
+//	}
+//}
 
 
 
