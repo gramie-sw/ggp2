@@ -1,31 +1,26 @@
-@import 'bootstrap_and_overrides';
+@import 'bootstrap_overwrite_and_vars';
+
+html,
+body {
+  height: 100%;
+}
 
 #header_and_content {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  //Negative indent footer by its height
-  margin: 0 auto -60px;
-  //Pad bottom by footer height
-  padding: 0 0 60px;
+  margin: 0 auto (-$ggp2-footer-height);
+  padding: 0 0 $ggp2-footer-height;
 }
 
 #header {
-  height: 61px;
-}
-
-.ggp2_port_featureImg {
-  //margin-top: 60px;
-  background-image: url(image_path('teaser.jpg'));
-  background-size: cover;
-  height: 300px;
+  height: $ggp2-border-top-height + $navbar-height;
 }
 
 #footer {
   padding: 10px 0 10px 0;
-  height: 60px;
-  background-color: #ededed;
-
+  height: $ggp2-footer-height;
+  background-color: $ggp2-color-grey-white;
 }
 
 .content {
@@ -33,3 +28,8 @@
   background-color: transparentize(white, 0.40)
 }
 
+.ggp2_feature_image {
+  background-image: image-url('teaser.jpg');
+  background-size: cover;
+  height: 300px;
+}

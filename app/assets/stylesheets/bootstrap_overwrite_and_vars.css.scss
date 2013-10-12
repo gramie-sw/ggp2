@@ -9,7 +9,6 @@ $ggp2-color-grey-dark: #5a5a5a;
 $ggp2-navbar-top-border-color: $ggp2-color-green;
 $ggp2-navbar-hover-color: $ggp2-color-green;
 
-$navbar-height: 50px;
 $navbar-bg: $ggp2-color-grey-white;
 $navbar-default-color: $ggp2-color-grey-dark;
 $navbar-default-bg: $ggp2-color-grey-white;
@@ -22,22 +21,20 @@ $navbar-default-brand-hover-color: $ggp2-color-green;
 $navbar-default-link-color: $ggp2-color-grey-dark;
 $navbar-default-link-hover-color: $ggp2-color-green;
 
-
 //$body-bg: #876543;
 $brand-primary: $ggp2-color-grey-dark;
 $text-color: $ggp2-color-grey-dark;
 $link-hover-color: $ggp2-color-green;
 
 //height
+////header-height
 $ggp2-border-top-height: 10px;
+$navbar-height: 50px;
+////footer-height
+$ggp2-footer-height: 60px;
+
 
 @import "bootstrap";
-
-html,
-body {
-  height: 100%;
-}
-
 
 .ggp2-navbar-fixed-top {
   @extend .navbar-fixed-top;
