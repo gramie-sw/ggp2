@@ -216,7 +216,7 @@ DEPENDENCIES
   mysql2
   puma (~> 2.6.0)
   rails (= 4.0.0)
-  rails-i18n
+  rails-i18n (~> 4.0.0)
   rspec-rails (~> 2.13.0)
   sass-rails (~> 4.0.0)
   sdoc
