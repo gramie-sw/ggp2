@@ -6,25 +6,29 @@
 <body>
 <div id="header_and_content">
 
-  <%= render 'layouts/navigation' %>
+  <% if true %>
+      <%= render 'layouts/navigation/admin_main_menu' %>
+  <% else %>
+      <%= render 'layouts/navigation/user_main_menu' %>
+  <% end %>
 
-  <div class="ggp2_feature_image">
+  <div class="ggp2_background_image">
     <div class="container">
-      <div class="text-right">
-        <h3>Brasilien Fussball Weltmeisterschaft 2014 </h3>
-        <p>Es muss eine Kehrtwende geben. Und die muss 360 Grad sein. (Eduard Geyer)</p>
+      <div class="row">
+        <div class="text-right">
+          <h3><%= content_for?(:main_header) ? content_for(:main_header) : 'Brasilien Fussball Weltmeisterschaft 2014' %></h3>
+          <h4><%= content_for?(:sub_header) ? content_for(:sub_header): 'Es muss eine Kehrtwende geben. Und die muss 360 Grad sein. (Eduard Geyer)' %></h4>
+        </div>
+      </div>
+      <div class="row ggp2_content">
+        <%= content_for :sub_menu %>
+      </div>
+      <div class="row ggp2_content">
+        <div class="col"></div>
+        <%= render 'layouts/messages' %>
+        <%= yield %>
       </div>
     </div>
-  </div>
-
-  <div class="container">
-    <div class="content">
-      <%= render 'layouts/messages' %>
-      <%= yield %>
-
-      <p>lorem ipsum</p>
-    </div>
-    <!--<hr>-->
   </div>
 </div>
 

@@ -23,13 +23,12 @@ body {
   background-color: $ggp2-color-grey-white;
 }
 
-.content {
-  margin-top: -150px;
+.ggp2_content {
   background-color: transparentize(white, 0.40)
 }
 
-.ggp2_feature_image {
-  background-image: image-url('teaser.jpg');
+.ggp2_background_image {
+  background-image: image-url('background_image_00.jpg');
   background-size: cover;
   height: 300px;
 }
