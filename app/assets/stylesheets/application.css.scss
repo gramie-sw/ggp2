@@ -1,5 +1,9 @@
 @import 'twbs_overwrites_and_vars';
 
+$ggp2-content-background-color: $ggp2-color-whitesmoke;
+$ggp2-footer-color: $ggp2-color-white-grey;
+$ggp2-footer-background-color: $ggp2-color-grey-dark;
+
 html,
 body {
   height: 100%;
@@ -18,13 +22,24 @@ body {
 }
 
 #footer {
+  color: $ggp2-footer-color;
   padding: 10px 0 10px 0;
   height: $ggp2-footer-height;
-  background-color: $ggp2-color-grey-white;
+  background-color: $ggp2-footer-background-color
 }
 
-.ggp2_content {
-  background-color: transparentize(white, 0.40)
+.content_padding {
+  padding: 0px 10px 0px 10px;
+}
+
+.ggp2_content_bg_transparentize_40 {
+  background-color: transparentize($ggp2-content-background-color, 0.40);
+  @extend .content_padding;
+}
+
+.ggp2_title_bg_transparentize_60 {
+  background-color: transparentize($ggp2-content-background-color, 0.60);
+  @extend .content_padding;
 }
 
 .ggp2_background_image {

@@ -3,36 +3,51 @@ $font-size-base: 16px;
 
 //colors
 $ggp2-color-green: #89c200;
-$ggp2-color-grey-white: #ededed;
-$ggp2-color-grey-dark: #4f4f4f;
+$ggp2-color-white-grey: #ededed;
+$ggp2-color-whitesmoke: #f5f5f5;
+$ggp2-color-grey-dark: #353535;
 
 $ggp2-navbar-top-border-color: $ggp2-color-green;
-$ggp2-navbar-hover-color: $ggp2-color-green;
+//$ggp2-navbar-hover-color: $ggp2-color-green;
 
-$navbar-bg: $ggp2-color-grey-white;
+//define bootstrap colors
+////navbar
+$navbar-bg: $ggp2-color-white-grey;
 $navbar-default-color: $ggp2-color-grey-dark;
-$navbar-default-bg: $ggp2-color-grey-white;
+$navbar-default-bg: $ggp2-color-white-grey;
+$navbar-default-link-active-bg: $ggp2-color-white-grey;
 $navbar-default-link-active-color: $ggp2-color-green;
-$navbar-default-link-active-bg: $ggp2-color-grey-white;
-$navbar-default-link-hover-bg: lighten($ggp2-color-grey-white, 2%);
-
+$navbar-default-link-color: $ggp2-color-grey-dark;
+$navbar-default-link-hover-bg: lighten($ggp2-color-white-grey, 2%);
+$navbar-default-link-hover-color: $ggp2-color-green;
 $navbar-default-brand-color: $ggp2-color-green;
 $navbar-default-brand-hover-color: $ggp2-color-green;
-$navbar-default-link-color: $ggp2-color-grey-dark;
-$navbar-default-link-hover-color: $ggp2-color-green;
 
+////define general
 //$body-bg: #876543;
 $brand-primary: $ggp2-color-grey-dark;
 $text-color: $ggp2-color-grey-dark;
 $link-hover-color: $ggp2-color-green;
+
+//navbar changes from horizontal to vertical
+$grid-float-breakpoint: 580px;
+
+//width
+//$screen-xs: 480px;
+//$screen-sm: 992px;
+//$screen-md: 1200px;
+//$screen-lg: 1490px;
+//
+//$container-tablet: 940px;
+//$container-desktop: 1170px;
+//$container-lg-desktop: 1476px;
 
 //height
 ////header-height
 $ggp2-border-top-height: 10px;
 $navbar-height: 50px;
 ////footer-height
-$ggp2-footer-height: 60px;
-
+$ggp2-footer-height: 70px;
 
 @import "bootstrap";
 
@@ -41,50 +56,3 @@ $ggp2-footer-height: 60px;
   opacity: 0.95;
   border-top: $ggp2-border-top-height solid $ggp2-navbar-top-border-color;
 }
-
-/*=== main application layout ===*/
-
-/*BOOTSTRAP OVERWRITE*/
-//.navbar-fixed-top .navbar-inner {
-//  background-color: transparent;
-//  background-image: none;
-//  border: 0;
-//  box-shadow: none;
-//}
-
-//@media (max-width: 767px) {
-//    [class*="span"].pull-right {
-//        float: none;
-//
-//    }
-//}
-
-//#main-logo-area {
-//	margin-top: 0px;
-//	text-align: left;
-//}
-
-//#main-login-area {
-//	margin-top: 0px;
-//	text-align: right;
-//}
-//
-///* Landscape phone to portrait tablet */
-//@media (max-width: 767px) {
-//
-//	#main-logo-area {
-//		@extend .pull-left;
-//        width: 60%;
-//	}
-//
-//	#main-login-area {
-//		width: 40%;
-//		@extend .pull-right;
-//	}
-//}
-
-
-
-
-
-

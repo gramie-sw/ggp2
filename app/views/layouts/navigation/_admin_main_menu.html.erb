@@ -3,13 +3,14 @@
     <div class="container">
       <div class="navbar-header">
         <%= render :partial => 'layouts/navigation/toggle_button' %>
+        <a class="navbar-brand" href="#">Administration</a>
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
           <li class="active"><a href="#tournament">Tournament</a></li>
-          <li><a href="#team">Teams</a></li>
-          <li><a href="#user">Users</a></li>
-          <li><a href="#logout">Logout</a></li>
+          <li><%= link_to Team.model_name.human_plural, teams_path %></li>
+          <li><%= link_to User.model_name.human_plural, users_path %></li>
+          <li><%= link_to "Logout", games_path %></li>
         </ul>
       </div>
     </div>

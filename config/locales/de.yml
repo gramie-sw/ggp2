@@ -10,6 +10,19 @@ de:
     formats:
       short_full: ! '%d.%m.%Y, %H:%M:%S Uhr'
 
+  activerecord:
+      models:
+        team:
+          one: Team
+          other: Teams
+        user:
+          one: Benutzer
+          other: Benutzer
+
+
+
+
+
   messages:
       model:
         added:  '%{model} wurde hinzugefügt.'

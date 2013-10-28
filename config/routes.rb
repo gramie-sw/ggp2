@@ -1,8 +1,9 @@
 Ggp2::Application.routes.draw do
 
 
-  resources :games
   resources :aggregates
+  resources :games
+  resources :users
   resources :teams
 
   root :to => "games#index"
