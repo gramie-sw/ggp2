@@ -9,7 +9,7 @@ body {
   height: 100%;
 }
 
-#header_and_content {
+#header-and-content {
   min-height: 100%;
   height: auto !important;
   height: 100%;
@@ -28,21 +28,21 @@ body {
   background-color: $ggp2-footer-background-color
 }
 
-.content_padding {
+.content-padding {
   padding: 0px 10px 0px 10px;
 }
 
-.ggp2_content_bg_transparentize_40 {
-  background-color: transparentize($ggp2-content-background-color, 0.40);
-  @extend .content_padding;
-}
-
-.ggp2_title_bg_transparentize_60 {
+.ggp2-title {
   background-color: transparentize($ggp2-content-background-color, 0.60);
-  @extend .content_padding;
+  @extend .content-padding;
 }
 
-.ggp2_background_image {
+.ggp2-main_content_area {
+  background-color: transparentize($ggp2-content-background-color, 0.40);
+  @extend .content-padding;
+}
+
+.ggp2-background-image {
   background-image: image-url('background_image_00.jpg');
   background-size: cover;
   height: 300px;

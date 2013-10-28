@@ -4,7 +4,7 @@
 <%= render 'layouts/header' %>
 
 <body>
-<div id="header_and_content">
+<div id="header-and-content">
 
   <% if true %>
       <%= render 'layouts/navigation/admin_main_menu' %>
@@ -12,20 +12,20 @@
       <%= render 'layouts/navigation/user_main_menu' %>
   <% end %>
 
-  <div class="ggp2_background_image">
+  <div class="ggp2-background-image">
     <div class="container">
-      <div class="row ggp2_title_bg_transparentize_60">
+      <div class="row ggp2-title">
         <%= content_for :sub_menu %>
       </div>
       <div class="row">
         <h3>
-          <span class="ggp2_title_bg_transparentize_60"><%= content_for?(:main_title) ? content_for(:main_title) : 'Brasilien Fussball Weltmeisterschaft-2014' %></span>
+          <span class="ggp2-title"><%= content_for?(:main_title) ? content_for(:main_title) : 'Brasilien Fussball Weltmeisterschaft-2014' %></span>
         </h3>
         <h4>
-          <span class="ggp2_title_bg_transparentize_60"><%= content_for?(:sub_title) ? content_for(:sub_title) : 'Es muss eine Kehrtwende geben. Und die muss 360 Grad sein. (Eduard Geyer)' %></span>
+          <span class="ggp2-title"><%= content_for?(:sub_title) ? content_for(:sub_title) : 'Es muss eine Kehrtwende geben. Und die muss 360 Grad sein. (Eduard Geyer)' %></span>
         </h4>
       </div>
-      <div class="row ggp2_content_bg_transparentize_40">
+      <div class="row ggp2-main_content_area">
         <div class="col"></div>
         <%= render 'layouts/messages' %>
         <%= yield %>
