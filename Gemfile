@@ -48,14 +48,15 @@ end
 gem 'rails-i18n', '~> 4.0.0'
 #gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '3'
 gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git'
-gem 'simple_form', '>= 3.0.0.rc'
+gem 'simple_form', '>= 3.0.0'
 
 gem 'countries', :git => 'git://github.com/hexorx/countries.git'
 gem 'ancestry'
 
-gem 'rspec-rails', '~>2.13.0',  :group => [:test, :development]
-gem 'guard-rspec', '~>3.0.2', :group => [:test, :development]
-gem 'spring', '0.0.10', :group => [:test, :development]
+gem 'rspec-rails', '~>2.14.0',  :group => [:test, :development]
+gem 'guard-rspec', '~>4.0.3', :group => [:test, :development]
+gem 'spring-commands-rspec', require: false, :group => [:test, :development]
+gem 'spring', '0.9.0', :group => [:test, :development]
 
 gem 'puma', '~>2.6.0'
 
