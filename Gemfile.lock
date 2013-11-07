@@ -5,13 +5,6 @@ GIT
     countries (0.9.3)
       currencies (~> 0.4.2)
 
-GIT
-  remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
-  revision: 018c0b924824b9f5e33a4e3b6978235576b8647b
-  specs:
-    bootstrap-sass (3.0.1.0.rc)
-      sass (~> 3.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -43,6 +36,8 @@ GEM
       activerecord (>= 3.0.0)
     arel (4.0.1)
     atomic (1.1.14)
+    bootstrap-sass (3.0.1.0.rc)
+      sass (~> 3.2)
     builder (3.1.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -205,7 +200,7 @@ PLATFORMS
 
 DEPENDENCIES
   ancestry
-  bootstrap-sass!
+  bootstrap-sass (~> 3.0.1.0.rc)
   capybara
   coffee-rails (~> 4.0.0)
   countries!

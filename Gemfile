@@ -46,8 +46,8 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'rails-i18n', '~> 4.0.0'
-#gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '3'
-gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git'
+#gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git'
+gem 'bootstrap-sass', '~> 3.0.1.0.rc'
 gem 'simple_form', '>= 3.0.0'
 
 gem 'countries', :git => 'git://github.com/hexorx/countries.git'

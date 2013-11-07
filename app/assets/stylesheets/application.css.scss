@@ -1,49 +1,9 @@
-@import 'twbs_overwrites_and_vars';
-
-$ggp2-content-background-color: $ggp2-color-whitesmoke;
-$ggp2-footer-color: $ggp2-color-white-grey;
-$ggp2-footer-background-color: $ggp2-color-grey-dark;
-
-html,
-body {
-  height: 100%;
-}
-
-#header-and-content {
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  margin: 0 auto (-$ggp2-footer-height);
-  padding: 0 0 $ggp2-footer-height;
-}
-
-#header {
-  height: $ggp2-border-top-height + $navbar-height;
-}
-
-#footer {
-  color: $ggp2-footer-color;
-  padding: 10px 0 10px 0;
-  height: $ggp2-footer-height;
-  background-color: $ggp2-footer-background-color
-}
-
-.content-padding {
-  padding: 0px 10px 0px 10px;
-}
-
-.ggp2-title {
-  background-color: transparentize($ggp2-content-background-color, 0.60);
-  @extend .content-padding;
-}
-
-.ggp2-main_content_area {
-  background-color: transparentize($ggp2-content-background-color, 0.40);
-  @extend .content-padding;
-}
-
-.ggp2-background-image {
-  background-image: image-url('background_image_00.jpg');
-  background-size: cover;
-  height: 300px;
-}
+//order is important
+// 1. import overwrite bootsrap variables
+@import 'twbs_variables';
+// 2. bootsrap itself
+@import 'bootstrap';
+// 3. import bootstrap overwrite here
+@import 'twbs_theme';
+// 4. application style
+@import 'ggp2';
