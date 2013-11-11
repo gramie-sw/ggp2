@@ -17,9 +17,34 @@ body {
 
 #footer {
   color: $ggp2-footer-color;
-  padding: 10px 0 10px 0;
+  padding: 0px 0 5px 0;
   height: $ggp2-footer-height;
-  background-color: $ggp2-footer-background-color
+  background-color: $ggp2-footer-background-color;
+
+  .container {
+    display: table;
+    height: 100%;
+  }
+  .row {
+    display: table-cell;
+    height: 100%;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 40px;
+  }
+
+  i {
+    vertical-align: middle;
+  }
+
+  a {
+    color: #89c200;
+    text-decoration: none;
+
+    &:hover {
+      color: $ggp2-footer-color;
+    }
+  }
 }
 
 .content-padding {
