@@ -47,7 +47,7 @@ end
 
 gem 'rails-i18n', '~> 4.0.0'
 #gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git'
-gem 'bootstrap-sass', '~> 3.0.1.0.rc'
+gem 'bootstrap-sass', '~> 3.0.2.0'
 gem 'simple_form', '>= 3.0.0'
 
 gem 'font-awesome-sass'

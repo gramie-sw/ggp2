@@ -36,7 +36,7 @@ GEM
       activerecord (>= 3.0.0)
     arel (4.0.1)
     atomic (1.1.14)
-    bootstrap-sass (3.0.1.0.rc)
+    bootstrap-sass (3.0.2.1)
       sass (~> 3.2)
     builder (3.1.4)
     capybara (2.1.0)
@@ -202,7 +202,7 @@ PLATFORMS
 
 DEPENDENCIES
   ancestry
-  bootstrap-sass (~> 3.0.1.0.rc)
+  bootstrap-sass (~> 3.0.2.0)
   capybara
   coffee-rails (~> 4.0.0)
   countries!
