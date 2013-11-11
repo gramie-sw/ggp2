@@ -12,26 +12,25 @@
       <%= render 'layouts/navigation/user_main_menu' %>
   <% end %>
 
-  <div class="ggp2-background-image">
-    <div class="container">
-      <div class="row ggp2-title">
-        <%= content_for :sub_menu %>
-      </div>
-      <div class="row">
-        <h3>
-          <span class="ggp2-title"><%= content_for?(:main_title) ? content_for(:main_title) : 'Brasilien Fussball Weltmeisterschaft-2014' %></span>
-        </h3>
-        <h4>
-          <span class="ggp2-title"><%= content_for?(:sub_title) ? content_for(:sub_title) : 'Es muss eine Kehrtwende geben. Und die muss 360 Grad sein. (Eduard Geyer)' %></span>
-        </h4>
-      </div>
-      <div class="row ggp2-main_content_area">
-        <div class="col"></div>
-        <%= render 'layouts/messages' %>
-        <%= yield %>
-      </div>
+  <div class="ggp2-background-image"></div>
+  <div class="container overlap">
+    <div class="row ggp2-title">
+      <%= content_for :sub_menu %>
     </div>
-  </div>
+    <div class="row">
+      <h3>
+        <span class="ggp2-title"><%= content_for?(:main_title) ? content_for(:main_title) : 'Brasilien Fussball Weltmeisterschaft-2014' %></span>
+      </h3>
+      <h4>
+        <span class="ggp2-title"><%= content_for?(:sub_title) ? content_for(:sub_title) : 'Es muss eine Kehrtwende geben. Und die muss 360 Grad sein. (Eduard Geyer)' %></span>
+      </h4>
+    </div>
+    <div class="row ggp2-main_content_area">
+      <div class="col"></div>
+      <%= render 'layouts/messages' %>
+      <%= yield %>
+    </div>
+</div>
 </div>
 
 <%= render 'layouts/footer' %>

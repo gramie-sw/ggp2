@@ -17,7 +17,7 @@ body {
 
 #footer {
   color: $ggp2-footer-color;
-  padding: 0px 0 5px 0;
+  padding: 0px 0px 5px 0px;
   height: $ggp2-footer-height;
   background-color: $ggp2-footer-background-color;
 
@@ -47,22 +47,27 @@ body {
   }
 }
 
+.overlap {
+  margin-top: (1/4 * $ggp2-background-image-height) - $ggp2-background-image-height;
+}
+
 .content-padding {
   padding: 0px 10px 0px 10px;
 }
 
 .ggp2-title {
-  background-color: transparentize($ggp2-content-background-color, 0.60);
+  background-color: transparentize($ggp2-content-background-color, 0.50);
   @extend .content-padding;
 }
 
 .ggp2-main_content_area {
   background-color: transparentize($ggp2-content-background-color, 0.40);
   @extend .content-padding;
+  margin-bottom: 10px;
 }
 
 .ggp2-background-image {
   background-image: image-url('background_image_00.jpg');
   background-size: cover;
-  height: 300px;
+  height: $ggp2-background-image-height;
 }
