@@ -47,7 +47,7 @@ end
 
 gem 'rails-i18n', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 3.0.2.1'
-gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
+#gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
 
 gem 'font-awesome-rails', '~> 4.0.3.0'
 gem 'countries', '~> 0.9.3'
