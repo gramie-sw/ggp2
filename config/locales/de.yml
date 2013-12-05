@@ -13,11 +13,14 @@ de:
   activerecord:
       models:
         team:
-          one: Team
-          other: Teams
+          one: Manschaft
+          other: Manschaften
         user:
           one: Benutzer
           other: Benutzer
+        game:
+          one: Spiel
+          other: Spiele
 
 
 

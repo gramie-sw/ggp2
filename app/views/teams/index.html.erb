@@ -1,4 +1,46 @@
 <%= render partial: 'commons/background_image', locals: {image_name: 'background_image_01.jpg'} %>
-<% content_for(:main_title, 'Teams') %>
+<% content_for(:main_title, Team.model_name.human_plural) %>
 <% content_for(:sub_title, 'Description if needed') %>
-<div>Something about teams</div>
+
+<%= link_to "Manschaften anlegen", games_path, class: "btn btn-default" %>
+
+<table class="table table-hover table-striped">
+  <thead>
+  <tr>
+    <th>test</th>
+    <th>test</th>
+  </tr>
+  </thead>
+
+  <tbody>
+
+  <tr>
+    <td>
+      1
+    </td>
+    <td>
+      2
+    </td>
+  </tr>
+  <tr>
+    <td>
+      1
+    </td>
+    <td>
+      2
+    </td>
+  </tr>
+  <tr>
+    <td>
+      1
+    </td>
+    <td>
+      2
+    </td>
+  </tr>
+
+
+  </tbody>
+</table>
+
+

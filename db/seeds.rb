@@ -5,3 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+if Rails.env == 'development'
+
+  require 'forgery'
+  require 'factory_girl'
+
+  FactoryGirl.find_definitions
+
+  (1..2).each do
+    FactoryGirl.create(:game)
+  end
+end

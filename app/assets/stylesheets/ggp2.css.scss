@@ -51,18 +51,18 @@ body {
   margin-top: (1/4 * $ggp2-background-image-height) - $ggp2-background-image-height;
 }
 
-.content-padding {
-  padding: 0px 10px 0px 10px;
-}
+//.content-padding {
+//  padding: 0px 10px 0px 10px;
+//}
 
 .ggp2-title {
   background-color: transparentize($ggp2-content-background-color, 0.50);
-  @extend .content-padding;
+  padding: 0px 10px 0px 10px;
 }
 
 .ggp2-main_content_area {
   background-color: transparentize($ggp2-content-background-color, 0.40);
-  @extend .content-padding;
+  padding: 10px 10px 0px 10px;
   margin-bottom: 10px;
 }
 
