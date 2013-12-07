@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~>4.0.1'
+gem 'rails', '~>4.0.2'
 
 # Use mysql as the database for Active Record
 gem 'mysql2'
@@ -50,7 +50,7 @@ gem 'bootstrap-sass', '~> 3.0.2.1'
 #gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
 
 gem 'font-awesome-rails', '~> 4.0.3.0'
-gem 'countries', '~> 0.9.3'
+gem 'localized_country_select', '>= 0.9.7'
 gem 'ancestry'
 
 gem 'rspec-rails', '~>2.14.0',  :group => [:test, :development]

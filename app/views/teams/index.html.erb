@@ -1,46 +1,32 @@
 <%= render partial: 'commons/background_image', locals: {image_name: 'background_image_01.jpg'} %>
 <% content_for(:main_title, Team.model_name.human_plural) %>
-<% content_for(:sub_title, 'Description if needed') %>
+<% content_for(:sub_title, 'WM-Brasilien 2014') %>
 
-<%= link_to "Manschaften anlegen", games_path, class: "btn btn-default" %>
+<% team_count = @teams.count %>
 
-<table class="table table-hover table-striped">
-  <thead>
-  <tr>
-    <th>test</th>
-    <th>test</th>
-  </tr>
-  </thead>
+<% @teams.each_with_index do |team, index| %>
 
-  <tbody>
+    <% if index % 3 == 0 %>
+        <div class="row">
+    <% end %>
 
-  <tr>
-    <td>
-      1
-    </td>
-    <td>
-      2
-    </td>
-  </tr>
-  <tr>
-    <td>
-      1
-    </td>
-    <td>
-      2
-    </td>
-  </tr>
-  <tr>
-    <td>
-      1
-    </td>
-    <td>
-      2
-    </td>
-  </tr>
+    <div class="col-sm-3">
+      <div class="row">
+        <div class="col-xs-10">
+          <%= image_tag("flags/#{team.country.downcase}.png", size: "16x10",) %>
+          <span class="vertical-center"><%= I18n.t team.country, :scope => 'countries' %></span>
+        </div>
+        <div class="col-xs-2">
+          12
+        </div>
+      </div>
+    </div>
 
+    <% if team_count == (index + 1) || (index != 0 && index % 3 == 2) %>
+        </div>
+    <% end %>
+<% end %>
 
-  </tbody>
-</table>
+<%= link_to "Manschaft hinzufügen", games_path, class: "btn btn-default" %>
 
 

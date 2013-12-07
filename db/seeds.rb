@@ -13,7 +13,13 @@ if Rails.env == 'development'
 
   FactoryGirl.find_definitions
 
-  (1..2).each do
-    FactoryGirl.create(:game)
+  #---------team creation---------
+  (1..32).each do
+    FactoryGirl.create(:team)
   end
+
+
+#(1..2).each do
+#  FactoryGirl.create(:game)
+#end
 end

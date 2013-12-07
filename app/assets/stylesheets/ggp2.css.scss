@@ -47,6 +47,10 @@ body {
   }
 }
 
+.vertical-center {
+  vertical-align: middle;
+}
+
 .overlap {
   margin-top: (1/4 * $ggp2-background-image-height) - $ggp2-background-image-height;
 }
@@ -71,3 +75,4 @@ body {
   background-size: cover;
   height: $ggp2-background-image-height;
 }
+
