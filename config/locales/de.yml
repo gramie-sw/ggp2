@@ -11,48 +11,60 @@ de:
       short_full: ! '%d.%m.%Y, %H:%M:%S Uhr'
 
   activerecord:
-      models:
-        team:
-          one: Manschaft
-          other: Manschaften
-        user:
-          one: Benutzer
-          other: Benutzer
-        game:
-          one: Spiel
-          other: Spiele
+    models:
+      team:
+        one: Team
+        other: Teams
+      user:
+        one: Benutzer
+        other: Benutzer
+      game:
+        one: Spiel
+        other: Spiele
 
-
-
-
-
-  messages:
-      model:
-        added:  '%{model} wurde hinzugefügt.'
-        all: Alle %{models}
-        created: '%{model} wurde erstellt.'
-        destroy: '%{model} löschen'
-        destroyed: '%{model} wurde gelöscht.'
-        destroy_really: 'Wollen Sie %{model} wirklich löschen?'
-        edit: '%{model} bearbeiten'
-        export: '%{model} exportieren'
-        import: '%{model} importieren'
-        new: '%{model} anlegen'
-        remove: '%{model} entfernen'
-        removed:  '%{model} wurde entfernt'
-        remove_really: 'Wollen Sie %{model} wirklich entfernen?'
-        updated: '%{model} wurde geändert.'
-      models:
-        not_existing: Keine %{models} vorhanden
+  model:
+    submit:
+      create: '%{model} anlegen'
+      update: '%{model} ändern'
+    messages:
+      add:  '%{model} hinzufügen'
+      added:  '%{model} hinzugefügt'
+      all: Alle %{models}
+      created: '%{model} erstellt'
+      destroy: '%{model} löschen'
+      destroyed: '%{model} erfolgreich gelöscht'
+      destroy_really: '%{model} wirklich löschen?'
+      downloaded: '%{model} herunterladen'
+      edit: '%{model} bearbeiten'
+      new: '%{model} anlegen'
+      remove: '%{model} entfernen'
+      removed:  '%{model} entfernt'
+      remove_really: '%{model} wirklich entfernen?'
+      show: '%{model} anzeigen'
+      updated: '%{model} geändert'
+      not_existing: '%{model} nicht vorhanden'
+      imported: '%{count} %{model} erfolgreich importiert'
+      import: '%{model} importieren'
+      export: '%{model} exportieren'
+      count:
+        created: '%{count} %{models} erstellt'
 
   general:
+    add: Erstellen
     back: Zurück
     cancel: Abbrechen
-    category: Kategorie
-    edit: Bearbeiten
+    change: Ändern
     destroy: Löschen
-    settings: Einstellungen
-    "no": Nein
-    "yes": Ja
+    edit: Bearbeiten
+    error: Fehler
+    login: Anmelden
+    logged_in_as: Angemeldet als
+    logout: Abmelden
+    'no': Nein
+    original: 'Original'
     search: Suchen
+    show: Anzeigen
+    remove: Entfernen
     searchterm: Suchbegriff
+    'yes': Ja
+    close: x
