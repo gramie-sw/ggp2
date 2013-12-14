@@ -2,33 +2,12 @@
 <% content_for(:main_title, Team.model_name.human_plural) %>
 <% content_for(:sub_title, 'WM-Brasilien 2014') %>
 
-<% team_count = @teams.count %>
+<div class="visible-sm">
+  <%= render :partial => 'teams', locals: {columns: 2, team: @team} %>
+</div>
 
-<% @teams.each_with_index do |team, index| %>
+<div class="hidden-sm">
+  <%= render :partial => 'teams', locals: {columns: 3, team: @team} %>
+</div>
 
-    <% if index % 3 == 0 %>
-        <div class="row">
-    <% end %>
-
-    <div class="col-sm-4">
-      <div class="row">
-        <div class="col-xs-10">
-          <%= image_tag("blank.gif", class: "flag flag-#{team.country.downcase}") %>
-          <span class="vertical-center"><%= I18n.t team.country, :scope => 'countries' %></span>
-        </div>
-        <div class="col-xs-2">
-          <%= destroy_link team_path(team), I18n.t('model.messages.destroy', model: (I18n.t team.country, :scope => 'countries')),
-                    only_icon: true,
-                    confirm: I18n.t('model.messages.destroy_really', model: ("#{Team.model_name.human} #{I18n.t team.country, :scope => 'countries'}")) %>
-        </div>
-      </div>
-    </div>
-
-    <% if team_count == (index + 1) || (index != 0 && index % 3 == 2) %>
-        </div>
-    <% end %>
-<% end %>
-
-<%= link_to I18n.t('model.messages.add', model: Team.model_name.human), games_path, class: "btn btn-default" %>
-
-
+<%= link_to I18n.t('model.messages.add', model: Team.model_name.human), games_path, class: "ggp2-btn btn-default" %>
