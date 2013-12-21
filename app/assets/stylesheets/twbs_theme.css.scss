@@ -15,13 +15,20 @@ $ggp2-footer-height: 120px;
 
 $ggp2-background-image-height: 300px;
 
-.ggp2-navbar-fixed-top {
-  @extend .navbar-fixed-top;
+.navbar-fixed-top {
   opacity: 0.95;
   border-top: $ggp2-border-top-height solid $ggp2-navbar-top-border-color;
+}
+
+.well {
+  background-color: rgba(245, 245, 245, 0.4);
 }
 
 .ggp2-btn {
   @extend .btn;
   margin: 10px 0px 10px 0px;
+}
+
+.select {
+  width: 150px;
 }

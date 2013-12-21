@@ -1,6 +1,6 @@
-<% team_count = @teams.count %>
+<% team_count = teams.count %>
 
-<% @teams.each_with_index do |team, index| %>
+<% teams.each_with_index do |team, index| %>
 
     <% if index % columns == 0 %>
         <div class="row">

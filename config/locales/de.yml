@@ -21,6 +21,9 @@ de:
       game:
         one: Spiel
         other: Spiele
+    attributes:
+      team:
+        country: Team
 
   model:
     submit:

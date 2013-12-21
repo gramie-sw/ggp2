@@ -46,7 +46,7 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'rails-i18n', '~> 4.0.0'
-gem 'bootstrap-sass', '~> 3.0.2.1'
+gem 'bootstrap-sass', '~> 3.0.3.0'
 #gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
 
 gem 'font-awesome-rails', '~> 4.0.3.0'
@@ -54,11 +54,11 @@ gem 'localized_country_select', '>= 0.9.7'
 gem 'ancestry'
 
 gem 'rspec-rails', '~>2.14.0',  :group => [:test, :development]
-gem 'guard-rspec', '~>4.0.4', :group => [:test, :development]
+gem 'guard-rspec', '~>4.1.1', :group => [:test, :development]
 gem 'spring-commands-rspec', require: false, :group => [:test, :development]
-gem 'spring', '0.9.2', :group => [:test, :development]
+gem 'spring', '1.0.0', :group => [:test, :development]
 
-gem 'puma', '~>2.6.0'
+gem 'puma', '~>2.7.1'
 
 group :test do
   gem 'capybara'

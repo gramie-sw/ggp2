@@ -2,12 +2,28 @@
 <% content_for(:main_title, Team.model_name.human_plural) %>
 <% content_for(:sub_title, 'WM-Brasilien 2014') %>
 
+<div class="well">
+  <%= form_for @presenter.new_team, html: {class: 'form-horizontal', role: 'form'} do |f| %>
+      <fieldset>
+        <div class="form-group">
+          <%= f.label :country, class: 'col-sm-1 control-label' %>
+          <div class="col-sm-3">
+            <%= country_select(:team, :country, nil, {}, class: 'form-control') %>
+          </div>
+          <div class="col-sm-2">
+            <%= f.submit I18n.t('model.messages.add', model: Team.model_name.human), class: 'btn btn-default ' %>
+          </div>
+        </div>
+      </fieldset>
+  <% end %>
+</div>
+
 <div class="visible-sm">
-  <%= render :partial => 'teams', locals: {columns: 2, team: @team} %>
+  <%= render :partial => 'teams', locals: {columns: 2, teams: @presenter.teams} %>
 </div>
-
 <div class="hidden-sm">
-  <%= render :partial => 'teams', locals: {columns: 3, team: @team} %>
+  <%= render :partial => 'teams', locals: {columns: 3, teams: @presenter.teams} %>
 </div>
 
-<%= link_to I18n.t('model.messages.add', model: Team.model_name.human), games_path, class: "ggp2-btn btn-default" %>
+
+<%#= link_to I18n.t('model.messages.add', model: Team.model_name.human), games_path, class: "ggp2-btn btn-default" %>

@@ -18,6 +18,7 @@ module Ggp2
     # -- all .rb files in that directory are automatically loaded.
 
     config.autoload_paths += %W(#{config.root}/lib/validators)
+    config.autoload_paths += Dir["#{config.root}/app/presenters/**/"]
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
@@ -29,11 +30,12 @@ module Ggp2
     config.i18n.available_locales = [:en, :de]
     config.i18n.default_locale = :de
     config.i18n.fallbacks = [:en]
+    I18n.config.enforce_available_locales = true
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
-
     config.time_zone = 'Berlin'
     config.active_record.default_timezone = :local
+
   end
 end
