@@ -13,6 +13,7 @@
       <th><%= Match.human_attribute_name(:placeholder_team_1) %></th>
       <th><%= Match.human_attribute_name(:placeholder_team_2) %></th>
       <th><%= Match.human_attribute_name(:date) %></th>
+      <th><%= Match.human_attribute_name(:venue) %></th>
     </tr>
   </thead>
   <tbody>
@@ -29,7 +30,8 @@
       </td>
       <td><%= match.placeholder_team_1 %></td>
       <td><%= match.placeholder_team_2 %></td>
-
+      <td></td>
+      <td><%= match.venue.city unless match.venue.nil? %></td>
     </tr>
   <% end %>
   </tbody>

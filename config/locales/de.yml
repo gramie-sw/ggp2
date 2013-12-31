@@ -21,9 +21,16 @@ de:
       match:
         one: Spiel
         other: Spiele
+      venue:
+        one: Austragungsort
+        other: Austragungsorte
     attributes:
       team:
         country: Team
+      match:
+        position: Position
+        venue: Austragungsort
+        date: Datum
 
   model:
     submit:
