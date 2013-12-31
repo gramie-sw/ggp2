@@ -1,6 +1,6 @@
 class Aggregate < ActiveRecord::Base
 
-  has_many :games, dependent: :destroy
+  has_many :matches, dependent: :destroy
   has_ancestry
 
   validates :position, presence: true, uniqueness: {scope: :ancestry}, numericality: {only_integer: true}, inclusion: {in: 1..1000}
@@ -18,7 +18,7 @@ class Aggregate < ActiveRecord::Base
 
   def games_of_branch
     if is_phase? && has_groups?
-      Game.where(aggregate_id: children)
+      Match.where(aggregate_id: children)
     else
       games
     end

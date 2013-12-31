@@ -23,7 +23,7 @@ describe Aggregate do
   end
 
   describe 'associations' do
-    it { should have_many(:games).dependent(:destroy) }
+    it { should have_many(:matches).dependent(:destroy) }
   end
 
   describe 'scopes' do
@@ -51,12 +51,12 @@ describe Aggregate do
 
   describe '#games_of_branch' do
 
-    it 'should return all direct games when aggregate is a group' do
+    it 'should return all direct matches when aggregate is a group' do
       group = create(:aggregate_with_parent)
-      game_1 = create(:game, aggregate: group)
-      game_2 = create(:game, aggregate: group)
+      game_1 = create(:match, aggregate: group)
+      game_2 = create(:match, aggregate: group)
 
-      create(:game)
+      create(:match)
 
       found_games = group.games_of_branch
       found_games.size.should == 2
@@ -64,12 +64,12 @@ describe Aggregate do
       found_games.last.id.should == game_2.id
     end
 
-    it 'should return all direct games when aggregate is a phase and has no groups' do
+    it 'should return all direct matches when aggregate is a phase and has no groups' do
       phase = create(:aggregate)
-      game_1 = create(:game, aggregate: phase)
-      game_2 = create(:game, aggregate: phase)
+      game_1 = create(:match, aggregate: phase)
+      game_2 = create(:match, aggregate: phase)
 
-      create(:game)
+      create(:match)
 
       found_games = phase.games_of_branch
       found_games.size.should == 2
@@ -77,16 +77,16 @@ describe Aggregate do
       found_games.last.id.should == game_2.id
     end
 
-    it 'should return all games from belonging groups when aggregate is phase and has groups' do
+    it 'should return all matches from belonging groups when aggregate is phase and has groups' do
       phase = create(:aggregate)
       group_1 = create(:aggregate, ancestry: phase.id)
       group_2 = create(:aggregate, ancestry: phase.id)
-      game_1 = create(:game, aggregate: group_1)
-      game_2 = create(:game, aggregate: group_1)
-      game_3 = create(:game, aggregate: group_2)
+      game_1 = create(:match, aggregate: group_1)
+      game_2 = create(:match, aggregate: group_1)
+      game_3 = create(:match, aggregate: group_2)
 
       group_3 = create(:aggregate_with_parent)
-      create(:game, aggregate: group_3)
+      create(:match, aggregate: group_3)
 
       found_games = phase.games_of_branch
       found_games.size.should == 3

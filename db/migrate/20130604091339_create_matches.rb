@@ -1,7 +1,7 @@
-class CreateGames < ActiveRecord::Migration
+class CreateMatches < ActiveRecord::Migration
   def change
-    create_table :games do |t|
-      t.integer :game_number
+    create_table :matches do |t|
+      t.integer :position
       t.integer :aggregate_id
       t.integer :team_1_id
       t.integer :team_2_id

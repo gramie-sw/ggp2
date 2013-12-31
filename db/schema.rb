@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 20130604192333) do
     t.datetime "updated_at"
   end
 
-  create_table "games", force: true do |t|
-    t.integer  "game_number"
+  create_table "matches", force: true do |t|
+    t.integer  "position"
     t.integer  "aggregate_id"
     t.integer  "team_1_id"
     t.integer  "team_2_id"

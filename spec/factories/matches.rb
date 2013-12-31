@@ -1,12 +1,12 @@
 FactoryGirl.define do
 
-  factory :game do
-    sequence(:game_number) { |n| n }
+  factory :match do
+    sequence(:position) { |n| n }
     association :aggregate
     association :team_1, factory: :team
     association :team_2, factory: :team
-    placeholder_team_1 'placeholder_team_1'
-    placeholder_team_2 'placeholder_team_2'
+    sequence(:placeholder_team_1) { |n| "Placeholder #{n}"}
+    sequence(:placeholder_team_2) { |n| "Placeholder #{n + 1}"}
     date { Time.parse('2012.06.08 18:00') }
   end
 end

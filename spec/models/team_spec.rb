@@ -20,8 +20,8 @@ describe Team do
   end
 
   describe 'associations' do
-    it { should have_many(:team_1_games).class_name('Game') }
-    it { should have_many(:team_2_games).class_name('Game') }
+    it { should have_many(:team_1_games).class_name('Match') }
+    it { should have_many(:team_2_games).class_name('Match') }
   end
 
   describe 'scopes' do
@@ -39,14 +39,14 @@ describe Team do
 
   describe 'callbacks' do
     describe '#before_destroy' do
-      it 'should prevent deletion if team has associated games' do
+      it 'should prevent deletion if team has associated matches' do
         team = create(:team)
-        create(:game, team_1_id: team.id)
+        create(:match, team_1_id: team.id)
         team.destroy
         team.should_not be_destroyed
       end
 
-      it 'should allow deletion if team has no associated games' do
+      it 'should allow deletion if team has no associated matches' do
         team = create(:team)
         team.destroy
         team.should be_destroyed

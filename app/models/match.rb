@@ -1,10 +1,10 @@
-class Game < ActiveRecord::Base
+class Match < ActiveRecord::Base
 
   belongs_to :aggregate
   belongs_to :team_1, :class_name => "Team"
   belongs_to :team_2, :class_name => "Team"
 
-  validates :game_number, presence: true, uniqueness: true, numericality: {only_integer: true}, inclusion: {in: 1..1000}
+  validates :position, presence: true, uniqueness: true, numericality: {only_integer: true}, inclusion: {in: 1..1000}
   validates :aggregate_id, presence: true
   validates :aggregate, presence: true
   validates :team_1, presence: {if: :team_1_id}
@@ -33,7 +33,7 @@ class Game < ActiveRecord::Base
     end
   end
 
-  scope :order_by_game_number, lambda { order('game_number ASC') }
+  scope :order_by_position, lambda { order('position ASC') }
 
   def team_1?
     !team_1.nil?

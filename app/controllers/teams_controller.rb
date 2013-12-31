@@ -8,7 +8,6 @@ class TeamsController < ApplicationController
     @team = Team.new(team_params)
 
     if @team.save
-      #render text: params[:team].inspect
       redirect_to teams_path, notice: t('model.messages.created', model: @team.message_country_name)
     else
       @presenter = TeamsIndexPresenter.new(@team)
@@ -16,7 +15,18 @@ class TeamsController < ApplicationController
     end
   end
 
+  def destroy
+    @team = current_resource
+    @team.destroy
+
+    redirect_to teams_path, notice: t('model.messages.destroyed', model: @team.message_country_name)
+  end
+
   private
+
+  def current_resource
+    @current_resource ||= Team.find(params[:id]) if params[:id]
+  end
 
   def team_params
     params.require(:team).permit(:country)

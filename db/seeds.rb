@@ -14,12 +14,49 @@ if Rails.env == 'development'
   FactoryGirl.find_definitions
 
   #---------team creation---------
+  teams = []
   (1..32).each do
-    FactoryGirl.create(:team)
+    teams << FactoryGirl.create(:team)
   end
 
+  #---------game creation---------
+  FactoryGirl.create(:match, position: 1, team_1: teams[0], team_2: teams[1])
+  FactoryGirl.create(:match, position: 2, team_1: teams[2], team_2: teams[3])
+  FactoryGirl.create(:match, position: 3, team_1: teams[4], team_2: teams[5])
+  FactoryGirl.create(:match, position: 4, team_1: teams[6], team_2: teams[7])
+  FactoryGirl.create(:match, position: 5, team_1: teams[8], team_2: teams[9])
+  FactoryGirl.create(:match, position: 6, team_1: teams[10], team_2: teams[11])
+  FactoryGirl.create(:match, position: 7, team_1: teams[12], team_2: teams[13])
+  FactoryGirl.create(:match, position: 8, team_1: teams[14], team_2: teams[15])
+  FactoryGirl.create(:match, position: 9, team_1: teams[16], team_2: teams[17])
+  FactoryGirl.create(:match, position: 10, team_1: teams[18], team_2: teams[19])
+  FactoryGirl.create(:match, position: 11, team_1: teams[20], team_2: teams[21])
+  FactoryGirl.create(:match, position: 12, team_1: teams[22], team_2: teams[23])
+  FactoryGirl.create(:match, position: 13, team_1: teams[24], team_2: teams[25])
+  FactoryGirl.create(:match, position: 14, team_1: teams[26], team_2: teams[27])
+  FactoryGirl.create(:match, position: 15, team_1: teams[28], team_2: teams[29])
+  FactoryGirl.create(:match, position: 16, team_1: teams[30], team_2: teams[31])
+  FactoryGirl.create(:match, position: 17, team_1: teams[0], team_2: teams[2])
+  FactoryGirl.create(:match, position: 18, team_1: teams[3], team_2: teams[1])
+  FactoryGirl.create(:match, position: 19, team_1: teams[4], team_2: teams[6])
+  FactoryGirl.create(:match, position: 20, team_1: teams[7], team_2: teams[5])
+  FactoryGirl.create(:match, position: 21, team_1: teams[8], team_2: teams[10])
+  FactoryGirl.create(:match, position: 22, team_1: teams[11], team_2: teams[9])
+  FactoryGirl.create(:match, position: 23, team_1: teams[12], team_2: teams[14])
+  FactoryGirl.create(:match, position: 24, team_1: teams[15], team_2: teams[13])
+  FactoryGirl.create(:match, position: 25, team_1: teams[16], team_2: teams[18])
+  FactoryGirl.create(:match, position: 26, team_1: teams[19], team_2: teams[17])
+  FactoryGirl.create(:match, position: 27, team_1: teams[20], team_2: teams[22])
+  FactoryGirl.create(:match, position: 28, team_1: teams[23], team_2: teams[21])
+  FactoryGirl.create(:match, position: 29, team_1: teams[24], team_2: teams[26])
+  FactoryGirl.create(:match, position: 30, team_1: teams[27], team_2: teams[25])
+  FactoryGirl.create(:match, position: 31, team_1: teams[28], team_2: teams[30])
+  FactoryGirl.create(:match, position: 32, team_1: teams[31], team_2: teams[29])
+  FactoryGirl.create(:match, position: 33, team_1: teams[3], team_2: teams[0])
+  FactoryGirl.create(:match, position: 34, team_1: teams[1], team_2: teams[2])
+  FactoryGirl.create(:match, position: 35, team_1: teams[7], team_2: teams[4])
+  FactoryGirl.create(:match, position: 36, team_1: teams[5], team_2: teams[6])
+  FactoryGirl.create(:match, position: 37, team_1: teams[11], team_2: teams[8])
+  FactoryGirl.create(:match, position: 38, team_1: teams[9], team_2: teams[10])
 
-#(1..2).each do
-#  FactoryGirl.create(:game)
-#end
 end

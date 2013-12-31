@@ -2,11 +2,11 @@ Ggp2::Application.routes.draw do
 
 
   resources :aggregates
-  resources :games
+  resources :matches
   resources :users
   resources :teams
 
-  root :to => "games#index"
+  root :to => "matches#index"
 
 
   # The priority is based upon order of creation: first created -> highest priority.
