@@ -3,6 +3,7 @@ class Match < ActiveRecord::Base
   belongs_to :aggregate
   belongs_to :team_1, :class_name => "Team"
   belongs_to :team_2, :class_name => "Team"
+  belongs_to :venue
 
   validates :position, presence: true, uniqueness: true, numericality: {only_integer: true}, inclusion: {in: 1..1000}
   validates :aggregate_id, presence: true

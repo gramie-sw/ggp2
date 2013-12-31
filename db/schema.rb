@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130604192333) do
+ActiveRecord::Schema.define(version: 20131231164718) do
 
   create_table "aggregates", force: true do |t|
     t.integer  "position"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20130604192333) do
   create_table "matches", force: true do |t|
     t.integer  "position"
     t.integer  "aggregate_id"
+    t.integer  "venue_id"
     t.integer  "team_1_id"
     t.integer  "team_2_id"
     t.integer  "score_team_1"
@@ -35,8 +36,20 @@ ActiveRecord::Schema.define(version: 20130604192333) do
     t.datetime "updated_at"
   end
 
+  add_index "matches", ["aggregate_id"], name: "index_matches_on_aggregate_id", using: :btree
+  add_index "matches", ["team_1_id"], name: "index_matches_on_team_1_id", using: :btree
+  add_index "matches", ["team_2_id"], name: "index_matches_on_team_2_id", using: :btree
+  add_index "matches", ["venue_id"], name: "index_matches_on_venue_id", using: :btree
+
   create_table "teams", force: true do |t|
     t.string   "country"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "venues", force: true do |t|
+    t.string   "city"
+    t.string   "stadium"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

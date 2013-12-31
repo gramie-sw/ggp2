@@ -19,6 +19,21 @@ if Rails.env == 'development'
     teams << FactoryGirl.create(:team)
   end
 
+  #---------venue creation---------
+  venues = []
+  venues << FactoryGirl.create(:venue, city: 'Rio de Janeiro', stadium: 'Estádio do Maracanã')
+  venues << FactoryGirl.create(:venue, city: 'Brasilia', stadium: 'Estádio Nacional Mané Garrincha')
+  venues << FactoryGirl.create(:venue, city: 'São Paulo', stadium: 'Arena Corinthians')
+  venues << FactoryGirl.create(:venue, city: 'Fortaleza', stadium: 'Estádio Castelão')
+  venues << FactoryGirl.create(:venue, city: 'Belo Horizonte', stadium: 'Estádio Mineirão')
+  venues << FactoryGirl.create(:venue, city: 'Porto Alegre', stadium: 'Estádio Beira-Rio')
+  venues << FactoryGirl.create(:venue, city: 'Salvador', stadium: 'Arena Fonte Nova')
+  venues << FactoryGirl.create(:venue, city: 'Recife', stadium: 'Arena Pernambuco')
+  venues << FactoryGirl.create(:venue, city: 'Cuiabá', stadium: 'Arena Pantanal')
+  venues << FactoryGirl.create(:venue, city: 'Manaus', stadium: 'Arena Amazônia')
+  venues << FactoryGirl.create(:venue, city: 'Natal', stadium: 'Arena das Dunas')
+  venues << FactoryGirl.create(:venue, city: 'Curitiba', stadium: 'Arena da Baixada')
+
   #---------game creation---------
   FactoryGirl.create(:match, position: 1, team_1: teams[0], team_2: teams[1])
   FactoryGirl.create(:match, position: 2, team_1: teams[2], team_2: teams[3])
@@ -58,5 +73,15 @@ if Rails.env == 'development'
   FactoryGirl.create(:match, position: 36, team_1: teams[5], team_2: teams[6])
   FactoryGirl.create(:match, position: 37, team_1: teams[11], team_2: teams[8])
   FactoryGirl.create(:match, position: 38, team_1: teams[9], team_2: teams[10])
+  FactoryGirl.create(:match, position: 39, team_1: teams[15], team_2: teams[12])
+  FactoryGirl.create(:match, position: 40, team_1: teams[13], team_2: teams[14])
+  FactoryGirl.create(:match, position: 41, team_1: teams[19], team_2: teams[16])
+  FactoryGirl.create(:match, position: 42, team_1: teams[17], team_2: teams[18])
+  FactoryGirl.create(:match, position: 43, team_1: teams[23], team_2: teams[20])
+  FactoryGirl.create(:match, position: 44, team_1: teams[21], team_2: teams[22])
+  FactoryGirl.create(:match, position: 45, team_1: teams[27], team_2: teams[24])
+  FactoryGirl.create(:match, position: 46, team_1: teams[25], team_2: teams[26])
+  FactoryGirl.create(:match, position: 47, team_1: teams[31], team_2: teams[28])
+  FactoryGirl.create(:match, position: 48, team_1: teams[29], team_2: teams[30])
 
 end

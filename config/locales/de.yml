@@ -18,7 +18,7 @@ de:
       user:
         one: Benutzer
         other: Benutzer
-      game:
+      match:
         one: Spiel
         other: Spiele
     attributes:

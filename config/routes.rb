@@ -1,10 +1,10 @@
 Ggp2::Application.routes.draw do
 
-
   resources :aggregates
   resources :matches
-  resources :users
   resources :teams
+  resources :venues
+  resources :users
 
   root :to => "matches#index"
 
