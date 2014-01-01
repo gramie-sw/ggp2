@@ -5,7 +5,7 @@
 <div class="well">
   <%= form_for @presenter.new_team, html: {class: 'form-horizontal', role: 'form'} do |f| %>
       <fieldset>
-        <div class="form-group">
+        <div class="ggp2-form-group-no-margin-bottom">
           <%= f.label :country, class: 'col-sm-1 control-label' %>
           <div class="col-sm-3">
             <%= country_select(:team, :country, nil, {}, class: "form-control") %>

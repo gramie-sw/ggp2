@@ -21,18 +21,18 @@ if Rails.env == 'development'
 
   #---------venue creation---------
   venues = []
-  venues << FactoryGirl.create(:venue, city: 'Rio de Janeiro', stadium: 'Estádio do Maracanã')        #0
-  venues << FactoryGirl.create(:venue, city: 'Brasilia', stadium: 'Estádio Nacional Mané Garrincha')  #1
-  venues << FactoryGirl.create(:venue, city: 'São Paulo', stadium: 'Arena Corinthians')               #2
-  venues << FactoryGirl.create(:venue, city: 'Fortaleza', stadium: 'Estádio Castelão')                #3
-  venues << FactoryGirl.create(:venue, city: 'Belo Horizonte', stadium: 'Estádio Mineirão')           #4
-  venues << FactoryGirl.create(:venue, city: 'Porto Alegre', stadium: 'Estádio Beira-Rio')            #5
-  venues << FactoryGirl.create(:venue, city: 'Salvador', stadium: 'Arena Fonte Nova')                 #6
-  venues << FactoryGirl.create(:venue, city: 'Recife', stadium: 'Arena Pernambuco')                   #7
-  venues << FactoryGirl.create(:venue, city: 'Cuiabá', stadium: 'Arena Pantanal')                     #8
-  venues << FactoryGirl.create(:venue, city: 'Manaus', stadium: 'Arena Amazônia')                     #9
-  venues << FactoryGirl.create(:venue, city: 'Natal', stadium: 'Arena das Dunas')                     #10
-  venues << FactoryGirl.create(:venue, city: 'Curitiba', stadium: 'Arena da Baixada')                 #11
+  venues << FactoryGirl.create(:venue, city: 'Rio de Janeiro', stadium: 'Estádio do Maracanã', capacity: 76935)
+  venues << FactoryGirl.create(:venue, city: 'Brasilia', stadium: 'Estádio Nacional Mané Garrincha', capacity: 70042)
+  venues << FactoryGirl.create(:venue, city: 'São Paulo', stadium: 'Arena Corinthians', capacity: 68000)
+  venues << FactoryGirl.create(:venue, city: 'Fortaleza', stadium: 'Estádio Castelão', capacity: 64846)
+  venues << FactoryGirl.create(:venue, city: 'Belo Horizonte', stadium: 'Estádio Mineirão', capacity: 62547)
+  venues << FactoryGirl.create(:venue, city: 'Porto Alegre', stadium: 'Estádio Beira-Rio', capacity: 51300)
+  venues << FactoryGirl.create(:venue, city: 'Salvador', stadium: 'Arena Fonte Nova', capacity: 56000)
+  venues << FactoryGirl.create(:venue, city: 'Recife', stadium: 'Arena Pernambuco', capacity: 46154)
+  venues << FactoryGirl.create(:venue, city: 'Cuiabá', stadium: 'Arena Pantanal', capacity: 42968)
+  venues << FactoryGirl.create(:venue, city: 'Manaus', stadium: 'Arena Amazônia', capacity: 42374)
+  venues << FactoryGirl.create(:venue, city: 'Natal', stadium: 'Arena das Dunas', capacity: 42086)
+  venues << FactoryGirl.create(:venue, city: 'Curitiba', stadium: 'Arena da Baixada', capacity: 43981)
 
   #---------game creation---------
   FactoryGirl.create(:match, position: 1, team_1: teams[0], team_2: teams[1], venue: venues[2])

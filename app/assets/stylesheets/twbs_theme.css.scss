@@ -21,14 +21,18 @@ $ggp2-background-image-height: 300px;
 }
 
 .well {
-  padding-bottom: 10px;
   background-color: rgba(245, 245, 245, 0.4);
 }
 
-.ggp2-btn {
-  @extend .btn;
-  margin: 10px 0px 10px 0px;
+.ggp2-form-group-no-margin-bottom {
+  @extend .form-group;
+  margin-bottom: 0px;
 }
+
+//.ggp2-btn {
+//  @extend .btn;
+//  margin: 10px 0px 10px 0px;
+//}
 
 .field_with_errors {
   @extend .has-error;

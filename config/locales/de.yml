@@ -31,6 +31,10 @@ de:
         position: Position
         venue: Austragungsort
         date: Datum
+      venue:
+        city: Ort
+        stadium: Stadion
+        capacity: Kapazität
 
   model:
     submit:

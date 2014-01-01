@@ -4,8 +4,9 @@
 
 <%= link_to "Spiele anlegen", matches_path, class: "btn btn-default" %>
 
-<table class="table">
-  <thead>
+<div class="table-responsive">
+  <table class="table table-condensed">
+    <thead>
     <tr>
       <th><%= Match.human_attribute_name(:position) %></th>
       <th><%= Match.human_attribute_name(:team_1) %></th>
@@ -15,24 +16,25 @@
       <th><%= Match.human_attribute_name(:date) %></th>
       <th><%= Match.human_attribute_name(:venue) %></th>
     </tr>
-  </thead>
-  <tbody>
-  <% @presenter.matches.each do |match| %>
-    <tr>
-      <td><%= match.position %> </td>
-      <td>
-        <%= image_tag("blank.gif", class: "flag flag-#{match.team_1.country.downcase}") %>
-        <span class="vertical-center"><%= I18n.t match.team_1.country, :scope => 'countries' %></span>
-      </td>
-      <td>
-        <%= image_tag("blank.gif", class: "flag flag-#{match.team_2.country.downcase}") %>
-        <span class="vertical-center"><%= I18n.t match.team_2.country, :scope => 'countries' %></span>
-      </td>
-      <td><%= match.placeholder_team_1 %></td>
-      <td><%= match.placeholder_team_2 %></td>
-      <td></td>
-      <td><%= match.venue.city unless match.venue.nil? %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+    <% @presenter.matches.each do |match| %>
+        <tr>
+          <td><%= match.position %> </td>
+          <td>
+            <%= image_tag("blank.gif", class: "flag flag-#{match.team_1.country.downcase}") %>
+            <span class="vertical-center"><%= I18n.t match.team_1.country, :scope => 'countries' %></span>
+          </td>
+          <td>
+            <%= image_tag("blank.gif", class: "flag flag-#{match.team_2.country.downcase}") %>
+            <span class="vertical-center"><%= I18n.t match.team_2.country, :scope => 'countries' %></span>
+          </td>
+          <td><%= match.placeholder_team_1 %></td>
+          <td><%= match.placeholder_team_2 %></td>
+          <td></td>
+          <td><%= match.venue.city unless match.venue.nil? %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

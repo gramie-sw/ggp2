@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20131231164718) do
   create_table "venues", force: true do |t|
     t.string   "city"
     t.string   "stadium"
+    t.integer  "capacity"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
