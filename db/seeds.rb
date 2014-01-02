@@ -14,10 +14,7 @@ if Rails.env == 'development'
   FactoryGirl.find_definitions
 
   #---------team creation---------
-  teams = []
-  (1..32).each do
-    teams << FactoryGirl.create(:team)
-  end
+  teams = (1..32).map { FactoryGirl.create(:team) }
 
   #---------venue creation---------
   venues = []
@@ -83,5 +80,4 @@ if Rails.env == 'development'
   FactoryGirl.create(:match, position: 46, team_1: teams[25], team_2: teams[26], venue: venues[1])
   FactoryGirl.create(:match, position: 47, team_1: teams[31], team_2: teams[28], venue: venues[2])
   FactoryGirl.create(:match, position: 48, team_1: teams[29], team_2: teams[30], venue: venues[11])
-
 end

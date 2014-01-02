@@ -22,7 +22,11 @@
           <td><%= venue.city %></td>
           <td><%= venue.stadium %></td>
           <td><%= venue.capacity %></td>
-
+          <td>
+            <%= destroy_link venue_path(venue), I18n.t('model.messages.destroy', model: ("#{venue.city} (#{venue.stadium})")),
+                             only_icon: true,
+                             confirm: I18n.t('model.messages.destroy_really', model: ("#{venue.city} (#{venue.stadium})")) %>
+          </td>
         </tr>
     <% end %>
     </tbody>
