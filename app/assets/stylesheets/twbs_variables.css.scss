@@ -108,7 +108,8 @@ $table-condensed-cell-padding:       5px !default;
 
 $table-bg:                           transparent !default; // overall background-color
 $table-bg-accent:                    #f9f9f9 !default; // for striping
-$table-bg-hover:                     #f5f5f5 !default;
+//$table-bg-hover:                     #f5f5f5 !default;
+$table-bg-hover:                     rgba(137, 194, 0, 0.2) !default;
 $table-bg-active:                    $table-bg-hover !default;
 
 $table-border-color:                 #ddd !default; // table and cell border
@@ -557,7 +558,8 @@ $thumbnail-caption-padding:   9px !default;
 
 // Wells
 // -------------------------
-$well-bg:                     #f5f5f5 !default;
+//$well-bg:                   #f5f5f5 !default;
+$well-bg:                     rgba(245, 245, 245, 0.4) !default;
 
 
 // Badges

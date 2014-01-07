@@ -7,7 +7,6 @@ $ggp2-content-background-color:  #f5f5f5;
 $ggp2-footer-color: #ededed;
 $ggp2-footer-background-color: #353535;
 
-
 ////header-height
 $ggp2-border-top-height: 10px;
 ////footer-height
@@ -18,10 +17,6 @@ $ggp2-background-image-height: 300px;
 .navbar-fixed-top {
   opacity: 0.95;
   border-top: $ggp2-border-top-height solid $ggp2-navbar-top-border-color;
-}
-
-.well {
-  background-color: rgba(245, 245, 245, 0.4);
 }
 
 .ggp2-form-group-no-margin-bottom {
@@ -36,4 +31,8 @@ $ggp2-background-image-height: 300px;
 
 .field_with_errors {
   @extend .has-error;
+}
+
+.link-row td {
+  /*background-color: #fff;*/
 }

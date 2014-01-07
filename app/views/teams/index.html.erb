@@ -2,7 +2,7 @@
 <% content_for(:main_title, Team.model_name.human_plural) %>
 <% content_for(:sub_title, 'WM-Brasilien 2014') %>
 
-<div class="well">
+<div class="well well-sm">
   <%= form_for @presenter.new_team, html: {class: 'form-horizontal', role: 'form'} do |f| %>
       <fieldset>
         <div class="ggp2-form-group-no-margin-bottom">

@@ -22,7 +22,8 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+#removed turbolink due
+#gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~>1.2'
@@ -59,6 +60,10 @@ gem 'spring-commands-rspec', require: false, :group => [:test, :development]
 gem 'spring', '1.0.0', :group => [:test, :development]
 
 gem 'puma', '~>2.7.1'
+
+group :development do
+  gem 'meta_request', '~>0.2.8'
+end
 
 group :test do
   gem 'capybara'
