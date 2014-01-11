@@ -4,28 +4,68 @@
       <fieldset>
         <div class="form-group">
           <%= f.label :city, class: 'col-xs-3 col-sm-2 col-lg-1 control-label' %>
-          <div class="col-xs-9 col-sm-7 col-md-6 col-lg-5">
-            <%= f.text_field :city, class: 'form-control' %>
+          <div class="col-xs-9 col-sm-10 col-lg-11">
+            <div class="row">
+              <div class="col-xs-12 col-sm-7 col-md-6 col-lg-5">
+                <%= f.text_field :city, class: 'form-control' %>
+              </div>
+            </div>
+            <% if venue.errors.get(:city) && !venue.errors.get(:city).empty? %>
+                <div class="row">
+                  <div class="field_with_errors">
+                    <p class="help-block col-xs-12">
+                      <%= venue.errors.full_messages_for(:city).first %>
+                    </p>
+                  </div>
+                </div>
+            <% end %>
           </div>
         </div>
+
         <div class="form-group">
           <%= f.label :stadium, class: 'col-xs-3 col-sm-2 col-lg-1 control-label' %>
-          <div class="col-xs-9 col-sm-7 col-md-6 col-lg-5">
-            <%= f.text_field :stadium, class: 'form-control' %>
+          <div class="col-xs-9 col-sm-10 col-lg-11">
+            <div class="row">
+              <div class="col-xs-12 col-sm-7 col-md-6 col-lg-5">
+                <%= f.text_field :stadium, class: 'form-control' %>
+              </div>
+            </div>
+            <% if venue.errors.get(:stadium) && !venue.errors.get(:stadium).empty? %>
+                <div class="row">
+                  <div class="field_with_errors">
+                    <p class="help-block col-xs-12">
+                      <%= venue.errors.full_messages_for(:stadium).first %>
+                    </p>
+                  </div>
+                </div>
+            <% end %>
           </div>
         </div>
+
         <div class="form-group">
           <%= f.label :capacity, class: 'col-xs-3 col-sm-2 col-lg-1 control-label' %>
-          <div class="col-xs-5 col-sm-3 col-lg-2">
-            <%= f.text_field :capacity, class: 'form-control' %>
+          <div class="col-xs-9 col-sm-10 col-lg-10">
+            <div class="row">
+              <div class="col-xs-5 col-sm-3 col-lg-2">
+                <%= f.text_field :capacity, class: 'form-control' %>
+              </div>
+            </div>
+            <% if venue.errors.get(:capacity) && !venue.errors.get(:capacity).empty? %>
+                <div class="row">
+                  <div class="field_with_errors">
+                    <p class="help-block col-xs-12">
+                      <%= venue.errors.full_messages_for(:capacity).first %>
+                    </p>
+                  </div>
+                </div>
+            <% end %>
           </div>
         </div>
+
         <div class="form-group">
-          <div class="col-xs-12 col-sm-9 col-md-8 col-lg-6">
-            <div class="pull-right">
-              <%= f.submit I18n.t('model.submit.update', model: Venue.model_name.human), class: 'btn btn-default' %>
-              <p class="btn btn-default"><%= I18n.t('general.cancel') %></p>
-            </div>
+          <div class="col-xs-offset-3 col-sm-offset-2 col-lg-offset-1 col-xs-9 col-sm-10 col-lg-11">
+            <%= f.submit "Aktualisieren", class: 'btn btn-default' %>
+            <p class="btn btn-default"><%= I18n.t('general.cancel') %></p>
           </div>
         </div>
       </fieldset>
