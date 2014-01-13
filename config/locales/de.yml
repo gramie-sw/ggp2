@@ -64,6 +64,7 @@ de:
         created: '%{count} %{models} erstellt'
 
   general:
+    wm_2014_title: 'WM-2014 Brasilien'
     add: Erstellen
     back: Zurück
     cancel: Abbrechen

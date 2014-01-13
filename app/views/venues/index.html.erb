@@ -1,9 +1,9 @@
 <%= render partial: 'commons/background_image', locals: {image_name: 'background_image_01.jpg'} %>
 <% content_for(:main_title, Venue.model_name.human_plural) %>
-<% content_for(:sub_title, 'WM-Brasilien 2014') %>
+<% content_for(:sub_title, I18n.t('general.wm_2014_title')) %>
 
 <div class="well well-sm">
-  <%= link_to "Austragungsorte anlegen", venues_path, class: "btn btn-default" %>
+  <%= link_to I18n.t('model.messages.add', model: Venue.model_name.human), new_venue_path, class: "btn btn-default" %>
 </div>
 
 <div class="table-responsive">
