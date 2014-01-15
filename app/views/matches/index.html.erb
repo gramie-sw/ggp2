@@ -13,8 +13,7 @@
       <th><%= Match.human_attribute_name(:position) %></th>
       <th><%= Match.human_attribute_name(:team_1) %></th>
       <th><%= Match.human_attribute_name(:team_2) %></th>
-      <th><%= Match.human_attribute_name(:placeholder_team_1) %></th>
-      <th><%= Match.human_attribute_name(:placeholder_team_2) %></th>
+      <th><%= I18n.t('general.match_result')%></th>
       <th><%= Match.human_attribute_name(:date) %></th>
       <th><%= Match.human_attribute_name(:venue) %></th>
     </tr>
@@ -31,9 +30,8 @@
             <%= image_tag("blank.gif", class: "flag flag-#{match.team_2.country.downcase}") %>
             <span class="vertical-center"><%= I18n.t match.team_2.country, :scope => 'countries' %></span>
           </td>
-          <td><%= match.placeholder_team_1 %></td>
-          <td><%= match.placeholder_team_2 %></td>
-          <td></td>
+          <td>result</td>
+          <td><%= I18n.l match.date, format: :short %></td>
           <td><%= match.venue.city unless match.venue.nil? %></td>
         </tr>
     <% end %>

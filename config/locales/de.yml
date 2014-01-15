@@ -9,6 +9,7 @@ de:
   time:
     formats:
       short_full: ! '%d.%m.%Y, %H:%M:%S Uhr'
+      short: ! '%d.%m.%Y, %H:%M Uhr'
 
   activerecord:
     models:
@@ -30,6 +31,10 @@ de:
       match:
         position: Position
         venue: Austragungsort
+        team_1: 'Team 1'
+        team_2: 'Team 2'
+        placeholder_team_1: 'Platzhalter Team 1'
+        placeholder_team_2: 'Platzhalter Team 2'
         date: Datum
       venue:
         city: Ort
@@ -65,6 +70,7 @@ de:
 
   general:
     wm_2014_title: 'WM-2014 Brasilien'
+    match_result: 'Spielergebnis'
     add: Erstellen
     back: Zurück
     cancel: Abbrechen
