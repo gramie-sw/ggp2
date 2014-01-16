@@ -9,7 +9,7 @@ de:
   time:
     formats:
       short_full: ! '%d.%m.%Y, %H:%M:%S Uhr'
-      short: ! '%d.%m.%Y, %H:%M Uhr'
+      short: ! '%d.%m.%y, %H:%M Uhr'
 
   activerecord:
     models:
@@ -29,7 +29,8 @@ de:
       team:
         country: Team
       match:
-        position: Position
+      match:
+        position: Spiel
         venue: Austragungsort
         team_1: 'Team 1'
         team_2: 'Team 2'
@@ -70,7 +71,7 @@ de:
 
   general:
     wm_2014_title: 'WM-2014 Brasilien'
-    match_result: 'Spielergebnis'
+    match_result: 'Ergebnis'
     add: Erstellen
     back: Zurück
     cancel: Abbrechen
