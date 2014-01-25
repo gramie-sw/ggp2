@@ -39,7 +39,7 @@
                 <%= match.placeholder_team_2 %>
             <% end %>
           </td>
-          <td>-:-</td>
+          <td><%= Match.score_or_dash match.score_team_1 %>:<%= Match.score_or_dash match.score_team_2 %></td>
           <td><%= I18n.l match.date, format: :short %></td>
           <td><%= match.venue.city unless match.venue.nil? %></td>
           <td>

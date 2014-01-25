@@ -43,4 +43,8 @@ class Match < ActiveRecord::Base
   def team_2?
     !team_2.nil?
   end
+
+  def self.score_or_dash team_score
+    team_score.nil? ? "-" : team_score
+  end
 end
