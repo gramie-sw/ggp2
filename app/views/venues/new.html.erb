@@ -2,4 +2,4 @@
 <% content_for(:main_title, I18n.t('model.messages.add', model: Venue.model_name.human)) %>
 <% content_for(:sub_title, I18n.t('general.wm_2014_title')) %>
 
-<%= render partial: 'forms', locals: {venue: @venue} %>
+<%= render partial: 'form', locals: {venue: @venue} %>

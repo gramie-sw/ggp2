@@ -13,15 +13,18 @@ de:
 
   activerecord:
     models:
+      aggregate:
+        one: Aggregat
+        other: Aggregate
+      match:
+        one: Spiel
+        other: Spiele
       team:
         one: Team
         other: Teams
       user:
         one: Benutzer
         other: Benutzer
-      match:
-        one: Spiel
-        other: Spiele
       venue:
         one: Austragungsort
         other: Austragungsorte
@@ -70,6 +73,7 @@ de:
         created: '%{count} %{models} erstellt'
 
   general:
+    tournament: Turnier
     wm_2014_title: 'WM-2014 Brasilien'
     match_result: 'Ergebnis'
     add: Erstellen

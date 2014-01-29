@@ -34,7 +34,7 @@ class Match < ActiveRecord::Base
     end
   end
 
-  scope :order_by_position, lambda { order('position ASC') }
+  scope :order_by_position, -> { order('position ASC') }
 
   def team_1?
     !team_1.nil?
@@ -42,6 +42,18 @@ class Match < ActiveRecord::Base
 
   def team_2?
     !team_2.nil?
+  end
+
+  def team_or_placeholder_1
+    team_1? ? team_1.name : placeholder_team_1
+  end
+
+  def team_or_placeholder_2
+    team_2? ? team_2.name : placeholder_team_2
+  end
+
+  def message_name
+    "#{team_or_placeholder_1} : #{team_or_placeholder_2}"
   end
 
   def self.score_or_dash team_score

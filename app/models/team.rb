@@ -16,7 +16,11 @@ class Team < ActiveRecord::Base
     end
   end
 
+  def name
+    "#{I18n.t country, :scope => 'countries'}"
+  end
+
   def message_country_name
-    "#{Team.model_name.human} \"#{I18n.t country, :scope => 'countries'}\""
+    "#{Team.model_name.human} \"#{name}\""
   end
 end

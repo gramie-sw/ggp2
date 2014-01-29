@@ -1,0 +1,215 @@
+<div class="well well-sm">
+
+<%= form_for match, html: {class: 'form-horizontal', role: 'form'} do |f| %>
+    <fieldset>
+
+    <div class="form-group">
+      <%= f.label :position, class: 'col-xs-3 col-sm-2 col-lg-1 control-label' %>
+      <div class="col-xs-9 col-sm-10 col-lg-11">
+        <div class="row">
+          <div class="col-xs-12 col-sm-7 col-md-6 col-lg-5">
+            <%= f.text_field :position, class: 'form-control' %>
+          </div>
+        </div>
+        <% if match.errors.get(:position) && !match.errors.get(:position).empty? %>
+            <div class="row">
+              <div class="field_with_errors">
+                <p class="help-block col-xs-12">
+                  <%= match.errors.full_messages_for(:position).first %>
+                </p>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :team_1, class: 'col-xs-3 col-sm-2 col-lg-1 control-label' %>
+      <div class="col-xs-9 col-sm-10 col-lg-11">
+        <div class="row">
+          <div class="col-xs-12 col-sm-7 col-md-6 col-lg-5">
+            <%= f.text_field :team_1, class: 'form-control' %>
+          </div>
+        </div>
+        <% if match.errors.get(:team_1) && !match.errors.get(:team_1).empty? %>
+            <div class="row">
+              <div class="field_with_errors">
+                <p class="help-block col-xs-12">
+                  <%= match.errors.full_messages_for(:team_1).first %>
+                </p>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :team_2, class: 'col-xs-3 col-sm-2 col-lg-1 control-label' %>
+      <div class="col-xs-9 col-sm-10 col-lg-11">
+        <div class="row">
+          <div class="col-xs-12 col-sm-7 col-md-6 col-lg-5">
+            <%= f.text_field :team_2, class: 'form-control' %>
+          </div>
+        </div>
+        <% if match.errors.get(:team_2) && !match.errors.get(:team_2).empty? %>
+            <div class="row">
+              <div class="field_with_errors">
+                <p class="help-block col-xs-12">
+                  <%= match.errors.full_messages_for(:team_2).first %>
+                </p>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :placeholder_team_1, class: 'col-xs-3 col-sm-2 col-lg-1 control-label' %>
+      <div class="col-xs-9 col-sm-10 col-lg-11">
+        <div class="row">
+          <div class="col-xs-12 col-sm-7 col-md-6 col-lg-5">
+            <%= f.text_field :placeholder_team_1, class: 'form-control' %>
+          </div>
+        </div>
+        <% if match.errors.get(:placeholder_team_1) && !match.errors.get(:placeholder_team_1).empty? %>
+            <div class="row">
+              <div class="field_with_errors">
+                <p class="help-block col-xs-12">
+                  <%= match.errors.full_messages_for(:placeholder_team_1).first %>
+                </p>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :placeholder_team_2, class: 'col-xs-3 col-sm-2 col-lg-1 control-label' %>
+      <div class="col-xs-9 col-sm-10 col-lg-11">
+        <div class="row">
+          <div class="col-xs-12 col-sm-7 col-md-6 col-lg-5">
+            <%= f.text_field :placeholder_team_2, class: 'form-control' %>
+          </div>
+        </div>
+        <% if match.errors.get(:placeholder_team_2) && !match.errors.get(:placeholder_team_2).empty? %>
+            <div class="row">
+              <div class="field_with_errors">
+                <p class="help-block col-xs-12">
+                  <%= match.errors.full_messages_for(:placeholder_team_2).first %>
+                </p>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :score_team_1, class: 'col-xs-3 col-sm-2 col-lg-1 control-label' %>
+      <div class="col-xs-9 col-sm-10 col-lg-11">
+        <div class="row">
+          <div class="col-xs-12 col-sm-7 col-md-6 col-lg-5">
+            <%= f.text_field :score_team_1, class: 'form-control' %>
+          </div>
+        </div>
+        <% if match.errors.get(:score_team_1) && !match.errors.get(:score_team_1).empty? %>
+            <div class="row">
+              <div class="field_with_errors">
+                <p class="help-block col-xs-12">
+                  <%= match.errors.full_messages_for(:score_team_1).first %>
+                </p>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :score_team_2, class: 'col-xs-3 col-sm-2 col-lg-1 control-label' %>
+      <div class="col-xs-9 col-sm-10 col-lg-11">
+        <div class="row">
+          <div class="col-xs-12 col-sm-7 col-md-6 col-lg-5">
+            <%= f.text_field :score_team_2, class: 'form-control' %>
+          </div>
+        </div>
+        <% if match.errors.get(:score_team_2) && !match.errors.get(:score_team_2).empty? %>
+            <div class="row">
+              <div class="field_with_errors">
+                <p class="help-block col-xs-12">
+                  <%= match.errors.full_messages_for(:score_team_2).first %>
+                </p>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :score_team_2, class: 'col-xs-3 col-sm-2 col-lg-1 control-label' %>
+      <div class="col-xs-9 col-sm-10 col-lg-11">
+        <div class="row">
+          <div class="col-xs-12 col-sm-7 col-md-6 col-lg-5">
+            <%= f.text_field :score_team_2, class: 'form-control' %>
+          </div>
+        </div>
+        <% if match.errors.get(:score_team_2) && !match.errors.get(:score_team_2).empty? %>
+            <div class="row">
+              <div class="field_with_errors">
+                <p class="help-block col-xs-12">
+                  <%= match.errors.full_messages_for(:score_team_2).first %>
+                </p>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :date, class: 'col-xs-3 col-sm-2 col-lg-1 control-label' %>
+      <div class="col-xs-9 col-sm-10 col-lg-11">
+        <div class="row">
+          <div class="col-xs-12 col-sm-7 col-md-6 col-lg-5">
+            <%= f.text_field :date, class: 'form-control' %>
+          </div>
+        </div>
+        <% if match.errors.get(:date) && !match.errors.get(:date).empty? %>
+            <div class="row">
+              <div class="field_with_errors">
+                <p class="help-block col-xs-12">
+                  <%= match.errors.full_messages_for(:date).first %>
+                </p>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :venue, class: 'col-xs-3 col-sm-2 col-lg-1 control-label' %>
+      <div class="col-xs-9 col-sm-10 col-lg-11">
+        <div class="row">
+          <div class="col-xs-12 col-sm-7 col-md-6 col-lg-5">
+            <%= f.select :venue_id, Venue.all.collect {|venue| [ venue.city, venue.id ] }, {},  class: 'form-control' %>
+          </div>
+        </div>
+        <% if match.errors.get(:venue) && !match.errors.get(:venue).empty? %>
+            <div class="row">
+              <div class="field_with_errors">
+                <p class="help-block col-xs-12">
+                  <%= match.errors.full_messages_for(:venue).first %>
+                </p>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-offset-3 col-sm-offset-2 col-lg-offset-1 col-xs-9 col-sm-10 col-lg-11">
+        <%= f.submit class: 'btn btn-default' %>
+        <%= link_to I18n.t('general.cancel'), matches_path, class: "btn btn-default" %>
+      </div>
+    </div>
+
+    </fieldset>
+<% end %>
+</div>
