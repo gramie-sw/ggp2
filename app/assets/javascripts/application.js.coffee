@@ -13,4 +13,9 @@
 #= require jquery
 #= require jquery_ujs
 #= require bootstrap
+#= require moment
+#= require bootstrap-datetimepicker
+#= require moment/de
+#= require locales/bootstrap-datetimepicker.de
+#= require datetimepicker-configure.js
 #= require common

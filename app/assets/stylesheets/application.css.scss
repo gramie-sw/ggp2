@@ -1,8 +1,9 @@
 //order is important
-// 1. import overwrite bootsrap variables
+// 1. import overwrite bootstrap variables
 @import 'twbs_variables';
-// 2. bootsrap and other predefined
+// 2. bootstrap and other predefined
 @import 'bootstrap';
+@import 'bootstrap-datetimepicker';
 @import 'font-awesome';
 // 3. import bootstrap overwrite here
 @import 'twbs_theme';
