@@ -6,29 +6,31 @@
   <%= link_to I18n.t('model.messages.add', model: Venue.model_name.human), new_venue_path, class: "btn btn-default" %>
 </div>
 
-<div class="table-responsive">
-  <table class="table table-condensed table-hover">
-    <thead>
-    <tr>
-      <th><%= Venue.human_attribute_name(:city) %></th>
-      <th><%= Venue.human_attribute_name(:stadium) %></th>
-      <th><%= Venue.human_attribute_name(:capacity) %></th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @venues.each do |venue| %>
-        <tr class="link-row-js" data-href="<%= edit_venue_path(venue) %>">
-          <td><%= venue.city %></td>
-          <td><%= venue.stadium %></td>
-          <td><%= venue.capacity %></td>
-          <td>
-            <%= destroy_link venue_path(venue), I18n.t('model.messages.destroy', model: ("#{venue.city} (#{venue.stadium})")),
-                             only_icon: true,
-                             confirm: I18n.t('model.messages.destroy_really', model: ("#{venue.city} (#{venue.stadium})")) %>
-          </td>
+<% if @venues.present? %>
+    <div class="table-responsive">
+      <table class="table table-condensed table-hover">
+        <thead>
+        <tr>
+          <th><%= Venue.human_attribute_name(:city) %></th>
+          <th><%= Venue.human_attribute_name(:stadium) %></th>
+          <th><%= Venue.human_attribute_name(:capacity) %></th>
+          <th></th>
         </tr>
-    <% end %>
-    </tbody>
-  </table>
-</div>
+        </thead>
+        <tbody>
+        <% @venues.each do |venue| %>
+            <tr class="link-row-js" data-href="<%= edit_venue_path(venue) %>">
+              <td><%= venue.city %></td>
+              <td><%= venue.stadium %></td>
+              <td><%= venue.capacity %></td>
+              <td>
+                <%= destroy_link venue_path(venue), I18n.t('model.messages.destroy', model: ("#{venue.city} (#{venue.stadium})")),
+                                 only_icon: true,
+                                 confirm: I18n.t('model.messages.destroy_really', model: ("#{venue.city} (#{venue.stadium})")) %>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+<% end %>

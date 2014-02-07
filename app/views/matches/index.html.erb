@@ -6,49 +6,51 @@
   <%= link_to I18n.t('model.messages.add', model: Match.model_name.human), new_match_path, class: "btn btn-default" %>
 </div>
 
-<div class="table-responsive">
-  <table class="table table-condensed table-hover">
-    <thead>
-    <tr>
-      <th><%= Match.human_attribute_name(:position) %></th>
-      <th><%= Match.human_attribute_name(:team_1) %></th>
-      <th><%= Match.human_attribute_name(:team_2) %></th>
-      <th><%= I18n.t('general.match_result') %></th>
-      <th><%= Match.human_attribute_name(:date) %></th>
-      <th><%= Match.human_attribute_name(:venue) %></th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @matches.each do |match| %>
-        <tr class="link-row-js" data-href="<%= edit_match_path(match)%>">
-          <td><%= match.position %> </td>
-          <td>
-            <% if match.team_1? %>
-                <%= image_tag("blank.gif", class: "flag flag-#{match.team_1.country.downcase}") %>
-                <span class="vertical-center"><%= match.team_1.name %></span>
-            <% else %>
-                <%= match.placeholder_team_1 %>
-            <% end %>
-          </td>
-          <td>
-            <% if match.team_2? %>
-                <%= image_tag("blank.gif", class: "flag flag-#{match.team_2.country.downcase}") %>
-                <span class="vertical-center"><%= match.team_2.name %></span>
-            <% else %>
-                <%= match.placeholder_team_2 %>
-            <% end %>
-          </td>
-          <td><%= Match.score_or_dash match.score_team_1 %>:<%= Match.score_or_dash match.score_team_2 %></td>
-          <td><%= I18n.l match.date, format: :short %></td>
-          <td><%= match.venue.city unless match.venue.nil? %></td>
-          <td>
-            <%= destroy_link match_path(match), I18n.t('model.messages.destroy', model: ("#{match.position}")),
-                             only_icon: true,
-                             confirm: I18n.t('model.messages.destroy_really', model: ("#{Match.model_name.human}: #{match.position}")) %>
-          </td>
+<% if @matches.present? %>
+    <div class="table-responsive">
+      <table class="table table-condensed table-hover">
+        <thead>
+        <tr>
+          <th><%= Match.human_attribute_name(:position) %></th>
+          <th><%= Match.human_attribute_name(:team_1) %></th>
+          <th><%= Match.human_attribute_name(:team_2) %></th>
+          <th><%= I18n.t('general.match_result') %></th>
+          <th><%= Match.human_attribute_name(:date) %></th>
+          <th><%= Match.human_attribute_name(:venue) %></th>
+          <th></th>
         </tr>
-    <% end %>
-    </tbody>
-  </table>
-</div>
+        </thead>
+        <tbody>
+        <% @matches.each do |match| %>
+            <tr class="link-row-js" data-href="<%= edit_match_path(match) %>">
+              <td><%= match.position %> </td>
+              <td>
+                <% if match.team_1? %>
+                    <%= image_tag("blank.gif", class: "flag flag-#{match.team_1.country.downcase}") %>
+                    <span class="vertical-center"><%= match.team_1.name %></span>
+                <% else %>
+                    <%= match.placeholder_team_1 %>
+                <% end %>
+              </td>
+              <td>
+                <% if match.team_2? %>
+                    <%= image_tag("blank.gif", class: "flag flag-#{match.team_2.country.downcase}") %>
+                    <span class="vertical-center"><%= match.team_2.name %></span>
+                <% else %>
+                    <%= match.placeholder_team_2 %>
+                <% end %>
+              </td>
+              <td><%= Match.score_or_dash match.score_team_1 %>:<%= Match.score_or_dash match.score_team_2 %></td>
+              <td><%= I18n.l match.date, format: :short %></td>
+              <td><%= match.venue.city unless match.venue.nil? %></td>
+              <td>
+                <%= destroy_link match_path(match), I18n.t('model.messages.destroy', model: ("#{match.position}")),
+                                 only_icon: true,
+                                 confirm: I18n.t('model.messages.destroy_really', model: ("#{Match.model_name.human}: #{match.position}")) %>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+<% end %>

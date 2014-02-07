@@ -63,6 +63,7 @@ gem 'puma', '~>2.7.1'
 
 group :development do
   gem 'meta_request', '~>0.2.8'
+  gem "pry-rails", "~> 0.3.2"
 end
 
 group :test do

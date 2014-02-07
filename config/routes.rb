@@ -1,10 +1,14 @@
 Ggp2::Application.routes.draw do
 
   devise_for :users
+
   resources :aggregates
   resources :matches
   resources :teams
   resources :venues
+
+  # must be behind devise
+  resources :users, except: [:show, :new]
 
   root :to => "matches#index"
 
