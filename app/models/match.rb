@@ -53,7 +53,7 @@ class Match < ActiveRecord::Base
   end
 
   def message_name
-    "#{team_or_placeholder_1} : #{team_or_placeholder_2}"
+    "#{Match.model_name.human}: #{id}  (#{team_or_placeholder_1} vs #{team_or_placeholder_2})"
   end
 
   def self.score_or_dash team_score

@@ -50,10 +50,6 @@ gem 'rails-i18n', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 3.1.0'
 #gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
 
-
-
-gem 'momentjs-rails', '~> 2.5.0'
-gem 'bootstrap3-datetimepicker-rails', '~> 2.1.30'
 gem 'font-awesome-rails', '~> 4.0.3.0'
 gem 'localized_country_select', '>= 0.9.7'
 gem 'ancestry'

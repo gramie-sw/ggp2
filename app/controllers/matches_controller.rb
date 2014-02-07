@@ -46,7 +46,7 @@ class MatchesController < ApplicationController
   end
 
   def match_params
-    params.require(:match).permit(:position, :team_1, :team_2, :score_team_1, :score_team_2, :placeholder_team_1, :placeholder_team_2,
-                                  :venue, :date)
+    params.require(:match).permit(:position, :team_1_id, :team_2_id, :score_team_1, :score_team_2, :placeholder_team_1, :placeholder_team_2,
+                                  :venue_id, :date)
   end
 end
