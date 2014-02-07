@@ -45,7 +45,7 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
+gem 'devise'
 gem 'rails-i18n', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 3.1.0'
 #gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'

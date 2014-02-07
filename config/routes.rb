@@ -1,10 +1,10 @@
 Ggp2::Application.routes.draw do
 
+  devise_for :users
   resources :aggregates
   resources :matches
   resources :teams
   resources :venues
-  resources :users
 
   root :to => "matches#index"
 
