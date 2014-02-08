@@ -16,7 +16,7 @@ class Aggregate < ActiveRecord::Base
     !is_root?
   end
 
-  def games_of_branch
+  def matches_of_branch
     if is_phase? && has_groups?
       Match.where(aggregate_id: children)
     else

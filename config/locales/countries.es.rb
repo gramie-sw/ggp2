@@ -261,7 +261,7 @@
 			:CP => "Isla Clipperton",
 			:DG => "Diego García",
 			:TA => "Tristán da Cunha",
-      :ENGLAND => "Inglaterra",
+      :EN => "Inglaterra",
 			:ZZ => "Región desconocida",
     }
 

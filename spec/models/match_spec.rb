@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Match do
 
   it 'should have valid factory' do
@@ -10,8 +8,8 @@ describe Match do
     describe '#position' do
       it { should validate_presence_of(:position) }
       it { should validate_uniqueness_of(:position) }
-      it { should validate_numericality_of(:game_number).only_integer }
-      it { should ensure_inclusion_of(:game_number).in_range(1..1000) }
+      it { should validate_numericality_of(:position).only_integer }
+      it { should ensure_inclusion_of(:position).in_range(1..1000) }
     end
 
     describe '#aggregate' do
@@ -21,24 +19,24 @@ describe Match do
 
     describe '#team_1' do
       context 'team_1_id is set' do
-        before { subject.stub(:team_1_id, 1).and_return(1) }
+        before { subject.stub(:team_1_id).and_return(1) }
         it { subject.should validate_presence_of(:team_1) }
       end
 
       context 'team_1_id is not set' do
-        before { subject.stub(:team_1_id, nil).and_return(nil) }
+        before { subject.stub(:team_1_id).and_return(nil) }
         it { subject.should_not validate_presence_of(:team_1) }
       end
     end
 
     describe '#team_2' do
       context 'team_2_id is set' do
-        before { subject.stub(:team_2_id, 1).and_return(1) }
+        before { subject.stub(:team_2_id).and_return(1) }
         it { subject.should validate_presence_of(:team_2) }
       end
 
       context 'team_1_id is not set' do
-        before { subject.stub(:team_2_id, nil).and_return(nil) }
+        before { subject.stub(:team_2_id).and_return(nil) }
         it { subject.should_not validate_presence_of(:team_2) }
       end
     end
@@ -103,40 +101,42 @@ describe Match do
   end
 
   describe 'scopes' do
-    describe '#order_by_game_number' do
-      it 'should order by game number' do
+    describe '#order_by_position' do
+      it 'should order by position' do
         aggregate = create(:aggregate)
 
-        create(:match, aggregate: aggregate, game_number: 2)
-        game_2 = create(:match, aggregate: aggregate, game_number: 1)
-        create(:match, aggregate: aggregate, game_number: 3)
+        game_3 = create(:match, aggregate: aggregate, position: 3)
+        game_1 = create(:match, aggregate: aggregate, position: 1)
+        game_2 = create(:match, aggregate: aggregate, position: 2)
 
         games = Match.order_by_position
-        games.first.should eq game_2
+        games[0].position.should eq game_1.position
+        games[1].position.should eq game_2.position
+        games[2].position.should eq game_3.position
       end
     end
   end
 
   describe '#team_1?' do
-    it 'returns true when game has team_1' do
+    it 'returns true when match has team_1' do
       team = build(:team)
       game = build(:match, team_1: team)
       game.team_1?.should be_true
     end
 
-    it 'returns false when game has no team_1' do
+    it 'returns false when match has no team_1' do
       build(:match, team_1: nil).team_1?.should be_false
     end
   end
 
   describe '#team_2?' do
-    it 'returns true when game has team_2' do
+    it 'returns true when match has team_2' do
       team = build(:team)
       game = build(:match, team_2: team)
       game.team_2?.should be_true
     end
 
-    it 'returns false when game has no team_2' do
+    it 'returns false when match has no team_2' do
       build(:match, team_2: nil).team_2?.should be_false
     end
   end

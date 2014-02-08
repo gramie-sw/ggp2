@@ -12,8 +12,8 @@ class Match < ActiveRecord::Base
   validates :team_2, presence: {if: :team_2_id}
   validates :score_team_1, numericality: {only_integer: true}, inclusion: {in: 0..1000}, allow_nil: true
   validates :score_team_2, numericality: {only_integer: true}, inclusion: {in: 0..1000}, allow_nil: true
-  validates :placeholder_team_1, presence: {if: lambda { |game| !game.team_1? }}, length: {minimum: 3, maximum: 64}, technical_name_allowed_chars: true, allow_blank: true
-  validates :placeholder_team_2, presence: {if: lambda { |game| !game.team_2? }}, length: {minimum: 3, maximum: 64}, technical_name_allowed_chars: true, allow_blank: true
+  validates :placeholder_team_1, presence: {if: lambda { |match| !match.team_1? }}, length: {minimum: 3, maximum: 64}, technical_name_allowed_chars: true, allow_blank: true
+  validates :placeholder_team_2, presence: {if: lambda { |match| !match.team_2? }}, length: {minimum: 3, maximum: 64}, technical_name_allowed_chars: true, allow_blank: true
   validates :date, presence: true
   validate :validate_placeholder_team_1_not_eq_placeholder_team_2_besides_nil_or_blank
   validate :validate_team_1_not_equal_team_2
