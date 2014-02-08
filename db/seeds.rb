@@ -13,6 +13,14 @@ if Rails.env == 'development'
 
   FactoryGirl.find_definitions
 
+  include FactoryGirl::Syntax::Methods
+
+  #---------user creation---------
+
+  create(:admin)
+  create(:user)
+
+
   #---------team creation---------
   teams = (1..32).map { FactoryGirl.create(:team) }
 

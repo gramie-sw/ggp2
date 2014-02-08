@@ -58,6 +58,10 @@ ActiveRecord::Schema.define(version: 20140207212346) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "nickname"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.boolean  "admin"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
