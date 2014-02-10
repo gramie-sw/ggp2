@@ -32,15 +32,15 @@ de:
       team:
         country: Team
       match:
-      match:
         position: Spiel
         venue: Austragungsort
-        team_1: 'Team 1'
-        team_2: 'Team 2'
-        score_team_1: 'Ergebnis Team 1'
-        score_team_2: 'Ergebnis Team 2'
-        placeholder_team_1: 'Platzhalter Team 1'
-        placeholder_team_2: 'Platzhalter Team 2'
+        team_1: Team 1
+        team_2: Team 2
+        score_team_1: Ergebnis Team 1
+        score_team_2: Ergebnis Team 2
+        placeholder_team_1: Platzhalter Team 1
+        placeholder_team_2: Platzhalter Team 2
+        aggregate: 'Gruppe'
         date: Datum
       venue:
         city: Ort

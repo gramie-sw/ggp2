@@ -16,7 +16,7 @@
           <th><%= Match.human_attribute_name(:team_2) %></th>
           <th><%= I18n.t('general.match_result') %></th>
           <th><%= Match.human_attribute_name(:date) %></th>
-          <th><%= Match.human_attribute_name(:venue) %></th>
+          <th><%= Match.human_attribute_name(:aggregate) %></th>
           <th></th>
         </tr>
         </thead>
@@ -42,7 +42,7 @@
               </td>
               <td><%= Match.score_or_dash match.score_team_1 %>:<%= Match.score_or_dash match.score_team_2 %></td>
               <td><%= I18n.l match.date, format: :short %></td>
-              <td><%= match.venue.city unless match.venue.nil? %></td>
+              <td><%= match.aggregate.name unless match.aggregate.nil?  %></td>
               <td>
                 <%= destroy_link match_path(match), I18n.t('model.messages.destroy', model: ("#{match.position}")),
                                  only_icon: true,
