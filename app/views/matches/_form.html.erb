@@ -167,7 +167,7 @@
           <div class="col-xs-9 col-md-10">
             <div class="row">
               <div class="col-xs-12 col-sm-7 col-md-6 col-lg-5">
-                <%= f.select :aggregate_id, Aggregate.all.collect { |aggregate| [aggregate.name, aggregate.id] }, { }, class: 'form-control' %>
+                <%= f.select :aggregate_id, Aggregate.leaves.collect { |aggregate| [aggregate.name, aggregate.id] }, { }, class: 'form-control' %>
               </div>
             </div>
             <% if match.errors.get(:aggregate) && !match.errors.get(:aggregate).empty? %>

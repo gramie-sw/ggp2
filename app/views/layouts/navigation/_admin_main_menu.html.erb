@@ -7,7 +7,7 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="#tournament"><%= I18n.t('general.tournament') %></a></li>
+          <li class="active"><%= link_to Aggregate.model_name.human_plural, aggregates_path %></li>
           <li><%= link_to Match.model_name.human_plural, matches_path %></li>
           <li><%= link_to Team.model_name.human_plural, teams_path %></li>
           <li><%= link_to Venue.model_name.human_plural, venues_path %></li>

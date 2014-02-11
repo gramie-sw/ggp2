@@ -1,0 +1,36 @@
+<%= render partial: 'commons/background_image', locals: {image_name: 'background_image_00.jpg'} %>
+<% content_for(:main_title, Aggregate.model_name.human_plural) %>
+<% content_for(:sub_title, I18n.t('general.wm_2014_title')) %>
+
+<div class="well well-sm">
+  <%= link_to I18n.t('model.messages.add', model: Aggregate.model_name.human), new_aggregate_path, class: "btn btn-default" %>
+</div>
+
+<% if @aggregates.present? %>
+    <div class="table-responsive">
+      <table class="table table-condensed table-hover">
+        <thead>
+        <tr>
+          <th><%= Aggregate.human_attribute_name(:position) %></th>
+          <th><%= Aggregate.human_attribute_name(:name) %></th>
+          <th><%= Aggregate.human_attribute_name(:ancestry) %></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @aggregates.each do |aggregate| %>
+            <tr>
+              <td><%= aggregate.position %></td>
+              <td><%= aggregate.name %></td>
+              <td><%= aggregate.parent.name unless aggregate.parent.nil? %></td>
+              <td>
+                <%= destroy_link aggregates_path(aggregate), I18n.t('model.messages.destroy', model: ("#{aggregate.position}")),
+                                 only_icon: true,
+                                 confirm: I18n.t('model.messages.destroy_really', model: ("#{Aggregate.model_name.human}: #{aggregate.position}")) %>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+<% end %>

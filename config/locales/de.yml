@@ -14,8 +14,8 @@ de:
   activerecord:
     models:
       aggregate:
-        one: Aggregat
-        other: Aggregate
+        one: Phase/Gruppe
+        other: Phasen/Gruppen
       match:
         one: Spiel
         other: Spiele
@@ -29,6 +29,10 @@ de:
         one: Austragungsort
         other: Austragungsorte
     attributes:
+      aggregate:
+        position: Position
+        name: Name
+        ancestry: Phase
       team:
         country: Team
       match:

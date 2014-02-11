@@ -20,7 +20,17 @@ class Aggregate < ActiveRecord::Base
     if is_phase? && has_groups?
       Match.where(aggregate_id: children)
     else
-      games
+      matches
     end
+  end
+
+  def self.leaves
+    roots.map! do |root|
+      if root.has_groups?
+        root.children
+      else
+        root
+      end
+    end.flatten!
   end
 end

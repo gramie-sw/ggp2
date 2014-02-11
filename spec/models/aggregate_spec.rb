@@ -1,4 +1,4 @@
-describe Aggregate do
+describe Aggregate, focus: true do
 
   it 'should have a valid factory' do
     build(:aggregate).should be_valid
@@ -51,31 +51,31 @@ describe Aggregate do
 
   describe '#matches_of_branch' do
 
-    #it 'should return all direct matches when aggregate is a group' do
-    #  group = create(:aggregate_with_parent)
-    #  game_1 = create(:match, aggregate: group)
-    #  game_2 = create(:match, aggregate: group)
-    #
-    #  create(:match)
-    #
-    #  found_games = group.games_of_branch
-    #  found_games.size.should == 2
-    #  found_games.first.id.should == game_1.id
-    #  found_games.last.id.should == game_2.id
-    #end
+    it 'should return all direct matches when aggregate is a group' do
+      group = create(:aggregate_with_parent)
+      match_1 = create(:match, aggregate: group)
+      match_2 = create(:match, aggregate: group)
 
-    #it 'should return all direct matches when aggregate is a phase and has no groups' do
-    #  phase = create(:aggregate)
-    #  game_1 = create(:match, aggregate: phase)
-    #  game_2 = create(:match, aggregate: phase)
-    #
-    #  create(:match)
-    #
-    #  found_games = phase.games_of_branch
-    #  found_games.size.should == 2
-    #  found_games.first.id.should == game_1.id
-    #  found_games.last.id.should == game_2.id
-    #end
+      create(:match)
+
+      found_matches = group.matches_of_branch
+      found_matches.size.should == 2
+      found_matches.first.id.should == match_1.id
+      found_matches.last.id.should == match_2.id
+    end
+
+    it 'should return all direct matches when aggregate is a phase and has no groups' do
+      phase = create(:aggregate)
+      match_1 = create(:match, aggregate: phase)
+      match_2 = create(:match, aggregate: phase)
+
+      create(:match)
+
+      found_matches = phase.matches_of_branch
+      found_matches.size.should == 2
+      found_matches.first.id.should == match_1.id
+      found_matches.last.id.should == match_2.id
+    end
 
     it 'should return all matches from belonging groups when aggregate is phase and has groups' do
       phase = create(:aggregate)
@@ -93,6 +93,21 @@ describe Aggregate do
       found_matches[0].id.should == match_1.id
       found_matches[1].id.should == match_2.id
       found_matches[2].id.should == match_3.id
+    end
+  end
+
+  describe '::leaves' do
+
+    it 'should return all groups and all roots if they have no groups' do
+      phase_1 = create(:aggregate)
+      group_1 = create(:aggregate, ancestry: phase_1.id)
+      group_2 = create(:aggregate, ancestry: phase_1.id)
+      phase_2 = create(:aggregate)
+
+      leaves = Aggregate.leaves
+      leaves.include?(group_1).should be_true
+      leaves.include?(group_2).should be_true
+      leaves.include?(phase_2).should be_true
     end
   end
 end
