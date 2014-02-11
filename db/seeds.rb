@@ -16,8 +16,8 @@ if Rails.env == 'development'
 
   #---------user creation---------
 
-  create(:admin)
-  create(:user)
+  create(:admin, email: 'admin@mail.de', password: '12345678')
+  create(:player, email: 'player@mail.de', password: '12345678')
 
 
   #---------team creation---------
@@ -60,7 +60,7 @@ if Rails.env == 'development'
   create(:match, position: 2, team_1: teams[2], team_2: teams[3], score_team_1: nil, score_team_2: nil, aggregate: group_a, venue: venues[10], date: Time.utc(2014, 06, 13, 16, 00, 00).iso8601)
   create(:match, position: 3, team_1: teams[4], team_2: teams[5], score_team_1: nil, score_team_2: nil, aggregate: group_b, venue: venues[6], date: Time.utc(2014, 06, 13, 19, 00, 00).iso8601)
   create(:match, position: 4, team_1: teams[6], team_2: teams[7], score_team_1: nil, score_team_2: nil, aggregate: group_b, venue: venues[8], date: Time.utc(2014, 06, 13, 22, 00, 00).iso8601)
-  create(:match, position: 5, team_1: teams[8], team_2: teams[9], score_team_1: nil, score_team_2: nil, aggregate: group_c,venue: venues[4], date: Time.utc(2014, 06, 14, 16, 00, 00).iso8601)
+  create(:match, position: 5, team_1: teams[8], team_2: teams[9], score_team_1: nil, score_team_2: nil, aggregate: group_c, venue: venues[4], date: Time.utc(2014, 06, 14, 16, 00, 00).iso8601)
   create(:match, position: 6, team_1: teams[10], team_2: teams[11], score_team_1: nil, score_team_2: nil, aggregate: group_c, venue: venues[7], date: Time.utc(2014, 06, 15, 01, 00, 00).iso8601)
   create(:match, position: 7, team_1: teams[12], team_2: teams[13], score_team_1: nil, score_team_2: nil, aggregate: group_d, venue: venues[3], date: Time.utc(2014, 06, 14, 19, 00, 00).iso8601)
   create(:match, position: 8, team_1: teams[14], team_2: teams[15], score_team_1: nil, score_team_2: nil, aggregate: group_d, venue: venues[9], date: Time.utc(2014, 06, 14, 22, 00, 00).iso8601)
@@ -89,7 +89,7 @@ if Rails.env == 'development'
   create(:match, position: 31, team_1: teams[28], team_2: teams[30], score_team_1: nil, score_team_2: nil, aggregate: group_h, venue: venues[0], date: Time.utc(2014, 06, 22, 16, 00, 00).iso8601)
   create(:match, position: 32, team_1: teams[31], team_2: teams[29], score_team_1: nil, score_team_2: nil, aggregate: group_h, venue: venues[5], date: Time.utc(2014, 06, 22, 19, 00, 00).iso8601)
   create(:match, position: 33, team_1: teams[3], team_2: teams[0], score_team_1: nil, score_team_2: nil, aggregate: group_a, venue: venues[1], date: Time.utc(2014, 06, 23, 20, 00, 00).iso8601)
-  create(:match, position: 34, team_1: teams[1], team_2: teams[2], score_team_1: nil, score_team_2: nil, aggregate: group_a, venue: venues[7], date: Time.utc(2014 , 06, 23, 20, 00, 00).iso8601)
+  create(:match, position: 34, team_1: teams[1], team_2: teams[2], score_team_1: nil, score_team_2: nil, aggregate: group_a, venue: venues[7], date: Time.utc(2014, 06, 23, 20, 00, 00).iso8601)
   create(:match, position: 35, team_1: teams[7], team_2: teams[4], score_team_1: nil, score_team_2: nil, aggregate: group_b, venue: venues[11], date: Time.utc(2014, 06, 23, 16, 00, 00).iso8601)
   create(:match, position: 36, team_1: teams[5], team_2: teams[6], score_team_1: nil, score_team_2: nil, aggregate: group_b, venue: venues[2], date: Time.utc(2014, 06, 23, 16, 00, 00).iso8601)
   create(:match, position: 37, team_1: teams[11], team_2: teams[8], score_team_1: nil, score_team_2: nil, aggregate: group_c, venue: venues[8], date: Time.utc(2014, 06, 24, 20, 00, 00).iso8601)

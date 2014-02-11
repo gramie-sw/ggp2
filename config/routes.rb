@@ -7,6 +7,8 @@ Ggp2::Application.routes.draw do
   resources :teams
   resources :venues
 
+  resources :user_tips, only: :show
+
   # must be behind devise
   resources :users, except: [:show, :new]
 
