@@ -6,10 +6,8 @@
 <body>
 <div id="header-and-content">
 
-  <% if true %>
-      <%= render 'layouts/navigation/admin_main_menu' %>
-  <% else %>
-      <%= render 'layouts/navigation/user_main_menu' %>
+  <% if current_user.present? %>
+      <%= render 'layouts/navigation/main_menu' %>
   <% end %>
 
   <div class="ggp2-background-image"></div>
@@ -30,7 +28,7 @@
       <%= render 'layouts/messages' %>
       <%= yield %>
     </div>
-</div>
+  </div>
 </div>
 
 <%= render 'layouts/footer' %>
