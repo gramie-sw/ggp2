@@ -14,6 +14,7 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'rails-i18n'
 gem 'localized_country_select'
+gem 'slim'
 
 gem 'ancestry'
 gem 'devise'

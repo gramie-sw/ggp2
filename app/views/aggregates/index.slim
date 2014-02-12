@@ -1,0 +1,33 @@
+== render partial: 'commons/background_image', locals: {image_name: 'background_image_00.jpg'}
+- content_for(:main_title, Aggregate.model_name.human_plural)
+- content_for(:sub_title, I18n.t('general.wm_2014_title'))
+
+div.well.well-sm
+  == link_to I18n.t('model.messages.add', model: Aggregate.model_name.human), new_aggregate_path, class: "btn btn-default"
+
+- if @aggregates.present?
+  div.well.well-sm
+    table.table.table-condensed.table-hover
+      thead
+        tr
+          th
+            == Aggregate.human_attribute_name(:position)
+          th
+            == Aggregate.human_attribute_name(:name)
+          th
+            == Aggregate.human_attribute_name(:ancestry)
+          th
+      tbody
+        - for aggregate in @aggregates
+          tr.link-row-js data-href="#{edit_aggregate_path(aggregate)}"
+            td
+              == aggregate.position
+            td
+              == aggregate.name
+            td
+              == aggregate.parent.name unless aggregate.parent.nil?
+            td
+              == link_to(aggregates_path(aggregate), method: :delete, data: {confirm: t('model.messages.destroy_really', \
+              model: Aggregate.model_name.human), method: :delete}, title: t('model.messages.destroy', \
+              model: Aggregate.model_name.human)) do
+                i.fa.fa-trash-o

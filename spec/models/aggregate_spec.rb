@@ -1,4 +1,4 @@
-describe Aggregate, focus: true do
+describe Aggregate do
 
   it 'should have a valid factory' do
     build(:aggregate).should be_valid
