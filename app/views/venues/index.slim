@@ -1,33 +1,27 @@
-== render partial: 'commons/background_image', locals: {image_name: 'background_image_01.jpg'}
+= render partial: 'commons/background_image', locals: {image_name: 'background_image_01.jpg'}
 - content_for(:main_title, Venue.model_name.human_plural)
 - content_for(:sub_title, I18n.t('general.wm_2014_title'))
 
 div.well.well-sm
-  == link_to I18n.t('model.messages.add', model: Venue.model_name.human), new_venue_path, class: "btn btn-default"
+  = link_to I18n.t('model.messages.add', model: Venue.model_name.human), new_venue_path, class: "btn btn-default"
 
 - if @venues.present?
   div.table-responsive
     table.table.table-condensed.table-hover
       thead
         tr
-          th
-            == Venue.human_attribute_name(:city)
-          th
-            == Venue.human_attribute_name(:stadium)
-          th
-            == Venue.human_attribute_name(:capacity)
+          th = Venue.human_attribute_name(:city)
+          th = Venue.human_attribute_name(:stadium)
+          th = Venue.human_attribute_name(:capacity)
           th
       tbody
         - for venue in @venues
           tr.link-row-js data-href="#{edit_venue_path(venue)}"
-            td
-              == venue.city
-            td
-              == venue.stadium
-            td
-              == venue.city
-            td
-              == link_to(venues_path(venue), method: :delete, data: {confirm: t('model.messages.destroy_really', \
-              model: Venue.model_name.human), method: :delete}, title: t('model.messages.destroy', \
-              model: Venue.model_name.human)) do
-                i.fa.fa-trash-o
+            td = venue.city
+            td = venue.stadium
+            td = venue.city
+            td = link_to(venues_path(venue), method: :delete, data: {confirm: t('model.messages.destroy_really', \
+            model: Venue.model_name.human), \
+            method: :delete}, title: t('model.messages.destroy', \
+            model: Venue.model_name.human)) do
+              i.fa.fa-trash-o
