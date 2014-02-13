@@ -14,7 +14,7 @@ de:
   activerecord:
     models:
       aggregate:
-        one: Phase/Gruppe
+        one: "Phase/Gruppe"
         other: Phasen/Gruppen
       match:
         one: Spiel

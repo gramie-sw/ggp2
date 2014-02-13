@@ -12,6 +12,16 @@ class Aggregate < ActiveRecord::Base
   alias :has_groups? :has_children?
   alias :groups :children
 
+  def self.leaves
+    roots.map! do |root|
+      if root.has_groups?
+        root.children
+      else
+        root
+      end
+    end.flatten!
+  end
+
   def is_group?
     !is_root?
   end
@@ -24,13 +34,7 @@ class Aggregate < ActiveRecord::Base
     end
   end
 
-  def self.leaves
-    roots.map! do |root|
-      if root.has_groups?
-        root.children
-      else
-        root
-      end
-    end.flatten!
+  def message_name
+    "#{Aggregate.model_name.human}: \"#{name}\""
   end
 end

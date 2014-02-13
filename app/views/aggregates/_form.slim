@@ -1,0 +1,43 @@
+div.well.well-sm
+  = form_for aggregate, html: {class: 'form-horizontal', role: 'form'} do |f|
+    fieldset
+      div.form-group
+        = f.label :position, class: 'col-xs-3 col-sm-2 col-lg-1 control-label'
+        div.col-xs-9.col-sm-10.col-lg-11
+          div.row
+            div.col-xs-12.col-sm-7.col-md-6.col-lg-5
+              = f.text_field :position, class: 'form-control'
+          - if aggregate.errors.get(:position) && !aggregate.errors.get(:position).empty?
+            div.row
+              div.field_with_errors
+                p.help-block.col-xs-12
+                  = aggregate.errors.full_messages_for(:position).first
+
+      div.form-group
+        = f.label :name, class: 'col-xs-3 col-sm-2 col-lg-1 control-label'
+        div.col-xs-9.col-sm-10.col-lg-11
+          div.row
+            div.col-xs-12.col-sm-7.col-md-6.col-lg-5
+              = f.text_field :name, class: 'form-control'
+          - if aggregate.errors.get(:name) && !aggregate.errors.get(:name).empty?
+            div.row
+              div.field_with_errors
+                p.help-block.col-xs-12
+                  = aggregate.errors.full_messages_for(:name).first
+
+      div.form-group
+        = f.label :ancestry, class: 'col-xs-3 col-md-2 col-lg-1 control-label'
+        div.col-xs-9.col-md-10.col-lg-11
+          div.row
+            div.col-xs-12.col-sm-7.col-md-6.col-lg-5
+              = f.select :parent_id, Aggregate.roots.collect { |aggregate| [aggregate.name, aggregate.id] }, { include_blank: true}, class: 'form-control'
+            - if aggregate.errors.get(:ancestry_id) && !match.errors.get(:ancestry_id).empty?
+              div.row
+                div.field_with_errors
+                  p.help-block.col-xs-12
+                    = aggregate.errors.full_messages_for(:ancestry_id).first
+
+      div.form-group
+        div.col-xs-offset-3.col-sm-offset-2.col-lg-offset-1.col-xs-9.col-sm-10.col-lg-11
+          = f.submit class: 'btn btn-default'
+          = link_to I18n.t('general.cancel'), aggregates_path, class: "btn btn-default"
