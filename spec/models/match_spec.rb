@@ -140,4 +140,40 @@ describe Match do
       build(:match, team_2: nil).team_2?.should be_false
     end
   end
+
+  describe '#has_result?' do
+
+    context 'if score_team_1 and score_team_2 present' do
+
+      it 'should return true' do
+        subject.score_team_1 = 0
+        subject.score_team_2 = 1
+        subject.has_result?.should be_true
+      end
+    end
+
+    context 'if only score_team_1 present' do
+
+      it 'should return false' do
+        subject.score_team_1 = 0
+        subject.score_team_2 = nil
+        subject.has_result?.should be_false
+      end
+    end
+
+    context 'if only score_team_2 present' do
+
+      it 'should return false' do
+        subject.score_team_2 = 0
+        subject.has_result?.should be_false
+      end
+    end
+
+    context 'if score_team_1 and score_team_2 present' do
+
+      it 'should return false' do
+        subject.has_result?.should be_false
+      end
+    end
+  end
 end

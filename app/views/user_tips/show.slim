@@ -1,25 +1,29 @@
 = render partial: 'commons/background_image', locals: {image_name: 'background_image_01.jpg'}
-= content_for(:main_title, 'Deine Tipps')
+= content_for(:main_title, @presenter.title)
 = content_for(:sub_title, '')
 
 - @presenter.phases.each do |phase|
   h2 = phase.name
-  div.table-responsive
-    table.table.table-condensed.table-hover
-      thead
-        tr
-          th colspan='5' = Match.model_name.human
-          th.text-center Dein Tipp
-          th.text-center Ergebnis
-          th = Match.human_attribute_name(:date)
-      tbody
-        - @presenter.match_presenters_of(phase).each do |match|
+  = form_tag '/'
+    div.table-responsive
+      table.table.table-hover
+        thead
           tr
-            td = match.position
-            td = standard_flag_image_tag_of match.team_1
-            td = match.team_1_name_or_placeholder
-            td = standard_flag_image_tag_of match.team_2
-            td = match.team_1_name_or_placeholder
-            td.text-center = match.result
-            td.text-center = match.result
-            td = l match.date, format: :short
+            th colspan='6' = Match.model_name.human
+            th.text-center = t('general.your_tips')
+            th.text-center = t('general.result')
+            th.text-center = t('general.points')
+            th = Match.human_attribute_name(:date)
+        tbody
+          - @presenter.match_presenters_of(phase).each do |match|
+            tr
+              td = check_box_tag 'tip_ids[]'
+              td = match.position
+              td = standard_flag_image_tag_of match.team_1
+              td = match.team_1_name_or_placeholder
+              td = standard_flag_image_tag_of match.team_2
+              td = match.team_1_name_or_placeholder
+              td.text-center = match.result
+              td.text-center = match.result
+              td.text-center -
+              td = l match.date, format: :short

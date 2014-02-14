@@ -52,6 +52,10 @@ class Match < ActiveRecord::Base
     team_2? ? team_2.name : placeholder_team_2
   end
 
+  def has_result?
+    score_team_1.present? && score_team_2.present?
+  end
+
   def message_name
     "#{Match.model_name.human}: #{position}  (#{team_or_placeholder_1} vs #{team_or_placeholder_2})"
   end

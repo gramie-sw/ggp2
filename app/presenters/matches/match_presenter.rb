@@ -2,7 +2,7 @@ class MatchPresenter < DelegateClass(Match)
 
   attr_reader :match
 
-  def initialize match
+  def initialize(match)
     super(match)
     @match = match
   end
@@ -20,7 +20,11 @@ class MatchPresenter < DelegateClass(Match)
   end
 
   def result
-    '- : -'
+    if match.has_result?
+      "#{match.score_team_1} : #{match.score_team_2}"
+    else
+      '- : -'
+    end
   end
 
   private

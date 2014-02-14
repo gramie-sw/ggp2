@@ -1,13 +1,11 @@
 FactoryGirl.define do
 
-  factory :aggregate do
+  factory :aggregate, aliases: [:phase] do
     sequence(:position) { |n| n }
     name { Forgery::Basic.text(at_least: 5, at_most: 20) }
-  end
 
-  factory :aggregate_with_parent, parent: :aggregate do
-    position 2
-    name { Forgery::Basic.text(at_least: 5, at_most: 20) }
-    parent { create(:aggregate) }
+    factory :aggregate_with_parent, aliases: [:group] do
+      parent { create(:aggregate) }
+    end
   end
 end

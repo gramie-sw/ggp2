@@ -79,7 +79,7 @@ de:
         created: '%{count} %{models} erstellt'
 
   general:
-    tournament: Turnier
+    close: x
     wm_2014_title: 'WM-2014 Brasilien'
     match_result: 'Ergebnis'
     add: Erstellen
@@ -92,11 +92,15 @@ de:
     login: Anmelden
     logged_in_as: Angemeldet als
     logout: Abmelden
+    result: Ergebnis
     'no': Nein
     original: 'Original'
+    points: Punkte
+    remove: Entfernen
     search: Suchen
     show: Anzeigen
-    remove: Entfernen
     searchterm: Suchbegriff
+    tips_of: Tipps von %{name}
+    tournament: Turnier
     'yes': Ja
-    close: x
+    your_tips: Deine Tipps
