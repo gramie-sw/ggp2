@@ -49,7 +49,7 @@ describe Aggregate do
     end
   end
 
-  describe '#matches_of_branch' do
+  describe '#matches_including_of_children' do
 
     it 'should return all direct matches when aggregate is a group' do
       group = create(:aggregate_with_parent)
@@ -58,7 +58,7 @@ describe Aggregate do
 
       create(:match)
 
-      found_matches = group.matches_of_branch
+      found_matches = group.matches_including_of_children
       found_matches.size.should == 2
       found_matches.first.id.should == match_1.id
       found_matches.last.id.should == match_2.id
@@ -71,7 +71,7 @@ describe Aggregate do
 
       create(:match)
 
-      found_matches = phase.matches_of_branch
+      found_matches = phase.matches_including_of_children
       found_matches.size.should == 2
       found_matches.first.id.should == match_1.id
       found_matches.last.id.should == match_2.id
@@ -88,7 +88,7 @@ describe Aggregate do
       group_3 = create(:aggregate_with_parent)
       create(:match, aggregate: group_3)
 
-      found_matches = phase.matches_of_branch
+      found_matches = phase.matches_including_of_children
       found_matches.size.should == 3
       found_matches[0].id.should == match_1.id
       found_matches[1].id.should == match_2.id

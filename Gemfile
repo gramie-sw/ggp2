@@ -4,6 +4,7 @@ gem 'rails'
 gem 'mysql2'
 gem 'puma'
 
+gem 'slim'
 gem 'sass-rails'
 gem 'coffee-rails'
 gem 'jquery-rails'

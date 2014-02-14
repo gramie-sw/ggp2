@@ -21,3 +21,5 @@
 /config/database.yml
 
 /.idea
+
+.ruby-version
