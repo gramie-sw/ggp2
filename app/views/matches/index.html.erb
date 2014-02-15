@@ -42,11 +42,11 @@
               </td>
               <td><%= Match.score_or_dash match.score_team_1 %>:<%= Match.score_or_dash match.score_team_2 %></td>
               <td><%= I18n.l match.date, format: :short %></td>
-              <td><%= match.aggregate.name unless match.aggregate.nil?  %></td>
+              <td><%= match.aggregate.name unless match.aggregate.nil? %></td>
               <td>
-                <%= destroy_link match_path(match), I18n.t('model.messages.destroy', model: ("#{match.position}")),
-                                 only_icon: true,
-                                 confirm: I18n.t('model.messages.destroy_really', model: ("#{Match.model_name.human}: #{match.position}")) %>
+                <%= link_to(match_path(match), method: :delete, data: {confirm: t('model.messages.destroy_really', model: ("#{Match.model_name.human} #{match.position}")), method: :delete}, title: t('model.messages.destroy', model: ("#{Match.model_name.human} #{match.position}"))) do %>
+                    <i class="fa fa-trash-o"></i>
+                <% end %>
               </td>
             </tr>
         <% end %>

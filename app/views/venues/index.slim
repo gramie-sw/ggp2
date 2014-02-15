@@ -20,8 +20,8 @@ div.well.well-sm
             td = venue.city
             td = venue.stadium
             td = venue.city
-            td = link_to(venues_path(venue), method: :delete, data: {confirm: t('model.messages.destroy_really', \
-            model: Venue.model_name.human), \
+            td = link_to(venue_path(venue), method: :delete, data: {confirm: t('model.messages.destroy_really', \
+            model: ("#{Venue.model_name.human} #{venue.city}")), \
             method: :delete}, title: t('model.messages.destroy', \
-            model: Venue.model_name.human)) do
+            model: ("#{Venue.model_name.human} #{venue.city}"))) do
               i.fa.fa-trash-o

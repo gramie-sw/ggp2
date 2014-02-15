@@ -20,7 +20,7 @@ div.well.well-sm
             td = aggregate.position
             td = aggregate.name
             td = aggregate.parent.name unless aggregate.parent.nil?
-            td = link_to(aggregates_path(aggregate), method: :delete, data: {confirm: t('model.messages.destroy_really', \
+            td = link_to(aggregate_path(aggregate), method: :delete, data: {confirm: t('model.messages.destroy_really', \
             model: Aggregate.model_name.human), method: :delete}, \
             title: t('model.messages.destroy', \
             model: Aggregate.model_name.human)) do

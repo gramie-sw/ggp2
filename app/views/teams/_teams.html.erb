@@ -13,9 +13,11 @@
           <span class="vertical-center"><%= I18n.t team.country, :scope => 'countries' %></span>
         </div>
         <div class="col-xs-2">
-          <%= destroy_link team_path(team), I18n.t('model.messages.destroy', model: (I18n.t team.country, :scope => 'countries')),
-                           only_icon: true,
-                           confirm: I18n.t('model.messages.destroy_really', model: ("#{Team.model_name.human} #{I18n.t team.country, :scope => 'countries'}")) %>
+          <td>
+            <%= link_to(team_path(team), method: :delete, data: {confirm: t('model.messages.destroy_really', model: ("#{Team.model_name.human} #{I18n.t team.country, :scope => 'countries'}")), method: :delete}, title: t('model.messages.destroy', model: ("#{Team.model_name.human} #{I18n.t team.country, :scope => 'countries'}"))) do %>
+                <i class="fa fa-trash-o"></i>
+            <% end %>
+          </td>
         </div>
       </div>
     </div>
