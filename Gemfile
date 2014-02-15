@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'rails'
+gem 'actionmailer', "~> 4.0.2"
+gem 'jbuilder'
 gem 'mysql2'
 gem 'puma'
 

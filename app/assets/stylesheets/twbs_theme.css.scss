@@ -2,7 +2,7 @@
 
 $ggp2-navbar-top-border-color: #89c200;
 
-$ggp2-content-background-color:  #f5f5f5;
+$ggp2-content-background-color: #f5f5f5;
 
 $ggp2-footer-color: #ededed;
 $ggp2-footer-background-color: #353535;
@@ -19,19 +19,50 @@ $ggp2-background-image-height: 300px;
   border-top: $ggp2-border-top-height solid $ggp2-navbar-top-border-color;
 }
 
-.ggp2-form-group-no-margin-bottom {
-  @extend .form-group;
-  margin-bottom: 0px;
-}
-
 .field_with_errors {
   @extend .has-error;
 }
 
+//hack
+//moves the label in a form right close to input field on xs small screen
+//https://www.bountysource.com/issues/1036528-horizontal-form-problem-jumping-label-for-different-screen-width-when-col-xs-is-set
 .form-horizontal {
   @media (min-width: $screen-xs-min) {
     .control-label {
       text-align: right;
     }
   }
+}
+
+//hack
+//fixes collapsed block elements in form-inline have top height
+//fixes block element have margin right
+//fixes form-groups who belong together don't have spacing
+//fixes nested forms (horizontal-form -> inline-form) inline form element have spacing
+.ggp2-form-group {
+  @extend .form-group;
+}
+
+.form-inline {
+  @media (max-width: $screen-xs-max) {
+    .ggp2-form-group-tighter {
+      @extend .form-group;
+      margin-top: -12px;
+    }
+    //only necessary in nested forms like (horizontal-form -> inline-form)
+    .ggp2-form-control {
+      @extend .form-control;
+      margin-bottom: 10px;
+    }
+  }
+  @media (min-width: $screen-sm-min) {
+    .ggp2-form-group {
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+  }
+}
+
+.btn {
+  margin-bottom: 5px;
 }
