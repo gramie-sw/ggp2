@@ -6,9 +6,10 @@
   h2 = phase.name
   = form_tag '/'
     - table_id="tip-table-phase-#{phase.id}"
-    = link_to t('general.select_all'), nil, class: 'btn btn-default btn-sm', \
+    div.btn-toolbar
+      = link_to t('general.select_all'), nil, class: 'btn btn-default btn-sm', \
               onclick: "checkAllCheckboxes('#{table_id}');return false;"
-    = submit_tag t('views.user_tips.show.tip_selected_matches'), class: 'btn btn-default btn-sm'
+      = submit_tag t('views.user_tips.show.tip_selected_matches'), class: 'btn btn-default btn-sm'
     div.table-responsive
       table.table.table-hover id="#{table_id}"
         thead
