@@ -6,7 +6,7 @@ describe UserTipsShowPresenter do
   describe '#title' do
 
     context 'if user is current_user' do
-      it { subject.title.should eq t('general.your_tips') }
+      it { subject.title.should eq t('general.your_tip.other') }
     end
 
     context 'if user is not current_user' do

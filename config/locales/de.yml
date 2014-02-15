@@ -100,7 +100,16 @@ de:
     search: Suchen
     show: Anzeigen
     searchterm: Suchbegriff
+    select_all: Alle wählen
     tips_of: Tipps von %{name}
     tournament: Turnier
     'yes': Ja
-    your_tips: Deine Tipps
+    your_tip:
+      one: Dein Tipp
+      other: Deine Tipps
+
+  views:
+    user_tips:
+      show:
+        tip_selected_matches: Ausgwählte Spiele tippen
+        all_tips_for_match: Alle Tipps für Spiel

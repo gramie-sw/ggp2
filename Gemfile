@@ -15,7 +15,6 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'rails-i18n'
 gem 'localized_country_select'
-gem 'slim'
 
 gem 'ancestry'
 gem 'devise'
@@ -30,6 +29,7 @@ end
 group :development do
   gem 'meta_request', '~>0.2.8'
   gem "pry-rails", "~> 0.3.2"
+  gem 'quiet_assets'
 end
 
 group :test do

@@ -5,25 +5,32 @@
 - @presenter.phases.each do |phase|
   h2 = phase.name
   = form_tag '/'
+    - table_id="tip-table-phase-#{phase.id}"
+    = link_to t('general.select_all'), nil, class: 'btn btn-default btn-sm', \
+              onclick: "checkAllCheckboxes('#{table_id}');return false;"
+    = submit_tag t('views.user_tips.show.tip_selected_matches'), class: 'btn btn-default btn-sm'
     div.table-responsive
-      table.table.table-hover
+      table.table.table-hover id="#{table_id}"
         thead
           tr
             th colspan='6' = Match.model_name.human
-            th.text-center = t('general.your_tips')
+            th.text-center = t('general.your_tip.one')
             th.text-center = t('general.result')
             th.text-center = t('general.points')
             th = Match.human_attribute_name(:date)
         tbody
           - @presenter.match_presenters_of(phase).each do |match|
-            tr
+            tr.link-row-js data-href="/foo/#{match.id}"
               td = check_box_tag 'tip_ids[]'
               td = match.position
               td = standard_flag_image_tag_of match.team_1
               td = match.team_1_name_or_placeholder
               td = standard_flag_image_tag_of match.team_2
-              td = match.team_1_name_or_placeholder
+              td = match.team_2_name_or_placeholder
               td.text-center = match.result
               td.text-center = match.result
               td.text-center -
               td = l match.date, format: :short
+              td
+                = link_to 'foo/1'
+                  icon.fa.fa-users title="#{t('views.user_tips.show.all_tips_for_match')}"
