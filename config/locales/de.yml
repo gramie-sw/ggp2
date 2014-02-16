@@ -6,6 +6,7 @@ de:
       must_not_equals_team_1: 'darf nicht gleich Team 1 sein'
       model_not_saved: 'Konnte %{model} nicht speichern: %{count} Fehler'
       team_to_delete_is_associated_to_games: 'Team konnte nicht gelöscht werden, da es in mindestens in einem Spiel gesetzt ist'
+      scores_not_changeable_after_match_started: 'Getippte Tore dürfen nach Start des Spiels nicht geändert werden.'
   time:
     formats:
       short_full: ! '%d.%m.%Y, %H:%M:%S Uhr'

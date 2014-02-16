@@ -4,6 +4,7 @@ class Match < ActiveRecord::Base
   belongs_to :team_1, :class_name => "Team"
   belongs_to :team_2, :class_name => "Team"
   belongs_to :venue
+  has_many :tips, dependent: :destroy
 
   validates :position, presence: true, uniqueness: true, numericality: {only_integer: true}, inclusion: {in: 1..1000}
   validates :aggregate_id, presence: true
@@ -58,6 +59,10 @@ class Match < ActiveRecord::Base
 
   def message_name
     "#{Match.model_name.human}: #{position}  (#{team_or_placeholder_1} vs #{team_or_placeholder_2})"
+  end
+
+  def started?
+    date.past?
   end
 
   def self.score_or_dash team_score

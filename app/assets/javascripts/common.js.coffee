@@ -5,7 +5,7 @@ $(document).ready ->
     clicked_element = $(event.target)
     if(!clicked_element.is('input') && !clicked_element.is('a') && clicked_element.closest('a').length is 0)
       window.location = $(this).attr("data-href")
-    
+
 
 window.checkAllCheckboxes = (container_id) ->
   $('#' + container_id + ' input[type =checkbox]').attr 'checked', true
