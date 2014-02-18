@@ -24,7 +24,7 @@ gem 'devise'
 group :development, :test do
   gem 'rspec-rails'
   gem 'guard-rspec'
-  gem 'spring', '1.0.0'
+  gem 'spring'
   gem 'spring-commands-rspec', require: false
 end
 
