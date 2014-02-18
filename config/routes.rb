@@ -4,10 +4,10 @@ Ggp2::Application.routes.draw do
 
   resources :aggregates
   resources :matches
-  resources :teams
-  resources :venues
-
   resources :user_tips, only: :show
+  resources :teams
+  resources :tips, only: :create
+  resources :venues
 
   # must be behind devise
   resources :users, except: [:show, :new]

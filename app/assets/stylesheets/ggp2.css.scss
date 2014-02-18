@@ -75,3 +75,10 @@ body {
   background-size: cover;
   height: $ggp2-background-image-height;
 }
+
+table {
+
+  tr.link-row {
+    cursor: pointer;
+  }
+}

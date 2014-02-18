@@ -98,6 +98,7 @@ describe Match do
     it { should belong_to(:aggregate) }
     it { should belong_to(:team_1).class_name('Team') }
     it { should belong_to(:team_2).class_name('Team') }
+    it { should have_many(:tips).dependent(:destroy) }
   end
 
   describe 'scopes' do
@@ -173,6 +174,23 @@ describe Match do
 
       it 'should return false' do
         subject.has_result?.should be_false
+      end
+    end
+  end
+
+  describe '#started?' do
+
+    context 'if date is in the past' do
+      subject { Match.new date: 1.minute.ago }
+      it 'should return true' do
+        subject.should be_started
+      end
+    end
+
+    context 'if date is not in the past' do
+      subject { Match.new date: 1.minute.from_now }
+      it 'should return false' do
+        subject.should_not be_started
       end
     end
   end
