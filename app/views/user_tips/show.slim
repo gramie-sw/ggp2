@@ -21,7 +21,7 @@
             th = Match.human_attribute_name(:date)
         tbody
           - @presenter.match_presenters_of(phase).each do |match|
-            tr.link-row-js data-href="/foo/#{match.id}"
+            tr.link-row data-href="/foo/#{match.id}"
               td = check_box_tag 'tip_ids[]'
               td = match.position
               td = standard_flag_image_tag_of match.team_1

@@ -16,7 +16,7 @@ div.well.well-sm
           th
       tbody
         - for aggregate in @aggregates
-          tr.link-row-js data-href="#{edit_aggregate_path(aggregate)}"
+          tr.link-row data-href="#{edit_aggregate_path(aggregate)}"
             td = aggregate.position
             td = aggregate.name
             td = aggregate.parent.name unless aggregate.parent.nil?

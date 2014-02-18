@@ -16,7 +16,7 @@ div.well.well-sm
           th
       tbody
         - for venue in @venues
-          tr.link-row-js data-href="#{edit_venue_path(venue)}"
+          tr.link-row data-href="#{edit_venue_path(venue)}"
             td = venue.city
             td = venue.stadium
             td = venue.city

@@ -22,7 +22,7 @@
         </thead>
         <tbody>
         <% @matches.each do |match| %>
-            <tr class="link-row-js" data-href="<%= edit_match_path(match) %>">
+            <tr class="link-row" data-href="<%= edit_match_path(match) %>">
               <td><%= match.position %> </td>
               <td>
                 <% if match.team_1? %>
