@@ -68,7 +68,6 @@ describe MatchPresenter do
     context 'if match has no result' do
 
       it 'should return formatted result placeholder' do
-
         match.stub(:has_result?).and_return(false)
         subject.result.should eq '- : -'
       end

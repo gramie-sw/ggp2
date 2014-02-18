@@ -6,7 +6,13 @@ Ggp2::Application.routes.draw do
   resources :matches
   resources :user_tips, only: :show
   resources :teams
-  resources :tips, only: :create
+  resources :tips, except: [:index, :show, :new, :create, :edit, :update, :destroy] do
+    collection do
+      get :edit_multiple
+      post :edit_multiple
+      post :update_multiple
+    end
+  end
   resources :venues
 
   # must be behind devise

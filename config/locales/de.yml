@@ -114,3 +114,7 @@ de:
       show:
         tip_selected_matches: Ausgwählte Spiele tippen
         all_tips_for_match: Alle Tipps für Spiel
+    tips:
+      edit_multiple:
+        title: Spiele tippen
+
