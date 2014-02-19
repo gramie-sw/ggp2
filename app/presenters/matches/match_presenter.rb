@@ -1,5 +1,7 @@
 class MatchPresenter < DelegateClass(Match)
 
+  include ResultPresentable
+
   attr_reader :match
 
   def initialize(match)
@@ -19,13 +21,13 @@ class MatchPresenter < DelegateClass(Match)
     team_name_or_placeholder_of_team 2
   end
 
-  def result
-    if match.has_result?
-      "#{match.score_team_1} : #{match.score_team_2}"
-    else
-      '- : -'
-    end
-  end
+  #def result
+  #  if match.has_result?
+  #    "#{match.score_team_1} : #{match.score_team_2}"
+  #  else
+  #    '- : -'
+  #  end
+  #end
 
   private
 

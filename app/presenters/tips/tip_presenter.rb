@@ -1,5 +1,7 @@
 class TipPresenter < DelegateClass(Tip)
 
+  include ResultPresentable
+
   attr_reader :tip
 
   def initialize(tip)
@@ -8,8 +10,6 @@ class TipPresenter < DelegateClass(Tip)
   end
 
   def match_presenter
-    @match_presenter ||= begin
-      MatchPresenter.new(tip.match)
-    end
+    @match_presenter ||= MatchPresenter.new(tip.match)
   end
 end

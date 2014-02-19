@@ -87,6 +87,20 @@ describe Tip do
     it { should belong_to(:match) }
   end
 
+  describe '#scopes' do
+
+    it 'should order tip by matches position' do
+      tip_3 = create(:tip, match: create(:match, position: 3))
+      tip_1 = create(:tip, match: create(:match, position: 1))
+      tip_2 = create(:tip, match: create(:match, position: 2))
+
+      actual_tips = Tip.order_by_match_position
+      actual_tips.first.should eq tip_1
+      actual_tips.second.should eq tip_2
+      actual_tips.third.should eq tip_3
+    end
+  end
+
   describe '#tippable?' do
 
     let(:match) { Match.new }

@@ -20,6 +20,8 @@ class Tip < ActiveRecord::Base
 
   validate :scores_not_changeable_after_match_started
 
+  scope :order_by_match_position, -> { joins(:match).order('matches.position').references(:matches) }
+
   def tippable?
     !match.started?
   end

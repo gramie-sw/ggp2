@@ -10,6 +10,6 @@ FactoryGirl.define do
     sequence(:placeholder_team_1) { |n| "Placeholder #{n}"}
     sequence(:placeholder_team_2) { |n| "Placeholder #{n + 1}"}
     association :venue
-    date { Time.parse('2012.06.08 18:00') }
+    date { 2.day.from_now }
   end
 end
