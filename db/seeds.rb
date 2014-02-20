@@ -120,4 +120,11 @@ if Rails.env == 'development'
   create(:match, position: 62, team_1: nil, team_2: nil, placeholder_team_1: 'Winner Match 59', placeholder_team_2: 'Winner Match 60', score_team_1: nil, score_team_2: nil, aggregate: semi_finals, venue: venues[2], date: Time.utc(2014, 07, 9, 20, 00, 00).iso8601)
   create(:match, position: 63, team_1: nil, team_2: nil, placeholder_team_1: 'Loser Match 61', placeholder_team_2: 'Loser Match 62', score_team_1: nil, score_team_2: nil, aggregate: finals, venue: venues[1], date: Time.utc(2014, 07, 12, 20, 00, 00).iso8601)
   create(:match, position: 64, team_1: nil, team_2: nil, placeholder_team_1: 'Winner Match 61', placeholder_team_2: 'Winner Match 62', score_team_1: nil, score_team_2: nil, aggregate: finals, venue: venues[0], date: Time.utc(2014, 07, 13, 19, 00, 00).iso8601)
+
+  #---------tip creation---------
+  User.where(admin: false).each do |user|
+    Match.all.each do |match|
+      create(:tip, user: user, match: match)
+    end
+  end
 end

@@ -2,9 +2,9 @@
 = content_for(:main_title, @presenter.title)
 = content_for(:sub_title, '')
 
-- @presenter.phases.each do |phase|
+- for phase in @presenter.phases
   h2 = phase.name
-  = form_tag '/'
+  = form_tag edit_multiple_tips_path
     - table_id="tip-table-phase-#{phase.id}"
     div.btn-toolbar
       = link_to t('general.select_all'), nil, class: 'btn btn-default btn-sm', \
@@ -20,18 +20,18 @@
             th.text-center = t('general.points')
             th = Match.human_attribute_name(:date)
         tbody
-          - @presenter.match_presenters_of(phase).each do |match|
+          - for match_presenter in @presenter.match_presenters_of(phase)
             tr.link-row data-href="#{edit_multiple_tips_path(tip_ids: [1])}"
-              td = check_box_tag 'tip_ids[]'
-              td = match.position
-              td = standard_flag_image_tag_of match.team_1
-              td = match.team_1_name_or_placeholder
-              td = standard_flag_image_tag_of match.team_2
-              td = match.team_2_name_or_placeholder
-              td.text-center = match.result
-              td.text-center = match.result
+              td = check_box_tag 'tip_ids[]', match_presenter.id
+              td = "#{match_presenter.position}."
+              td = standard_flag_image_tag_of match_presenter.team_1
+              td = match_presenter.team_1_name_or_placeholder
+              td = standard_flag_image_tag_of match_presenter.team_2
+              td = match_presenter.team_2_name_or_placeholder
+              td.text-center = match_presenter.result
+              td.text-center = match_presenter.result
               td.text-center -
-              td = l match.date, format: :short
+              td = l match_presenter.date, format: :short
               td
                 = link_to 'foo/1'
                   icon.fa.fa-users title="#{t('views.user_tips.show.all_tips_for_match')}"

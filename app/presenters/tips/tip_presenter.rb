@@ -2,14 +2,7 @@ class TipPresenter < DelegateClass(Tip)
 
   include ResultPresentable
 
-  attr_reader :tip
-
-  def initialize(tip)
-    super(tip)
-    @tip = tip
-  end
-
   def match_presenter
-    @match_presenter ||= MatchPresenter.new(tip.match)
+    @match_presenter ||= MatchPresenter.new(match)
   end
 end

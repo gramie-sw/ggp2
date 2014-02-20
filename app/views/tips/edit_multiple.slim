@@ -1,3 +1,18 @@
 = render partial: 'commons/background_image', locals: {image_name: 'background_image_01.jpg'}
 = content_for(:main_title, t('views.tips.edit_multiple.title'))
 
+= form_tag ''
+  - for tip_presenter in @presenter.tip_presenters
+    - match_presenter = tip_presenter.match_presenter
+    div = "Spiel #{match_presenter.position}"
+    table
+      tr
+        td = standard_flag_image_tag_of match_presenter.team_1
+        td = match_presenter.team_1_name_or_placeholder
+        td = text_field_tag ''
+        td = ":"
+        td = text_field_tag ''
+        td = standard_flag_image_tag_of match_presenter.team_2
+        td = match_presenter.team_2_name_or_placeholder
+  = link_to 'Abbrechen', user_tip_path(current_user), class: 'btn btn-primary'
+  = submit_tag 'Tipps speichern', class: 'btn btn-default'

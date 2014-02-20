@@ -7,13 +7,6 @@ describe MatchPresenter do
     MatchPresenter.included_modules.should include ResultPresentable
   end
 
-  describe '#position' do
-
-    it 'should return position with dot' do
-      subject.position.should eq "#{match.position}."
-    end
-  end
-
   describe '#team_1_name_or_placeholder' do
 
     context 'if match has team_1' do

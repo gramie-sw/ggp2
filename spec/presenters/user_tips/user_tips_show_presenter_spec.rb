@@ -46,9 +46,9 @@ describe UserTipsShowPresenter do
       actual_match_presenters.count.should eq 2
       #matcher be_kind_of didn't worked with DelegateClass in rspec-expectations 2.14.4
       actual_match_presenters.first.kind_of?(MatchPresenter).should be_true
+      actual_match_presenters.first.__getobj__.should eq match_1
       actual_match_presenters.second.kind_of?(MatchPresenter).should be_true
-      actual_match_presenters.first.match.should eq match_1
-      actual_match_presenters.second.match.should eq match_2
+      actual_match_presenters.second.__getobj__.should eq match_2
     end
 
     let(:aggregate) { create(:aggregate) }
