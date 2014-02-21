@@ -3,7 +3,7 @@
 = content_for(:sub_title, '')
 
 - for phase in @presenter.phases
-  h2 = phase.name
+  h3 = phase.name
   = form_tag edit_multiple_tips_path
     - table_id="tip-table-phase-#{phase.id}"
     div.btn-toolbar

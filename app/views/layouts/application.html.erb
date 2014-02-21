@@ -12,19 +12,26 @@
 
   <div class="ggp2-background-image"></div>
   <div class="container overlap">
-    <div class="row ggp2-title">
-      <%= content_for :sub_menu %>
-    </div>
     <div class="row">
-      <h3>
-        <span class="ggp2-title"><%= content_for?(:main_title) ? content_for(:main_title) : 'Brasilien Fussball Weltmeisterschaft-2014' %></span>
-      </h3>
-      <h4>
-        <span class="ggp2-title"><%= content_for?(:sub_title) ? content_for(:sub_title) : 'Es muss eine Kehrtwende geben. Und die muss 360 Grad sein. (Eduard Geyer)' %></span>
-      </h4>
+      <div class="col-sm-5 col-sm-push-7 no-spacing">
+        <!--<%# if content_for?(:teaser) %>-->
+        <p class="ggp2-title text-right">Es muss eine Kehrtwende geben. Und die muss 360 Grad sein. (Eduard Geyer)</p>
+        <!--<%# end %>-->
+      </div>
+      <div class="col-sm-7 col-sm-pull-5 no-spacing">
+        <h1>
+          <span class="ggp2-title"><%= content_for?(:main_title) ? content_for(:main_title) : 'Brasilien Fussball Weltmeisterschaft-2014' %></span>
+        </h1>
+      </div>
     </div>
+    <% if content_for?(:sub_title) %>
+        <div class="row">
+          <h2>
+            <span class="ggp2-title"><%= content_for(:sub_title) %></span>
+          </h2>
+        </div>
+    <% end %>
     <div class="row ggp2-main-content-area">
-      <!--<div class="col"></div>-->
       <%= render 'layouts/messages' %>
       <%= yield %>
     </div>
