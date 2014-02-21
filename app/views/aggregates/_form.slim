@@ -31,11 +31,11 @@ div.well.well-sm
           div.row
             div.col-xs-12.col-sm-7.col-md-6.col-lg-5
               = f.select :parent_id, Aggregate.roots.collect { |aggregate| [aggregate.name, aggregate.id] }, { include_blank: true}, class: 'form-control'
-            - if aggregate.errors.get(:ancestry_id) && !match.errors.get(:ancestry_id).empty?
-              div.row
-                div.field_with_errors
-                  p.help-block.col-xs-12
-                    = aggregate.errors.full_messages_for(:ancestry_id).first
+          - if aggregate.errors.get(:ancestry_id) && !match.errors.get(:ancestry_id).empty?
+            div.row
+              div.field_with_errors
+                p.help-block.col-xs-12
+                  = aggregate.errors.full_messages_for(:ancestry_id).first
 
       div.form-group
         div.col-sm-offset-2.col-lg-offset-1.col-sm-10.col-lg-11
