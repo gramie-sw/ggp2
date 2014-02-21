@@ -14,5 +14,6 @@
         td = text_field_tag ''
         td = standard_flag_image_tag_of match_presenter.team_2
         td = match_presenter.team_2_name_or_placeholder
-  = link_to 'Abbrechen', user_tip_path(current_user), class: 'btn btn-primary'
-  = submit_tag 'Tipps speichern', class: 'btn btn-default'
+  div.btn-toolbar
+    = submit_tag 'Tipps speichern', class: 'btn btn-primary'
+    = link_to 'Abbrechen', user_tip_path(current_user), class: 'btn btn-default'
