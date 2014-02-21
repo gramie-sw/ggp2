@@ -14,7 +14,7 @@
       table.table.table-hover id="#{table_id}"
         thead
           tr
-            th colspan='6' = Match.model_name.human
+            th colspan='4' = Match.model_name.human
             th.text-center = t('general.your_tip.one')
             th.text-center = t('general.result')
             th.text-center = t('general.points')
@@ -24,10 +24,12 @@
             tr.link-row data-href="#{edit_multiple_tips_path(tip_ids: [1])}"
               td = check_box_tag 'tip_ids[]', match_presenter.id
               td = "#{match_presenter.position}."
-              td.vertical-center = standard_flag_image_tag_of match_presenter.team_1
-              td = match_presenter.team_1_name_or_placeholder
-              td = standard_flag_image_tag_of match_presenter.team_2
-              td = match_presenter.team_2_name_or_placeholder
+              td
+                = standard_flag_image_tag_of match_presenter.team_1
+                = match_presenter.team_1_name_or_placeholder
+              td
+                = standard_flag_image_tag_of match_presenter.team_2
+                = match_presenter.team_2_name_or_placeholder
               td.text-center = match_presenter.result
               td.text-center = match_presenter.result
               td.text-center -

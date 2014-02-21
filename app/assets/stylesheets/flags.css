@@ -2,6 +2,8 @@
 	width: 16px;
 	height: 11px;
     background: image-url('flags/flags.png') no-repeat;
+    vertical-align: baseline;
+    margin-right: 10px;
 }
 
 .flag.flag-ad {background-position: -16px 0}
