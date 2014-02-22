@@ -33,7 +33,7 @@ class Aggregate < ActiveRecord::Base
 
   def matches_including_of_children
     if phase? && has_groups?
-      Match.where(aggregate_id: children)
+      Match.where(aggregate_id: children).references(:aggregates)
     else
       matches
     end
