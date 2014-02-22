@@ -1,6 +1,5 @@
 = render partial: 'commons/background_image', locals: {image_name: 'background_image_01.jpg'}
 - content_for(:main_title, Team.model_name.human_plural)
-- content_for(:sub_title, I18n.t('general.wm_2014_title'))
 
 div.well.well-sm
   = form_for @presenter.new_team, html: {class: 'form-inline', role: 'form'} do |f|
@@ -15,7 +14,7 @@ div.well.well-sm
             div.help-block
               = @presenter.new_team.errors.full_messages_for(:country).first
       div.ggp2-form-group
-        = f.submit class: 'btn btn-default'
+        = f.submit class: 'btn btn-primary'
 
 div.visible-sm
   = render :partial => 'teams', locals: {columns: 2, teams: @presenter.teams}
