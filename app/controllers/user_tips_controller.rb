@@ -6,5 +6,4 @@ class UserTipsController < ApplicationController
           user_is_current_user: params[:id] == current_user.id.to_s
     )
   end
-
 end

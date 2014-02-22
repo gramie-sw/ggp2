@@ -1,5 +1,4 @@
 = render partial: 'commons/background_image', locals: {image_name: 'background_image_01.jpg'}
 - content_for(:main_title, I18n.t('model.messages.edit', model: Aggregate.model_name.human))
-- content_for(:sub_title, I18n.t('general.wm_2014_title'))
 
 = render partial: 'form', locals: {aggregate: @aggregate}

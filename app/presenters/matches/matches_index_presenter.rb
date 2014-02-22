@@ -1,14 +1,8 @@
 class MatchesIndexPresenter
 
-  def initialize new_match=nil
-    @new_match = new_match
-  end
+  include MatchRepresentable
 
-  def matches
-    @matches ||= Match.all
-  end
-
-  def new_match
-    @new_match ||= Match.new
+  def initialize
+    @match_presenters= []
   end
 end

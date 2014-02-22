@@ -1,7 +1,7 @@
 class MatchesController < ApplicationController
 
   def index
-    @matches = Match.all
+    @presenter = MatchesIndexPresenter.new
   end
 
   def new
