@@ -678,7 +678,8 @@ $list-group-link-heading-color: #333 !default;
 //
 //##
 
-$panel-bg:                    #fff !default;
+//$panel-bg:                    #fff !default;
+$panel-bg:                    rgba(246, 246, 246, 0.4) !default;
 $panel-body-padding:          15px !default;
 $panel-border-radius:         $border-radius-base !default;
 
@@ -735,7 +736,7 @@ $thumbnail-caption-padding:   9px !default;
 //##
 
 //$well-bg:                     #f5f5f5 !default;
-$well-bg:                     rgba(245, 245, 245, 0.8) !default;
+$well-bg:                     rgba(246, 246, 246, 0.8) !default;
 //$well-border:                 darken($well-bg, 7%) !default;
 
 

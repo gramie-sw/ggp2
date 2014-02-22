@@ -13,24 +13,21 @@
   <div class="ggp2-background-image"></div>
   <div class="container overlap">
     <div class="row">
-      <div class="col-sm-5 col-sm-push-7 no-spacing">
+      <div class="col-sm-5 col-sm-push-7 panel no-spacing bottom">
         <!--<%# if content_for?(:teaser) %>-->
-        <p class="ggp2-title text-right">Es muss eine Kehrtwende geben. Und die muss 360 Grad sein. (Eduard Geyer)</p>
+        <p class="small-panel-padding text-right gray-text">
+          <strong>Es muss eine Kehrtwende geben. Und die muss 360 Grad
+            sein. (Eduard Geyer) Es muss eine Kehrtwende geben. Und die muss 360 Grad sein. (Eduard Geyer)
+          </strong>
+        </p>
         <!--<%# end %>-->
       </div>
-      <div class="col-sm-7 col-sm-pull-5 no-spacing">
+      <div class="col-sm-7 col-sm-pull-5 no-spacing bottom">
         <h1>
           <span class="ggp2-title"><%= content_for?(:main_title) ? content_for(:main_title) : 'Brasilien Fussball Weltmeisterschaft-2014' %></span>
         </h1>
       </div>
     </div>
-    <% if content_for?(:sub_title) %>
-        <div class="row">
-          <h2>
-            <span class="ggp2-title"><%= content_for(:sub_title) %></span>
-          </h2>
-        </div>
-    <% end %>
     <div class="row ggp2-main-content-area">
       <%= render 'layouts/messages' %>
       <%= yield %>

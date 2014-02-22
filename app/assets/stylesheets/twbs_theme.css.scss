@@ -2,7 +2,7 @@
 
 $ggp2-navbar-top-border-color: #89c200;
 
-$ggp2-content-background-color: #f5f5f5;
+$ggp2-content-background-color: #f6f6f6;
 
 $ggp2-footer-color: #ededed;
 $ggp2-footer-background-color: #353535;
@@ -75,4 +75,8 @@ $ggp2-background-image-height: 300px;
 .no-spacing {
   padding: 0 !important;
   margin: 0 !important;
+}
+
+.small-panel-padding {
+  padding: 5px !important;
 }

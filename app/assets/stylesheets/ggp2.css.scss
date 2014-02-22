@@ -66,7 +66,8 @@ body {
 
 .ggp2-main-content-area {
   background-color: transparentize($ggp2-content-background-color, 0.40);
-  padding: 20px 30px 10px 30px;
+  padding: 10px 30px 10px 30px;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 
@@ -74,6 +75,10 @@ body {
   background-image: image-url('background_image_00.jpg');
   background-size: cover;
   height: $ggp2-background-image-height;
+}
+
+.gray-text {
+  color: $gray;
 }
 
 table {
