@@ -1,0 +1,35 @@
+= render partial: 'commons/background_image', locals: {image_name: 'background_image_00.jpg'}
+- content_for(:main_title, Match.model_name.human_plural)
+
+div.well.well-sm
+  = link_to I18n.t('model.messages.add', model: Match.model_name.human), new_match_path, class: "btn btn-default"
+
+- for phase in @presenter.phases
+  h2 = phase.name
+  div.table-responsive
+    table.table.table-condensed.table-hover
+      thead
+        tr
+          th colspan='3' = Match.human_attribute_name(:position)
+          th.text-center = I18n.t('general.match_result')
+          th
+          th = Match.human_attribute_name(:date)
+          th
+      tbody
+        - for match_presenter in @presenter.match_presenters_of(phase)
+          tr.link-row  data-href="#{edit_match_path(match_presenter.__getobj__)}"
+            td = "#{match_presenter.position}."
+            td
+              = standard_flag_image_tag_of match_presenter.team_1
+              = match_presenter.team_1_name_or_placeholder
+            td
+              = standard_flag_image_tag_of match_presenter.team_2
+              = match_presenter.team_2_name_or_placeholder
+            td.text-center = match_presenter.result
+            td
+              = link_to(match_path(match_presenter.__getobj__), method: :delete, data: {confirm: t('model.messages.destroy_really', model: ("#{Match.model_name.human} #{match_presenter.__getobj__.position}")), method: :delete}, title: t('model.messages.destroy', model: ("#{Match.model_name.human} #{match_presenter.__getobj__.position}"))) do
+                i.fa.fa-pencil
+            td = l match_presenter.date, format: :short
+            td
+              = link_to(match_path(match_presenter.__getobj__), method: :delete, data: {confirm: t('model.messages.destroy_really', model: ("#{Match.model_name.human} #{match_presenter.__getobj__.position}")), method: :delete}, title: t('model.messages.destroy', model: ("#{Match.model_name.human} #{match_presenter.__getobj__.position}"))) do
+                i.fa.fa-trash-o
