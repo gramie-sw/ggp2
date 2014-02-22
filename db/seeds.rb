@@ -40,7 +40,7 @@ if Rails.env == 'development'
 
   #-------aggregate creation------
 
-  group_stage = create(:aggregate, position: 1, name: 'Group stage')
+  group_stage = create(:aggregate, position: 1, name: 'Group Stage')
   group_a = create(:aggregate, position: 1, name: 'Group A', parent: group_stage)
   group_b = create(:aggregate, position: 2, name: 'Group B', parent: group_stage)
   group_c = create(:aggregate, position: 3, name: 'Group C', parent: group_stage)

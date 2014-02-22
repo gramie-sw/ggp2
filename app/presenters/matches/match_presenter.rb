@@ -10,6 +10,14 @@ class MatchPresenter < DelegateClass(Match)
     team_name_or_placeholder_of_team 2
   end
 
+  def aggregate_name_recursive
+    if aggregate.phase?
+      aggregate.name
+    else
+      "#{aggregate.parent.name} - #{aggregate.name}"
+    end
+  end
+
   private
 
   def team_name_or_placeholder_of_team team_number

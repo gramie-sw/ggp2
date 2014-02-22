@@ -48,4 +48,25 @@ describe MatchPresenter do
       end
     end
   end
+
+  describe 'aggregate_name_recursive' do
+
+    let(:match) { create(:match, aggregate: aggregate) }
+
+    context 'if match belongs only to phase' do
+      let(:aggregate) { create(:phase) }
+
+      it 'should return phase name' do
+        subject.aggregate_name_recursive.should eq aggregate.name
+      end
+    end
+
+    context 'if match belongs to group' do
+      let(:aggregate) { create(:group) }
+
+      it 'should return phase name' do
+        subject.aggregate_name_recursive.should eq "#{aggregate.parent.name} - #{aggregate.name}"
+      end
+    end
+  end
 end

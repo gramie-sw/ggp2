@@ -102,4 +102,13 @@ form {
     padding-top: 15px;
     border-top: 1px solid $legend-border-color;
   }
+
+  .legend-neutralize {
+    margin-top: -$line-height-computed;
+    margin-bottom: $line-height-computed;
+  }
+}
+.weakened {
+  color: $gray-light;
+  font-size: ceil(($font-size-base * 0.90))
 }

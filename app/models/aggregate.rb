@@ -13,7 +13,7 @@ class Aggregate < ActiveRecord::Base
 
   scope :order_by_position, -> { order('position ASC') }
 
-  alias :is_phase? :is_root?
+  alias :phase? :is_root?
   alias :has_groups? :has_children?
   alias :groups :children
 
@@ -32,7 +32,7 @@ class Aggregate < ActiveRecord::Base
   end
 
   def matches_including_of_children
-    if is_phase? && has_groups?
+    if phase? && has_groups?
       Match.where(aggregate_id: children)
     else
       matches

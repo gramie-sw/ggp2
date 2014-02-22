@@ -8,20 +8,29 @@ div.well
       fieldset
         legend = "Spiel #{match_presenter.position}"
         div.form-group.row
-          div.col-xs-6.col-sm-8.col-md-5
-            div.row
-              div.col-xs-12.col-sm-6
-                label.control-label
-                  = standard_flag_image_tag_of(match_presenter.team_1)
-                  = match_presenter.team_1_name_or_placeholder
-              div.col-xs-12.col-sm-6
-                label.control-label
-                  = standard_flag_image_tag_of(match_presenter.team_2)
-                  = match_presenter.team_2_name_or_placeholder
-          div.col-xs-6.col-sm-4.col-md-7
+          div.col-xs-12.hidden-lg.hidden-md.weakened.legend-neutralize
+            = "#{match_presenter.aggregate.name}, #{l match_presenter.date, format: :short}"
+          div.col-xs-7.col-sm-8.col-md-5.col-lg-5
+            /div.row
+              /div.col-xs-12.col-sm-6
+            label.control-label
+              span = standard_flag_image_tag_of(match_presenter.team_1)
+              span = match_presenter.team_1_name_or_placeholder
+              /div.col-xs-12.col-sm-6
+              span style="font-weight: normal"
+                '&nbsp;&nbsp;vs.&nbsp;&nbsp;
+            label.control-label
+              = standard_flag_image_tag_of(match_presenter.team_2)
+              = match_presenter.team_2_name_or_placeholder
+          div.col-xs-5.col-sm-4.col-md-3.col-lg-2
             = text_field_tag '', '', class: 'form-control tip-input'
             = ":"
             = text_field_tag '', '', class: 'form-control tip-input'
+          div.col-md-4.col-lg-5.visible-md.visible-lg
+            div.weakened
+              = match_presenter.aggregate_name_recursive
+              br
+              = l match_presenter.date
 
     div.btn-toolbar.submit-group
       = submit_tag 'Tipps speichern', class: 'btn btn-primary'
