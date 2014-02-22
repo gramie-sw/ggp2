@@ -5,6 +5,7 @@ module MatchRepresentable
   end
 
   def match_presenters_of(aggregate)
+    @match_presenters = [] unless @match_presenters
     @match_presenters[aggregate.id] ||= begin
       aggregate.
           matches_including_of_children.
