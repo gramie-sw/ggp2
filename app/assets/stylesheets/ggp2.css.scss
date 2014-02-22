@@ -108,6 +108,11 @@ form {
     margin-bottom: $line-height-computed;
   }
 }
+
+.normal {
+  font-weight: normal;
+}
+
 .weakened {
   color: $gray-light;
   font-size: ceil(($font-size-base * 0.90))

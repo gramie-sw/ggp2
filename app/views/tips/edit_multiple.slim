@@ -11,13 +11,10 @@ div.well
           div.col-xs-12.hidden-lg.hidden-md.weakened.legend-neutralize
             = "#{match_presenter.aggregate.name}, #{l match_presenter.date, format: :short}"
           div.col-xs-7.col-sm-8.col-md-5.col-lg-5
-            /div.row
-              /div.col-xs-12.col-sm-6
             label.control-label
-              span = standard_flag_image_tag_of(match_presenter.team_1)
-              span = match_presenter.team_1_name_or_placeholder
-              /div.col-xs-12.col-sm-6
-              span style="font-weight: normal"
+              = standard_flag_image_tag_of(match_presenter.team_1)
+              = match_presenter.team_1_name_or_placeholder
+              span.normal
                 '&nbsp;&nbsp;vs.&nbsp;&nbsp;
             label.control-label
               = standard_flag_image_tag_of(match_presenter.team_2)
