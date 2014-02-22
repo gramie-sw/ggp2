@@ -46,12 +46,18 @@ $ggp2-background-image-height: 300px;
 .form-inline {
   @media (max-width: $screen-xs-max) {
     .ggp2-form-group-tighter {
-      @extend .form-group;
+      //@extending an outer selector from within @media is deprecated.
+      //@extend .form-group; is not
+      //.form-group has just margin-bottom
+      margin-bottom: 15px;
       margin-top: -12px;
     }
     //only necessary in nested forms like (horizontal-form -> inline-form)
     .ggp2-form-control {
-      @extend .form-control;
+      //@extending an outer selector from within @media is deprecated.
+      //@extend .form-control;
+      //.form-control has just padding-right
+      padding-right: ($input-height-base * 1.25);
       margin-bottom: 10px;
     }
   }
