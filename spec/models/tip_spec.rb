@@ -1,5 +1,13 @@
 describe Tip do
 
+  it 'should have valid factory' do
+    build(:tip).should be_valid
+  end
+
+  it 'should be extended with ModelBatchUpdatable' do
+    Tip.singleton_class.included_modules.should include ModelBatchUpdatable
+  end
+
   describe 'validations' do
 
     let(:match) { create(:match) }
