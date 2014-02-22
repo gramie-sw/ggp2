@@ -14,4 +14,38 @@ describe UserTipsShowPresenter do
       it { subject.title.should eq t('general.tips_of', name: user.nickname) }
     end
   end
+
+  describe '#tip_presenter_for' do
+
+    let(:matches) do
+      [
+          create(:match),
+          create(:match),
+      ]
+    end
+
+    let(:tips) do
+      [
+          create(:tip, match: matches.first, user: user),
+          create(:tip, match: matches.first),
+          create(:tip, match: matches.second, user: user)
+      ]
+    end
+
+    before :each do
+      tips
+    end
+
+    it 'should return tip_presenter for given match and user' do
+      actual_tip_presenter = subject.tip_presenter_for(matches.first)
+      #rspec's be_kind_of matcher doesn't work for subclasses of DelegateClass
+      actual_tip_presenter.kind_of?(TipPresenter).should be_true
+      actual_tip_presenter.__getobj__.should eq tips.first
+    end
+
+    it 'should cache tip_presenter' do
+      #rspec's be_kind_of matcher doesn't work for subclasses of DelegateClass when comparing objects directly
+      subject.tip_presenter_for(matches.first).object_id.should be subject.tip_presenter_for(matches.first).object_id
+    end
+  end
 end

@@ -20,8 +20,9 @@
             th = Match.human_attribute_name(:date)
         tbody
           - for match_presenter in @presenter.match_presenters_of(phase)
-            tr.link-row data-href="#{edit_multiple_tips_path(tip_ids: [1])}"
-              td = check_box_tag 'tip_ids[]', match_presenter.id
+            - tip_presenter = @presenter.tip_presenter_for(match_presenter)
+            tr.link-row data-href="#{edit_multiple_tips_path(tip_ids: [tip_presenter.id])}"
+              td = check_box_tag 'tip_ids[]', tip_presenter.id
               td = "#{match_presenter.position}."
               td
                 = standard_flag_image_tag_of match_presenter.team_1
@@ -29,7 +30,7 @@
               td
                 = standard_flag_image_tag_of match_presenter.team_2
                 = match_presenter.team_2_name_or_placeholder
-              td.text-center = match_presenter.result
+              td.text-center = tip_presenter.result
               td.text-center = match_presenter.result
               td.text-center -
               td = l match_presenter.date, format: :short

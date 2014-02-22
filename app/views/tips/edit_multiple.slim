@@ -20,9 +20,10 @@ div.well
               = standard_flag_image_tag_of(match_presenter.team_2)
               = match_presenter.team_2_name_or_placeholder
           div.col-xs-5.col-sm-4.col-md-3.col-lg-2
-            = text_field_tag '', '', class: 'form-control tip-input'
-            = ":"
-            = text_field_tag '', '', class: 'form-control tip-input'
+            = fields_for 'tips[]', tip_presenter do |f|
+              = f.text_field :score_team_1, class: 'form-control tip-input', maxlength: 2
+              = ":"
+              = f.text_field :score_team_2, class: 'form-control tip-input', maxlength: 2
           div.col-md-4.col-lg-5.visible-md.visible-lg
             div.weakened
               = match_presenter.aggregate_name_recursive
