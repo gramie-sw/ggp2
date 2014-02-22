@@ -10,6 +10,7 @@
 //== Colors
 //
 //## Gray and brand colors for use across Bootstrap.
+$ggp2-green: #89c200;
 
 $gray-darker:            lighten(#000, 13.5%) !default; // #222
 $gray-dark:              lighten(#000, 20%) !default;   // #333
@@ -29,6 +30,7 @@ $brand-danger:          #d9534f !default;
 //
 // ## Settings for some of the most global styles.
 
+
 //** Background color for `<body>`.
 $body-bg:               #fff !default;
 //** Global text color on `<body>`.
@@ -38,7 +40,7 @@ $text-color:            $gray-dark !default;
 $link-color:            $brand-primary !default;
 //** Link hover color set via `darken()` function.
 //$link-hover-color:      darken($link-color, 15%) !default;
-$link-hover-color:      #89c200 !default;
+$link-hover-color:      $ggp2-green !default;
 
 //== Typography
 //
@@ -150,8 +152,8 @@ $btn-default-bg:                 $brand-primary !default;
 $btn-default-border:             darken($btn-default-bg, 5%) !default;
 
 $btn-primary-color:              #fff !default; //#333 !primary;
-$btn-primary-bg:                 #89c200 !default; //#fff !primary;
-$btn-primary-border:             #89c200 !default; //#ccc !primary;
+$btn-primary-bg:                 $ggp2-green !default; //#fff !primary;
+$btn-primary-border:             $ggp2-green !default; //#ccc !primary;
 
 $btn-success-color:              #fff !default;
 $btn-success-bg:                 $brand-success !default;
@@ -188,7 +190,8 @@ $input-border:                   #ccc !default;
 //** `<input>` border radius
 $input-border-radius:            $border-radius-base !default;
 //** Border color for inputs on focus
-$input-border-focus:             #66afe9 !default;
+//$input-border-focus:             #66afe9 !default;
+$input-border-focus:             $ggp2-green !default;
 
 //** Placeholder text color
 $input-color-placeholder:        $gray-light !default;
@@ -351,11 +354,11 @@ $navbar-default-border:            darken($navbar-default-bg, 6.5%) !default;
 //$navbar-default-link-color:                #777 !default;
 $navbar-default-link-color:                #353535 !default;
 //$navbar-default-link-hover-color:          #333 !default;
-$navbar-default-link-hover-color:          #89c200 !default;
+$navbar-default-link-hover-color:          $ggp2-green !default;
 //$navbar-default-link-hover-bg:             transparent !default;
 $navbar-default-link-hover-bg:             lighten($navbar-default-bg, 2%) !default;
 //$navbar-default-link-active-color:         #555 !default;
-$navbar-default-link-active-color:         #89c200 !default;
+$navbar-default-link-active-color:         $ggp2-green !default;
 //$navbar-default-link-active-bg:            darken($navbar-default-bg, 6.5%) !default;
 $navbar-default-link-active-bg:            #ededed !default;
 $navbar-default-link-disabled-color:       #ccc !default;
@@ -363,7 +366,7 @@ $navbar-default-link-disabled-bg:          transparent !default;
 
 // Navbar brand label
 //$navbar-default-brand-color:               $navbar-default-link-color !default;
-$navbar-default-brand-color:               #89c200 !default;
+$navbar-default-brand-color:               $ggp2-green !default;
 //$navbar-default-brand-hover-color:         darken($navbar-default-brand-color, 10%) !default;
 $navbar-default-brand-hover-color:         $navbar-default-brand-color !default;
 $navbar-default-brand-hover-bg:            transparent !default;
