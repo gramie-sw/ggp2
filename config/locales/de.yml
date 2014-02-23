@@ -37,8 +37,6 @@ de:
         position: Position
         name: Name
         ancestry: Phase
-      team:
-        country: Team
       match:
         position: Spiel
         venue: Austragungsort
@@ -50,6 +48,15 @@ de:
         placeholder_team_2: Platzhalter Team 2
         aggregate: 'Gruppe'
         date: Datum
+      team:
+        country: Team
+      user:
+        nickname: Nickname
+        first_name: Vorname
+        last_name: Name
+        admin: Administrator
+        email: E-Mail
+        last_sign_in_at: Letztes Login
       venue:
         city: Ort
         stadium: Stadion
@@ -108,6 +115,7 @@ de:
     select_all: Alle wählen
     tips_of: Tipps von %{name}
     tournament: Turnier
+    user_administration: Benutzerverwaltung
     'yes': Ja
     your_tip:
       one: Dein Tipp

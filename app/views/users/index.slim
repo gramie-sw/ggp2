@@ -1,0 +1,23 @@
+= render partial: 'commons/background_image', locals: {image_name: 'background_image_01.jpg'}
+- content_for(:main_title, t('general.user_administration'))
+
+- if @users.present?
+  div.table-responsive
+    table.table.table-condensed.table-hover
+      thead
+        tr
+          th = User.human_attribute_name(:nickname)
+          th = User.human_attribute_name(:first_name)
+          th = User.human_attribute_name(:last_name)
+          th = User.human_attribute_name(:email)
+          th = User.human_attribute_name(:last_sign_in_at)
+          th = User.human_attribute_name(:admin)
+      tbody
+        - for user in @users
+          tr
+            td = user.nickname
+            td = user.first_name
+            td = user.last_name
+            td = user.email
+            td = l(user.last_sign_in_at, format: :short) if user.last_sign_in_at
+            td = user.admin
