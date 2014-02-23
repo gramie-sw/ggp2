@@ -1,4 +1,0 @@
-<%= render partial: 'commons/background_image', locals: {image_name: 'background_image_01.jpg'} %>
-<% content_for(:main_title, I18n.t('model.messages.edit', model: Match.model_name.human)) %>
-
-<%= render partial: 'form', locals: {match: @match} %>
