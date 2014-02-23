@@ -12,8 +12,8 @@ div.well.well-sm
         tr
           th colspan='3' = Match.human_attribute_name(:position)
           th.text-center = I18n.t('general.match_result')
-          th
           th = Match.human_attribute_name(:date)
+          th
           th
       tbody
         - for match_presenter in @presenter.match_presenters_of(phase)
@@ -26,10 +26,13 @@ div.well.well-sm
               = standard_flag_image_tag_of match_presenter.team_2
               = match_presenter.team_2_name_or_placeholder
             td.text-center = match_presenter.result
-            td
-              = link_to(match_path(match_presenter.__getobj__), method: :delete, data: {confirm: t('model.messages.destroy_really', model: ("#{Match.model_name.human} #{match_presenter.__getobj__.position}")), method: :delete}, title: t('model.messages.destroy', model: ("#{Match.model_name.human} #{match_presenter.__getobj__.position}"))) do
-                i.fa.fa-pencil
             td = l match_presenter.date, format: :short
             td
-              = link_to(match_path(match_presenter.__getobj__), method: :delete, data: {confirm: t('model.messages.destroy_really', model: ("#{Match.model_name.human} #{match_presenter.__getobj__.position}")), method: :delete}, title: t('model.messages.destroy', model: ("#{Match.model_name.human} #{match_presenter.__getobj__.position}"))) do
+              = link_to(edit_match_path(match_presenter.__getobj__), title: t('model.messages.edit', model: ("#{Match.model_name.human}\
+              #{match_presenter.__getobj__.position}"))) do
+                i.fa.fa-pencil
+            td
+              = link_to(match_path(match_presenter.__getobj__), method: :delete, data: {confirm: t('model.messages.destroy_really',\
+              model: ("#{Match.model_name.human} #{match_presenter.__getobj__.position}")), method: :delete}, title: t('model.messages.destroy',\
+              model: ("#{Match.model_name.human} #{match_presenter.__getobj__.position}"))) do
                 i.fa.fa-trash-o
