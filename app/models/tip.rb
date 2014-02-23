@@ -1,6 +1,6 @@
 class Tip < ActiveRecord::Base
 
-  extend ModelBatchUpdatable
+  extend RecordBatchUpdatable
 
   belongs_to :user
   belongs_to :match

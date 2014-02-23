@@ -2,7 +2,7 @@
 = content_for(:main_title, t('views.tips.edit_multiple.title'))
 
 div.well
-  = form_tag ''
+  = form_tag update_multiple_tips_path
     - for tip_presenter in @presenter.tip_presenters
       - match_presenter = tip_presenter.match_presenter
       fieldset

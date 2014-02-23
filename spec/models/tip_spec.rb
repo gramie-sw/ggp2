@@ -5,7 +5,7 @@ describe Tip do
   end
 
   it 'should be extended with ModelBatchUpdatable' do
-    Tip.singleton_class.included_modules.should include ModelBatchUpdatable
+    Tip.singleton_class.included_modules.should include RecordBatchUpdatable
   end
 
   describe 'validations' do

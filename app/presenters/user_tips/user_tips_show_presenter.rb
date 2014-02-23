@@ -29,5 +29,5 @@ class UserTipsShowPresenter
       end
       tip_presenter_for(match)
     end
-  end 
+  end
 end
