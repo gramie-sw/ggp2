@@ -7,10 +7,11 @@ div.well
       - match_presenter = tip_presenter.match_presenter
       fieldset
         legend = "Spiel #{match_presenter.position}"
-        = render partial: 'commons/error_messages', locals: {model: tip_presenter}
-        div.form-group.row
-          div.col-xs-12.hidden-lg.hidden-md.weakened.legend-neutralize
+        div.row.hidden-lg.hidden-md
+          div.col-xs-12.weakened.legend-neutralize
             = "#{match_presenter.aggregate.name}, #{l match_presenter.date, format: :short}"
+        = render partial: 'commons/error_messages', locals: {model: tip_presenter}
+        div.row.form-group
           div.col-xs-7.col-sm-8.col-md-5.col-lg-5
             label.control-label
               = standard_flag_image_tag_of(match_presenter.team_1)

@@ -109,13 +109,15 @@ de:
     logout: Abmelden
     result: Ergebnis
     'no': Nein
+    none_selected: Kein %{element} gewählt
     original: 'Original'
     points: Punkte
     remove: Entfernen
     search: Suchen
     show: Anzeigen
     searchterm: Suchbegriff
-    select_all: Alle wählen
+    select_all: Alle
+    select_none: Keines
     tips_of: Tipps von %{name}
     tournament: Turnier
     user_administration: Benutzerverwaltung

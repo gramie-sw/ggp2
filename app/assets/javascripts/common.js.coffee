@@ -7,5 +7,8 @@ $(document).ready ->
 
 
 window.checkAllCheckboxes = (container_id) ->
-  $('#' + container_id + ' input[type =checkbox]').attr 'checked', true
+  $('#' + container_id + ' input[type=checkbox]').attr 'checked', true
+  return
+window.uncheckAllCheckboxes = (container_id) ->
+  $('#' + container_id + ' input[type=checkbox]').attr 'checked', false
   return

@@ -1,7 +1,12 @@
 class TipsController < ApplicationController
 
   def edit_multiple
-    @presenter = TipsEditMultiplePresenter.new(tip_ids: params[:tip_ids])
+
+    if params[:tip_ids].present?
+      @presenter = TipsEditMultiplePresenter.new(tip_ids: params[:tip_ids])
+    else
+      redirect_to request.referer, alert: t('general.none_selected', element: Tip.model_name.human)
+    end
   end
 
   def update_multiple

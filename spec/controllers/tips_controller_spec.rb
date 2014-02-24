@@ -8,22 +8,44 @@ describe TipsController do
 
   describe '#edit_multiple' do
 
-    let(:params) { {tip_ids: ['1', '2', '3']} }
+    context 'if tip_ids present' do
 
-    it 'should return http success' do
-      post :edit_multiple, params
-      response.should be_success
+      let(:params) { {tip_ids: ['1', '2', '3']} }
+
+      it 'should return http success' do
+        post :edit_multiple, params
+        response.should be_success
+      end
+
+      it 'should render template edit_multiple' do
+        post :edit_multiple, params
+        response.should render_template(:edit_multiple)
+      end
+
+      it 'should assign TipsEditMultiplePresenter' do
+        TipsEditMultiplePresenter.should_receive(:new).with(tip_ids: params[:tip_ids]).and_call_original
+        post :edit_multiple, params
+        assigns(:presenter).should be_kind_of TipsEditMultiplePresenter
+      end
     end
 
-    it 'should render template edit_multiple' do
-      post :edit_multiple, params
-      response.should render_template(:edit_multiple)
-    end
+    context 'if tip_ids not present' do
 
-    it 'should assign TipsEditMultiplePresenter' do
-      TipsEditMultiplePresenter.should_receive(:new).with(tip_ids: params[:tip_ids]).and_call_original
-      post :edit_multiple, params
-      assigns(:presenter).should be_kind_of TipsEditMultiplePresenter
+      let(:params) { {} }
+
+      before :each do
+        @request.stub(:referer).and_return(user_tip_path(player))
+      end
+
+      it 'should redirect to referer_path' do
+        post :edit_multiple, params
+        response.should redirect_to user_tip_path(player)
+      end
+
+      it 'should assign alert message' do
+        post :edit_multiple, params
+        flash[:alert].should eq t('general.none_selected', element: Tip.model_name.human)
+      end
     end
   end
 

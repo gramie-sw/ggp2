@@ -8,7 +8,8 @@
     div.btn-toolbar
       = link_to t('general.select_all'), nil, class: 'btn btn-default btn-sm', \
               onclick: "checkAllCheckboxes('#{table_id}');return false;"
-      = submit_tag t('views.user_tips.show.tip_selected_matches'), class: 'btn btn-default btn-sm'
+
+      = submit_tag t('views.user_tips.show.tip_selected_matches'), class: 'btn btn-primary btn-sm'
     div.table-responsive
       table.table.table-hover id="#{table_id}"
         thead
