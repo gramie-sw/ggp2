@@ -2,11 +2,12 @@
 = content_for(:main_title, t('views.tips.edit_multiple.title'))
 
 div.well
-  = form_tag update_multiple_tips_path
+  = form_tag update_multiple_tips_path, id: 'scores-form'
     - for tip_presenter in @presenter.tip_presenters
       - match_presenter = tip_presenter.match_presenter
       fieldset
         legend = "Spiel #{match_presenter.position}"
+        = render partial: 'commons/error_messages', locals: {model: tip_presenter}
         div.form-group.row
           div.col-xs-12.hidden-lg.hidden-md.weakened.legend-neutralize
             = "#{match_presenter.aggregate.name}, #{l match_presenter.date, format: :short}"
@@ -21,9 +22,9 @@ div.well
               = match_presenter.team_2_name_or_placeholder
           div.col-xs-5.col-sm-4.col-md-3.col-lg-2
             = fields_for 'tips[]', tip_presenter do |f|
-              = f.text_field :score_team_1, class: 'form-control tip-input', maxlength: 2
+              = f.text_field :score_team_1, class: 'form-control score-input', maxlength: 2
               = ":"
-              = f.text_field :score_team_2, class: 'form-control tip-input', maxlength: 2
+              = f.text_field :score_team_2, class: 'form-control score-input', maxlength: 2
           div.col-md-4.col-lg-5.visible-md.visible-lg
             div.weakened
               = match_presenter.aggregate_name_recursive

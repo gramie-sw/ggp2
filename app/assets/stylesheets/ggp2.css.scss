@@ -90,8 +90,8 @@ table {
 
 form {
 
-  input[type=text].tip-input {
-    display: inline;
+  input[type=text].score-input {
+    display: inline-block;
     margin-left: 5px;
     margin-right: 5px;
     text-align: center;
@@ -107,6 +107,20 @@ form {
   .legend-neutralize {
     margin-top: -$line-height-computed;
     margin-bottom: $line-height-computed;
+  }
+
+  &#scores-form {
+
+    .field_with_errors {
+      display: inline-block;
+    }
+  }
+
+  .alert-danger {
+
+    ul {
+      margin-top: 10px;
+    }
   }
 }
 

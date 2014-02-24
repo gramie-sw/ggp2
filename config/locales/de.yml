@@ -6,7 +6,7 @@ de:
       must_not_equals_team_1: 'darf nicht gleich Team 1 sein'
       model_not_saved: 'Konnte %{model} nicht speichern: %{count} Fehler'
       team_to_delete_is_associated_to_games: 'Team konnte nicht gelöscht werden, da es in mindestens in einem Spiel gesetzt ist'
-      scores_not_changeable_after_match_started: 'Getippte Tore dürfen nach Start des Spiels nicht geändert werden.'
+      scores_not_changeable_after_match_started: 'Ergebnis darf nach Spielstart nicht geändert werden.'
   time:
     formats:
       short_full: ! '%d.%m.%Y, %H:%M:%S Uhr'
@@ -50,6 +50,9 @@ de:
         date: Datum
       team:
         country: Team
+      tip:
+        score_team_1: Ergebnis für Team 1
+        score_team_2: Ergebnis für Team 2
       user:
         nickname: Nickname
         first_name: Vorname
@@ -120,6 +123,10 @@ de:
     your_tip:
       one: Dein Tipp
       other: Deine Tipps
+
+  form:
+    errors:
+      title: 'Bitte berichtigen:'
 
   views:
     user_tips:

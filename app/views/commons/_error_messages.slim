@@ -1,0 +1,7 @@
+- if model.errors.present?
+  div.alert.alert-danger
+    p
+      strong = t('form.errors.title')
+    ul
+      - for message in model.errors.full_messages
+        li = message
