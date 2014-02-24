@@ -4,6 +4,7 @@ Ggp2::Application.routes.draw do
 
   resources :aggregates
   resources :matches
+  resources :match_results, only: [:edit, :update]
   resources :user_tips, only: :show
   resources :teams
   resources :tips, except: [:index, :show, :new, :create, :edit, :update, :destroy] do

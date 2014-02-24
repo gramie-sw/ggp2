@@ -20,4 +20,4 @@
             td = user.last_name
             td = user.email
             td = l(user.last_sign_in_at, format: :short) if user.last_sign_in_at
-            td = user.admin
+            td = boolean_translation user.admin

@@ -1,0 +1,37 @@
+div.well.well-sm
+  = form_for match_result, url: {action: :update }, html: {class: 'form-horizontal', role: 'form'}, method: :put  do |f|
+    fieldset
+      div.form-group
+        = f.label :score_team_1, class: 'col-xs-3 col-md-2 control-label'
+        div.col-xs-9.col-md-10
+          div.row
+            div.col-xs-4.col-sm-2
+              = f.text_field :score_team_1, class: 'form-control'
+          - if match_result.errors.get(:score_team_1) && !match_result.errors.get(:score_team_1).empty?
+            div.row
+              div.field_with_errors
+                p.help-block.col-xs-12
+                  = match_result.errors.full_messages_for(:score_team_1).first
+
+      div.form-group
+        = f.label :score_team_2, class: 'col-xs-3 col-md-2 control-label'
+        div.col-xs-9.col-md-10
+          div.row
+            div.col-xs-4.col-sm-2
+              = f.text_field :score_team_2, class: 'form-control'
+          - if match_result.errors.get(:score_team_2) && !match_result.errors.get(:score_team_2).empty?
+            div.row
+              div.field_with_errors
+                p.help-block.col-xs-12
+                  = match_result.errors.full_messages_for(:score_team_2).first
+      div.form-group
+        div.col-sm-offset-2.col-lg-offset-1.col-sm-10.col-lg-11
+          div.visible-xs
+            div.pull-right
+              div.btn-toolbar
+                = f.submit class: 'btn btn btn-primary'
+                = link_to I18n.t('general.cancel'), matches_path, class: "btn btn-default"
+          div.hidden-xs
+            div.btn-toolbar
+              = f.submit class: 'btn btn btn-primary'
+              = link_to I18n.t('general.cancel'), matches_path, class: "btn btn-default"

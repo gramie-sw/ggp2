@@ -12,6 +12,16 @@ de:
       short_full: ! '%d.%m.%Y, %H:%M:%S Uhr'
       short: ! '%d.%m.%y, %H:%M Uhr'
 
+  activemodel:
+    models:
+      match_result:
+        one: Spielergebnis
+        other: spielergebnisse
+    attributes:
+      match_result:
+        score_team_1: Ergebnis Team 1
+        score_team_2: Ergebnis Team 2
+
   activerecord:
     models:
       aggregate:
@@ -42,8 +52,6 @@ de:
         venue: Austragungsort
         team_1: Team 1
         team_2: Team 2
-        score_team_1: Ergebnis Team 1
-        score_team_2: Ergebnis Team 2
         placeholder_team_1: Platzhalter Team 1
         placeholder_team_2: Platzhalter Team 2
         aggregate: 'Gruppe'

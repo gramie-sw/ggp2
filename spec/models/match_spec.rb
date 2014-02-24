@@ -41,15 +41,15 @@ describe Match do
       end
     end
 
-    describe '#score_team_1' do
-      it { should validate_numericality_of(:score_team_1).only_integer }
-      it { should ensure_inclusion_of(:score_team_1).in_range(0..1000).allow_nil }
-    end
-
-    describe '#score_team_2' do
-      it { should validate_numericality_of(:score_team_2).only_integer }
-      it { should ensure_inclusion_of(:score_team_2).in_range(0..1000).allow_nil }
-    end
+    #describe '#score_team_1' do
+    #  it { should validate_numericality_of(:score_team_1).only_integer }
+    #  it { should ensure_inclusion_of(:score_team_1).in_range(0..1000).allow_nil }
+    #end
+    #
+    #describe '#score_team_2' do
+    #  it { should validate_numericality_of(:score_team_2).only_integer }
+    #  it { should ensure_inclusion_of(:score_team_2).in_range(0..1000).allow_nil }
+    #end
 
     describe '#placeholder_team_1' do
       it { should ensure_length_of(:placeholder_team_1).is_at_least(3).is_at_most(64) }
