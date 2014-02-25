@@ -1,5 +1,6 @@
 div.well.well-sm
-  = form_for match_result, url: {action: :update }, html: {class: 'form-horizontal', role: 'form'}, method: :put  do |f|
+  = form_for match_result,  html: {class: 'form-horizontal', role: 'form'}  do |f|
+    = f.hidden_field :match_id
     fieldset
       div.form-group
         = f.label :score_team_1, class: 'col-xs-3 col-md-2 control-label'
