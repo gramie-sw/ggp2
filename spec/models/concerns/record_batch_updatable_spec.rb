@@ -68,5 +68,4 @@ describe RecordBatchUpdatable do
       end
     end
   end
-
 end

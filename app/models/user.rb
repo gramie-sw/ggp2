@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
 
   has_many :tips, dependent: :destroy
 
+  scope :players, -> { where(admin: false) }
+  scope :admins, -> { where(admin: true) }
+
   def player?
     !admin?
   end

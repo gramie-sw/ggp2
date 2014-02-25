@@ -37,5 +37,13 @@ module Ggp2
     config.time_zone = 'Berlin'
     config.active_record.default_timezone = :local
 
+    #loads instance configuration from config/instance_config.yml
+    YAML.load_file("#{Rails.root}/config/instance_config.yml").each do |k, v|
+      config.send "#{k}=", v
+    end
+  end
+
+  def self.config
+    Application.config
   end
 end

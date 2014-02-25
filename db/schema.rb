@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20140215204026) do
     t.string   "first_name"
     t.string   "last_name"
     t.boolean  "admin"
+    t.integer  "points"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

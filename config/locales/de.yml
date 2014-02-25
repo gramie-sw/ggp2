@@ -62,12 +62,13 @@ de:
         score_team_1: Ergebnis für Team 1
         score_team_2: Ergebnis für Team 2
       user:
+        admin: Administrator
         nickname: Nickname
+        email: E-Mail
         first_name: Vorname
         last_name: Name
-        admin: Administrator
-        email: E-Mail
         last_sign_in_at: Letztes Login
+        points: Punkte
       venue:
         city: Ort
         stadium: Stadion

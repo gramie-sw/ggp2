@@ -3,7 +3,7 @@ class MatchResult
 
   delegate :message_name, to: :match
 
-  validates :match_id, numericality: {only_integer: true}, allow_nil: false
+  validate :validate_match_id
   validates :score_team_1, numericality: {only_integer: true}, inclusion: {in: 0..1000}, allow_nil: true
   validates :score_team_2, numericality: {only_integer: true}, inclusion: {in: 0..1000}, allow_nil: true
 
@@ -18,5 +18,11 @@ class MatchResult
 
   def match
     @match ||= Match.find(match_id)
+  end
+
+  private
+
+  def validate_match_id
+    errors.add(:match_id, I18n.t('errors.messages.invalid')) unless Match.exists? match_id
   end
 end
