@@ -88,18 +88,19 @@ de:
       destroy_really: '%{model} wirklich löschen?'
       downloaded: '%{model} herunterladen'
       edit: '%{model} bearbeiten'
+      export: '%{model} exportieren'
       new: '%{model} anlegen'
+      not_existing: '%{model} nicht vorhanden'
+      imported: '%{count} %{model} erfolgreich importiert'
+      import: '%{model} importieren'
       remove: '%{model} entfernen'
       removed:  '%{model} entfernt'
       remove_really: '%{model} wirklich entfernen?'
       show: '%{model} anzeigen'
       updated: '%{model} geändert'
-      not_existing: '%{model} nicht vorhanden'
-      imported: '%{count} %{model} erfolgreich importiert'
-      import: '%{model} importieren'
-      export: '%{model} exportieren'
       count:
         created: '%{count} %{models} erfolgreich erstellt'
+        saved: '%{count} %{models} erfolgreich gespeichert'
         updated: '%{count} %{models} erfolgreich geändert'
 
   general:

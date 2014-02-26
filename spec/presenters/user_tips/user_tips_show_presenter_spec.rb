@@ -1,7 +1,8 @@
 describe UserTipsShowPresenter do
 
   let(:user) { create(:player) }
-  subject { UserTipsShowPresenter.new(user: user, user_is_current_user: true) }
+  let(:user_is_current_user) { true }
+  subject { UserTipsShowPresenter.new(user: user, user_is_current_user: user_is_current_user) }
 
   describe '#title' do
 
@@ -10,8 +11,20 @@ describe UserTipsShowPresenter do
     end
 
     context 'if user is not current_user' do
-      subject { UserTipsShowPresenter.new(user: user, user_is_current_user: false) }
+      let(:user_is_current_user) { false }
       it { subject.title.should eq t('general.tips_of', name: user.nickname) }
+    end
+  end
+
+  describe '#show_as_form?' do
+
+    let(:aggregate) { create(:aggregate) }
+
+    context 'if user is not current_user' do
+      let(:user_is_current_user) { false }
+      it 'should return false' do
+        subject.show_as_form?(aggregate).should be_false
+      end
     end
   end
 

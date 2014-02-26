@@ -1,0 +1,35 @@
+- if show_as_form
+  - table_id="tip-table-aggregate-#{aggregate.id}"
+  div.btn-toolbar
+    = link_to t('general.select_all'), '#', class: 'btn btn-default btn-sm', \
+            onclick: "checkAllCheckboxes('#{table_id}');return false;"
+
+    = submit_tag t('views.user_tips.show.tip_selected_matches'), class: 'btn btn-primary btn-sm'
+div.table-responsive
+  table.table.table-hover id="#{table_id}"
+    thead
+      tr
+        th colspan='4' = Match.model_name.human
+        th.text-center = t('general.your_tip.one')
+        th.text-center = t('general.result')
+        th.text-center = t('general.points')
+        th = Match.human_attribute_name(:date)
+    tbody
+      - for match_presenter in @presenter.match_presenters_of(aggregate)
+        - tip_presenter = @presenter.tip_presenter_for(match_presenter)
+        tr.link-row data-href="#{edit_multiple_tips_path(tip_ids: [tip_presenter.id])}"
+          td = check_box_tag 'tip_ids[]', tip_presenter.id
+          td = "#{match_presenter.position}."
+          td
+            = standard_flag_image_tag_of match_presenter.team_1
+            = match_presenter.team_1_name_or_placeholder
+          td
+            = standard_flag_image_tag_of match_presenter.team_2
+            = match_presenter.team_2_name_or_placeholder
+          td.text-center = tip_presenter.result
+          td.text-center = match_presenter.result
+          td.text-center -
+          td = l match_presenter.date, format: :short
+          td
+            = link_to 'foo/1'
+              icon.fa.fa-users title="#{t('views.user_tips.show.all_tips_for_match')}"

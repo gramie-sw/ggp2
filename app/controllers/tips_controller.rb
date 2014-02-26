@@ -12,7 +12,7 @@ class TipsController < ApplicationController
   def update_multiple
     result = Tip.update_multiple(params[:tips])
 
-    notice = t('model.messages.count.updated',
+    notice = t('model.messages.count.saved',
                count: result.succeeded_records.count,
                models: Tip.model_name.human(count: result.succeeded_records.count))
 

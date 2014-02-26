@@ -85,7 +85,7 @@ describe TipsController do
 
       it 'should assign flash message' do
         post :update_multiple, params
-        flash[:notice].should eq t('model.messages.count.updated',
+        flash[:notice].should eq t('model.messages.count.saved',
                                    models: Tip.model_name.human(count: tips.count),
                                    count: tips.count
                                  )
@@ -122,7 +122,7 @@ describe TipsController do
 
         it 'should assign flash message for succeeded tips' do
           post :update_multiple, params
-          flash.now[:notice].should eq t('model.messages.count.updated',
+          flash.now[:notice].should eq t('model.messages.count.saved',
                                          models: Tip.model_name.human(count: result.succeeded_records.count),
                                          count: result.succeeded_records.count
                                        )
