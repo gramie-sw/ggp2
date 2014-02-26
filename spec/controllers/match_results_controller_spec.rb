@@ -1,0 +1,3 @@
+describe MatchResultsController do
+
+end

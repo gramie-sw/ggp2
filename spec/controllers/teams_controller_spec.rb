@@ -1,0 +1,3 @@
+describe TeamsController do
+
+end
