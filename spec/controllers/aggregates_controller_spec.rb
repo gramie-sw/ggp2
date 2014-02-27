@@ -7,7 +7,6 @@ describe AggregatesController do
   end
 
   describe '#index' do
-
     it 'should return http success' do
       get :index
       response.should be_success
@@ -47,7 +46,7 @@ describe AggregatesController do
 
     let(:params) { {aggregate: {position: 1, name: 'TestAggregate'}} }
 
-    context 'on success' do
+    context 'if successful' do
       it 'should redirect to index' do
         post :create, params
         response.should redirect_to aggregates_path
@@ -62,11 +61,11 @@ describe AggregatesController do
 
       it 'should assign notice flash message' do
         post :create, params
-        flash[:notice].should eq I18n.t('model.messages.created', model: assigns(:aggregate).message_name)
+        flash[:notice].should eq t('model.messages.created', model: assigns(:aggregate).message_name)
       end
     end
 
-    context 'on failure' do
+    context 'if failing' do
 
       before :each do
         Aggregate.any_instance.stub(:valid?).and_return(false)
@@ -110,7 +109,7 @@ describe AggregatesController do
 
     let(:aggregate) { create(:aggregate) }
 
-    context 'on success' do
+    context 'if successful' do
 
       let(:params) { {id: aggregate.to_param, aggregate: {name: 'Updated Name'}} }
 
@@ -126,11 +125,11 @@ describe AggregatesController do
 
       it 'should assign notice flash message' do
         patch :update, params
-        flash[:notice].should eq I18n.t('model.messages.updated', model: assigns(:aggregate).message_name)
+        flash[:notice].should eq t('model.messages.updated', model: assigns(:aggregate).message_name)
       end
     end
 
-    context 'on failure' do
+    context 'if failing' do
 
       let(:params) { {id: aggregate.to_param, aggregate: {name: ''}} }
 
@@ -162,7 +161,7 @@ describe AggregatesController do
 
     it 'should assign notice flash message' do
       delete :destroy, id: aggregate.to_param
-      flash[:notice].should eq I18n.t('model.messages.destroyed', model: aggregate.message_name)
+      flash[:notice].should eq t('model.messages.destroyed', model: aggregate.message_name)
     end
   end
 end

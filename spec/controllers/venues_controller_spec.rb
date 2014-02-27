@@ -7,7 +7,6 @@ describe VenuesController do
   end
 
   describe '#index' do
-
     it 'should return http success' do
       get :index
       response.should be_success
@@ -47,7 +46,7 @@ describe VenuesController do
 
     let(:params) { {venue: {city: 'Dortmund', stadium: 'Signal Iduna Park', capacity: 80700}} }
 
-    context 'on success' do
+    context 'if successful' do
       it 'should redirect to index' do
         post :create, params
         response.should redirect_to venues_path
@@ -63,11 +62,11 @@ describe VenuesController do
 
       it 'should assign notice flash message' do
         post :create, params
-        flash[:notice].should eq I18n.t('model.messages.created', model: assigns(:venue).message_name)
+        flash[:notice].should eq t('model.messages.created', model: assigns(:venue).message_name)
       end
     end
 
-    context 'on failure' do
+    context 'if failing' do
 
       before :each do
         Venue.any_instance.stub(:valid?).and_return(false)
@@ -112,7 +111,7 @@ describe VenuesController do
 
     let(:venue) { create(:venue) }
 
-    context 'on success' do
+    context 'if successful' do
 
       let(:params) { {id: venue.to_param, venue: {capacity: 91500}} }
 
@@ -128,11 +127,11 @@ describe VenuesController do
 
       it 'should assign notice flash message' do
         patch :update, params
-        flash[:notice].should eq I18n.t('model.messages.updated', model: assigns(:venue).message_name)
+        flash[:notice].should eq t('model.messages.updated', model: assigns(:venue).message_name)
       end
     end
 
-    context 'on failure' do
+    context 'if failing' do
 
       let(:params) { {id: venue.to_param, venue: {stadium: ''}} }
 
@@ -164,7 +163,7 @@ describe VenuesController do
 
     it 'should assign notice flash message' do
       delete :destroy, id: venue.to_param
-      flash[:notice].should eq I18n.t('model.messages.destroyed', model: venue.message_name)
+      flash[:notice].should eq t('model.messages.destroyed', model: venue.message_name)
     end
   end
 end
