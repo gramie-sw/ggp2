@@ -27,8 +27,8 @@ class Aggregate < ActiveRecord::Base
     end.flatten!
   end
 
-  def is_group?
-    !is_root?
+  def group?
+    !phase?
   end
 
   def matches_including_of_children
@@ -37,6 +37,10 @@ class Aggregate < ActiveRecord::Base
     else
       matches
     end
+  end
+
+  def future_matches
+    matches_including_of_children.future_matches
   end
 
   def message_name

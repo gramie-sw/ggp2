@@ -20,8 +20,36 @@ describe UserTipsShowPresenter do
 
     let(:aggregate) { create(:aggregate) }
 
+    context 'if user is current_user' do
+
+      let(:user_is_current_user) { true }
+      let(:relation) { double('MatchesRelation') }
+
+      before :each do
+        aggregate.should_receive(:future_matches).and_return(relation)
+      end
+
+      context 'if given aggregate has any future matches' do
+
+        it 'should return true' do
+          relation.should_receive(:exists?).and_return(true)
+          subject.show_as_form?(aggregate).should be_true
+        end
+      end
+
+      context 'if given aggregate has not any future matches' do
+
+        it 'should return false' do
+          relation.should_receive(:exists?).and_return(false)
+          subject.show_as_form?(aggregate).should be_false
+        end
+      end
+    end
+
     context 'if user is not current_user' do
+
       let(:user_is_current_user) { false }
+
       it 'should return false' do
         subject.show_as_form?(aggregate).should be_false
       end

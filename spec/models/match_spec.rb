@@ -92,7 +92,9 @@ describe Match do
   end
 
   describe 'scopes' do
-    describe '#order_by_position' do
+
+    describe '::order_by_position' do
+
       it 'should order by position' do
         aggregate = create(:aggregate)
 
@@ -106,7 +108,20 @@ describe Match do
         games[2].position.should eq game_3.position
       end
     end
-  end
+
+    describe '::future_matches' do
+
+      it 'should return only future matches' do
+        match_1 = create(:match, date: 2.minutes.from_now)
+        match_2 = create(:match, date: 3.minutes.from_now)
+        create(:match, date: 1.minutes.ago)
+
+        actual_matches = Match.future_matches
+        actual_matches.count.should eq 2
+        actual_matches.should include match_1, match_2
+      end
+    end
+    end
 
   describe '#team_1?' do
     it 'returns true when match has team_1' do

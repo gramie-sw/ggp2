@@ -39,13 +39,13 @@ describe Aggregate do
     end
   end
 
-  describe '#is_group?' do
+  describe '#group?' do
     it 'should returns true when aggregate has parent' do
-      build(:aggregate_with_parent).is_group?.should be_true
+      build(:aggregate_with_parent).group?.should be_true
     end
 
     it 'should returns false when aggregate has no parent' do
-      build(:aggregate).is_group?.should be_false
+      build(:aggregate).group?.should be_false
     end
   end
 
@@ -93,6 +93,22 @@ describe Aggregate do
       found_matches[0].id.should == match_1.id
       found_matches[1].id.should == match_2.id
       found_matches[2].id.should == match_3.id
+    end
+  end
+
+  describe '#future_matches' do
+
+    subject { create(:aggregate) }
+
+    it 'should return future_matches' do
+      match_1 = create(:match, date: 1.minutes.from_now, aggregate: subject)
+      match_2 = create(:match, date: 2.minutes.from_now, aggregate: subject)
+      create(:match, date: 2.minutes.from_now)
+      create(:match, date: 2.minutes.ago, aggregate: subject)
+
+      actual_match = subject.future_matches
+      actual_match.count.should eq 2
+      actual_match.should include match_1, match_2
     end
   end
 

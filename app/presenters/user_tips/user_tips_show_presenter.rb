@@ -21,7 +21,7 @@ class UserTipsShowPresenter
 
   def show_as_form? aggregate
     if user_is_current_user?
-      true
+      aggregate.future_matches.exists?
     else
       false
     end
