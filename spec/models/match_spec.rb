@@ -199,4 +199,21 @@ describe Match do
       end
     end
   end
+
+  describe '#tippable?' do
+
+    context 'if date is in the past' do
+      subject { Match.new date: 1.minute.ago }
+      it 'should return false' do
+        subject.should_not be_tippable
+      end
+    end
+
+    context 'if date is not in the past' do
+      subject { Match.new date: 1.minute.from_now }
+      it 'should return true' do
+        subject.should be_tippable
+      end
+    end
+  end
 end

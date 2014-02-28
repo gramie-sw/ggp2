@@ -84,6 +84,8 @@ describe UserTipsShowPresenter do
       actual_tip_presenter.__getobj__.should eq tips.first
     end
 
+    #TODO write performance test to ensure that matches is includes
+
     it 'should cache tip_presenter' do
       #rspec's be_kind_of matcher doesn't work for subclasses of DelegateClass when comparing objects directly
       subject.tip_presenter_for(matches.first).object_id.should be subject.tip_presenter_for(matches.first).object_id

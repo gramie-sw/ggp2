@@ -30,8 +30,8 @@ class UserTipsShowPresenter
   def tip_presenter_for match
     @tip_presenters = [] unless @tip_presenters
     @tip_presenters[match.id] || begin
-      Tip.where(user_id: user.id).each do |tip|
-        @tip_presenters[tip.match_id] = TipPresenter.new(tip)
+      Tip.where(user_id: user.id).includes(:match).each do |tip|
+        @tip_presenters[tip.match_id] = TipPresenter.new(tip: tip, is_for_current_user: @user_is_current_user)
       end
       tip_presenter_for(match)
     end

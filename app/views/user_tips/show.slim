@@ -5,6 +5,6 @@
   h2 = phase.name
   - if @presenter.show_as_form?(phase)
     = form_tag edit_multiple_tips_path
-    = render partial: 'tips_table', locals: {aggregate: phase, show_as_form: true}
+    = render partial: 'tips_table', locals: {presenter: @presenter, aggregate: phase, show_as_form: true}
   - else
-    = render partial: 'tips_table', locals: {aggregate: phase, show_as_form: false}
+    = render partial: 'tips_table', locals: {presenter: @presenter, aggregate: phase, show_as_form: false}

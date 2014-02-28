@@ -9,16 +9,18 @@ div.table-responsive
   table.table.table-hover id="#{table_id}"
     thead
       tr
-        th colspan='4' = Match.model_name.human
+        th colspan="#{show_as_form ? 4 : 3}" = Match.model_name.human
         th.text-center = t('general.your_tip.one')
         th.text-center = t('general.result')
         th.text-center = t('general.points')
         th = Match.human_attribute_name(:date)
     tbody
-      - for match_presenter in @presenter.match_presenters_of(aggregate)
-        - tip_presenter = @presenter.tip_presenter_for(match_presenter)
-        tr.link-row data-href="#{edit_multiple_tips_path(tip_ids: [tip_presenter.id])}"
-          td = check_box_tag 'tip_ids[]', tip_presenter.id
+      - for match_presenter in presenter.match_presenters_of(aggregate)
+        - show_as_link = show_as_form && match_presenter.tippable?
+        - tip_presenter = presenter.tip_presenter_for(match_presenter)
+        tr *user_tips_table_tr_attributes(show_as_link, tip_presenter.id)
+          - if show_as_link
+            td = check_box_tag 'tip_ids[]', tip_presenter.id
           td = "#{match_presenter.position}."
           td
             = standard_flag_image_tag_of match_presenter.team_1
@@ -28,7 +30,7 @@ div.table-responsive
             = match_presenter.team_2_name_or_placeholder
           td.text-center = tip_presenter.result
           td.text-center = match_presenter.result
-          td.text-center -
+          td.text-center = tip_presenter.points
           td = l match_presenter.date, format: :short
           td
             = link_to 'foo/1'

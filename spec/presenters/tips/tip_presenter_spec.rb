@@ -1,10 +1,30 @@
 describe TipPresenter do
 
   let(:tip) { create(:tip) }
-  subject { TipPresenter.new(tip) }
+  let(:is_for_current_user) { true }
+  subject { TipPresenter.new(tip: tip, is_for_current_user: is_for_current_user) }
 
   it 'should include ResultPresentable' do
     TipPresenter.included_modules.should include ResultPresentable
+  end
+
+  describe '#points' do
+
+    context 'if points present' do
+
+      it 'should return the points' do
+        tip.points = 5
+        subject.points.should eq 5
+      end
+    end
+
+    context 'if points not present' do
+
+      it 'should return the -' do
+        tip.points = nil
+        subject.points.should eq '-'
+      end
+    end
   end
 
   describe '#match_presenter' do

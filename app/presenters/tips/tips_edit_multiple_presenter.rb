@@ -15,6 +15,6 @@ class TipsEditMultiplePresenter
   private
 
   def wrap_in_tip_presenters tips
-    tips.map { |t| TipPresenter.new(t) }
+    tips.map { |t| TipPresenter.new(tip: t, is_for_current_user: true) }
   end
 end

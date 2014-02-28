@@ -48,6 +48,10 @@ class Match < ActiveRecord::Base
     date.past?
   end
 
+  def tippable?
+    !started?
+  end
+
   def self.score_or_dash team_score
     team_score.nil? ? "-" : team_score
   end
