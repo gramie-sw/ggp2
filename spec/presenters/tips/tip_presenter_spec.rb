@@ -27,6 +27,49 @@ describe TipPresenter do
     end
   end
 
+  describe '#hide_existing_result?' do
+
+    context 'if is_for_current_user is true' do
+
+      context 'if tip is tippable?' do
+
+        it 'should return false' do
+          tip.stub(:tippable?).and_return(true)
+          subject.hide_existing_result?.should be_false
+        end
+      end
+
+      context 'if tip is not tippable?' do
+
+        it 'should return false' do
+          tip.stub(:tippable?).and_return(false)
+          subject.hide_existing_result?.should be_false
+        end
+      end
+    end
+
+    context 'if is_for_current_user is false' do
+
+      let(:is_for_current_user) { false }
+
+      context 'if tip is tippable?' do
+
+        it 'should return true' do
+          tip.stub(:tippable?).and_return(true)
+          subject.hide_existing_result?.should be_true
+        end
+      end
+
+      context 'if tip is not tippable?' do
+
+        it 'should return false' do
+          tip.stub(:tippable?).and_return(false)
+          subject.hide_existing_result?.should be_false
+        end
+      end
+    end
+  end
+
   describe '#match_presenter' do
 
     it 'should return kind_of MatchPresenter for match of tip' do

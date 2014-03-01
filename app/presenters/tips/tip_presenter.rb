@@ -11,13 +11,11 @@ class TipPresenter < DelegateClass(Tip)
     super || '-'
   end
 
-  def match_presenter
-    @match_presenter ||= MatchPresenter.new(match)
+  def hide_existing_result?
+    !@is_for_current_user && tippable?
   end
 
-  private
-
-  def display_protected_tip_attributes?
-    @is_for_current_user || !tippable?
+  def match_presenter
+    @match_presenter ||= MatchPresenter.new(match)
   end
 end
