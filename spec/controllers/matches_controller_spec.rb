@@ -153,9 +153,9 @@ describe MatchesController do
       response.should redirect_to matches_path
     end
 
-    it 'should delete match' do
+    it 'should destroy match' do
       delete :destroy, id: match.to_param
-      Match.exists?(match.id).should be_false
+      Match.exists?(match).should be_false
     end
 
     it 'should assign flash notice' do

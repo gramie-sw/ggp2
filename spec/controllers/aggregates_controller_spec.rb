@@ -154,9 +154,9 @@ describe AggregatesController do
       response.should redirect_to aggregates_path
     end
 
-    it 'should delete aggregate' do
+    it 'should destroy aggregate' do
       delete :destroy, id: aggregate.to_param
-      Aggregate.exists?(aggregate.id).should be_false
+      Aggregate.exists?(aggregate).should be_false
     end
 
     it 'should assign notice flash message' do

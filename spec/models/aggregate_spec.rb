@@ -120,7 +120,7 @@ describe Aggregate do
       group_2 = create(:aggregate, ancestry: phase_1.id)
       phase_2 = create(:aggregate)
 
-      leaves = Aggregate.leaves
+      leaves = Aggregate.groupless_aggregates
       leaves.include?(group_1).should be_true
       leaves.include?(group_2).should be_true
       leaves.include?(phase_2).should be_true

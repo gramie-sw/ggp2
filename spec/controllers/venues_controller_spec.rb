@@ -156,9 +156,9 @@ describe VenuesController do
       response.should redirect_to venues_path
     end
 
-    it 'should delete venue' do
+    it 'should destroy venue' do
       delete :destroy, id: venue.to_param
-      Venue.exists?(venue.id).should be_false
+      Venue.exists?(venue).should be_false
     end
 
     it 'should assign notice flash message' do
