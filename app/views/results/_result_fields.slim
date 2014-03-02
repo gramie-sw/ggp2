@@ -1,0 +1,27 @@
+fieldset
+  legend = "Spiel #{match_presenter.position}"
+  div.row.hidden-lg.hidden-md
+    div.col-xs-12.weakened.legend-neutralize
+      = "#{match_presenter.aggregate.name}, #{l match_presenter.date, format: :short}"
+  = render partial: 'commons/error_messages', locals: {model: result}
+  div.row.form-group
+    /TODO not optimal top spacing, spacing should be similar to .form-horizontal spacing
+    div.col-xs-7.col-sm-8.col-md-5.col-lg-5
+      label.control-label
+        = standard_flag_image_tag_of(match_presenter.team_1)
+        = match_presenter.team_1_name_or_placeholder
+        span.normal
+          '&nbsp;&nbsp;vs.&nbsp;&nbsp;
+      label.control-label
+        = standard_flag_image_tag_of(match_presenter.team_2)
+        = match_presenter.team_2_name_or_placeholder
+    div.col-xs-5.col-sm-4.col-md-3.col-lg-2
+      = fields_for index, result do |f|
+        = f.text_field :score_team_1, class: 'form-control score-input', maxlength: 2
+        = ":"
+        = f.text_field :score_team_2, class: 'form-control score-input', maxlength: 2
+    div.col-md-4.col-lg-5.visible-md.visible-lg
+      div.weakened
+        = match_presenter.aggregate_name_recursive
+        br
+        = l match_presenter.date

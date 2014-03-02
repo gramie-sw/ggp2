@@ -73,13 +73,13 @@ describe TipPresenter do
   describe '#match_presenter' do
 
     it 'should return kind_of MatchPresenter for match of tip' do
-      #matcher be_kind_of didn't worked with DelegateClass in rspec-expectations 2.14.4
+      #matcher be_kind_of didn't worked with DelegateClass in rspec-expectations
       subject.match_presenter.kind_of?(MatchPresenter).should be_true
       subject.match_presenter.__getobj__.should eq tip.match
     end
 
     it 'should cache created object' do
-      #matcher be didn't worked with DelegateClass in rspec-expectations 2.14.4
+      #matcher be didn't worked with DelegateClass in rspec-expectations
       subject.match_presenter.object_id.should eq subject.match_presenter.object_id
     end
   end

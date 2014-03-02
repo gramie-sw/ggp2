@@ -109,7 +109,7 @@ form {
     margin-bottom: $line-height-computed;
   }
 
-  &#scores-form {
+  &.result-form {
 
     .field_with_errors {
       display: inline-block;

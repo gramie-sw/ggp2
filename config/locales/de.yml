@@ -15,8 +15,8 @@ de:
   activemodel:
     models:
       match_result:
-        one: Spielergebnis
-        other: spielergebnisse
+        one: Ergebnis
+        other: Ergebnisse
     attributes:
       match_result:
         score_team_1: Ergebnis Team 1
@@ -77,6 +77,7 @@ de:
   model:
     submit:
       create: '%{model} anlegen'
+      save: '%{model} speichern'
       update: '%{model} ändern'
     messages:
       add:  '%{model} hinzufügen'
