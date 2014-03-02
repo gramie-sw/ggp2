@@ -20,13 +20,13 @@ describe MatchResult do
     end
 
     describe '#score_team_1' do
-      it { should validate_numericality_of(:score_team_1).only_integer }
-      it { should ensure_inclusion_of(:score_team_1).in_range(0..1000).allow_nil }
+      it { should validate_presence_of(:score_team_1)}
+      it { should validate_numericality_of(:score_team_1).only_integer.is_greater_than_or_equal_to(0).is_less_than_or_equal_to(1000) }
     end
 
     describe '#score_team_2' do
-      it { should validate_numericality_of(:score_team_2).only_integer }
-      it { should ensure_inclusion_of(:score_team_2).in_range(0..1000).allow_nil }
+      it { should validate_presence_of(:score_team_2)}
+      it { should validate_numericality_of(:score_team_2).only_integer.is_greater_than_or_equal_to(0).is_less_than_or_equal_to(1000) }
     end
   end
 end

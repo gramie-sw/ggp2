@@ -47,5 +47,4 @@ describe UserTipsController do
       end
     end
   end
-
 end
