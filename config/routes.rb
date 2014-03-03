@@ -1,11 +1,13 @@
 Ggp2::Application.routes.draw do
 
+  get "match_tips/show"
   devise_for :users
 
   resources :aggregates
   resources :matches
   resources :match_results, only: [:new, :create]
   resources :user_tips, only: :show
+  resources :match_tips, only: :show
   resources :teams
   resources :tips, except: [:index, :show, :new, :create, :edit, :update, :destroy] do
     collection do
@@ -18,9 +20,6 @@ Ggp2::Application.routes.draw do
 
   # must be behind devise
   resources :users, except: [:show, :new]
-
-  root :to => "matches#index"
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

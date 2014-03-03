@@ -6,6 +6,12 @@ describe User do
 
   describe 'associations' do
     it { should have_many(:tips).dependent(:destroy) }
+
+    it 'tips should get user' do
+      tip = Tip.new
+      subject.tips << tip
+      tip.user.should be subject
+    end
   end
 
   describe 'scopes' do
@@ -32,6 +38,20 @@ describe User do
         admins.count.should be 2
         admins.include?(admin_1).should be_true
         admins.include?(admin_2).should be_true
+      end
+    end
+
+    describe 'order_by_nickname_asc' do
+
+      it 'should order users by nickname' do
+        user_3 = create(:user, nickname: 'user 3')
+        user_1 = create(:user, nickname: 'user 1')
+        user_2 = create(:user, nickname: 'user 2')
+
+        actual_users = User.order_by_nickname_asc
+        actual_users.first.should eq user_1
+        actual_users.second.should eq user_2
+        actual_users.third.should eq user_3
       end
     end
   end

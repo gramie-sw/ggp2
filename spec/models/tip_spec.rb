@@ -41,6 +41,10 @@ describe Tip do
       it { should validate_presence_of :match }
     end
 
+    describe 'for match_id' do
+      it { should validate_uniqueness_of(:match_id).scoped_to(:user_id)}
+    end
+
     describe 'for score_team_1' do
 
       it { should validate_numericality_of(:score_team_1).only_integer }

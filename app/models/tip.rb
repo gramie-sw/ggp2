@@ -5,8 +5,9 @@ class Tip < ActiveRecord::Base
   belongs_to :user
   belongs_to :match
 
-  validates :match, :presence => true
-  validates :user, :presence => true
+  validates :match, presence: true
+  validates :user, presence: true
+  validates :match_id, uniqueness: {scope: :user_id}
 
   #score_team_1 must be present if score_team_2 is present and vice versa
   validates :score_team_1, presence: true, if: :score_team_2?
