@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
   def player?
     !admin?
   end
+
+  def message_name
+    "#{User.model_name.human}: \"#{first_name} #{last_name}\""
+  end
 end

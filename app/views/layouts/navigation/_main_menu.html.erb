@@ -18,7 +18,7 @@
               <li><%= link_to Match.model_name.human_plural, matches_path %></li>
               <li><%= link_to Team.model_name.human_plural, teams_path %></li>
               <li><%= link_to Venue.model_name.human_plural, venues_path %></li>
-              <li><%= link_to User.model_name.human_plural, users_path %></li>
+              <li><%= link_to User.model_name.human_plural, users_path(type: USER_TYPE_PLAYERS) %></li>
           <% else %>
               <li><a href="#about">Tipps</a></li>
               <li><a href="#about">Ranking</a></li>

@@ -1,0 +1,4 @@
+USER_TYPE_ADMINS = 'admins'
+USER_TYPE_PLAYERS = 'players'
+
+USER_INDEX_PREFERER_COOKIE_KEY =  'uir'

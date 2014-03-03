@@ -105,6 +105,9 @@ de:
         updated: '%{count} %{models} erfolgreich geändert'
 
   general:
+    admin:
+      one: Administrator
+      other: Administratoren
     close: x
     wm_2014_title: 'WM-2014 Brasilien'
     match_result: 'Ergebnis'

@@ -1,0 +1,50 @@
+div.well.well-sm
+  = form_for user, html: {class: 'form-horizontal', role: 'form'} do |f|
+    fieldset
+      legend = "#{user.message_name}"
+    fieldset
+      div.form-group
+        = f.label :nickname, class: 'col-xs-3 col-sm-2 col-lg-1 control-label'
+        div.col-xs-9.col-sm-10.col-lg-11
+          div.row
+            div.col-xs-12.col-sm-7.col-md-6.col-lg-5
+              = f.text_field :nickname, class: 'form-control'
+          - if user.errors.get(:nickname) && !user.errors.get(:nickname).empty?
+            div.row
+              div.field_with_errors
+                p.help-block.col-xs-12
+                  = user.errors.full_messages_for(:nickname).first
+    fieldset
+      div.form-group
+        = f.label :first_name, class: 'col-xs-3 col-sm-2 col-lg-1 control-label'
+        div.col-xs-9.col-sm-10.col-lg-11
+          div.row
+            div.col-xs-12.col-sm-7.col-md-6.col-lg-5
+              = f.text_field :first_name, class: 'form-control'
+          - if user.errors.get(:first_name) && !user.errors.get(:first_name).empty?
+            div.row
+              div.field_with_errors
+                p.help-block.col-xs-12
+                  = user.errors.full_messages_for(:first_name).first    fieldset
+      div.form-group
+        = f.label :last_name, class: 'col-xs-3 col-sm-2 col-lg-1 control-label'
+        div.col-xs-9.col-sm-10.col-lg-11
+          div.row
+            div.col-xs-12.col-sm-7.col-md-6.col-lg-5
+              = f.text_field :last_name, class: 'form-control'
+          - if user.errors.get(:last_name) && !user.errors.get(:last_name).empty?
+            div.row
+              div.field_with_errors
+                p.help-block.col-xs-12
+                  = user.errors.full_messages_for(:last_name).first
+      div.form-group
+        div.col-sm-offset-2.col-lg-offset-1.col-sm-10.col-lg-11
+          div.visible-xs
+            div.pull-right
+              div.btn-toolbar
+                = f.submit class: 'btn btn-primary'
+                = link_to I18n.t('general.cancel'), user_index_path, class: "btn btn-default"
+          div.hidden-xs
+            div.btn-toolbar
+              = f.submit class: 'btn btn-primary'
+              = link_to I18n.t('general.cancel'), user_index_path, class: "btn btn-default"

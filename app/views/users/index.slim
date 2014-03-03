@@ -1,9 +1,14 @@
 = render partial: 'commons/background_image', locals: {image_name: 'background_image_01.jpg'}
 - content_for(:main_title, t('general.user_administration'))
 
+div.well.well-sm
+  div.btn-toolbar
+    = link_to I18n.t('general.player.other'), users_path(type: USER_TYPE_PLAYERS), class: "btn btn-default"
+    = link_to I18n.t('general.admin.other'), users_path(type: USER_TYPE_ADMINS), class: "btn btn-default"
+
 - if @users.present?
   div.table-responsive
-    table.table.table-condensed.table-hover
+    table.table.table-hover
       thead
         tr
           th = User.human_attribute_name(:nickname)
@@ -12,14 +17,12 @@
           th = User.human_attribute_name(:email)
           th.text-center = User.human_attribute_name(:points)
           th = User.human_attribute_name(:last_sign_in_at)
-          th = User.human_attribute_name(:admin)
       tbody
         - for user in @users
-          tr
+          tr.link-row data-href="#{edit_user_path(user)}"
             td = user.nickname
             td = user.first_name
             td = user.last_name
             td = user.email
             td.text-center = user.points
             td = l(user.last_sign_in_at, format: :short) if user.last_sign_in_at
-            td = boolean_translation user.admin
