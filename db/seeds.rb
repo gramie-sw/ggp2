@@ -18,7 +18,7 @@ if Rails.env == 'development'
 
   create(:admin, email: 'admin@mail.de', password: '12345678')
   create(:player, email: 'player@mail.de', password: '12345678')
-
+  (1..10).each { create(:player) }
 
   #---------team creation---------
   teams = (1..32).map { create(:team) }
@@ -122,7 +122,7 @@ if Rails.env == 'development'
   create(:match, position: 64, team_1: nil, team_2: nil, placeholder_team_1: 'Winner Match 61', placeholder_team_2: 'Winner Match 62', score_team_1: nil, score_team_2: nil, aggregate: finals, venue: venues[0], date: Time.utc(2014, 07, 13, 19, 00, 00).iso8601)
 
   #---------tip creation---------
-  User.where(admin: false).each do |user|
+  User.players.each do |user|
     Match.all.each do |match|
       create(:tip, user: user, match: match)
     end

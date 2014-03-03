@@ -121,7 +121,10 @@ de:
     result: Ergebnis
     'no': Nein
     none_selected: Kein %{element} gewählt
-    original: 'Original'
+    original: Original
+    player:
+      one: Spieler
+      other: Spieler
     points: Punkte
     remove: Entfernen
     search: Suchen

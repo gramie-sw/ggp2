@@ -1,0 +1,18 @@
+= render partial: 'commons/background_image', locals: {image_name: 'background_image_01.jpg'}
+= content_for(:main_title, 'Title')
+
+div.table-responsive
+  table.table.table-hover
+    thead
+      tr
+        th = t('general.player.one')
+        th.text-center = Tip.model_name.human
+        th Letzte Änderung
+        th
+    tbody
+      - for tip_presenter in @presenter.tip_presenters
+        tr
+          td = tip_presenter.user.nickname
+          td.text-center = tip_presenter.result
+          td = l tip_presenter.updated_at, format: :short
+          td = ''

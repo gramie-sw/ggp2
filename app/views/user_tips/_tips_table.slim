@@ -33,5 +33,5 @@ div.table-responsive
           td.text-center = tip_presenter.points
           td = l match_presenter.date, format: :short
           td
-            = link_to 'foo/1'
+            = link_to match_tip_path(match_presenter.id)
               icon.fa.fa-users title="#{t('views.user_tips.show.all_tips_for_match')}"
