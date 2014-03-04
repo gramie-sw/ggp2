@@ -29,45 +29,36 @@ describe TipPresenter do
 
   describe '#hide_existing_result?' do
 
+    let(:is_for_current_user) { false }
+
+    before :each do
+      tip.stub(:tippable?).and_return(true)
+    end
+
+    context 'if is_for_current_user is false and tip is tippable' do
+
+      it 'should return true' do
+        subject.hide_existing_result?.should be_true
+      end
+    end
+
     context 'if is_for_current_user is true' do
 
-      context 'if tip is tippable?' do
+      let(:is_for_current_user) { true }
 
-        it 'should return false' do
-          tip.stub(:tippable?).and_return(true)
-          subject.hide_existing_result?.should be_false
-        end
-      end
-
-      context 'if tip is not tippable?' do
-
-        it 'should return false' do
-          tip.stub(:tippable?).and_return(false)
-          subject.hide_existing_result?.should be_false
-        end
+      it 'should return false' do
+        subject.hide_existing_result?.should be_false
       end
     end
 
-    context 'if is_for_current_user is false' do
+    context 'if tip is not tippable anymore' do
 
-      let(:is_for_current_user) { false }
-
-      context 'if tip is tippable?' do
-
-        it 'should return true' do
-          tip.stub(:tippable?).and_return(true)
-          subject.hide_existing_result?.should be_true
-        end
-      end
-
-      context 'if tip is not tippable?' do
-
-        it 'should return false' do
-          tip.stub(:tippable?).and_return(false)
-          subject.hide_existing_result?.should be_false
-        end
+      it 'should return false' do
+        tip.stub(:tippable?).and_return(false)
+        subject.hide_existing_result?.should be_false
       end
     end
+
   end
 
   describe '#match_presenter' do

@@ -14,7 +14,10 @@ class MatchTipsShowPresenter
   def tip_presenters
     @tip_presenters ||= begin
       User.players.order_by_nickname_asc.includes(:tips).where('tips.match_id = ?', @match.id).references(:tips).map do |user|
-        TipPresenter.new(tip: user.tips.first, is_for_current_user: @current_user_id == user.id)
+        tip = user.tips.first
+        #TODO performance testing that tip gets match
+        tip.match = match
+        TipPresenter.new(tip: tip, is_for_current_user: @current_user_id == user.id)
       end
     end
   end
@@ -22,5 +25,4 @@ class MatchTipsShowPresenter
   def match_presenter
     @match_presenter ||= MatchPresenter.new(match)
   end
-
 end
