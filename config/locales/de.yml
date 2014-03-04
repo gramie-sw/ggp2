@@ -11,6 +11,8 @@ de:
     formats:
       short_full: ! '%d.%m.%Y, %H:%M:%S Uhr'
       short: ! '%d.%m.%y, %H:%M Uhr'
+      only_date: ! '%d.%m.%Y'
+      only_time: ! '%H:%M Uhr'
 
   activemodel:
     models:

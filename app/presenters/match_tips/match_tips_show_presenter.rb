@@ -7,10 +7,6 @@ class MatchTipsShowPresenter
     @current_user_id = current_user_id
   end
 
-  def test
-
-  end
-
   def tip_presenters
     @tip_presenters ||= begin
       User.players.order_by_nickname_asc.includes(:tips).where('tips.match_id = ?', @match.id).references(:tips).map do |user|

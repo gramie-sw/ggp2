@@ -74,6 +74,16 @@ $ggp2-background-image-height: 300px;
   border-radius: 0;
 }
 
+.panel-heading {
+  font-weight: bold;
+}
+
+.panel-body {
+  .info-box:not(:first-child) {
+     margin-top: $panel-body-padding;
+  }
+}
+
 .btn {
   margin-bottom: 5px;
 }
