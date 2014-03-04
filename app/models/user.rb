@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+
+  USER_TYPE_ADMINS = :admins
+  USER_TYPE_PLAYERS = :players
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

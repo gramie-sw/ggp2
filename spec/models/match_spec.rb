@@ -4,6 +4,10 @@ describe Match do
     build(:match).should be_valid
   end
 
+  it 'should include module ScoreValidatable' do
+    Match.included_modules.should include ScoreValidatable
+  end
+
   describe 'validations' do
     describe '#position' do
       it { should validate_presence_of(:position) }

@@ -3,8 +3,8 @@
 
 div.well.well-sm
   div.btn-toolbar
-    = link_to I18n.t('general.player.other'), users_path(type: USER_TYPE_PLAYERS), class: "btn btn-default"
-    = link_to I18n.t('general.admin.other'), users_path(type: USER_TYPE_ADMINS), class: "btn btn-default"
+    = link_to I18n.t('general.player.other'), users_path(type: User::USER_TYPE_PLAYERS), class: "btn btn-default"
+    = link_to I18n.t('general.admin.other'), users_path(type: User::USER_TYPE_ADMINS), class: "btn btn-default"
 
 - if @users.present?
   div.table-responsive

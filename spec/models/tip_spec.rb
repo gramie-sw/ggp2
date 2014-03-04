@@ -8,6 +8,10 @@ describe Tip do
     Tip.singleton_class.included_modules.should include RecordBatchUpdatable
   end
 
+  it 'should be included with ScoreValidatable' do
+    Tip.included_modules.should include ScoreValidatable
+  end
+
   describe 'validations' do
 
     let(:match) { create(:match) }
@@ -43,44 +47,6 @@ describe Tip do
 
     describe 'for match_id' do
       it { should validate_uniqueness_of(:match_id).scoped_to(:user_id)}
-    end
-
-    describe 'for score_team_1' do
-
-      it { should validate_numericality_of(:score_team_1).only_integer }
-      it { should allow_value(nil).for(:score_team_1) }
-      it { should_not allow_value(-1).for(:score_team_1) }
-      it { should allow_value(0).for(:score_team_1) }
-      it { should allow_value(1000).for(:score_team_1) }
-      it { should_not allow_value(1001).for(:score_team_1) }
-
-      context 'if score_team_2 present' do
-        subject { Tip.new(score_team_2: 1) }
-        it { subject.should validate_presence_of :score_team_1 }
-      end
-
-      context 'if score_team_2 not present' do
-        it { should_not validate_presence_of :score_team_1 }
-      end
-    end
-
-    describe 'for score_team_2' do
-
-      it { should validate_numericality_of(:score_team_2).only_integer }
-      it { should allow_value(nil).for(:score_team_2) }
-      it { should_not allow_value(-1).for(:score_team_2) }
-      it { should allow_value(0).for(:score_team_2) }
-      it { should allow_value(1000).for(:score_team_2) }
-      it { should_not allow_value(1001).for(:score_team_2) }
-
-      context 'if score_team_1 present' do
-        subject { Tip.new(score_team_1: 1) }
-        it { subject.should validate_presence_of :score_team_2 }
-      end
-
-      context 'if score_team_1 not present' do
-        it { should_not validate_presence_of :score_team_2 }
-      end
     end
 
     describe 'for points' do

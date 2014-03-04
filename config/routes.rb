@@ -3,6 +3,11 @@ Ggp2::Application.routes.draw do
   get "match_tips/show"
   devise_for :users
 
+  devise_scope :user do
+    get "sign_in" => "devise/sessions#new"
+    delete "sign_out" => "devise/sessions#destroy"
+  end
+
   resources :aggregates
   resources :matches
   resources :match_results, only: [:new, :create]
@@ -20,6 +25,8 @@ Ggp2::Application.routes.draw do
 
   # must be behind devise
   resources :users, except: [:show, :new]
+
+  root :to => "matches#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
