@@ -123,6 +123,9 @@ de:
     login: Anmelden
     logged_in_as: Angemeldet als
     logout: Abmelden
+    match:
+      all_tips: Alle Tipps für Spiel
+      all_tips_with_match_position: Alle Tipps für Spiel %{position}
     result: Ergebnis
     'no': Nein
     none_selected: Kein %{element} gewählt
@@ -153,7 +156,6 @@ de:
     user_tips:
       show:
         tip_selected_matches: Ausgwählte Spiele tippen
-        all_tips_for_match: Alle Tipps für Spiel
     tips:
       edit_multiple:
         title: Spiele tippen

@@ -7,12 +7,12 @@ fieldset
   div.row.form-group
     /TODO not optimal top spacing, spacing should be similar to .form-horizontal spacing
     div.col-xs-7.col-sm-8.col-md-5.col-lg-5
-      label.control-label
+      label.control-label.flag-with-country-name
         = standard_flag_image_tag_of(match_presenter.team_1)
         = match_presenter.team_1_name_or_placeholder
         span.normal
           '&nbsp;&nbsp;vs.&nbsp;&nbsp;
-      label.control-label
+      label.control-label.flag-with-country-name
         = standard_flag_image_tag_of(match_presenter.team_2)
         = match_presenter.team_2_name_or_placeholder
     div.col-xs-5.col-sm-4.col-md-3.col-lg-2

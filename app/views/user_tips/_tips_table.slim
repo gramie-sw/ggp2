@@ -22,10 +22,10 @@ div.table-responsive
           - if show_as_link
             td = check_box_tag 'tip_ids[]', tip_presenter.id
           td = "#{match_presenter.position}."
-          td
+          td.flag-with-country-name
             = standard_flag_image_tag_of match_presenter.team_1
             = match_presenter.team_1_name_or_placeholder
-          td
+          td.flag-with-country-name
             = standard_flag_image_tag_of match_presenter.team_2
             = match_presenter.team_2_name_or_placeholder
           td.text-center = tip_presenter.result
@@ -34,4 +34,4 @@ div.table-responsive
           td = l match_presenter.date, format: :short
           td
             = link_to match_tip_path(match_presenter.id)
-              icon.fa.fa-users title="#{t('views.user_tips.show.all_tips_for_match')}"
+              icon.fa.fa-users title="#{t('general.match.all_tips')}"

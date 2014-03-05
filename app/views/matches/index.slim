@@ -19,10 +19,10 @@ div.well.well-sm
         - for match_presenter in @presenter.match_presenters_of(phase)
           tr.link-row  data-href="#{new_match_result_path(match_id: match_presenter.id)}"
             td = "#{match_presenter.position}."
-            td
+            td.flag-with-country-name
               = standard_flag_image_tag_of match_presenter.team_1
               = match_presenter.team_1_name_or_placeholder
-            td
+            td.flag-with-country-name
               = standard_flag_image_tag_of match_presenter.team_2
               = match_presenter.team_2_name_or_placeholder
             td.text-center = match_presenter.result

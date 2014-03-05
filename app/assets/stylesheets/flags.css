@@ -3,6 +3,9 @@
 	height: 11px;
     background: image-url('flags/flags.png') no-repeat;
     vertical-align: baseline;
+}
+
+.flag-with-country-name .flag {
     margin-right: 10px;
 }
 
