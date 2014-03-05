@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
-  USER_TYPE_ADMINS = :admins
-  USER_TYPE_PLAYERS = :players
+  USER_TYPE_ADMINS = 'admins'
+  USER_TYPE_PLAYERS = 'players'
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -19,6 +19,6 @@ class User < ActiveRecord::Base
   end
 
   def message_name
-    "#{User.model_name.human}: \"#{first_name} #{last_name}\""
+    "#{User.model_name.human} \"#{first_name} #{last_name}\""
   end
 end

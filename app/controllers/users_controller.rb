@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_filter :remember_user_index_referer, only: :index
 
   def index
-    @users = params[:type] == User::USER_TYPE_ADMINS.to_s ? User.admins : User.players
+    @users = params[:type] == User::USER_TYPE_ADMINS ? User.admins : User.players
   end
 
   def edit

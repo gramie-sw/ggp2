@@ -7,9 +7,9 @@
 /    = link_to I18n.t('general.admin.other'), users_path(type: User::USER_TYPE_ADMINS), class: "btn btn-default"
 
 ul.nav.nav-tabs
-  li class=('active' if (params[:type] != User::USER_TYPE_ADMINS.to_s))
+  li class=('active' if (params[:type] != User::USER_TYPE_ADMINS))
     = link_to I18n.t('general.player.other'), users_path(type: User::USER_TYPE_PLAYERS)
-  li class=('active' if (params[:type] == User::USER_TYPE_ADMINS.to_s))
+  li class=('active' if (params[:type] == User::USER_TYPE_ADMINS))
     = link_to I18n.t('general.admin.other'), users_path(type: User::USER_TYPE_ADMINS)
 
 - if @users.present?
