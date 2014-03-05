@@ -22,4 +22,24 @@ module ApplicationHelper
       value
     end
   end
+
+  def main_navbar_link(title, path, active_key)
+    content_tag('li', class: main_navbar_link_active?(active_key) ? 'active' : '') do
+      link_to title, path
+    end
+  end
+
+  def main_navbar_link_active?(active_key)
+    controller = params[:controller]
+    if active_key == :aggregates
+      controller == 'aggregates'
+    elsif active_key == :matches
+      controller == 'matches'
+    elsif active_key == :venues
+      controller == 'venues'
+    elsif active_key == :users
+      controller == 'users'
+    elsif false
+    end
+  end
 end
