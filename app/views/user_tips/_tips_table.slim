@@ -14,6 +14,7 @@ div.table-responsive
         th.text-center = t('general.result')
         th.text-center = t('general.points')
         th = Match.human_attribute_name(:date)
+        th
     tbody
       - for match_presenter in presenter.match_presenters_of(aggregate)
         - show_as_link = show_as_form && match_presenter.tippable?

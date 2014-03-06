@@ -1,9 +1,7 @@
 = render partial: 'commons/background_image', locals: {image_name: 'background_image_01.jpg'}
-= content_for(:main_title, 'Title')
 - match_presenter = @presenter.match_presenter
+= content_for(:main_title, t('general.match.all_tips_with_match_position', position: match_presenter.position))
 
-div.page-header
-  h1 = t 'general.match.all_tips_with_match_position', position: match_presenter.position
 div.row
   div.col-md-9.col-lg-10
     div.table-responsive
