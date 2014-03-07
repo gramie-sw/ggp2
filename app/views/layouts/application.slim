@@ -1,0 +1,33 @@
+doctype html
+html lang="en"
+  = render 'layouts/header'
+
+body
+  div#header-and-content
+    - if current_user.present?
+      = render 'layouts/navigation/main_menu'
+
+    div.ggp2-header-image
+      div.container
+        div.row
+          div.col-sm-5.col-sm-push-7.panel.no-spacing
+            strong
+              'Es muss eine Kehrtwende geben. Und die muss 360 Grad sein. (Eduard Geyer)
+              'Es muss eine Kehrtwende geben. Und die muss 360 Grad sein. (Eduard Geyer)
+          div.col-sm-7.col-sm-pull-5.no-spacing.bottom
+            h1
+              span.ggp2-title = content_for?(:main_title) ? content_for(:main_title) : 'Brasilien Fussball Weltmeisterschaft-2014'
+
+    div.container
+      div.ggp2-main-content-area
+        = render 'layouts/messages'
+        div.page-header
+          h1
+            = content_for?(:main_title) ? content_for(:main_title) : 'No Title'
+            - content_for?(:subtitle) do
+              small = content_for(:subtitle)
+        = yield
+
+
+  = render 'layouts/footer'
+  = render 'layouts/javascripts'
