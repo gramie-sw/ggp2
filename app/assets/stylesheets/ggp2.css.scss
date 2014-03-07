@@ -62,7 +62,7 @@ body {
 
 .ggp2-main-content-area {
   background-color: transparentize($ggp2-content-background-color, 0.40);
-  padding: 0 30px 10px 30px;
+  padding: 0 0 10px;
   margin-bottom: 10px;
 }
 
@@ -70,6 +70,10 @@ body {
   background-image: image-url('background_image_00.jpg');
   background-size: cover;
   height: $ggp2-header-image-height;
+
+  .container {
+    padding-top: 20px;
+  }
 }
 
 .gray-text {
@@ -126,4 +130,15 @@ form {
 .weakened {
   color: $gray-light;
   font-size: ceil(($font-size-base * 0.90))
+}
+
+.ggp2-phrase span {
+
+  padding: 2px 4px;
+  font-size: $font-size-base * 1.6;
+  line-height: $line-height-computed * 1.7;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: $font-size-base * 0.1;
+  background-color: transparentize($ggp2-secondary-color, 0.2);
 }

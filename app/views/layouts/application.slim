@@ -10,13 +10,17 @@ body
     div.ggp2-header-image
       div.container
         div.row
-          div.col-sm-5.col-sm-push-7.panel.no-spacing
-            strong
-              'Es muss eine Kehrtwende geben. Und die muss 360 Grad sein. (Eduard Geyer)
-              'Es muss eine Kehrtwende geben. Und die muss 360 Grad sein. (Eduard Geyer)
-          div.col-sm-7.col-sm-pull-5.no-spacing.bottom
-            h1
-              span.ggp2-title = content_for?(:main_title) ? content_for(:main_title) : 'Brasilien Fussball Weltmeisterschaft-2014'
+          div.col-sm-5
+            div.ggp2-phrase
+              span Makes Football
+              br
+              span even more exiting
+              br
+          div.col-sm-5.col-sm-offset-2
+            div.panel
+              div.panel-body
+                strong
+                  'Es muss eine Kehrtwende geben. Und die muss 360 Grad sein. (Eduard Geyer)
 
     div.container
       div.ggp2-main-content-area

@@ -1,6 +1,6 @@
 @import url("http://fonts.googleapis.com/css?family=Lato:400,700,900,400italic");
 
-$ggp2-navbar-top-border-color: $ggp2-green;
+$ggp2-navbar-top-border-color: $ggp2-emphasize-color;
 
 $ggp2-content-background-color: #fff;
 
@@ -90,11 +90,6 @@ $ggp2-header-image-height: 140px;
 
 .btn {
   margin-bottom: 5px;
-}
-
-.no-spacing {
-  padding: 0 !important;
-  margin: 0 !important;
 }
 
 .small-panel-padding {
