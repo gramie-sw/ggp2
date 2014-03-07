@@ -32,7 +32,8 @@ body
         div.page-header
           h1
             = content_for?(:main_title) ? content_for(:main_title) : 'No Title'
-            - content_for?(:subtitle) do
+            - if content_for?(:subtitle)
+              '&nbsp;
               small = content_for(:subtitle)
         = yield
 

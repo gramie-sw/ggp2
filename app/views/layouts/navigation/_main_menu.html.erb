@@ -19,7 +19,7 @@
               <%= main_navbar_link(Venue.model_name.human_plural, venues_path, :venues) %>
               <%= main_navbar_link(User.model_name.human_plural, users_path(type: User::USER_TYPE_PLAYERS), :users) %>
           <% else %>
-              <li><a href="#about">Tipps</a></li>
+              <li><%= link_to Tip.model_name.human_plural, user_tip_path(current_user) %></li>
               <li><a href="#about">Ranking</a></li>
               <li><a href="#about">Account</a></li>
           <% end %>

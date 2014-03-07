@@ -69,17 +69,21 @@ $ggp2-header-image-min-height: 140px;
   }
 }
 
+h2 {
+  text-align: center;
+}
+
 .well {
   border: none;
   border-radius: 0;
 }
 
-.panel-heading {
-  font-weight: bold;
-}
-
 .page-header {
  margin-top: $line-height-computed * 1.1
+}
+
+.panel-heading {
+  font-weight: bold;
 }
 
 .panel-body {
@@ -90,8 +94,4 @@ $ggp2-header-image-min-height: 140px;
 
 .btn {
   margin-bottom: 5px;
-}
-
-.small-panel-padding {
-  padding: 5px !important;
 }

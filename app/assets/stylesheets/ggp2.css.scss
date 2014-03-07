@@ -122,11 +122,15 @@ form {
   }
 }
 
-.normal {
+.ggp2-alert {
+  margin-top: 15px;
+}
+
+.ggp2-text-normal {
   font-weight: normal;
 }
 
-.weakened {
+.ggp2-weakened {
   color: $gray-light;
   font-size: ceil(($font-size-base * 0.90))
 }

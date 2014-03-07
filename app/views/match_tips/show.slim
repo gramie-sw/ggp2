@@ -1,6 +1,7 @@
 = render partial: 'commons/background_image', locals: {image_name: 'background_image_01.jpg'}
 - match_presenter = @presenter.match_presenter
-= content_for(:main_title, t('general.match.all_tips_with_match_position', position: match_presenter.position))
+= content_for(:main_title, t('general.match.all_tips_of', position: match_presenter.position))
+= content_for(:subtitle, "#{match_presenter.team_1_name_or_placeholder} vs. #{match_presenter.team_2_name_or_placeholder}")
 
 div.row
   div.col-md-9.col-lg-10
@@ -10,6 +11,7 @@ div.row
         tr
           th = t('general.player.one')
           th.text-center = Tip.model_name.human
+          th.text-center = t('general.points')
           th Letzte Änderung
           th
       tbody
@@ -17,34 +19,36 @@ div.row
           tr
             td = tip_presenter.user.nickname
             td.text-center = tip_presenter.result
+            td.text-center = tip_presenter.points
             td = l tip_presenter.updated_at, format: :short
-            td = ''
-    div.panel
-      div.panel-body
-        strong
-          'Hinweis:
-        'Die Tipps der Mitspieler sind erst sichtbar, wenn das Spiel begonnen hat. Die * zeigen an, ob ein Tipp abgegebne wurde.
+            td
+              = link_to match_tip_path(match_presenter.id)
+                icon.fa.fa-user title="#{t('general.user.all_tips_of', name: tip_presenter.user.nickname)}"
+    small
+      strong
+        = "#{t('general.hint')}: "
+      = t('views.match_tips.show.table_description')
 
   div.col-md-3.col-lg-2
-      div.panel.panel-default.text-center
-        div.panel-heading
-          'Spiel 77
-        div.panel-body
-          div.info-box
+    div.panel.panel-default.text-center
+      div.panel-heading
+        'Spiel 77
+      div.panel-body
+        div.info-box
+          div
+            = standard_flag_image_tag_of match_presenter.team_1
+          div
+            strong = match_presenter.team_1_name_or_placeholder
+        div.info-box
+          strong = match_presenter.result
+        div.info-box
+          div
+            = standard_flag_image_tag_of match_presenter.team_2
+          div
+            strong = match_presenter.team_2_name_or_placeholder
+        div.info-box
+          div.ggp2-weakened
             div
-              = standard_flag_image_tag_of match_presenter.team_1
+              = l match_presenter.date, format: :only_date
             div
-              strong = match_presenter.team_1_name_or_placeholder
-          div.info-box
-            strong = match_presenter.result
-          div.info-box
-            div
-              = standard_flag_image_tag_of match_presenter.team_2
-            div
-              strong = match_presenter.team_2_name_or_placeholder
-          div.info-box
-            div.weakened
-              div
-                = l match_presenter.date, format: :only_date
-              div
-                = l match_presenter.date, format: :only_time
+              = l match_presenter.date, format: :only_time

@@ -1,7 +1,7 @@
 fieldset
   legend = "Spiel #{match_presenter.position}"
   div.row.hidden-lg.hidden-md
-    div.col-xs-12.weakened.legend-neutralize
+    div.col-xs-12.ggp2-weakened.legend-neutralize
       = "#{match_presenter.aggregate.name}, #{l match_presenter.date, format: :short}"
   = render partial: 'commons/error_messages', locals: {model: result}
   div.row.form-group
@@ -10,7 +10,7 @@ fieldset
       label.control-label.flag-with-country-name
         = standard_flag_image_tag_of(match_presenter.team_1)
         = match_presenter.team_1_name_or_placeholder
-        span.normal
+        span.ggp2-text-normal
           '&nbsp;&nbsp;vs.&nbsp;&nbsp;
       label.control-label.flag-with-country-name
         = standard_flag_image_tag_of(match_presenter.team_2)
@@ -21,7 +21,7 @@ fieldset
         = ":"
         = f.text_field :score_team_2, class: 'form-control score-input', maxlength: 2
     div.col-md-4.col-lg-5.visible-md.visible-lg
-      div.weakened
+      div.ggp2-weakened
         = match_presenter.aggregate_name_recursive
         br
         = l match_presenter.date
