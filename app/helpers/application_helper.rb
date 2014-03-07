@@ -30,16 +30,20 @@ module ApplicationHelper
   end
 
   def main_navbar_link_active?(active_key)
+
     controller = params[:controller]
-    if active_key == :aggregates
-      controller == 'aggregates'
-    elsif active_key == :matches
-      controller == 'matches'
-    elsif active_key == :venues
-      controller == 'venues'
-    elsif active_key == :users
-      controller == 'users'
-    elsif false
+
+    case active_key
+      when :aggregates
+        controller == 'aggregates'
+      when :matches
+        controller == 'matches'
+      when :venues
+        controller == 'venues'
+      when :users
+        controller == 'users'
+      else
+        false
     end
   end
 end

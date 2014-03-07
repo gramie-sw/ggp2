@@ -1,7 +1,6 @@
 = render partial: 'commons/background_image', locals: {image_name: 'background_image_00.jpg'}
 - content_for(:main_title, Match.model_name.human_plural)
 
-/div.well.well-sm
 = link_to I18n.t('model.messages.add', model: Match.model_name.human), new_match_path, class: "btn btn-default"
 
 - for phase in @presenter.phases

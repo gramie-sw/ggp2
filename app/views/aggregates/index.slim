@@ -1,8 +1,7 @@
 = render partial: 'commons/background_image', locals: {image_name: 'background_image_00.jpg'}
 - content_for(:main_title, Aggregate.model_name.human_plural)
 
-div.well.well-sm
-  = link_to I18n.t('model.messages.add', model: Aggregate.model_name.human), new_aggregate_path, class: "btn btn-default"
+= link_to I18n.t('model.messages.add', model: Aggregate.model_name.human), new_aggregate_path, class: "btn btn-default"
 
 - if @aggregates.present?
   div.table-responsive

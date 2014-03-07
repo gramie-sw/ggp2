@@ -1,10 +1,9 @@
-- unless match.new_record?
-  h2
-    = match.message_name
-
-div.well.well-sm
+div.well
   = form_for match, html: {class: 'form-horizontal', role: 'form'} do |f|
-    fieldset>
+    fieldset
+      -unless match.new_record?
+        legend = match.message_name
+    fieldset
       div.form-group
         = f.label :position, class: 'col-xs-3 col-md-2 control-label'
         div.col-xs-9
