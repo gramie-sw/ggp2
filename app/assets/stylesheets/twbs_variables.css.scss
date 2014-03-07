@@ -364,9 +364,9 @@ $navbar-default-link-disabled-color:       #ccc !default;
 $navbar-default-link-disabled-bg:          transparent !default;
 
 // Navbar brand label
-//$navbar-default-brand-color:               $navbar-default-link-color !default;
+//$navbar-default-brand-color:             $navbar-default-link-color !default;
 $navbar-default-brand-color:               $ggp2-emphasize-color!default;
-//$navbar-default-brand-hover-color:         darken($navbar-default-brand-color, 10%) !default;
+//$navbar-default-brand-hover-color:       darken($navbar-default-brand-color, 10%) !default;
 $navbar-default-brand-hover-color:         $navbar-default-brand-color !default;
 $navbar-default-brand-hover-bg:            transparent !default;
 
