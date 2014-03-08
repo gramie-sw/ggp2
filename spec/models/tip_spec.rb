@@ -48,13 +48,6 @@ describe Tip do
     describe 'for match_id' do
       it { should validate_uniqueness_of(:match_id).scoped_to(:user_id)}
     end
-
-    describe 'for points' do
-      it { should allow_value(nil).for(:points) }
-      it { should validate_numericality_of(:points).only_integer }
-      it { should validate_numericality_of(:points).is_greater_than_or_equal_to 0}
-      it { should validate_numericality_of(:points).is_less_than_or_equal_to 1000}
-    end
   end
 
   describe 'associations' do
@@ -74,6 +67,17 @@ describe Tip do
       actual_tips.first.should eq tip_1
       actual_tips.second.should eq tip_2
       actual_tips.third.should eq tip_3
+    end
+
+    it 'should return all tips by given match' do
+      match = create(:match)
+      tip_1 = create(:tip, match: match)
+      create(:tip, match: create(:match))
+      tip_3 = create(:tip, match: match)
+
+      tips = Tip.match_tips match.id
+      tips.count.should eq 2
+      tips.should include tip_1, tip_3
     end
   end
 

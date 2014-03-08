@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  include PointsValidatable
+
   USER_TYPE_ADMINS = 'admins'
   USER_TYPE_PLAYERS = 'players'
 
@@ -13,9 +15,6 @@ class User < ActiveRecord::Base
   validates :nickname, presence:  true, uniqueness: true,  length: {minimum: 3,  maximum: 32}
   validates :first_name, presence: true, length: {maximum: 32}
   validates :last_name, presence: true, length: {maximum: 32}
-  validates :points,
-            numericality: {only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 1000},
-            allow_nil: true
   validates :admin, inclusion: {in: [true, false]}
 
   scope :players, -> { where(admin: false) }

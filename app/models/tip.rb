@@ -2,6 +2,7 @@ class Tip < ActiveRecord::Base
 
   extend RecordBatchUpdatable
   include ScoreValidatable
+  include PointsValidatable
 
   belongs_to :user
   belongs_to :match
@@ -10,12 +11,9 @@ class Tip < ActiveRecord::Base
   validates :user, presence: true
   validates :match_id, uniqueness: {scope: :user_id}
 
-  validates :points,
-            numericality: {only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 1000},
-            allow_nil: true
-
   validate :scores_not_changeable_after_match_started
 
+  scope :match_tips, ->(match_id= nil) { where(match_id: match_id)}
   scope :order_by_match_position, -> { joins(:match).order('matches.position').references(:matches) }
 
   def tippable?

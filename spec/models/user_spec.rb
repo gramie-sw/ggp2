@@ -22,13 +22,6 @@ describe User do
       it { should ensure_length_of(:last_name).is_at_most(32) }
     end
 
-    describe '#points' do
-      it { should allow_value(nil).for(:points) }
-      it { should validate_numericality_of(:points).only_integer}
-      it { should validate_numericality_of(:points).is_greater_than_or_equal_to 0 }
-      it { should validate_numericality_of(:points).is_less_than_or_equal_to 1000 }
-    end
-
     describe '#admin' do
       it { should allow_value(true, false).for(:admin) }
       it { should_not allow_value(nil).for(:admin) }
