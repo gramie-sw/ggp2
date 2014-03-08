@@ -10,6 +10,14 @@ class User < ActiveRecord::Base
 
   has_many :tips, dependent: :destroy, inverse_of: :user
 
+  validates :nickname, presence:  true, uniqueness: true,  length: {minimum: 3,  maximum: 32}
+  validates :first_name, presence: true, length: {maximum: 32}
+  validates :last_name, presence: true, length: {maximum: 32}
+  validates :points,
+            numericality: {only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 1000},
+            allow_nil: true
+  validates :admin, inclusion: {in: [true, false]}
+
   scope :players, -> { where(admin: false) }
   scope :admins, -> { where(admin: true) }
   scope :order_by_nickname_asc, -> { order(nickname: :asc) }

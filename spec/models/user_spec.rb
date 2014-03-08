@@ -4,6 +4,37 @@ describe User do
     create(:user).should be_valid
   end
 
+  describe 'validations' do
+
+    describe '#nickname' do
+      it { should validate_presence_of(:nickname) }
+      it { should validate_uniqueness_of(:nickname) }
+      it { should ensure_length_of(:nickname).is_at_least(3).is_at_most(32) }
+    end
+
+    describe '#first_name' do
+      it { should validate_presence_of(:first_name) }
+      it { should ensure_length_of(:first_name).is_at_most(32) }
+    end
+
+    describe '#last_name' do
+      it { should validate_presence_of(:last_name) }
+      it { should ensure_length_of(:last_name).is_at_most(32) }
+    end
+
+    describe '#points' do
+      it { should allow_value(nil).for(:points) }
+      it { should validate_numericality_of(:points).only_integer}
+      it { should validate_numericality_of(:points).is_greater_than_or_equal_to 0 }
+      it { should validate_numericality_of(:points).is_less_than_or_equal_to 1000 }
+    end
+
+    describe '#admin' do
+      it { should allow_value(true, false).for(:admin) }
+      it { should_not allow_value(nil).for(:admin) }
+    end
+  end
+
   describe 'associations' do
     it { should have_many(:tips).dependent(:destroy) }
 
@@ -72,5 +103,4 @@ describe User do
       end
     end
   end
-
 end

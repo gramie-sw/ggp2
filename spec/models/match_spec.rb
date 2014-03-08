@@ -13,7 +13,8 @@ describe Match do
       it { should validate_presence_of(:position) }
       it { should validate_uniqueness_of(:position) }
       it { should validate_numericality_of(:position).only_integer }
-      it { should ensure_inclusion_of(:position).in_range(1..1000) }
+      it { should validate_numericality_of(:position).is_greater_than 0}
+      it { should validate_numericality_of(:position).is_less_than_or_equal_to 1000}
     end
 
     describe '#aggregate' do

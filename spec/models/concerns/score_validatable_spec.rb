@@ -13,13 +13,10 @@ describe ScoreValidatable do
   subject { ModelWithScores.new }
 
   describe 'for score_team_1' do
-
-    it { should validate_numericality_of(:score_team_1).only_integer }
     it { should allow_value(nil).for(:score_team_1) }
-    it { should_not allow_value(-1).for(:score_team_1) }
-    it { should allow_value(0).for(:score_team_1) }
-    it { should allow_value(1000).for(:score_team_1) }
-    it { should_not allow_value(1001).for(:score_team_1) }
+    it { should validate_numericality_of(:score_team_1).only_integer }
+    it { should validate_numericality_of(:score_team_1).is_greater_than_or_equal_to(0) }
+    it { should validate_numericality_of(:score_team_1).is_less_than_or_equal_to(1000) }
 
     context 'if score_team_2 present' do
       subject { Tip.new(score_team_2: 1) }
@@ -33,12 +30,10 @@ describe ScoreValidatable do
 
   describe 'for score_team_2' do
 
-    it { should validate_numericality_of(:score_team_2).only_integer }
     it { should allow_value(nil).for(:score_team_2) }
-    it { should_not allow_value(-1).for(:score_team_2) }
-    it { should allow_value(0).for(:score_team_2) }
-    it { should allow_value(1000).for(:score_team_2) }
-    it { should_not allow_value(1001).for(:score_team_2) }
+    it { should validate_numericality_of(:score_team_2).only_integer }
+    it { should validate_numericality_of(:score_team_2).is_greater_than_or_equal_to(0) }
+    it { should validate_numericality_of(:score_team_2).is_less_than_or_equal_to(1000) }
 
     context 'if score_team_1 present' do
       subject { Tip.new(score_team_1: 1) }

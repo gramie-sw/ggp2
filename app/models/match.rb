@@ -8,7 +8,7 @@ class Match < ActiveRecord::Base
   belongs_to :venue
   has_many :tips, dependent: :destroy
 
-  validates :position, presence: true, uniqueness: true, numericality: {only_integer: true}, inclusion: {in: 1..1000}
+  validates :position, presence: true, uniqueness: true, numericality: {only_integer: true, greater_than: 0, less_than_or_equal_to: 1000 }
   validates :aggregate_id, presence: true
   validates :aggregate, presence: true
   validates :team_1, presence: {if: :team_1_id}

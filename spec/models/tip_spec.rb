@@ -50,12 +50,10 @@ describe Tip do
     end
 
     describe 'for points' do
-      it { should validate_numericality_of(:points).only_integer }
       it { should allow_value(nil).for(:points) }
-      it { should_not allow_value(-1).for(:points) }
-      it { should allow_value(0).for(:points) }
-      it { should allow_value(1000).for(:points) }
-      it { should_not allow_value(1001).for(:points) }
+      it { should validate_numericality_of(:points).only_integer }
+      it { should validate_numericality_of(:points).is_greater_than_or_equal_to 0}
+      it { should validate_numericality_of(:points).is_less_than_or_equal_to 1000}
     end
   end
 
