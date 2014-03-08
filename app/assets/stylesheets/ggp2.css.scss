@@ -135,6 +135,10 @@ form {
   font-size: ceil(($font-size-base * 0.90))
 }
 
+.ggp2-no-wrap {
+  white-space: nowrap;
+}
+
 .ggp2-phrase span {
 
   padding: 2px 4px;

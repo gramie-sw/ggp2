@@ -10,11 +10,24 @@ class MatchPresenter < DelegateClass(Match)
     team_name_or_placeholder_of_team 2
   end
 
-  def aggregate_name_recursive
-    if aggregate.phase?
-      aggregate.name
+  def aggregate_name_recursive multiline: false
+    @aggregate_name_recursive ||= begin
+
+      if aggregate.phase?
+        [aggregate.name]
+      else
+        [aggregate.parent.name, aggregate.name]
+      end
+    end
+
+    if multiline
+      @aggregate_name_recursive
     else
-      "#{aggregate.parent.name} - #{aggregate.name}"
+      if @aggregate_name_recursive.size == 1
+        @aggregate_name_recursive.first
+      else
+        "#{@aggregate_name_recursive.first} - #{@aggregate_name_recursive.second}"
+      end
     end
   end
 

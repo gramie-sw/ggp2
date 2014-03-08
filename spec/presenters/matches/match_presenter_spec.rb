@@ -51,22 +51,47 @@ describe MatchPresenter do
 
   describe 'aggregate_name_recursive' do
 
+    let(:aggregate) { create(:aggregate) }
     let(:match) { create(:match, aggregate: aggregate) }
 
     context 'if match belongs only to phase' do
       let(:aggregate) { create(:phase) }
 
-      it 'should return phase name' do
-        subject.aggregate_name_recursive.should eq aggregate.name
+      context 'if multiline is false' do
+
+        it 'should return phase name' do
+          subject.aggregate_name_recursive.should eq aggregate.name
+        end
+      end
+
+      context 'if multiline is ture' do
+
+        it 'should return array with phase name' do
+          subject.aggregate_name_recursive(multiline: true).should eq [aggregate.name]
+        end
       end
     end
 
     context 'if match belongs to group' do
       let(:aggregate) { create(:group) }
 
-      it 'should return phase name' do
-        subject.aggregate_name_recursive.should eq "#{aggregate.parent.name} - #{aggregate.name}"
+      context 'if multiline is false' do
+
+        it 'should return phase and group name' do
+          subject.aggregate_name_recursive.should eq "#{aggregate.parent.name} - #{aggregate.name}"
+        end
       end
+
+      context 'if multiline is false' do
+
+        it 'should return Array with phase and group name' do
+          subject.aggregate_name_recursive(multiline: true).should eq [aggregate.parent.name, aggregate.name]
+        end
+      end
+    end
+
+    it 'should cache return value' do
+      subject.aggregate_name_recursive.should be subject.aggregate_name_recursive
     end
   end
 end

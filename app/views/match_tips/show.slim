@@ -1,38 +1,64 @@
 = render partial: 'commons/background_image', locals: {image_name: 'background_image_01.jpg'}
 - match_presenter = @presenter.match_presenter
-= content_for(:main_title, t('general.match.all_tips_of', position: match_presenter.position))
-= content_for(:subtitle, "#{match_presenter.team_1_name_or_placeholder} vs. #{match_presenter.team_2_name_or_placeholder}")
+= content_for(:main_title, t('general.tips.all'))
+= content_for(:subtitle, t('general.for_subject', subject: "#{Match.model_name.human} #{match_presenter.position}"))
 
 div.row
-  div.col-md-9.col-lg-10
+
+  div.col-xs-12.hidden-md.hidden-lg
+    div.panel
+      div.panel-body
+        div.row
+          div.col-xs-5.flag-with-country-name
+            span.ggp2-no-wrap
+              = standard_flag_image_tag_of match_presenter.team_1
+              strong = match_presenter.team_1_name_or_placeholder
+            span.ggp2-text-normal
+              '&nbsp;&nbsp;vs.&nbsp;&nbsp;
+            span.ggp2-no-wrap
+              = standard_flag_image_tag_of match_presenter.team_2
+              strong = match_presenter.team_2_name_or_placeholder
+          div.col-xs-2
+            strong = match_presenter.result
+          div.col-xs-5.ggp2-weakened
+            span.ggp2-no-wrap
+              = l match_presenter.date, format: :only_date
+            '&nbsp;
+            span.ggp2-no-wrap
+              = l match_presenter.date, format: :only_time
+            '&nbsp;
+            span.ggp2-no-wrap
+              = match_presenter.aggregate_name_recursive
+
+  div.col-xs-12.col-md-9.col-lg-10
     div.table-responsive
-    table.table.table-hover
-      thead
-        tr
-          th = t('general.player.one')
-          th.text-center = Tip.model_name.human
-          th.text-center = t('general.points')
-          th Letzte Änderung
-          th
-      tbody
-        - for tip_presenter in @presenter.tip_presenters
+      table.table.table-hover
+        thead
           tr
-            td = tip_presenter.user.nickname
-            td.text-center = tip_presenter.result
-            td.text-center = tip_presenter.points
-            td = l tip_presenter.updated_at, format: :short
-            td
-              = link_to match_tip_path(match_presenter.id)
-                icon.fa.fa-user title="#{t('general.user.all_tips_of', name: tip_presenter.user.nickname)}"
+            th = t('general.player.one')
+            th.text-center = Tip.model_name.human
+            th.text-center = t('general.points')
+            th = t('general.last_change')
+            th
+        tbody
+          - for tip_presenter in @presenter.tip_presenters
+            tr
+              td = tip_presenter.user.nickname
+              td.text-center = tip_presenter.result
+              td.text-center = tip_presenter.points
+              td = l tip_presenter.updated_at, format: :short
+              td
+                = link_to user_tip_path(tip_presenter.user_id)
+                  icon.fa.fa-user title="#{t('general.user.all_tips_of', name: tip_presenter.user.nickname)}"
     small
       strong
         = "#{t('general.hint')}: "
       = t('views.match_tips.show.table_description')
 
-  div.col-md-3.col-lg-2
+  div.col-md-3.col-lg-2.hidden-xs.hidden-sm
     div.panel.panel-default.text-center
       div.panel-heading
-        'Spiel 77
+        = "#{Match.model_name.human} #{match_presenter.position}"
       div.panel-body
         div.info-box
           div
@@ -46,9 +72,12 @@ div.row
             = standard_flag_image_tag_of match_presenter.team_2
           div
             strong = match_presenter.team_2_name_or_placeholder
-        div.info-box
-          div.ggp2-weakened
+        div.info-box.ggp2-weakened
+          - for aggregate_name in match_presenter.aggregate_name_recursive(multiline: true)
             div
-              = l match_presenter.date, format: :only_date
-            div
-              = l match_presenter.date, format: :only_time
+              = aggregate_name
+        div.info-box.ggp2-weakened
+          div
+            = l match_presenter.date, format: :only_date
+          div
+            = l match_presenter.date, format: :only_time
