@@ -2,11 +2,11 @@ fieldset
   legend = "Spiel #{match_presenter.position}"
   div.row.hidden-lg.hidden-md
     div.col-xs-12.ggp2-weakened.legend-neutralize
-      = "#{match_presenter.aggregate.name}, #{l match_presenter.date, format: :short}"
+      = "#{match_presenter.aggregate_name_recursive}, #{l match_presenter.date, format: :short}"
   = render partial: 'commons/error_messages', locals: {model: result}
   div.row.form-group
     /TODO not optimal top spacing, spacing should be similar to .form-horizontal spacing
-    div.col-xs-7.col-sm-8.col-md-5.col-lg-5
+    div.col-xs-6.col-sm-8.col-md-5.col-lg-5
       label.control-label.flag-with-country-name
         = standard_flag_image_tag_of(match_presenter.team_1)
         = match_presenter.team_1_name_or_placeholder
@@ -15,7 +15,7 @@ fieldset
       label.control-label.flag-with-country-name
         = standard_flag_image_tag_of(match_presenter.team_2)
         = match_presenter.team_2_name_or_placeholder
-    div.col-xs-5.col-sm-4.col-md-3.col-lg-2
+    div.col-xs-6.col-sm-4.col-md-3.col-lg-2
       = fields_for index, result do |f|
         = f.text_field :score_team_1, class: 'form-control score-input', maxlength: 2
         = ":"

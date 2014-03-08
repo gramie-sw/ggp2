@@ -13,9 +13,17 @@ class UserTipsShowPresenter
 
   def title
     if user_is_current_user?
-      I18n.t('general.your_tip.other')
+      I18n.t('tip.yours')
     else
-      I18n.t('general.tips_of', name: user.nickname)
+      I18n.t('tip.all')
+    end
+  end
+
+  def subtitle
+    if user_is_current_user?
+      ''
+    else
+      I18n.t('general.of_subject', subject: user.nickname)
     end
   end
 

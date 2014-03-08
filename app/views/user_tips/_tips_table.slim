@@ -10,7 +10,7 @@ div.table-responsive
     thead
       tr
         th colspan="#{show_as_form ? 4 : 3}" = Match.model_name.human
-        th.text-center = t('general.your_tip.one')
+        th.text-center = Tip.model_name.human_plural
         th.text-center = t('general.result')
         th.text-center = t('general.points')
         th = Match.human_attribute_name(:date)
@@ -35,4 +35,4 @@ div.table-responsive
           td = l match_presenter.date, format: :short
           td
             = link_to match_tip_path(match_presenter.id)
-              icon.fa.fa-users title="#{t('general.match.all_tips')}"
+              icon.fa.fa-users title="#{t('tip.all_for', subject: "#{Match.model_name.human} #{match_presenter.position}")}"

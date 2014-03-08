@@ -126,8 +126,6 @@ de:
     login: Anmelden
     logged_in_as: Angemeldet als
     logout: Abmelden
-    match:
-      all_tips: Alle Tipps für Spiel
     result: Ergebnis
     'no': Nein
     none_selected: Kein %{element} gewählt
@@ -137,33 +135,31 @@ de:
       other: Spieler
     points: Punkte
     remove: Entfernen
+    of_subject: von %{subject}
     search: Suchen
     show: Anzeigen
     searchterm: Suchbegriff
     select_all: Alle
     select_none: Keines
-    tips_of: Tipps von %{name}
-    tips:
-      all: Alle Tipps
     tournament: Turnier
     user_administration: Benutzerverwaltung
     'yes': Ja
-    user:
-      all_tips_of: Alle Tipps von %{name}
-    your_tip:
-      one: Dein Tipp
-      other: Deine Tipps
 
   form:
     errors:
       title: 'Bitte berichtigen:'
 
+  tip:
+    all: Alle Tipps
+    all_of: Alle Tipps von %{subject}
+    all_for: Alle Tipps für %{subject}
+    yours: Deine Tipps
+    description:
+      for_showing_others: |
+        Die Tipps der Mitspieler sind erst sichtbar, wenn das Spiel begonnen hat.
+        Die * zeigen an, ob ein Tipp abgegeben wurde.
+
   views:
-    match_tips:
-      show:
-        table_description: |
-          Die Tipps der Mitspieler sind erst sichtbar, wenn das Spiel begonnen hat.
-          Die * zeigen an, ob ein Tipp abgegeben wurde.
     user_tips:
       show:
         tip_selected_matches: Ausgwählte Spiele tippen

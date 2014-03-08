@@ -7,12 +7,24 @@ describe UserTipsShowPresenter do
   describe '#title' do
 
     context 'if user is current_user' do
-      it { subject.title.should eq t('general.your_tip.other') }
+      it { subject.title.should eq t('tip.yours') }
     end
 
     context 'if user is not current_user' do
       let(:user_is_current_user) { false }
-      it { subject.title.should eq t('general.tips_of', name: user.nickname) }
+      it { subject.title.should eq t('tip.all') }
+    end
+  end
+
+  describe '#subtitle' do
+
+    context 'if user is current_user' do
+      it { subject.subtitle.should eq '' }
+    end
+
+    context 'if user is not current_user' do
+      let(:user_is_current_user) { false }
+      it { subject.subtitle.should eq t('general.of_subject', subject: user.nickname) }
     end
   end
 
