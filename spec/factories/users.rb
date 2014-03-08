@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :user, aliases: [:player] do
-    nickname { Forgery::Name.first_name }
+    sequence(:nickname) { |n| "#{Forgery::Name.first_name}_#{n}" }
     first_name { Forgery::Name.first_name }
     last_name { Forgery::Name.last_name }
     email { Forgery::Internet.email_address }
