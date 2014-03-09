@@ -69,6 +69,7 @@ body {
 .ggp2-header-image {
   background-size: cover;
   min-height: $ggp2-header-image-min-height;
+  background-image: url(image_path('background/background_image_01.jpg'));
 
   .container {
     padding-top: 20px;

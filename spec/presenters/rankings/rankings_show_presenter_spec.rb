@@ -1,0 +1,3 @@
+describe RankingsShowPresenter do
+  
+end

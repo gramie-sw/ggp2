@@ -1,6 +1,5 @@
-= render partial: 'commons/background_image', locals: {image_name: 'background_image_01.jpg'}
 - match_presenter = @presenter.match_presenter
-- content_for(:main_title, t('tip.all'))
+- content_for(:title, t('tip.all'))
 - content_for(:subtitle, t('general.for_subject', subject: "#{Match.model_name.human} #{match_presenter.position}"))
 
 div.row
@@ -33,7 +32,7 @@ div.row
           tr
             th = t('general.player.one')
             th.text-center = Tip.model_name.human
-            th.text-center = t('general.points')
+            th.text-center = t('general.point.other')
             th = t('general.last_change')
             th
         tbody

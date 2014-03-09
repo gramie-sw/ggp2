@@ -1,5 +1,5 @@
 = render partial: 'commons/background_image', locals: {image_name: 'background_image_01.jpg'}
-= content_for(:main_title, t('views.tips.edit_multiple.title'))
+= content_for(:title, t('views.tips.edit_multiple.title'))
 
 div.well
   = form_tag update_multiple_tips_path, class: 'result-form', role: :form

@@ -1,0 +1,2 @@
+class RankingsShowPresenter
+end

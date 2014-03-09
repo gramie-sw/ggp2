@@ -1,0 +1,14 @@
+- content_for(:title, t('general.ranking'))
+- content_for(:subtitle, t('match.progress', happend_count: 0, total_count: 64))
+
+div.table-responsive
+  table.table.table-hover
+    thead
+      tr
+        th = t('general.position')
+        th = t('general.player.one')
+        th = t('general.point.other')
+        th = t('general.hits.other')
+        th = t('general.tendency')
+        th = t('general.badge.other')
+    tbody

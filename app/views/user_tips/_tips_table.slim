@@ -12,7 +12,7 @@ div.table-responsive
         th colspan="#{show_as_form ? 4 : 3}" = Match.model_name.human
         th.text-center = Tip.model_name.human_plural
         th.text-center = t('general.result')
-        th.text-center = t('general.points')
+        th.text-center = t('general.point.other')
         th = Match.human_attribute_name(:date)
         th
     tbody

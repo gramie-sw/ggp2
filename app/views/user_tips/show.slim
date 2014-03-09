@@ -1,5 +1,4 @@
-= render partial: 'commons/background_image', locals: {image_name: 'background_image_01.jpg'}
-- content_for(:main_title, @presenter.title)
+- content_for(:title, @presenter.title)
 - content_for(:subtitle, @presenter.subtitle)
 
 - for phase in @presenter.phases

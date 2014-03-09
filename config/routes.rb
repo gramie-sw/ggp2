@@ -1,6 +1,5 @@
 Ggp2::Application.routes.draw do
 
-  get "match_tips/show"
   devise_for :users
 
   devise_scope :user do
@@ -13,6 +12,7 @@ Ggp2::Application.routes.draw do
   resources :match_results, only: [:new, :create]
   resources :user_tips, only: :show
   resources :match_tips, only: :show
+  resource :rankings, only: :show
   resources :teams
   resources :tips, except: [:index, :show, :new, :create, :edit, :update, :destroy] do
     collection do

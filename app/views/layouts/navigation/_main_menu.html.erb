@@ -20,8 +20,8 @@
               <%= main_navbar_link(User.model_name.human_plural, users_path(type: User::USER_TYPE_PLAYERS), :users) %>
           <% else %>
               <li><%= link_to Tip.model_name.human_plural, user_tip_path(current_user) %></li>
-              <li><a href="#about">Ranking</a></li>
-              <li><a href="#about">Account</a></li>
+              <li><%= link_to t('general.ranking'), rankings_path %></li>
+              <li><a href="#about">Profil</a></li>
           <% end %>
           <li><a href="<%= destroy_user_session_path %>" data-method="delete">Logout</a></li>
         </ul>
