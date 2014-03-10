@@ -11,8 +11,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :tips, dependent: :destroy, inverse_of: :user
+  has_one :champion_tip, dependent: :destroy
 
-  validates :nickname, presence:  true, uniqueness: true,  length: {minimum: 3,  maximum: 32}
+  validates :nickname, presence: true, uniqueness: true, length: {minimum: 3, maximum: 32}
   validates :first_name, presence: true, length: {maximum: 32}
   validates :last_name, presence: true, length: {maximum: 32}
   validates :admin, inclusion: {in: [true, false]}

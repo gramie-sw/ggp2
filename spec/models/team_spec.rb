@@ -12,8 +12,9 @@ describe Team do
   end
 
   describe 'associations' do
-    it { should have_many(:team_1_matches).class_name('Match') }
-    it { should have_many(:team_2_matches).class_name('Match') }
+    it { should have_many(:team_1_matches).class_name(:Match).dependent(:restrict_with_exception) }
+    it { should have_many(:team_2_matches).class_name(:Match).dependent(:restrict_with_exception) }
+    it { should have_many(:champion_tips).dependent(:nullify) }
   end
 
   describe 'scopes' do
@@ -27,23 +28,6 @@ describe Team do
         teams[0].name.should eq team_1.name
         teams[1].name.should eq team_2.name
         teams[2].name.should eq team_3.name
-      end
-    end
-  end
-
-  describe 'callbacks' do
-    describe '#before_destroy' do
-      it 'should prevent deletion if team has associated matches' do
-        team = create(:team)
-        create(:match, team_1_id: team.id)
-        team.destroy
-        team.should_not be_destroyed
-      end
-
-      it 'should allow deletion if team has no associated matches' do
-        team = create(:team)
-        team.destroy
-        team.should be_destroyed
       end
     end
   end
