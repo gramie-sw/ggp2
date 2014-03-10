@@ -13,15 +13,15 @@ describe TipPresenter do
     context 'if points present' do
 
       it 'should return the points' do
-        tip.points = 5
-        subject.points.should eq 5
+        tip.result = Tip::RESULTS[:correct]
+        subject.points.should eq Ggp2.config.correct_tip_points
       end
     end
 
     context 'if points not present' do
 
       it 'should return the -' do
-        tip.points = nil
+        tip.stub(:points).and_return(nil)
         subject.points.should eq '-'
       end
     end

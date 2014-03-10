@@ -1,3 +1,5 @@
-correct_score_points: 3
-correct_tendency_points: 1
+correct_tip_points: 3
+correct_ratio_tip_points: 2
+correct_tendency_tip_points: 1
+incorrect_tip_points: 0
 correct_champion_points: 10

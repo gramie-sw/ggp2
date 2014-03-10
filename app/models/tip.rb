@@ -2,7 +2,8 @@ class Tip < ActiveRecord::Base
 
   extend RecordBatchUpdatable
   include ScoreValidatable
-  include PointsValidatable
+
+  RESULTS = {correct: 1, correct_ratio: 2, correct_tendency: 3, incorrect: 4}
 
   belongs_to :user
   belongs_to :match
@@ -18,6 +19,21 @@ class Tip < ActiveRecord::Base
 
   def tippable?
     !match.started?
+  end
+
+  def points
+    case result
+      when RESULTS[:correct]
+        Ggp2.config.correct_tip_points
+      when RESULTS[:correct_ratio]
+        Ggp2.config.correct_ratio_tip_points
+      when RESULTS[:correct_tendency]
+        Ggp2.config.correct_tendency_tip_points
+      when RESULTS[:incorrect]
+        Ggp2.config.incorrect_tip_points
+      else
+        nil
+    end
   end
 
   private

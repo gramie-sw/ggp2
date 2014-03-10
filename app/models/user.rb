@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
 
-  include PointsValidatable
-
   USER_TYPE_ADMINS = 'admins'
   USER_TYPE_PLAYERS = 'players'
 

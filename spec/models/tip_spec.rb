@@ -46,7 +46,7 @@ describe Tip do
     end
 
     describe 'for match_id' do
-      it { should validate_uniqueness_of(:match_id).scoped_to(:user_id)}
+      it { should validate_uniqueness_of(:match_id).scoped_to(:user_id) }
     end
   end
 
@@ -100,6 +100,34 @@ describe Tip do
         match.stub(:started?).and_return(false)
         subject.should be_tippable
       end
+    end
+  end
+
+  describe '#points' do
+
+    it 'should return correct tip points if correct tip' do
+      subject.stub(:result).and_return(Tip::RESULTS[:correct])
+      subject.points.should eq Ggp2.config.correct_tip_points
+    end
+
+    it 'should return correct ratio tip points if correct ratio tip' do
+      subject.stub(:result).and_return(Tip::RESULTS[:correct_ratio])
+      subject.points.should eq Ggp2.config.correct_ratio_tip_points
+    end
+
+    it 'should return correct tendency tip points if correct tendency tip' do
+      subject.stub(:result).and_return(Tip::RESULTS[:correct_tendency])
+      subject.points.should eq Ggp2.config.correct_tendency_tip_points
+    end
+
+    it 'should return incorrect tip points if incorrect tip' do
+      subject.stub(:result).and_return(Tip::RESULTS[:incorrect])
+      subject.points.should eq Ggp2.config.incorrect_tip_points
+    end
+
+    it 'should return nil if result is 0' do
+      subject.stub(:result).and_return(0)
+      subject.points.should be_nil
     end
   end
 end

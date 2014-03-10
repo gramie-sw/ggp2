@@ -5,7 +5,7 @@ class CreateTips < ActiveRecord::Migration
       t.integer :match_id
       t.integer :score_team_1
       t.integer :score_team_2
-      t.integer :points
+      t.integer :result
 
       t.timestamps
     end

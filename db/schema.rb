@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140310180703) do
+ActiveRecord::Schema.define(version: 20140310215604) do
 
   create_table "aggregates", force: true do |t|
     t.integer  "position"
@@ -48,6 +48,23 @@ ActiveRecord::Schema.define(version: 20140310180703) do
   add_index "matches", ["team_2_id"], name: "index_matches_on_team_2_id", using: :btree
   add_index "matches", ["venue_id"], name: "index_matches_on_venue_id", using: :btree
 
+  create_table "properties", force: true do |t|
+    t.integer  "last_result_match_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ranking_items", force: true do |t|
+    t.integer  "match_id"
+    t.integer  "user_id"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ranking_items", ["match_id"], name: "index_ranking_items_on_match_id", using: :btree
+  add_index "ranking_items", ["user_id"], name: "index_ranking_items_on_user_id", using: :btree
+
   create_table "teams", force: true do |t|
     t.string   "country"
     t.datetime "created_at"
@@ -59,7 +76,7 @@ ActiveRecord::Schema.define(version: 20140310180703) do
     t.integer  "match_id"
     t.integer  "score_team_1"
     t.integer  "score_team_2"
-    t.integer  "points"
+    t.integer  "result"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -79,7 +96,6 @@ ActiveRecord::Schema.define(version: 20140310180703) do
     t.string   "first_name"
     t.string   "last_name"
     t.boolean  "admin"
-    t.integer  "points"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
