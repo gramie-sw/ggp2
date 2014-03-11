@@ -19,10 +19,6 @@ class MatchResult
     end
   end
 
-  def set_user_tip_points
-
-  end
-
   def match
     @match ||= Match.find(match_id)
   end

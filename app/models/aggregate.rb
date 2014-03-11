@@ -8,7 +8,7 @@ class Aggregate < ActiveRecord::Base
 
   has_many :matches, dependent: :destroy
 
-  validates :position, presence: true, uniqueness: {scope: :ancestry}, numericality: {only_integer: true}, inclusion: {in: 1..1000}
+  validates :position, presence: true, uniqueness: {scope: :ancestry}, numericality: {only_integer: true, greater_than: 0, less_than_or_equal_to: 1000}
   validates :name, presence: true, uniqueness: {scope: :ancestry}, length: {minimum: 3, maximum: 32}, technical_name_allowed_chars: true
 
   scope :order_by_position, -> { order('position ASC') }

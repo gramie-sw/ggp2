@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :tips, dependent: :destroy, inverse_of: :user
+  has_many :ranking_items, dependent: :destroy, inverse_of: :user
   has_one :champion_tip, dependent: :destroy
 
   validates :nickname, presence: true, uniqueness: true, length: {minimum: 3, maximum: 32}

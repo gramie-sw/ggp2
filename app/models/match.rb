@@ -7,6 +7,7 @@ class Match < ActiveRecord::Base
   belongs_to :team_2, :class_name => "Team"
   belongs_to :venue
   has_many :tips, dependent: :destroy
+  has_many :ranking_items, dependent: :destroy
 
   validates :position, presence: true, uniqueness: true, numericality: {only_integer: true, greater_than: 0, less_than_or_equal_to: 1000 }
   validates :aggregate_id, presence: true

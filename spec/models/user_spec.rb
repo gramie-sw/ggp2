@@ -30,12 +30,19 @@ describe User do
 
   describe 'associations' do
     it { should have_many(:tips).dependent(:destroy) }
+    it { should have_many(:ranking_items).dependent(:destroy)}
     it { should have_one(:champion_tip).dependent(:destroy) }
 
     it 'tips should get user' do
       tip = Tip.new
       subject.tips << tip
       tip.user.should be subject
+    end
+
+    it 'ranking_items should get user' do
+      ranking_item = RankingItem.new
+      subject.ranking_items << ranking_item
+      ranking_item.user.should be subject
     end
   end
 

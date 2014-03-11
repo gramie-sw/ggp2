@@ -94,6 +94,7 @@ describe Match do
     it { should belong_to(:team_1).class_name('Team') }
     it { should belong_to(:team_2).class_name('Team') }
     it { should have_many(:tips).dependent(:destroy) }
+    it { should have_many(:ranking_items).dependent(:destroy)}
   end
 
   describe 'scopes' do

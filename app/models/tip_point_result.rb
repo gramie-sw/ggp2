@@ -12,15 +12,4 @@ class TipPointResult
   end
 
 
-
-
-
-
-  private
-
-
-  def match_tips
-    @tips ||= Tip.match_tips match.id
-  end
-
 end

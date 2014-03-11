@@ -1,5 +1,11 @@
-require 'spec_helper'
-
 describe RankingItem do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  it 'should have valid factory' do
+    build(:ranking_item).should be_valid
+  end
+
+  describe 'associations' do
+    it { should belong_to(:match) }
+    it { should belong_to(:user) }
+  end
 end
