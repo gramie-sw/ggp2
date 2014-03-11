@@ -1,7 +1,8 @@
 class CreateProperties < ActiveRecord::Migration
   def change
     create_table :properties do |t|
-      t.integer :last_result_match_id
+      t.string :key
+      t.string :value
 
       t.timestamps
     end

@@ -28,6 +28,9 @@ ActiveRecord::Schema.define(version: 20140310215604) do
     t.datetime "updated_at"
   end
 
+  add_index "champion_tips", ["team_id"], name: "index_champion_tips_on_team_id", using: :btree
+  add_index "champion_tips", ["user_id"], name: "index_champion_tips_on_user_id", using: :btree
+
   create_table "matches", force: true do |t|
     t.integer  "position"
     t.integer  "aggregate_id"
@@ -49,7 +52,8 @@ ActiveRecord::Schema.define(version: 20140310215604) do
   add_index "matches", ["venue_id"], name: "index_matches_on_venue_id", using: :btree
 
   create_table "properties", force: true do |t|
-    t.integer  "last_result_match_id"
+    t.string   "key"
+    t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -80,6 +84,9 @@ ActiveRecord::Schema.define(version: 20140310215604) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "tips", ["match_id"], name: "index_tips_on_match_id", using: :btree
+  add_index "tips", ["user_id"], name: "index_tips_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

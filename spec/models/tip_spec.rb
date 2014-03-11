@@ -110,9 +110,9 @@ describe Tip do
       subject.points.should eq Ggp2.config.correct_tip_points
     end
 
-    it 'should return correct ratio tip points if correct ratio tip' do
-      subject.stub(:result).and_return(Tip::RESULTS[:correct_ratio])
-      subject.points.should eq Ggp2.config.correct_ratio_tip_points
+    it 'should return incorrect tip points if incorrect tip' do
+      subject.stub(:result).and_return(Tip::RESULTS[:incorrect])
+      subject.points.should eq Ggp2.config.incorrect_tip_points
     end
 
     it 'should return correct tendency tip points if correct tendency tip' do
@@ -120,13 +120,8 @@ describe Tip do
       subject.points.should eq Ggp2.config.correct_tendency_tip_points
     end
 
-    it 'should return incorrect tip points if incorrect tip' do
-      subject.stub(:result).and_return(Tip::RESULTS[:incorrect])
-      subject.points.should eq Ggp2.config.incorrect_tip_points
-    end
-
     it 'should return nil if result is 0' do
-      subject.stub(:result).and_return(0)
+      subject.stub(:result).and_return(nil)
       subject.points.should be_nil
     end
   end

@@ -124,6 +124,8 @@ if Rails.env == 'development'
   #---------tip creation---------
   User.players.each do |user|
     create(:champion_tip, user: user, team: nil)
+
+
     Match.all.each do |match|
       create(:tip, user: user, match: match)
     end
