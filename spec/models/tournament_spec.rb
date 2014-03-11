@@ -1,25 +1,99 @@
 describe Tournament do
 
-  let(:matches) do
-    [
-        create(:match, position: 3),
-        create(:match, position: 1),
-        create(:match, position: 2)
-    ]
-  end
+  let(:first_match) { create(:match) }
 
   subject { Tournament.new }
 
   before :each do
-    matches
+    relation = double('MatchRelation')
+    relation.stub(:first).and_return(first_match)
+    Match.stub(:order_by_position).and_return(relation)
   end
 
-  describe 'started?' do
+  describe '#started?' do
 
-    context 'if first match is started?' do
+    context 'if matches exists' do
+
+      context 'if first match is started' do
+
+        it 'should return true' do
+          first_match.should_receive(:started?).and_return(true)
+          subject.should be_started
+        end
+      end
+
+      context 'if first match is not started' do
+
+        it 'should return false' do
+          first_match.should_receive(:started?).and_return(false)
+          subject.should_not be_started
+        end
+      end
+    end
+
+    context 'if no match exists' do
+
+      let(:first_match) { nil }
+
+      it 'should return false' do
+        subject.should_not be_started
+      end
+    end
+  end
+
+  describe '#start_date' do
+
+    context 'if matches exists' do
+
+      it 'should return the date of the first match' do
+        subject.start_date.should eq first_match.date
+      end
+    end
+
+    context 'if no matches exists' do
+
+      let(:first_match) { nil }
+
+      it 'should return the date of the first match' do
+        subject.start_date.should be_nil
+      end
+    end
+  end
+
+  describe '#champion_tip_deadline' do
+
+    it 'should be alias of start_date' do
+      subject.method(:champion_tip_deadline).inspect.should match 'start_date'
+    end
+  end
+
+  describe '#champion_tippable?' do
+
+    context 'if matches exists' do
+
+      context 'if first match is started' do
+
+        it 'should return false' do
+          first_match.should_receive(:started?).and_return(true)
+          subject.champion_tippable?.should be_false
+        end
+      end
+
+      context 'if first match is not started' do
+
+        it 'should return false' do
+          first_match.should_receive(:started?).and_return(false)
+          subject.champion_tippable?.should be_true
+        end
+      end
+    end
+
+    context 'if no match exist' do
+
+      let(:first_match) { nil }
 
       it 'should return true' do
-        #subject.should be_started
+        subject.champion_tippable?.should be_true
       end
     end
   end

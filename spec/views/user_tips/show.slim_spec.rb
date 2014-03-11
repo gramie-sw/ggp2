@@ -2,7 +2,11 @@ describe 'user_tips/show.slim' do
 
   let(:user) { create(:player) }
   let(:user_is_current_user) { true }
-  let(:presenter) { UserTipsShowPresenter.new(user: user, user_is_current_user: user_is_current_user) }
+  let(:presenter) do
+    UserTipsShowPresenter.new(user: user,
+                              tournament: Tournament.new,
+                              user_is_current_user: user_is_current_user)
+  end
 
   before :each do
     create(:aggregate)
@@ -10,7 +14,6 @@ describe 'user_tips/show.slim' do
   end
 
   describe 'tips_table' do
-
 
     context 'if presenter#show_as_form? returns true' do
 
@@ -21,7 +24,6 @@ describe 'user_tips/show.slim' do
       end
     end
 
-3
     context 'if presenter#show_as_form? returns false' do
 
       it 'should be showed as form' do
@@ -31,5 +33,4 @@ describe 'user_tips/show.slim' do
       end
     end
   end
-
 end

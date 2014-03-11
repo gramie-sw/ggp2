@@ -113,6 +113,7 @@ de:
     badge:
       one: Auszeichung
       other: Auszeichungen
+    changeable_until: änderbar bis %{date}
     close: x
     wm_2014_title: 'WM-2014 Brasilien'
     match_result: 'Ergebnis'
@@ -164,11 +165,12 @@ de:
     all: Alle Tipps
     all_of: Alle Tipps von %{subject}
     all_for: Alle Tipps für %{subject}
-    yours: Deine Tipps
     description:
       for_showing_others: |
         Die Tipps der Mitspieler sind erst sichtbar, wenn das Spiel begonnen hat.
         Die * zeigen an, ob ein Tipp abgegeben wurde.
+    yours: Deine Tipps
+    tournament_champion: Weltmeister-Tipp
 
   match:
     progress: nach %{happend_count} von %{total_count} Spielen

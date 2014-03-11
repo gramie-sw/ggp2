@@ -2,7 +2,8 @@ describe UserTipsShowPresenter do
 
   let(:user) { create(:player) }
   let(:user_is_current_user) { true }
-  subject { UserTipsShowPresenter.new(user: user, user_is_current_user: user_is_current_user) }
+  let(:tournament) { Tournament.new }
+  subject { UserTipsShowPresenter.new(user: user, tournament: tournament, user_is_current_user: user_is_current_user) }
 
   describe '#title' do
 
@@ -101,6 +102,14 @@ describe UserTipsShowPresenter do
     it 'should cache tip_presenter' do
       #rspec's be_kind_of matcher doesn't work for subclasses of DelegateClass when comparing objects directly
       subject.tip_presenter_for(matches.first).object_id.should be subject.tip_presenter_for(matches.first).object_id
+    end
+  end
+
+  describe '#champion_tip_deadline' do
+
+    it 'should return value from Tournament#champion_tip_deadline' do
+      tournament.should_receive(:champion_tip_deadline).and_return(:deadline)
+      subject.champion_tip_deadline.should eq :deadline
     end
   end
 end

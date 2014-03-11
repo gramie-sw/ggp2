@@ -2,12 +2,11 @@ class UserTipsShowPresenter
 
   include MatchRepresentable
 
-  attr_reader :user
-  attr_reader :user_is_current_user
-  alias user_is_current_user? user_is_current_user
+  delegate :champion_tip_deadline, to: :tournament
 
-  def initialize(user:, user_is_current_user:)
+  def initialize(user:, tournament:, user_is_current_user:)
     @user = user
+    @tournament = tournament
     @user_is_current_user = user_is_current_user
   end
 
@@ -20,19 +19,11 @@ class UserTipsShowPresenter
   end
 
   def subtitle
-    if user_is_current_user?
-      ''
-    else
-      I18n.t('general.of_subject', subject: user.nickname)
-    end
+    user_is_current_user? ? '' : I18n.t('general.of_subject', subject: user.nickname)
   end
 
   def show_as_form? aggregate
-    if user_is_current_user?
-      aggregate.future_matches.exists?
-    else
-      false
-    end
+    user_is_current_user? ? aggregate.future_matches.exists? : false
   end
 
   def tip_presenter_for match
@@ -44,4 +35,16 @@ class UserTipsShowPresenter
       tip_presenter_for(match)
     end
   end
+
+  def champion_tippable?
+    #Todo write tests
+    user_is_current_user? && tournament.champion_tip_deadline.present? && tournament.champion_tippable?
+  end
+
+  private
+
+  attr_reader :user
+  attr_reader :user_is_current_user
+  alias user_is_current_user? user_is_current_user
+  attr_reader :tournament
 end

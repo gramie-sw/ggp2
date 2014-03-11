@@ -4,7 +4,11 @@ describe 'user_tips/_tips_table.slim' do
   let(:tip) { create(:tip) }
   let(:user) { tip.user }
   let(:match) { tip.match }
-  let(:presenter) { UserTipsShowPresenter.new(user: user, user_is_current_user: false) }
+  let(:presenter) do
+    UserTipsShowPresenter.new(user: user,
+                              tournament: Tournament.new,
+                              user_is_current_user: false)
+  end
 
   let(:partial_options) do
     {
