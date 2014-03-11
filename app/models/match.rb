@@ -13,8 +13,8 @@ class Match < ActiveRecord::Base
   validates :aggregate, presence: true
   validates :team_1, presence: {if: :team_1_id}
   validates :team_2, presence: {if: :team_2_id}
-  validates :placeholder_team_1, presence: {if: lambda { |match| !match.team_1? }}, length: {minimum: 3, maximum: 64}, technical_name_allowed_chars: true, allow_blank: true
-  validates :placeholder_team_2, presence: {if: lambda { |match| !match.team_2? }}, length: {minimum: 3, maximum: 64}, technical_name_allowed_chars: true, allow_blank: true
+  validates :placeholder_team_1, presence: {if: lambda { |match| match.team_1.nil? }}, length: {minimum: 3, maximum: 64}, technical_name_allowed_chars: true, allow_blank: true
+  validates :placeholder_team_2, presence: {if: lambda { |match| match.team_2.nil? }}, length: {minimum: 3, maximum: 64}, technical_name_allowed_chars: true, allow_blank: true
   validates :date, presence: true
   validate :validate_placeholder_team_1_not_eq_placeholder_team_2_besides_nil_or_blank
   validate :validate_team_1_not_equal_team_2
@@ -22,20 +22,14 @@ class Match < ActiveRecord::Base
   scope :order_by_position, -> { order('position ASC') }
   scope :future_matches, -> { where('matches.date > ?', Time.now) }
 
-  def team_1?
-    !team_1.nil?
-  end
-
-  def team_2?
-    !team_2.nil?
-  end
-
+  #Todo write test or delete
   def team_or_placeholder_1
-    team_1? ? team_1.name : placeholder_team_1
+    team_1.present? ? team_1.name : placeholder_team_1
   end
 
+  #Todo write test or delete
   def team_or_placeholder_2
-    team_2? ? team_2.name : placeholder_team_2
+    team_1.present? ? team_2.name : placeholder_team_2
   end
 
   def has_result?

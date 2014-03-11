@@ -1,6 +1,20 @@
 - content_for(:title, @presenter.title)
 - content_for(:subtitle, @presenter.subtitle)
 
+div.panel.panel-default
+  div.panel-body
+    div
+      div.row
+        div.col-sm-8
+          strong
+            'Weltermeister-Tipp:
+          'Deutschland
+          br
+          small.ggp2-weakened
+            'änderbar bis 07.06.20014 16.55 Uhr
+        div.col-sm-4.text-right
+          = link_to t('model.submit.update', model: Tip.model_name.human), '', class: 'btn btn-primary'
+
 - for phase in @presenter.phases
   h2 = phase.name
   - if @presenter.show_as_form?(phase)

@@ -13,8 +13,8 @@ describe Match do
       it { should validate_presence_of(:position) }
       it { should validate_uniqueness_of(:position) }
       it { should validate_numericality_of(:position).only_integer }
-      it { should validate_numericality_of(:position).is_greater_than 0}
-      it { should validate_numericality_of(:position).is_less_than_or_equal_to 1000}
+      it { should validate_numericality_of(:position).is_greater_than 0 }
+      it { should validate_numericality_of(:position).is_less_than_or_equal_to 1000 }
     end
 
     describe '#aggregate' do
@@ -125,30 +125,6 @@ describe Match do
         actual_matches.count.should eq 2
         actual_matches.should include match_1, match_2
       end
-    end
-    end
-
-  describe '#team_1?' do
-    it 'returns true when match has team_1' do
-      team = build(:team)
-      game = build(:match, team_1: team)
-      game.team_1?.should be_true
-    end
-
-    it 'returns false when match has no team_1' do
-      build(:match, team_1: nil).team_1?.should be_false
-    end
-  end
-
-  describe '#team_2?' do
-    it 'returns true when match has team_2' do
-      team = build(:team)
-      game = build(:match, team_2: team)
-      game.team_2?.should be_true
-    end
-
-    it 'returns false when match has no team_2' do
-      build(:match, team_2: nil).team_2?.should be_false
     end
   end
 
