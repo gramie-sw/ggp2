@@ -12,10 +12,9 @@ class MatchResult
 
   def save
     if valid?
-      match
-      @match.score_team_1= score_team_1
-      @match.score_team_2= score_team_2
-      @match.save
+      match.score_team_1= score_team_1
+      match.score_team_2= score_team_2
+      match.save
     end
   end
 

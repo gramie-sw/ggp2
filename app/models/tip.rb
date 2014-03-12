@@ -3,7 +3,7 @@ class Tip < ActiveRecord::Base
   extend RecordBatchUpdatable
   include ScoreValidatable
 
-  RESULTS = {correct: 0, incorrect: 1, correct_tendency: 2}
+  RESULTS = {incorrect: 0, correct: 1, correct_tendency: 2}
 
   belongs_to :user
   belongs_to :match
@@ -15,18 +15,24 @@ class Tip < ActiveRecord::Base
   validate :scores_not_changeable_after_match_started
 
   scope :match_tips, ->(match_id= nil) { where(match_id: match_id)}
+  scope :tipped, -> { where("score_team_1 IS NOT NULL AND score_team_2 IS NOT NULL")}
+
   scope :order_by_match_position, -> { joins(:match).order('matches.position').references(:matches) }
 
   def tippable?
     !match.started?
   end
 
+  def tipped?
+    score_team_1? && score_team_2?
+  end
+
   def points
     case result
-      when RESULTS[:correct]
-        Ggp2.config.correct_tip_points
       when RESULTS[:incorrect]
         Ggp2.config.incorrect_tip_points
+      when RESULTS[:correct]
+        Ggp2.config.correct_tip_points
       when RESULTS[:correct_tendency]
         Ggp2.config.correct_tendency_tip_points
       else

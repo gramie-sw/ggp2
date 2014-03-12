@@ -79,6 +79,16 @@ describe Tip do
       tips.count.should eq 2
       tips.should include tip_1, tip_3
     end
+
+    it 'should return all tipped tips' do
+      tip_1 = create(:tip, score_team_1: 1, score_team_2: 0)
+      create(:tip, score_team_1: nil, score_team_2: nil)
+      tip_3 = create(:tip, score_team_1: 2, score_team_2: 2)
+
+      tips = Tip.tipped
+      tips.count.should eq 2
+      tips.should include tip_1, tip_3
+    end
   end
 
   describe '#tippable?' do
@@ -100,6 +110,40 @@ describe Tip do
         match.stub(:started?).and_return(false)
         subject.should be_tippable
       end
+    end
+  end
+
+  describe '#tipped?' do
+
+    let(:match) { Match.new }
+    subject { Tip.new(match: match)}
+
+    it 'should return true if score_team_1 and score_team_2 are set' do
+      subject.score_team_1 = 1
+      subject.score_team_2 = 1
+
+      subject.tipped?.should be_true
+    end
+
+    it 'should return true if score_team_1 is not set' do
+      subject.score_team_1 = nil
+      subject.score_team_2 = 1
+
+      subject.tipped?.should be_false
+    end
+
+    it 'should return true if score_team_1 is not set' do
+      subject.score_team_1 = 1
+      subject.score_team_2 = nil
+
+      subject.tipped?.should be_false
+    end
+
+    it 'should return false if score_team_1 and score_team_2 are not set' do
+      subject.score_team_1 = nil
+      subject.score_team_2 = nil
+
+      subject.tipped?.should be_false
     end
   end
 
