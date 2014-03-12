@@ -33,4 +33,87 @@ describe 'user_tips/show.slim' do
       end
     end
   end
+
+  describe '#champion_tip' do
+
+    context 'if presenter#show_champion_tip? returns true' do
+
+      it 'should be showed' do
+        presenter.stub(:show_champion_tip?).and_return(true)
+        render
+        rendered.should match t('tip.tournament_champion')
+      end
+    end
+
+    context 'if presenter#show_champion_tip? returns false' do
+
+      it 'should be showed' do
+        presenter.stub(:show_champion_tip?).and_return(false)
+        render
+        rendered.should_not match t('tip.tournament_champion')
+      end
+    end
+  end
+
+  describe '#champion_tip link' do
+
+    let(:champion_tip_deadline) { 2.days.from_now }
+
+    before :each do
+      presenter.stub(:show_champion_tip?).and_return(true)
+      presenter.stub(:champion_tip_deadline).and_return(champion_tip_deadline)
+    end
+
+    let(:champion_tip_link_css) { "a[href='champion_tip']" }
+
+    context 'if presenter#champion_tippable? returns true' do
+
+      it 'should be showed' do
+        presenter.stub(:champion_tippable?).and_return(true)
+        render
+        rendered.should have_css champion_tip_link_css
+      end
+    end
+
+    context 'if presenter#champion_tippable? returns false' do
+
+      it 'should be showed' do
+        presenter.stub(:champion_tippable?).and_return(false)
+        render
+        rendered.should_not have_css champion_tip_link_css
+      end
+    end
+  end
+
+  describe '#champion_tip deadline message' do
+
+    let(:champion_tip_deadline) { 2.days.from_now }
+
+    before :each do
+      presenter.stub(:show_champion_tip?).and_return(true)
+      presenter.stub(:champion_tip_deadline).and_return(champion_tip_deadline)
+    end
+
+    let(:champion_tip_deadline_message_css) do
+      ['div#champion-tip', text: t('general.changeable_until', date: l(champion_tip_deadline))]
+    end
+
+    context 'if presenter#champion_tippable? returns true' do
+
+      it 'should be showed' do
+        presenter.stub(:champion_tippable?).and_return(true)
+        render
+        rendered.should have_css *champion_tip_deadline_message_css
+      end
+    end
+
+    context 'if presenter#champion_tippable? returns false' do
+
+      it 'should be showed' do
+        presenter.stub(:champion_tippable?).and_return(false)
+        render
+        rendered.should_not have_css *champion_tip_deadline_message_css
+      end
+    end
+  end
 end

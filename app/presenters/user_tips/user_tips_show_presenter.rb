@@ -36,8 +36,11 @@ class UserTipsShowPresenter
     end
   end
 
+  def show_champion_tip?
+    user_is_current_user || !tournament.champion_tippable?
+  end
+
   def champion_tippable?
-    #Todo write tests
     user_is_current_user? && tournament.champion_tip_deadline.present? && tournament.champion_tippable?
   end
 

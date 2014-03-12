@@ -112,4 +112,81 @@ describe UserTipsShowPresenter do
       subject.champion_tip_deadline.should eq :deadline
     end
   end
+
+  describe '#show_champion_tip?' do
+
+    context 'if user is current user' do
+
+      it 'should return true' do
+        subject.show_champion_tip?.should be_true
+      end
+    end
+
+    context 'if user is not current user' do
+
+      let(:user_is_current_user) { false }
+
+      context 'if champion is tippable' do
+
+        it 'should return false' do
+          tournament.stub(:champion_tippable?).and_return(true)
+          subject.show_champion_tip?.should be_false
+        end
+      end
+
+      context 'if champion is not tippable' do
+
+        it 'should return false' do
+          tournament.stub(:champion_tippable?).and_return(false)
+          subject.show_champion_tip?.should be_true
+        end
+      end
+    end
+  end
+
+  describe '#champion_tippable?' do
+
+    before :each do
+      tournament.stub(:champion_tip_deadline).and_return(Time.new)
+      tournament.stub(:champion_tippable?).and_return(true)
+    end
+
+    context 'if user is current user and tournament has champion tip deadline and champion is tippable' do
+
+      it 'should return true' do
+        subject.champion_tippable?.should be_true
+      end
+    end
+
+    context 'if user_is_not_current_user' do
+
+      let(:user_is_current_user) { false }
+
+      it 'should return false' do
+        subject.champion_tippable?.should be_false
+      end
+    end
+
+    context 'if tournament has no champion tip deadline ' do
+
+      before :each do
+        tournament.stub(:champion_tip_deadline).and_return(nil)
+      end
+
+      it 'should return false' do
+        subject.champion_tippable?.should be_false
+      end
+    end
+
+    context 'if champion is not tippable ' do
+
+      before :each do
+        tournament.stub(:champion_tippable?).and_return(false)
+      end
+
+      it 'should return false' do
+        subject.champion_tippable?.should be_false
+      end
+    end
+  end
 end

@@ -1,22 +1,22 @@
 - content_for(:title, @presenter.title)
 - content_for(:subtitle, @presenter.subtitle)
 
-div.panel.panel-default
-  div.panel-body
-    div
-      div.row
-        div.col-sm-8
-          strong
-            = "#{t('tip.tournament_champion')}:"
-          'Deutschland
-          br
+- if @presenter.show_champion_tip?
+  div.panel.panel-default#champion-tip
+    div.panel-body
+      div
+        div.row
+          div.col-sm-8
+            strong
+              = "#{t('tip.tournament_champion')}:"
+            'Deutschland
+            br
+            - if @presenter.champion_tippable?
+              small.ggp2-weakened
+                = t('general.changeable_until', date: l(@presenter.champion_tip_deadline))
           - if @presenter.champion_tippable?
-            /Todo write tests
-            small.ggp2-weakened
-              = t('general.changeable_until', date: l(@presenter.champion_tip_deadline))
-        - if @presenter.champion_tippable?
-          div.col-sm-4.text-right
-            = link_to t('model.submit.update', model: Tip.model_name.human), '', class: 'btn btn-primary'
+            div.col-sm-4.text-right
+              = link_to t('model.submit.update', model: Tip.model_name.human), 'champion_tip', class: 'btn btn-primary'
 
 - for phase in @presenter.phases
   h2 = phase.name
