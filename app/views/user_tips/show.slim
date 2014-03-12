@@ -6,10 +6,15 @@
     div.panel-body
       div
         div.row
-          div.col-sm-8
+          div.col-sm-8.ggp2-flag-with-country-name
             strong
               = "#{t('tip.tournament_champion')}:"
-            'Deutschland
+            '&nbsp;&nbsp;
+            - if @presenter.champion_tip_team.present?
+              = standard_flag_image_tag_of @presenter.champion_tip_team
+              = @presenter.champion_tip_team.name
+            - else
+              = t('tip.not_present')
             br
             - if @presenter.champion_tippable?
               small.ggp2-weakened

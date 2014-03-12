@@ -169,8 +169,9 @@ de:
       for_showing_others: |
         Die Tipps der Mitspieler sind erst sichtbar, wenn das Spiel begonnen hat.
         Die * zeigen an, ob ein Tipp abgegeben wurde.
-    yours: Deine Tipps
+    not_present: Nicht getippt
     tournament_champion: Weltmeister-Tipp
+    yours: Deine Tipps
 
   match:
     progress: nach %{happend_count} von %{total_count} Spielen

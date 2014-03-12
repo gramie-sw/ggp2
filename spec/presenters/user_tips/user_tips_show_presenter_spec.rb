@@ -189,4 +189,22 @@ describe UserTipsShowPresenter do
       end
     end
   end
+
+  describe '#champion_tip_team' do
+
+    context 'if user has champion tipped' do
+
+      it 'should return champion tip team' do
+        expected_team = create(:champion_tip, user: user).team
+        subject.champion_tip_team.should eq expected_team
+      end
+    end
+
+    context 'if user has champion not tipped' do
+
+      it 'should return null' do
+        subject.champion_tip_team.should be_nil
+      end
+    end
+  end
 end

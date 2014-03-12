@@ -116,4 +116,33 @@ describe 'user_tips/show.slim' do
       end
     end
   end
+
+  describe 'champion tip team' do
+
+    let(:champion_tip_deadline) { 2.days.from_now }
+
+    before :each do
+      presenter.stub(:show_champion_tip?).and_return(true)
+      presenter.stub(:champion_tip_deadline).and_return(champion_tip_deadline)
+    end
+
+    context 'if presenter#champion_tip_team present' do
+
+      it 'should be displayed' do
+        champion_tip = create(:champion_tip)
+        user.champion_tip = champion_tip
+        render
+        rendered.should have_css 'div#champion-tip', text: champion_tip.team.name
+        rendered.should_not have_css 'div#champion-tip', text: t('tip.not_present')
+      end
+    end
+
+    context 'if presenter#champion_tip_team present' do
+
+      it 'should not be displayed, show not present message instead' do
+        render
+        rendered.should have_css 'div#champion-tip', text: t('tip.not_present')
+      end
+    end
+  end
 end

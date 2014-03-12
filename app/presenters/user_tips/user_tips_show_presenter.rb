@@ -44,6 +44,10 @@ class UserTipsShowPresenter
     user_is_current_user? && tournament.champion_tip_deadline.present? && tournament.champion_tippable?
   end
 
+  def champion_tip_team
+    user.champion_tip.try(:team)
+  end
+
   private
 
   attr_reader :user
