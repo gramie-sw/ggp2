@@ -15,7 +15,7 @@ class TipResultService
     match = Match.find(@match_id)
 
     tips.each do |tip|
-      tip.result = TipResultCalculator.new(tip: tip, match: match).result
+      tip.result = TipResultCalculator.result tip: tip, match: match
     end
   end
 
