@@ -1,7 +1,7 @@
 = render partial: 'commons/background_image', locals: {image_name: 'background_image_01.jpg'}
 - content_for(:title, Team.model_name.human_plural)
 
-div.well.well-sm
+div.well
   = form_for @presenter.new_team, html: {class: 'form-inline', role: 'form'} do |f|
     fieldset
       div.ggp2-form-group
@@ -17,6 +17,6 @@ div.well.well-sm
         = f.submit class: 'btn btn-primary'
 
 div.visible-sm
-  = render :partial => 'teams', locals: {columns: 2, teams: @presenter.teams}
+  = render partial: 'teams', locals: {columns: 2, teams: @presenter.teams}
 div.hidden-sm
-  = render :partial => 'teams', locals: {columns: 3, teams: @presenter.teams}
+  = render partial: 'teams', locals: {columns: 3, teams: @presenter.teams}

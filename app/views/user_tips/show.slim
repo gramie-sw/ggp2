@@ -21,9 +21,13 @@
                 = t('general.changeable_until', date: l(@presenter.champion_tip_deadline))
           - if @presenter.champion_tippable?
             div.col-sm-4.text-right.hidden-xs
-              = link_to t('model.submit.update', model: Tip.model_name.human), 'champion_tip', class: 'btn btn-primary'
+              = link_to t('model.submit.update', model: Tip.model_name.human),
+                edit_champion_tips_path(),
+                class: 'btn btn-primary'
             div.col-xs-12.text-center.visible-xs.ggp2-panel-body-box
-              = link_to t('model.submit.update', model: Tip.model_name.human), 'champion_tip', class: 'btn btn-primary'
+              = link_to t('model.submit.update', model: Tip.model_name.human),
+                edit_champion_tips_path(),
+                class: 'btn btn-primary'
 
 - for phase in @presenter.phases
   h2 = phase.name

@@ -21,6 +21,7 @@ Ggp2::Application.routes.draw do
       post :update_multiple
     end
   end
+  resource :champion_tips, only: [:edit, :update]
   resources :venues
 
   # must be behind devise

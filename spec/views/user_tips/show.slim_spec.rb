@@ -64,7 +64,7 @@ describe 'user_tips/show.slim' do
       presenter.stub(:champion_tip_deadline).and_return(champion_tip_deadline)
     end
 
-    let(:champion_tip_link_css) { "a[href='champion_tip']" }
+    let(:champion_tip_link_css) { "a[href='#{edit_champion_tips_path}']" }
 
     context 'if presenter#champion_tippable? returns true' do
 
