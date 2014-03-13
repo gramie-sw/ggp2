@@ -9,10 +9,10 @@ div.row
       div.panel-heading
         = "#{Match.model_name.human} #{match_presenter.position}"
       div.panel-body
-        div.row.info-box
+        div.row.ggp2-panel-body-box
           div.col-xs-12.ggp2-weakened
             = "#{match_presenter.aggregate_name_recursive}, #{l match_presenter.date, format: :short}"
-        div.row.info-box
+        div.row.ggp2-panel-body-box
           div.col-xs-7.ggp2-flag-with-country-name
             span.ggp2-no-wrap
               = standard_flag_image_tag_of match_presenter.team_1
@@ -55,23 +55,23 @@ div.row
       div.panel-heading
         = "#{Match.model_name.human} #{match_presenter.position}"
       div.panel-body
-        div.info-box
+        div.ggp2-panel-body-box
           div
             = standard_flag_image_tag_of match_presenter.team_1
           div
             strong = match_presenter.team_1_name_or_placeholder
-        div.info-box
+        div.ggp2-panel-body-box
           strong = match_presenter.result
-        div.info-box
+        div.ggp2-panel-body-box
           div
             = standard_flag_image_tag_of match_presenter.team_2
           div
             strong = match_presenter.team_2_name_or_placeholder
-        div.info-box.ggp2-weakened
+        div.ggp2-panel-body-box.ggp2-weakened
           - for aggregate_name in match_presenter.aggregate_name_recursive(multiline: true)
             div
               = aggregate_name
-        div.info-box.ggp2-weakened
+        div.ggp2-panel-body-box.ggp2-weakened
           div
             = l match_presenter.date, format: :only_date
           div

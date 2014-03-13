@@ -123,6 +123,14 @@ form {
   }
 }
 
+.panel {
+  .panel-body {
+    .ggp2-panel-body-box:not(:first-child) {
+      margin-top: $panel-body-padding;
+    }
+  }
+}
+
 .ggp2-alert {
   margin-top: 15px;
 }

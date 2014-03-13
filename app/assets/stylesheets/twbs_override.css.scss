@@ -86,12 +86,6 @@ h2 {
   font-weight: bold;
 }
 
-.panel-body {
-  .info-box:not(:first-child) {
-     margin-top: $panel-body-padding;
-  }
-}
-
 .btn {
   margin-bottom: 5px;
 }
