@@ -1,5 +1,6 @@
-- content_for(:title, t('tip.tournament_champion'))
+- content_for(:title, t('model.messages.change', model: ChampionTip.model_name.human))
 
+= render partial: 'commons/error_messages', locals: {model: @presenter.champion_tip}
 div.row
   - for team in @presenter.teams
     div.col-lg-3.col-md-4.col-sm-6.col-xs-12.ggp2-flag-with-country-name
