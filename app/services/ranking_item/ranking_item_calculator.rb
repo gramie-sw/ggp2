@@ -1,0 +1,2 @@
+class RankingItemCalculator
+end

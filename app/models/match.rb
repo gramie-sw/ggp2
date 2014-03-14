@@ -20,6 +20,7 @@ class Match < ActiveRecord::Base
   validate :validate_placeholder_team_1_not_eq_placeholder_team_2_besides_nil_or_blank
   validate :validate_team_1_not_equal_team_2
 
+
   scope :order_by_position, -> { order('position ASC') }
   scope :future_matches, -> { where('matches.date > ?', Time.now) }
 
