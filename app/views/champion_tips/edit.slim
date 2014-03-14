@@ -1,1 +1,10 @@
 - content_for(:title, t('tip.tournament_champion'))
+
+div.row
+  - for team in @presenter.teams
+    div.col-lg-3.col-md-4.col-sm-6.col-xs-12.ggp2-flag-with-country-name
+      = form_for @presenter.champion_tip do |f|
+        = f.hidden_field :team_id, value: team.id
+        button.ggp2-unstyled-button
+          = standard_flag_image_tag_of team
+          = team.name

@@ -48,6 +48,10 @@ class UserTipsShowPresenter
     user.champion_tip.try(:team)
   end
 
+  def champion_tip_id
+    user.champion_tip.try(:id)
+  end
+
   private
 
   attr_reader :user

@@ -207,4 +207,22 @@ describe UserTipsShowPresenter do
       end
     end
   end
+
+  describe '#champion_tip_id' do
+
+    context 'if champion_tip present' do
+
+      it 'should return champion_tip id' do
+        expected_champion_tip = create(:champion_tip, user: user)
+        subject.champion_tip_id.should eq expected_champion_tip.id
+      end
+    end
+
+    context 'if champion_tip is not present' do
+
+      it 'should return nil' do
+        subject.champion_tip_id.should be_nil
+      end
+    end
+  end
 end

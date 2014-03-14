@@ -1,9 +1,9 @@
 class ChampionTipsEditPresenter
 
-  attr_accessor :champion_tip_id
+  attr_reader :champion_tip
 
-  def initialize(champion_tip_id:)
-    self.champion_tip_id = champion_tip_id
+  def initialize champion_tip
+    @champion_tip = champion_tip
   end
 
   def teams

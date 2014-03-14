@@ -1,6 +1,7 @@
 describe 'user_tips/show.slim' do
 
   let(:user) { create(:player) }
+  let(:champion_tip) { create(:champion_tip, user: user) }
   let(:user_is_current_user) { true }
   let(:presenter) do
     UserTipsShowPresenter.new(user: user,
@@ -9,6 +10,7 @@ describe 'user_tips/show.slim' do
   end
 
   before :each do
+    champion_tip
     create(:aggregate)
     assign(:presenter, presenter)
   end
@@ -64,7 +66,7 @@ describe 'user_tips/show.slim' do
       presenter.stub(:champion_tip_deadline).and_return(champion_tip_deadline)
     end
 
-    let(:champion_tip_link_css) { "a[href='#{edit_champion_tips_path}']" }
+    let(:champion_tip_link_css) { "a[href='#{edit_champion_tip_path(champion_tip)}']" }
 
     context 'if presenter#champion_tippable? returns true' do
 
@@ -129,17 +131,16 @@ describe 'user_tips/show.slim' do
     context 'if presenter#champion_tip_team present' do
 
       it 'should be displayed' do
-        champion_tip = create(:champion_tip)
-        user.champion_tip = champion_tip
         render
         rendered.should have_css 'div#champion-tip', text: champion_tip.team.name
         rendered.should_not have_css 'div#champion-tip', text: t('tip.not_present')
       end
     end
 
-    context 'if presenter#champion_tip_team present' do
+    context 'if presenter#champion_tip_team no present' do
 
       it 'should not be displayed, show not present message instead' do
+        presenter.stub(:champion_tip_team).and_return(nil)
         render
         rendered.should have_css 'div#champion-tip', text: t('tip.not_present')
       end

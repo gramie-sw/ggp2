@@ -121,6 +121,15 @@ form {
       margin-top: 10px;
     }
   }
+
+  button {
+    &.ggp2-unstyled-button, &:active, &:hover {
+
+      border: none;
+      background: none;
+      outline: none;
+    }
+  }
 }
 
 .panel {

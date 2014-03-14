@@ -29,6 +29,9 @@ de:
       aggregate:
         one: "Phase/Gruppe"
         other: Phasen/Gruppen
+      champion_tip:
+        one: Weltmeister-Tipp
+        other: Weltemeister-Tipps
       match:
         one: Spiel
         other: Spiele

@@ -27,11 +27,11 @@
             td.text-center = match_presenter.result
             td = l match_presenter.date, format: :short
             td
-              = link_to(edit_match_path(match_presenter.__getobj__), title: t('model.messages.edit', model: ("#{Match.model_name.human}\
+              = link_to(edit_match_path(match_presenter), title: t('model.messages.edit', model: ("#{Match.model_name.human}\
               #{match_presenter.__getobj__.position}"))) do
                 i.fa.fa-pencil
             td
-              = link_to(match_path(match_presenter.__getobj__), method: :delete, data: {confirm: t('model.messages.destroy_really',\
+              = link_to(match_path(match_presenter), method: :delete, data: {confirm: t('model.messages.destroy_really',\
               model: ("#{Match.model_name.human} #{match_presenter.__getobj__.position}")), method: :delete}, title: t('model.messages.destroy',\
               model: ("#{Match.model_name.human} #{match_presenter.__getobj__.position}"))) do
                 i.fa.fa-trash-o
