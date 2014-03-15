@@ -94,7 +94,15 @@ describe Match do
     it { should belong_to(:team_1).class_name('Team') }
     it { should belong_to(:team_2).class_name('Team') }
     it { should have_many(:tips).dependent(:destroy) }
-    it { should have_many(:ranking_items).dependent(:destroy)}
+    it { should have_many(:ranking_items).dependent(:destroy) }
+  end
+
+  describe 'message_name' do
+    subject { Match.new(position: 77) }
+
+    it 'should return message name' do
+      subject.message_name.should eq "#{Match.model_name.human} 77"
+    end
   end
 
   describe 'scopes' do
