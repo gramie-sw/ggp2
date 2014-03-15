@@ -149,6 +149,9 @@ de:
       one: Punkt
       other: Punkte
     position: Platz
+    profile:
+      one: Profil
+      other: Profile
     remove: Entfernen
     of_subject: von %{subject}
     search: Suchen
@@ -165,6 +168,11 @@ de:
     errors:
       title: 'Bitte berichtigen:'
 
+  champion_tip:
+    description:
+      change: |
+       Wähle deinen Weltmeister
+
   tip:
     all: Alle Tipps
     all_of: Alle Tipps von %{subject}
@@ -174,7 +182,6 @@ de:
         Die Tipps der Mitspieler sind erst sichtbar, wenn das Spiel begonnen hat.
         Die * zeigen an, ob ein Tipp abgegeben wurde.
     not_present: Nicht getippt
-    tournament_champion: Weltmeister-Tipp
     yours: Deine Tipps
 
   match:

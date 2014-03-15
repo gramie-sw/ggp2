@@ -62,8 +62,8 @@ ActiveRecord::Schema.define(version: 20140310215604) do
     t.integer  "match_id"
     t.integer  "user_id"
     t.integer  "position"
-    t.integer  "correct"
-    t.integer  "correct_tendency"
+    t.integer  "correct_tips_count"
+    t.integer  "correct_tendency_tips_only_count"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

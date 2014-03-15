@@ -8,7 +8,7 @@
         div.row
           div.col-sm-8.ggp2-flag-with-country-name
             strong
-              = "#{t('tip.tournament_champion')}:"
+              = "#{ChampionTip.model_name.human}:"
             '&nbsp;&nbsp;
             - if @presenter.champion_tip_team.present?
               = standard_flag_image_tag_of @presenter.champion_tip_team

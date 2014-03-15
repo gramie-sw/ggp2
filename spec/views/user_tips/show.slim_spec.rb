@@ -43,7 +43,7 @@ describe 'user_tips/show.slim' do
       it 'should be showed' do
         presenter.stub(:show_champion_tip?).and_return(true)
         render
-        rendered.should match t('tip.tournament_champion')
+        rendered.should match ChampionTip.model_name.human
       end
     end
 

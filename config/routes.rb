@@ -8,10 +8,11 @@ Ggp2::Application.routes.draw do
   end
 
   resources :aggregates
+  resources :champion_tips, only: [:edit, :update]
   resources :matches
   resources :match_results, only: [:new, :create]
-  resources :user_tips, only: :show
   resources :match_tips, only: :show
+  resources :profiles, only: :show
   resource :rankings, only: :show
   resources :teams
   resources :tips, except: [:index, :show, :new, :create, :edit, :update, :destroy] do
@@ -21,7 +22,7 @@ Ggp2::Application.routes.draw do
       post :update_multiple
     end
   end
-  resources :champion_tips, only: [:edit, :update]
+  resources :user_tips, only: :show
   resources :venues
 
   # must be behind devise
