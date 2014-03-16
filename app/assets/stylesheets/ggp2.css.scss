@@ -176,3 +176,26 @@ form {
     line-height: $line-height-computed * 1.2 !important;
   }
 }
+
+.ggp2-statistic-box {
+
+  float: left;
+
+  .body {
+
+    width: 100px;
+    height: 130px;
+
+    .value {
+      font-size: $font-size-base * 2.5;
+      line-height: $line-height-computed * 2.5;
+      font-weight: bold;
+    }
+
+    .legend {
+      font-weight: bold;
+      line-height: $line-height-computed * 1.2;
+    }
+  }
+
+}

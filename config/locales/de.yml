@@ -184,6 +184,9 @@ de:
     not_present: Nicht getippt
     yours: Deine Tipps
 
+  user_statistic:
+    position: Platz
+
   match:
     progress: nach %{happend_count} von %{total_count} Spielen
 

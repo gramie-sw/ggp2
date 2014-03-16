@@ -1,1 +1,5 @@
 - content_for(:title, 'Dein Profil')
+
+h2 Statistik
+- user_statistic = @presenter.user_statistic
+= render partial: 'statistic_item', locals: {value: "#{user_statistic.position}.", label: t('user_statistic.position')}

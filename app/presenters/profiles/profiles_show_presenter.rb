@@ -7,4 +7,7 @@ class ProfilesShowPresenter
     @current_user_id = current_user_id
   end
 
+  def user_statistic
+    @user_statistic ||= UserStatistic.new(user: user, tournament: Tournament.new)
+  end
 end
