@@ -30,7 +30,7 @@ describe User do
 
   describe 'associations' do
     it { should have_many(:tips).dependent(:destroy) }
-    it { should have_many(:ranking_items).dependent(:destroy)}
+    it { should have_many(:ranking_items).dependent(:destroy) }
     it { should have_one(:champion_tip).dependent(:destroy) }
 
     it 'tips should get user' do
@@ -84,6 +84,25 @@ describe User do
         actual_users.first.should eq user_1
         actual_users.second.should eq user_2
         actual_users.third.should eq user_3
+      end
+    end
+  end
+
+  describe '::find_player' do
+
+    context 'if given id belongs to a player' do
+
+      it 'should return player' do
+        player = create(:player)
+        User.find_player(player.id).should eq player
+      end
+    end
+
+    context 'if given id belongs to a admin' do
+
+      it 'should return nil' do
+        admin = create(:admin)
+        User.find_player(admin.id).should be_nil
       end
     end
   end

@@ -14,6 +14,11 @@ class Tournament
     !started?
   end
 
+  def played_match_count
+    @match ||= Match.only_with_result.count
+  end
+
+
   private
 
   def first_match

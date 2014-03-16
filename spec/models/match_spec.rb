@@ -135,6 +135,19 @@ describe Match do
         actual_matches.should include match_1, match_2
       end
     end
+
+    describe '::only_with_result' do
+
+      it 'should return only matches with result' do
+        match_1 = create(:match, score_team_1: 1, score_team_2: 2)
+        match_2 = create(:match, score_team_1: 3, score_team_2: 1)
+        match_3 = create(:match, score_team_1: nil, score_team_2: nil)
+
+        actual_matches = Match.only_with_result
+        actual_matches.count.should eq 2
+        actual_matches.should include match_1, match_2
+      end
+    end
   end
 
   describe '#has_result?' do

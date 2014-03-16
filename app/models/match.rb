@@ -26,6 +26,7 @@ class Match < ActiveRecord::Base
 
   scope :order_by_position, -> { order('position ASC') }
   scope :future_matches, -> { where('matches.date > ?', Time.now) }
+  scope :only_with_result, -> { where('score_team_1 IS NOT NULL AND score_team_2 IS NOT NULL') }
 
   def has_result?
     score_team_1.present? && score_team_2.present?

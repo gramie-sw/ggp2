@@ -24,7 +24,7 @@ describe UserStatistic do
     end
   end
 
-  describe 'correct_ips_count' do
+  describe '#correct_tips_count' do
 
     context 'if current ranking item is present' do
 
@@ -56,6 +56,46 @@ describe UserStatistic do
 
       it 'should return 0' do
         subject.correct_tendency_tips_only_count.should eq 0
+      end
+    end
+  end
+
+  describe '#correct_tips_ratio' do
+
+    context 'if no match has already been played' do
+
+      it 'should return 0' do
+        tournament.stub(:played_match_count).and_return(0)
+        subject.correct_tips_ratio.should eq 0
+      end
+    end
+
+    context 'if matches has been played' do
+
+      it 'should return rounded ratio' do
+        tournament.stub(:played_match_count).and_return(9)
+        subject.stub(:correct_tips_count).and_return(4)
+        subject.correct_tips_ratio.should eq 0
+      end
+    end
+  end
+
+  describe '#correct_tendency_tips_only_ratio' do
+
+    context 'if no match has already been played' do
+
+      it 'should return 0' do
+        tournament.stub(:played_match_count).and_return(0)
+        subject.correct_tendency_tips_only_ratio.should eq 0
+      end
+    end
+
+    context 'if matches has been played' do
+
+      it 'should return rounded ratio' do
+        tournament.stub(:played_match_count).and_return(9)
+        subject.stub(:correct_tendency_tips_only_count).and_return(4)
+        subject.correct_tendency_tips_only_ratio.should eq 0
       end
     end
   end

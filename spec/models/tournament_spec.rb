@@ -97,4 +97,15 @@ describe Tournament do
       end
     end
   end
+
+  describe '#played_match_count' do
+
+    it 'should return played match count' do
+      relation = double('MatchRelation')
+      relation.should_receive(:count).and_return(3)
+      Match.should_receive(:only_with_result).and_return(relation)
+
+      subject.played_match_count.should eq 3
+    end
+  end
 end
