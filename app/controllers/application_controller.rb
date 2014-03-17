@@ -12,4 +12,12 @@ class ApplicationController < ActionController::Base
       user_tip_path(user)
     end
   end
+
+  def permission_service
+    @permission_service ||= PermissionService.new
+  end
+
+  def tournament
+    @tournament ||= Tournament.new
+  end
 end

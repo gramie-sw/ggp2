@@ -71,8 +71,10 @@ de:
         nickname: Nickname
         email: E-Mail
         first_name: Vorname
+        full_name: Name
         last_name: Name
         last_sign_in_at: Letztes Login
+        password: Passwort
         points: Punkte
       venue:
         city: Ort
@@ -159,6 +161,7 @@ de:
     searchterm: Suchbegriff
     select_all: Alle
     select_none: Keines
+    statistic: Statistik
     tendency: Tendenz
     tournament: Turnier
     user_administration: Benutzerverwaltung
@@ -173,6 +176,12 @@ de:
       change: |
        Wähle deinen Weltmeister
 
+  match:
+    progress: nach %{happend_count} von %{total_count} Spielen
+
+  profil:
+    general_info: Benutzer-Daten
+
   tip:
     all: Alle Tipps
     all_of: Alle Tipps von %{subject}
@@ -186,9 +195,10 @@ de:
 
   user_statistic:
     position: Platz
-
-  match:
-    progress: nach %{happend_count} von %{total_count} Spielen
+    correct_tips_count: Richtige Tipps
+    correct_tendency_tips_only_count: Richtige Tendenz
+    correct_tips_ratio: Verhältnis richtige Tipps
+    correct_tendency_tips_only_ratio: Verhältnis richtige Tendenz
 
   views:
     user_tips:

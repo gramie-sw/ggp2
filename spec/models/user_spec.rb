@@ -107,7 +107,7 @@ describe User do
     end
   end
 
-  describe 'player?' do
+  describe '#player?' do
 
     context 'if user is not an admin' do
 
@@ -121,6 +121,14 @@ describe User do
       it 'should return false' do
         build(:admin).should_not be_player
       end
+    end
+  end
+
+  describe '#full_name' do
+    subject { build(:user, first_name: 'Moby', last_name: 'Dick') }
+
+    it 'returns first and last name' do
+      subject.full_name.should eq 'Moby Dick'
     end
   end
 end

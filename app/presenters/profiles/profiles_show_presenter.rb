@@ -1,13 +1,19 @@
 class ProfilesShowPresenter
 
-  attr_reader :user
+  attr_reader :user, :is_for_current_user
+  alias is_for_current_user? is_for_current_user
 
-  def initialize(user:, current_user_id:)
+  def initialize(user:, tournament:, is_for_current_user:)
     @user = user
-    @current_user_id = current_user_id
+    @tournament = tournament
+    @is_for_current_user = is_for_current_user
   end
 
   def user_statistic
-    @user_statistic ||= UserStatistic.new(user: user, tournament: Tournament.new)
+    @user_statistic ||= UserStatistic.new(user: user, tournament: tournament)
   end
+
+  private
+
+  attr_reader :tournament
 end
