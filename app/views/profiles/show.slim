@@ -1,45 +1,55 @@
 - content_for(:title, 'Dein Profil')
 
-div.panel.panel-default
-  div.panel-heading
-    = t('profil.general_info')
-  div.panel-body
-    div.row.ggp2-panel-body-box
-      div.col-md-6
-        p
-          strong
-            = "#{User.human_attribute_name(:full_name)}: "
-          = @presenter.user.full_name
-      div.col-md-6
-        - if @presenter.is_for_current_user?
-          p
-            strong
-              = "#{User.human_attribute_name(:email)}: "
-            = @presenter.user.email
-    - if @presenter.is_for_current_user?
-      div.ggp2-panel-body-box.btn-toolbar
-        = link_to t('model.messages.change', model: User.human_attribute_name(:email)), 'edit_email_link', class:'btn btn-primary btn-sm'
-        = link_to t('model.messages.change', model: User.human_attribute_name(:password)), 'edit_password_link', class:'btn btn-primary btn-sm'
-
-
 div.row
-  div.col-md-6
-    div.panel.panel-default
-      div.panel-heading
-        = t('general.statistic')
-      table.table
-        tbody
-          - user_statistic = @presenter.user_statistic
-          = render partial: 'statistic_item', locals: {label: t('user_statistic.position'), value: "#{user_statistic.position}."}
-          = render partial: 'statistic_item', locals: {label: t('user_statistic.correct_tips_count'), value: "#{user_statistic.correct_tips_count}"}
-          = render partial: 'statistic_item', locals: {label: t('user_statistic.correct_tendency_tips_only_count'), value: "#{user_statistic.correct_tendency_tips_only_count}"}
-          = render partial: 'statistic_item', locals: {label: t('user_statistic.correct_tips_ratio'), value: "#{user_statistic.correct_tips_ratio} %"}
-          = render partial: 'statistic_item', locals: {label: t('user_statistic.correct_tendency_tips_only_ratio'), value: "#{user_statistic.correct_tendency_tips_only_ratio} %"}
+  div.col-md-9
+    = render partial: "#{@presenter.current_section}", locals: {presenter: @presenter}
 
-  div.col-md-6
-    div.panel.panel-default
-      div.panel-heading
-        'Auszeichnungen
-      table.table
-        tbody
-          - user_statistic = @presenter.user_statistic
+    /div.panel.panel-default
+    /  div.panel-heading
+    /    = t('profil.general_info')
+    /  div.panel-body
+    /    div.row.ggp2-panel-body-box
+    /      div.col-md-6
+    /        p
+    /          strong
+    /            = "#{User.human_attribute_name(:full_name)}: "
+    /          = @presenter.user.full_name
+    /      div.col-md-6
+    /        - if @presenter.is_for_current_user?
+    /          p
+    /            strong
+    /              = "#{User.human_attribute_name(:email)}: "
+    /            = @presenter.user.email
+    /    - if @presenter.is_for_current_user?
+    /      div.ggp2-panel-body-box.btn-toolbar
+    /        = link_to t('model.messages.change', model: User.human_attribute_name(:email)), 'edit_email_link', class:'btn btn-primary btn-sm'
+    /        = link_to t('model.messages.change', model: User.human_attribute_name(:password)), 'edit_password_link', class:'btn btn-primary btn-sm'
+    /
+    /
+    /div.row
+    /  div.col-md-6
+    /    div.panel.panel-default
+    /      div.panel-heading
+    /        = t('general.statistic')
+    /      table.table
+    /        tbody
+    /          - user_statistic = @presenter.user_statistic
+    /          = render partial: 'statistic_item', locals: {label: t('user_statistic.position'), value: "#{user_statistic.position}."}
+    /          = render partial: 'statistic_item', locals: {label: t('user_statistic.correct_tips_count'), value: "#{user_statistic.correct_tips_count}"}
+    /          = render partial: 'statistic_item', locals: {label: t('user_statistic.correct_tendency_tips_only_count'), value: "#{user_statistic.correct_tendency_tips_only_count}"}
+    /          = render partial: 'statistic_item', locals: {label: t('user_statistic.correct_tips_ratio'), value: "#{user_statistic.correct_tips_ratio} %"}
+    /          = render partial: 'statistic_item', locals: {label: t('user_statistic.correct_tendency_tips_only_ratio'), value: "#{user_statistic.correct_tendency_tips_only_ratio} %"}
+    /
+    /  div.col-md-6
+    /    div.panel.panel-default
+    /      div.panel-heading
+    /        'Auszeichnungen
+    /      table.table
+    /        tbody
+    /          - user_statistic = @presenter.user_statistic
+
+  div.col-md-3
+    ul.nav.nav-pills.nav-stacked
+      - for section in @presenter.available_sections
+        li *show_menu_li_attributes(section, @presenter.current_section)
+          = link_to t("profile.section.#{section}"), profile_path(@presenter.user, section: section)

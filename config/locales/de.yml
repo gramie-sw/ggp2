@@ -179,8 +179,11 @@ de:
   match:
     progress: nach %{happend_count} von %{total_count} Spielen
 
-  profil:
-    general_info: Benutzer-Daten
+  profile:
+    section:
+      statistic: Statistik
+      badges: Auszeichnungen
+      user_data: Benutzer-Daten
 
   tip:
     all: Alle Tipps
@@ -197,8 +200,8 @@ de:
     position: Platz
     correct_tips_count: Richtige Tipps
     correct_tendency_tips_only_count: Richtige Tendenz
-    correct_tips_ratio: Verhältnis richtige Tipps
-    correct_tendency_tips_only_ratio: Verhältnis richtige Tendenz
+    correct_tips_ratio: Richtige Tipps in %
+    correct_tendency_tips_only_ratio: Richtige Tendenz in %
 
   views:
     user_tips:

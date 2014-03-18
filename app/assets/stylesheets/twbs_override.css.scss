@@ -79,7 +79,7 @@ h2 {
 }
 
 .page-header {
- margin-top: $line-height-computed * 1.1
+  margin-top: $line-height-computed * 1.1
 }
 
 .panel-heading {
@@ -92,4 +92,17 @@ h2 {
 
 .btn {
   margin-bottom: 5px;
+}
+
+.nav-pills {
+
+  li {
+    a {
+      color: $text-color;
+
+      &:hover {
+        color: $text-color
+      }
+    }
+  }
 }

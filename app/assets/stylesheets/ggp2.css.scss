@@ -176,3 +176,27 @@ form {
     line-height: $line-height-computed * 1.2 !important;
   }
 }
+
+.ggp2-jumbotron {
+
+  h2 {
+    text-align: left;
+    margin-top: 0;
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid $gray-light;
+  }
+
+  p {
+
+    &.ggp2-value {
+      font-size: $font-size-base * 2.5;
+    }
+
+    &.ggp2-label {
+      margin-bottom: 30px;
+      font-size: $font-size-base;
+    }
+  }
+
+}

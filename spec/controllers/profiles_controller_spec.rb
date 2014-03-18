@@ -23,8 +23,11 @@ describe ProfilesController do
       User.should_receive(:find_player).with(requested_user.to_param).and_return(requested_user)
       @controller.permission_service.should_receive(:is_user_current_user?).with(requested_user).and_return(false)
       ProfilesShowPresenter.should_receive(:new).
-          with(user: requested_user, tournament: @controller.tournament, is_for_current_user: false).and_call_original
-      get :show, id: requested_user.id
+          with(user: requested_user,
+               tournament: @controller.tournament,
+               is_for_current_user: false,
+               section: 'statistic').and_call_original
+      get :show, id: requested_user.id, section: 'statistic'
     end
   end
 end

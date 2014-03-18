@@ -1,0 +1,10 @@
+div.jumbotron.ggp2-jumbotron
+  h2 = t('profile.section.statistic')
+  div.row
+    - user_statistic = presenter.user_statistic
+    = render partial: 'statistic_item', locals: {label: t('general.point.other'), value: 0}
+    = render partial: 'statistic_item', locals: {label: t('user_statistic.position'), value: "#{user_statistic.position}"}
+    = render partial: 'statistic_item', locals: {label: t('user_statistic.correct_tips_count'), value: "#{user_statistic.correct_tips_count}"}
+    = render partial: 'statistic_item', locals: {label: t('user_statistic.correct_tendency_tips_only_count'), value: "#{user_statistic.correct_tendency_tips_only_count}"}
+    = render partial: 'statistic_item', locals: {label: t('user_statistic.correct_tips_ratio'), value: user_statistic.correct_tips_ratio }
+    = render partial: 'statistic_item', locals: {label: t('user_statistic.correct_tendency_tips_only_ratio'), value: "#{user_statistic.correct_tendency_tips_only_ratio}"}
