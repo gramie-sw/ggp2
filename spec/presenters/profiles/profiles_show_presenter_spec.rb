@@ -39,6 +39,30 @@ describe ProfilesShowPresenter do
     end
   end
 
+  describe '#title' do
+
+    context 'when is_for_current_user is true' do
+      it { subject.title.should eq t('profile.yours') }
+    end
+
+    context 'when is_for_current_user is false' do
+      let(:is_for_current_user) { false }
+      it { subject.title.should eq t('general.profile.one') }
+    end
+  end
+
+  describe '#subtitle' do
+
+    context 'when is_for_current_user is true' do
+      it { subject.subtitle.should eq '' }
+    end
+
+    context 'when is_for_current_user is false' do
+      let(:is_for_current_user) { false }
+      it { subject.subtitle.should eq t('general.of_subject', subject: user.nickname) }
+    end
+  end
+
   describe '#current_section' do
 
     context 'if given section is in available section' do

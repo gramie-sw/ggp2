@@ -10,6 +10,22 @@ class ProfilesShowPresenter
     @section = section.try(:to_sym)
   end
 
+  def title
+    if is_for_current_user
+      I18n.t('profile.yours')
+    else
+      I18n.t('general.profile.one')
+    end
+  end
+
+  def subtitle
+    if is_for_current_user
+      ''
+    else
+      I18n.t('general.of_subject', subject: user.nickname)
+    end
+  end
+
   def user_statistic
     @user_statistic ||= UserStatistic.new(user: user, tournament: tournament)
   end
