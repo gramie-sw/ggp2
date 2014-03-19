@@ -20,7 +20,7 @@ describe RankingItem do
         create(:ranking_item)
         ranking_item_2 = create(:ranking_item, match: match)
 
-        ranking_items = RankingItem.ranking_items match.id
+        ranking_items = RankingItem.by_match_id match.id
         ranking_items.size.should eq 2
         ranking_items.should include ranking_item_1, ranking_item_2
       end

@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20140310215604) do
     t.integer  "position"
     t.integer  "correct_tips_count"
     t.integer  "correct_tendency_tips_only_count"
+    t.integer  "points"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -19,7 +19,7 @@ describe ChampionTip do
     end
   end
 
-  describe 'associtations' do
+  describe 'associations' do
     it { should belong_to(:user) }
     it { should belong_to(:team) }
   end

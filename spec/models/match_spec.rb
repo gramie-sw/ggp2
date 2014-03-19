@@ -110,16 +110,15 @@ describe Match do
     describe '::order_by_position' do
 
       it 'should order by position' do
-        aggregate = create(:aggregate)
 
-        game_3 = create(:match, aggregate: aggregate, position: 3)
-        game_1 = create(:match, aggregate: aggregate, position: 1)
-        game_2 = create(:match, aggregate: aggregate, position: 2)
+        match_3 = create(:match, position: 3)
+        match_1 = create(:match, position: 1)
+        match_2 = create(:match, position: 2)
 
-        games = Match.order_by_position
-        games[0].position.should eq game_1.position
-        games[1].position.should eq game_2.position
-        games[2].position.should eq game_3.position
+        actual_matches = Match.order_by_position
+        actual_matches[0].position.should eq match_1.position
+        actual_matches[1].position.should eq match_2.position
+        actual_matches[2].position.should eq match_3.position
       end
     end
 

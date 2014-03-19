@@ -1,4 +1,4 @@
-class RankingItemService
+class RankingItemSetService
 
   def initialize(match: match)
     @match = match
