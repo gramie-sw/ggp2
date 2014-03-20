@@ -41,21 +41,37 @@ describe RankingItemSetCreator do
     end
   end
 
-  #describe '#create' do
-  #
-  #  let(:tip_1) { double('tip_1')}
-  #  let(:tip_2) { double('tip_2')}
-  #
-  #  let(:ranking_item_1) { double('ranking_item_1')}
-  #
-  #
-  #  it 'should return ranking item set for match' do
-  #    subject.stub(:previous_ranking_items).and_return(previous_ranking_items)
-  #    Tip.should_receive(:find).with(user_id: 12, match_id: match.id).and_return(tip_1)
-  #    RankingItemFactory.should_receive(:build_ranking_item).with(subject.previous_ranking_item_set, tip_1).and_return(ranking_item_1)
-  #    subject.create
-  #  end
-  #end
+  describe '#create' do
+
+    let(:tip_1) { build(:tip)}
+    let(:tip_2) { build(:tip)}
+    let(:user_1) { double('user_1')}
+    let(:user_2) { double('user_2')}
+    let(:ranking_item_1) { double('ranking_item_1')}
+    let(:ranking_item_2) { double('ranking_item_2')}
+    let(:previous_ranking_item_1) { build(:ranking_item)}
+    let(:previous_ranking_item_2) { build(:ranking_item)}
+
+    it 'should return ranking item set for match' do
+      subject.should_receive(:previous_ranking_item_set).and_return([previous_ranking_item_1, previous_ranking_item_2])
+
+      previous_ranking_item_1.should_receive(:user).and_return(user_1)
+      previous_ranking_item_2.should_receive(:user).and_return(user_2)
+
+      user_1.stub(:id).and_return(12)
+      user_2.stub(:id).and_return(13)
+
+      Tip.should_receive(:find).with(user_id: 12, match_id: match.id).and_return(tip_1)
+      Tip.should_receive(:find).with(user_id: 13, match_id: match.id).and_return(tip_2)
+
+      RankingItemFactory.should_receive(:build_ranking_item).with(previous_ranking_item_1, tip_1).and_call_original
+      RankingItemFactory.should_receive(:build_ranking_item).with(previous_ranking_item_2, tip_2).and_call_original
+      ranking_items = subject.create
+
+      ranking_items.size.should eq 2
+      ranking_items.each { |ranking_item| ranking_item.should be_an_instance_of RankingItem}
+    end
+  end
 
   describe '#destroy' do
     it 'should destroy all ranking items for current ranking item set' do
