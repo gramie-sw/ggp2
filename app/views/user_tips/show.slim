@@ -30,7 +30,7 @@
                 class: 'btn btn-primary'
 
 - for phase in @presenter.phases
-  h2 = phase.name
+  h2.text-center = phase.name
   - if @presenter.show_as_form?(phase)
     = form_tag edit_multiple_tips_path
     = render partial: 'tips_table', locals: {presenter: @presenter, aggregate: phase, show_as_form: true}

@@ -1,2 +1,47 @@
+- user = presenter.user
 div.jumbotron.ggp2-jumbotron
   h2 = t('profile.section.user_data')
+  = form_for user, url: account_path, html: {class: 'form-horizontal', role: 'form'} do |f|
+
+    fieldset
+      div.form-group
+        = f.label :full_name, class: 'col-sm-3 col-lg-2 control-label'
+        div.col-sm-9.col-lg-10
+          p.lead
+            = user.full_name
+    fieldset
+      div.form-group
+        = f.label :created_at, class: 'col-sm-3 col-lg-2  control-label'
+        div.col-sm-9.col-lg-10
+          p.form-control-static
+            = l user.created_at, format: :short
+    fieldset
+      div.form-group
+        = f.label :email, class: 'col-sm-3 col-lg-2  control-label'
+        div.col-sm-8.col-lg-6
+          = f.text_field :email, class: 'form-control'
+
+    fieldset
+      div.form-group
+        = f.label :current_password, class: 'col-sm-3 col-lg-2  control-label'
+        div.col-sm-8.col-lg-6
+          = f.text_field :current_password, class: 'form-control'
+          '(wird benötigt um Änderungen zu bestätigen)
+
+    fieldset
+      div.form-group
+        = f.label :password, User.human_attribute_name(:new_password), class: 'col-sm-3 col-lg-2  control-label'
+        div.col-sm-8.col-lg-6
+          = f.text_field :password, class: 'form-control'
+          '(freilassen wenn keine Änderung gewünscht)
+
+    fieldset
+      div.form-group
+        = f.label :password, User.human_attribute_name(:new_password_confirmation), class: 'col-sm-3 col-lg-2  control-label'
+        div.col-sm-8.col-lg-6
+          = f.text_field :password, class: 'form-control'
+
+    div.form-group
+      div.col-sm-offset-3.col-lg-offset-2.col-sm-9.col-md-10
+        div.btn-toolbar
+          = f.submit t('general.change'), class: 'btn btn-primary'

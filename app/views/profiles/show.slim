@@ -3,8 +3,8 @@
 
 div.visible-xs.visible-sm
   div.btn-group.pull-right.ggp2-btn-group
-    button.btn.btn-primary.dropdown-toggle type="button" data-toggle="dropdown"
-      'Menu
+    button.btn.btn-primary.btn-lg.dropdown-toggle type="button" data-toggle="dropdown"
+      = "#{t('general.menu')} "
       span.caret
     ul.dropdown-menu.pull-right role="menu"
       - for section in @presenter.available_sections

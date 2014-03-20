@@ -3,8 +3,9 @@ Ggp2::Application.routes.draw do
   devise_for :users
 
   devise_scope :user do
-    get "sign_in" => "devise/sessions#new"
-    delete "sign_out" => "devise/sessions#destroy"
+    get 'sign_in' => 'devise/sessions#new'
+    delete 'sign_out' => 'devise/sessions#destroy'
+    patch 'account' => 'registrations#update'
   end
 
   resources :aggregates
