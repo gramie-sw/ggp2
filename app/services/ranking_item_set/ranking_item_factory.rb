@@ -1,7 +1,7 @@
 module RankingItemFactory
   extend self
 
-  def build_ranking_item previous_ranking_item, tip
+  def build_ranking_item previous_ranking_item=neutral_previous_ranking_item, tip
 
     ranking_item = RankingItem.new(match_id: tip.match_id,
                     user_id: tip.user_id,
@@ -19,5 +19,9 @@ module RankingItemFactory
 
   def calculate_correct_tendency_tips_only_count previous_ranking_item, tip
     Tip::RESULTS[:correct_tendency] == tip.result ? previous_ranking_item.correct_tendency_tips_only_count + 1 : previous_ranking_item.correct_tendency_tips_only_count
+  end
+
+  def neutral_previous_ranking_item
+    RankingItem.new(correct_tips_count: 0, correct_tendency_tips_only_count: 0)
   end
 end
