@@ -213,3 +213,42 @@ form {
 .ggp2-btn-group {
   margin-bottom: 15px;
 }
+
+.ggp2-static-form {
+
+  .ggp2-static-form-group {
+    margin-bottom: 20px;
+    // Make form groups behave like rows
+    @include make-row();
+  }
+
+  // Only right align form labels here when the columns stop stacking
+  @media (min-width: $screen-sm-min) {
+
+    .ggp2-static-form-label {
+      text-align: right;
+    }
+  }
+
+  .ggp2-static-form-label {
+    font-weight: bold;
+  }
+}
+
+.ggp2-static-form-lead-values {
+
+  .ggp2-static-form-label {
+    padding-top: ($padding-base-vertical);
+  }
+
+  .ggp2-static-form-value {
+    //styled according .lead
+    font-size: floor(($font-size-base * 1.15));
+    font-weight: 200;
+    line-height: 1.4;
+
+    @media (min-width: $screen-sm-min) {
+      font-size: ($font-size-base * 1.5);
+    }
+  }
+}
