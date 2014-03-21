@@ -13,18 +13,13 @@ class RankingItemSetCreator
     find_next_ranking_item_set previous_match_ids
   end
 
-  #def create
-  #  prev_ranking_item_set = previous_ranking_item_set
-  #  User.players.map do |player|
-  #    tip = Tip.find(user_id: player.id, match_id: @match.id)
-  #    previous_ranking_item = prev_ranking_item_set.select { |ranking_item| ranking_item.user.id == player.id }.first
-  #    previous_ranking_item.present? ? RankingItemFactory.build_ranking_item(previous_ranking_item, tip) : RankingItemFactory.build_ranking_item(tip)
-  #  end
-  #  #previous_ranking_item_set.map do |previous_ranking_item|
-  #  #  tip = Tip.find(user_id: previous_ranking_item.user.id, match_id: @match.id)
-  #  #  RankingItemFactory.build_ranking_item previous_ranking_item, tip
-  #  #end
-  #end
+  def create
+    prev_ranking_item_set = previous_ranking_item_set
+    Tip.find(match_id: @match.id).map do |tip|
+      previous_ranking_item = prev_ranking_item_set.select { |ranking_item| ranking_item.user.id == tip.user.id }.first
+      previous_ranking_item.present? ? RankingItemFactory.build_ranking_item(previous_ranking_item, tip) : RankingItemFactory.build_ranking_item(tip)
+    end
+  end
 
   def destroy
     RankingItem.destroy_all(@match)
