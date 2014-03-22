@@ -13,23 +13,25 @@ div.jumbotron.ggp2-jumbotron
         = User.human_attribute_name(:nickname)
       div.col-sm-9.col-lg-10.ggp2-static-form-value
         = user.nickname
-    div.ggp2-static-form-group
-      div.col-sm-3.col-lg-2.ggp2-static-form-label
-        = User.human_attribute_name(:email)
-      div.col-sm-9.col-lg-10.ggp2-static-form-value
-        = user.email
-    div.ggp2-static-form-group
-      div.col-sm-3.col-lg-2.ggp2-static-form-label
-        = User.human_attribute_name(:password)
-      div.col-sm-9.col-lg-10.ggp2-static-form-value
-        '****
+    - if presenter.is_for_current_user
+      div.ggp2-static-form-group
+        div.col-sm-3.col-lg-2.ggp2-static-form-label
+          = User.human_attribute_name(:email)
+        div.col-sm-9.col-lg-10.ggp2-static-form-value
+          = user.email
+      div.ggp2-static-form-group
+        div.col-sm-3.col-lg-2.ggp2-static-form-label
+          = User.human_attribute_name(:password)
+        div.col-sm-9.col-lg-10.ggp2-static-form-value
+          '****
     div.ggp2-static-form-group
       div.col-sm-3.col-lg-2.ggp2-static-form-label
         = User.human_attribute_name(:created_at)
       div.col-sm-9.col-lg-10.ggp2-static-form-value
         = l user.created_at, format: :short
 
-  div.row
-    div.col-sm-offset-3.col-lg-offset-2.col-sm-9.col-md-10
-      = link_to t('model.messages.change', model: t('profile.section.user_data')), edit_account_path, class: 'btn btn-primary'
+  - if presenter.is_for_current_user
+    div.row
+      div.col-sm-offset-3.col-lg-offset-2.col-sm-9.col-md-10
+        = link_to t('model.messages.change', model: t('profile.section.user_data')), edit_account_path, class: 'btn btn-primary'
 

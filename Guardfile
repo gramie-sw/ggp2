@@ -16,8 +16,8 @@ guard :rspec, cmd: 'spring rspec', failed_mode: :none, notification: true do
   watch('config/routes.rb')                           { "spec/routing" }
   watch('app/controllers/application_controller.rb')  { "spec/controllers" }
 
-  # Capybara features specs
-  watch(%r{^app/views/(.+)/.*\.(erb|haml|slim)$})          { |m| "spec/features/#{m[1]}_spec.rb" }
+  # View specs
+  watch(%r{^app/views/(.+)/.*\.(erb|haml|slim)$})          { |m| "spec/#{m[0].gsub('app/', '')}_spec.rb" }
 
   # Turnip features and steps
   watch(%r{^spec/acceptance/(.+)\.feature$})
