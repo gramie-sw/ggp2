@@ -1,0 +1,12 @@
+fieldset
+  div.form-group
+    - label = nil unless defined?(label)
+    = form_builder.label attribute, label, class: 'col-sm-3 col-lg-2  control-label'
+    div class="#{value_control_class}"
+      - options = defined?(control_options) ? control_options : Hash.new
+      = form_builder.send(control, attribute, {class: 'form-control'}.merge(options))
+      - if form_builder.object.errors.get(attribute) && !form_builder.object.errors.get(attribute).empty?
+        div.row
+          div.field_with_errors
+            p.help-block.col-xs-12
+              = form_builder.object.errors.full_messages_for(attribute).first

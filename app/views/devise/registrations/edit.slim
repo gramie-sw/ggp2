@@ -1,65 +1,27 @@
-- content_for(:title, t('model.messages.change', model: t('profile.section.user_data')))
+- content_for(:title, t('general.profile.one'))
 
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-horizontal', role: 'form'}) do |f|
+div.well
+  = form_for(resource, as: resource_name, url: account_path, html: { class: 'form-horizontal', role: 'form'}) do |f|
 
-  fieldset
+    legend
+      = t('model.messages.change', model: t('general.user_data'))
+
+    - value_control_class = 'col-sm-7 col-md-6 col-lg-5'
+
+    = render partial: 'commons/horizontal_fieldset', \
+    locals: { form_builder: f, control: :email_field, attribute: :email, value_control_class: value_control_class}
+
+    = render partial: 'commons/horizontal_fieldset', \
+    locals: { form_builder: f, control: :password_field, control_options: {autocomplet: 'off', placeholder: t('user_data.form.hint.current_password')}, attribute: :current_password, value_control_class:value_control_class}
+
+    = render partial: 'commons/horizontal_fieldset', \
+    locals: { form_builder: f, control: :password_field, control_options: {autocomplet: 'off', placeholder: t('user_data.form.hint.new_password')}, attribute: :password, label: User.human_attribute_name(:new_password), value_control_class: value_control_class}
+
+    = render partial: 'commons/horizontal_fieldset', \
+    locals: { form_builder: f, control: :password_field, control_options: {autocomplet: 'off', placeholder: t('user_data.form.hint.new_password')}, attribute: :password, label: User.human_attribute_name(:new_password_confirmation), value_control_class: value_control_class}
+
     div.form-group
-      = f.label :email, class: 'col-sm-3 col-lg-2  control-label'
-      div.col-sm-8.col-lg-6
-        = f.text_field :email, class: 'form-control'
-
-  fieldset
-    div.form-group
-      = f.label :current_password, class: 'col-sm-3 col-lg-2  control-label'
-      div.col-sm-8.col-lg-6
-        = f.text_field :current_password, class: 'form-control'
-        '(wird benötigt um Änderungen zu bestätigen)
-
-  fieldset
-    div.form-group
-      = f.label :password, User.human_attribute_name(:new_password), class: 'col-sm-3 col-lg-2  control-label'
-      div.col-sm-8.col-lg-6
-        = f.text_field :password, class: 'form-control'
-        '(freilassen wenn keine Änderung gewünscht)
-
-  fieldset
-    div.form-group
-      = f.label :password, User.human_attribute_name(:new_password_confirmation), class: 'col-sm-3 col-lg-2  control-label'
-      div.col-sm-8.col-lg-6
-        = f.text_field :password, class: 'form-control'
-
-  div.form-group
-    div.col-sm-offset-3.col-lg-offset-2.col-sm-9.col-md-10
-      div.btn-toolbar
-        = f.submit t('general.change'), class: 'btn btn-primary'
-
-
-/<!--<h2>Edit <%= resource_name.to_s.humanize %></h2>-->
-/
-/<!--<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>-->
-/  <!--<%= devise_error_messages! %>-->
-/
-/  <!--<div><%= f.label :email %><br />-->
-/  <%= f.email_field :email, :autofocus => true %></div>
-/
-/  <!--<% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>-->
-/    <!--<div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>-->
-/  <!--<% end %>-->
-/
-/  <!--<div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />-->
-/  <%= f.password_field :password, :autocomplete => "off" %></div>
-/
-/  <!--<div><%= f.label :password_confirmation %><br />-->
-/  <%= f.password_field :password_confirmation %></div>
-/
-/  <!--<div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />-->
-/  <%= f.password_field :current_password %></div>
-/
-/  <!--<div><%= f.submit "Update" %></div>-->
-/<!--<% end %>-->
-/
-/<!--<h3>Cancel my account</h3>-->
-/
-/<!--<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>-->
-/
-/<!--<%= link_to "Back", :back %>-->
+      div.col-sm-offset-3.col-lg-offset-2.col-sm-9.col-md-10
+        div.btn-toolbar
+          = f.submit t('model.messages.change', model: t('general.user_data')), class: 'btn btn-primary'
+          = link_to I18n.t('general.cancel'), profile_path(resource, section: :user_data), class: "btn btn-default"

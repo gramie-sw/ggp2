@@ -1,6 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
 
-  #def respond_with *resource
-  #  redirect_to '/'
-  #end
+  def after_update_path_for(user)
+    profile_path(user, section: :user_data)
+  end
+
 end

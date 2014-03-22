@@ -21,7 +21,7 @@ describe ProfilesController do
 
     it 'should assign correctly instantiated ProfilesShowPresenter' do
       User.should_receive(:find_player).with(requested_user.to_param).and_return(requested_user)
-      @controller.permission_service.should_receive(:is_user_current_user?).with(requested_user).and_return(false)
+      @controller.should_receive(:is_user_current_user?).with(requested_user).and_return(false)
       ProfilesShowPresenter.should_receive(:new).
           with(user: requested_user,
                tournament: @controller.tournament,

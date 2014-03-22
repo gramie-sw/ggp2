@@ -170,6 +170,7 @@ de:
     tendency: Tendenz
     tournament: Turnier
     user_administration: Benutzerverwaltung
+    user_data: Benutzer-Daten
     'yes': Ja
 
   form:
@@ -201,6 +202,12 @@ de:
         Die * zeigen an, ob ein Tipp abgegeben wurde.
     not_present: Nicht getippt
     yours: Deine Tipps
+
+  user_data:
+    form:
+      hint:
+        current_password: benötigt um Änderungen zu bestätigen
+        new_password: freilassen wenn keine Änderung gewünscht
 
   user_statistic:
     position: Platz

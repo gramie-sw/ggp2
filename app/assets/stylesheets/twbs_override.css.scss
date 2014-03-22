@@ -72,6 +72,8 @@ $ggp2-header-image-min-height: 140px;
 .well {
   border: none;
   border-radius: 0;
+  box-shadow: none;
+  -webkit-box-shadow: none;
 }
 
 .page-header {

@@ -20,4 +20,8 @@ class ApplicationController < ActionController::Base
   def tournament
     @tournament ||= Tournament.new
   end
+
+  def is_user_current_user? user
+    user == current_user
+  end
 end
