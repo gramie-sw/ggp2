@@ -5,11 +5,76 @@ describe RankingItemSet do
 
   subject { RankingItemSet.new match: match, match_ids: match_ids }
 
-  describe '#next_rankings' do
+  describe '#next_ranking_item_set' do
+
+    context 'if there is a next match with ranking items' do
+
+      let(:ranking_item) {build(:ranking_item, user_id: 15)}
+      let(:match_with_id_15) { double('match with id 15')}
+
+      it 'should return new next RankingItemSet' do
+        subject.should_receive(:create_following_ranking_item_set).with([14,15]).and_call_original
+        subject.should_receive(:following_match_id_which_has_ranking_items).with([14,15]).and_call_original
+        RankingItem.should_receive(:where).with(match_id: 14).and_call_original
+        RankingItem.should_receive(:where).with(match_id: 15).and_return(ranking_item)
+        Match.should_receive(:find).with(15).and_return(match_with_id_15)
+
+        next_ranking_item_set = subject.next_ranking_item_set
+        next_ranking_item_set.should be_an_instance_of RankingItemSet
+        next_ranking_item_set.instance_variable_get(:@match).should eq match_with_id_15
+        next_ranking_item_set.instance_variable_get(:@match_ids).should eq match_ids
+      end
+    end
+
+    context 'if there is no next match with ranking items' do
+      it 'should return nil' do
+        subject.should_receive(:create_following_ranking_item_set).with([14,15]).and_call_original
+        subject.should_receive(:following_match_id_which_has_ranking_items).with([14,15]).and_call_original
+        subject.next_ranking_item_set.should be_nil
+      end
+    end
+  end
+
+  describe '#previous_ranking_item_set' do
+
+    let(:ranking_item) {build(:ranking_item, user_id: 10)}
+    let(:match_with_id_10) { double('match with id 10')}
+
+    context 'if there is a previous match with ranking items' do
+      it 'should return new previous RankingItemSet' do
+        subject.should_receive(:create_following_ranking_item_set).with([11,10]).and_call_original
+        subject.should_receive(:following_match_id_which_has_ranking_items).with([11,10]).and_call_original
+        RankingItem.should_receive(:where).with(match_id: 11).and_call_original
+        RankingItem.should_receive(:where).with(match_id: 10).and_return(ranking_item)
+        Match.should_receive(:find).with(10).and_return(match_with_id_10)
+
+        next_ranking_item_set = subject.previous_ranking_item_set
+        next_ranking_item_set.should be_an_instance_of RankingItemSet
+        next_ranking_item_set.instance_variable_get(:@match).should eq match_with_id_10
+        next_ranking_item_set.instance_variable_get(:@match_ids).should eq match_ids
+      end
+    end
+
+    context 'if there is no previous match with ranking items' do
+      it 'should return nil' do
+        subject.should_receive(:create_following_ranking_item_set).with([11,10]).and_call_original
+        subject.should_receive(:following_match_id_which_has_ranking_items).with([11,10]).and_call_original
+        subject.previous_ranking_item_set.should be_nil
+      end
+    end
+  end
+
+  describe '#next_ranking items' do
 
     context 'if there is a next match with a ranking items' do
+
+      let(:next_ranking_item) { build(:ranking_item, match_id: 15)}
+
       it 'should return ranking items for the next match id' do
-        next_ranking_item = create(:ranking_item, match_id: 15)
+        subject.should_receive(:find_following_ranking_items).with([14, 15]).and_call_original
+        RankingItem.should_receive(:where).with(match_id: 14).and_call_original
+        RankingItem.should_receive(:where).with(match_id: 15).and_return([next_ranking_item])
+
         next_ranking_items = subject.next_ranking_items
         next_ranking_items.should include next_ranking_item
         next_ranking_items.size.should eq 1
@@ -17,25 +82,31 @@ describe RankingItemSet do
     end
 
     context 'if no following match has ranking items' do
-      it 'should return empty array' do
-        subject.next_ranking_items.should eq []
+      it 'should return nil' do
+        subject.next_ranking_items.should be_nil
       end
     end
   end
 
   describe '#previous_ranking_items' do
     context 'if there is a previous match with ranking items' do
+
+      let(:next_ranking_item) { build(:ranking_item, match_id: 10)}
+
       it 'should return ranking items for previous match id' do
-        previous_ranking_item = create(:ranking_item, match_id: 10)
-        previous_ranking_items = subject.previous_ranking_items
-        previous_ranking_items.should include previous_ranking_item
-        previous_ranking_items.size.should eq 1
+        subject.should_receive(:find_following_ranking_items).with([11, 10]).and_call_original
+        RankingItem.should_receive(:where).with(match_id: 11).and_call_original
+        RankingItem.should_receive(:where).with(match_id: 10).and_return([next_ranking_item])
+
+        next_ranking_items = subject.previous_ranking_items
+        next_ranking_items.should include next_ranking_item
+        next_ranking_items.size.should eq 1
       end
     end
 
     context 'if there is no previous match with ranking items' do
-      it 'should return empty array' do
-        subject.previous_ranking_items.should eq []
+      it 'should return nil' do
+        subject.previous_ranking_items.should be_nil
       end
     end
   end

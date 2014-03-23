@@ -7,12 +7,12 @@ class RankingItemSet
 
   #returns nil if no ranking items exists for the following match ids
   def next_ranking_item_set
-    following_match_id_which_has_ranking_items next_match_ids
+    create_following_ranking_item_set next_match_ids
   end
 
   #returns nil if no ranking items exists for the following match ids
   def previous_ranking_item_set
-    following_match_id_which_has_ranking_items previous_match_ids
+    create_following_ranking_item_set previous_match_ids
   end
 
   def next_ranking_items
@@ -42,18 +42,21 @@ class RankingItemSet
   private
 
   def ranking_items? match_id= @match.id
-    ranking_items(match_id).exists?
+    ranking_items(match_id).present?
   end
 
   def create_following_ranking_item_set match_ids
     match_id = following_match_id_which_has_ranking_items match_ids
     if match_id
-      RankingItemSet.new Match.find(match_id), @match_ids
+      RankingItemSet.new match: Match.find(match_id), match_ids: @match_ids
     end
   end
 
   def find_following_ranking_items match_ids
-    ranking_items(following_match_id_which_has_ranking_items(match_ids))
+    match_ids.detect do |match_id|
+      next_ranking_items = ranking_items match_id
+      break next_ranking_items if next_ranking_items.present?
+    end
   end
 
   def following_match_id_which_has_ranking_items match_ids
