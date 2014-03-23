@@ -31,6 +31,7 @@ describe User do
   describe 'associations' do
     it { should have_many(:tips).dependent(:destroy) }
     it { should have_many(:ranking_items).dependent(:destroy) }
+    it { should have_many(:comments).dependent(:destroy) }
     it { should have_one(:champion_tip).dependent(:destroy) }
 
     it 'tips should get user' do

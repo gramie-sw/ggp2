@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140310215604) do
+ActiveRecord::Schema.define(version: 20140323141445) do
 
   create_table "aggregates", force: true do |t|
     t.integer  "position"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20140310215604) do
 
   add_index "champion_tips", ["team_id"], name: "index_champion_tips_on_team_id", using: :btree
   add_index "champion_tips", ["user_id"], name: "index_champion_tips_on_user_id", using: :btree
+
+  create_table "comments", force: true do |t|
+    t.integer  "user_id"
+    t.text     "content"
+    t.boolean  "edited"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "matches", force: true do |t|
     t.integer  "position"
