@@ -1,4 +1,4 @@
-describe RankingItemSetPositionSetter do
+describe RankingItemsPositionSetter do
 
   let(:ranking_items) do
     [
@@ -11,21 +11,20 @@ describe RankingItemSetPositionSetter do
 
   end
 
+  describe '::set_positions' do
+    it 'should return sorted ranking items with position set' do
+      sorted_ranking_items = RankingItemsPositionSetter.set_positions ranking_items
 
-  describe '::set_ranking' do
-
+      sorted_ranking_items[0].should eq ranking_items[2]
+      sorted_ranking_items[0].position.should be 1
+      sorted_ranking_items[1].should eq ranking_items[3]
+      sorted_ranking_items[1].position.should be 2
+      sorted_ranking_items[2].should eq ranking_items[4]
+      sorted_ranking_items[2].position.should be 3
+      sorted_ranking_items[3].should eq ranking_items[1]
+      sorted_ranking_items[3].position.should be 4
+      sorted_ranking_items[4].should eq ranking_items[0]
+      sorted_ranking_items[4].position.should be 4
+    end
   end
-
-  #
-  #describe '::sort' do
-  #  it 'should sort ranking items by points and user creation date' do
-  #    sorted_ranking_items = RankingItemSetPositionSetter.sort ranking_items
-  #
-  #    sorted_ranking_items[0].should eq ranking_items[2]
-  #    sorted_ranking_items[1].should eq ranking_items[3]
-  #    sorted_ranking_items[2].should eq ranking_items[4]
-  #    sorted_ranking_items[3].should eq ranking_items[1]
-  #    sorted_ranking_items[4].should eq ranking_items[0]
-  #  end
-  #end
 end
