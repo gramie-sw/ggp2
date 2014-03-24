@@ -7,7 +7,7 @@ gem 'mysql2'
 gem 'puma'
 
 gem 'slim'
-gem 'sass-rails'
+gem 'sass-rails', '~> 4.0.2'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
