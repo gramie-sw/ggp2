@@ -14,6 +14,7 @@ Ggp2::Application.routes.draw do
   resources :matches
   resources :match_results, only: [:new, :create]
   resources :match_tips, only: :show
+  resource :pin_boards, only: :show
   resources :profiles, only: :show
   resource :rankings, only: :show
   resources :teams

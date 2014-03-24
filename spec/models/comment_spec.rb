@@ -18,6 +18,24 @@ describe Comment do
 
   describe 'associations' do
 
-    it {should belong_to :user}
+    it { should belong_to :user }
+  end
+
+  describe 'scopes' do
+
+    describe '#order_by_created_at_desc' do
+
+      it 'should return comments order by created at asc' do
+        comment_3 = create(:comment, created_at: 1.days.ago)
+        comment_1 = create(:comment, created_at: 1.day.from_now)
+        comment_2 = create(:comment, created_at: Date.current)
+
+        actual_comments = Comment.order_by_created_at_desc
+        actual_comments.first.should eq comment_1
+        actual_comments.second.should eq comment_2
+        actual_comments.third.should eq comment_3
+
+      end
+    end
   end
 end

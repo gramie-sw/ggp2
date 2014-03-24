@@ -128,5 +128,7 @@ if Rails.env == 'development'
     Match.all.each do |match|
       create(:tip, user: user, match: match)
     end
+
+    Random.rand(5).times.each { create(:comment, user: user) }
   end
 end

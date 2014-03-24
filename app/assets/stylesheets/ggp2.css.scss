@@ -252,3 +252,18 @@ form {
     }
   }
 }
+
+.ggp2-comment-box {
+  padding: 25px 0;
+  border-bottom: 1px solid $gray-lighter;
+
+  &:first-child {
+    border-top: 1px solid $gray-lighter;
+  }
+
+  a {
+    font-weight: bold;
+    font-size: $font-size-base*1.5;
+    color: $ggp2-emphasize-color;
+  }
+}

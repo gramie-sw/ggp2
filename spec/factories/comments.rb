@@ -2,6 +2,6 @@ FactoryGirl.define do
 
   factory :comment do
     association :user
-    content { Forgery(:basic).password(:at_least => 100, :at_most => 500)}
+    content { Forgery(:lorem_ipsum).sentences(4, random: true) }
   end
 end

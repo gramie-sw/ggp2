@@ -1,0 +1,36 @@
+- content_for(:title, t('general.pin_board'))
+
+div.jumbotron.ggp2-jumbotron
+  div.row
+    div.col-lg-12
+      p.lead
+        'Der Schiri ist blind und die Spieler alles nur Amateure!
+  div.row
+    div.col-lg-8
+      p
+        'Du möchtest etwas wichtiges mitteilen? Hier kannst ein Kommentar hierlassen und mit deinen Mitspielern kommunizieren ...
+    div.col-lg-4
+      = link_to 'Kommentar posten', '', class: 'btn btn-primary pull-right'
+
+div.row
+  div.col-lg-10
+    - for comment in @presenter.comments
+      div.ggp2-comment-box
+        = link_to comment.user.nickname, profile_path(comment.user)
+        div.row
+          div.col-lg-9
+            p
+              = comment.content
+            p
+              small
+                strong
+                  = "editiert am #{l comment.updated_at, format: :short}"
+          div.col-lg-3
+            p
+              small
+                strong
+                  = "vor #{time_ago_in_words comment.created_at}"
+            p.ggp2-weakened
+              = l comment.created_at, format: :only_date_full
+              br
+              = l comment.created_at, format: :only_time
