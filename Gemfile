@@ -19,6 +19,8 @@ gem 'rails-i18n'
 gem 'localized_country_select'
 
 gem 'ancestry'
+gem 'kaminari'
+gem 'kaminari-bootstrap'
 gem 'devise'
 
 group :development, :test do

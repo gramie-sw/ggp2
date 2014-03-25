@@ -2,35 +2,39 @@
 
 div.jumbotron.ggp2-jumbotron
   div.row
-    div.col-lg-12
-      p.lead
-        'Der Schiri ist blind und die Spieler alles nur Amateure!
+    div.col-xs-12
+      p.lead = t('pin_board.description').html_safe
   div.row
-    div.col-lg-8
-      p
-        'Du möchtest etwas wichtiges mitteilen? Hier kannst ein Kommentar hierlassen und mit deinen Mitspielern kommunizieren ...
-    div.col-lg-4
-      = link_to 'Kommentar posten', '', class: 'btn btn-primary pull-right'
+    div.col-md-8
+      p = t('pin_board.subdescription')
+    div.col-md-4
+      = link_to t('model.messages.write', model: Comment.model_name.human), '', class: 'btn btn-primary pull-right'
 
 div.row
   div.col-lg-10
     - for comment in @presenter.comments
       div.ggp2-comment-box
-        = link_to comment.user.nickname, profile_path(comment.user)
+        div.title
+          = link_to comment.user.nickname, profile_path(comment.user)
         div.row
           div.col-lg-9
             p
               = comment.content
-            p
-              small
-                strong
-                  = "editiert am #{l comment.updated_at, format: :short}"
+            div
+              - if comment.edited?
+                small
+                  strong
+                    = t('general.edited_at', date: l(comment.updated_at, format: :short))
+
+              = link_to('', title: t('model.messages.edit', model: Comment.model_name.human)) do
+                i.pull-right.fa.fa-pencil
           div.col-lg-3
             p
               small
                 strong
-                  = "vor #{time_ago_in_words comment.created_at}"
+                  = t('general.time_ago', time: time_ago_in_words(comment.created_at, Time.current))
             p.ggp2-weakened
               = l comment.created_at, format: :only_date_full
               br
               = l comment.created_at, format: :only_time
+= paginate @presenter.comments

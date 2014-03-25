@@ -1,4 +1,41 @@
 de:
+  datetime:
+      #These translations are fixed to work properly with time_ago_in_words
+      distance_in_words:
+        about_x_hours:
+          one: etwa einer Stunde
+          other: etwa %{count} Stunden
+        about_x_months:
+          one: etwa einem Monat
+          other: etwa %{count} Monate
+        about_x_years:
+          one: etwa einem Jahr
+          other: etwa %{count} Jahre
+        almost_x_years:
+          one: fast einem Jahr
+          other: fast %{count} Jahre
+        half_a_minute: einer halben Minute
+        less_than_x_minutes:
+          one: weniger als einer Minute
+          other: weniger als %{count} Minuten
+        less_than_x_seconds:
+          one: weniger als einer Sekunde
+          other: weniger als %{count} Sekunden
+        over_x_years:
+          one: mehr als einem Jahr
+          other: mehr als %{count} Jahre
+        x_days:
+          one: einem Tag
+          other: ! '%{count} Tage'
+        x_minutes:
+          one: einer Minute
+          other: ! '%{count} Minuten'
+        x_months:
+          one: einem Monat
+          other: ! '%{count} Monate'
+        x_seconds:
+          one: einer Sekunde
+          other: ! '%{count} Sekunden'
   errors:
     messages:
       not_allowed_chars: 'Enthält unerlaubte Zeichen'
@@ -33,6 +70,9 @@ de:
       champion_tip:
         one: Weltmeister-Tipp
         other: Weltemeister-Tipps
+      comment:
+        one: Kommentar
+        other: Kommentare
       match:
         one: Spiel
         other: Spiele
@@ -112,6 +152,7 @@ de:
       remove_really: '%{model} wirklich entfernen?'
       show: '%{model} anzeigen'
       updated: '%{model} geändert'
+      write: '%{model} schreiben'
       count:
         created: '%{count} %{models} erfolgreich erstellt'
         saved: '%{count} %{models} erfolgreich gespeichert'
@@ -126,6 +167,7 @@ de:
       other: Auszeichungen
     changeable_until: änderbar bis %{date}
     close: x
+    edited_at: bearbeited am %{date}
     wm_2014_title: 'WM-2014 Brasilien'
     match_result: 'Ergebnis'
     menu: Menu
@@ -171,6 +213,7 @@ de:
     statistic: Statistik
     tendency: Tendenz
     tournament: Turnier
+    time_ago: vor %{time}
     user_administration: Benutzerverwaltung
     user_data: Benutzer-Daten
     'yes': Ja
@@ -186,6 +229,10 @@ de:
 
   match:
     progress: nach %{happend_count} von %{total_count} Spielen
+
+  pin_board:
+    description: '&bdquo;Der Schiri war blind und die Spieler alles nur Amateure!"'
+    subdescription: Dies und andere wichtige Dinge möchtest du mitteilen? Hier kannst ein Kommentar hierlassen und mit deinen Mitspielern kommunizieren ...
 
   profile:
     section:
