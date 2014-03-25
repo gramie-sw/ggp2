@@ -143,7 +143,7 @@ describe RankingItemSet do
 
     it 'should return created ranking items for match' do
       subject.should_receive(:previous_ranking_items).and_return([previous_ranking_item_1, previous_ranking_item_2])
-      Tip.should_receive(:find).with(match_id: match.id).and_return([tip_1, tip_2])
+      Tip.should_receive(:where).with(match_id: match.id).and_return([tip_1, tip_2])
 
       user_1.stub(:id).and_return(12)
       user_2.stub(:id).and_return(13)
@@ -159,7 +159,7 @@ describe RankingItemSet do
 
   describe '#destroy' do
     it 'should destroy all ranking items for current ranking item set' do
-      RankingItem.should_receive(:destroy_all).with(match)
+      RankingItem.should_receive(:destroy_all).with(match: match)
       subject.destroy_ranking_items
     end
   end

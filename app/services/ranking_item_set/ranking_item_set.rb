@@ -29,14 +29,14 @@ class RankingItemSet
 
   def create_ranking_items
     prev_ranking_item_set = previous_ranking_items
-    Tip.find(match_id: @match.id).map do |tip|
+    Tip.where(match_id: @match.id).map do |tip|
       previous_ranking_item = prev_ranking_item_set.select { |ranking_item| ranking_item.user.id == tip.user.id }.first
-      previous_ranking_item.present? ? RankingItemFactory.build_ranking_item(previous_ranking_item, tip) : RankingItemFactory.build_ranking_item(tip)
+      previous_ranking_item.present? ? ::RankingItemFactory.build_ranking_item(previous_ranking_item, tip) : ::RankingItemFactory.build_ranking_item(tip)
     end
   end
 
   def destroy_ranking_items
-    RankingItem.destroy_all @match
+    RankingItem.destroy_all(match: @match)
   end
 
   private

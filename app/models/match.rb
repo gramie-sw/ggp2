@@ -44,6 +44,11 @@ class Match < ActiveRecord::Base
     !started?
   end
 
+  def self.match_ids
+    Match.order_by_position.pluck(:id)
+  end
+
+  #TODO test or remove
   def self.score_or_dash team_score
     team_score.nil? ? "-" : team_score
   end
