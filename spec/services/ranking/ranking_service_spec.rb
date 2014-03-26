@@ -48,26 +48,65 @@ describe RankingService do
   subject { RankingService.new match: matches[1] }
 
 
-  describe '#update_all' do
+  #describe '#update_all' do
+  #
+  #  before(:each) do
+  #    users
+  #    matches
+  #    tips
+  #    predecessor_ranking_items
+  #    ranking_items
+  #    successor_ranking_items
+  #  end
+  #
+  #  subject { RankingService.new match: matches[1] }
+  #
+  #  it 'should update all' do
+  #    #subject.instance_variable_get(:@ranking_item_set).should_receive(:destroy_ranking_items).and_call_original
+  #    #subject.instance_variable_get(:@ranking_item_set).should_receive(:create_ranking_items).and_call_original
+  #    #RankingItemsPositionSetter.should_receive(:set_positions).with(subject.instance_variable_get(:@ranking_item_set).create_ranking_items).and_call_original
+  #    subject.update_all
+  #  end
+  #end
 
-    before(:each) do
-      users
-      matches
-      tips
-      predecessor_ranking_items
-      ranking_items
-      successor_ranking_items
+  describe '#ranking_item_set' do
+
+    it 'should return new RankingItemSet with match from RankingService' do
+      ranking_item_set = subject.ranking_item_set
+      ranking_item_set.should be_an_instance_of RankingItemSet
+      ranking_item_set.send(:match).should eq matches[1]
     end
 
-    subject { RankingService.new match: matches[1] }
-
-    it 'should update all' do
-      #subject.instance_variable_get(:@ranking_item_set).should_receive(:destroy_ranking_items).and_call_original
-      #subject.instance_variable_get(:@ranking_item_set).should_receive(:create_ranking_items).and_call_original
-      #RankingItemsPositionSetter.should_receive(:set_positions).with(subject.instance_variable_get(:@ranking_item_set).create_ranking_items).and_call_original
-      subject.update_all
+    it 'should cache new RankingItemSet' do
+      subject.ranking_item_set.should be subject.ranking_item_set
     end
   end
+
+  #describe '#update_all' do
+  #
+  #  it 'should update all ranking items over all effected ranking item sets' do
+  #    subject.should_receive(:update).with(subject.ranking_item_set)
+  #
+  #
+  #    subject.update_all
+  #
+  #
+  #  end
+  #end
+
+  describe '#update' do
+
+    let(:process_ranking_item_set) { double('process_ranking_item_set')}
+    let(:build_ranking_items) { double('build_ranking_items')}
+
+    it 'should destroy all ranking items and build and save new ranking items' do
+      subject.should_receive(:build).with(process_ranking_item_set).and_return(build_ranking_items)
+      process_ranking_item_set.should_receive(:destroy_existing_and_save_built_ranking_items).with(build_ranking_items)
+
+      subject.update process_ranking_item_set
+    end
+  end
+
 
   describe '#build' do
     let(:process_ranking_item_set) { double('process_ranking_item_set')}
