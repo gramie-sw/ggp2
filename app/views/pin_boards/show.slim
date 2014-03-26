@@ -12,29 +12,6 @@ div.jumbotron.ggp2-jumbotron
 
 div.row
   div.col-lg-10
-    - for comment in @presenter.comments
-      div.ggp2-comment-box
-        div.title
-          = link_to comment.user.nickname, profile_path(comment.user)
-        div.row
-          div.col-lg-9
-            p
-              = comment.content
-            div
-              - if comment.edited?
-                small
-                  strong
-                    = t('general.edited_at', date: l(comment.updated_at, format: :short))
-
-              = link_to('', title: t('model.messages.edit', model: Comment.model_name.human)) do
-                i.pull-right.fa.fa-pencil
-          div.col-lg-3
-            p
-              small
-                strong
-                  = t('general.time_ago', time: time_ago_in_words(comment.created_at, Time.current))
-            p.ggp2-weakened
-              = l comment.created_at, format: :only_date_full
-              br
-              = l comment.created_at, format: :only_time
+    - for comment_presenter in @presenter.comment_presenters
+      = render partial: 'comment', locals: {comment_presenter: comment_presenter}
 = paginate @presenter.comments

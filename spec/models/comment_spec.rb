@@ -37,5 +37,20 @@ describe Comment do
 
       end
     end
+
+    describe '#order_by_created_at_desc' do
+
+      it 'should return comments relation for pin_boards' do
+        relation = double('CommentRelation')
+        relation.as_null_object
+
+        Comment.should_receive(:order_by_created_at_desc).and_return(relation)
+        relation.should_receive(:includes).with(:user).and_return(relation)
+        relation.should_receive(:page).with(2).and_return(relation)
+        relation.should_receive(:per).with(10).and_return(relation)
+
+        Comment.comments_for_pin_board(2).should eq relation
+      end
+    end
   end
 end

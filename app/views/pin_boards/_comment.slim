@@ -1,0 +1,24 @@
+div.ggp2-comment-box
+  div.title
+    = link_to comment_presenter.user.nickname, profile_path(comment_presenter.user)
+  div.row
+    div.col-lg-9
+      p
+        = comment_presenter.content
+      div
+        - if comment_presenter.edited?
+          small
+            strong
+              = t('general.edited_at', date: l(comment_presenter.updated_at, format: :short))
+
+        = link_to(edit_comment_path(comment_presenter), title: t('model.messages.edit', model: Comment.model_name.human)) do
+          i.pull-right.fa.fa-pencil
+    div.col-lg-3
+      p
+        small
+          strong
+            = t('general.time_ago', time: time_ago_in_words(comment_presenter.created_at))
+      p.ggp2-weakened
+        = l comment_presenter.created_at, format: :only_date_full
+        br
+        = l comment_presenter.created_at, format: :only_time
