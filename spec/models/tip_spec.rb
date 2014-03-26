@@ -159,9 +159,9 @@ describe Tip do
       subject.points.should eq Ggp2.config.incorrect_tip_points
     end
 
-    it 'should return correct tendency tip points if correct tendency tip' do
+    it 'should return correct tendency tip only points if correct tendency tip only' do
       subject.stub(:result).and_return(Tip::RESULTS[:correct_tendency])
-      subject.points.should eq Ggp2.config.correct_tendency_tip_points
+      subject.points.should eq Ggp2.config.correct_tendency_tip_only_points
     end
 
     it 'should return nil if result is 0' do

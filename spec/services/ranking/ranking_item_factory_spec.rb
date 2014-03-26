@@ -52,7 +52,7 @@ describe RankingItemFactory do
 
     it 'should set points accumulate correct tip and correct tendency tip' do
       build_ranking_item = subject.build_ranking_item(previous_ranking_item, tip)
-      build_ranking_item.points.should eq build_ranking_item.correct_tips_count + build_ranking_item.correct_tendency_tips_only_count
+      build_ranking_item.points.should eq build_ranking_item.correct_tips_count * Ggp2.config.correct_tip_points + build_ranking_item.correct_tendency_tips_only_count * Ggp2.config.correct_tendency_tip_only_points
     end
   end
 end
