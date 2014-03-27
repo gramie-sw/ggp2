@@ -15,7 +15,7 @@ class RankingService
     loop do
       update process_ranking_item_set
       process_ranking_item_set = process_ranking_item_set.successor_ranking_item_set
-      break if process_ranking_item_set
+      break unless process_ranking_item_set
     end
   end
 
