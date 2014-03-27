@@ -1,0 +1,17 @@
+- content_for(:title, Comment.model_name.human)
+
+div.well
+  = form_for(@comment, html: { class: 'form-horizontal', role: 'form'}) do |f|
+    legend = t('model.messages.write', model: Comment.model_name.human)
+
+    div.form-group
+      div.col-sm-9.col-md-7.col-lg-6
+        = f.text_area :content, class: 'form-control', rows: 7
+      div.col-sm-3.col-md-5.col-lg-6
+        = "(#{t('comments.max_allow_char_message')})"
+
+    div.form-group
+      div.col-sm-9.col-md-10
+        div.btn-toolbar
+          = f.submit t('model.messages.change', model: t('general.user_data')), class: 'btn btn-primary'
+          = link_to I18n.t('general.cancel'), pin_boards_path, class: "btn btn-default"

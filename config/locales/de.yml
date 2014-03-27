@@ -222,6 +222,9 @@ de:
     errors:
       title: 'Bitte berichtigen:'
 
+  comments:
+    max_allow_char_message: 'max. 500 Zeichen'
+
   champion_tip:
     description:
       change: |

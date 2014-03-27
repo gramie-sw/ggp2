@@ -11,7 +11,7 @@ Ggp2::Application.routes.draw do
 
   resources :aggregates
   resources :champion_tips, only: [:edit, :update]
-  resources :comment, only: [:edit, :update]
+  resources :comments, only: [:new, :create, :edit, :update]
   resources :matches
   resources :match_results, only: [:new, :create]
   resources :match_tips, only: :show

@@ -8,7 +8,7 @@ div.jumbotron.ggp2-jumbotron
     div.col-md-8
       p = t('pin_board.subdescription')
     div.col-md-4
-      = link_to t('model.messages.write', model: Comment.model_name.human), '', class: 'btn btn-primary pull-right'
+      = link_to t('model.messages.write', model: Comment.model_name.human), new_comment_path, class: 'btn btn-primary pull-right'
 
 div.row
   div.col-lg-10
