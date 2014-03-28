@@ -6,37 +6,31 @@ body
   div#header-and-content
     - if current_user.present?
       = render 'layouts/navigation/main_menu'
-
-    div.ggp2-header-image
+      div.ggp2-restricted-header-image
+        div.container
+          div.row
+            = render 'layouts/title'
+            = render 'layouts/phrases'
       div.container
-        div.row
-          div.col-xs-12.col-sm-5
-            div.ggp2-phrase.hidden-xs
-              span Makes Football
-              br
-              span even more exciting
-              br
-            div.ggp2-phrase.ggp2-phrase-xs.visible-xs
-              span Makes Football even more exciting
-              br
-          div.col-xs-12.col-sm-7.col-md-6.col-md-offset-1.col-lg-5.col-lg-offset-2
-            div.panel
-              div.panel-body
-                'Bobby Robson
-                br
-                strong = "\"We didn’t underestimate them. They were just a lot better than we thought.\""
+        div.ggp2-main-content-area
+          = render 'layouts/messages'
+          div.page-header
+            h1
+              = content_for(:title) if content_for?(:title)
+              - if content_for?(:subtitle)
+                '&nbsp;
+                small = content_for(:subtitle)
+          = yield
+    - else
+      div.hidden-xs.hidden-sm
+        div.ggp2-landing-top-spacer
 
-    div.container
-      div.ggp2-main-content-area
-        = render 'layouts/messages'
-        div.page-header
-          h1
-            = content_for?(:title) ? content_for(:title) : 'No Title'
-            - if content_for?(:subtitle)
-              '&nbsp;
-              small = content_for(:subtitle)
-        = yield
-
+      div.ggp2-landing-header-image
+        div.container
+          div.row
+            = render 'layouts/title'
+          div.row
+            = yield
 
   = render 'layouts/footer'
   = render 'layouts/javascripts'
