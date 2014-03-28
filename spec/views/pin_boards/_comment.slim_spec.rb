@@ -31,7 +31,7 @@ describe 'pin_boards/_comment.slim' do
 
       it 'should be displayed' do
         render partial_options
-        rendered.should have_css("a[href='#{edit_comment_path(comment)}']")
+        rendered.should_not have_css("a[href='#{edit_comment_path(comment)}']")
       end
     end
   end

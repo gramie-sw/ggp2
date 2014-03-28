@@ -4,6 +4,10 @@ div.well
   = form_for(@comment, html: { class: 'form-horizontal', role: 'form'}) do |f|
     legend = t('model.messages.write', model: Comment.model_name.human)
 
+
+    = render partial: 'commons/error_messages', locals: { model: @comment}
+    = f.hidden_field :user_id
+
     div.form-group
       div.col-sm-9.col-md-7.col-lg-6
         = f.text_area :content, class: 'form-control', rows: 7

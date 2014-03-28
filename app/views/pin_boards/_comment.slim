@@ -2,7 +2,7 @@ div.ggp2-comment-box
   div.title
     = link_to comment_presenter.user.nickname, profile_path(comment_presenter.user)
   div.row
-    div.col-lg-9
+    div.col-xs-12.col-sm-8.col-md-9
       p
         = comment_presenter.content
       div
@@ -11,9 +11,10 @@ div.ggp2-comment-box
             strong
               = t('general.edited_at', date: l(comment_presenter.updated_at, format: :short))
 
-        = link_to(edit_comment_path(comment_presenter), title: t('model.messages.edit', model: Comment.model_name.human)) do
-          i.pull-right.fa.fa-pencil
-    div.col-lg-3
+        - if comment_presenter.is_for_current_user?
+          = link_to(edit_comment_path(comment_presenter), title: t('model.messages.edit', model: Comment.model_name.human)) do
+            i.pull-right.fa.fa-pencil
+    div.col-sm-4.col-md-3.hidden-xs
       p
         small
           strong
@@ -22,3 +23,14 @@ div.ggp2-comment-box
         = l comment_presenter.created_at, format: :only_date_full
         br
         = l comment_presenter.created_at, format: :only_time
+    div.col-xs-12.visible-xs
+      p
+        small
+          strong
+            = t('general.time_ago', time: time_ago_in_words(comment_presenter.created_at))
+            '&nbsp;
+        br
+        span.ggp2-weakened
+          = l comment_presenter.created_at, format: :only_date_full
+          '&nbsp;
+          = l comment_presenter.created_at, format: :only_time

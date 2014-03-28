@@ -93,6 +93,8 @@ de:
         position: Position
         name: Name
         ancestry: Phase
+      comment:
+        content: Kommentar
       match:
         position: Spiel
         venue: Austragungsort
@@ -136,7 +138,7 @@ de:
       added:  '%{model} hinzugefügt'
       all: Alle %{models}
       change: '%{model} ändern'
-      created: '%{model} erstellt'
+      created: '%{model} erfolgreich erstellt'
       destroy: '%{model} löschen'
       destroyed: '%{model} erfolgreich gelöscht'
       destroy_really: '%{model} wirklich löschen?'
