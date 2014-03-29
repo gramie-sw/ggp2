@@ -122,6 +122,32 @@ describe Match do
       end
     end
 
+    describe '::all_following_matches' do
+      it 'should return all matches which have a higher position than given one' do
+        match_3 = create(:match, position: 3)
+        match_4 = create(:match, position: 4)
+        match_2 = create(:match, position: 2)
+        create(:match, position: 1)
+
+        actual_matches = Match.all_following_matches_by_position(match_2.position)
+        actual_matches.size.should eq 2
+        actual_matches.should include match_3, match_4
+      end
+    end
+
+    describe '::all_previous_matches' do
+      it 'should return all matches which have a smaller position than given one' do
+        match_3 = create(:match, position: 3)
+        create(:match, position: 4)
+        match_2 = create(:match, position: 2)
+        match_1 =create(:match, position: 1)
+
+        actual_matches = Match.all_previous_matches_by_position(match_3.position)
+        actual_matches.size.should eq 2
+        actual_matches.should include match_1, match_2
+      end
+    end
+
     describe '::future_matches' do
 
       it 'should return only future matches' do
@@ -140,7 +166,7 @@ describe Match do
       it 'should return only matches with result' do
         match_1 = create(:match, score_team_1: 1, score_team_2: 2)
         match_2 = create(:match, score_team_1: 3, score_team_2: 1)
-        match_3 = create(:match, score_team_1: nil, score_team_2: nil)
+        create(:match, score_team_1: nil, score_team_2: nil)
 
         actual_matches = Match.only_with_result
         actual_matches.count.should eq 2
@@ -219,14 +245,14 @@ describe Match do
     end
   end
 
-  describe '::match_ids' do
+  describe '::ordered_match_ids' do
 
     let(:ordered_by_position_match_relation) { double('ordered_by_position_match_relation') }
 
-    it 'should return all match ids' do
+    it 'should return all ordered_match ids' do
       Match.should_receive(:order_by_position).and_return(ordered_by_position_match_relation)
       ordered_by_position_match_relation.should_receive(:pluck).with(:id)
-      Match.match_ids
+      Match.ordered_match_ids
     end
   end
 end

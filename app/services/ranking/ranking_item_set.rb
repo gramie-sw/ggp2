@@ -1,24 +1,16 @@
 class RankingItemSet
 
-  def initialize(match: match, match_ids: match_ids)
+  def initialize(match: match, ordered_match_ids: ordered_match_ids)
     @match = match
-    @match_ids = match_ids
+    @ordered_match_ids = ordered_match_ids
   end
 
   def successor_ranking_item_set
-    create_following_ranking_item_set successor_match_ids
+    create_following_ranking_item_set successor_ordered_match_ids
   end
 
   def predecessor_ranking_item_set
-    create_following_ranking_item_set predecessor_match_ids
-  end
-
-  def successor_ranking_items
-    find_following_ranking_items successor_match_ids
-  end
-
-  def predecessor_ranking_items
-    find_following_ranking_items predecessor_match_ids
+    create_following_ranking_item_set predecessor_ordered_match_ids
   end
 
   def ranking_items match_id= match.id
@@ -33,11 +25,7 @@ class RankingItemSet
     end
   end
 
-  def destroy_ranking_items
-    RankingItem.destroy_all(match: match)
-  end
-
-  def destroy_existing_and_save_built_ranking_items build_ranking_items
+  def update build_ranking_items
     RankingItem.transaction do
       RankingItem.destroy_all(match: match)
       build_ranking_items.each(&:save!)
@@ -46,16 +34,16 @@ class RankingItemSet
 
   private
 
-  attr_reader :match, :match_ids
+  attr_reader :match, :ordered_match_ids
 
   def ranking_items? match_id= match.id
     ranking_items(match_id).present?
   end
 
-  def create_following_ranking_item_set successor_match_ids
-    match_id = following_match_id_which_has_ranking_items successor_match_ids
+  def create_following_ranking_item_set successor_ordered_match_ids
+    match_id = following_match_id_which_has_ranking_items successor_ordered_match_ids
     if match_id
-      RankingItemSet.new match: Match.find(match_id), match_ids: match_ids
+      RankingItemSet.new match: Match.find(match_id), ordered_match_ids: ordered_match_ids
     end
   end
 
@@ -72,13 +60,13 @@ class RankingItemSet
     end
   end
 
-  def successor_match_ids
+  def successor_ordered_match_ids
     # plus one because we don't want to have the current match_id in the returning array
-    match_ids.drop(match_ids.index(match.id) + 1)
+    ordered_match_ids.drop(ordered_match_ids.index(match.id) + 1)
   end
 
-#previous match_ids beginning with the closest to the current match_id
-  def predecessor_match_ids
-    match_ids.take(match_ids.index(match.id)).reverse
+#previous ordered_match_ids beginning with the closest to the current match_id
+  def predecessor_ordered_match_ids
+    ordered_match_ids.take(ordered_match_ids.index(match.id)).reverse
   end
 end

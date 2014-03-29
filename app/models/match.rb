@@ -25,8 +25,11 @@ class Match < ActiveRecord::Base
 
 
   scope :order_by_position, -> { order('position ASC') }
+  scope :all_following_matches_by_position, ->(position) { where 'position > ?', position }
+  scope :all_previous_matches_by_position, ->(position) { where 'position < ?', position }
   scope :future_matches, -> { where('matches.date > ?', Time.now) }
   scope :only_with_result, -> { where('score_team_1 IS NOT NULL AND score_team_2 IS NOT NULL') }
+
 
   def has_result?
     score_team_1.present? && score_team_2.present?
@@ -44,9 +47,17 @@ class Match < ActiveRecord::Base
     !started?
   end
 
-  def self.match_ids
+  def self.ordered_match_ids
     Match.order_by_position.pluck(:id)
   end
+
+  #def self.ordered_successor_match_ids match
+  #  Match.order_by_position.all_following_matches_by_position(match.position).pluck(:id)
+  #end
+  #
+  #def self.ordered_predecessor_match_ids match
+  #  Match.order_by_position.all_previous_matches_by_position(match.position).pluck(:id)
+  #end
 
   #TODO test or remove
   def self.score_or_dash team_score

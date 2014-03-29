@@ -1,9 +1,9 @@
 describe RankingItemSet do
 
   let(:build_match) { build(:match, id: 12) }
-  let(:match_ids) { [10, 11, build_match.id, 14, 15] }
+  let(:ordered_match_ids) { [10, 11, build_match.id, 14, 15] }
 
-  subject { RankingItemSet.new match: build_match, match_ids: match_ids }
+  subject { RankingItemSet.new match: build_match, ordered_match_ids: ordered_match_ids }
 
   describe '#successor_ranking_item_set' do
 
@@ -23,7 +23,7 @@ describe RankingItemSet do
         successor_ranking_item_set = subject.successor_ranking_item_set
         successor_ranking_item_set.should be_an_instance_of RankingItemSet
         successor_ranking_item_set.send(:match).should eq match_with_id_15
-        successor_ranking_item_set.send(:match_ids).should eq match_ids
+        successor_ranking_item_set.send(:ordered_match_ids).should eq ordered_match_ids
       end
     end
 
@@ -52,7 +52,7 @@ describe RankingItemSet do
         predecessor_ranking_item_set = subject.predecessor_ranking_item_set
         predecessor_ranking_item_set.should be_an_instance_of RankingItemSet
         predecessor_ranking_item_set.send(:match).should eq match_with_id_10
-        predecessor_ranking_item_set.send(:match_ids).should eq match_ids
+        predecessor_ranking_item_set.send(:ordered_match_ids).should eq ordered_match_ids
       end
     end
 
@@ -61,53 +61,6 @@ describe RankingItemSet do
         subject.should_receive(:create_following_ranking_item_set).with([11,10]).and_call_original
         subject.should_receive(:following_match_id_which_has_ranking_items).with([11,10]).and_call_original
         subject.predecessor_ranking_item_set.should be_nil
-      end
-    end
-  end
-
-  describe '#successor_ranking_items' do
-
-    context 'if there is a successor match with a ranking items' do
-
-      let(:successor_ranking_item) { build(:ranking_item, match_id: 15)}
-
-      it 'should return ranking items for the successor match id' do
-        subject.should_receive(:find_following_ranking_items).with([14, 15]).and_call_original
-        RankingItem.should_receive(:where).with(match_id: 14).and_call_original
-        RankingItem.should_receive(:where).with(match_id: 15).and_return([successor_ranking_item])
-
-        successor_ranking_items = subject.successor_ranking_items
-        successor_ranking_items.should include successor_ranking_item
-        successor_ranking_items.size.should eq 1
-      end
-    end
-
-    context 'if no successor match has ranking items' do
-      it 'should return nil' do
-        subject.successor_ranking_items.should be_nil
-      end
-    end
-  end
-
-  describe '#predecessor_ranking_items' do
-    context 'if there is a predecessor match with ranking items' do
-
-      let(:predecessor_ranking_item) { build(:ranking_item, match_id: 10)}
-
-      it 'should return ranking items for previous match id' do
-        subject.should_receive(:find_following_ranking_items).with([11, 10]).and_call_original
-        RankingItem.should_receive(:where).with(match_id: 11).and_call_original
-        RankingItem.should_receive(:where).with(match_id: 10).and_return([predecessor_ranking_item])
-
-        predecessor_ranking_items = subject.predecessor_ranking_items
-        predecessor_ranking_items.should include predecessor_ranking_item
-        predecessor_ranking_items.size.should eq 1
-      end
-    end
-
-    context 'if there is no predecessor match with ranking items' do
-      it 'should return nil' do
-        subject.predecessor_ranking_items.should be_nil
       end
     end
   end
@@ -158,7 +111,7 @@ describe RankingItemSet do
     end
   end
 
-  describe '#destroy_existing_and_save_built_ranking_items' do
+  describe '#update' do
 
     let(:build_ranking_items) do
       [
@@ -167,26 +120,19 @@ describe RankingItemSet do
       ]
     end
 
-    it 'should destroy existing and save build ranking_items' do
+    it 'should update' do
       RankingItem.should_receive(:transaction).and_yield
       RankingItem.should_receive(:destroy_all).with(match: build_match).ordered
       build_ranking_items[0].should_receive(:save!).ordered
       build_ranking_items[1].should_receive(:save!).ordered
 
-      subject.destroy_existing_and_save_built_ranking_items(build_ranking_items).should be_true
+      subject.update(build_ranking_items).should be_true
     end
 
-    it 'should destroy existing and save created ranking_items transactional' do
+    it 'should update transactional' do
       build_ranking_items[1].should_receive(:save!).and_raise(ActiveRecord::Rollback)
-      subject.destroy_existing_and_save_built_ranking_items(build_ranking_items).should be_false
+      subject.update(build_ranking_items).should be_false
       RankingItem.all.size.should be 0
-    end
-  end
-
-  describe '#destroy' do
-    it 'should destroy all ranking items for current ranking item set' do
-      RankingItem.should_receive(:destroy_all).with(match: build_match)
-      subject.destroy_ranking_items
     end
   end
 end

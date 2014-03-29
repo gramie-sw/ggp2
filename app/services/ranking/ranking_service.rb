@@ -7,7 +7,7 @@ class RankingService
   end
 
   def ranking_item_set
-    @ranking_item_set ||= RankingItemSet.new match: match, match_ids: Match.match_ids
+    @ranking_item_set ||= RankingItemSet.new match: match, ordered_match_ids: Match.ordered_match_ids
   end
 
   def update_all
@@ -20,7 +20,10 @@ class RankingService
   end
 
   def update process_ranking_item_set
-    process_ranking_item_set.destroy_existing_and_save_built_ranking_items build process_ranking_item_set
+    updateable_ranking_item_set = build(process_ranking_item_set)
+    #Property.save_last_result_match_id match_id
+    process_ranking_item_set.update(updateable_ranking_item_set)
+    #Property.save_last_result_match_id match_id
   end
 
   def build process_ranking_item_set

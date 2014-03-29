@@ -36,7 +36,7 @@ describe RankingService do
 
     it 'should destroy all ranking items and build and save new ranking items' do
       subject.should_receive(:build).with(process_ranking_item_set).and_return(build_ranking_items)
-      process_ranking_item_set.should_receive(:destroy_existing_and_save_built_ranking_items).with(build_ranking_items)
+      process_ranking_item_set.should_receive(:update).with(build_ranking_items)
 
       subject.update process_ranking_item_set
     end
