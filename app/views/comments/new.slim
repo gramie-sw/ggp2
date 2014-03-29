@@ -4,7 +4,6 @@ div.well
   = form_for(@comment, html: { class: 'form-horizontal', role: 'form'}) do |f|
     legend = t('model.messages.write', model: Comment.model_name.human)
 
-
     = render partial: 'commons/error_messages', locals: { model: @comment}
     = f.hidden_field :user_id
 
@@ -17,5 +16,5 @@ div.well
     div.form-group
       div.col-sm-9.col-md-10
         div.btn-toolbar
-          = f.submit t('model.messages.change', model: t('general.user_data')), class: 'btn btn-primary'
+          = f.submit t('model.messages.save', model: Comment.model_name.human), class: 'btn btn-primary'
           = link_to I18n.t('general.cancel'), pin_boards_path, class: "btn btn-default"

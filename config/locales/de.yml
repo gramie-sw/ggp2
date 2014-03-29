@@ -152,6 +152,7 @@ de:
       remove: '%{model} entfernen'
       removed:  '%{model} entfernt'
       remove_really: '%{model} wirklich entfernen?'
+      save: '%{model} speichern'
       show: '%{model} anzeigen'
       updated: '%{model} geändert'
       write: '%{model} schreiben'
