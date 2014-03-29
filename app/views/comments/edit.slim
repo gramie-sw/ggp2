@@ -1,0 +1,3 @@
+- content_for(:title, Comment.model_name.human)
+
+= render partial: 'form', locals: {comment: @comment, legend: t('model.messages.change', model: Comment.model_name.human)}

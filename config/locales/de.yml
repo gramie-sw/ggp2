@@ -154,7 +154,7 @@ de:
       remove_really: '%{model} wirklich entfernen?'
       save: '%{model} speichern'
       show: '%{model} anzeigen'
-      updated: '%{model} geändert'
+      updated: '%{model} erfolgreich geändert'
       write: '%{model} schreiben'
       count:
         created: '%{count} %{models} erfolgreich erstellt'
@@ -238,7 +238,7 @@ de:
 
   pin_board:
     description: '&bdquo;Der Schiri war blind und die Spieler alles nur Amateure!"'
-    subdescription: Dies und andere wichtige Dinge möchtest Du mitteilen? Hier kannst Du einen Kommentar hierlassen und mit deinen Mitspielern kommunizieren ...
+    subdescription: Dies und andere wichtige Dinge möchtest du mitteilen? Hier kannst du einen Kommentar hierlassen und mit deinen Mitspielern kommunizieren ...
 
   profile:
     section:

@@ -14,10 +14,30 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+    @comment = current_resource
+  end
+
+  def update
+
+    service = CommentService.new
+    result = service.update_comment(current_resource, comment_params)
+
+    if result.successful?
+      redirect_to pin_boards_path, notice: t('model.messages.updated', model: Comment.model_name.human)
+    else
+      @comment = result.comment
+      render :edit
+    end
+  end
+
   private
 
   def comment_params
     params.require(:comment).permit(:user_id, :content)
   end
 
+  def current_resource
+    @current_resource ||= Comment.find(params[:id])
+  end
 end
