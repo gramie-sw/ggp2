@@ -1,0 +1,9 @@
+de:
+  devise:
+    links:
+      sign_in: Anmelden
+      sign_up: Konto erstellen
+      forgot_password: "Passwort vergessen?"
+      not_receive_confirmation: "Keine Bestätigunginstruktionen erhalten?"
+      not_receive_unlock_instruction: "Keine Entsperrinstruktionen erhalten?"
+      sign_in_provider: "Mit %{provider} anmelden"

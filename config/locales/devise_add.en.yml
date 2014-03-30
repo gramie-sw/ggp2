@@ -1,0 +1,9 @@
+en:
+  devise:
+    links:
+      sign_in: Sign in
+      sign_up: Sign up
+      forgot_password: "Forgot your password?"
+      not_receive_confirmation: "Didn't receive confirmation instructions?"
+      not_receive_unlock_instruction: "Didn't receive unlock instructions?"
+      sign_in_provider: "Sign in with %{provider}"
