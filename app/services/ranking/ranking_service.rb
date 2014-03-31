@@ -23,7 +23,7 @@ class RankingService
     updateable_ranking_item_set = build(process_ranking_item_set)
     #Property.save_last_result_match_id match_id
     process_ranking_item_set.update(updateable_ranking_item_set)
-    #Property.save_last_result_match_id match_id
+    #Property.save_last_result_match_id match_idq
   end
 
   def build process_ranking_item_set
