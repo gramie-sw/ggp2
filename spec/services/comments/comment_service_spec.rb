@@ -23,7 +23,7 @@ describe CommentService do
         result.comment.should be comment
       end
     end
-    context 'on success' do
+    context 'on failure' do
 
       before :each do
         comment.stub(:update).and_return(false)
