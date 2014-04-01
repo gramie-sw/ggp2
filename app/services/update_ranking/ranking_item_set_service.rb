@@ -6,16 +6,20 @@ class RankingItemSetService
 
   def previous_ranking_item_set current_match_id, ordered_match_ids
     previous_match_ids = ordered_match_ids[0, ordered_match_ids.index(current_match_id)]
-    find_next_ranking_item_set previous_match_ids.reverse
+    match_id = find_next_ranking_item_set_match_id previous_match_ids.reverse
+
+    if match_id
+      create_ranking_item_set(match_id, ranking_item_repository.ranking_items_by_match_id(match_id))
+    end
   end
 
   def previous_or_neutral_ranking_item_set current_match_id, ordered_match_ids
     previous_ranking_item_set(current_match_id, ordered_match_ids) || neutral_ranking_item_set
   end
 
-  def next_ranking_item_set next_match_ids
-    #Todo should get complete ordered match_ids
-    find_next_ranking_item_set next_match_ids
+  def next_ranking_item_set_match_id current_match_id, ordered_match_ids
+    next_ordered_match_ids = ordered_match_ids[ordered_match_ids.index(current_match_id)+1, ordered_match_ids.size-1]
+    find_next_ranking_item_set_match_id(next_ordered_match_ids)
   end
 
   def save_ranking_item_set ranking_item_set
@@ -30,17 +34,9 @@ class RankingItemSetService
 
   attr_reader :ranking_item_repository
 
-  def find_next_ranking_item_set match_ids
-    match_id = next_match_id_with_ranking_items match_ids
-
-    if match_id
-      create_ranking_item_set(match_id, ranking_item_repository.ranking_items_by_match_id(match_id))
-    end
-  end
-
-  def next_match_id_with_ranking_items match_ids
-    match_ids.detect do |match_id|
-      ranking_item_repository.ranking_items_by_match_id(match_id).size != 0
+  def find_next_ranking_item_set_match_id ordered_match_ids
+    ordered_match_ids.detect do |match_id|
+      ranking_item_repository.exists_by_match_id?(match_id)
     end
   end
 

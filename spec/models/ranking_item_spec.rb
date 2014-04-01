@@ -84,4 +84,29 @@ describe RankingItem do
       RankingItem.all.should include ranking_items[0], ranking_items[1]
     end
   end
+
+  describe '::exists_by_match_id?' do
+
+    let(:match_id) { 3 }
+    let(:relation) { double('RankingItemRelation') }
+    subject { RankingItem }
+
+    context 'when RankingItems exists for given match_id' do
+
+      it 'should return true' do
+        relation.should_receive(:exists?).and_return(true)
+        RankingItem.should_receive(:ranking_items_by_match_id).with(match_id).and_return(relation)
+        subject.exists_by_match_id?(match_id).should be_true
+      end
+    end
+
+    context 'when not RankingItem exist for given match_id' do
+
+      it 'should return false' do
+        relation.should_receive(:exists?).and_return(false)
+        RankingItem.should_receive(:ranking_items_by_match_id).with(match_id).and_return(relation)
+        subject.exists_by_match_id?(match_id).should be_false
+      end
+    end
+  end
 end

@@ -4,6 +4,10 @@ class RankingItem < ActiveRecord::Base
 
   scope :ranking_items_by_match_id, ->(match_id) { where(match_id: match_id) }
 
+  def self.exists_by_match_id? match_id
+    ranking_items_by_match_id(match_id).exists?
+  end
+
   def ranking_hash
     "#{points}#{correct_tips_count}#{correct_tendency_tips_only_count}"
   end

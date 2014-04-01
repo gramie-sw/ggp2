@@ -12,7 +12,8 @@ describe RankingItemSetService do
       it 'should return created RankingItemSet by reversing ordered match_ids' do
         expected_ranking_items = [RankingItem.new(match_id: 3)]
 
-        ranking_item_repository.stub(:ranking_items_by_match_id).with(4).ordered.and_return([])
+        ranking_item_repository.stub(:exists_by_match_id?).with(4).and_return(false)
+        ranking_item_repository.stub(:exists_by_match_id?).with(3).and_return(true)
         ranking_item_repository.stub(:ranking_items_by_match_id).with(3).ordered.and_return(expected_ranking_items)
 
         actual_ranking_item_set = subject.previous_ranking_item_set(5, ordered_match_ids)
@@ -25,8 +26,8 @@ describe RankingItemSetService do
     context 'when there are no previous RankingItems for match id' do
 
       it 'should return nil' do
-        ranking_item_repository.stub(:ranking_items_by_match_id).with(2).ordered.and_return([])
-        ranking_item_repository.stub(:ranking_items_by_match_id).with(1).ordered.and_return([])
+        ranking_item_repository.stub(:exists_by_match_id?).with(2).and_return(false)
+        ranking_item_repository.stub(:exists_by_match_id?).with(1).and_return(false)
 
         subject.previous_ranking_item_set(3, ordered_match_ids).should be_nil
       end
@@ -78,26 +79,32 @@ describe RankingItemSetService do
 
   describe '#next_ranking_item_set_match_id' do
 
+    let(:ordered_match_ids) { [1, 2, 3, 4, 5, 6, 7] }
+
     context 'when there are next RankingItems for match id' do
 
-      let(:ranking_items) { [RankingItem.new(match_id: 12)] }
-
       it 'should return created RankingItemSet' do
-        ranking_item_repository.stub(:ranking_items_by_match_id).with(11).and_return([])
-        ranking_item_repository.stub(:ranking_items_by_match_id).with(12).and_return(ranking_items)
+        ranking_item_repository.stub(:exists_by_match_id?).with(5).and_return(false)
+        ranking_item_repository.stub(:exists_by_match_id?).with(6).and_return(true)
 
-        actual_ranking_item_set = subject.next_ranking_item_set [11, 12]
-        actual_ranking_item_set.should be_an_instance_of RankingItemSet
-        actual_ranking_item_set.match_id.should be 12
-        actual_ranking_item_set.send(:ranking_items).should eq ranking_items
+        subject.next_ranking_item_set_match_id(4, ordered_match_ids).should eq 6
       end
     end
 
-    context 'when there are no next ranking items for match id' do
+    context 'when there are no next RankingItems for match id' do
+      it 'should return nil' do
+        ranking_item_repository.stub(:exists_by_match_id?).with(6).and_return(false)
+        ranking_item_repository.stub(:exists_by_match_id?).with(7).and_return(false)
+
+        subject.next_ranking_item_set_match_id(5, ordered_match_ids).should be_nil
+      end
+    end
+
+    context 'when there are no next match_id in ordered match_ids' do
 
       it 'should return nil' do
-        ranking_item_repository.stub(:ranking_items_by_match_id).with(12).and_return([])
-        subject.next_ranking_item_set([12]).should be_nil
+        ranking_item_repository.stub(:exists_by_match_id?).never
+        subject.next_ranking_item_set_match_id(7, ordered_match_ids).should be_nil
       end
     end
   end
