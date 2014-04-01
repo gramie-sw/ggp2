@@ -18,8 +18,11 @@ module Ggp2
     # -- all .rb files in that directory are automatically loaded.
 
     config.autoload_paths += %W(#{config.root}/lib/validators)
+    config.autoload_paths += Dir["#{config.root}/app/business_objects/**/"]
+    config.autoload_paths += Dir["#{config.root}/app/plugins/**/"]
     config.autoload_paths += Dir["#{config.root}/app/presenters/**/"]
     config.autoload_paths += Dir["#{config.root}/app/services/**/"]
+    config.autoload_paths += Dir["#{config.root}/app/use_cases/**/"]
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
