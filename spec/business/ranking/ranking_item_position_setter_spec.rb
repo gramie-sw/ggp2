@@ -1,4 +1,4 @@
-describe RankingItemPositionService do
+describe RankingItemPositionSetter do
 
   let(:ranking_items) do
     [
@@ -12,7 +12,7 @@ describe RankingItemPositionService do
 
   describe '::set_positions' do
     it 'should return sorted ranking items with position set' do
-      sorted_ranking_items = RankingItemPositionService.set_positions ranking_items
+      sorted_ranking_items = RankingItemPositionSetter.set_positions ranking_items
 
       sorted_ranking_items[0].should eq ranking_items[2]
       sorted_ranking_items[0].position.should be 1

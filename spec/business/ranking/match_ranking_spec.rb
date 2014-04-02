@@ -1,4 +1,4 @@
-describe RankingItemSet do
+describe MatchRanking do
 
   let(:ranking_items) do
     [
@@ -8,7 +8,7 @@ describe RankingItemSet do
     ]
   end
 
-  subject { RankingItemSet.new(match_id: 7, ranking_items: ranking_items) }
+  subject { MatchRanking.new(match_id: 7, ranking_items: ranking_items) }
 
   it 'should respond to match_id' do
     subject.should respond_to :match_id
@@ -33,9 +33,9 @@ describe RankingItemSet do
 
   describe '#neutral?' do
 
-    context 'when match_id equals 0' do
+    context 'when match_id equals 0 and there are no RankingItems' do
 
-      subject { RankingItemSet.new(match_id: 0, ranking_items: []) }
+      subject { MatchRanking.new(match_id: 0, ranking_items: []) }
 
       it 'should return true' do
         subject.should be_neutral
@@ -44,11 +44,28 @@ describe RankingItemSet do
 
     context 'when match_id does not equals 0' do
 
-      subject { RankingItemSet.new(match_id: 7, ranking_items: []) }
+      subject { MatchRanking.new(match_id: 7, ranking_items: []) }
 
       it 'should return true' do
         subject.should_not be_neutral
       end
+    end
+
+    context 'when there are RankingItems' do
+
+      subject { MatchRanking.new(match_id: 0, ranking_items: [RankingItem.new]) }
+
+      it 'should return true' do
+        subject.should_not be_neutral
+      end
+    end
+  end
+
+  describe '#save' do
+
+    it 'should update RankingItems with repo' do
+      RankingItem.should_receive(:update_multiple).with(7, ranking_items).and_return(true)
+      subject.save.should be_true
     end
   end
 end

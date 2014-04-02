@@ -1,4 +1,4 @@
-class RankingItemSetFactory
+class MatchRankingFactory
 
   def initialize(ranking_item_factory:, ranking_item_position_service:)
     @ranking_item_factory = ranking_item_factory
@@ -8,7 +8,7 @@ class RankingItemSetFactory
   def build match_id, tips, previous_ranking_item_set
     ranking_items = create_ranking_items(tips, previous_ranking_item_set)
     ranking_item_position_service.set_positions(ranking_items)
-    RankingItemSet.new(match_id: match_id, ranking_items: ranking_items)
+    MatchRanking.new(match_id: match_id, ranking_items: ranking_items)
   end
 
   private

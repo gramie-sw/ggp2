@@ -1,4 +1,4 @@
-class RankingItemSet
+class MatchRanking
 
   attr_reader :match_id, :ranking_items
 
@@ -12,7 +12,11 @@ class RankingItemSet
   end
 
   def neutral?
-    match_id == 0
+    match_id == 0 && ranking_items.blank?
+  end
+
+  def save
+    RankingItem.update_multiple(match_id, ranking_items)
   end
 
   private

@@ -7,7 +7,7 @@ class RankingService
   end
 
   def ranking_item_set
-    @ranking_item_set ||= RankingItemSet.new match: match, ordered_match_ids: Match.ordered_match_ids
+    @ranking_item_set ||= MatchRanking.new match: match, ordered_match_ids: Match.ordered_match_ids
   end
 
   def update_all
