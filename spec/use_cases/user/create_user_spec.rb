@@ -12,17 +12,14 @@ describe CreateUser do
     end
 
     let(:tip_factory) { double 'TipFactory' }
-    let(:user_create_service) { double 'UserCreateService' }
+    let(:user_creator) { double 'UserCreator' }
     let(:result_with_token) { double 'ResultWithToken', user: User.new, successful?: false, raw_token: 'raw_token' }
 
-    it 'should create UserCreateService with UserFactory and TipFactory and call create_with_reset_password_token on it' do
+    it 'should create UserCreator with UserFactory and TipFactory and call create_with_reset_password_token on it' do
 
       TipFactory.should_receive(:new).with(match_repository: Match).and_return(tip_factory)
-
-      UserCreateService.should_receive(:new).with(
-          user_factory: UserFactory, tip_factory: tip_factory).and_return(user_create_service)
-
-      user_create_service.should_receive(:create_with_reset_password_token).with(
+      UserCreator.should_receive(:new).with(tip_factory).and_return(user_creator)
+      user_creator.should_receive(:create_with_reset_password_token).with(
           user_attributes, 'password_token', 'encrypted_token').and_return(result_with_token)
 
       subject.create_with_password_token user_attributes
