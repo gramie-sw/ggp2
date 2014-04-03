@@ -1,4 +1,4 @@
-class MatchRanking
+class RankingSet
 
   attr_reader :match_id, :ranking_items
 

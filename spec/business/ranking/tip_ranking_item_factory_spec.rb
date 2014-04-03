@@ -1,4 +1,4 @@
-describe RankingItemFactory do
+describe TipRankingItemFactory do
 
   let(:previous_ranking_item) do
     correct_tips_count = 3
@@ -36,6 +36,7 @@ describe RankingItemFactory do
         actual_ranking_item.points.should eq previous_ranking_item.points
         actual_ranking_item.correct_tips_count.should eq previous_ranking_item.correct_tips_count
         actual_ranking_item.correct_tendency_tips_only_count.should eq previous_ranking_item.correct_tendency_tips_only_count
+        actual_ranking_item.correct_champion_tip.should eq previous_ranking_item.correct_champion_tip
       end
     end
 
@@ -48,6 +49,7 @@ describe RankingItemFactory do
         actual_ranking_item.points.should eq previous_ranking_item.points + Ggp2.config.correct_tip_points
         actual_ranking_item.correct_tips_count.should eq previous_ranking_item.correct_tips_count + 1
         actual_ranking_item.correct_tendency_tips_only_count.should eq previous_ranking_item.correct_tendency_tips_only_count
+        actual_ranking_item.correct_champion_tip.should eq previous_ranking_item.correct_champion_tip
       end
     end
 
@@ -60,6 +62,7 @@ describe RankingItemFactory do
         actual_ranking_item.points.should eq previous_ranking_item.points + Ggp2.config.correct_tendency_tip_only_points
         actual_ranking_item.correct_tips_count.should eq previous_ranking_item.correct_tips_count
         actual_ranking_item.correct_tendency_tips_only_count.should eq previous_ranking_item.correct_tendency_tips_only_count + 1
+        actual_ranking_item.correct_champion_tip.should eq previous_ranking_item.correct_champion_tip
       end
     end
   end

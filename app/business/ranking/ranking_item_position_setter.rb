@@ -1,9 +1,9 @@
 module RankingItemPositionSetter
   extend self
 
-  def set_positions ordered_ranking_items
+  def set_positions ranking_items
     previous_ranking_item = nil
-    (sort ordered_ranking_items).map!.with_index do |ranking_item, index|
+    (sort ranking_items).map!.with_index do |ranking_item, index|
       if index == 0
         ranking_item.position = 1
         previous_ranking_item = ranking_item

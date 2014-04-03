@@ -1,7 +1,7 @@
-describe MatchRankingFinder do
+describe TipRankingSetFinder do
 
   let(:ordered_match_ids) { [1, 2, 3, 4, 5, 6, 7] }
-  subject { MatchRankingFinder.new(ordered_match_ids) }
+  subject { TipRankingSetFinder.new(ordered_match_ids) }
 
   describe '#find_previous' do
 
@@ -14,10 +14,10 @@ describe MatchRankingFinder do
         RankingItem.stub(:exists_by_match_id?).with(3).and_return(true)
         RankingItem.stub(:ranking_items_by_match_id).with(3).ordered.and_return(expected_ranking_items)
 
-        actual_match_ranking = subject.find_previous(5)
-        actual_match_ranking.should be_an_instance_of MatchRanking
-        actual_match_ranking.match_id.should be 3
-        actual_match_ranking.send(:ranking_items).should eq expected_ranking_items
+        actual_ranking_set = subject.find_previous(5)
+        actual_ranking_set.should be_an_instance_of RankingSet
+        actual_ranking_set.match_id.should be 3
+        actual_ranking_set.send(:ranking_items).should eq expected_ranking_items
       end
     end
 
@@ -28,9 +28,9 @@ describe MatchRankingFinder do
         RankingItem.stub(:exists_by_match_id?).with(2).and_return(false)
         RankingItem.stub(:exists_by_match_id?).with(1).and_return(false)
 
-        actual_match_ranking = subject.find_previous(3)
-        actual_match_ranking.should be_an_instance_of MatchRanking
-        actual_match_ranking.should be_neutral
+        actual_ranking_set = subject.find_previous(3)
+        actual_ranking_set.should be_an_instance_of RankingSet
+        actual_ranking_set.should be_neutral
       end
     end
 
@@ -40,9 +40,9 @@ describe MatchRankingFinder do
         RankingItem.stub(:exists_by_match_id?).with(2).and_return(false)
         RankingItem.stub(:exists_by_match_id?).with(1).and_return(false)
 
-        actual_match_ranking = subject.find_previous(3)
-        actual_match_ranking.should be_an_instance_of MatchRanking
-        actual_match_ranking.should be_neutral
+        actual_ranking_set = subject.find_previous(3)
+        actual_ranking_set.should be_an_instance_of RankingSet
+        actual_ranking_set.should be_neutral
       end
     end
   end

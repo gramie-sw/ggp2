@@ -1,4 +1,4 @@
-describe MatchRanking do
+describe RankingSet do
 
   let(:ranking_items) do
     [
@@ -8,7 +8,7 @@ describe MatchRanking do
     ]
   end
 
-  subject { MatchRanking.new(match_id: 7, ranking_items: ranking_items) }
+  subject { RankingSet.new(match_id: 7, ranking_items: ranking_items) }
 
   it 'should respond to match_id' do
     subject.should respond_to :match_id
@@ -35,7 +35,7 @@ describe MatchRanking do
 
     context 'when match_id equals 0 and there are no RankingItems' do
 
-      subject { MatchRanking.new(match_id: 0, ranking_items: []) }
+      subject { RankingSet.new(match_id: 0, ranking_items: []) }
 
       it 'should return true' do
         subject.should be_neutral
@@ -44,7 +44,7 @@ describe MatchRanking do
 
     context 'when match_id does not equals 0' do
 
-      subject { MatchRanking.new(match_id: 7, ranking_items: []) }
+      subject { RankingSet.new(match_id: 7, ranking_items: []) }
 
       it 'should return true' do
         subject.should_not be_neutral
@@ -53,7 +53,7 @@ describe MatchRanking do
 
     context 'when there are RankingItems' do
 
-      subject { MatchRanking.new(match_id: 0, ranking_items: [RankingItem.new]) }
+      subject { RankingSet.new(match_id: 0, ranking_items: [RankingItem.new]) }
 
       it 'should return true' do
         subject.should_not be_neutral

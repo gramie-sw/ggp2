@@ -1,4 +1,4 @@
-module RankingItemFactory
+module TipRankingItemFactory
   extend self
 
   def build tip, previous_ranking_item
