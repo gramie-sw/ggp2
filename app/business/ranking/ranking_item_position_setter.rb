@@ -13,11 +13,16 @@ module RankingItemPositionSetter
     end
   end
 
+
   private
 
   def sort ranking_items
-    ranking_items.sort_by { |ranking_item| [-ranking_item.points, -ranking_item.correct_tips_count,
-                                            -ranking_item.correct_tendency_tips_only_count, ranking_item.user.created_at] }
+    ranking_items.sort_by { |ranking_item| [-ranking_item.points,
+                                            (ranking_item.correct_champion_tip? ? 0 : 1),
+                                            -ranking_item.correct_tips_count,
+                                            -ranking_item.correct_tendency_tips_only_count,
+                                            ranking_item.user.created_at]
+    }
   end
 
   def set_position ranking_item, previous_ranking_item

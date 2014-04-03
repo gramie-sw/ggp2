@@ -33,9 +33,12 @@ describe RankingItem do
   end
 
   describe '#ranking_hash' do
+
     it 'should return ranking hash which consists of points correct tips count and correct tendency tips only count' do
       ranking_item = build(:ranking_item, points: 12, correct_tips_count: 13, correct_tendency_tips_only_count: 14)
-      ranking_item.ranking_hash.should eq '121314'
+      ranking_item.ranking_hash.should eq '0121314'
+      ranking_item = build(:ranking_item, correct_champion_tip: true, points: 12, correct_tips_count: 13, correct_tendency_tips_only_count: 14)
+      ranking_item.ranking_hash.should eq '1121314'
     end
   end
 

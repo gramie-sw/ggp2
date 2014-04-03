@@ -16,7 +16,7 @@ class RankingItem < ActiveRecord::Base
   end
 
   def ranking_hash
-    "#{points}#{correct_tips_count}#{correct_tendency_tips_only_count}"
+    "#{correct_champion_tip? ? 1 : 0}#{points}#{correct_tips_count}#{correct_tendency_tips_only_count}"
   end
 
   def self.neutral

@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20140323141445) do
     t.integer  "match_id"
     t.integer  "user_id"
     t.integer  "position"
+    t.boolean  "correct_champion_tip"
     t.integer  "correct_tips_count"
     t.integer  "correct_tendency_tips_only_count"
     t.integer  "points"
