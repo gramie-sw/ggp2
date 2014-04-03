@@ -1,7 +1,7 @@
 describe UpdateRanking do
 
 
-  describe '::run' do
+  describe '#run' do
 
     let(:ordered_match_ids) { [1, 2, 3, 4, 5, 6, 7] }
     let(:neutral_ranking_set) { double('NeutralMatchRanking1') }

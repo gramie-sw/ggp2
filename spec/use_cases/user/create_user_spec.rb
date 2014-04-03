@@ -1,35 +1,76 @@
 describe CreateUser do
 
-  let(:user_attributes) { {} }
+  let(:tip_factory) { TipFactory }
 
-  describe '#create_with_password_token' do
+  let(:user_attributes) do
+    {
+        nickname: 'Player',
+        first_name: 'Hans',
+        last_name: 'Mustermann',
+        email: 'hans.mustermann@mail.com',
+        admin: false
+    }
+  end
 
-    before :each do
-      TokenFactory.stub(:reset_password_tokens).and_return(
-          TokenFactory::ResetPasswordTokens.new('raw_token', 'encrypted_token'))
+  let(:password_token) { 'password_token' }
+  let(:raw_reset_password_token) { 'raw_reset_password_token'}
+  let(:encrypted_reset_password_token) { 'encrypted_reset_password_token'}
 
-      TokenFactory.stub(:password_token).and_return('password_token')
+  let(:tips) { [Tip.new] }
+  let(:current_time) { Time.current }
+
+  subject { CreateUser.new }
+
+  before :each do
+    Time.stub(:current).and_return(current_time)
+    TokenFactory.stub(:password_token).and_return(password_token)
+    TokenFactory.stub(:reset_password_tokens).and_return(TokenFactory::ResetPasswordTokens.new(
+                                             raw_reset_password_token, encrypted_reset_password_token))
+  end
+
+  describe '#run' do
+
+    context 'when user creation was successful' do
+
+      it 'should return ResultWithToken with user and successful? with true and raw token set' do
+
+        TipFactory.any_instance.should_receive(:build_all).and_return(tips)
+        User.any_instance.should_receive(:save).and_return true
+
+        result = subject.run user_attributes
+        result.successful?.should be_true
+        result.user.should be_an_instance_of User
+        result.user.nickname.should eq user_attributes[:nickname]
+        result.user.first_name.should eq user_attributes[:first_name]
+        result.user.last_name.should eq user_attributes[:last_name]
+        result.user.email.should eq user_attributes[:email]
+        result.user.admin.should be_false
+        result.user.active.should be_true
+        result.user.password.should eq password_token
+        result.user.password_confirmation.should eq password_token
+        result.user.reset_password_token.should eq encrypted_reset_password_token
+        result.user.reset_password_sent_at.should eq current_time
+        result.raw_token.should eq raw_reset_password_token
+      end
     end
 
-    let(:tip_factory) { double 'TipFactory' }
-    let(:user_creator) { double 'UserCreator' }
-    let(:result_with_token) { double 'ResultWithToken', user: User.new, successful?: false, raw_token: 'raw_token' }
+    context 'when user creation failed' do
 
-    it 'should create UserCreator with UserFactory and TipFactory and call create_with_reset_password_token on it' do
+      let(:user) { double 'User' }
 
-      TipFactory.should_receive(:new).with(match_repository: Match).and_return(tip_factory)
-      UserCreator.should_receive(:new).with(tip_factory).and_return(user_creator)
-      user_creator.should_receive(:create_with_reset_password_token).with(
-          user_attributes, 'password_token', 'encrypted_token').and_return(result_with_token)
+      before :each do
+        User.stub(:new).and_return(user)
+        tip_factory.stub(:build_all)
+        user.stub(:tips=)
+        user.stub(:save).and_return false
+      end
 
-      subject.create_with_password_token user_attributes
-    end
-
-    it 'should return ResultWithToken' do
-      result_with_token = subject.create_with_password_token user_attributes
-      result_with_token.user.should be_an_instance_of User
-      result_with_token.successful?.should be_false
-      result_with_token.raw_token.should eq 'raw_token'
+      it 'should return ResultWithToken with user and successful? with false set and raw token set' do
+        result = subject.run user_attributes
+        result.successful?.should be_false
+        result.user.should eq user
+        result.raw_token.should eq raw_reset_password_token
+      end
     end
   end
 end

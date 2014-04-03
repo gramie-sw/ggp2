@@ -1,7 +1,7 @@
 describe TipFactory do
 
   let(:match_repository) { Match }
-  subject { TipFactory.new(match_repository: match_repository) }
+  subject { TipFactory.new(match_repository) }
 
   describe '#build_all' do
     it 'should return build Tips for every Match' do

@@ -1,6 +1,6 @@
 class TipFactory
 
-  def initialize(match_repository:)
+  def initialize match_repository
     @match_repository= match_repository
   end
 

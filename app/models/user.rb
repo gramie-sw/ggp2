@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :tips, dependent: :destroy, inverse_of: :user
   has_many :ranking_items, dependent: :destroy, inverse_of: :user
   has_many :comments, dependent: :destroy
-  has_one :champion_tip, dependent: :destroy
+  has_one :champion_tip, dependent: :destroy, inverse_of: :user
 
   validates :nickname, presence: true, uniqueness: true, length: {minimum: 3, maximum: 32}
   validates :first_name, presence: true, length: {maximum: 32}
