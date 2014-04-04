@@ -48,6 +48,8 @@ describe UpdateRanking do
 
         TipRankingSetFinder.any_instance.should_receive(:find_next_match_id).with(2).and_return(nil)
 
+        RankingSetUpdater.any_instance.should_receive(:update_champion_tip_ranking_set).never
+
         subject.run(1)
       end
     end
@@ -68,6 +70,8 @@ describe UpdateRanking do
             any_instance.should_receive(:update_champion_tip_ranking_set).
             with(updated_ranking_set_1).and_return(updated_ranking_set_2)
 
+        RankingSetUpdater.any_instance.should_receive(:update_champion_tip_ranking_set).never
+        
         subject.run(7)
       end
     end

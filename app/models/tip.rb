@@ -1,5 +1,6 @@
 class Tip < ActiveRecord::Base
 
+  extend TipRepository
   extend RecordBatchUpdatable
   include ScoreValidatable
 
@@ -14,10 +15,7 @@ class Tip < ActiveRecord::Base
 
   validate :scores_not_changeable_after_match_started
 
-  scope :match_tips, ->(match_id= nil) { where(match_id: match_id)}
-  scope :tipped, -> { where("score_team_1 IS NOT NULL AND score_team_2 IS NOT NULL")}
-
-  scope :order_by_match_position, -> { joins(:match).order('matches.position').references(:matches) }
+  # scope :match_tips, ->(match_id= nil) { where(match_id: match_id)}
 
   def tippable?
     !match.started?

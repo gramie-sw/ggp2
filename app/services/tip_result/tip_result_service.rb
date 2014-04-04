@@ -11,7 +11,7 @@ class TipResultService
   private
 
   def tips_with_result
-    tips = Tip.match_tips(@match_id).tipped
+    tips = Tip.all_by_match_id(@match_id).tipped
     match = Match.find(@match_id)
 
     tips.each do |tip|

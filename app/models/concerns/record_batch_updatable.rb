@@ -4,6 +4,7 @@ module RecordBatchUpdatable
     alias :no_errors? :no_errors
   end
 
+  #TODO change name of this method because it does not store transactional
   def update_multiple models_attributes
     models = self.update(models_attributes.keys, models_attributes.values)
 
