@@ -80,8 +80,8 @@ describe RankingItem do
     end
 
     it 'should update all given ranking items transactional' do
-      ranking_item_1 = build(:ranking_item, match_id: 12, user_id: 13)
-      ranking_item_1.should_receive(:save!).and_raise(ActiveRecord::Rollback)
+      ranking_item_1 = build(:ranking_item, match_id: 12, user_id: 13, points: -1)
+      ranking_item_1.should_receive(:save).and_return(false)
 
       RankingItem.destroy_and_create_multiple(12, [ranking_item_1]).should be_false
       RankingItem.all.should include ranking_items[0], ranking_items[1]

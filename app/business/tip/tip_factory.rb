@@ -11,5 +11,6 @@ class TipFactory
   end
 
   private
+
   attr_reader :match_repository
 end

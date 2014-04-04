@@ -50,6 +50,8 @@ describe CreateUser do
         result.user.password_confirmation.should eq password_token
         result.user.reset_password_token.should eq encrypted_reset_password_token
         result.user.reset_password_sent_at.should eq current_time
+        result.user.tips.size.should eq 1
+        result.user.champion_tip.should_not be_nil
         result.raw_token.should eq raw_reset_password_token
       end
     end
@@ -62,6 +64,7 @@ describe CreateUser do
         User.stub(:new).and_return(user)
         tip_factory.stub(:build_all)
         user.stub(:tips=)
+        user.stub(:champion_tip=)
         user.stub(:save).and_return false
       end
 

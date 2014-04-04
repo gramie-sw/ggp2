@@ -45,6 +45,12 @@ describe User do
       subject.ranking_items << ranking_item
       ranking_item.user.should be subject
     end
+
+    it 'champion_tip should get user' do
+      champion_tip = ChampionTip.new
+      subject.champion_tip = champion_tip
+      champion_tip.user.should be subject
+    end
   end
 
   describe 'scopes' do

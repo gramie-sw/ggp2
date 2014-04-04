@@ -13,6 +13,7 @@ class CreateUser
 
     user = User.new(user_attributes)
     user.tips = tip_factory.build_all
+    user.champion_tip = ChampionTip.new
     successful = user.save
 
     ResultWithToken.new(user, successful, reset_password_tokens.raw_token)
