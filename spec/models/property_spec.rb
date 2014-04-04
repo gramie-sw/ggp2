@@ -18,17 +18,66 @@ describe Property do
     end
   end
 
-  describe '::save_last_result_match' do
+  describe '::set_last_tip_ranking_set_match_id_to' do
 
-    let(:property) { double('property')}
-    let(:match_id) { 12 }
-
-    it 'should save given match id on row with key LAST_RESULT_MATCH_ID' do
-      Property.should_receive(:save_last_result_match_id).with(match_id).and_call_original
-      Property.should_receive(:find_or_create_by).with(key: Property::LAST_RESULT_MATCH_ID).and_return(property)
-      property.should_receive(:update_attribute).with(:value, match_id)
-
-      Property.save_last_result_match_id match_id
+    it 'should save given match_id with key LAST_TIP_RANKING_SET_MATCH_ID_KEY' do
+      Property.should_receive(:save_value).with(5, Property::LAST_TIP_RANKING_SET_MATCH_ID_KEY)
+      Property.set_last_tip_ranking_set_match_id_to 5
     end
   end
+
+  describe '::last_tip_ranking_set_match_id' do
+
+    context 'when property with CHAMPION_TIP_RANKING_SET_EXISTS_KEY exists' do
+
+      it 'should return value of CHAMPION_TIP_RANKING_SET_EXISTS_KEY casted to integer' do
+        Property.should_receive(:find_value).with(Property::LAST_TIP_RANKING_SET_MATCH_ID_KEY).and_return('5')
+        Property.last_tip_ranking_set_match_id.should eq 5
+      end
+    end
+
+    context 'when property with CHAMPION_TIP_RANKING_SET_EXISTS_KEY not exists' do
+
+      it 'should return nil' do
+        Property.should_receive(:find_value).with(Property::LAST_TIP_RANKING_SET_MATCH_ID_KEY).and_return(nil)
+        Property.last_tip_ranking_set_match_id.should be_nil
+      end
+    end
+  end
+
+  describe '::set_champion_tip_ranking_set_exists_to' do
+
+    it 'should save given boolean with key CHAMPION_TIP_RANKING_SET_EXISTS_KEY' do
+      Property.should_receive(:save_value).with(true, Property::CHAMPION_TIP_RANKING_SET_EXISTS_KEY)
+      Property.set_champion_tip_ranking_set_exists_to true
+    end
+  end
+
+  describe '::champion_tip_ranking-set_exits?' do
+
+    context 'when property with CHAMPION_TIP_RANKING_SET_EXISTS_KEY not exists' do
+
+      it 'should should return false' do
+        Property.should_receive(:find_value).with(Property::CHAMPION_TIP_RANKING_SET_EXISTS_KEY).and_return(nil)
+        Property.champion_tip_ranking_set_exists?
+      end
+    end
+
+    context 'when property with CHAMPION_TIP_RANKING_SET_EXISTS_KEY is false' do
+
+      it 'should should return false casted to boolean' do
+        Property.should_receive(:find_value).with(Property::CHAMPION_TIP_RANKING_SET_EXISTS_KEY).and_return('false')
+        Property.champion_tip_ranking_set_exists?.should be_false
+      end
+    end
+
+    context 'when property with CHAMPION_TIP_RANKING_SET_EXISTS_KEY is true' do
+
+      it 'should should return true casted to boolean' do
+        Property.should_receive(:find_value).with(Property::CHAMPION_TIP_RANKING_SET_EXISTS_KEY).and_return('true')
+        Property.champion_tip_ranking_set_exists?.should be_true
+      end
+    end
+  end
+
 end

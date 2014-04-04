@@ -17,8 +17,11 @@ class UpdateRanking
       break if match_id.nil?
     end
 
+    Property.set_last_tip_ranking_set_match_id_to(last_updated_match_id)
+
     if last_updated_match_id == ordered_match_ids.last
       ranking_set_updater.update_champion_tip_ranking_set(previous_ranking_set)
+      Property.set_champion_tip_ranking_set_exists_to(true)
     end
   end
 
