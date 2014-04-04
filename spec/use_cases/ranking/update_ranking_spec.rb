@@ -13,7 +13,7 @@ describe UpdateRanking do
     subject { UpdateRanking.new }
 
     before :each do
-      Match.should_receive(:ordered_by_match_ids).and_return(ordered_match_ids)
+      Match.should_receive(:ordered_match_ids).and_return(ordered_match_ids)
     end
 
     context 'when no next RankingSet exists' do

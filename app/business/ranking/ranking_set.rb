@@ -23,12 +23,15 @@ class RankingSet
 
   def user_id_to_ranking_item_map(user_id)
 
-    if @user_id_to_ranking_item_map.present?
-      @user_id_to_ranking_item_map[user_id] || RankingItem.neutral
-    else
-      @user_id_to_ranking_item_map = {}
+    if @user_id_to_ranking_item_map.nil?
+      @user_id_to_ranking_item_map= {}
       ranking_items.each { |ranking_item| @user_id_to_ranking_item_map[ranking_item.user_id] = ranking_item }
       user_id_to_ranking_item_map(user_id)
+    else
+      @user_id_to_ranking_item_map[user_id] || RankingItem.neutral
     end
   end
+  
+  private
+  
 end

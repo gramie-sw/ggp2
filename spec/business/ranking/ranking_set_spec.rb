@@ -29,6 +29,15 @@ describe RankingSet do
         subject.ranking_item_of_user(13).should eq RankingItem.neutral
       end
     end
+
+    context 'when RankingSet is neutral' do
+
+      subject { RankingSet.new(match_id: 0, ranking_items: []) }
+
+      it 'should return neutral RankingItem for any user_id' do
+        subject.ranking_item_of_user(13).should eq RankingItem.neutral
+      end
+    end
   end
 
   describe '#neutral?' do

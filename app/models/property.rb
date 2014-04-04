@@ -9,7 +9,7 @@ class Property < ActiveRecord::Base
   validates :value, presence: true, length: {maximum: 128}
 
   def self.set_last_tip_ranking_set_match_id_to match_id
-    Property.save_value(match_id, LAST_TIP_RANKING_SET_MATCH_ID_KEY)
+    Property.save_value(LAST_TIP_RANKING_SET_MATCH_ID_KEY, match_id)
   end
 
   def self.last_tip_ranking_set_match_id
@@ -17,10 +17,10 @@ class Property < ActiveRecord::Base
   end
 
   def self.set_champion_tip_ranking_set_exists_to boolean
-    Property.save_value(boolean, CHAMPION_TIP_RANKING_SET_EXISTS_KEY)
+    Property.save_value(CHAMPION_TIP_RANKING_SET_EXISTS_KEY, boolean)
   end
 
   def self.champion_tip_ranking_set_exists?
-    Property.find_value(CHAMPION_TIP_RANKING_SET_EXISTS_KEY) == 'true'
+    Property.find_value(CHAMPION_TIP_RANKING_SET_EXISTS_KEY) == '1'
   end
 end

@@ -2,7 +2,7 @@ class UpdateRanking
 
   def run match_id
 
-    ordered_match_ids = Match.ordered_by_match_ids
+    ordered_match_ids = Match.ordered_match_ids
 
     ranking_set_finder = TipRankingSetFinder.new(ordered_match_ids)
     ranking_set_updater = RankingSetUpdater.create

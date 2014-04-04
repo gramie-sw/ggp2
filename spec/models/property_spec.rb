@@ -21,7 +21,7 @@ describe Property do
   describe '::set_last_tip_ranking_set_match_id_to' do
 
     it 'should save given match_id with key LAST_TIP_RANKING_SET_MATCH_ID_KEY' do
-      Property.should_receive(:save_value).with(5, Property::LAST_TIP_RANKING_SET_MATCH_ID_KEY)
+      Property.should_receive(:save_value).with(Property::LAST_TIP_RANKING_SET_MATCH_ID_KEY, 5)
       Property.set_last_tip_ranking_set_match_id_to 5
     end
   end
@@ -48,7 +48,7 @@ describe Property do
   describe '::set_champion_tip_ranking_set_exists_to' do
 
     it 'should save given boolean with key CHAMPION_TIP_RANKING_SET_EXISTS_KEY' do
-      Property.should_receive(:save_value).with(true, Property::CHAMPION_TIP_RANKING_SET_EXISTS_KEY)
+      Property.should_receive(:save_value).with(Property::CHAMPION_TIP_RANKING_SET_EXISTS_KEY, true)
       Property.set_champion_tip_ranking_set_exists_to true
     end
   end
@@ -63,10 +63,10 @@ describe Property do
       end
     end
 
-    context 'when property with CHAMPION_TIP_RANKING_SET_EXISTS_KEY is false' do
+    context 'when property with CHAMPION_TIP_RANKING_SET_EXISTS_KEY is 0' do
 
       it 'should should return false casted to boolean' do
-        Property.should_receive(:find_value).with(Property::CHAMPION_TIP_RANKING_SET_EXISTS_KEY).and_return('false')
+        Property.should_receive(:find_value).with(Property::CHAMPION_TIP_RANKING_SET_EXISTS_KEY).and_return('0')
         Property.champion_tip_ranking_set_exists?.should be_false
       end
     end
@@ -74,7 +74,7 @@ describe Property do
     context 'when property with CHAMPION_TIP_RANKING_SET_EXISTS_KEY is true' do
 
       it 'should should return true casted to boolean' do
-        Property.should_receive(:find_value).with(Property::CHAMPION_TIP_RANKING_SET_EXISTS_KEY).and_return('true')
+        Property.should_receive(:find_value).with(Property::CHAMPION_TIP_RANKING_SET_EXISTS_KEY).and_return('1')
         Property.champion_tip_ranking_set_exists?.should be_true
       end
     end

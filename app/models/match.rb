@@ -51,14 +51,6 @@ class Match < ActiveRecord::Base
     Match.order_by_position.pluck(:id)
   end
 
-  #def self.ordered_successor_match_ids match
-  #  Match.order_by_position.all_following_matches_by_position(match.position).pluck(:id)
-  #end
-  #
-  #def self.ordered_predecessor_match_ids match
-  #  Match.order_by_position.all_previous_matches_by_position(match.position).pluck(:id)
-  #end
-
   #TODO test or remove
   def self.score_or_dash team_score
     team_score.nil? ? "-" : team_score
