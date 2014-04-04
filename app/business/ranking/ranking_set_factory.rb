@@ -20,8 +20,8 @@ class RankingSetFactory
     @ranking_items_position_setter = ranking_items_position_setter
   end
 
-  def build match_id, tips_with_result, previous_ranking_item_set
-    ranking_items = create_ranking_items(tips_with_result, previous_ranking_item_set)
+  def build match_id, tips, previous_ranking_item_set
+    ranking_items = create_ranking_items(tips, previous_ranking_item_set)
     ranking_items_position_setter.set_positions(ranking_items)
     RankingSet.new(match_id: match_id, ranking_items: ranking_items)
   end

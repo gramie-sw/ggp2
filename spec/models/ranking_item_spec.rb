@@ -52,7 +52,7 @@ describe RankingItem do
     end
   end
 
-  describe '::update_multiple' do
+  describe '::destroy_and_create_multiple' do
 
     let(:ranking_items) do
       [
@@ -70,7 +70,7 @@ describe RankingItem do
       ranking_item_1 = build(:ranking_item, match_id: 12, user_id: 13)
       ranking_item_2 = build(:ranking_item, match_id: 12, user_id: 14)
 
-      RankingItem.update_multiple(12, [ranking_item_1, ranking_item_2]).should be_true
+      RankingItem.destroy_and_create_multiple(12, [ranking_item_1, ranking_item_2]).should be_true
 
       actual_ranking_items = RankingItem.all
       actual_ranking_items.size.should eq 3
@@ -83,7 +83,7 @@ describe RankingItem do
       ranking_item_1 = build(:ranking_item, match_id: 12, user_id: 13)
       ranking_item_1.should_receive(:save!).and_raise(ActiveRecord::Rollback)
 
-      RankingItem.update_multiple(12, [ranking_item_1]).should be_false
+      RankingItem.destroy_and_create_multiple(12, [ranking_item_1]).should be_false
       RankingItem.all.should include ranking_items[0], ranking_items[1]
     end
   end

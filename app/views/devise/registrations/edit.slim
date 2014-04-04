@@ -8,11 +8,18 @@ div.well
 
     - value_wrapper_classes = 'col-sm-7 col-md-6 col-lg-5'
 
-    = render partial: 'commons/horizontal_fieldset', \
-    locals: { form_builder: f, control: :email_field, attribute: :email, value_wrapper_classes: value_wrapper_classes}
+    = render \
+    partial: 'commons/horizontal_fieldset', \
+    locals: { form_builder: f,  control: :email_field, attribute: :email, value_wrapper_classes: value_wrapper_classes}
 
-    = render partial: 'commons/horizontal_fieldset', \
-    locals: { form_builder: f, control: :password_field, control_options: {autocomplet: 'off', placeholder: t('user_data.form.hint.current_password')}, attribute: :current_password, value_wrapper_classes:value_wrapper_classes}
+    = render \
+    partial: 'commons/horizontal_fieldset', \
+    locals: { \
+    form_builder: f, \
+    control: :password_field, \
+    control_options: { \
+    autocomplet: 'off', placeholder: t('user_data.form.hint.current_password')}, \
+    attribute: :current_password, value_wrapper_classes:value_wrapper_classes}
 
     = render partial: 'commons/horizontal_fieldset', \
     locals: { form_builder: f, control: :password_field, control_options: {autocomplet: 'off', placeholder: t('user_data.form.hint.new_password')}, attribute: :password, label: User.human_attribute_name(:new_password), value_wrapper_classes: value_wrapper_classes}

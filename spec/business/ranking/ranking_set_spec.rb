@@ -64,7 +64,7 @@ describe RankingSet do
   describe '#save' do
 
     it 'should update RankingItems with repo' do
-      RankingItem.should_receive(:update_multiple).with(7, ranking_items).and_return(true)
+      RankingItem.should_receive(:destroy_and_create_multiple).with(7, ranking_items).and_return(true)
       subject.save.should be_true
     end
   end

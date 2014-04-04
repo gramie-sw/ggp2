@@ -8,7 +8,7 @@ class RankingItem < ActiveRecord::Base
     ranking_items_by_match_id(match_id).exists?
   end
 
-  def self.update_multiple match_id, ranking_items
+  def self.destroy_and_create_multiple match_id, ranking_items
     RankingItem.transaction do
       RankingItem.destroy_all(match_id: match_id)
       ranking_items.each(&:save!)
