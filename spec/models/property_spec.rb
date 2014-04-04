@@ -43,6 +43,14 @@ describe Property do
         Property.last_tip_ranking_set_match_id.should be_nil
       end
     end
+
+    context 'when property with CHAMPION_TIP_RANKING_SET_EXISTS_KEY is not a number' do
+
+      it 'should return nil' do
+        Property.should_receive(:find_value).with(Property::LAST_TIP_RANKING_SET_MATCH_ID_KEY).and_return('nil')
+        Property.last_tip_ranking_set_match_id.should be_nil
+      end
+    end
   end
 
   describe '::set_champion_tip_ranking_set_exists_to' do

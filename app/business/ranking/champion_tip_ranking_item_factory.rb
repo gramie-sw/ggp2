@@ -13,7 +13,7 @@ module ChampionTipRankingItemFactory
 
     if champion_tip.result == ChampionTip::RESULTS[:correct]
       attributes.merge!(
-          points: previous_ranking_item.points + Ggp2.config.correct_champion_points,
+          points: previous_ranking_item.points + Ggp2.config.correct_champion_tip_points,
           correct_champion_tip: true
       )
     end

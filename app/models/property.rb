@@ -13,7 +13,8 @@ class Property < ActiveRecord::Base
   end
 
   def self.last_tip_ranking_set_match_id
-    Property.find_value(LAST_TIP_RANKING_SET_MATCH_ID_KEY).try(:to_i)
+    value = Property.find_value(LAST_TIP_RANKING_SET_MATCH_ID_KEY).try(:to_i)
+    value == 0 ? nil : value
   end
 
   def self.set_champion_tip_ranking_set_exists_to boolean

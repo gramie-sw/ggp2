@@ -21,7 +21,7 @@ describe ChampionTipRankingItemFactory do
 
         actual_ranking_item = subject.build(champion_tip, previous_ranking_item)
         actual_ranking_item.user_id.should eq previous_ranking_item.user_id
-        actual_ranking_item.points.should eq previous_ranking_item.points + Ggp2.config.correct_champion_points
+        actual_ranking_item.points.should eq previous_ranking_item.points + Ggp2.config.correct_champion_tip_points
         actual_ranking_item.correct_tips_count.should eq previous_ranking_item.correct_tips_count
         actual_ranking_item.correct_tendency_tips_only_count.should eq previous_ranking_item.correct_tendency_tips_only_count
         actual_ranking_item.correct_champion_tip.should be_true
