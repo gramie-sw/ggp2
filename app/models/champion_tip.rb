@@ -7,4 +7,7 @@ class ChampionTip < ActiveRecord::Base
 
   validates :team, presence: true, on: :update
 
+  def correct?
+    result == RESULTS[:correct]
+  end
 end

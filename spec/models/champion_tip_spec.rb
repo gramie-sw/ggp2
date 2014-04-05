@@ -23,4 +23,23 @@ describe ChampionTip do
     it { should belong_to(:user) }
     it { should belong_to(:team) }
   end
+
+  describe 'correct?' do
+
+    context 'when result is correct' do
+
+      it 'should return true' do
+        subject.result = ChampionTip::RESULTS[:correct]
+        subject.should be_correct
+      end
+    end
+
+    context 'when result is correct' do
+
+      it 'should return false' do
+        subject.result = ChampionTip::RESULTS[:incorrect]
+        subject.should_not be_correct
+      end
+    end
+  end
 end
