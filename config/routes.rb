@@ -6,7 +6,6 @@ Ggp2::Application.routes.draw do
     get 'sign_in' => 'devise/sessions#new'
     delete 'sign_out' => 'devise/sessions#destroy'
     get 'edit_account' => 'registrations#edit'
-    patch 'account' => 'registrations#update'
   end
 
   resources :aggregates
@@ -30,7 +29,7 @@ Ggp2::Application.routes.draw do
   resources :venues
 
   # must be behind devise
-  resources :users, except: [:show, :new]
+  resources :users, except: [:show]
 
   root :to => "matches#index"
 

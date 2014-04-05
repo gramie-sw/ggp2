@@ -3,6 +3,7 @@ de:
     links:
       sign_in: Anmelden
       sign_up: Konto erstellen
+      sign_up_submit: Konto anlegen
       forgot_password: "Passwort vergessen?"
       not_receive_confirmation: "Keine Bestätigunginstruktionen erhalten?"
       not_receive_unlock_instruction: "Keine Entsperrinstruktionen erhalten?"

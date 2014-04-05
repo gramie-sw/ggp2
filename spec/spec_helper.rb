@@ -49,6 +49,8 @@ RSpec.configure do |config|
   end
 
   config.include Devise::TestHelpers, type: :controller
+  # config.include(EmailSpec::Helpers)
+  # config.include(EmailSpec::Matchers)
   config.include FactoryGirl::Syntax::Methods
   config.include ControllerMacros, type: :controller
   config.include ActionView::Helpers::TranslationHelper

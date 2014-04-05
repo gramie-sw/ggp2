@@ -3,6 +3,7 @@ en:
     links:
       sign_in: Sign in
       sign_up: Sign up
+      sign_up_submit: Create Account
       forgot_password: "Forgot your password?"
       not_receive_confirmation: "Didn't receive confirmation instructions?"
       not_receive_unlock_instruction: "Didn't receive unlock instructions?"

@@ -18,14 +18,23 @@ div.well
     form_builder: f, \
     control: :password_field, \
     control_options: { \
-    autocomplet: 'off', placeholder: t('user_data.form.hint.current_password')}, \
+    autocomplete: 'off', placeholder: t('user_data.form.hint.current_password')}, \
     attribute: :current_password, value_wrapper_classes:value_wrapper_classes}
 
     = render partial: 'commons/horizontal_fieldset', \
-    locals: { form_builder: f, control: :password_field, control_options: {autocomplet: 'off', placeholder: t('user_data.form.hint.new_password')}, attribute: :password, label: User.human_attribute_name(:new_password), value_wrapper_classes: value_wrapper_classes}
+    locals: { \
+    form_builder: f, \
+    control: :password_field, \
+    control_options: {autocomplete: 'off', placeholder: t('user_data.form.hint.new_password')}, \
+    attribute: :password, label: user.human_attribute_name(:new_password), value_wrapper_classes: value_wrapper_classes}
 
     = render partial: 'commons/horizontal_fieldset', \
-    locals: { form_builder: f, control: :password_field, control_options: {autocomplet: 'off', placeholder: t('user_data.form.hint.new_password')}, attribute: :password, label: User.human_attribute_name(:new_password_confirmation), value_wrapper_classes: value_wrapper_classes}
+    locals: { \
+    form_builder: f, \
+    control: :password_field, \
+    control_options: {autocomplete: 'off', \
+    placeholder: t('user_data.form.hint.new_password')}, \
+    attribute: :password, label: user.human_attribute_name(:new_password_confirmation), value_wrapper_classes: value_wrapper_classes}
 
     div.form-group
       div.col-sm-offset-3.col-lg-offset-2.col-sm-9.col-md-10

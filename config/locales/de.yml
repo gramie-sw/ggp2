@@ -111,7 +111,7 @@ de:
         score_team_2: Ergebnis für Team 2
       user:
         admin: Administrator
-        nickname: Nickname
+        nickname: Benutzername
         email: E-Mail
         first_name: Vorname
         full_name: Name
