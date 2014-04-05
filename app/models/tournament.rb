@@ -18,10 +18,18 @@ class Tournament
     @match ||= Match.only_with_result.count
   end
 
+  def champion_team
+    @champion_team ||= last_match.winner_team
+  end
 
   private
 
   def first_match
-    @first_match ||= Match.order_by_position.first
+    @first_match ||= Match.first_match
   end
+
+  def last_match
+    @last_match ||= Match.last_match
+  end
+
 end

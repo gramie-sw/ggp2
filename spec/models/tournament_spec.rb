@@ -108,4 +108,22 @@ describe Tournament do
       subject.played_match_count.should eq 3
     end
   end
+
+  describe '#champion_team' do
+
+    let(:team_1) { Team.new }
+    let(:team_2) { Team.new }
+    let(:match) { Match.new(team_1: team_1, team_2: team_2, score_team_1: 1, score_team_2: 4) }
+
+    it 'should return winner of last_match' do
+      Match.should_receive(:last_match).and_return(match)
+      subject.champion_team.should eq team_2
+    end
+
+    it 'should cache champion_team' do
+      Match.should_receive(:last_match).once.and_return(match)
+      subject.champion_team
+      subject.champion_team
+    end
+  end
 end
