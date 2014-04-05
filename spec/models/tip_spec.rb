@@ -119,23 +119,77 @@ describe Tip do
   describe '#points' do
 
     it 'should return correct tip points if correct tip' do
-      subject.stub(:result).and_return(Tip::RESULTS[:correct])
+      subject.result = Tip::RESULTS[:correct]
       subject.points.should eq Ggp2.config.correct_tip_points
     end
 
     it 'should return incorrect tip points if incorrect tip' do
-      subject.stub(:result).and_return(Tip::RESULTS[:incorrect])
+      subject.result = Tip::RESULTS[:incorrect]
       subject.points.should eq Ggp2.config.incorrect_tip_points
     end
 
     it 'should return correct tendency tip only points if correct tendency tip only' do
-      subject.stub(:result).and_return(Tip::RESULTS[:correct_tendency])
+      subject.result = Tip::RESULTS[:correct_tendency_only]
       subject.points.should eq Ggp2.config.correct_tendency_tip_only_points
     end
 
-    it 'should return nil if result is 0' do
-      subject.stub(:result).and_return(nil)
-      subject.points.should be_nil
+    it 'should return 0 if result is nil' do
+      subject.result = nil
+      subject.points.should eq 0
+    end
+  end
+
+  describe 'correct?' do
+
+    context 'when result is correct' do
+
+      it 'should return true' do
+        subject.result = Tip::RESULTS[:correct]
+        subject.should be_correct
+      end
+    end
+
+    context 'when result is correct_tendency_only' do
+
+      it 'should return false' do
+        subject.result = Tip::RESULTS[:correct_tendency_only]
+        subject.should_not be_correct
+      end
+    end
+
+    context 'when result is incorrect' do
+
+      it 'should return false' do
+        subject.result = Tip::RESULTS[:incorrect]
+        subject.should_not be_correct
+      end
+    end
+  end
+
+  describe 'correct_tendency_only?' do
+
+    context 'when result is correct' do
+
+      it 'should return false' do
+        subject.result = Tip::RESULTS[:correct]
+        subject.should_not be_correct_tendency_only
+      end
+    end
+
+    context 'when result is correct_tendency_only' do
+
+      it 'should return true' do
+        subject.result = Tip::RESULTS[:correct_tendency_only]
+        subject.should be_correct_tendency_only
+      end
+    end
+
+    context 'when result is incorrect' do
+
+      it 'should return false' do
+        subject.result = Tip::RESULTS[:incorrect]
+        subject.should_not be_correct_tendency_only
+      end
     end
   end
 end

@@ -5,7 +5,7 @@ module TipResultCalculator
     if correct? tip: tip, match: match
       Tip::RESULTS[:correct]
     elsif  correct_tendency? tip: tip, match: match
-      Tip::RESULTS[:correct_tendency]
+      Tip::RESULTS[:correct_tendency_only]
     else
       Tip::RESULTS[:incorrect]
     end

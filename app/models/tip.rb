@@ -4,7 +4,7 @@ class Tip < ActiveRecord::Base
   extend RecordBatchUpdatable
   include ScoreValidatable
 
-  RESULTS = {incorrect: 0, correct: 1, correct_tendency: 2}
+  RESULTS = {incorrect: 0, correct: 1, correct_tendency_only: 2}
 
   belongs_to :user
   belongs_to :match
@@ -31,11 +31,19 @@ class Tip < ActiveRecord::Base
         Ggp2.config.incorrect_tip_points
       when RESULTS[:correct]
         Ggp2.config.correct_tip_points
-      when RESULTS[:correct_tendency]
+      when RESULTS[:correct_tendency_only]
         Ggp2.config.correct_tendency_tip_only_points
       else
-        nil
+        Ggp2.config.incorrect_tip_points
     end
+  end
+
+  def correct?
+    result == RESULTS[:correct]
+  end
+
+  def correct_tendency_only?
+    result == RESULTS[:correct_tendency_only]
   end
 
   private

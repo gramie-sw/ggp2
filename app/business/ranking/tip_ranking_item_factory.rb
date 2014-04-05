@@ -23,7 +23,7 @@ module TipRankingItemFactory
   end
 
   def calculate_correct_tendency_tips_only_count tip, previous_ranking_item
-    if Tip::RESULTS[:correct_tendency] == tip.result
+    if Tip::RESULTS[:correct_tendency_only] == tip.result
       previous_ranking_item.correct_tendency_tips_only_count + 1
     else
       previous_ranking_item.correct_tendency_tips_only_count

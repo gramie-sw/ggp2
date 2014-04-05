@@ -56,7 +56,7 @@ describe TipRankingItemFactory do
     context 'when tip has only correct tendency' do
 
       it 'should return ranking item with new correct tendency tip count and points values' do
-        tip.stub(:result).and_return(Tip::RESULTS[:correct_tendency])
+        tip.stub(:result).and_return(Tip::RESULTS[:correct_tendency_only])
 
         actual_ranking_item = subject.build(tip, previous_ranking_item)
         actual_ranking_item.points.should eq previous_ranking_item.points + Ggp2.config.correct_tendency_tip_only_points

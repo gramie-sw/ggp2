@@ -34,7 +34,7 @@ describe ChampionTip do
       end
     end
 
-    context 'when result is correct' do
+    context 'when result is incorrect' do
 
       it 'should return false' do
         subject.result = ChampionTip::RESULTS[:incorrect]

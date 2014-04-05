@@ -26,7 +26,7 @@ describe TipResultCalculator do
       let(:tip) { create(:tip, score_team_1: 1, score_team_2: 4) }
 
       it 'should return tip result correct_tendency' do
-        subject.result(tip: tip, match: match).should eq Tip::RESULTS[:correct_tendency]
+        subject.result(tip: tip, match: match).should eq Tip::RESULTS[:correct_tendency_only]
       end
     end
   end

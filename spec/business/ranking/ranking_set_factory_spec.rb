@@ -7,7 +7,7 @@ describe RankingSetFactory do
     it 'should return properly instantiated RankingSetFactory' do
       expected_ranking_set_factory = double('RankingSetFactory')
       RankingSetFactory.should_receive(:new).
-          with(ranking_item_factory: TipRankingItemFactory, ranking_items_position_setter: RankingItemsPositionSetter).
+          with(ranking_item_factory: TipRankingItemFactory, ranking_items_position_setter: RankingItemPositionSetter).
           and_return(expected_ranking_set_factory)
 
       subject.create_for_tip_ranking_set.should be expected_ranking_set_factory
@@ -19,7 +19,7 @@ describe RankingSetFactory do
     it 'should return properly instantiated RankingSetFactory' do
       expected_ranking_set_factory = double('RankingSetFactory')
       RankingSetFactory.should_receive(:new).
-          with(ranking_item_factory: ChampionTipRankingItemFactory, ranking_items_position_setter: RankingItemsPositionSetter).
+          with(ranking_item_factory: ChampionTipRankingItemFactory, ranking_items_position_setter: RankingItemPositionSetter).
           and_return(expected_ranking_set_factory)
 
       subject.create_for_champion_tip_ranking_set.should be expected_ranking_set_factory

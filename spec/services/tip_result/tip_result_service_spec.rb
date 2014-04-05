@@ -19,7 +19,7 @@ describe TipResultService do
       tip_2.reload.result.should be_nil
       tip_3.reload.result.should be_nil
       tip_4.reload.result.should eq Tip::RESULTS[:correct]
-      tip_5.reload.result.should eq Tip::RESULTS[:correct_tendency]
+      tip_5.reload.result.should eq Tip::RESULTS[:correct_tendency_only]
     end
   end
 end

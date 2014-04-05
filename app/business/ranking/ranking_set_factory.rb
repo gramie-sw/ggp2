@@ -3,14 +3,14 @@ class RankingSetFactory
   def self::create_for_tip_ranking_set
     RankingSetFactory.new(
         ranking_item_factory: TipRankingItemFactory,
-        ranking_items_position_setter: RankingItemsPositionSetter
+        ranking_items_position_setter: RankingItemPositionSetter
     )
   end
 
   def self::create_for_champion_tip_ranking_set
     RankingSetFactory.new(
         ranking_item_factory: ChampionTipRankingItemFactory,
-        ranking_items_position_setter: RankingItemsPositionSetter
+        ranking_items_position_setter: RankingItemPositionSetter
     )
   end
 
