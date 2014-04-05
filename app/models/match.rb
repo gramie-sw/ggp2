@@ -47,6 +47,12 @@ class Match < ActiveRecord::Base
     !started?
   end
 
+  def winner_team
+    if has_result? && score_team_1 != score_team_2
+      score_team_1 > score_team_2 ? team_1 : team_2
+    end
+  end
+
   def self.ordered_match_ids
     Match.order_by_position.pluck(:id)
   end

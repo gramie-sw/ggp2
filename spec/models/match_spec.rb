@@ -255,4 +255,40 @@ describe Match do
       Match.ordered_match_ids
     end
   end
+
+  describe 'winner_team' do
+
+    let(:team_1) { Team.new }
+    let(:team_2) { Team.new }
+    subject { Match.new(team_1: team_1, team_2: team_2) }
+
+    context 'when match has no result' do
+
+      it 'should return nil' do
+        subject.winner_team.should be_nil
+      end
+    end
+
+    context 'when match has result' do
+
+      context 'when score values are equal' do
+
+        it 'should return nil' do
+          subject.assign_attributes(score_team_1: 1, score_team_2: 1)
+          subject.winner_team.should be_nil
+        end
+      end
+
+      context 'when score values are not equal' do
+
+        it 'should return winner Team' do
+          subject.assign_attributes(score_team_1: 2, score_team_2: 1)
+          subject.winner_team.should be team_1
+          subject.assign_attributes(score_team_1: 2, score_team_2: 3)
+          subject.winner_team.should be team_2
+        end
+      end
+    end
+
+  end
 end
