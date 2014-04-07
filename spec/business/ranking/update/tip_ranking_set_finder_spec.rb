@@ -12,7 +12,7 @@ describe TipRankingSetFinder do
 
         RankingItem.stub(:exists_by_match_id?).with(4).and_return(false)
         RankingItem.stub(:exists_by_match_id?).with(3).and_return(true)
-        RankingItem.stub(:ranking_items_by_match_id).with(3).ordered.and_return(expected_ranking_items)
+        RankingItem.stub(:all_by_match_id).with(3).ordered.and_return(expected_ranking_items)
 
         actual_ranking_set = subject.find_previous(5)
         actual_ranking_set.should be_an_instance_of RankingSet

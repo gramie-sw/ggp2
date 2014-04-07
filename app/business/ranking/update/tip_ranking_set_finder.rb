@@ -9,7 +9,7 @@ class TipRankingSetFinder
     match_id = find_next_ranking_set_match_id previous_match_ids.reverse
 
     if match_id
-      create_ranking_set(match_id, RankingItem.ranking_items_by_match_id(match_id))
+      create_ranking_set(match_id, RankingItem.all_by_match_id(match_id))
     else
       create_ranking_set(0, [])
     end
