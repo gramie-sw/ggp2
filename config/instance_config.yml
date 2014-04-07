@@ -3,3 +3,7 @@ correct_tendency_tip_only_points: 1
 correct_ratio_tip_points: 0
 incorrect_tip_points: 0
 correct_champion_tip_points: 10
+
+toplevel_domain: 'localhost'
+sender_email: 'no-reply@me-fs.de'
+

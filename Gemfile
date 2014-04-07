@@ -31,6 +31,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'letter_opener'
   gem 'meta_request', '~>0.2.8'
   gem "pry-rails", "~> 0.3.2"
   gem 'quiet_assets'

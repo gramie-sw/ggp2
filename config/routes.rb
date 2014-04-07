@@ -1,6 +1,6 @@
 Ggp2::Application.routes.draw do
 
-  devise_for :users
+  devise_for :users, controllers: {registrations: 'adapted_devise/registrations'}
 
   devise_scope :user do
     get 'sign_in' => 'devise/sessions#new'

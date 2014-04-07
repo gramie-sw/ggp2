@@ -49,6 +49,12 @@ module Ggp2
     YAML.load_file("#{Rails.root}/config/instance_config.yml").each do |k, v|
       config.send "#{k}=", v
     end
+
+    config.application_version = YAML.load_file("#{Rails.root}/config/version.yml")['version']
+
+    #needed for devise
+    config.action_mailer.default_url_options = {host: config.toplevel_domain}
+    config.action_mailer.default_options = {from: config.sender_email}
   end
 
   def self.config
