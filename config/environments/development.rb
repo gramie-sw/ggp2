@@ -28,4 +28,6 @@ Ggp2::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  #used in email for links
+  config.url_protocol = :http
 end

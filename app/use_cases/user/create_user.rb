@@ -24,6 +24,7 @@ class CreateUser
   attr_reader :tip_factory
 
   def set_additional_user_attributes user_attributes, password_token, reset_password_token, reset_password_sent_at
+    user_attributes.merge!(admin: false) unless user_attributes[:admin]
     user_attributes.merge!(active: true, password: password_token, password_confirmation: password_token,
                            reset_password_token: reset_password_token, reset_password_sent_at: reset_password_sent_at)
   end

@@ -7,8 +7,7 @@ describe CreateUser do
         nickname: 'Player',
         first_name: 'Hans',
         last_name: 'Mustermann',
-        email: 'hans.mustermann@mail.com',
-        admin: false
+        email: 'hans.mustermann@mail.com'
     }
   end
 

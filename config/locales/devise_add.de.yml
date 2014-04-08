@@ -1,10 +1,13 @@
 de:
   devise:
     links:
-      sign_in: Anmelden
-      sign_up: Konto erstellen
-      sign_up_submit: Konto anlegen
+      change_my_password: Passwort vergeben
       forgot_password: "Passwort vergessen?"
       not_receive_confirmation: "Keine Bestätigunginstruktionen erhalten?"
       not_receive_unlock_instruction: "Keine Entsperrinstruktionen erhalten?"
+      sign_in: Anmelden
       sign_in_provider: "Mit %{provider} anmelden"
+      sign_up: Konto erstellen
+      sign_up_submit: Konto anlegen
+    title:
+      change_your_password: Neues Passwort

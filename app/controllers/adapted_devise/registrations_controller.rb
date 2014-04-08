@@ -19,11 +19,10 @@ class AdaptedDevise::RegistrationsController < Devise::RegistrationsController
     profile_path(user, section: :user_data)
   end
 
-
   private
 
   def user_params
-    params.require(:user).permit(:nickname, :first_name, :last_name)
+    params.require(:user).permit(:email, :nickname, :first_name, :last_name)
   end
 
 end

@@ -1,10 +1,13 @@
 en:
   devise:
     links:
-      sign_in: Sign in
-      sign_up: Sign up
-      sign_up_submit: Create Account
+      change_my_password: Change my password
       forgot_password: "Forgot your password?"
       not_receive_confirmation: "Didn't receive confirmation instructions?"
       not_receive_unlock_instruction: "Didn't receive unlock instructions?"
+      sign_in: Sign in
       sign_in_provider: "Sign in with %{provider}"
+      sign_up: Sign up
+      sign_up_submit: Create Account
+    title:
+      change_your_password: Change your password

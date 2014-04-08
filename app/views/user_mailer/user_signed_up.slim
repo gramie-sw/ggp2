@@ -1,0 +1,4 @@
+
+p
+  - reset_password_url = edit_user_password_url(reset_password_token: @token, protocol: Ggp2.config.url_protocol)
+  = link_to "Neues Passwort vergeben", reset_password_url
