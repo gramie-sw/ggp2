@@ -13,4 +13,14 @@ class RankingItem < ActiveRecord::Base
     RankingItem.new(id: 0, user_id: user_id, position: 0, correct_tips_count: 0, correct_tendency_tips_only_count: 0, points: 0)
   end
 
+  def neutral?
+    [
+        :id,
+        :position,
+        :correct_tips_count,
+        :correct_tips_count,
+        :points
+    ].all? { |attribute| self.send(attribute) == 0 }
+  end
+
 end

@@ -1,6 +1,6 @@
 describe ProfilesShowPresenter do
 
-  let(:user) { build(:player) }
+  let(:user) { User.new id: 5 }
   let(:is_for_current_user) { true }
   let(:tournament) { Tournament.new }
   let(:current_section) { :statistic }
@@ -91,15 +91,25 @@ describe ProfilesShowPresenter do
 
   describe '#user_statstic' do
 
+    let(:expected_user_statistic) { double('UserStatistic') }
+    let(:current_user_ranking_item) { double('RankingItem') }
+
     it 'should return player statistic for given user' do
-      UserStatistic.should_receive(:new).with(user: user, tournament: tournament).and_call_original
-      actual_user_statistic = subject.user_statistic
-      actual_user_statistic.should be_kind_of UserStatistic
+
+      ShowSingleUserCurrentRanking.any_instance.should_receive(:run).with(user.id).and_return(current_user_ranking_item)
+      UserStatistic.should_receive(:new).
+          with(user: user, tournament: tournament, current_ranking_item: current_user_ranking_item).
+          and_return(expected_user_statistic)
+
+      subject.user_statistic
     end
 
     it 'should cache object' do
-      subject.user_statistic.should be subject.user_statistic
+      ShowSingleUserCurrentRanking.any_instance.should_receive(:run).and_return(current_user_ranking_item)
+      UserStatistic.should_receive(:new).and_return(expected_user_statistic)
+
+      subject.user_statistic
+      subject.user_statistic
     end
   end
-
 end

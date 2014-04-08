@@ -27,7 +27,10 @@ class ProfilesShowPresenter
   end
 
   def user_statistic
-    @user_statistic ||= UserStatistic.new(user: user, tournament: tournament)
+    @user_statistic ||= begin
+      current_ranking_item = ShowSingleUserCurrentRanking.new.run(user.id)
+      UserStatistic.new(user: user, tournament: tournament, current_ranking_item: current_ranking_item)
+    end
   end
 
   def current_section

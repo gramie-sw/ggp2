@@ -3,13 +3,13 @@ class UserStatistic
 
   attr_reader :user
 
-  def initialize(user:, tournament:, current_ranking_item: nil)
+  def initialize(user:, tournament:, current_ranking_item:)
     @user = user
     @tournament = tournament
     @current_ranking_item = current_ranking_item
   end
 
-  delegate :position, :correct_tips_count, :correct_tendency_tips_only_count, to: :current_ranking_item
+  delegate :position, :points, :correct_tips_count, :correct_tendency_tips_only_count, to: :current_ranking_item
 
   def correct_tips_ratio
     tip_ratio_for :correct_tips_count
@@ -21,13 +21,7 @@ class UserStatistic
 
   private
 
-  attr_reader :tournament
-
-  def current_ranking_item
-    @current_ranking_item ||= begin
-      RankingItem.new(position: 0, correct_tips_count: 0, correct_tendency_tips_only_count: 0)
-    end
-  end
+  attr_reader :tournament, :current_ranking_item
 
   def tip_ratio_for subject
     if tournament.played_match_count > 0

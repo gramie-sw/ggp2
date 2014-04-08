@@ -23,29 +23,41 @@ describe RankingItem do
 
     context 'when no user_id given' do
 
-      it 'should return neutral RankingItem' do
-        neutral_ranking_item = RankingItem.neutral
-        #TODO add method neutral? to RankingItem
-        neutral_ranking_item.user_id.should eq nil
-        neutral_ranking_item.position.should eq 0
-        neutral_ranking_item.correct_tips_count.should eq 0
-        neutral_ranking_item.correct_tendency_tips_only_count.should eq 0
-        neutral_ranking_item.points.should eq 0
+      it 'should return neutral RankingItem where use_id is nil' do
+        actual_ranking_item = RankingItem.neutral
+        actual_ranking_item.should be_neutral
+        actual_ranking_item.user_id.should eq nil
       end
     end
 
     context 'when user_id is given' do
 
       it 'should return neutral RankingItem with given user_id' do
-        neutral_ranking_item = RankingItem.neutral(5)
-        neutral_ranking_item.user_id.should eq 5
-        neutral_ranking_item.position.should eq 0
-        neutral_ranking_item.correct_tips_count.should eq 0
-        neutral_ranking_item.correct_tendency_tips_only_count.should eq 0
-        neutral_ranking_item.points.should eq 0
+        actual_ranking_item = RankingItem.neutral(5)
+        actual_ranking_item.should be_neutral
+        actual_ranking_item.user_id.should eq 5
+      end
+    end
+  end
+
+  describe '#neutral?' do
+
+    subject { RankingItem.new(id: 0, position: 0, correct_tips_count: 0, correct_tendency_tips_only_count: 0, points: 0) }
+
+    context 'when all statistic values and id are 0' do
+
+      it 'should return true' do
+        subject.should be_neutral
       end
     end
 
+    context 'when at least one statistic value or id is not 0' do
 
+      it 'should return false' do
+        subject.position = nil
+        subject.position = 1
+        subject.should_not be_neutral
+      end
+    end
   end
 end
