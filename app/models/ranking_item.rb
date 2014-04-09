@@ -16,7 +16,6 @@ class RankingItem < ActiveRecord::Base
   def neutral?
     [
         :id,
-        :position,
         :correct_tips_count,
         :correct_tips_count,
         :points

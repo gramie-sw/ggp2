@@ -23,10 +23,11 @@ describe RankingItem do
 
     context 'when no user_id given' do
 
-      it 'should return neutral RankingItem where use_id is nil' do
+      it 'should return neutral RankingItem where use_id is nil and position is 0' do
         actual_ranking_item = RankingItem.neutral
         actual_ranking_item.should be_neutral
         actual_ranking_item.user_id.should eq nil
+        actual_ranking_item.points.should eq 0
       end
     end
 
@@ -44,7 +45,7 @@ describe RankingItem do
 
     subject { RankingItem.new(id: 0, position: 0, correct_tips_count: 0, correct_tendency_tips_only_count: 0, points: 0) }
 
-    context 'when all statistic values and id are 0' do
+    context 'when all statistic and id are except points are 0' do
 
       it 'should return true' do
         subject.should be_neutral
@@ -54,8 +55,9 @@ describe RankingItem do
     context 'when at least one statistic value or id is not 0' do
 
       it 'should return false' do
-        subject.position = nil
-        subject.position = 1
+        subject.correct_tips_count = nil
+        subject.should_not be_neutral
+        subject.correct_tips_count = 1
         subject.should_not be_neutral
       end
     end
