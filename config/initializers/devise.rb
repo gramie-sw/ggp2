@@ -4,7 +4,7 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  config.secret_key = 'bf5bb81b1d2c266f34f294f08b36099e14529899a77f1590d267fd4b6fe2890424f93f9642c2fe9f766bd5f4fdea1b63640e8a47d5076f1c6cdb42eabb5885ce'
+  #config.secret_key = 'bf5bb81b1d2c266f34f294f08b36099e14529899a77f1590d267fd4b6fe2890424f93f9642c2fe9f766bd5f4fdea1b63640e8a47d5076f1c6cdb42eabb5885ce'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -184,7 +184,7 @@ Devise.setup do |config|
   # Time interval you can reset your password with a reset password key.
   # Don't put a too small interval or your users won't have the time to
   # change their passwords.
-  config.reset_password_within = 6.hours
+  config.reset_password_within = 2.hours
 
   # ==> Configuration for :encryptable
   # Allow you to use another encryption algorithm besides bcrypt (default). You can use
@@ -251,4 +251,16 @@ Devise.setup do |config|
   # When using omniauth, Devise cannot automatically set Omniauth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+
+  if Rails.env.production?
+    secret_token = ENV['DEVISE_SECRET_TOKEN'] || File.read("#{Rails.root}/config/devise_secret_token")
+
+    if secret_token.present? && secret_token.size > 29
+      config.secret_key = secret_token
+    else
+      raise "devise secret token not eligible"
+    end
+  else
+    config.secret_key = 'bf5bb81b1d2c266f34f294f08b36099e14529899a77f1590d267fd4b6fe2890424f93f9642c2fe9f766bd5f4fdea1b63640e8a47d5076f1c6cdb42eabb5885ce'
+  end
 end

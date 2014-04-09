@@ -38,7 +38,7 @@ body {
   }
 
   a {
-    color: #89c200;
+    color: $ggp2-emphasize-color;
     text-decoration: none;
 
     &:hover {
@@ -50,6 +50,13 @@ body {
 .vertical-center {
   vertical-align: middle;
 }
+
+a {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 
 //.overlap {
 //  margin-top: (1/10 * $ggp2-header-image-height) - $ggp2-header-image-height;

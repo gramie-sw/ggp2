@@ -5,9 +5,11 @@ en:
       forgot_password: "Forgot your password?"
       not_receive_confirmation: "Didn't receive confirmation instructions?"
       not_receive_unlock_instruction: "Didn't receive unlock instructions?"
+      send_reset_password_instructions: Reset Password
       sign_in: Sign in
       sign_in_provider: "Sign in with %{provider}"
       sign_up: Sign up
       sign_up_submit: Create Account
     title:
       change_your_password: Change your password
+      forgot_your_password: Forgot your password?

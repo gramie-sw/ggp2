@@ -5,9 +5,11 @@ de:
       forgot_password: "Passwort vergessen?"
       not_receive_confirmation: "Keine Bestätigunginstruktionen erhalten?"
       not_receive_unlock_instruction: "Keine Entsperrinstruktionen erhalten?"
+      send_reset_password_instructions: "Passwort zurücksetzen"
       sign_in: Anmelden
       sign_in_provider: "Mit %{provider} anmelden"
       sign_up: Konto erstellen
       sign_up_submit: Konto anlegen
     title:
       change_your_password: Neues Passwort
+      forgot_your_password: Passwort vergessen?
