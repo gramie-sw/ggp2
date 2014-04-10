@@ -1,5 +1,7 @@
 en:
   devise:
+    label:
+      remember_me: Remember me
     links:
       change_my_password: Change my password
       forgot_password: "Forgot your password?"
@@ -13,3 +15,6 @@ en:
     title:
       change_your_password: Change your password
       forgot_your_password: Forgot your password?
+      sign_up: Sign Up
+    passwords:
+      send_initial_instructions: "You will receive an confirmation email with instructions about how to set your password in a few minutes."

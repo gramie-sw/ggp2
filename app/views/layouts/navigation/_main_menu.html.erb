@@ -24,7 +24,7 @@
               <li><%= link_to t('general.pin_board'), pin_boards_path %></li>
               <li><%= link_to t('general.profile.one'), profile_path(current_user) %></li>
           <% end %>
-          <li><a href="<%= destroy_user_session_path %>" data-method="delete">Logout</a></li>
+          <li><%= link_to t('views.layouts.navigation.main_menu.logout'), destroy_user_session_path, method: :delete %></li>
         </ul>
       </div>
     </div>

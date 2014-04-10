@@ -3,7 +3,7 @@ div.col-sm-offset-1.col-sm-10.col-md-offset-2.col-md-8.col-lg-offset-3.col-lg-6
     = form_for @user, html: { class: 'form-horizontal', role: 'form'} do |f|
 
       legend
-        = I18n.t('devise.links.sign_up')
+        = I18n.t('devise.title.sign_up')
 
       - label_wrapper_classes = 'col-sm-3'
       - value_wrapper_classes = 'col-sm-9 col-md-8'
@@ -34,4 +34,4 @@ div.col-sm-offset-1.col-sm-10.col-md-offset-2.col-md-8.col-lg-offset-3.col-lg-6
         div.col-sm-offset-3.col-sm-9.col-md-8
           div.btn-toolbar
             = f.submit I18n.t('devise.links.sign_up_submit'), class: 'btn btn-primary'
-            = link_to I18n.t('general.cancel'), new_session_path('user'), class: 'btn btn-default'
+            = link_to I18n.t('general.cancel'), new_user_session_path, class: 'btn btn-default'

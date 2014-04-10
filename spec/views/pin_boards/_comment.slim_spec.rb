@@ -35,5 +35,4 @@ describe 'pin_boards/_comment.slim' do
       end
     end
   end
-
 end

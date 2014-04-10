@@ -47,6 +47,25 @@ body {
   }
 }
 
+#login {
+
+  label {
+    font-weight:normal !important;
+  }
+
+  .btn-toolbar {
+    a {
+      color: $gray-dark;
+      margin-left: 15px;
+
+      &:hover {
+        color: $ggp2-emphasize-color;
+      }
+    }
+  }
+}
+
+
 .vertical-center {
   vertical-align: middle;
 }

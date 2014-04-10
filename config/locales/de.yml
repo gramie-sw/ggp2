@@ -273,10 +273,15 @@ de:
     correct_tendency_tips_only_ratio: Richtige Tendenz in %
 
   views:
+    layouts:
+      navigation:
+        main_menu:
+          logout: Ausloggen
     user_tips:
       show:
         tip_selected_matches: Ausgwählte Spiele tippen
     tips:
       edit_multiple:
         title: Spiele tippen
+
 

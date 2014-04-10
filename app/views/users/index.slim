@@ -21,7 +21,6 @@ ul.nav.nav-tabs
           th = User.human_attribute_name(:first_name)
           th = User.human_attribute_name(:last_name)
           th = User.human_attribute_name(:email)
-          th.text-center = User.human_attribute_name(:points)
           th = User.human_attribute_name(:last_sign_in_at)
       tbody
         - for user in @users
@@ -30,5 +29,4 @@ ul.nav.nav-tabs
             td = user.first_name
             td = user.last_name
             td = user.email
-            td.text-center = user.points
             td = l(user.last_sign_in_at, format: :short) if user.last_sign_in_at
