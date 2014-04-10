@@ -103,4 +103,45 @@ describe RankingItemRepository do
       end
     end
   end
+
+  describe '::order_by_position_asc' do
+
+    it 'should return RankingItems ordered by position' do
+      ranking_item_3 = create(:ranking_item, position: 3)
+      ranking_item_1 = create(:ranking_item, position: 1)
+      ranking_item_2 = create(:ranking_item, position: 2)
+
+      actual_ranking_items = subject.ordered_by_position_asc
+      actual_ranking_items.count.should eq 3
+      actual_ranking_items.first.should eq ranking_item_1
+      actual_ranking_items.second.should eq ranking_item_2
+      actual_ranking_items.third.should eq ranking_item_3
+    end
+  end
+
+  describe '::query_list_ranking_set' do
+
+    it 'should return paginated RankingItems with given match_id ordered by position' do
+      match = create(:match)
+      create(:ranking_item, position: 3, match: match)
+      expected_ranking_item_1 = create(:ranking_item, position: 1, match: match)
+      expected_ranking_item_2 = create(:ranking_item, position: 2, match: match)
+      create(:ranking_item)
+
+      actual_ranking_items = subject.query_list_ranking_set(match_id: match.id, page: 1, per_page: 2)
+      actual_ranking_items.count.should eq 2
+      actual_ranking_items.first.should eq expected_ranking_item_1
+      actual_ranking_items.second.should eq expected_ranking_item_2
+    end
+
+    it 'should includes user' do
+      relation = double('RankingItemRelation')
+      relation.as_null_object
+
+      relation.should_receive(:includes).with(:user)
+      subject.should_receive(:where).and_return(relation)
+
+      subject.query_list_ranking_set(match_id: nil, page: nil, per_page: nil)
+    end
+  end
 end

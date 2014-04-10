@@ -16,6 +16,18 @@ describe CurrentRankingFinder do
     end
   end
 
+  describe '::create_for_single_user' do
+
+    subject { CurrentRankingFinder }
+
+    it 'should return CurrentRankingFinder with a injected AllUserRankingProvider' do
+        expected_current_ranking_finder = double('CurrentRankingFinder')
+        CurrentRankingFinder.should_receive(:new).with(AllUserRankingProvider).
+            and_return(expected_current_ranking_finder)
+        subject.create_for_all_users.should eq expected_current_ranking_finder
+    end
+  end
+
   describe '#finder' do
 
     context 'when no ranking for tip oder champion_tip exists' do

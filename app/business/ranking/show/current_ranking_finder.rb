@@ -4,6 +4,10 @@ class CurrentRankingFinder
     CurrentRankingFinder.new(SingleUserRankingProvider)
   end
 
+  def self.create_for_all_users
+    CurrentRankingFinder.new(AllUserRankingProvider)
+  end
+
   def initialize ranking_provider
     @ranking_provider = ranking_provider
   end

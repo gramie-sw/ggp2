@@ -74,4 +74,28 @@ describe AllUserRankingProvider do
       end
     end
   end
+
+  describe '#tip_ranking' do
+
+    let(:expected_ranking_items) { double('RankingItems') }
+
+    it 'should return Tip-RankingItems of RankingItemRepository#query_list_ranking_set' do
+      Ggp2.config.should_receive(:ranking_user_page_count).and_return(15)
+      RankingItem.should_receive(:query_list_ranking_set).with(match_id: 3, page: 2, per_page: 15)
+
+      subject.tip_ranking(match_id: 3, page: 2)
+    end
+  end
+
+  describe '#champion_tip_ranking' do
+
+    let(:expected_ranking_items) { double('RankingItems') }
+
+    it 'should return ChampionTip-RankingItems of RankingItemRepository#query_list_ranking_set' do
+      Ggp2.config.should_receive(:ranking_user_page_count).and_return(15)
+      RankingItem.should_receive(:query_list_ranking_set).with(match_id: nil, page: 2, per_page: 15)
+
+      subject.champion_tip_ranking(page: 2)
+    end
+  end
 end

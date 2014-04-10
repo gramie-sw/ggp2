@@ -7,5 +7,4 @@ module TipRepository
       scope :tipped, -> { where("score_team_1 IS NOT NULL AND score_team_2 IS NOT NULL")}
     end
   end
-
 end

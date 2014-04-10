@@ -3,7 +3,7 @@ describe ShowSingleUserCurrentRanking do
   subject { ShowSingleUserCurrentRanking.new }
   let(:user) { create(:player) }
 
-  context 'when no currenct Tip RankingItem for specified user exits' do
+  context 'when no current Tip-RankingItem for specified user exits' do
 
     it 'should return neutral RankingItem belonging to specified user' do
       actual_ranking_item = subject.run(user.id)
@@ -12,7 +12,7 @@ describe ShowSingleUserCurrentRanking do
     end
   end
 
-  context 'when current Tip RankingItem for specified user exists' do
+  context 'when current Tip-RankingItem for specified user exists' do
 
     it 'should return RankingItem' do
       expected_ranking_item = create(:ranking_item, user: user)
@@ -22,7 +22,7 @@ describe ShowSingleUserCurrentRanking do
     end
   end
 
-  context 'when current Tip RankingItem and ChampionTip RankingItem for specified user exists' do
+  context 'when current Tip-RankingItem and ChampionTip-RankingItem for specified user exists' do
 
     it 'should return ChampionTip RankingItem' do
       tip_ranking_item = create(:ranking_item, user: user)
