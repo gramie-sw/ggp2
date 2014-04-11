@@ -24,7 +24,7 @@ describe ShowSingleUserCurrentRanking do
 
   context 'when current Tip-RankingItem and ChampionTip-RankingItem for specified user exists' do
 
-    it 'should return ChampionTip RankingItem' do
+    it 'should return ChampionTip-RankingItem' do
       tip_ranking_item = create(:ranking_item, user: user)
       expected_champion_tip_ranking_item = create(:ranking_item, user: user, match: nil)
       Property.set_last_tip_ranking_set_match_id_to tip_ranking_item.match.id

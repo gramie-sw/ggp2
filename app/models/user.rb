@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  include UserRepository
+
   USER_TYPE_ADMINS = 'admins'
   USER_TYPE_PLAYERS = 'players'
 
