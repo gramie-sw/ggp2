@@ -129,6 +129,7 @@ GEM
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     orm_adapter (0.5.0)
+    permissioner (0.2.0.beta)
     polyglot (0.3.4)
     pry (0.9.12.6)
       coderay (~> 1.0)
@@ -254,6 +255,7 @@ DEPENDENCIES
   localized_country_select
   meta_request (~> 0.2.8)
   mysql2
+  permissioner
   pry-rails (~> 0.3.2)
   puma
   quiet_assets
