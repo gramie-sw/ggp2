@@ -60,6 +60,19 @@ describe AllUserRankingProvider do
       end
     end
 
+    context 'when given page is a String' do
+      let(:page) { '1' }
+
+      it 'should cast page to int' do
+        User.should_receive(:players_paginated).with(page: page.to_i, per_page: per_page).and_return(users)
+
+        actual_ranking_items = subject.neutral_ranking(page: page)
+
+        actual_ranking_items.first.position.should eq 1
+        actual_ranking_items.second.position.should eq 2
+      end
+    end
+
     context 'when given page is null' do
       let(:page) { nil }
 

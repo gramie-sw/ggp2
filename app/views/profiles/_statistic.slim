@@ -3,14 +3,14 @@ div.jumbotron.ggp2-jumbotron
   div.row
     - user_statistic = presenter.user_statistic
     = render partial: 'statistic_item', \
-    locals: {label: t('user_statistic.position'), value: "#{user_statistic.position == 0 ? '-' : user_statistic.position}"}
+    locals: {label: t('ranking.position'), value: "#{user_statistic.position == 0 ? '-' : user_statistic.position}"}
     = render partial: 'statistic_item', \
     locals: {label: t('general.point.other'), value: "#{user_statistic.points}" }
     = render partial: 'statistic_item', \
-     locals: {label: t('user_statistic.correct_tips_count'), value: "#{user_statistic.correct_tips_count}"}
+     locals: {label: t('ranking.correct_tips_count'), value: "#{user_statistic.correct_tips_count}"}
     = render partial: 'statistic_item', \
-    locals: {label: t('user_statistic.correct_tendency_tips_only_count'), value: "#{user_statistic.correct_tendency_tips_only_count}"}
+    locals: {label: t('ranking.correct_tendency_tips_only_count'), value: "#{user_statistic.correct_tendency_tips_only_count}"}
     = render partial: 'statistic_item', \
-    locals: {label: t('user_statistic.correct_tips_ratio'), value: user_statistic.correct_tips_ratio }
+    locals: {label: t('ranking.correct_tips_ratio'), value: user_statistic.correct_tips_ratio }
     = render partial: 'statistic_item', \
-    locals: {label: t('user_statistic.correct_tendency_tips_only_ratio'), value: "#{user_statistic.correct_tendency_tips_only_ratio}"}
+    locals: {label: t('ranking.correct_tendency_tips_only_ratio'), value: "#{user_statistic.correct_tendency_tips_only_ratio}"}

@@ -43,7 +43,7 @@ div.row
               td = l tip_presenter.updated_at, format: :short
               td
                 = link_to user_tip_path(tip_presenter.user_id)
-                  icon.fa.fa-user title="#{t('tip.all_of', subject: tip_presenter.user.nickname)}"
+                  icon.fa.fa-list title="#{t('tip.all_of', subject: tip_presenter.user.nickname)}"
     small
       strong
         = "#{t('general.hint')}: "

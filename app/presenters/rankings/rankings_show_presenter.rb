@@ -1,2 +1,0 @@
-class RankingsShowPresenter
-end

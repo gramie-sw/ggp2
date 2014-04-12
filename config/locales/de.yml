@@ -203,7 +203,7 @@ de:
     point:
       one: Punkt
       other: Punkte
-    position: Platz
+      abbreviation: Pt
     profile:
       one: Profil
       other: Profile
@@ -247,6 +247,7 @@ de:
       badges: Auszeichnungen
       user_data: Benutzer-Daten
     yours: Dein Profil
+    of: Profile von %{name}
 
   tip:
     all: Alle Tipps
@@ -265,12 +266,12 @@ de:
         current_password: benötigt um Änderungen zu bestätigen
         new_password: freilassen wenn keine Änderung gewünscht
 
-  user_statistic:
+  ranking:
     position: Platz
-    correct_tips_count: Richtige Tipps
-    correct_tendency_tips_only_count: Richtige Tendenz
-    correct_tips_ratio: Richtige Tipps in %
-    correct_tendency_tips_only_ratio: Richtige Tendenz in %
+    correct_tips_count: Korrekte Tipps
+    correct_tendency_tips_only_count: Korrekte Tendenz
+    correct_tips_ratio: Korrekte Tipps in %
+    correct_tendency_tips_only_ratio: Korrekte Tendenz in %
 
   views:
     layouts:

@@ -5,10 +5,29 @@ div.table-responsive
   table.table.table-hover
     thead
       tr
-        th = t('general.position')
+        th = t('ranking.position')
         th = t('general.player.one')
-        th = t('general.point.other')
-        th = t('general.hits.other')
-        th = t('general.tendency')
-        th = t('general.badge.other')
+        th.text-center = t('general.point.other')
+        th.text-center = t('ranking.correct_tips_count')
+        th.text-center = t('ranking.correct_tendency_tips_only_count')
+        th
     tbody
+      - for user_ranking_presenter in @presenter.user_ranking_presenters
+        tr class="link-row" data-href="#{user_tip_path(user_ranking_presenter.user_id)}"
+          td = "#{user_ranking_presenter.position}."
+          td
+            strong = user_ranking_presenter.nickname
+          td.text-center = user_ranking_presenter.points
+          td.text-center = user_ranking_presenter.correct_tips_count
+          td.text-center = user_ranking_presenter.correct_tendency_tips_only_count
+          /- champion_tip_team = user_ranking_presenter.champion_tip_team
+          /td.ggp2-flag-with-country-name
+          /  = standard_flag_image_tag_of champion_tip_team
+          /  = champion_tip_team.present? ? champion_tip_team.name : '***'
+          td
+            = link_to profile_path(user_ranking_presenter.user_id)
+              icon.fa.fa-user title="#{t('profile.of', name: user_ranking_presenter.nickname)}"
+
+= paginate @presenter.pagination_scope
+
+

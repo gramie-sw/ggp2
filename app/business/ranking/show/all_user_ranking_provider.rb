@@ -2,6 +2,7 @@ module AllUserRankingProvider
   extend self
 
   def neutral_ranking(page:)
+    page = page.to_i
     page = 1 if page.nil? or page==0
 
     users = User.players_paginated(page: page, per_page: ranking_user_page_count)
