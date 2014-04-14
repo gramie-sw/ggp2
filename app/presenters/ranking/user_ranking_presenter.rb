@@ -16,7 +16,25 @@ class UserRankingPresenter
   end
 
   def champion_tip_team_name
-    champion_tip_team.present? ? champion_tip_team.name : '***'
+
+    case champion_tip_team_display_state
+      when :show
+        user.champion_tip.team.name
+      when :hide
+        '***'
+      else
+        I18n.t('tip.not_present')
+    end
+  end
+
+  def champion_tip_team_abbreviation
+
+    case champion_tip_team_display_state
+      when :show
+        user.champion_tip.team.abbreviation
+      else
+        nil
+    end
   end
 
   private
@@ -25,12 +43,17 @@ class UserRankingPresenter
 
   #TODO refactor
   #desicions should be done by permission service
-  def champion_tip_team
-    @champion_tip_team ||= begin
-      if (ranking_item.user_id == current_user_id)
-        user.champion_tip.team
+  def champion_tip_team_display_state
+    @champion_tip_team_display_state ||= begin
+
+      if user.champion_tip.team.present?
+        if (ranking_item.user_id == current_user_id) or tournament.started?
+          :show
+        else
+          :hide
+        end
       else
-        user.champion_tip.team if tournament.started?
+        :not_present
       end
     end
   end

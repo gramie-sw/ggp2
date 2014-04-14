@@ -2,28 +2,28 @@
 - content_for(:subtitle, t('match.progress', happend_count: 0, total_count: 64))
 
 div.table-responsive
-  table.table.table-hover
+  table#ranking-table.table.table-hover
     thead
       tr
         th = t('ranking.position')
         th = t('general.player.one')
-        th.text-center = t('general.point.other')
-        th.text-center = t('ranking.correct_tips_count')
-        th.text-center = t('ranking.correct_tendency_tips_only_count')
-        th
+        th.text-center.statistic-field = t('general.point.other')
+        th.text-center.statistic-field = t('ranking.correct_tips_count')
+        th.text-center.statistic-field = t('ranking.correct_tendency_tips_only_count')
+        th = t('activerecord.models.champion_tip.one')
+        thgit 
     tbody
       - for user_ranking_presenter in @presenter.user_ranking_presenters
         tr class="link-row" data-href="#{user_tip_path(user_ranking_presenter.user_id)}"
           td = "#{user_ranking_presenter.position}."
           td
             strong = user_ranking_presenter.nickname
-          td.text-center = user_ranking_presenter.points
-          td.text-center = user_ranking_presenter.correct_tips_count
-          td.text-center = user_ranking_presenter.correct_tendency_tips_only_count
-          /- champion_tip_team = user_ranking_presenter.champion_tip_team
-          /td.ggp2-flag-with-country-name
-          /  = standard_flag_image_tag_of champion_tip_team
-          /  = champion_tip_team.present? ? champion_tip_team.name : '***'
+          td.text-center.statistic-field = user_ranking_presenter.points
+          td.text-center.statistic-field = user_ranking_presenter.correct_tips_count
+          td.text-center.statistic-field = user_ranking_presenter.correct_tendency_tips_only_count
+          td.ggp2-flag-with-country-name
+            = standard_flag_image_tag user_ranking_presenter.champion_tip_team_abbreviation
+            = user_ranking_presenter.champion_tip_team_name
           td
             = link_to profile_path(user_ranking_presenter.user_id)
               icon.fa.fa-user title="#{t('profile.of', name: user_ranking_presenter.nickname)}"
