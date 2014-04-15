@@ -9,6 +9,7 @@ Ggp2::Application.routes.draw do
   end
 
   resources :aggregates
+  resource  :award_ceremonies, only: :show
   resources :champion_tips, only: [:edit, :update]
   resources :comments, only: [:new, :create, :edit, :update]
   resources :matches

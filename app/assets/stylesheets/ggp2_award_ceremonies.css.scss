@@ -1,0 +1,28 @@
+.winner-ranking-box {
+
+  text-align: center;
+
+  a {
+    font-size: $font-size-base*2;
+  }
+
+  .fa {
+    font-size: $font-size-base*8;
+  }
+
+  &.first-place-box {
+    .fa {
+      color: gold;
+    }
+  }
+  &.second-place-box {
+    .fa {
+      color: silver;
+    }
+  }
+  &.third-place-box {
+    .fa {
+      color: #8c7853;
+    }
+  }
+}

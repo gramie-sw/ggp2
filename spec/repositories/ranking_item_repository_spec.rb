@@ -145,4 +145,29 @@ describe RankingItemRepository do
       subject.ranking_set_for_listing(match_id: nil, page: nil, per_page: nil)
     end
   end
+
+  describe '::ranking_set_for_listing_by_positions' do
+
+    it 'should return RankingItems with given match_id for given positions' do
+      match = create(:match)
+      create(:ranking_item, position: 3, match: match)
+      expected_ranking_item_1 = create(:ranking_item, position: 1, match: match)
+      expected_ranking_item_2 = create(:ranking_item, position: 2, match: match)
+      expected_ranking_item_3 = create(:ranking_item, position: 2, match: match)
+      create(:ranking_item, position: 1)
+
+      actual_ranking_items = subject.ranking_set_for_listing_by_positions(match_id: match.id, positions: [1, 2])
+      actual_ranking_items.count.should eq 3
+      actual_ranking_items.should include expected_ranking_item_1, expected_ranking_item_2, expected_ranking_item_3
+    end
+
+    it 'should use scope ranking_set_for_listing and set match_id, page and per_page nil by default' do
+      relation = double('RankingSetRelation')
+      relation.as_null_object
+      subject.
+          should_receive(:ranking_set_for_listing).with(match_id: nil, page: nil, per_page: nil).
+          and_return(relation)
+      subject.ranking_set_for_listing_by_positions(positions: 1)
+    end
+  end
 end
