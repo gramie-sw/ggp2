@@ -234,8 +234,8 @@ de:
       change: |
        Wähle deinen Weltmeister
 
-  match:
-    progress: nach %{happend_count} von %{total_count} Spielen
+  tournament:
+    progress: nach %{played_match_count} von %{total_match_count} Spielen
 
   pin_board:
     description: '&bdquo;Der Schiri war blind und die Spieler alles nur Amateure!"'

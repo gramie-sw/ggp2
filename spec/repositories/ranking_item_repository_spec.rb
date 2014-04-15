@@ -33,16 +33,30 @@ describe RankingItemRepository do
     end
   end
 
-  describe '::first_by_user_id_and_match_id' do
+  describe '::exists_by_match_id?' do
 
-    it 'should return ranking_item for given user_id and match_id' do
-      create(:ranking_item, user_id: 2, match_id: 1)
-      expected_ranking_item = create(:ranking_item, user_id: 2, match_id: 7)
-      create(:ranking_item, user_id: 3, match_id: 7)
+    let(:match_id) { 3 }
+    let(:relation) { double('RankingItemRelation') }
 
-      subject.first_by_user_id_and_match_id(user_id: 2, match_id: 7).should eq expected_ranking_item
+    context 'when RankingItems exists for given match_id' do
+
+      it 'should return true' do
+        relation.should_receive(:exists?).and_return(true)
+        subject.should_receive(:all_by_match_id).with(match_id).and_return(relation)
+        subject.exists_by_match_id?(match_id).should be_true
+      end
+    end
+
+    context 'when not RankingItem exist for given match_id' do
+
+      it 'should return false' do
+        relation.should_receive(:exists?).and_return(false)
+        subject.should_receive(:all_by_match_id).with(match_id).and_return(relation)
+        subject.exists_by_match_id?(match_id).should be_false
+      end
     end
   end
+
 
   describe '::destroy_and_create_multiple' do
 
@@ -80,27 +94,14 @@ describe RankingItemRepository do
     end
   end
 
-  describe '::exists_by_match_id?' do
+  describe '::first_by_user_id_and_match_id' do
 
-    let(:match_id) { 3 }
-    let(:relation) { double('RankingItemRelation') }
+    it 'should return ranking_item for given user_id and match_id' do
+      create(:ranking_item, user_id: 2, match_id: 1)
+      expected_ranking_item = create(:ranking_item, user_id: 2, match_id: 7)
+      create(:ranking_item, user_id: 3, match_id: 7)
 
-    context 'when RankingItems exists for given match_id' do
-
-      it 'should return true' do
-        relation.should_receive(:exists?).and_return(true)
-        subject.should_receive(:all_by_match_id).with(match_id).and_return(relation)
-        subject.exists_by_match_id?(match_id).should be_true
-      end
-    end
-
-    context 'when not RankingItem exist for given match_id' do
-
-      it 'should return false' do
-        relation.should_receive(:exists?).and_return(false)
-        subject.should_receive(:all_by_match_id).with(match_id).and_return(relation)
-        subject.exists_by_match_id?(match_id).should be_false
-      end
+      subject.first_by_user_id_and_match_id(user_id: 2, match_id: 7).should eq expected_ranking_item
     end
   end
 
@@ -119,7 +120,7 @@ describe RankingItemRepository do
     end
   end
 
-  describe '::query_list_ranking_set' do
+  describe '::ranking_set_for_listing' do
 
     it 'should return paginated RankingItems with given match_id ordered by position' do
       match = create(:match)
@@ -128,20 +129,20 @@ describe RankingItemRepository do
       expected_ranking_item_2 = create(:ranking_item, position: 2, match: match)
       create(:ranking_item)
 
-      actual_ranking_items = subject.query_list_ranking_set(match_id: match.id, page: 1, per_page: 2)
+      actual_ranking_items = subject.ranking_set_for_listing(match_id: match.id, page: 1, per_page: 2)
       actual_ranking_items.count.should eq 2
       actual_ranking_items.first.should eq expected_ranking_item_1
       actual_ranking_items.second.should eq expected_ranking_item_2
     end
 
-    it 'should includes user' do
+    it 'should includes user, champion_tip and team' do
       relation = double('RankingItemRelation')
       relation.as_null_object
 
-      relation.should_receive(:includes).with(:user)
+      relation.should_receive(:includes).with(user: {champion_tip: :team})
       subject.should_receive(:where).and_return(relation)
 
-      subject.query_list_ranking_set(match_id: nil, page: nil, per_page: nil)
+      subject.ranking_set_for_listing(match_id: nil, page: nil, per_page: nil)
     end
   end
 end

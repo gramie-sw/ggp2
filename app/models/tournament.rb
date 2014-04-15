@@ -15,7 +15,11 @@ class Tournament
   end
 
   def played_match_count
-    @match ||= Match.only_with_result.count
+    @played_match_count ||= Match.count_all_with_results
+  end
+
+  def total_match_count
+    @total_match_count ||= Match.count
   end
 
   def champion_team

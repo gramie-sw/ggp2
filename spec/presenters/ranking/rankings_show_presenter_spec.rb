@@ -16,6 +16,15 @@ describe RankingsShowPresenter do
     subject.should respond_to :ranking_items=
   end
 
+  describe '#subtitle' do
+
+    it 'should return the subtitle' do
+      tournament.should_receive(:total_match_count).and_return(64)
+      tournament.should_receive(:played_match_count).and_return(10)
+      subject.subtitle.should eq t('tournament.progress', played_match_count: 10, total_match_count: 64)
+    end
+  end
+
   describe '#ranking_items' do
 
     it 'should have default values ' do
@@ -66,7 +75,7 @@ describe RankingsShowPresenter do
       it 'should return players scope' do
         expected_player_scope = double('PlayerScope')
         Ggp2.config.should_receive(:ranking_user_page_count).and_return(10)
-        User.should_receive(:players_paginated).with(page: page, per_page: 10).and_return(expected_player_scope)
+        User.should_receive(:players_for_ranking_listing).with(page: page, per_page: 10).and_return(expected_player_scope)
         subject.ranking_items= []
         subject.pagination_scope.should be expected_player_scope
       end

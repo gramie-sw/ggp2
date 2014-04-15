@@ -101,11 +101,28 @@ describe Tournament do
   describe '#played_match_count' do
 
     it 'should return played match count' do
-      relation = double('MatchRelation')
-      relation.should_receive(:count).and_return(3)
-      Match.should_receive(:only_with_result).and_return(relation)
-
+      Match.should_receive(:count_all_with_results).and_return(3)
       subject.played_match_count.should eq 3
+    end
+
+    it 'should cache value' do
+      Match.should_receive(:count_all_with_results).and_return(3)
+      subject.played_match_count
+      subject.played_match_count
+    end
+  end
+
+  describe '#total_match_count' do
+
+    it 'should return total match count' do
+      Match.should_receive(:count).and_return(64)
+      subject.total_match_count.should eq 64
+    end
+
+    it 'should cache value' do
+      Match.should_receive(:count).and_return(64)
+      subject.total_match_count
+      subject.total_match_count
     end
   end
 

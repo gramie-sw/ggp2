@@ -7,9 +7,8 @@ module RankingItemRepository
       where(user_id: user_id, match_id: match_id)
     end
     scope :ordered_by_position_asc, -> { order(position: :asc) }
-
-    scope :query_list_ranking_set, ->(match_id: match_id, page: page, per_page:) do
-      where(match_id: match_id).ordered_by_position_asc.includes(:user).page(page).per(per_page)
+    scope :ranking_set_for_listing, ->(match_id: match_id, page: page, per_page:) do
+      where(match_id: match_id).ordered_by_position_asc.includes(user: {champion_tip: :team}).page(page).per(per_page)
     end
   end
 

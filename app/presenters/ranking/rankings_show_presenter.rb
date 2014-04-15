@@ -9,6 +9,12 @@ class RankingsShowPresenter
     @ranking_items = []
   end
 
+  def subtitle
+    I18n.t('tournament.progress',
+           total_match_count: tournament.total_match_count,
+           played_match_count: tournament.played_match_count)
+  end
+
   def user_ranking_presenters
 
     @user_ranking_presenters ||= begin
@@ -27,7 +33,7 @@ class RankingsShowPresenter
   #in this case we have no pagination scope and have to provide our own
   def pagination_scope
     if ranking_items.instance_of?(Array)
-      User.players_paginated(page: page, per_page: Ggp2.config.ranking_user_page_count)
+      User.players_for_ranking_listing(page: page, per_page: Ggp2.config.ranking_user_page_count)
     else
       ranking_items
     end

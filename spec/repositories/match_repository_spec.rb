@@ -2,21 +2,6 @@ describe MatchRepository do
 
   subject { Match }
 
-  describe '::order_by_position' do
-
-    it 'should order by position' do
-
-      match_3 = create(:match, position: 3)
-      match_1 = create(:match, position: 1)
-      match_2 = create(:match, position: 2)
-
-      actual_matches = Match.order_by_position
-      actual_matches[0].position.should eq match_1.position
-      actual_matches[1].position.should eq match_2.position
-      actual_matches[2].position.should eq match_3.position
-    end
-  end
-
   describe '::all_following_matches' do
     it 'should return all matches which have a higher position than given one' do
       match_3 = create(:match, position: 3)
@@ -43,6 +28,17 @@ describe MatchRepository do
     end
   end
 
+  describe '::count_all_with_results' do
+
+    it 'should return count of all matches' do
+      create(:match, score_team_1: nil, score_team_2: nil)
+      create(:match, score_team_1: 0, score_team_2: 2)
+      create(:match, score_team_1: 1, score_team_2: 1)
+
+      subject.count_all_with_results.should eq 2
+    end
+  end
+
   describe '::future_matches' do
 
     it 'should return only future matches' do
@@ -56,20 +52,35 @@ describe MatchRepository do
     end
   end
 
-  describe '::only_with_result' do
+  describe '::order_by_position' do
+
+    it 'should order by position' do
+
+      match_3 = create(:match, position: 3)
+      match_1 = create(:match, position: 1)
+      match_2 = create(:match, position: 2)
+
+      actual_matches = Match.order_by_position
+      actual_matches[0].position.should eq match_1.position
+      actual_matches[1].position.should eq match_2.position
+      actual_matches[2].position.should eq match_3.position
+    end
+  end
+
+  describe '::all_with_result' do
 
     it 'should return only matches with result' do
       match_1 = create(:match, score_team_1: 1, score_team_2: 2)
       match_2 = create(:match, score_team_1: 3, score_team_2: 1)
       create(:match, score_team_1: nil, score_team_2: nil)
 
-      actual_matches = Match.only_with_result
+      actual_matches = Match.all_with_result
       actual_matches.count.should eq 2
       actual_matches.should include match_1, match_2
     end
   end
 
-  describe '#first_match' do
+  describe '::first_match' do
 
     it 'should return first match' do
       create(:match, position: 3)
@@ -80,7 +91,7 @@ describe MatchRepository do
     end
   end
 
-  describe '#last_match' do
+  describe '::last_match' do
 
     it 'should return last match' do
       match_3 = create(:match, position: 3)

@@ -18,7 +18,7 @@ describe AllUserRankingProvider do
   describe 'neutral_ranking' do
 
     it 'should return neutral RankingItems with set user and user_id' do
-      User.should_receive(:players_paginated).with(page: page, per_page: per_page).and_return(users)
+      User.should_receive(:players_for_ranking_listing).with(page: page, per_page: per_page).and_return(users)
       actual_ranking_items = subject.neutral_ranking(page: page)
 
       actual_ranking_items.first.should be_instance_of RankingItem
@@ -35,7 +35,7 @@ describe AllUserRankingProvider do
       let(:page) { 1 }
 
       it 'should set position to RankingItems starting with 1' do
-        User.should_receive(:players_paginated).with(page: page, per_page: per_page).and_return(users)
+        User.should_receive(:players_for_ranking_listing).with(page: page, per_page: per_page).and_return(users)
 
         actual_ranking_items = subject.neutral_ranking(page: page)
 
@@ -49,7 +49,7 @@ describe AllUserRankingProvider do
       let(:page) { 2 }
 
       it 'should set position to RankingItems according given page' do
-        User.should_receive(:players_paginated).with(page: page, per_page: 15).and_return(users)
+        User.should_receive(:players_for_ranking_listing).with(page: page, per_page: 15).and_return(users)
 
         Ggp2.config.should_receive(:ranking_user_page_count).at_least(:once).and_return(15)
 
@@ -64,7 +64,7 @@ describe AllUserRankingProvider do
       let(:page) { '1' }
 
       it 'should cast page to int' do
-        User.should_receive(:players_paginated).with(page: page.to_i, per_page: per_page).and_return(users)
+        User.should_receive(:players_for_ranking_listing).with(page: page.to_i, per_page: per_page).and_return(users)
 
         actual_ranking_items = subject.neutral_ranking(page: page)
 
@@ -77,7 +77,7 @@ describe AllUserRankingProvider do
       let(:page) { nil }
 
       it 'should set page is 1' do
-        User.should_receive(:players_paginated).with(page: 1, per_page: per_page).and_return([])
+        User.should_receive(:players_for_ranking_listing).with(page: 1, per_page: per_page).and_return([])
         subject.neutral_ranking(page: page)
       end
     end
@@ -86,7 +86,7 @@ describe AllUserRankingProvider do
       let(:page) { nil }
 
       it 'should set page ot 1' do
-        User.should_receive(:players_paginated).with(page: 1, per_page: per_page).and_return([])
+        User.should_receive(:players_for_ranking_listing).with(page: 1, per_page: per_page).and_return([])
         subject.neutral_ranking(page: page)
       end
     end
@@ -96,9 +96,9 @@ describe AllUserRankingProvider do
 
     let(:expected_ranking_items) { double('RankingItems') }
 
-    it 'should return Tip-RankingItems of RankingItemRepository#query_list_ranking_set' do
+    it 'should return Tip-RankingItems of RankingItemRepository#ranking_set_for_listing' do
       Ggp2.config.should_receive(:ranking_user_page_count).and_return(15)
-      RankingItem.should_receive(:query_list_ranking_set).with(match_id: 3, page: 2, per_page: 15)
+      RankingItem.should_receive(:ranking_set_for_listing).with(match_id: 3, page: 2, per_page: 15)
 
       subject.tip_ranking(match_id: 3, page: 2)
     end
@@ -108,9 +108,9 @@ describe AllUserRankingProvider do
 
     let(:expected_ranking_items) { double('RankingItems') }
 
-    it 'should return ChampionTip-RankingItems of RankingItemRepository#query_list_ranking_set' do
+    it 'should return ChampionTip-RankingItems of RankingItemRepository#ranking_set_for_listing' do
       Ggp2.config.should_receive(:ranking_user_page_count).and_return(15)
-      RankingItem.should_receive(:query_list_ranking_set).with(match_id: nil, page: 2, per_page: 15)
+      RankingItem.should_receive(:ranking_set_for_listing).with(match_id: nil, page: 2, per_page: 15)
 
       subject.champion_tip_ranking(page: 2)
     end

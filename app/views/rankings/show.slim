@@ -1,5 +1,5 @@
 - content_for(:title, t('general.ranking'))
-- content_for(:subtitle, t('match.progress', happend_count: 0, total_count: 64))
+- content_for(:subtitle, @presenter.subtitle)
 
 div.table-responsive
   table#ranking-table.table.table-hover
@@ -11,7 +11,7 @@ div.table-responsive
         th.text-center.statistic-field = t('ranking.correct_tips_count')
         th.text-center.statistic-field = t('ranking.correct_tendency_tips_only_count')
         th = t('activerecord.models.champion_tip.one')
-        thgit 
+        th
     tbody
       - for user_ranking_presenter in @presenter.user_ranking_presenters
         tr class="link-row" data-href="#{user_tip_path(user_ranking_presenter.user_id)}"
