@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_filter :authenticate_user!
+  before_filter :authorize
 
   def after_sign_in_path_for(user)
     if user.admin?
@@ -18,9 +19,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def permission_service
-    @permission_service ||= PermissionService.new
-  end
+  # def permission_service
+  #   @permission_service ||= PermissionService.new
+  # end
 
   def tournament
     @tournament ||= Tournament.new

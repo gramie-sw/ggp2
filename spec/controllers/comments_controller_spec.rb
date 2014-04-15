@@ -22,6 +22,8 @@ describe CommentsController do
       Comment.should_receive(:new).with(user_id: user.id).and_return(:new_comment)
       get :new
       assigns(:comment).should eq :new_comment
+
+
     end
   end
 

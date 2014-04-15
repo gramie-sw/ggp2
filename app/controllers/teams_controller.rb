@@ -5,7 +5,7 @@ class TeamsController < ApplicationController
   end
 
   def create
-    @team = Team.new(team_params)
+    @team = Team.new(params[:team])
 
     if @team.save
       redirect_to teams_path, notice: t('model.messages.created', model: @team.message_country_name)
@@ -26,9 +26,5 @@ class TeamsController < ApplicationController
 
   def current_resource
     @current_resource ||= Team.find(params[:id]) if params[:id]
-  end
-
-  def team_params
-    params.require(:team).permit(:country)
   end
 end

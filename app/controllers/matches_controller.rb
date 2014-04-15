@@ -13,7 +13,7 @@ class MatchesController < ApplicationController
   end
 
   def create
-    @match = Match.new(match_params)
+    @match = Match.new(params[:match])
 
     if @match.save
       redirect_to matches_path, notice: t('model.messages.created', model: @match.message_name)
@@ -25,7 +25,7 @@ class MatchesController < ApplicationController
   def update
     @match = current_resource
 
-    if @match.update_attributes(match_params)
+    if @match.update_attributes(params[:match])
       redirect_to matches_path, notice: t('model.messages.updated', model: @match.message_name)
     else
       render :edit
@@ -43,10 +43,5 @@ class MatchesController < ApplicationController
 
   def current_resource
     @current_resource ||= Match.find(params[:id]) if params[:id]
-  end
-
-  def match_params
-    params.require(:match).permit(:position, :team_1_id, :team_2_id, :score_team_1, :score_team_2, :placeholder_team_1, :placeholder_team_2,
-                                  :venue_id, :aggregate_id, :date)
   end
 end

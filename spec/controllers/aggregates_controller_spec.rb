@@ -1,9 +1,7 @@
 describe AggregatesController do
 
-  let(:admin) { create(:admin) }
-
   before :each do
-    sign_in admin
+    create_and_sign_in :admin
   end
 
   describe '#index' do

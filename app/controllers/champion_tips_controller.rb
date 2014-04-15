@@ -6,7 +6,7 @@ class ChampionTipsController < ApplicationController
 
   def update
     champion_tip = current_resource
-    if champion_tip.update(champion_tip_params)
+    if champion_tip.update(params[:champion_tip])
       redirect_to user_tip_path(current_user), notice: t('model.messages.updated', model: ChampionTip.model_name.human)
     else
       @presenter = ChampionTipsEditPresenter.new(current_resource)
@@ -17,10 +17,6 @@ class ChampionTipsController < ApplicationController
   private
 
   def current_resource
-    @current_resource ||= ChampionTip.find params[:id]
-  end
-
-  def champion_tip_params
-    params.require(:champion_tip).permit(:team_id)
+    @current_resource ||= ChampionTip.find params[:id] if params[:id]
   end
 end

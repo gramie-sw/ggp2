@@ -13,7 +13,7 @@ class VenuesController < ApplicationController
   end
 
   def create
-    @venue = Venue.new(venue_params)
+    @venue = Venue.new(params[:venue])
 
     if @venue.save
       redirect_to venues_path, notice: t('model.messages.created', model: @venue.message_name)
@@ -25,7 +25,7 @@ class VenuesController < ApplicationController
   def update
     @venue = current_resource
 
-    if @venue.update_attributes(venue_params)
+    if @venue.update_attributes(params[:venue])
       redirect_to venues_path, notice: t('model.messages.updated', model: @venue.message_name)
     else
       render action: :edit
@@ -43,9 +43,5 @@ class VenuesController < ApplicationController
 
   def current_resource
     @current_resource ||= Venue.find(params[:id]) if params[:id]
-  end
-
-  def venue_params
-    params.require(:venue).permit(:city, :stadium, :capacity)
   end
 end

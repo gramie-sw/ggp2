@@ -12,6 +12,6 @@ class UserTipsController < ApplicationController
   private
 
   def current_resource
-    @current_resource ||= User.find_player(params[:id])
+    @current_resource ||= User.find_player(params[:id]) if params[:id]
   end
 end

@@ -13,7 +13,7 @@ class AggregatesController < ApplicationController
   end
 
   def create
-    @aggregate = Aggregate.new(aggregate_params)
+    @aggregate = Aggregate.new(params[:aggregate])
 
     if @aggregate.save
       redirect_to aggregates_path, notice: t('model.messages.created', model: @aggregate.message_name)
@@ -25,7 +25,7 @@ class AggregatesController < ApplicationController
   def update
     @aggregate = current_resource
 
-    if @aggregate.update_attributes(aggregate_params)
+    if @aggregate.update_attributes(params[:aggregate])
       redirect_to aggregates_path, notice: t('model.messages.updated', model: @aggregate.message_name)
     else
       render :edit
@@ -43,9 +43,5 @@ class AggregatesController < ApplicationController
 
   def current_resource
     @current_resource ||= Aggregate.find(params[:id]) if params[:id]
-  end
-
-  def aggregate_params
-    params.require(:aggregate).permit(:position, :name, :parent_id)
   end
 end

@@ -38,6 +38,6 @@ class CommentsController < ApplicationController
   end
 
   def current_resource
-    @current_resource ||= Comment.find(params[:id])
+    @current_resource ||= Comment.find(params[:id]) if params[:id]
   end
 end
