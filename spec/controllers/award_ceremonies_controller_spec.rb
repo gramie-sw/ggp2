@@ -23,8 +23,8 @@ describe AwardCeremoniesController do
     end
 
     it 'should run uc ShowWinnerRanking and assign presenter' do
-      expected_presenter = AwardCeremoniesShowPresenter.new
-      AwardCeremoniesShowPresenter.should_receive(:new).and_return(expected_presenter)
+      expected_presenter = AwardCeremoniesShowPresenter.new nil
+      AwardCeremoniesShowPresenter.should_receive(:new).with(@controller.tournament).and_return(expected_presenter)
       ShowWinnerRanking.any_instance.should_receive(:run).with(expected_presenter)
 
       get :show

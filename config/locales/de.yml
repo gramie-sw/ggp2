@@ -227,6 +227,19 @@ de:
     errors:
       title: 'Bitte berichtigen:'
 
+  award_ceremony:
+    description_one: Aus, aus, aus - aus! Das Spiel ist aus! %{champion_team} ist Weltmeister.
+    description_two: Wir gratulieren den Siegern und bedanken uns bei allen Mitspieler.
+    first_place:
+      position: Sieger
+      badge: Legendary Prophet
+    second_place:
+      position: Zweiter
+      badge: Upcoming Guru
+    third_place:
+      position: Dritter
+      badge: Unsung Hero
+
   comments:
     max_allow_char_message: 'max. 500 Zeichen'
 
@@ -234,9 +247,6 @@ de:
     description:
       change: |
        Wähle deinen Weltmeister
-
-  tournament:
-    progress: nach %{played_match_count} von %{total_match_count} Spielen
 
   pin_board:
     description: '&bdquo;Der Schiri war blind und die Spieler alles nur Amateure!"'
@@ -250,6 +260,13 @@ de:
     yours: Dein Profil
     of: Profile von %{name}
 
+  ranking:
+    position: Platz
+    correct_tips_count: Korrekte Tipps
+    correct_tendency_tips_only_count: Korrekte Tendenz
+    correct_tips_ratio: Korrekte Tipps in %
+    correct_tendency_tips_only_ratio: Korrekte Tendenz in %
+
   tip:
     all: Alle Tipps
     all_of: Alle Tipps von %{subject}
@@ -261,18 +278,15 @@ de:
     not_present: Nicht getippt
     yours: Deine Tipps
 
+
+  tournament:
+    progress: nach %{played_match_count} von %{total_match_count} Spielen
+
   user_data:
     form:
       hint:
         current_password: benötigt um Änderungen zu bestätigen
         new_password: freilassen wenn keine Änderung gewünscht
-
-  ranking:
-    position: Platz
-    correct_tips_count: Korrekte Tipps
-    correct_tendency_tips_only_count: Korrekte Tendenz
-    correct_tips_ratio: Korrekte Tipps in %
-    correct_tendency_tips_only_ratio: Korrekte Tendenz in %
 
   views:
     layouts:
