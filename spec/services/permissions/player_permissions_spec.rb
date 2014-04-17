@@ -10,7 +10,7 @@ describe PlayerPermissions do
                ['devise/sessions', [:new, :create, :destroy]],
                ['devise/passwords', [:new, :create, :edit, :update]],
                ['adapted_devise/registrations', [:new, :create, :edit, :update]],
-               [:award_ceremonies, [:show]], 
+               [:award_ceremonies, [:show]],
                [:champion_tips, [:edit, :update]],
                [:comments, [:new, :create, :edit, :update]],
                [:match_tips, [:show]],

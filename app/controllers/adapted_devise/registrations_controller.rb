@@ -5,7 +5,7 @@ class AdaptedDevise::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    result = CreateUser.new.run(user_params)
+    result = CreateUser.new.run(params[:user])
 
     if result.successful?
       UserMailer.user_signed_up(result.user, result.raw_token).deliver
@@ -21,8 +21,4 @@ class AdaptedDevise::RegistrationsController < Devise::RegistrationsController
   end
 
   private
-
-  def user_params
-    params.require(:user).permit(:email, :nickname, :first_name, :last_name)
-  end
 end

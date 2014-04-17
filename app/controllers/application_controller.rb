@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     render file: "#{Rails.root}/public/403", layout: false, status: :forbidden
   end
 
-  before_action :configure_permitted_parameters, if: :devise_controller?
+  # before_action :configure_permitted_parameters, if: :devise_controller?
   before_filter :authenticate_user!
   before_filter :authorize
 
@@ -18,10 +18,6 @@ class ApplicationController < ActionController::Base
       user_tip_path(user)
     end
   end
-
-  # def permission_service
-  #   @permission_service ||= PermissionService.new
-  # end
 
   def tournament
     @tournament ||= Tournament.new
@@ -37,7 +33,7 @@ class ApplicationController < ActionController::Base
     new_user_session_path
   end
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << :nickname << :first_name << :last_name
-  end
+  # def configure_permitted_parameters
+  #   devise_parameter_sanitizer.for(:sign_up) << :nickname << :first_name << :last_name
+  # end
 end

@@ -10,4 +10,12 @@ describe GuestPermissions do
                ['adapted_devise/registrations', [:new, :create]]
            )
   end
+
+  it 'should exactly allow attributes' do
+
+    should exactly_allow_attributes(
+        [:user, [:email, :nickname, :first_name, :last_name]]
+           )
+
+  end
 end
