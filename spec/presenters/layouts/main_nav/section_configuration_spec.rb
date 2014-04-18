@@ -1,4 +1,4 @@
-describe ActiveSectionConfiguration do
+describe SectionConfiguration do
 
   it { should respond_to(:name, :name=) }
   it { should respond_to(:controller, :controller=) }
@@ -7,7 +7,7 @@ describe ActiveSectionConfiguration do
   describe '#initialize' do
 
     it 'should accept name' do
-      subject = ActiveSectionConfiguration.new('name_1')
+      subject = SectionConfiguration.new('name_1')
       expect(subject.name).to eq 'name_1'
     end
   end

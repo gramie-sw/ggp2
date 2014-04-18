@@ -1,4 +1,4 @@
-class ActiveSectionConfiguration
+class SectionConfiguration
 
   attr_accessor :name, :controller
   attr_reader :actions
