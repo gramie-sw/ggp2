@@ -5,7 +5,7 @@ describe GuestPermissions do
   it 'should exactly allow controllers' do
 
     should exactly_allow_actions(
-               ['devise/sessions', [:new, :create, :destroy]],
+               ['devise/sessions', [:new, :create]],
                ['devise/passwords', [:new, :create, :edit, :update]],
                ['adapted_devise/registrations', [:new, :create]]
            )
@@ -14,7 +14,7 @@ describe GuestPermissions do
   it 'should exactly allow attributes' do
 
     should exactly_allow_attributes(
-        [:user, [:email, :nickname, :first_name, :last_name]]
+        [:user, [:email, :nickname, :first_name, :last_name, :password, :password_confirmation, :reset_password_token]]
            )
 
   end

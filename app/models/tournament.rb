@@ -26,6 +26,10 @@ class Tournament
     @champion_team ||= last_match.winner_team
   end
 
+  def finished?
+    last_match.has_result?
+  end
+
   private
 
   def first_match

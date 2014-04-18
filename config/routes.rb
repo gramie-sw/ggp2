@@ -18,6 +18,7 @@ Ggp2::Application.routes.draw do
   resource :pin_boards, only: :show
   resources :profiles, only: :show
   resource :rankings, only: :show
+  resource :roots, only: :show
   resources :teams
   resources :tips, except: [:index, :show, :new, :create, :edit, :update, :destroy] do
     collection do
@@ -32,7 +33,7 @@ Ggp2::Application.routes.draw do
   # must be behind devise
   resources :users, except: [:show]
 
-  root :to => "matches#index"
+  root :to => 'roots#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

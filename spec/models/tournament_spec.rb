@@ -143,4 +143,31 @@ describe Tournament do
       subject.champion_team
     end
   end
+
+  describe '#finished?' do
+
+    let(:match) { build(:match)}
+
+    before :each do
+      Match.stub(:last_match).and_return(match)
+    end
+
+    context 'if last match has result' do
+
+      it 'should return true' do
+
+        match.stub(:has_result?).and_return(true)
+        subject.finished?.should be_true
+      end
+    end
+
+    context 'if last match has no result' do
+
+      it'should return false' do
+
+        match.stub(:has_result?).and_return(false)
+        subject.finished?.should be_false
+      end
+    end
+  end
 end
