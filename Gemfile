@@ -26,6 +26,7 @@ gem 'permissioner'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'rspec-fire'
   gem 'guard-rspec'
   gem 'spring'
   gem 'spring-commands-rspec', require: false

@@ -1,10 +1,11 @@
 class SectionConfiguration
 
-  attr_accessor :name, :controller
-  attr_reader :actions
+  attr_accessor :section
+  attr_accessor :active_markers
 
-  def initialize name=nil
-    @name = name
+  def initialize(section: nil, active_markers: nil)
+    @section = section
+    @active_markers = active_markers
   end
-  
+
 end

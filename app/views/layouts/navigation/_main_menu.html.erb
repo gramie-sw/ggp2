@@ -19,11 +19,15 @@
               <%= main_navbar_link(Venue.model_name.human_plural, venues_path, :venues) %>
               <%= main_navbar_link(User.model_name.human_plural, users_path(type: User::USER_TYPE_PLAYERS), :users) %>
           <% else %>
-              <li><%= link_to t('general.award_ceremony'), award_ceremonies_path %></li>
-              <li><%= link_to Tip.model_name.human_plural, user_tip_path(current_user) %></li>
-              <li><%= link_to t('general.ranking'), rankings_path %></li>
-              <li><%= link_to t('general.pin_board'), pin_boards_path %></li>
-              <li><%= link_to t('general.profile.one'), profile_path(current_user) %></li>
+              <!--<li><%= link_to t('general.award_ceremony'), award_ceremonies_path %></li>-->
+              <!--<li><%= link_to Tip.model_name.human_plural, user_tip_path(current_user) %></li>-->
+              <!--<li><%= link_to t('general.ranking'), rankings_path %></li>-->
+              <!--<li><%= link_to t('general.pin_board'), pin_boards_path %></li>-->
+              <!--<li><%= link_to t('general.profile.one'), profile_path(current_user) %></li>-->
+
+              <% main_nav_links.each do |link| %>
+                  <li><%= link_to link.label, link.url %></li>
+              <% end %>
           <% end %>
           <li><%= link_to t('views.layouts.navigation.main_menu.logout'), destroy_user_session_path, method: :delete %></li>
         </ul>

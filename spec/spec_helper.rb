@@ -57,4 +57,6 @@ RSpec.configure do |config|
   config.include ControllerMacros, type: :controller
   config.include ActionView::Helpers::TranslationHelper
   config.include Permissioner::Matchers
+
+  config.include RSpec::Fire
 end
