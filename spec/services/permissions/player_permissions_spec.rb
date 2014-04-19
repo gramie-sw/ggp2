@@ -12,7 +12,6 @@ describe PlayerPermissions do
                [:champion_tips, [:edit, :update]],
                [:comments, [:new, :create, :edit, :update]],
                [:match_tips, [:show]],
-               [:match_results, [:new, :create]],
                [:pin_boards, [:show]],
                [:profiles, [:show]],
                [:rankings, [:show]],

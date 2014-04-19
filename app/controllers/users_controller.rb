@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    result = CreateUser.new.run(user_params)
+    result = CreateUser.new.run(params[:user])
 
     if result.successful?
 
@@ -38,10 +38,6 @@ class UsersController < ApplicationController
 
   def remember_user_index_referer
     cookies[USER_INDEX_REFERER_COOKIE_KEY] = request.fullpath
-  end
-
-  def user_params
-    params.require(:user).permit(:nickname, :first_name, :last_name)
   end
 
   def current_resource

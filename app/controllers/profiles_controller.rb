@@ -7,5 +7,4 @@ class ProfilesController < ApplicationController
                                            is_for_current_user: is_user_current_user?(user),
                                            section: params[:section])
   end
-
 end

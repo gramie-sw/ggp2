@@ -9,7 +9,6 @@ class PlayerPermissions
     allow_actions :award_ceremonies, [:show]
     allow_actions :champion_tips, [:edit, :update]
     allow_actions :comments, [:new, :create, :edit, :update]
-    allow_actions :match_results, [:new, :create]
     allow_actions :match_tips, [:show]
     allow_actions :user_tips, [:show]
     allow_actions :pin_boards, [:show]

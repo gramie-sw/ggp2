@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
     render file: "#{Rails.root}/public/403", layout: false, status: :forbidden
   end
 
-  # before_action :configure_permitted_parameters, if: :devise_controller?
   before_filter :authenticate_user!
   before_filter :authorize
 
@@ -38,8 +37,4 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path_for(resource_or_scope)
     new_user_session_path
   end
-
-  # def configure_permitted_parameters
-  #   devise_parameter_sanitizer.for(:sign_up) << :nickname << :first_name << :last_name
-  # end
 end

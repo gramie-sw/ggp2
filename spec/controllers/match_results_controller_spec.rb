@@ -1,9 +1,9 @@
 describe MatchResultsController do
 
-  let(:player) { create(:player) }
+  let(:admin) { create(:admin) }
 
   before :each do
-    sign_in player
+    sign_in admin
   end
 
   describe '#new' do
