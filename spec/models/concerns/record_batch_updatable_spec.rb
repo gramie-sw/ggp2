@@ -13,7 +13,8 @@ describe RecordBatchUpdatable do
   let(:models_attributes) { {1 => :attributes_1, 2 => :attributes_2, 3 => :attributes_3, } }
 
   before :each do
-    subject.stub(:update).and_return(models)
+    allow(subject).to receive(:update).and_return(models)
+    allow(models_attributes).to receive(:permitted?).and_return(true)
   end
 
   describe '#update_multiple' do
@@ -27,7 +28,7 @@ describe RecordBatchUpdatable do
       subject.update_multiple(models_attributes).should be_kind_of RecordBatchUpdatable::Result
     end
 
-    context 'if all models could be saved' do
+    context 'when all models could be saved' do
 
       it 'should return result where #no_errors? is true' do
         subject.update_multiple(models_attributes).no_errors?.should be_true
@@ -44,7 +45,7 @@ describe RecordBatchUpdatable do
       end
     end
 
-    context 'if all models could be saved' do
+    context 'when all models could be saved' do
 
       before :each do
         models.first.stub(:errors).and_return(double(empty?: false))
@@ -66,6 +67,15 @@ describe RecordBatchUpdatable do
         failed_records.count.should eq 2
         failed_records.should include models.first, models.last
       end
+    end
+  end
+
+  context 'when model_attributes are not permitted' do
+
+    it 'should raise ActiveModel::ForbiddenAttributesError' do
+      expect(models_attributes).to receive(:permitted?).and_return(false)
+      expect(subject).not_to receive(:update)
+      expect{subject.update_multiple(models_attributes)}.to raise_error ActiveModel::ForbiddenAttributesError
     end
   end
 end

@@ -6,6 +6,7 @@ module RecordBatchUpdatable
 
   #TODO change name of this method because it does not store transactional
   def update_multiple models_attributes
+    raise ActiveModel::ForbiddenAttributesError unless models_attributes.permitted?
     models = self.update(models_attributes.keys, models_attributes.values)
 
     succeeded_records, failed_records = [], []

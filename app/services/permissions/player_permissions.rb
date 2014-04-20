@@ -19,6 +19,7 @@ class PlayerPermissions
 
     #attributes
     allow_attributes :user, [:email, :nickname, :first_name, :last_name, :current_password, :password, :password_confirmation, :remember_me]
+    allow_attributes :tips, [:score_team_1, :score_team_2]
     allow_attributes :champion_tip, [:team_id]
     allow_attributes :comment, [:user_id, :content]
   end
