@@ -22,5 +22,22 @@ class PlayerPermissions
     allow_attributes :tips, [:score_team_1, :score_team_2]
     allow_attributes :champion_tip, [:team_id]
     allow_attributes :comment, [:user_id, :content]
+
+    #filters
+    add_filter :comments, :create do |resource, params|
+      if params.present? && params.has_key?(:comment) && params[:comment].has_key?(:user_id) && params[:comment][:user_id] != current_user.id.to_s
+        false
+      else
+        true
+      end
+    end
+
+    add_filter :comments, :update do |resource, params|
+      if params.present? && params.has_key?(:comment) && params[:comment].has_key?(:user_id) && params[:comment][:user_id] != current_user.id.to_s
+        false
+      else
+        true
+      end
+    end
   end
 end

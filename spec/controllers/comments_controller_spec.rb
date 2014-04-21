@@ -29,7 +29,7 @@ describe CommentsController do
 
   describe '#create' do
 
-    let(:params) { {comment: {'user_id' => '4', 'content' => 'content'}} }
+    let(:params) { {comment: {'user_id' => user.id.to_s, 'content' => 'content'}} }
 
     context 'on success' do
 
