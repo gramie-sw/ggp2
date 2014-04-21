@@ -5,9 +5,15 @@ describe MainNavLinksProvider do
   describe '#links' do
 
     let(:current_user) { User.new(id: 5, admin: false) }
+    let(:tournament) { instance_double('Tournament') }
+
+    before :each do
+      allow(tournament).to receive(:finished?)
+    end
+
 
     it 'should return links' do
-      subject.links current_user
+      subject.links current_user, tournament
     end
   end
 end

@@ -9,7 +9,7 @@ class NavLinkBuilder
     NavLink.new(
         label: label,
         url: url,
-        active: section_registry.is_active?(section, current_active_markers)
+        active: section_registry.is_active?(section, *current_active_markers)
     )
   end
 

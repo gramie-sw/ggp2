@@ -148,6 +148,10 @@ describe SectionRegistry do
 
   it 'should accept active marker configuration as symbol' do
     section_configuration = SectionConfiguration.new(
+        section: :section_1, active_markers: :marker_1)
+    subject.register_section section_configuration
+    expect(subject.is_active?('section_1', 'marker_1')).to be_true
+    section_configuration = SectionConfiguration.new(
         section: :section_1, active_markers: [:marker_1, [:sub_marker_1, :sub_marker_2]])
     subject.register_section section_configuration
     expect(subject.is_active?('section_1', 'marker_1', 'sub_marker_1')).to be_true

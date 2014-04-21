@@ -10,7 +10,7 @@ class SectionRegistry
     levels = Array(section_configuration.active_markers).map { |level| Array(level) }
 
     combine_all_levels(levels).each do |combined_level|
-      registry[combined_level] = section_configuration.section.to_s
+      registry[combined_level.to_s] = section_configuration.section.to_s
     end
   end
 

@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   end
 
   def main_nav_links
-    MainNavLinksProvider.create('controller', 'test').links(current_user)
+    MainNavLinksProvider.create(params[:controller], params[:action]).links(current_user, tournament)
   end
 
   protected

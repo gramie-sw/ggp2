@@ -18,15 +18,16 @@ describe NavLinksProvidable do
       expect(subject.nav_link_builder).to be_instance_of NavLinkBuilder
     end
 
-    it 'should set instance NavLinkBuilder with SectionRegistry and given current_active_markers' do
-      expect(NavLinkBuilder).to receive(:new).with(instance_of(SectionRegistry), [:active_marker_1]).
-                                    and_return(:NavLinkBuilder)
+    it 'should set NavLinkBuilder with SectionRegistry and given current_active_markers to new instance' do
+      expect(subject_class).to receive(:section_registry).and_return(:SectionRegistry)
+
+      expect(NavLinkBuilder).to receive(:new).with(:SectionRegistry, :active_marker_1).and_return(:NavLinkBuilder)
       subject = subject_class.create :active_marker_1
       expect(subject.nav_link_builder).to be :NavLinkBuilder
     end
 
     it 'should accept multiple current_active_markers' do
-      expect(NavLinkBuilder).to receive(:new).with(instance_of(SectionRegistry), [:active_marker_1, :active_marker_2]).
+      expect(NavLinkBuilder).to receive(:new).with(instance_of(SectionRegistry), :active_marker_1, :active_marker_2).
                                     and_return(:NavLinkBuilder)
       subject = subject_class.create :active_marker_1, :active_marker_2
     end
@@ -34,34 +35,56 @@ describe NavLinksProvidable do
 
   describe '::section' do
 
-    it 'should return SectionConfigurationBuilder with set section' do
+    it 'should return SectionConfigurator with set section and SectionRegistry' do
+      expect(subject_class).to receive(:section_registry).and_return(:SectionRegistry)
+
       actual_section_configuration_builder = subject_class.section :section_1
-      expect(actual_section_configuration_builder).to be_instance_of NavLinksProvidable::SectionConfigurationBuilder
+      expect(actual_section_configuration_builder).to be_instance_of NavLinksProvidable::SectionConfigurator
       expect(actual_section_configuration_builder.section).to be :section_1
+      expect(actual_section_configuration_builder.section_registry).to be :SectionRegistry
     end
   end
 
-  describe NavLinksProvidable::SectionConfigurationBuilder do
+  describe '::section_registry' do
 
-    subject { NavLinksProvidable::SectionConfigurationBuilder.new(:section_1) }
+    it 'should return new SectionRegistry' do
+      expect(SectionRegistry).to receive(:new).and_call_original
+      expect(subject_class.section_registry).to be_instance_of SectionRegistry
+    end
+
+    it 'should cache instance' do
+      expect(subject_class.section_registry).to be subject_class.section_registry
+    end
+  end
+
+  describe NavLinksProvidable::SectionConfigurator do
+
+    let(:section_configuration) { instance_double('SectionConfiguration') }
+    subject { NavLinksProvidable::SectionConfigurator.new(:section_1, section_configuration) }
 
     describe '#is_active_for' do
 
-      it 'should return SectionConfiguration with set name and active_markers as array' do
-        actual_section_configuration = subject.is_active_for :active_marker_1
-        expect(actual_section_configuration).to be_instance_of SectionConfiguration
-        expect(actual_section_configuration.section).to be :section_1
-        expect(actual_section_configuration.active_markers).to eq [:active_marker_1]
+      it 'should build SectionConfiguration and register it with given section_registry' do
+        expect(section_configuration).to receive(:register_section) do |actual_section_configuration|
+          expect(actual_section_configuration).to be_instance_of SectionConfiguration
+          expect(actual_section_configuration.section).to be :section_1
+          expect(actual_section_configuration.active_markers).to eq [:active_marker_1]
+        end
+        subject.is_active_for :active_marker_1
       end
 
       it 'should accept multiple active_markers' do
-        actual_section_configuration =
-            subject.is_active_for :active_marker_1, :sub_active_marker_2, [:sub_active_marker_3, :sub_active_marker_4]
-        expect(actual_section_configuration.active_markers).to eq [
-                                                                      :active_marker_1,
-                                                                      :sub_active_marker_2,
-                                                                      [:sub_active_marker_3, :sub_active_marker_4]
-                                                                  ]
+        expect(section_configuration).to receive(:register_section) do |actual_section_configuration|
+          expect(actual_section_configuration.active_markers).to eq(
+                                                                     [
+                                                                         :active_marker_1,
+                                                                         :sub_active_marker_2,
+                                                                         [:sub_active_marker_3, :sub_active_marker_4]
+                                                                     ]
+                                                                 )
+        end
+
+        subject.is_active_for :active_marker_1, :sub_active_marker_2, [:sub_active_marker_3, :sub_active_marker_4]
       end
     end
   end
