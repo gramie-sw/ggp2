@@ -1,0 +1,22 @@
+header#header
+  div.navbar.navbar-default.navbar-fixed-top
+    div.container
+      div.navbar-header
+
+        button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-collapse"
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+
+        span.navbar-brand
+          - if current_user.admin?
+            'Administration
+          - else
+            'WM 2014 Tippspiel
+      div.collapse.navbar-collapse
+        ul.nav.navbar-nav.navbar-right
+          - for link in main_nav_links
+            li class=(link.active? ? 'active' : '') = link_to link.label, link.url
+          li
+            = link_to destroy_user_session_path, method: :delete, title: t('views.layouts.navigation.main_menu.logout')
+              i.fa.fa-sign-out = " #{t('views.layouts.navigation.main_menu.logout')}"

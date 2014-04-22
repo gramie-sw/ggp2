@@ -292,7 +292,7 @@ de:
     layouts:
       navigation:
         main_menu:
-          logout: Ausloggen
+          logout: Abmelden
     user_tips:
       show:
         tip_selected_matches: Ausgwählte Spiele tippen
