@@ -55,6 +55,8 @@ module Ggp2
     #needed for devise
     config.action_mailer.default_url_options = {host: config.toplevel_domain}
     config.action_mailer.default_options = {from: config.sender_email}
+
+    config.quotations_file = "#{Rails.root}/config/quotations.yml"
   end
 
   def self.config

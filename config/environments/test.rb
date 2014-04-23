@@ -36,4 +36,6 @@ Ggp2::Application.configure do
 
   #used in email for links
   config.url_protocol = :http
+
+  config.quotations_file = "#{Rails.root}/spec/support/resources/quotations.yml"
 end

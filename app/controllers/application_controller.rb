@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   before_filter :authorize
 
-  helper_method :main_nav_links
+  helper_method :main_nav_links, :random_quotation
 
   def after_sign_in_path_for(user)
     if user.admin?
@@ -26,6 +26,10 @@ class ApplicationController < ActionController::Base
 
   def is_user_current_user? user
     user == current_user
+  end
+
+  def random_quotation
+    ShowRandomQuotation.new.run
   end
 
   def main_nav_links

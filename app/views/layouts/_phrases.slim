@@ -1,6 +1,7 @@
 div.col-xs-12.col-sm-7.col-md-6.col-md-offset-1.col-lg-5.col-lg-offset-2
   div.panel
     div.panel-body
-      'Bobby Robson
+      - quotation = random_quotation
+      = quotation.author
       br
-      strong = "\"We didn’t underestimate them. They were just a lot better than we thought.\""
+      strong = "\"#{quotation.content}\""
