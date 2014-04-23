@@ -1,10 +1,10 @@
-describe TipResultService do
+describe LegacyTipResultService do
 
   describe '#update_tips_with_result' do
 
     let(:match) { create(:match, score_team_1: 1, score_team_2: 2)}
 
-    subject { TipResultService.new(match_id: match.id)}
+    subject { LegacyTipResultService.new(match_id: match.id)}
 
     it 'should set result on tipped tips by given match and saves them' do
       tip_1 = create(:tip, match: match, score_team_1: 2, score_team_2: 1)

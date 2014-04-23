@@ -31,7 +31,7 @@ describe MatchResultsController do
 
     let(:match) { create(:match)}
 
-    context 'if successful' do
+    context 'when successful' do
 
       let(:params) { {match_result: { match_id: match.id, score_team_1: 2, score_team_2: 2 }}}
 
@@ -45,13 +45,19 @@ describe MatchResultsController do
         post :create, params
       end
 
+      it 'should run uc ProcessNewMatchResult with given match id' do
+        MatchResult.any_instance.should_receive(:save).with(no_args).and_return(true)
+        ProcessNewMatchResult.any_instance.should_receive(:run).with(match.id)
+        post :create, params
+      end
+
       it 'should assign flash notice' do
         post :create, params
         flash[:notice].should eq t('model.messages.updated', model: assigns(:match_result).message_name)
       end
     end
 
-    context 'if failing' do
+    context 'when failing' do
 
       let(:params) { {match_result: { match_id: match.id, score_team_1: 2 }}}
 

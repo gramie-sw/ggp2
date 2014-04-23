@@ -1,6 +1,6 @@
-describe TipResultCalculator do
+describe LegacyTipResultCalculator do
 
-  subject { TipResultCalculator }
+  subject { LegacyTipResultCalculator }
 
   describe '::result' do
 

@@ -1,4 +1,4 @@
-module TipResultCalculator
+module LegacyTipResultCalculator
   extend self
 
   def result(tip:, match:)

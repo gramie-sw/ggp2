@@ -1,4 +1,4 @@
-class TipResultService
+class LegacyTipResultService
 
   def initialize(match_id:)
     @match_id = match_id
@@ -15,7 +15,7 @@ class TipResultService
     match = Match.find(@match_id)
 
     tips.each do |tip|
-      tip.result = TipResultCalculator.result tip: tip, match: match
+      tip.result = LegacyTipResultCalculator.result tip: tip, match: match
     end
   end
 

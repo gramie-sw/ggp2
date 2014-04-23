@@ -34,13 +34,10 @@ describe TipRankingSetFinder do
       end
     end
 
-    context 'when current_match_id belongs to first macht' do
+    context 'when current_match_id belongs to first match' do
 
       it 'should return RankingItemSet with match_id 0 and no RankingItems' do
-        RankingItem.stub(:exists_by_match_id?).with(2).and_return(false)
-        RankingItem.stub(:exists_by_match_id?).with(1).and_return(false)
-
-        actual_ranking_set = subject.find_previous(3)
+        actual_ranking_set = subject.find_previous(1)
         actual_ranking_set.should be_an_instance_of RankingSet
         actual_ranking_set.should be_neutral
       end
