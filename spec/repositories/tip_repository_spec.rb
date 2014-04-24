@@ -43,4 +43,31 @@ describe TipRepository do
       tips.should include tip_1, tip_3
     end
   end
+
+  describe '::update_multiple_tips' do
+
+    let(:tips) do
+      [
+        build(:tip),
+        build(:tip),
+        build(:tip)
+      ]
+    end
+
+    it 'should update all given tips' do
+
+      expect(subject.update_multiple_tips(tips)).to be_true
+      expect(tips[0].reload.new_record?).to be_false
+      expect(tips[1].reload.new_record?).to be_false
+      expect(tips[2].reload.new_record?).to be_false
+    end
+
+    it 'should update all given tips transactional' do
+
+      tips[1].score_team_1 = -1
+
+      expect(subject.update_multiple_tips(tips)).to be_false
+      expect(Tip.all.size).to eq 0
+    end
+  end
 end

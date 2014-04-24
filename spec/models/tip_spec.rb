@@ -12,6 +12,10 @@ describe Tip do
     Tip.included_modules.should include ScoreValidatable
   end
 
+  it 'should be included with TipRepository' do
+    expect(Tip.included_modules).to include(TipRepository)
+  end
+
   describe 'validations' do
 
     let(:match) { create(:match) }
