@@ -12,7 +12,7 @@ describe AllUserRankingProvider do
   subject { AllUserRankingProvider }
 
   before :each do
-    Ggp2.config.stub(:ranking_user_page_count).and_return(per_page)
+    Ggp2.config.stub(:user_page_count).and_return(per_page)
   end
 
   describe 'neutral_ranking' do
@@ -51,7 +51,7 @@ describe AllUserRankingProvider do
       it 'should set position to RankingItems according given page' do
         User.should_receive(:players_for_ranking_listing).with(page: page, per_page: 15).and_return(users)
 
-        Ggp2.config.should_receive(:ranking_user_page_count).at_least(:once).and_return(15)
+        Ggp2.config.should_receive(:user_page_count).at_least(:once).and_return(15)
 
         actual_ranking_items = subject.neutral_ranking(page: page)
 
@@ -97,7 +97,7 @@ describe AllUserRankingProvider do
     let(:expected_ranking_items) { double('RankingItems') }
 
     it 'should return Tip-RankingItems of RankingItemRepository#ranking_set_for_listing' do
-      Ggp2.config.should_receive(:ranking_user_page_count).and_return(15)
+      Ggp2.config.should_receive(:user_page_count).and_return(15)
       RankingItem.should_receive(:ranking_set_for_listing).with(match_id: 3, page: 2, per_page: 15)
 
       subject.tip_ranking(match_id: 3, page: 2)
@@ -109,7 +109,7 @@ describe AllUserRankingProvider do
     let(:expected_ranking_items) { double('RankingItems') }
 
     it 'should return ChampionTip-RankingItems of RankingItemRepository#ranking_set_for_listing' do
-      Ggp2.config.should_receive(:ranking_user_page_count).and_return(15)
+      Ggp2.config.should_receive(:user_page_count).and_return(15)
       RankingItem.should_receive(:ranking_set_for_listing).with(match_id: nil, page: 2, per_page: 15)
 
       subject.champion_tip_ranking(page: 2)

@@ -20,8 +20,9 @@ describe MatchTipsController do
     end
 
     it 'should assign correctly instantiated MatchTipsShowPresenter' do
-      MatchTipsShowPresenter.should_receive(:new).with(match: match, current_user_id: player.id).and_call_original
-      get :show, id: match.to_param
+      MatchTipsShowPresenter.should_receive(:new).
+          with(match: match, current_user_id: player.id, page: '2').and_call_original
+      get :show,{id: match.to_param, page: 2}
       assigns(:presenter).should be_kind_of MatchTipsShowPresenter
     end
   end

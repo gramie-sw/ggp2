@@ -49,6 +49,8 @@ div.row
         = "#{t('general.hint')}: "
       = t('tip.description.for_showing_others')
 
+    = paginate @presenter.pagination_scope
+
   div.col-md-3.col-lg-2.hidden-xs.hidden-sm
     div.panel.panel-default.text-center
       div.panel-heading
