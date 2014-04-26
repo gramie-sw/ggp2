@@ -5,6 +5,8 @@ describe UserTipsShowPresenter do
   let(:tournament) { Tournament.new }
   subject { UserTipsShowPresenter.new(user: user, tournament: tournament, user_is_current_user: user_is_current_user) }
 
+  it { should respond_to(:user_is_current_user?) }
+
   describe '#title' do
 
     context 'if user is current_user' do

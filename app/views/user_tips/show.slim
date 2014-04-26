@@ -37,7 +37,8 @@
   - else
     = render partial: 'tips_table', locals: {presenter: @presenter, aggregate: phase, show_as_form: false}
 
-small
+- unless @presenter.user_is_current_user?
+  small
     strong
       = "#{t('general.hint')}: "
     = t('tip.description.for_showing_others')

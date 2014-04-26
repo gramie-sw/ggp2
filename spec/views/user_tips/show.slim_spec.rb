@@ -52,7 +52,7 @@ describe 'user_tips/show.slim' do
       it 'should be showed' do
         presenter.stub(:show_champion_tip?).and_return(false)
         render
-        rendered.should_not match t('tip.tournament_champion')
+        rendered.should_not match ChampionTip.model_name.human
       end
     end
   end
@@ -143,6 +143,29 @@ describe 'user_tips/show.slim' do
         presenter.stub(:champion_tip_team).and_return(nil)
         render
         rendered.should have_css 'div#champion-tip', text: t('tip.not_present')
+      end
+    end
+  end
+
+  describe 'hint text' do
+
+    let(:hint_css) { t('tip.description.for_showing_others') }
+
+    context 'when user is current_user' do
+
+      it 'should not be displayed' do
+        allow(presenter).to receive(:user_is_current_user?).and_return(true)
+        render
+        expect(rendered).not_to include hint_css
+      end
+    end
+
+    context 'when user is not current_user' do
+
+      it 'should be displayed' do
+        allow(presenter).to receive(:user_is_current_user?).and_return(false)
+        render
+        expect(rendered).to include hint_css
       end
     end
   end

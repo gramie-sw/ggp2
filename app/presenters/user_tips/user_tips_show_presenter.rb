@@ -4,6 +4,9 @@ class UserTipsShowPresenter
 
   delegate :champion_tip_deadline, to: :tournament
 
+  attr_reader :user_is_current_user
+  alias user_is_current_user? user_is_current_user
+
   def initialize(user:, tournament:, user_is_current_user:)
     @user = user
     @tournament = tournament
@@ -55,7 +58,5 @@ class UserTipsShowPresenter
   private
 
   attr_reader :user
-  attr_reader :user_is_current_user
-  alias user_is_current_user? user_is_current_user
   attr_reader :tournament
 end
