@@ -1,7 +1,5 @@
 describe QuotationRepository do
 
-  subject { QuotationRepository }
-
   describe '#sample' do
 
     it 'should return random Quotation' do

@@ -57,6 +57,7 @@ module Ggp2
     config.action_mailer.default_options = {from: config.sender_email}
 
     config.quotations_file = "#{Rails.root}/config/quotations.yml"
+    config.badges_file = "#{Rails.root}/config/badges.yml"
   end
 
   def self.config

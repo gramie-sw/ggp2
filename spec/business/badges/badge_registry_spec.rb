@@ -1,0 +1,4 @@
+describe BadgeRegistry do
+
+
+end

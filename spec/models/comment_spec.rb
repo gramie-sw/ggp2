@@ -4,6 +4,10 @@ describe Comment do
     build(:comment).should be_valid
   end
 
+  it 'should include module CommentRepository' do
+    Comment.included_modules.should include CommentRepository
+  end
+
   describe 'validations' do
 
     describe 'user' do

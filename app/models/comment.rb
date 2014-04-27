@@ -1,4 +1,7 @@
 class Comment < ActiveRecord::Base
+
+  include CommentRepository
+
   belongs_to :user
 
   validates :user, presence: true
