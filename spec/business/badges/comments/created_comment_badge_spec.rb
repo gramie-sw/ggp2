@@ -13,12 +13,9 @@ describe CreatedCommentBadge do
 
   describe '#eligible_user_ids' do
 
-    let(:comment_relation) { double('comment_relation')}
-
     it 'should return user_ids which have at least comments by given count' do
 
-      expect(Comment).to receive(:user_ids_with_at_least_comments).with(subject.count).and_return(comment_relation)
-      expect(comment_relation).to receive(:pluck).with(:user_id)
+      expect(Comment).to receive(:user_ids_with_at_least_comments).with(subject.count)
       subject.eligible_user_ids
     end
   end

@@ -15,6 +15,12 @@ describe TipResultBadge do
 
   describe '#eligible_user_ids' do
 
+    it 'should return all user ids which have at least count result tips' do
+
+      expect(Tip).to receive(:user_ids_with_at_least_result_tips).with(result: Tip::RESULTS[subject.result.to_sym],
+                                                                       count: subject.count)
+      subject.eligible_user_ids
+    end
   end
 
   describe 'identifier' do

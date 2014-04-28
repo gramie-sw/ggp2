@@ -7,7 +7,7 @@ class CreatedCommentBadge
   end
 
   def eligible_user_ids
-    Comment.user_ids_with_at_least_comments(count).pluck(:user_id)
+    Comment.user_ids_with_at_least_comments(count)
   end
 
   def identifier
