@@ -19,10 +19,12 @@ boundaries between the layers of an application. The main goal is a clear separa
 data layer from the business code, in order to reduce it's dependency from Rails.
 
 Being well aware that the over-praised “Rails Way” stands in an obvious contrast to the described efforts, we know by
-experience that a growing Rails App can lead quickly to a mix of technical details and business related code that is
+experience that a growing Rails app can lead quickly to a mix of technical details and business related code that is
 difficult to test.
 
-We don't want to abandon Rails completely but our main attention should be directed to our business code, not to Rails.
+We don't want to abandon Rails completely but to stay successful with Rails in the long run you need to know its
+weaknesses and how to cope with it. Our main attention should be directed to our business code and should not be covered
+by specialities of Rails.
 
 This causes some basic architectural principles being used to transform ggp2 step-by-step:
 
