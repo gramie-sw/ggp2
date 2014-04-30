@@ -13,7 +13,7 @@ describe ConsecutiveCreatedCommentBadge do
 
   describe '#eligible_user_ids' do
 
-    it 'should return user_ids having count consecutive comments' do
+    it 'should return user_ids having at least count consecutive comments' do
 
       expect(Comment).to receive(:user_ids_ordered_by_creation_desc).and_return([2,3,4,5,4,4,4,5,5,3,4,4,2])
       expect(Comment).to receive(:user_ids_grouped).and_return([2,3,4,5])

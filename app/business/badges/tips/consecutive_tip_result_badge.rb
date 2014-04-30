@@ -8,6 +8,9 @@ class ConsecutiveTipResultBadge
 
   def eligible_user_ids
 
+    Tip.user_ids_with_at_least_result_tips(result: Tip::RESULTS[result.to_sym], count: count).select do |user_id|
+      user_id if Tip.ordered_results_by_user_id(user_id).join.include?(Tip::RESULTS[result.to_sym].to_s * count)
+    end
   end
 
   def identifier

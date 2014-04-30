@@ -15,8 +15,6 @@ class Tip < ActiveRecord::Base
 
   validate :scores_not_changeable_after_match_started
 
-  # scope :match_tips, ->(match_id= nil) { where(match_id: match_id)}
-
   def tippable?
     !match.started?
   end

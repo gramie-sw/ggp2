@@ -16,6 +16,54 @@ describe TipRepository do
     end
   end
 
+  describe '::all_by_result' do
+
+    it 'should return all tips by given result' do
+      tip_1 = create(:tip, result: Tip::RESULTS[:correct])
+      create(:tip, result: Tip::RESULTS[:incorrect])
+      create(:tip, result: Tip::RESULTS[:correct_tendency_only])
+      tip_2 = create(:tip, result: Tip::RESULTS[:correct])
+
+      actual_tips = subject.all_by_result(Tip::RESULTS[:correct])
+      expect(actual_tips.size).to eq 2
+      expect(actual_tips[0]).to eq tip_1
+      expect(actual_tips[1]).to eq tip_2
+    end
+  end
+
+  describe '::all_by_user_id' do
+
+    it 'should return all tips by given user id' do
+
+      user_1 = create(:user)
+      user_2 = create(:user)
+
+      tip_1 = create(:tip, user_id: user_1.id)
+      create(:tip, user_id: user_2.id)
+      tip_2 = create(:tip, user_id: user_1.id)
+
+      actual_tips = subject.all_by_user_id(user_1.id)
+      expect(actual_tips.size).to eq 2
+      expect(actual_tips).to include(tip_1, tip_2)
+    end
+  end
+
+  describe '::group_by_user_with_at_least_tips' do
+
+    it 'should return all grouped tips where user has at least tips' do
+
+      user_1 = create(:user)
+      user_2 = create(:user)
+
+      create(:tip, user: user_1)
+      create(:tip, user: user_2)
+      create(:tip, user: user_1)
+
+      actual_user_ids = subject.group_by_user_with_at_least_tips(2).pluck(:user_id)
+      expect(actual_user_ids.size).to eq 1
+      expect(actual_user_ids[0]).to eq user_1.id
+    end
+  end
 
   describe '::order_by_match_id' do
 
@@ -41,38 +89,6 @@ describe TipRepository do
       tips = subject.tipped
       tips.count.should eq 2
       tips.should include tip_1, tip_3
-    end
-  end
-
-  describe '::all_by_result' do
-
-    it 'should return all tips by given result' do
-      tip_1 = create(:tip, result: Tip::RESULTS[:correct])
-      create(:tip, result: Tip::RESULTS[:incorrect])
-      create(:tip, result: Tip::RESULTS[:correct_tendency_only])
-      tip_2 = create(:tip, result: Tip::RESULTS[:correct])
-
-      actual_tips = subject.all_by_result(Tip::RESULTS[:correct])
-      expect(actual_tips.size).to eq 2
-      expect(actual_tips[0]).to eq tip_1
-      expect(actual_tips[1]).to eq tip_2
-    end
-  end
-
-  describe '::group_by_user_with_at_least_tips' do
-
-    it 'should return all grouped tips where user has at least tips' do
-
-      user_1 = create(:user)
-      user_2 = create(:user)
-
-      create(:tip, user: user_1)
-      create(:tip, user: user_2)
-      create(:tip, user: user_1)
-
-      actual_user_ids = subject.group_by_user_with_at_least_tips(2).pluck(:user_id)
-      expect(actual_user_ids.size).to eq 1
-      expect(actual_user_ids[0]).to eq user_1.id
     end
   end
 
@@ -123,6 +139,27 @@ describe TipRepository do
       expect(actual_user_ids.size).to eq 2
       expect(actual_user_ids[0]).to eq user_1.id
       expect(actual_user_ids[1]).to eq user_3.id
+    end
+  end
+
+  describe '::results_by_user_id' do
+
+    it 'should return all results by given user_id' do
+
+      user_1 = create(:user)
+      user_2 = create(:user)
+
+      match_1 = create(:match, position: 1)
+      match_2 = create(:match, position: 2)
+
+      create(:tip, match_id: match_2.id, user_id: user_1.id, result: Tip::RESULTS[:correct])
+      create(:tip, match_id: match_2.id, user_id: user_2.id, result: Tip::RESULTS[:incorrect])
+      create(:tip, match_id: match_1.id, user_id: user_1.id, result: Tip::RESULTS[:incorrect])
+
+      actual_results = subject.ordered_results_by_user_id(user_1)
+      expect(actual_results.size).to eq 2
+      expect(actual_results[0]).to eq Tip::RESULTS[:incorrect]
+      expect(actual_results[1]).to eq Tip::RESULTS[:correct]
     end
   end
 end
