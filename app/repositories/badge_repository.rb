@@ -1,18 +1,31 @@
 module BadgeRepository
   extend self
 
-  def badges_by_group(group:)
+  def load_groups
+    @load_groups ||= load_grouped_badges.keys
+  end
 
-    load_badges[group].map do |load_badge|
-      symbolize_load_badge_keys load_badge
-      Object.const_get(load_badge[:class]).new(load_badge[:attributes])
+  def load_grouped_badges
+
+    @load_grouped_badges ||= begin
+      grouped_badges = YAML.load_file(Ggp2.config.badges_file).symbolize_keys
+      symbolize(grouped_badges)
+      grouped_badges
     end
   end
 
   private
 
-  def load_badges
-    @load_badges ||= YAML.load_file(Ggp2.config.badges_file).symbolize_keys
+  def symbolize grouped_badges
+    grouped_badges.keys.each do |key|
+      symbolize_load_badges_keys grouped_badges[key]
+    end
+  end
+
+  def symbolize_load_badges_keys load_badges
+    load_badges.each do |load_badge|
+      symbolize_load_badge_keys load_badge
+    end
   end
 
   def symbolize_load_badge_keys load_badge

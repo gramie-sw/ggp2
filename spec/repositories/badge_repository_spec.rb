@@ -1,43 +1,54 @@
 describe BadgeRepository do
 
-  let(:load_badges) do
-    {
-      comment: [
-          {
-              class: 'ConsecutiveCreatedCommentBadge',
-              attributes: {
-                  count: 3
-              }
-          },
-          {
-              class: 'CreatedCommentBadge',
-              attributes: {
-                  count: 4
-              }
-          }
-      ]
-    }
-  end
+  describe '::load_grouped_badges' do
 
-  describe '#badges_by_group' do
+    it 'should return a hash loaded from badges_file' do
 
-    it 'should return array of strategies by given group' do
+      load_badges = subject.load_grouped_badges
+      expect(load_badges).to be_an_instance_of(Hash)
+    end
 
-      allow(BadgeRepository).to receive(:load_badges).and_return(load_badges)
-
-      comment_badges = subject.badges_by_group(group: :comment)
-      expect(comment_badges.size).to eq 2
-      actual_comment_badge_1 = comment_badges[0]
-      expect(actual_comment_badge_1).to be_an_instance_of(ConsecutiveCreatedCommentBadge)
-      expect(actual_comment_badge_1.count).to eq 3
-
-      actual_comment_badge_2 = comment_badges[1]
-      expect(actual_comment_badge_2).to be_an_instance_of(CreatedCommentBadge)
-      expect(actual_comment_badge_2.count).to eq 4
+    it 'should cache load_grouped_badges' do
+      expect(subject.load_grouped_badges).to eq subject.load_grouped_badges
     end
 
     it 'should have symbolized keys' do
-      expect(subject.badges_by_group(group: :comment)).to be_an_instance_of(Array)
+
+      load_grouped_badges = subject.load_grouped_badges
+
+      load_grouped_badges.keys.each do |key|
+        expect(key).to be_a(Symbol)
+
+        load_grouped_badges[key].each do |load_badges|
+          load_badges.keys.each do |key|
+            expect(key).to be_a(Symbol)
+
+            if load_badges[key] == :attributes
+
+              load_badges[key].each do |load_badge|
+                load_badge.keys.each do |key|
+                  expect(key).to be_a(Symbol)
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+
+  describe '::load_groups' do
+
+
+    it 'should return all badge groups' do
+
+      load_groups = subject.load_groups
+      expect(load_groups).to be_an_instance_of(Array)
+      expect(load_groups).to eq subject.load_grouped_badges.keys
+    end
+
+    it 'should cache load_groups' do
+      expect(subject.load_groups).to eq subject.load_groups
     end
   end
 end

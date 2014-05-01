@@ -1,0 +1,7 @@
+describe UserBadge do
+
+
+
+
+
+end

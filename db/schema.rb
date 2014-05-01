@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140323141445) do
+ActiveRecord::Schema.define(version: 20140501070526) do
 
   create_table "aggregates", force: true do |t|
     t.integer  "position"
@@ -102,6 +102,16 @@ ActiveRecord::Schema.define(version: 20140323141445) do
 
   add_index "tips", ["match_id"], name: "index_tips_on_match_id", using: :btree
   add_index "tips", ["user_id"], name: "index_tips_on_user_id", using: :btree
+
+  create_table "user_badges", force: true do |t|
+    t.integer  "user_id"
+    t.string   "badge_identifier"
+    t.string   "group"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_badges", ["user_id"], name: "index_user_badges_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",   null: false
