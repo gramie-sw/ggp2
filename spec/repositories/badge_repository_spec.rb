@@ -39,16 +39,11 @@ describe BadgeRepository do
 
   describe '::load_groups' do
 
-
     it 'should return all badge groups' do
 
       load_groups = subject.load_groups
       expect(load_groups).to be_an_instance_of(Array)
       expect(load_groups).to eq subject.load_grouped_badges.keys
-    end
-
-    it 'should cache load_groups' do
-      expect(subject.load_groups).to eq subject.load_groups
     end
   end
 end

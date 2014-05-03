@@ -1,7 +1,11 @@
 module UserBadgeProvider
   extend self
 
-  def provide badge, group
+  def provide_by_group badges, group
+
+  end
+
+  def provide_by_badge badge, group
 
     badge.eligible_user_ids.map do |user_id|
 

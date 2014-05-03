@@ -2,7 +2,7 @@ module BadgeRepository
   extend self
 
   def load_groups
-    @load_groups ||= load_grouped_badges.keys
+    load_grouped_badges.keys
   end
 
   def load_grouped_badges

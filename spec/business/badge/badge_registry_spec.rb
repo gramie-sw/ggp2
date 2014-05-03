@@ -47,6 +47,7 @@ describe BadgeRegistry do
     }
   end
 
+
   describe '::grouped_badges' do
 
     before :each do
@@ -54,6 +55,9 @@ describe BadgeRegistry do
     end
 
     it 'should return hash with badges grouped' do
+
+      #hack because on second test run rspec has set @grouped_badges
+      BadgeRepository.instance_variable_set(:@grouped_badges, nil)
 
       grouped_badges = subject.grouped_badges
       expect(grouped_badges.keys.size).to eq 2

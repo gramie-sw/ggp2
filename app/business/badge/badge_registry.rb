@@ -1,5 +1,5 @@
-module BadgeRegistry
-  extend self
+# use Ggp2.config.badges_registry_instance for better caching
+class BadgeRegistry
 
   def grouped_badges
 

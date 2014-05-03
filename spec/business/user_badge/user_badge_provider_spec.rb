@@ -1,6 +1,6 @@
 describe UserBadgeProvider do
 
-  describe '::provide' do
+  describe '::provide_by_badge' do
 
     let(:group) { 'group' }
 
@@ -17,7 +17,7 @@ describe UserBadgeProvider do
 
       badge.stub(:eligible_user_ids).and_return([1,3])
 
-      actual_user_badges = subject.provide(badge, group)
+      actual_user_badges = subject.provide_by_badge(badge, group)
 
       expect(actual_user_badges.size).to eq 2
 

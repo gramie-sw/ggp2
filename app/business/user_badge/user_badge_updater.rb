@@ -1,8 +1,6 @@
-class UserBadgeGroupUpdater
+class UserBadgeUpdater
 
   def update group
-
-
 
 
 
