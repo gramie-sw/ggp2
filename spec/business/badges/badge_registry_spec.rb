@@ -4,13 +4,13 @@ describe BadgeRegistry do
     {
         comment: [
             {
-                class: 'ConsecutiveCreatedCommentBadge',
+                class: 'CommentConsecutiveCreatedBadge',
                 attributes: {
                     count: 3
                 }
             },
             {
-                class: 'CreatedCommentBadge',
+                class: 'CommentCreatedBadge',
                 attributes: {
                     count: 4
                 }
@@ -18,14 +18,14 @@ describe BadgeRegistry do
         ],
         tip: [
             {
-                class: 'ConsecutiveTipResultBadge',
+                class: 'TipConsecutiveBadge',
                 attributes: {
                     result: 'correct',
                     count: 3
                 }
             },
             {
-                class: 'TipResultBadge',
+                class: 'TipBadge',
                 attributes: {
                     result: 'incorrect',
                     count: 4
@@ -49,18 +49,18 @@ describe BadgeRegistry do
       actual_comment_badges = grouped_badges[:comment]
 
       expect(actual_comment_badges.size).to eq 2
-      expect(actual_comment_badges[0]).to be_an_instance_of(ConsecutiveCreatedCommentBadge)
+      expect(actual_comment_badges[0]).to be_an_instance_of(CommentConsecutiveCreatedBadge)
       expect(actual_comment_badges[0].count).to eq 3
-      expect(actual_comment_badges[1]).to be_an_instance_of(CreatedCommentBadge)
+      expect(actual_comment_badges[1]).to be_an_instance_of(CommentCreatedBadge)
       expect(actual_comment_badges[1].count).to eq 4
 
       actual_tip_badges = grouped_badges[:tip]
 
       expect(actual_tip_badges.size).to eq 2
-      expect(actual_tip_badges[0]).to be_an_instance_of(ConsecutiveTipResultBadge)
+      expect(actual_tip_badges[0]).to be_an_instance_of(TipConsecutiveBadge)
       expect(actual_tip_badges[0].count).to eq 3
       expect(actual_tip_badges[0].result).to eq 'correct'
-      expect(actual_tip_badges[1]).to be_an_instance_of(TipResultBadge)
+      expect(actual_tip_badges[1]).to be_an_instance_of(TipBadge)
       expect(actual_tip_badges[1].count).to eq 4
       expect(actual_tip_badges[1].result).to eq 'incorrect'
     end

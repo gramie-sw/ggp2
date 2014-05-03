@@ -1,6 +1,6 @@
-describe ConsecutiveCreatedCommentBadge do
+describe CommentConsecutiveCreatedBadge do
 
-  subject { ConsecutiveCreatedCommentBadge.new(count: 2) }
+  subject { CommentConsecutiveCreatedBadge.new(count: 2) }
 
   it { should respond_to(:count=, :count) }
 
@@ -26,7 +26,7 @@ describe ConsecutiveCreatedCommentBadge do
 
   describe '#identifier' do
     it'should return symbolized underscored class name with count value' do
-      expect(subject.identifier).to eq :consecutive_created_comment_badge_2
+      expect(subject.identifier).to eq :comment_consecutive_created_badge_2
     end
   end
 end

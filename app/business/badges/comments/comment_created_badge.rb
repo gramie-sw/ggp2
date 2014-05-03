@@ -1,4 +1,4 @@
-class CreatedCommentBadge
+class CommentCreatedBadge
 
   attr_accessor :count
 

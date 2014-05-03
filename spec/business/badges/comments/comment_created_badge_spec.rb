@@ -1,6 +1,6 @@
-describe CreatedCommentBadge do
+describe CommentCreatedBadge do
 
-  subject { CreatedCommentBadge.new(count: 3) }
+  subject { CommentCreatedBadge.new(count: 3) }
 
   it { should respond_to(:count=, :count) }
 
@@ -22,7 +22,7 @@ describe CreatedCommentBadge do
 
   describe '#identifier' do
     it 'should return symbolized underscored class name with count value' do
-      expect(subject.identifier).to eq :created_comment_badge_3
+      expect(subject.identifier).to eq :comment_created_badge_3
     end
   end
 end

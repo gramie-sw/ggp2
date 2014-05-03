@@ -1,4 +1,4 @@
-class ConsecutiveCreatedCommentBadge
+class CommentConsecutiveCreatedBadge
 
   attr_accessor :count
 

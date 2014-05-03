@@ -1,19 +1,19 @@
 comment:
-  - class: ConsecutiveCreatedCommentBadge
+  - class: CommentConsecutiveCreatedBadge
     attributes:
       count: 1
-  - class: ConsecutiveCreatedCommentBadge
+  - class: CommenConsecutiveCreatedBadge
     attributes:
       count: 3
-  - class: CreatedCommentBadge
+  - class: CommentCreatedBadge
     attributes:
       count: 5
 tip:
-  - class: TipResultBadge
+  - class: TipBadge
     attributes:
       result: correct
       count: 3
-  - class: ConsecutiveTipResultBadge
+  - class: TipConsecutiveBadge
     attributes:
       result: correct
       count: 3

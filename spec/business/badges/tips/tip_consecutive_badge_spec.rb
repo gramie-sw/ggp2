@@ -1,6 +1,6 @@
-describe ConsecutiveTipResultBadge do
+describe TipConsecutiveBadge do
 
-  subject { ConsecutiveTipResultBadge.new(result: 'correct', count: 2)}
+  subject { TipConsecutiveBadge.new(result: 'correct', count: 2)}
 
   it { should respond_to(:result=, :result) }
   it { should respond_to(:count=, :count) }
@@ -35,7 +35,7 @@ describe ConsecutiveTipResultBadge do
 
   describe '#identifier' do
     it 'should return symbolized underscored class name with result and count value appended' do
-      expect(subject.identifier).to eq :consecutive_tip_result_badge_correct_2
+      expect(subject.identifier).to eq :tip_consecutive_badge_correct_2
     end
   end
 end
