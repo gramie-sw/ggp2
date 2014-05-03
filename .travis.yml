@@ -10,6 +10,7 @@ branches:
 before_script:
   - mysql -e 'create database ggp2_test;'
   - cp config/database.yml.travis config/database.yml
+  - cp config/instance_config.yml.travis config/instance_config.yml
 
 script:
   - RAILS_ENV=test bundle exec rake db:migrate --trace
