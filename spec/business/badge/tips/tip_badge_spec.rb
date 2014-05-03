@@ -1,15 +1,15 @@
 describe TipBadge do
 
-  subject { TipBadge.new(result: 'correct', count: 3)}
+  subject { TipBadge.new(result: 'correct', count: 3, position: 1)}
 
   it { should respond_to(:result=, :result) }
-  it { should respond_to(:count=, :count) }
 
   describe '#initialize' do
 
     it 'should provide mass assignment' do
       expect(subject.result).to eq 'correct'
       expect(subject.count).to eq 3
+      expect(subject.position).to eq 1
     end
   end
 

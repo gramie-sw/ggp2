@@ -6,13 +6,19 @@ describe BadgeRegistry do
             {
                 class: 'CommentConsecutiveCreatedBadge',
                 attributes: {
-                    count: 3
+                    count: 3,
+                    position: 1,
+                    icon: 'icon',
+                    icon_color: '#123456'
                 }
             },
             {
                 class: 'CommentCreatedBadge',
                 attributes: {
-                    count: 4
+                    count: 4,
+                    position: 2,
+                    icon: 'icon',
+                    icon_color: '#123456'
                 }
             }
         ],
@@ -21,14 +27,20 @@ describe BadgeRegistry do
                 class: 'TipConsecutiveBadge',
                 attributes: {
                     result: 'correct',
-                    count: 3
+                    count: 3,
+                    position: 3,
+                    icon: 'icon',
+                    icon_color: '#123456'
                 }
             },
             {
                 class: 'TipBadge',
                 attributes: {
                     result: 'incorrect',
-                    count: 4
+                    count: 4,
+                    position: 4,
+                    icon: 'icon',
+                    icon_color: '#123456'
                 }
             }
         ]
@@ -51,8 +63,14 @@ describe BadgeRegistry do
       expect(actual_comment_badges.size).to eq 2
       expect(actual_comment_badges[0]).to be_an_instance_of(CommentConsecutiveCreatedBadge)
       expect(actual_comment_badges[0].count).to eq 3
+      expect(actual_comment_badges[0].position).to eq 1
+      expect(actual_comment_badges[0].icon).to eq 'icon'
+      expect(actual_comment_badges[0].icon_color).to eq '#123456'
       expect(actual_comment_badges[1]).to be_an_instance_of(CommentCreatedBadge)
       expect(actual_comment_badges[1].count).to eq 4
+      expect(actual_comment_badges[1].position).to eq 2
+      expect(actual_comment_badges[1].icon).to eq 'icon'
+      expect(actual_comment_badges[1].icon_color).to eq '#123456'
 
       actual_tip_badges = grouped_badges[:tip]
 
@@ -60,9 +78,15 @@ describe BadgeRegistry do
       expect(actual_tip_badges[0]).to be_an_instance_of(TipConsecutiveBadge)
       expect(actual_tip_badges[0].count).to eq 3
       expect(actual_tip_badges[0].result).to eq 'correct'
+      expect(actual_tip_badges[0].position).to eq 3
+      expect(actual_tip_badges[0].icon).to eq 'icon'
+      expect(actual_tip_badges[0].icon_color).to eq '#123456'
       expect(actual_tip_badges[1]).to be_an_instance_of(TipBadge)
       expect(actual_tip_badges[1].count).to eq 4
       expect(actual_tip_badges[1].result).to eq 'incorrect'
+      expect(actual_tip_badges[1].position).to eq 4
+      expect(actual_tip_badges[1].icon).to eq 'icon'
+      expect(actual_tip_badges[1].icon_color).to eq '#123456'
     end
 
     it 'should be cached' do

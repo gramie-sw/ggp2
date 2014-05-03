@@ -1,6 +1,6 @@
 describe TipConsecutiveBadge do
 
-  subject { TipConsecutiveBadge.new(result: 'correct', count: 2)}
+  subject { TipConsecutiveBadge.new(result: 'correct', count: 2, position: 1)}
 
   it { should respond_to(:result=, :result) }
   it { should respond_to(:count=, :count) }
@@ -10,6 +10,7 @@ describe TipConsecutiveBadge do
     it 'should provide mass assignment' do
       expect(subject.result).to eq 'correct'
       expect(subject.count).to eq 2
+      expect(subject.position).to eq 1
     end
   end
 

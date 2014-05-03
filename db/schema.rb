@@ -106,6 +106,9 @@ ActiveRecord::Schema.define(version: 20140501070526) do
   create_table "user_badges", force: true do |t|
     t.integer  "user_id"
     t.string   "badge_identifier"
+    t.integer  "position"
+    t.string   "icon"
+    t.string   "icon_color"
     t.string   "group"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -1,4 +1,4 @@
-class TipBadge
+class TipBadge < Badge
 
   attr_accessor :result, :count
 

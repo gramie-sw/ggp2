@@ -1,6 +1,6 @@
 describe CommentConsecutiveCreatedBadge do
 
-  subject { CommentConsecutiveCreatedBadge.new(count: 2) }
+  subject { CommentConsecutiveCreatedBadge.new(count: 2, position: 1) }
 
   it { should respond_to(:count=, :count) }
 
@@ -8,6 +8,7 @@ describe CommentConsecutiveCreatedBadge do
 
     it 'should provide mass assignment' do
       expect(subject.count).to eq 2
+      expect(subject.position).to eq 1
     end
   end
 

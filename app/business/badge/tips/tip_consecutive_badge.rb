@@ -1,4 +1,4 @@
-class TipConsecutiveBadge
+class TipConsecutiveBadge < Badge
 
   attr_accessor :result, :count
 

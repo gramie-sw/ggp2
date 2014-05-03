@@ -42,7 +42,7 @@ class ProfilesShowPresenter
   end
 
   def available_sections
-    @available_sections ||= [:statistic, :badges, :user_data]
+    @available_sections ||= [:statistic, :badge, :user_data]
   end
 
   private

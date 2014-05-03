@@ -85,7 +85,7 @@ describe ProfilesShowPresenter do
   describe '#available_sections' do
 
     it 'should return array of available sections' do
-      subject.available_sections.should eq [:statistic, :badges, :user_data]
+      subject.available_sections.should eq [:statistic, :badge, :user_data]
     end
   end
 

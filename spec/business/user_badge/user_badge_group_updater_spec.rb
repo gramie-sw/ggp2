@@ -1,0 +1,4 @@
+describe UserBadgeGroupUpdater do
+
+
+end
