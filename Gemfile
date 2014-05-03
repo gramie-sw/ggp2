@@ -37,6 +37,12 @@ group :development do
   gem 'meta_request', '~>0.2.8'
   gem "pry-rails", "~> 0.3.2"
   gem 'quiet_assets'
+
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-puma'
 end
 
 group :test do

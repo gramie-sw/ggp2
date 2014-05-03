@@ -19,6 +19,12 @@
 /public/uploads
 
 /config/database.yml
+/config/instance_config.yml
+
+Capfile
+config/deploy.rb
+config/deploy/production.rb
+config/deploy/staging.rb
 
 /.idea
 

@@ -5,17 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
 if Rails.env == 'development'
 
   require 'forgery'
   require 'factory_girl'
-
   FactoryGirl.find_definitions
   include FactoryGirl::Syntax::Methods
 
-  #---------user creation---------
 
+  #---------user creation---------
   create(:admin, email: 'admin@mail.de', password: '12345678')
   create(:player, email: 'player@mail.de', password: '12345678')
   (1..10).each { create(:player) }
@@ -131,4 +129,16 @@ if Rails.env == 'development'
 
     Random.rand(5).times.each { create(:comment, user: user) }
   end
+end
+
+if Rails.env == 'production'
+  User.create(
+      nickname: 'admin',
+      first_name: 'Mister',
+      last_name: 'Administrator',
+      email: 'admin@mail.de',
+      password: 'change_me_immediately',
+      password_confirmation: 'change_me_immediately',
+      admin: true
+  )
 end
