@@ -95,10 +95,13 @@ ActiveRecord::Schema.define(version: 20140501070526) do
     t.integer  "match_id"
     t.integer  "score_team_1"
     t.integer  "score_team_2"
-    t.integer  "points"
+    t.integer  "result"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "tips", ["match_id"], name: "index_tips_on_match_id", using: :btree
+  add_index "tips", ["user_id"], name: "index_tips_on_user_id", using: :btree
 
   create_table "user_badges", force: true do |t|
     t.integer  "user_id"
@@ -114,12 +117,12 @@ ActiveRecord::Schema.define(version: 20140501070526) do
   add_index "user_badges", ["user_id"], name: "index_user_badges_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",   null: false
+    t.string   "encrypted_password",     default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -128,7 +131,7 @@ ActiveRecord::Schema.define(version: 20140501070526) do
     t.string   "first_name"
     t.string   "last_name"
     t.boolean  "admin"
-    t.integer  "points"
+    t.boolean  "active",                 default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

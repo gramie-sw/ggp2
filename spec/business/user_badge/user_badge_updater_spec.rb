@@ -1,4 +1,0 @@
-describe UserBadgeUpdater do
-
-
-end

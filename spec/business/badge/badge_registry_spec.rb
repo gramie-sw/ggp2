@@ -47,7 +47,6 @@ describe BadgeRegistry do
     }
   end
 
-
   describe '::grouped_badges' do
 
     before :each do

@@ -5,11 +5,4 @@ class TipPointResult
 
   attr_accessor :match
 
-
-
-  def save
-
-  end
-
-
 end

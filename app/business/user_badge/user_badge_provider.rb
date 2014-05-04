@@ -1,8 +1,10 @@
-module UserBadgeProvider
-  extend self
+class UserBadgeProvider
 
   def provide_by_group badges, group
 
+    badges.map do |badge|
+      provide_by_badge badge, group
+    end.flatten!
   end
 
   def provide_by_badge badge, group
