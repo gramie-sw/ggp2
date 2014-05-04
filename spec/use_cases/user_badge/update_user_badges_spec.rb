@@ -39,6 +39,8 @@ describe UpdateUserBadges do
 
   before :each do
     BadgeRepository.stub(:load_grouped_badges).and_return(load_grouped_badges)
+    badge_repository = BadgeRegistry.new.grouped_badges
+    Ggp2.config.badges_registry_instance.stub(:grouped_badges).and_return badge_repository
   end
 
   describe'#run' do
