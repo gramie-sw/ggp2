@@ -1,6 +1,6 @@
 describe BadgeRegistry do
 
-  let(:stubbed_load_grouped_badges) do
+  let(:load_grouped_badges) do
     {
         comment: [
             {
@@ -51,13 +51,10 @@ describe BadgeRegistry do
   describe '::grouped_badges' do
 
     before :each do
-      BadgeRepository.stub(:load_grouped_badges).and_return(stubbed_load_grouped_badges)
+      BadgeRepository.stub(:load_grouped_badges).and_return(load_grouped_badges)
     end
 
     it 'should return hash with badges grouped' do
-
-      #hack because on second test run rspec has set @grouped_badges
-      BadgeRepository.instance_variable_set(:@grouped_badges, nil)
 
       grouped_badges = subject.grouped_badges
       expect(grouped_badges.keys.size).to eq 2
