@@ -38,4 +38,5 @@ Ggp2::Application.configure do
   config.url_protocol = :http
 
   config.quotations_file = "#{Rails.root}/spec/support/resources/quotations.yml"
+  config.badges_file = "#{Rails.root}/spec/support/resources/badges.yml"
 end

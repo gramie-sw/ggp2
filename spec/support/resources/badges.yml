@@ -1,0 +1,28 @@
+comment:
+  - class: CommentConsecutiveCreatedBadge
+    attributes:
+      position: 1
+      icon: 'special_icon'
+      icon_color: '#123456'
+      count: 2
+  - class: CommentCreatedBadge
+    attributes:
+      position: 2
+      icon: 'cool_icon'
+      icon_color: '#123456'
+      count: 1
+tip:
+  - class: TipConsecutiveBadge
+    attributes:
+      position: 3
+      icon: 'icon'
+      icon_color: '#123456'
+      result: correct
+      count: 3
+  - class: TipBadge
+    attributes:
+      position: 4
+      icon: 'icon'
+      icon_color: '#123456'
+      result: incorrect
+      count: 4
