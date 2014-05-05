@@ -1,7 +1,13 @@
 en:
-  first_comment:
-    name: First Comment
-    description: For your first comment
-  tenth_comment:
-    name: Tenth Comment
-    description: For your 10 comments
+  tip_badge_correct_1:
+    name: Bullseye
+    description: 1 match tipped correctly
+  tip_badge_correct_3:
+    name: Bullseye
+    description: 3 matches tipped correctly
+  tip_badge_correct_6:
+    name: Bullseye
+    description: 6 matches tipped correctly
+  tip_badge_correct_10:
+    name: Bullseye
+    description: 10 matches tipped correctly

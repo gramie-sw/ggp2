@@ -10,6 +10,7 @@ describe PlayerPermissions do
                  ['devise/sessions', [:new, :create, :destroy]],
                  ['adapted_devise/registrations', [:edit, :update]],
                  [:award_ceremonies, [:show]],
+                 [:badges, [:show]],
                  [:champion_tips, [:edit, :update]],
                  [:comments, [:new, :create, :edit, :update]],
                  [:match_tips, [:show]],
@@ -22,6 +23,7 @@ describe PlayerPermissions do
              )
     end
   end
+
 
   describe '#attributes' do
 

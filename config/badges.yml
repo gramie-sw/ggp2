@@ -1,34 +1,25 @@
-comment:
-  - class: CommentConsecutiveCreatedBadge
-    attributes:
-      position: 1
-      icon: 'icon'
-      icon_color: '#123456'
-      count: 1
-  - class: CommentConsecutiveCreatedBadge
-    attributes:
-      position: 2
-      icon: 'icon'
-      icon_color: '#123456'
-      count: 3
-  - class: CommentCreatedBadge
-    attributes:
-      position: 3
-      icon: 'icon'
-      icon_color: '#123456'
-      count: 5
 tip:
   - class: TipBadge
     attributes:
-      position: 4
-      icon: 'icon'
-      icon_color: '#123456'
-      result: correct
-      count: 3
-  - class: TipConsecutiveBadge
+      position: 1
+      icon: 'fa-bullseye'
+      icon_color: '#cd7f32'
+      count: 1
+  - class: TipBadge
     attributes:
-      position: 5
-      icon: 'icon'
-      icon_color: '#123456'
-      result: correct
+      position: 2
+      icon: 'fa-bullseye'
+      icon_color: '#b2b9bc'
       count: 3
+  - class: TipBadge
+    attributes:
+      position: 3
+      icon: 'fa-bullseye'
+      icon_color: '#d9bb24'
+      count: 6
+  - class: TipBadge
+    attributes:
+      position: 4
+      icon: 'fa-bullseye'
+      icon_color: '#b8b7b2'
+      count: 10

@@ -1,7 +1,13 @@
 de:
-  first_comment:
-    name: Erster Kommentar
-    description: Bekommst Du für Deinen ersten Kommentar
-  tenth_comment:
-    name: Zehner Kommentar
-    description: Bekommst Du für Deine 10 Kommentare
+  tip_badge_correct_1:
+    name: Bullseye
+    description: 1 Spiel richtig getippt
+  tip_badge_correct_3:
+    name: Bullseye
+    description: 3 Spiele richtig getippt
+  tip_badge_correct_6:
+    name: Bullseye
+    description: 6 Spiele richtig getippt
+  tip_badge_correct_10:
+    name: Bullseye
+    description: 10 Spiele richtig getippt

@@ -1,2 +1,5 @@
 div.jumbotron.ggp2-jumbotron
-  h2 = t('profile.section.badges')
+  h2
+    => t('profile.section.badges')
+    small = link_to t('general.overview'), badges_path
+

@@ -7,6 +7,7 @@ class PlayerPermissions
     allow_actions 'devise/sessions', [:new, :create, :destroy]
     allow_actions 'adapted_devise/registrations', [:edit, :update]
     allow_actions :award_ceremonies, [:show]
+    allow_actions :badges, [:show]
     allow_actions :champion_tips, [:edit, :update]
     allow_actions :comments, [:new, :create, :edit, :update]
     allow_actions :match_tips, [:show]
