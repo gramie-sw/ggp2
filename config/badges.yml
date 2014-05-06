@@ -23,3 +23,10 @@ tip:
       icon: 'fa-bullseye'
       icon_color: '#b8b7b2'
       count: 10
+comment:
+  - class: CommentCreatedBadge
+    attributes:
+      position: 29
+      icon: 'fa-comments-o'
+      icon_color: '#cd7f32'
+      count: 1
