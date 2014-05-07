@@ -4,24 +4,84 @@ tip:
       position: 1
       icon: 'fa-bullseye'
       icon_color: '#cd7f32'
+      result: correct
       count: 1
   - class: TipBadge
     attributes:
       position: 2
       icon: 'fa-bullseye'
       icon_color: '#b2b9bc'
+      result: correct
       count: 3
   - class: TipBadge
     attributes:
       position: 3
       icon: 'fa-bullseye'
       icon_color: '#d9bb24'
+      result: correct
       count: 6
   - class: TipBadge
     attributes:
       position: 4
       icon: 'fa-bullseye'
-      icon_color: '#b8b7b2'
+      icon_color: '#a67b5b'
+      result: correct
+      count: 10
+  - class: TipConsecutiveBadge
+    attributes:
+      position: 5
+      icon: 'fa-rocket'
+      icon_color: '#cd7f32'
+      result: correct
+      count: 2
+  - class: TipConsecutiveBadge
+    attributes:
+      position: 6
+      icon: 'fa-rocket'
+      icon_color: '#b2b9bc'
+      result: correct
+      count: 3
+  - class: TipConsecutiveBadge
+    attributes:
+      position: 7
+      icon: 'fa-rocket'
+      icon_color: '#d9bb24'
+      result: correct
+      count: 4
+  - class: TipConsecutiveBadge
+    attributes:
+      position: 8
+      icon: 'fa-rocket'
+      icon_color: '#a67b5b'
+      result: correct
+      count: 5
+  - class: TipBadge
+    attributes:
+      position: 9
+      icon: 'fa-star-half-o'
+      icon_color: '#cd7f32'
+      result: correct_tendency_only
+      count: 1
+  - class: TipBadge
+    attributes:
+      position: 10
+      icon: 'fa-star-half-o'
+      icon_color: '#b2b9bc'
+      result: correct_tendency_only
+      count: 3
+  - class: TipBadge
+    attributes:
+      position: 11
+      icon: 'fa-star-half-o'
+      icon_color: '#d9bb24'
+      result: correct_tendency_only
+      count: 6
+  - class: TipBadge
+    attributes:
+      position: 12
+      icon: 'fa-star-half-o'
+      icon_color: '#a67b5b'
+      result: correct_tendency_only
       count: 10
 comment:
   - class: CommentCreatedBadge
@@ -30,3 +90,39 @@ comment:
       icon: 'fa-comments-o'
       icon_color: '#cd7f32'
       count: 1
+  - class: CommentCreatedBadge
+    attributes:
+      position: 30
+      icon: 'fa-comments-o'
+      icon_color: '#b2b9bc'
+      count: 3
+  - class: CommentCreatedBadge
+    attributes:
+      position: 31
+      icon: 'fa-comments-o'
+      icon_color: '#d9bb24'
+      count: 5
+  - class: CommentCreatedBadge
+    attributes:
+      position: 32
+      icon: 'fa-comments-o'
+      icon_color: '#a67b5b'
+      count: 10
+  - class: CommentConsecutiveCreatedBadge
+    attributes:
+      position: 33
+      icon: 'fa-bullhorn'
+      icon_color: '#cd7f32'
+      count: 3
+  - class: CommentConsecutiveCreatedBadge
+    attributes:
+      position: 34
+      icon: 'fa-bullhorn'
+      icon_color: '#b2b9bc'
+      count: 4
+  - class: CommentConsecutiveCreatedBadge
+    attributes:
+      position: 35
+      icon: 'fa-bullhorn'
+      icon_color: '#d9bb24'
+      count: 5

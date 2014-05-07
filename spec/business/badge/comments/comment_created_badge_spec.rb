@@ -1,6 +1,6 @@
 describe CommentCreatedBadge do
 
-  subject { CommentCreatedBadge.new(count: 3, position: 1) }
+  subject { CommentCreatedBadge.new(count: 3, position: 1, icon: 'icon', icon_color: 'icon_color') }
 
   it { should respond_to(:count=, :count) }
 
@@ -9,6 +9,8 @@ describe CommentCreatedBadge do
     it 'should provide mass assignment' do
       expect(subject.count).to eq 3
       expect(subject.position).to eq 1
+      expect(subject.icon).to eq 'icon'
+      expect(subject.icon_color).to eq 'icon_color'
     end
   end
 

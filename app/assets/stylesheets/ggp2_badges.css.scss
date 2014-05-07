@@ -3,8 +3,16 @@
   text-align: center;
 
   .fa {
-    margin: 15px 0;
+    margin: 12px 0;
     display: block;
     font-size: $font-size-base*8;
+  }
+
+  .badge {
+    float: none;
+    margin-bottom: 5px;
+    font-size: $font-size-base;
+    color: #fff;
+    text-shadow: -1px -1px 0px #666;
   }
 }

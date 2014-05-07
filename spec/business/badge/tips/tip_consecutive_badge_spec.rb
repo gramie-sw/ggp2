@@ -1,6 +1,6 @@
 describe TipConsecutiveBadge do
 
-  subject { TipConsecutiveBadge.new(result: 'correct', count: 2, position: 1)}
+  subject { TipConsecutiveBadge.new(result: 'correct', count: 2, position: 1, icon: 'my_icon', icon_color: 'my_color')}
 
   it { should respond_to(:result=, :result) }
   it { should respond_to(:count=, :count) }
@@ -11,6 +11,8 @@ describe TipConsecutiveBadge do
       expect(subject.result).to eq 'correct'
       expect(subject.count).to eq 2
       expect(subject.position).to eq 1
+      expect(subject.icon).to eq 'my_icon'
+      expect(subject.icon_color).to eq 'my_color'
     end
   end
 

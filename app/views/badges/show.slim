@@ -6,4 +6,15 @@
 
 - for group in @presenter.groups
   div.row
-    p = group
+    h2.text-center = I18n.t("general.#{group}")
+    hr
+  div.row
+    -for badge in @presenter.grouped_badges[group.to_sym]
+      div.badges-box.col-lg-3
+        = content_tag(:i, '', class: "fa #{badge.icon}", style: "color: #{badge.icon_color}")
+        span.badge = I18n.t("#{badge.identifier}.name")
+        div
+          small = I18n.t("#{badge.identifier}.description")
+
+
+

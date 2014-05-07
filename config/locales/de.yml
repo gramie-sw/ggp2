@@ -181,6 +181,7 @@ de:
     back: Zurück
     cancel: Abbrechen
     change: Ändern
+    comment: Kommentar
     destroy: Löschen
     edit: Bearbeiten
     error: Fehler
@@ -221,6 +222,7 @@ de:
     tendency: Tendenz
     tournament: Turnier
     time_ago: vor %{time}
+    tip: Tipp
     user_administration: Benutzerverwaltung
     user_data: Benutzer-Daten
     'yes': Ja

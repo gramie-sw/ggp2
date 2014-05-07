@@ -11,3 +11,48 @@ de:
   tip_badge_correct_10:
     name: Bullseye
     description: 10 Spiele richtig getippt
+  tip_consecutive_badge_correct_2:
+    name: Rocket Row
+    description: 2 Spiele in Folge richtig getippt
+  tip_consecutive_badge_correct_3:
+    name: Rocket Row
+    description: 3 Spiele in Folge richtig getippt
+  tip_consecutive_badge_correct_4:
+    name: Rocket Row
+    description: 4 Spiele in Folge richtig getippt
+  tip_consecutive_badge_correct_5:
+    name: Rocket Row
+    description: 5 Spiele in Folge richtig getippt
+  tip_badge_correct_tendency_only_1:
+    name: Collateral
+    description: 1 Spiel mit richtiger Tendenz getippt
+  tip_badge_correct_tendency_only_3:
+    name: Collateral
+    description: 3 Spiele mit richtiger Tendenz getippt
+  tip_badge_correct_tendency_only_6:
+    name: Collateral
+    description: 6 Spiele mit richtiger Tendenz getippt
+  tip_badge_correct_tendency_only_10:
+    name: Collateral
+    description: 10 Spiele mit richtiger Tendenz getippt
+  comment_created_badge_1:
+    name: Communicator
+    description: 1 Kommentar auf Pinnwand hinterlassen
+  comment_created_badge_3:
+    name: Communicator
+    description: 3 Kommentare auf Pinnwand hinterlassen
+  comment_created_badge_5:
+    name: Communicator
+    description: 5 Kommentare auf Pinnwand hinterlassen
+  comment_created_badge_10:
+    name: Communicator
+    description: 10 Kommentare auf Pinnwand hinterlassen
+  comment_consecutive_created_badge_3:
+    name: Whistleblower
+    description: 3 aufeinanderfolgende Kommentare auf Pinnwand hinterlassen
+  comment_consecutive_created_badge_4:
+    name: Whistleblower
+    description: 4 aufeinanderfolgende Kommentare auf Pinnwand hinterlassen
+  comment_consecutive_created_badge_5:
+    name: Whistleblower
+    description: 5 aufeinanderfolgende Kommentare auf Pinnwand hinterlassen

@@ -1,8 +1,9 @@
 describe TipBadge do
 
-  subject { TipBadge.new(result: 'correct', count: 3, position: 1)}
+  subject { TipBadge.new(result: 'correct', count: 3, position: 1, icon: 'icon', icon_color: 'icon_color')}
 
   it { should respond_to(:result=, :result) }
+  it { should respond_to(:count=, :count) }
 
   describe '#initialize' do
 
@@ -10,6 +11,8 @@ describe TipBadge do
       expect(subject.result).to eq 'correct'
       expect(subject.count).to eq 3
       expect(subject.position).to eq 1
+      expect(subject.icon).to eq 'icon'
+      expect(subject.icon_color).to eq 'icon_color'
     end
   end
 
