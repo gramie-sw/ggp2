@@ -170,7 +170,7 @@ de:
     badge:
       one: Auszeichung
       other: Auszeichungen
-    badge_overview: Übersicht Auszeichnungen
+    badge_overview: Alle Auszeichnungen
     changeable_until: änderbar bis %{date}
     close: x
     edited_at: bearbeited am %{date}
@@ -194,7 +194,6 @@ de:
     login: Anmelden
     logged_in_as: Angemeldet als
     logout: Abmelden
-    overview: Übersicht
     ranking: Rangliste
     result: Ergebnis
     'no': Nein

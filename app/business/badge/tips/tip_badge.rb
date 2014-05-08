@@ -7,6 +7,7 @@ class TipBadge < Badge
   end
 
   def eligible_user_ids
+
     Tip.user_ids_with_at_least_result_tips(result: Tip::RESULTS[result.to_sym], count: count)
   end
 

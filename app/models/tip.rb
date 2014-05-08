@@ -4,7 +4,7 @@ class Tip < ActiveRecord::Base
   include TipRepository
   include ScoreValidatable
 
-  RESULTS = {incorrect: 0, correct: 1, correct_tendency_only: 2}
+  RESULTS = {not_tipped: nil, incorrect: 0, correct: 1, correct_tendency_only: 2 }
 
   belongs_to :user
   belongs_to :match

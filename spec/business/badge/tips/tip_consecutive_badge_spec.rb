@@ -20,6 +20,8 @@ describe TipConsecutiveBadge do
 
     it 'should return user_ids having at least count consecutive results' do
 
+      expect(subject.result).to receive(:to_sym).at_least(1).and_call_original
+
       expect(Tip).to receive(:user_ids_with_at_least_result_tips).with(result: Tip::RESULTS[:correct],
                                 count: 2).and_return([2,3,4])
 
