@@ -48,6 +48,25 @@ describe TipRepository do
     end
   end
 
+  describe '::finished_match' do
+
+    it 'should return tips with finished match' do
+
+      match_1 = create(:match, score_team_1: 1, score_team_2: 2)
+      match_2 = create(:match, score_team_1: nil, score_team_2: nil)
+      match_3 = create(:match, score_team_1: 1, score_team_2: 2)
+
+      tip_1 = create(:tip, match: match_1)
+      create(:tip, match: match_2)
+      tip_2 = create(:tip, match: match_3)
+
+      tips = subject.finished_match
+      expect(tips.size).to eq 2
+      expect(tips).to include tip_1, tip_2
+    end
+  end
+
+
   describe '::group_by_user_with_at_least_tips' do
 
     it 'should return all grouped tips where user has at least tips' do
@@ -64,6 +83,33 @@ describe TipRepository do
       expect(actual_user_ids[0]).to eq user_1.id
     end
   end
+
+  describe '::missed_tips' do
+
+    it 'should return all missed_tips' do
+
+      relation = instance_double('ActiveRecord::Relation::ActiveRecord_Relation_Tip')
+      expect(Tip).to receive(:not_tipped).and_return(relation)
+      expect(relation).to receive(:finished_match)
+
+      subject.missed_tips
+    end
+  end
+
+  describe '::not_tipped' do
+
+    it 'should return all not tipped tips' do
+
+      tip_1 = create(:tip, score_team_1: nil, score_team_2: nil)
+      create(:tip, score_team_1: 3, score_team_2: 2)
+      tip_3 = create(:tip, score_team_1: nil, score_team_2: nil)
+
+      tips = subject.not_tipped
+      tips.count.should eq 2
+      tips.should include tip_1, tip_3
+    end
+  end
+
 
   describe '::order_by_match_id' do
 
@@ -119,29 +165,6 @@ describe TipRepository do
     end
   end
 
-  describe '::user_ids_with_at_least_result_tips' do
-
-    it 'should return all user ids which have at least count result tips' do
-
-      user_1 = create(:user)
-      user_2 = create(:user)
-      user_3 = create(:user)
-
-      create(:tip, result: Tip::RESULTS[:correct], user: user_1)
-      create(:tip, result: Tip::RESULTS[:correct], user: user_2)
-      create(:tip, result: Tip::RESULTS[:incorrect], user: user_2)
-      create(:tip, result: Tip::RESULTS[:correct], user: user_3)
-      create(:tip, result: Tip::RESULTS[:correct], user: user_3)
-      create(:tip, result: Tip::RESULTS[:correct], user: user_3)
-      create(:tip, result: Tip::RESULTS[:correct], user: user_1)
-
-      actual_user_ids = subject.user_ids_with_at_least_result_tips(result: Tip::RESULTS[:correct], count: 2)
-      expect(actual_user_ids.size).to eq 2
-      expect(actual_user_ids[0]).to eq user_1.id
-      expect(actual_user_ids[1]).to eq user_3.id
-    end
-  end
-
   describe '::results_by_user_id' do
 
     it 'should return all results by given user_id' do
@@ -162,4 +185,52 @@ describe TipRepository do
       expect(actual_results[1]).to eq Tip::RESULTS[:correct]
     end
   end
+
+  describe '::user_ids_with_at_least_result_tips' do
+
+    it 'should return alld user ids which have at least count result tips' do
+
+      user_1 = create(:user)
+      user_2 = create(:user)
+      user_3 = create(:user)
+
+      create(:tip, result: Tip::RESULTS[:correct], user: user_1)
+      create(:tip, result: Tip::RESULTS[:correct], user: user_2)
+      create(:tip, result: Tip::RESULTS[:incorrect], user: user_2)
+      create(:tip, result: Tip::RESULTS[:correct], user: user_3)
+      create(:tip, result: Tip::RESULTS[:correct], user: user_3)
+      create(:tip, result: Tip::RESULTS[:correct], user: user_3)
+      create(:tip, result: Tip::RESULTS[:correct], user: user_1)
+
+      actual_user_ids = subject.user_ids_with_at_least_result_tips(result: Tip::RESULTS[:correct], count: 2)
+      expect(actual_user_ids.size).to eq 2
+      expect(actual_user_ids[0]).to eq user_1.id
+      expect(actual_user_ids[1]).to eq user_3.id
+    end
+  end
+
+  # describe '::user_ids_with_at_least_missed_tips' do
+  #
+  #   it 'should return all user ids which have at least count missed tips' do
+  #
+  #     user_1 = create(:user)
+  #     user_2 = create(:user)
+  #     user_3 = create(:user)
+  #
+  #     create(:tip, user: user_1, score_team_1: nil, score_team_2: nil, match: create(:match))
+  #     create(:tip, user: user_2, score_team_1: nil, score_team_2: nil, match: create(:match))
+  #     create(:tip, user: user_3, score_team_1: nil, score_team_2: nil, match: create(:match))
+  #     create(:tip, user: user_1, score_team_1: nil, score_team_2: nil, match: create(:match, score_team_1: nil, score_team_2: nil))
+  #     create(:tip, user: user_2, match: create(:match))
+  #     create(:tip, user: user_3, score_team_1: nil, score_team_2: nil, match: create(:match))
+  #     create(:tip, user: user_1, match: create(:match))
+  #     create(:tip, user: user_2, score_team_1: nil, score_team_2: nil, match: create(:match))
+  #     create(:tip, user: user_3, score_team_1: nil, score_team_2: nil, match: create(:match))
+  #
+  #     actual_user_ids = subject.user_ids_with_at_least_missed_tips(count: 2)
+  #     expect(actual_user_ids.size).to eq 2
+  #
+  #
+  #   end
+  # end
 end
