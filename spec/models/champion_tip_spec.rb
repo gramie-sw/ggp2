@@ -4,6 +4,10 @@ describe ChampionTip do
     build(:champion_tip).should be_valid
   end
 
+  it 'should include module ChampionTipRepository' do
+    ChampionTip.included_modules.should include ChampionTipRepository
+  end
+
   describe 'validations' do
 
     context 'for team' do
@@ -15,6 +19,21 @@ describe ChampionTip do
       context 'on update' do
         subject { create(:champion_tip) }
         it { should validate_presence_of(:team) }
+      end
+    end
+
+    context 'for base' do
+
+      subject { create(:champion_tip) }
+
+      context 'when tournament started' do
+
+        it 'should validate no change' do
+          expect_any_instance_of(Tournament).to receive(:started?).and_return(true)
+          subject.team = create(:team)
+          expect(subject).not_to be_valid
+          subject.errors[:base].should include t('errors.messages.champion_tip_changeable_after_tournament_started')
+        end
       end
     end
   end

@@ -39,5 +39,4 @@ class Tournament
   def last_match
     @last_match ||= Match.last_match
   end
-
 end

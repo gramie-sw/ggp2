@@ -78,5 +78,4 @@ describe ChampionTipsController do
       end
     end
   end
-
 end

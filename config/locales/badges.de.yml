@@ -47,6 +47,9 @@ de:
   tip_missed_badge_5:
     name: Vacationer Platinum
     description: 5 Spiele vergessen zu tippen
+  tip_champion_missed_badge:
+    name: Skeptic
+    description: Weltmeister vergessen zu tippen
   comment_created_badge_1:
     name: Communicator Bronze
     description: 1 Kommentar auf Pinnwand hinterlassen

@@ -107,46 +107,51 @@ tip:
       icon: 'fa-globe'
       icon_color: '#a67b5b'
       count: 5
+  - class: TipChampionMissedBadge
+    attributes:
+      position: 30
+      icon: 'fa-eye-slash'
+      icon_color: '#a67b5b'
 comment:
   - class: CommentCreatedBadge
     attributes:
-      position: 29
+      position: 32
       icon: 'fa-comments-o'
       icon_color: '#cd7f32'
       count: 1
   - class: CommentCreatedBadge
     attributes:
-      position: 30
+      position: 33
       icon: 'fa-comments-o'
       icon_color: '#b2b9bc'
       count: 3
   - class: CommentCreatedBadge
     attributes:
-      position: 31
+      position: 34
       icon: 'fa-comments-o'
       icon_color: '#d9bb24'
       count: 5
   - class: CommentCreatedBadge
     attributes:
-      position: 32
+      position: 35
       icon: 'fa-comments-o'
       icon_color: '#a67b5b'
       count: 10
   - class: CommentConsecutiveCreatedBadge
     attributes:
-      position: 33
+      position: 36
       icon: 'fa-bullhorn'
       icon_color: '#cd7f32'
       count: 3
   - class: CommentConsecutiveCreatedBadge
     attributes:
-      position: 34
+      position: 37
       icon: 'fa-bullhorn'
       icon_color: '#b2b9bc'
       count: 4
   - class: CommentConsecutiveCreatedBadge
     attributes:
-      position: 35
+      position: 38
       icon: 'fa-bullhorn'
       icon_color: '#d9bb24'
       count: 5

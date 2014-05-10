@@ -32,3 +32,8 @@ tip:
       icon: 'icon'
       icon_color: '#123456'
       count: 2
+  - class: TipChampionMissedBadge
+    attributes:
+      position: 6
+      icon: 'icon'
+      icon_color: '#123456'

@@ -44,6 +44,8 @@ de:
       model_not_saved: 'Konnte %{model} nicht speichern: %{count} Fehler'
       team_to_delete_is_associated_to_games: 'Team konnte nicht gelöscht werden, da es in mindestens in einem Spiel gesetzt ist'
       scores_not_changeable_after_match_started: 'Ergebnis darf nach Spielstart nicht geändert werden.'
+      champion_tip_changeable_after_tournament_started: 'Weltmeistertipp darf nach Turnierbeginn nicht mehr geändert werden.'
+
   time:
     formats:
       short_full: ! '%d.%m.%Y, %H:%M:%S Uhr'
