@@ -26,3 +26,9 @@ tip:
       icon_color: '#123456'
       result: incorrect
       count: 4
+  - class: TipMissedBadge
+    attributes:
+      position: 5
+      icon: 'icon'
+      icon_color: '#123456'
+      count: 2

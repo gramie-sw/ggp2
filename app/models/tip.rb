@@ -5,6 +5,7 @@ class Tip < ActiveRecord::Base
   include ScoreValidatable
 
   RESULTS = {incorrect: 0, correct: 1, correct_tendency_only: 2 }
+  MISSED = -99
 
   belongs_to :user
   belongs_to :match

@@ -9,7 +9,6 @@ describe BadgeRegistry do
       expect(grouped_badges.keys).to include(:comment, :tip)
       actual_comment_badges = grouped_badges[:comment]
 
-
       expect(actual_comment_badges.size).to eq 2
       expect(actual_comment_badges[0]).to be_an_instance_of(CommentConsecutiveCreatedBadge)
       expect(actual_comment_badges[0].count).to eq 2
@@ -24,7 +23,7 @@ describe BadgeRegistry do
 
       actual_tip_badges = grouped_badges[:tip]
 
-      expect(actual_tip_badges.size).to eq 2
+      expect(actual_tip_badges.size).to eq 3
       expect(actual_tip_badges[0]).to be_an_instance_of(TipConsecutiveBadge)
       expect(actual_tip_badges[0].count).to eq 3
       expect(actual_tip_badges[0].result).to eq 'correct'
@@ -37,10 +36,15 @@ describe BadgeRegistry do
       expect(actual_tip_badges[1].position).to eq 4
       expect(actual_tip_badges[1].icon).to eq 'icon'
       expect(actual_tip_badges[1].icon_color).to eq '#123456'
+      expect(actual_tip_badges[2]).to be_an_instance_of(TipMissedBadge)
+      expect(actual_tip_badges[2].count).to eq 2
+      expect(actual_tip_badges[2].position).to eq 5
+      expect(actual_tip_badges[2].icon).to eq 'icon'
+      expect(actual_tip_badges[2].icon_color).to eq '#123456'
     end
 
     it 'should be cached' do
-      expect(subject.grouped_badges).to eq subject.grouped_badges
+      expect(subject.grouped_badges).to be subject.grouped_badges
     end
   end
 end

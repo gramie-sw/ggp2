@@ -60,8 +60,11 @@ describe Tip do
     it { should belong_to(:match) }
   end
 
-  describe '#scopes' do
+  describe '::MISSED' do
 
+    it 'should not be one of ::RESULTS values' do
+      expect(Tip::RESULTS.values).not_to include(Tip::MISSED)
+    end
   end
 
   describe '#tippable?' do

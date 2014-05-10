@@ -35,6 +35,18 @@ de:
   tip_badge_correct_tendency_only_10:
     name: Collateral Platinum
     description: 10 Spiele mit richtiger Tendenz getippt
+  tip_missed_badge_1:
+    name: Vacationer Bronze
+    description: 1 Spiel vergessen zu tippen
+  tip_missed_badge_2:
+    name: Vacationer Silver
+    description: 2 Spiele vergessen zu tippen
+  tip_missed_badge_3:
+    name: Vacationer Gold
+    description: 3 Spiele vergessen zu tippen
+  tip_missed_badge_5:
+    name: Vacationer Platinum
+    description: 5 Spiele vergessen zu tippen
   comment_created_badge_1:
     name: Communicator Bronze
     description: 1 Kommentar auf Pinnwand hinterlassen

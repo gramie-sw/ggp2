@@ -83,6 +83,30 @@ tip:
       icon_color: '#a67b5b'
       result: correct_tendency_only
       count: 10
+  - class: TipMissedBadge
+    attributes:
+      position: 23
+      icon: 'fa-globe'
+      icon_color: '#cd7f32'
+      count: 1
+  - class: TipMissedBadge
+    attributes:
+      position: 24
+      icon: 'fa-globe'
+      icon_color: '#b2b9bc'
+      count: 2
+  - class: TipMissedBadge
+    attributes:
+      position: 25
+      icon: 'fa-globe'
+      icon_color: '#d9bb24'
+      count: 3
+  - class: TipMissedBadge
+    attributes:
+      position: 26
+      icon: 'fa-globe'
+      icon_color: '#a67b5b'
+      count: 5
 comment:
   - class: CommentCreatedBadge
     attributes:

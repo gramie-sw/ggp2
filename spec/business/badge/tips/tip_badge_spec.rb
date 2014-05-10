@@ -20,10 +20,13 @@ describe TipBadge do
 
     it 'should return all user ids which have at least count result tips' do
 
+      user_ids = instance_double('Hash')
+
       expect(subject.result).to receive(:to_sym).and_call_original
       expect(Tip).to receive(:user_ids_with_at_least_result_tips).with(result: Tip::RESULTS[:correct],
-                                                                       count: subject.count)
-      subject.eligible_user_ids
+                                                                       count: subject.count).and_return(user_ids)
+      actual_user_ids = subject.eligible_user_ids
+      expect(actual_user_ids).to be user_ids
     end
   end
 

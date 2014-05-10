@@ -1,4 +1,4 @@
-class MissedTipBadge
+class TipMissedBadge < Badge
 
   attr_accessor :count
 
@@ -7,7 +7,6 @@ class MissedTipBadge
   end
 
   def eligible_user_ids
-
     Tip.user_ids_with_at_least_missed_tips(count: count)
   end
 
