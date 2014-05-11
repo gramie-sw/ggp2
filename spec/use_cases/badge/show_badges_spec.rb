@@ -22,7 +22,7 @@ describe ShowBadges do
         actual_comment_badges = grouped_badges[:comment]
         expect(actual_comment_badges.size).to eq 2
         actual_tip_badges = grouped_badges[:tip]
-        expect(actual_tip_badges.size).to eq 4
+        expect(actual_tip_badges.size).to eq 5
       end
 
       subject.run presenter

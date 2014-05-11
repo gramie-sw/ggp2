@@ -16,18 +16,16 @@ module TipRepository
 
   module ClassMethods
 
-    def update_multiple_tips tips
-      Tip.transaction do
-        tips.map(&:save).all? || raise(ActiveRecord::Rollback)
-      end
+    def missed_tips
+      not_tipped.finished_match
     end
 
     def ordered_results_by_user_id user_id
       all_by_user_id(user_id).order_by_match_position.pluck(:result)
     end
 
-    def missed_tips
-      not_tipped.finished_match
+    def ordered_results_having_finished_match_by_user_id user_id
+      all_by_user_id(user_id).finished_match.order_by_match_position.pluck(:result)
     end
 
     def user_ids_with_at_least_result_tips(result:, count:)
@@ -36,6 +34,12 @@ module TipRepository
 
     def user_ids_with_at_least_missed_tips(count:)
       missed_tips.group_by_user_with_at_least_tips(count).pluck(:user_id)
+    end
+
+    def update_multiple_tips tips
+      Tip.transaction do
+        tips.map(&:save).all? || raise(ActiveRecord::Rollback)
+      end
     end
   end
 end

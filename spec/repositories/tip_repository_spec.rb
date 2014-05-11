@@ -113,7 +113,7 @@ describe TipRepository do
 
   describe '::order_by_match_id' do
 
-    it 'should order tip by matches position' do
+    it 'should order tip by match position' do
       tip_3 = create(:tip, match: create(:match, position: 3))
       tip_1 = create(:tip, match: create(:match, position: 1))
       tip_2 = create(:tip, match: create(:match, position: 2))
@@ -122,6 +122,27 @@ describe TipRepository do
       actual_tips.first.should eq tip_1
       actual_tips.second.should eq tip_2
       actual_tips.third.should eq tip_3
+    end
+  end
+
+  describe '::ordered_results_having_finished_match_by_user_id' do
+
+    it 'should return all results by user_id ordered by match position and are finished' do
+
+      user_1 = create(:player)
+      user_2 = create(:player)
+
+      create(:tip, user: user_1, match: create(:match, score_team_1: 1, score_team_2: 2), result: Tip::RESULTS[:correct])
+      create(:tip, user: user_1, result: Tip::RESULTS[:incorrect])
+      create(:tip, user: user_1, match: create(:match, score_team_1: 1, score_team_2: 2), score_team_1: nil,
+             score_team_2: nil, result: nil)
+      create(:tip, user: user_2, match: create(:match, score_team_1: 1, score_team_2: 2),
+             result: Tip::RESULTS[:correct_tendency_only])
+
+      actual_results = subject.ordered_results_having_finished_match_by_user_id(user_1)
+      expect(actual_results.size).to eq 2
+      expect(actual_results.first).to eq Tip::RESULTS[:correct]
+      expect(actual_results.second).to be nil
     end
   end
 

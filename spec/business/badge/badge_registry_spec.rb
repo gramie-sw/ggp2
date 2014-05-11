@@ -23,7 +23,7 @@ describe BadgeRegistry do
 
       actual_tip_badges = grouped_badges[:tip]
 
-      expect(actual_tip_badges.size).to eq 4
+      expect(actual_tip_badges.size).to eq 5
       expect(actual_tip_badges[0]).to be_an_instance_of(TipConsecutiveBadge)
       expect(actual_tip_badges[0].count).to eq 3
       expect(actual_tip_badges[0].result).to eq 'correct'
@@ -41,10 +41,15 @@ describe BadgeRegistry do
       expect(actual_tip_badges[2].position).to eq 5
       expect(actual_tip_badges[2].icon).to eq 'icon'
       expect(actual_tip_badges[2].icon_color).to eq '#123456'
-      expect(actual_tip_badges[3]).to be_an_instance_of(TipChampionMissedBadge)
+      expect(actual_tip_badges[3]).to be_an_instance_of(TipConsecutiveMissedBadge)
       expect(actual_tip_badges[3].position).to eq 6
       expect(actual_tip_badges[3].icon).to eq 'icon'
       expect(actual_tip_badges[3].icon_color).to eq '#123456'
+      expect(actual_tip_badges[3].count).to eq 2
+      expect(actual_tip_badges[4]).to be_an_instance_of(TipChampionMissedBadge)
+      expect(actual_tip_badges[4].position).to eq 7
+      expect(actual_tip_badges[4].icon).to eq 'icon'
+      expect(actual_tip_badges[4].icon_color).to eq '#123456'
     end
 
     it 'should be cached' do
