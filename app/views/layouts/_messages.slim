@@ -1,6 +1,6 @@
 - flash.each do |name, msg|
   - unless msg.blank?
     - if msg.is_a?(String)
-      div.ggp2-alert.alert class=(name == :notice ? 'alert-success' : 'alert-danger')
+      div.ggp2-alert.alert class=(name == 'notice' ? 'alert-success' : 'alert-danger')
         a.close data-dismiss="alert"&#215;
         = content_tag :div, msg, :id => "flash_#{name}"

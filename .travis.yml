@@ -6,6 +6,7 @@ rvm:
 branches:
   only:
     - master
+    - update_to_rails_41
 
 before_script:
   - mysql -e 'create database ggp2_test;'

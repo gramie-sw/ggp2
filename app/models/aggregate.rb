@@ -18,7 +18,7 @@ class Aggregate < ActiveRecord::Base
   alias :groups :children
 
   def self.groupless_aggregates
-    roots.map! do |root|
+    roots.to_a.map! do |root|
       if root.has_groups?
         root.children
       else

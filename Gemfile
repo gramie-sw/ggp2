@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
-gem 'rails'
-gem 'actionmailer', "~> 4.0.2"
+gem 'rails', '~> 4.1.1'
+gem 'actionmailer'
 gem 'jbuilder'
 gem 'mysql2'
 gem 'puma'
 
 gem 'slim'
-gem 'sass-rails', '~> 4.0.2'
+gem 'sass-rails'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
@@ -34,7 +34,7 @@ end
 
 group :development do
   gem 'letter_opener'
-  gem 'meta_request', '~>0.2.8'
+  gem 'meta_request'
   gem "pry-rails", "~> 0.3.2"
   gem 'quiet_assets'
 
@@ -48,6 +48,8 @@ end
 group :test do
   gem 'capybara'
   gem 'factory_girl_rails'
+  # require false necessary to remove minitest warning
+  #see https://github.com/rspec/rspec-rails/pull/772
   gem 'shoulda-matchers'
   gem 'forgery'
 end
