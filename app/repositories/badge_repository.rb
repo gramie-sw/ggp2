@@ -1,11 +1,11 @@
 module BadgeRepository
   extend self
 
-  def load_groups
-    load_grouped_badges.keys
+  def groups
+    grouped_badges.keys
   end
 
-  def load_grouped_badges
+  def grouped_badges
 
     @load_grouped_badges ||= begin
       grouped_badges = YAML.load_file(Ggp2.config.badges_file).symbolize_keys

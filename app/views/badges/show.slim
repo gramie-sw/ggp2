@@ -11,12 +11,9 @@
     hr
   div.row
     -for badge in @presenter.grouped_badges[group.to_sym]
-      div.badges-box.col-lg-3
+      div.badges-box.col-sm-6.col-md-3
         = content_tag(:i, '', class: "fa #{badge.icon}", style: "color: #{badge.icon_color}")
         span.badge = I18n.t("#{badge.identifier}.name")
         div
           small = I18n.t("#{badge.identifier}.description")
   hr
-
-
-

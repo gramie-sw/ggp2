@@ -11,6 +11,8 @@ class MatchResultsController < ApplicationController
 
       process_new_match_result = ProcessNewMatchResult.new
       process_new_match_result.run(@match_result.match_id.to_i)
+      update_user_badges = UpdateUserBadges.new
+      update_user_badges.run(:tip)
 
       redirect_to matches_path, notice: t('model.messages.updated', model: @match_result.message_name)
     else

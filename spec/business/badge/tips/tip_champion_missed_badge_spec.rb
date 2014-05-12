@@ -28,9 +28,9 @@ describe TipChampionMissedBadge do
 
     context 'when tournament is started' do
 
-      it 'should return all user_ids with no champion tip' do
+      let(:user_ids) { Hash.new}
 
-        user_ids = instance_double('Hash')
+      it 'should return all user_ids with no champion tip' do
 
         expect_any_instance_of(Tournament).to receive(:started?).and_return true
         expect(ChampionTip).to receive(:user_ids_with_no_champion_tip).and_return(user_ids)

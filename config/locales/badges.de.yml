@@ -13,16 +13,16 @@ de:
     description: 10 Spiele richtig getippt
   tip_consecutive_badge_correct_2:
     name: Rocket Row Bronze
-    description: 2 Spiele in Folge richtig getippt
+    description: 2 aufeinanderfolgende Spiele richtig getippt
   tip_consecutive_badge_correct_3:
     name: Rocket Row Silver
-    description: 3 Spiele in Folge richtig getippt
+    description: 3 aufeinanderfolgende Spiele richtig getippt
   tip_consecutive_badge_correct_4:
     name: Rocket Row Gold
-    description: 4 Spiele in Folge richtig getippt
+    description: 4 aufeinanderfolgende Spiele richtig getippt
   tip_consecutive_badge_correct_5:
     name: Rocket Row Platinum
-    description: 5 Spiele in Folge richtig getippt
+    description: 5 aufeinanderfolgende Spiele richtig getippt
   tip_badge_correct_tendency_only_1:
     name: Collateral Bronze
     description: 1 Spiel mit richtiger Tendenz getippt
@@ -37,16 +37,16 @@ de:
     description: 10 Spiele mit richtiger Tendenz getippt
   tip_consecutive_badge_correct_tendency_only_2:
     name: Flow Fighter Bronze
-    description: 2 Spiele in Folge mit richtiger Tendenz getippt
+    description: 2 aufeinanderfolgende Spiele mit richtiger Tendenz getippt
   tip_consecutive_badge_correct_tendency_only_3:
     name: Flow Fighter Silver
-    description: 3 Spiele in Folge mit richtiger Tendenz getippt
+    description: 3 aufeinanderfolgende Spiele mit richtiger Tendenz getippt
   tip_consecutive_badge_correct_tendency_only_4:
     name: Flow Fighter Gold
-    description: 4 Spiele in Folge mit richtiger Tendenz getippt
+    description: 4 aufeinanderfolgende Spiele mit richtiger Tendenz getippt
   tip_consecutive_badge_correct_tendency_only_5:
     name: Flow Fighter Platinum
-    description: 5 Spiele in Folge mit richtiger Tendenz getippt
+    description: 5 aufeinanderfolgende Spiele mit richtiger Tendenz getippt
   tip_badge_incorrect_1:
     name: Razzle-Dazzle Bronze
     description: 1 Spiel falsch getippt
@@ -61,16 +61,16 @@ de:
     description: 10 Spiele falsch getippt
   tip_consecutive_badge_incorrect_2:
     name: Overstrained Bronze
-    description: 2 Spiele in Folge falsch getippt
+    description: 2 aufeinanderfolgende Spiele falsch getippt
   tip_consecutive_badge_incorrect_3:
     name: Overstrained Silver
-    description: 3 Spiele in Folge falsch getippt
+    description: 3 aufeinanderfolgende Spiele falsch getippt
   tip_consecutive_badge_incorrect_4:
     name: Overstrained Gold
-    description: 4 Spiele in Folge falsch getippt
+    description: 4 aufeinanderfolgende Spiele falsch getippt
   tip_consecutive_badge_incorrect_5:
     name: Overstrained Platinum
-    description: 5 Spiele in Folge falsch getippt
+    description: 5 aufeinanderfolgende Spiele falsch getippt
   tip_missed_badge_1:
     name: Vacationer Bronze
     description: 1 Spiel vergessen zu tippen
@@ -85,16 +85,16 @@ de:
     description: 5 Spiele vergessen zu tippen
   tip_consecutive_missed_badge_2:
     name: Call the Ambulance Bronze
-    description: 2 Spiele in Folge vergessen zu tippen
+    description: 2 aufeinanderfolgende Spiele vergessen zu tippen
   tip_consecutive_missed_badge_3:
     name: Call the Ambulance Silver
-    description: 3 Spiele in Folge vergessen zu tippen
+    description: 3 aufeinanderfolgende Spiele vergessen zu tippen
   tip_consecutive_missed_badge_4:
     name: Call the Ambulance Gold
-    description: 4 Spiele in Folge vergessen zu tippen
+    description: 4 aufeinanderfolgende Spiele vergessen zu tippen
   tip_consecutive_missed_badge_5:
     name: Call the Ambulance Platinum
-    description: 5 Spiele in Folge vergessen zu tippen
+    description: 5 aufeinanderfolgende Spiele vergessen zu tippen
   tip_champion_missed_badge:
     name: Skeptic
     description: Weltmeister vergessen zu tippen

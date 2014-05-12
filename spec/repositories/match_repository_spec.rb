@@ -3,7 +3,9 @@ describe MatchRepository do
   subject { Match }
 
   describe '::all_following_matches' do
+
     it 'should return all matches which have a higher position than given one' do
+
       match_3 = create(:match, position: 3)
       match_4 = create(:match, position: 4)
       match_2 = create(:match, position: 2)
@@ -16,7 +18,9 @@ describe MatchRepository do
   end
 
   describe '::all_previous_matches' do
+
     it 'should return all matches which have a smaller position than given one' do
+
       match_3 = create(:match, position: 3)
       create(:match, position: 4)
       match_2 = create(:match, position: 2)
@@ -31,6 +35,7 @@ describe MatchRepository do
   describe '::count_all_with_results' do
 
     it 'should return count of all matches' do
+
       create(:match, score_team_1: nil, score_team_2: nil)
       create(:match, score_team_1: 0, score_team_2: 2)
       create(:match, score_team_1: 1, score_team_2: 1)
@@ -42,6 +47,7 @@ describe MatchRepository do
   describe '::future_matches' do
 
     it 'should return only future matches' do
+
       match_1 = create(:match, date: 2.minutes.from_now)
       match_2 = create(:match, date: 3.minutes.from_now)
       create(:match, date: 1.minutes.ago)
@@ -83,6 +89,7 @@ describe MatchRepository do
   describe '::first_match' do
 
     it 'should return first match' do
+
       create(:match, position: 3)
       match_1 = create(:match, position: 1)
       create(:match, position: 2)
@@ -94,6 +101,7 @@ describe MatchRepository do
   describe '::last_match' do
 
     it 'should return last match' do
+
       match_3 = create(:match, position: 3)
       create(:match, position: 1)
       create(:match, position: 2)

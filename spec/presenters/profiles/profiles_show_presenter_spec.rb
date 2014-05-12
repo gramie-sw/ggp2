@@ -11,6 +11,8 @@ describe ProfilesShowPresenter do
                               section: current_section)
   end
 
+  it { should respond_to(:grouped_user_badges=, :grouped_user_badges)}
+
   it 'should respond to user' do
     subject.should respond_to :user
   end

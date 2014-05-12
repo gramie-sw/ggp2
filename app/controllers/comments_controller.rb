@@ -8,6 +8,10 @@ class CommentsController < ApplicationController
     @comment = Comment.new(params[:comment])
 
     if @comment.save
+
+      update_user_badges = UpdateUserBadges.new
+      update_user_badges.run(:comment)
+
       redirect_to pin_boards_path, notice: t('model.messages.created', model: Comment.model_name.human)
     else
       render :new

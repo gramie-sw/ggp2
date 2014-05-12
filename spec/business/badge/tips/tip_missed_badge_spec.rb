@@ -17,9 +17,9 @@ describe TipMissedBadge do
 
   describe '#eligible_user_ids' do
 
-    it 'should return all user ids which have at least count missed tips' do
+    let(:user_ids) { Hash.new}
 
-      user_ids = instance_double('Hash')
+    it 'should return all user ids which have at least count missed tips' do
 
       expect(Tip).to receive(:user_ids_with_at_least_missed_tips).with(count: 2).and_return(user_ids)
       actual_user_ids = subject.eligible_user_ids

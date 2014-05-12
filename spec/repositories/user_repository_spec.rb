@@ -5,6 +5,7 @@ describe UserRepository do
   describe 'players_for_ranking_listing' do
 
     it 'should return all users being players paginated' do
+
       create(:admin)
       expected_user_1 = create(:player)
       expected_user_2 = create(:player)
@@ -17,6 +18,7 @@ describe UserRepository do
   end
 
   it 'should includes champion_tip and team' do
+
     relation = double('UserRelation')
     relation.as_null_object
 

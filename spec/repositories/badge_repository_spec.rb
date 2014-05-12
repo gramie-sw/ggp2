@@ -1,25 +1,25 @@
 describe BadgeRepository do
 
-  describe '::load_grouped_badges' do
+  describe '::grouped_badges' do
 
     it 'should return a hash loaded from badges_file' do
 
-      load_badges = subject.load_grouped_badges
-      expect(load_badges).to be_an_instance_of(Hash)
+      actual_grouped_badges = subject.grouped_badges
+      expect(actual_grouped_badges).to be_an_instance_of(Hash)
     end
 
-    it 'should cache load_grouped_badges' do
-      expect(subject.load_grouped_badges).to eq subject.load_grouped_badges
+    it 'should cache grouped_badges' do
+      expect(subject.grouped_badges).to be subject.grouped_badges
     end
 
     it 'should have symbolized keys' do
 
-      load_grouped_badges = subject.load_grouped_badges
+      actual_grouped_badges = subject.grouped_badges
 
-      load_grouped_badges.keys.each do |key|
+      actual_grouped_badges.keys.each do |key|
         expect(key).to be_a(Symbol)
 
-        load_grouped_badges[key].each do |load_badges|
+        actual_grouped_badges[key].each do |load_badges|
           load_badges.keys.each do |key|
             expect(key).to be_a(Symbol)
 
@@ -37,13 +37,13 @@ describe BadgeRepository do
     end
   end
 
-  describe '::load_groups' do
+  describe '::groups' do
 
     it 'should return all badge groups' do
 
-      load_groups = subject.load_groups
-      expect(load_groups).to be_an_instance_of(Array)
-      expect(load_groups).to eq subject.load_grouped_badges.keys
+      actual_groups = subject.groups
+      expect(actual_groups).to be_an_instance_of(Array)
+      expect(actual_groups).to eq subject.grouped_badges.keys
     end
   end
 end

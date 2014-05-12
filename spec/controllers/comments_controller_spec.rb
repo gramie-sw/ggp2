@@ -22,8 +22,6 @@ describe CommentsController do
       Comment.should_receive(:new).with(user_id: user.id).and_return(:new_comment)
       get :new
       assigns(:comment).should eq :new_comment
-
-
     end
   end
 
@@ -48,6 +46,12 @@ describe CommentsController do
         comment.should_receive(:save).and_return(true)
         post :create, params
         assigns(:comment).should be comment
+      end
+
+      it 'should run uc UpdateUserBadges with given group (:comment)' do
+        expect_any_instance_of(Comment).to receive(:save).with(no_args).and_return(true)
+        expect_any_instance_of(UpdateUserBadges).to receive(:run).with(:comment)
+        post :create, params
       end
 
       it 'should assign flash notice' do

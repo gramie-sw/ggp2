@@ -51,6 +51,12 @@ describe MatchResultsController do
         post :create, params
       end
 
+      it 'should run uc UpdateUserBadges with given group (:tip)' do
+        expect_any_instance_of(MatchResult).to receive(:save).with(no_args).and_return(true)
+        expect_any_instance_of(UpdateUserBadges).to receive(:run).with(:tip)
+        post :create, params
+      end
+
       it 'should assign flash notice' do
         post :create, params
         flash[:notice].should eq t('model.messages.updated', model: assigns(:match_result).message_name)

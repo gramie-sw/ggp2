@@ -22,11 +22,15 @@ describe ProfilesController do
     it 'should assign correctly instantiated ProfilesShowPresenter' do
       User.should_receive(:find_player).with(requested_user.to_param).and_return(requested_user)
       @controller.should_receive(:is_user_current_user?).with(requested_user).and_return(false)
+
       ProfilesShowPresenter.should_receive(:new).
           with(user: requested_user,
                tournament: @controller.tournament,
                is_for_current_user: false,
                section: 'statistic').and_call_original
+
+      expect_any_instance_of(ShowUserBadges).to receive(:run).with(instance_of(ProfilesShowPresenter))
+
       get :show, id: requested_user.id, section: 'statistic'
     end
   end
