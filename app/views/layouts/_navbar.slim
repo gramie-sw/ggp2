@@ -19,4 +19,5 @@ header#header
             li class=(link.active? ? 'active' : '') = link_to link.label, link.url
           li
             = link_to destroy_user_session_path, method: :delete, title: t('views.layouts.navigation.main_menu.logout')
-              i.fa.fa-sign-out = " #{t('views.layouts.navigation.main_menu.logout')}"
+              i.fa.fa-sign-out
+              = " #{t('views.layouts.navigation.main_menu.logout')}"

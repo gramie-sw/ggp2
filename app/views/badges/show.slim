@@ -2,7 +2,8 @@
 /- content_for(:subtitle, @presenter.subtitle)
 
 = link_to :back, title: I18n.t('general.back'), class: 'btn btn-primary btn-sm'
-  i.fa.fa-arrow-left = " #{I18n.t('general.back')}"
+  i.fa.fa-arrow-left
+  = " #{I18n.t('general.back')}"
 
 - for group in @presenter.groups
   div.row

@@ -112,3 +112,12 @@ $ggp2-landing-header-image-min-height: 380px;
     margin-left: 5px;
   }
 }
+
+//fixes wrong input button height in firefox compared to a or button buttons
+.btn {
+  height: 34px;
+
+  &.btn-sm {
+    height: 30px;
+  }
+}
