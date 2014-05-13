@@ -1,17 +1,14 @@
-- grouped_user_badges = @presenter.grouped_user_badges
+- user_badges = @presenter.user_badges
 
 div.jumbotron.ggp2-jumbotron
   h2
     = t('profile.section.badges')
   = link_to t('general.badge_overview'), badges_path, class: 'btn btn-primary'
 
-  - for group in grouped_user_badges.keys
-    h2.text-center = I18n.t("general.#{group.to_s}")
-    div.row
-      -for user_badge in grouped_user_badges[group]
-        div.badges-box.col-sm-6.col-lg-3
-          = content_tag(:i, '', class: "fa #{user_badge.icon}", style: "color: #{user_badge.icon_color}")
-          span.badge = I18n.t("#{user_badge.badge_identifier}.name")
-          div
-            small = I18n.t("#{user_badge.badge_identifier}.description")
-    hr
+  div.row
+    - for user_badge in user_badges
+      div.badges-box.col-sm-6.col-lg-3
+        = content_tag(:i, '', class: "fa #{user_badge.icon}", style: "color: #{user_badge.icon_color}")
+        span.badge = I18n.t("#{user_badge.badge_identifier}.name")
+        div
+          small = I18n.t("#{user_badge.badge_identifier}.description")

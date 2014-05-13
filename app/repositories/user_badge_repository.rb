@@ -19,6 +19,10 @@ module UserBadgeRepository
       all_by_group(group).all_by_user_id(user_id).order_by_position
     end
 
+    def all_ordered_by_user_id(user_id:)
+      all_by_user_id(user_id).order_by_position
+    end
+
     def destroy_and_create_multiple group, user_badges
       UserBadge.transaction do
         (UserBadge.destroy_all(group: group).all? && user_badges.map(&:save).all?) || raise(ActiveRecord::Rollback)

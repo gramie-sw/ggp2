@@ -65,7 +65,7 @@ describe UserBadgeRepository do
 
   describe '::all_ordered_by_group_and_user_id' do
 
-    let(:user_badges) { Array.new}
+    let(:user_badges) { Array.new }
 
     it 'should return all ordered by position filtered by group and user_id' do
 
@@ -78,6 +78,22 @@ describe UserBadgeRepository do
 
       actual_user_ids = subject.all_ordered_by_group_and_user_id(group: :comment, user_id: 3)
       expect(actual_user_ids).to be user_badges
+    end
+  end
+
+  describe '::all_ordered_by_user_id' do
+
+    let(:user_badges) { Array.new }
+
+    it 'should return all ordered by position filtered by user_id' do
+
+      user_id_relation = instance_double('ActiveRecord::Relation::ActiveRecord_Relation_UserBadge')
+
+      expect(UserBadge).to receive(:all_by_user_id).with(3).and_return(user_id_relation)
+      expect(user_id_relation).to receive(:order_by_position).and_return(user_badges)
+
+      actual_user_badges = subject.all_ordered_by_user_id(user_id: 3)
+      expect(actual_user_badges).to eq user_badges
     end
   end
 

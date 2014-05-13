@@ -28,16 +28,10 @@ describe ShowUserBadges do
 
       expect(presenter).to receive(:user).and_return(users.first)
 
-      expect(presenter).to receive(:grouped_user_badges=) do |grouped_user_badges|
-        expect(grouped_user_badges.keys).to include :comment, :tip
-        actual_tip_user_badges = grouped_user_badges[:tip]
-        expect(actual_tip_user_badges.size).to eq 1
-        expect(actual_tip_user_badges.first).to eq user_badges.fourth
-
-        actual_comment_user_badges = grouped_user_badges[:comment]
-        expect(actual_comment_user_badges.size).to eq 2
-        expect(actual_comment_user_badges.first).to eq user_badges.second
-        expect(actual_comment_user_badges.second).to eq user_badges.first
+      expect(presenter).to receive(:user_badges=) do |actual_user_badges|
+        expect(actual_user_badges.first).to eq user_badges.second
+        expect(actual_user_badges.second).to eq user_badges.first
+        expect(actual_user_badges.third).to eq user_badges.fourth
       end
 
       subject.run presenter
