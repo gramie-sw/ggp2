@@ -3,7 +3,6 @@
 div.jumbotron.ggp2-jumbotron
   h2
     = t('profile.section.badges')
-  = link_to t('general.badge_overview'), badges_path, class: 'btn btn-primary'
 
   div.row
     - for user_badge in user_badges
@@ -12,3 +11,6 @@ div.jumbotron.ggp2-jumbotron
         span.badge = I18n.t("#{user_badge.badge_identifier}.name")
         div
           small = I18n.t("#{user_badge.badge_identifier}.description")
+
+  div.text-center
+    = link_to t('general.badge_overview'), badges_path, class: 'btn btn-primary'
