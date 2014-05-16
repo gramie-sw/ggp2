@@ -30,7 +30,6 @@ body {
     height: 100%;
     vertical-align: middle;
     text-align: center;
-    line-height: 40px;
   }
 
   i {
@@ -43,6 +42,17 @@ body {
 
     &:hover {
       color: $ggp2-footer-color;
+    }
+  }
+
+  .foto-copyright {
+    font-size: $font-size-base * 0.9;
+
+    a {
+      color: $ggp2-footer-color;
+      &:hover {
+        color: darken($ggp2-footer-color, 10%)
+      }
     }
   }
 }

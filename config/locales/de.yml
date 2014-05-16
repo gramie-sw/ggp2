@@ -224,6 +224,7 @@ de:
     tournament: Turnier
     time_ago: vor %{time}
     tip: Tipp
+    title_foto: Titlefoto
     user_administration: Benutzerverwaltung
     user_data: Benutzer-Daten
     'yes': Ja
