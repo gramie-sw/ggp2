@@ -6,7 +6,7 @@ div.visible-xs.visible-sm
     button.btn.btn-primary.btn-lg.dropdown-toggle type="button" data-toggle="dropdown"
       = "#{t('general.menu')} "
       span.caret
-    ul.dropdown-menu.pull-right role="menu"
+    ul.dropdown-menu.pull-right.ggp2-dropdown-menu role="menu"
       - for section in @presenter.available_sections
         li *show_menu_li_attributes(section, @presenter.current_section)
           = link_to t("profile.section.#{section}"), profile_path(@presenter.user, section: section)
