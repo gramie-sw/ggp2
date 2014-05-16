@@ -14,3 +14,5 @@ div.jumbotron.ggp2-jumbotron
     locals: {label: t('ranking.correct_tips_ratio'), value: user_statistic.correct_tips_ratio }
     = render partial: 'statistic_item', \
     locals: {label: t('ranking.correct_tendency_tips_only_ratio'), value: "#{user_statistic.correct_tendency_tips_only_ratio}"}
+    = render partial: 'statistic_item', \
+    locals: {label: t('general.badge.other'), value: "#{user_statistic.badges_count}"}

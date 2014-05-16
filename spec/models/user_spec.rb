@@ -33,6 +33,7 @@ describe User do
     it { should have_many(:ranking_items).dependent(:destroy) }
     it { should have_many(:comments).dependent(:destroy) }
     it { should have_one(:champion_tip).dependent(:destroy) }
+    it { should have_many(:user_badges).dependent(:destroy) }
 
     it 'tips should get user' do
       tip = Tip.new
@@ -134,8 +135,17 @@ describe User do
   describe '#full_name' do
     subject { build(:user, first_name: 'Moby', last_name: 'Dick') }
 
-    it 'returns first and last name' do
+    it 'should return first and last name' do
       subject.full_name.should eq 'Moby Dick'
+    end
+  end
+
+  describe '#badges_count' do
+
+    it 'should return badges count' do
+      relation = double('UserBadgesRelation', count: 5)
+      expect(subject).to receive(:user_badges).and_return(relation)
+      expect(subject.badges_count).to eq 5
     end
   end
 end

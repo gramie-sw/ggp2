@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :tips, dependent: :destroy, inverse_of: :user
   has_many :ranking_items, dependent: :destroy, inverse_of: :user
   has_many :comments, dependent: :destroy
+  has_many :user_badges, dependent: :destroy
   has_one :champion_tip, dependent: :destroy, inverse_of: :user
 
   validates :nickname, presence: true, uniqueness: true, length: {minimum: 3, maximum: 32}
@@ -38,5 +39,9 @@ class User < ActiveRecord::Base
 
   def message_name
     "#{User.model_name.human} \"#{first_name} #{last_name}\""
+  end
+
+  def badges_count
+    user_badges.count
   end
 end

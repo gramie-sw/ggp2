@@ -1,7 +1,8 @@
 class UserStatistic
   include ActiveModel::Model
 
-  attr_reader :user
+  delegate :badges_count,
+           to: :user
 
   def initialize(user:, tournament:, current_ranking_item:)
     @user = user
@@ -21,7 +22,7 @@ class UserStatistic
 
   private
 
-  attr_reader :tournament, :current_ranking_item
+  attr_reader :tournament, :current_ranking_item, :user
 
   def tip_ratio_for subject
     if tournament.played_match_count > 0

@@ -17,6 +17,11 @@ describe UserRankingPresenter do
     subject.nickname.should eq 'user_1'
   end
 
+  it 'should delegate badges_count to RankingItem#user' do
+    expect(user).to receive(:badges_count).and_return(5)
+    expect(subject.badges_count).to eq 5
+  end
+
   it 'should delegate RankingItem methods to RankingItem' do
     ranking_item.user_id = 344
     ranking_item.position = 5

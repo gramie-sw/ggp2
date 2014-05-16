@@ -10,23 +10,25 @@ div.table-responsive
         th.text-center.statistic-field = t('general.point.other')
         th.text-center.statistic-field = t('ranking.correct_tips_count')
         th.text-center.statistic-field = t('ranking.correct_tendency_tips_only_count')
+        th.text-center.statistic-field = t('general.badge.other')
         th = t('activerecord.models.champion_tip.one')
         th
     tbody
       - for user_ranking_presenter in @presenter.user_ranking_presenters
-        tr class="link-row" data-href="#{user_tip_path(user_ranking_presenter.user_id)}"
+        tr class="link-row" data-href="#{profile_path(user_ranking_presenter.user_id)}"
           td = "#{user_ranking_presenter.position}."
           td
             strong = user_ranking_presenter.nickname
           td.text-center.statistic-field = user_ranking_presenter.points
           td.text-center.statistic-field = user_ranking_presenter.correct_tips_count
           td.text-center.statistic-field = user_ranking_presenter.correct_tendency_tips_only_count
+          td.text-center.statistic-field = user_ranking_presenter.badges_count
           td.ggp2-flag-with-country-name
             = standard_flag_image_tag user_ranking_presenter.champion_tip_team_abbreviation
             = user_ranking_presenter.champion_tip_team_name
           td
-            = link_to profile_path(user_ranking_presenter.user_id)
-              icon.fa.fa-user title="#{t('profile.of', name: user_ranking_presenter.nickname)}"
+            = link_to user_tip_path(user_ranking_presenter.user_id)
+              icon.fa.fa-list title="#{t('tip.all_of', subject: user_ranking_presenter.nickname)}"
 
 = paginate @presenter.pagination_scope
 

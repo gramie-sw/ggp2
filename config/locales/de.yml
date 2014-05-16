@@ -172,7 +172,6 @@ de:
     badge:
       one: Auszeichung
       other: Auszeichungen
-    badge_overview: Alle Auszeichnungen
     changeable_until: änderbar bis %{date}
     close: x
     edited_at: bearbeited am %{date}
@@ -245,6 +244,9 @@ de:
     third_place:
       position: Dritter
       badge: Unsung Hero
+
+  badges:
+    all: Alle Auszeichnungen
 
   comments:
     max_allow_char_message: 'max. 500 Zeichen'

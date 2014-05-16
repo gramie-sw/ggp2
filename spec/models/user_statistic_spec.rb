@@ -5,6 +5,11 @@ describe UserStatistic do
   let(:tournament) { Tournament.new }
   subject { UserStatistic.new(user: user, tournament: tournament, current_ranking_item: current_ranking_item) }
 
+  it 'should delegate badges_count to RankingItem#user' do
+    expect(user).to receive(:badges_count).and_return(5)
+    expect(subject.badges_count).to eq 5
+  end
+
   describe '#position' do
 
     context 'if current ranking item is present' do
