@@ -1,0 +1,23 @@
+- if presenter.show?
+  div.panel.panel-default#champion-tip
+    div.panel-body
+      div
+        div.row
+          div.col-sm-8.ggp2-flag-with-country-name
+            strong
+              = "#{ChampionTip.model_name.human}:"
+            '&nbsp;&nbsp;
+             = standard_flag_image_tag presenter.team_abbreviation
+             = presenter.team_name_or_missing_message
+            br
+            small.ggp2-weakened
+              = presenter.deadline_message
+          - if presenter.tippable?
+            div.col-sm-4.text-right.hidden-xs
+              = link_to t('model.submit.update', model: Tip.model_name.human),
+                  edit_champion_tip_path(presenter.id),
+                  class: 'btn btn-primary'
+            div.col-xs-12.text-center.visible-xs.ggp2-panel-body-box
+              = link_to t('model.submit.update', model: Tip.model_name.human),
+                  edit_champion_tip_path(presenter.id),
+                  class: 'btn btn-primary'

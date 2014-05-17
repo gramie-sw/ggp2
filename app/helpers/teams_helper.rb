@@ -7,9 +7,9 @@ module TeamsHelper
     end
   end
 
-  def standard_flag_image_tag country
-    if country.present?
-      image_tag 'blank.gif', class: "flag flag-#{country.downcase}"
+  def standard_flag_image_tag team_abbreviation
+    if team_abbreviation.present?
+      image_tag 'blank.gif', class: "flag flag-#{team_abbreviation.downcase}"
     end
   end
 end
