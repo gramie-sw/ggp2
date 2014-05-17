@@ -219,6 +219,27 @@ describe Match do
         end
       end
     end
+  end
 
+  describe '#phase' do
+
+    let(:aggregate) { Aggregate.new }
+    subject { Match.new(aggregate: aggregate) }
+
+    context 'if match belongs to aggregate with no parent' do
+
+      it 'should return its own aggregate' do
+        expect(subject.phase).to be aggregate
+      end
+    end
+
+    context 'if match belongs to aggregate with parent aggregate' do
+
+      it 'should return it the parent aggregate' do
+        parent_aggregate = Aggregate.new
+        allow(aggregate).to receive(:parent).and_return(parent_aggregate)
+        expect(subject.phase).to be parent_aggregate
+      end
+    end
   end
 end

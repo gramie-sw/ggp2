@@ -67,9 +67,24 @@ describe MatchRepository do
       match_2 = create(:match, position: 2)
 
       actual_matches = Match.order_by_position
-      actual_matches[0].position.should eq match_1.position
-      actual_matches[1].position.should eq match_2.position
-      actual_matches[2].position.should eq match_3.position
+      expect(actual_matches.first).to eq match_1
+      expect(actual_matches.second).to eq match_2
+      expect(actual_matches.third).to eq match_3
+    end
+  end
+
+  describe '::order_by_date_asc' do
+
+    it 'should order by date asc' do
+
+      match_3 = create(:match, date: 4.days.from_now)
+      match_1 = create(:match, date: 2.days.from_now)
+      match_2 = create(:match, date: 3.days.from_now)
+
+      actual_matches = Match.order_by_date_asc
+      expect(actual_matches.first).to eq match_1
+      expect(actual_matches.second).to eq match_2
+      expect(actual_matches.third).to eq match_3
     end
   end
 
@@ -107,6 +122,18 @@ describe MatchRepository do
       create(:match, position: 2)
 
       subject.last_match.should eq match_3
+    end
+  end
+
+  describe '::next_match' do
+
+    it 'should return next match' do
+
+      create(:match, date: 4.days.from_now)
+      create(:match, date: 1.days.ago)
+      expected_match = create(:match, date: 3.days.from_now)
+
+      expect(Match.next_match).to eq expected_match
     end
   end
 end

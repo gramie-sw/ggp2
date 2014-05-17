@@ -55,6 +55,14 @@ class Match < ActiveRecord::Base
     team_score.nil? ? "-" : team_score
   end
 
+  def phase
+    if aggregate.parent.present?
+      aggregate.parent
+    else
+      aggregate
+    end
+  end
+
   private
 
   def validate_placeholder_team_1_not_eq_placeholder_team_2_besides_nil_or_blank

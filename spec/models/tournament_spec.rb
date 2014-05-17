@@ -170,4 +170,22 @@ describe Tournament do
       end
     end
   end
+
+  describe '#current_phase' do
+
+    before :each do
+      next_match = double('Match')
+      expect(Match).to receive(:next_match).and_return(next_match)
+      expect(next_match).to receive(:phase).and_return(:current_phase)
+    end
+
+    it 'should return phase of next match' do
+      expect(subject.current_phase).to be :current_phase
+    end
+
+    it 'should cache return value' do
+      subject.current_phase
+      subject.current_phase
+    end
+  end
 end

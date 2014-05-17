@@ -7,15 +7,20 @@ module MatchRepository
       scope :all_with_result, -> { where('score_team_1 IS NOT NULL AND score_team_2 IS NOT NULL') }
       scope :count_all_with_results, -> { all_with_result.count }
       scope :future_matches, -> { where('matches.date > ?', Time.now) }
-      scope :order_by_position, -> { order('position ASC') }
+      scope :order_by_position, -> { order(position: :asc) }
+      scope :order_by_date_asc, -> { order(date: :asc) }
     end
   end
 
   def first_match
-    Match.order_by_position.first
+    order_by_position.first
   end
 
   def last_match
-    Match.order_by_position.last
+    order_by_position.last
+  end
+
+  def next_match
+    order_by_date_asc.where('date >= ? ', Time.now).first
   end
 end

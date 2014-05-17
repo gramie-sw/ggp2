@@ -30,6 +30,10 @@ class Tournament
     last_match.has_result?
   end
 
+  def current_phase
+    @current_phase ||= next_match.phase
+  end
+
   private
 
   def first_match
@@ -38,5 +42,9 @@ class Tournament
 
   def last_match
     @last_match ||= Match.last_match
+  end
+
+  def next_match
+    @next_match ||= Match.next_match
   end
 end
