@@ -1,6 +1,10 @@
 describe 'user_tips/_champion_tip.slim' do
 
-  let(:presenter) { instance_double('ChampionTipPresenter') }
+  let(:presenter) do
+    presenter = instance_double('ChampionTipPresenter')
+    presenter.as_null_object
+    presenter
+  end
 
   let(:partial) do
     {
@@ -15,11 +19,6 @@ describe 'user_tips/_champion_tip.slim' do
 
   before :each do
     allow(presenter).to receive(:show?).and_return(true)
-    allow(presenter).to receive(:tippable?).and_return(true)
-    allow(presenter).to receive(:team_abbreviation)
-    allow(presenter).to receive(:team_name_or_missing_message)
-    allow(presenter).to receive(:deadline_message)
-    allow(presenter).to receive(:id).and_return(5)
   end
 
   describe 'champion_tip' do
