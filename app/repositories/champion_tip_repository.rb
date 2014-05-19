@@ -8,6 +8,7 @@ module ChampionTipRepository
 
   module ClassMethods
 
+    #TODO rename this method
     def user_ids_with_no_champion_tip
       all_with_no_team.pluck(:user_id)
     end

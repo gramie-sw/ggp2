@@ -1,5 +1,7 @@
 class Aggregate < ActiveRecord::Base
 
+  include AggregateRepository
+
   has_ancestry
 
   class << self
