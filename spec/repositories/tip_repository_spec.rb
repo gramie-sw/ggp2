@@ -257,4 +257,22 @@ describe TipRepository do
       expect(actual_user_ids).to include(user_2.id, user_3.id)
     end
   end
+
+  describe '::all_by_user_id_and_match_ids' do
+
+    it 'should return all tips for given user_id and match_ids' do
+      user = create(:user)
+      match_1 = create(:match)
+      match_2 = create(:match)
+      match_3 = create(:match)
+      tip_1 = create(:tip, match: match_1, user: user)
+      tip_2 = create(:tip, match: match_2, user: user)
+      create(:tip, match: match_3, user: user)
+      create(:tip, match: match_1)
+
+      actual_tips = subject.all_by_user_id_and_match_ids(user_id: user.id, match_ids: [match_1.id, match_2])
+      expect(actual_tips.count).to eq 2
+      expect(actual_tips).to include tip_1, tip_2
+    end
+  end
 end

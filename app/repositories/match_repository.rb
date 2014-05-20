@@ -23,4 +23,8 @@ module MatchRepository
   def next_match
     order_by_date_asc.where('date >= ? ', Time.now).first
   end
+
+  def all_matches_of_aggregate_for_listing(aggregate_id)
+    Aggregate.find(aggregate_id).matches_including_of_children.order_by_position.includes(:team_1, :team_2)
+  end
 end

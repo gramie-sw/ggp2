@@ -4,6 +4,8 @@ class UserTipsShowPresenter
 
   delegate :champion_tip_deadline, to: :tournament
 
+  attr_writer :tips, :matches, :current_aggregate
+
   attr_reader :user_is_current_user
   alias user_is_current_user? user_is_current_user
 

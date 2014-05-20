@@ -136,4 +136,48 @@ describe MatchRepository do
       expect(Match.next_match).to eq expected_match
     end
   end
+
+  describe '::all_matches_of_aggregate_for_listing' do
+
+    context 'when aggregate is a phase' do
+
+      it 'should return matches of belonging groups' do
+        phase = create(:phase)
+        group_1 = create(:group, parent: phase)
+        group_2 = create(:group, parent: phase)
+        match_1 = create(:match, aggregate: group_1)
+        match_2 = create(:match, aggregate: group_1)
+        match_3 = create(:match, aggregate: group_2)
+        create(:match)
+
+        actual_matches = subject.all_matches_of_aggregate_for_listing(phase.id)
+        expect(actual_matches.count).to eq 3
+        expect(actual_matches).to include(match_1, match_2, match_3)
+      end
+    end
+
+    context 'when aggregate is a group' do
+
+      it 'should return all matches of group' do
+        group = create(:group)
+        match_1 = create(:match, aggregate: group)
+        match_2 = create(:match, aggregate: group)
+        create(:match)
+
+        actual_matches = subject.all_matches_of_aggregate_for_listing(group.id)
+        expect(actual_matches.count).to eq 2
+        expect(actual_matches).to include(match_1, match_2)
+      end
+    end
+
+    it 'should order matches by position and include teams' do
+      relation = double('MatchRelation')
+      relation.as_null_object
+
+      expect(Aggregate).to receive(:find).and_return(relation)
+      expect(relation).to receive(:order_by_position).and_return(relation)
+      expect(relation).to receive(:includes).with(:team_1, :team_2).and_return(relation)
+      subject.all_matches_of_aggregate_for_listing(nil)
+    end
+  end
 end
