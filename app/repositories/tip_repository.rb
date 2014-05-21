@@ -42,8 +42,8 @@ module TipRepository
       end
     end
 
-    def all_by_user_id_and_match_ids(user_id:, match_ids:)
-      all_by_user_id(user_id).where(match_id: match_ids)
+    def all_by_user_id_and_match_ids_for_listing(user_id:, match_ids:)
+      all_by_user_id(user_id).where(match_id: match_ids).order('matches.position').includes(match: [:team_1, :team_2])
     end
   end
 end

@@ -258,21 +258,34 @@ describe TipRepository do
     end
   end
 
-  describe '::all_by_user_id_and_match_ids' do
+  describe '::all_by_user_id_and_match_ids_for_listing' do
 
-    it 'should return all tips for given user_id and match_ids' do
+    it 'should return all tips for given user_id and match_ids ordered by position' do
       user = create(:user)
-      match_1 = create(:match)
-      match_2 = create(:match)
-      match_3 = create(:match)
+      match_3 = create(:match, position: 3)
+      match_1 = create(:match, position: 1)
+      match_2 = create(:match, position: 2)
+      match_4 = create(:match, position: 4)
+      tip_3 = create(:tip, match: match_3, user: user)
       tip_1 = create(:tip, match: match_1, user: user)
       tip_2 = create(:tip, match: match_2, user: user)
-      create(:tip, match: match_3, user: user)
+      create(:tip, match: match_4, user: user)
       create(:tip, match: match_1)
 
-      actual_tips = subject.all_by_user_id_and_match_ids(user_id: user.id, match_ids: [match_1.id, match_2])
-      expect(actual_tips.count).to eq 2
-      expect(actual_tips).to include tip_1, tip_2
+      actual_tips = subject.
+          all_by_user_id_and_match_ids_for_listing(user_id: user.id, match_ids: [match_3.id, match_1.id, match_2.id])
+      expect(actual_tips.count).to eq 3
+      expect(actual_tips).to eq [tip_1, tip_2, tip_3]
     end
+  end
+
+  it 'should include match, team_1 and team_2' do
+    relation = double('TipRelation')
+    relation.as_null_object
+
+    expect(Tip).to receive(:where).and_return(relation)
+    expect(relation).to receive(:includes).with(match: [:team_1, :team_2])
+
+    subject.all_by_user_id_and_match_ids_for_listing(user_id: 3, match_ids: [])
   end
 end

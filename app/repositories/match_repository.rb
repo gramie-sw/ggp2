@@ -25,6 +25,21 @@ module MatchRepository
   end
 
   def all_matches_of_aggregate_for_listing(aggregate_id)
-    Aggregate.find(aggregate_id).matches_including_of_children.order_by_position.includes(:team_1, :team_2)
+    recursive_match_relation_by_aggregate_id(aggregate_id).order_by_position.includes(:team_1, :team_2)
+  end
+
+  def all_match_ids_by_aggregate_id(aggregate_id)
+    recursive_match_relation_by_aggregate_id(aggregate_id).pluck(:id)
+  end
+
+  private
+
+  def recursive_match_relation_by_aggregate_id(aggregate_id)
+    aggregate = Aggregate.find(aggregate_id)
+    if aggregate.phase? && aggregate.has_groups?
+      Match.where(aggregate_id: aggregate.children).references(:aggregates)
+    else
+      aggregate.matches
+    end
   end
 end

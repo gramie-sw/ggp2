@@ -69,9 +69,6 @@ describe ShowAllTipsOfAggregateForUser do
         #in this example we test the case that a phase consists of groups
 
         expect(presentable).to receive(:current_aggregate=).with(phases.first)
-        expect(presentable).to receive(:matches=) do |actual_matches|
-          expect(actual_matches).to eq [matches.first, matches.second, matches.third, matches.fourth]
-        end
         expect(presentable).to receive(:tips=) do |actual_tips|
           expect(actual_tips).to eq [tips.first, tips.second, tips.third, tips.fourth]
         end
@@ -93,9 +90,6 @@ describe ShowAllTipsOfAggregateForUser do
         #in this example we test the case that a phase consists of no group
 
         expect(presentable).to receive(:current_aggregate=).with(phases.second)
-        expect(presentable).to receive(:matches=) do |actual_matches|
-          expect(actual_matches).to eq [matches[4], matches[5]]
-        end
         expect(presentable).to receive(:tips=) do |actual_tips|
           expect(actual_tips).to eq [tips[4], tips[5]]
         end

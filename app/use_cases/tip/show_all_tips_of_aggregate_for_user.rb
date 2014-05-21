@@ -8,11 +8,10 @@ class ShowAllTipsOfAggregateForUser
 
   def run_with_presentable(presentable)
 
-    matches = Match.all_matches_of_aggregate_for_listing(current_aggregate.id)
-    tips = Tip.all_by_user_id_and_match_ids(user_id: user_id, match_ids: matches.map(&:id))
+    match_ids = Match.all_match_ids_by_aggregate_id(current_aggregate.id)
+    tips = Tip.all_by_user_id_and_match_ids_for_listing(user_id: user_id, match_ids: match_ids)
 
     presentable.current_aggregate = current_aggregate
-    presentable.matches = matches
     presentable.tips = tips
   end
 
