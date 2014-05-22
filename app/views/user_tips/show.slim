@@ -1,41 +1,23 @@
 - content_for(:title, @presenter.title)
 - content_for(:subtitle, @presenter.subtitle)
 
-- if @presenter.show_champion_tip?
-  div.panel.panel-default#champion-tip
-    div.panel-body
-      div
-        div.row
-          div.col-sm-8.ggp2-flag-with-country-name
-            strong
-              = "#{ChampionTip.model_name.human}:"
-            '&nbsp;&nbsp;
-            - if @presenter.champion_tip_team.present?
-              = standard_flag_image_tag_of @presenter.champion_tip_team
-              = @presenter.champion_tip_team.name
-            - else
-              = t('tip.not_present')
-            br
-            - if @presenter.champion_tippable?
-              small.ggp2-weakened
-                = t('general.changeable_until', date: l(@presenter.champion_tip_deadline))
-          - if @presenter.champion_tippable?
-            div.col-sm-4.text-right.hidden-xs
-              = link_to t('model.submit.update', model: Tip.model_name.human),
-                edit_champion_tip_path(@presenter.champion_tip_id),
-                class: 'btn btn-primary'
-            div.col-xs-12.text-center.visible-xs.ggp2-panel-body-box
-              = link_to t('model.submit.update', model: Tip.model_name.human),
-                edit_champion_tip_path(@presenter.champion_tip_id),
-                class: 'btn btn-primary'
+= render partial: 'champion_tip', locals: {presenter: @presenter.champion_tip_presenter}
 
-- for phase in @presenter.phases
-  h2.text-center = phase.name
-  - if @presenter.show_as_form?(phase)
-    = form_tag edit_multiple_tips_path
-    = render partial: 'tips_table', locals: {presenter: @presenter, aggregate: phase, show_as_form: true}
-  - else
-    = render partial: 'tips_table', locals: {presenter: @presenter, aggregate: phase, show_as_form: false}
+ul.nav.nav-tabs
+  - for phase in @presenter.phases
+    li class=('active' if phase.id == @presenter.current_aggregate.id)
+      = link_to phase.name, url_for(aggregate_id: phase.id, only_path: true)
+
+h2.text-center = @presenter.current_aggregate.name
+
+- if @presenter.show_as_form?
+  = form_tag edit_multiple_tips_path
+= render partial: 'tips_table',
+            locals: { \
+            tip_presenters: @presenter.tip_presenters,
+            aggregate: @presenter.current_aggregate,
+            show_as_form: @presenter.show_as_form? \
+  }
 
 - unless @presenter.user_is_current_user?
   small

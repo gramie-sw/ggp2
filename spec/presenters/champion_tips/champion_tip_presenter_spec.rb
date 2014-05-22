@@ -6,9 +6,8 @@ describe ChampionTipPresenter do
   let(:champion_tip) { ChampionTip.new(id: 5, team: champion_tip_team) }
 
   subject do
-    presenter = ChampionTipPresenter.new(tournament: tournament, user_is_current_user: user_is_current_user)
-    presenter.champion_tip = champion_tip
-    presenter
+    ChampionTipPresenter.
+        new(champion_tip: champion_tip, tournament: tournament, user_is_current_user: user_is_current_user)
   end
 
   it { should respond_to :champion_tip= }

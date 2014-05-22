@@ -16,9 +16,9 @@ div.table-responsive
         th = Match.human_attribute_name(:date)
         th
     tbody
-      - for match_presenter in presenter.match_presenters_of(aggregate)
+      - for tip_presenter in tip_presenters
+        - match_presenter = tip_presenter.match_presenter
         - show_as_link = show_as_form && match_presenter.tippable?
-        - tip_presenter = presenter.tip_presenter_for(match_presenter)
         tr *user_tips_table_tr_attributes(show_as_link, tip_presenter.id)
           - if show_as_link
             td = check_box_tag 'tip_ids[]', tip_presenter.id

@@ -2,6 +2,8 @@ class TipPresenter < DelegateClass(Tip)
 
   include ResultPresentable
 
+  attr_reader :is_for_current_user
+
   def initialize(tip:, is_for_current_user:)
     super(tip)
     @is_for_current_user = is_for_current_user

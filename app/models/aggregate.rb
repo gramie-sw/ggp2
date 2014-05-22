@@ -45,6 +45,10 @@ class Aggregate < ActiveRecord::Base
     matches_including_of_children.future_matches
   end
 
+  def has_future_matches?
+    future_matches.present?
+  end
+
   def message_name
     "#{Aggregate.model_name.human}: \"#{name}\""
   end

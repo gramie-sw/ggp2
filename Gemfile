@@ -28,8 +28,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rspec-fire'
   gem 'guard-rspec'
-  gem 'spring'
-  gem 'spring-commands-rspec', require: false
 end
 
 group :development do
@@ -37,6 +35,8 @@ group :development do
   gem 'meta_request'
   gem "pry-rails", "~> 0.3.2"
   gem 'quiet_assets'
+  gem 'spring'
+  gem 'spring-commands-rspec', require: false
 
   gem 'capistrano'
   gem 'capistrano-rails'

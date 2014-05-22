@@ -9,8 +9,8 @@ describe Aggregate do
     describe '#position' do
       it { should validate_presence_of(:position) }
       it { should validate_numericality_of(:position).only_integer }
-      it { should validate_numericality_of(:position).is_greater_than 0}
-      it { should validate_numericality_of(:position).is_less_than_or_equal_to 1000}
+      it { should validate_numericality_of(:position).is_greater_than 0 }
+      it { should validate_numericality_of(:position).is_less_than_or_equal_to 1000 }
       it { should validate_uniqueness_of(:position).scoped_to(:ancestry) }
     end
     describe '#name' do
@@ -110,6 +110,25 @@ describe Aggregate do
       actual_match = subject.future_matches
       actual_match.count.should eq 2
       actual_match.should include match_1, match_2
+    end
+  end
+
+  describe '#has_future_matches?' do
+
+    context 'when future_matches exists' do
+
+      it 'should return true' do
+        expect(subject).to receive(:future_matches).and_return([Match.new])
+        expect(subject.has_future_matches?).to be_true
+      end
+    end
+
+    context 'when future_matches does not exists' do
+
+      it 'should return false' do
+        expect(subject).to receive(:future_matches).and_return([])
+        expect(subject.has_future_matches?).to be_false
+      end
     end
   end
 

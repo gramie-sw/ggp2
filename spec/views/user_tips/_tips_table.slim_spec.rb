@@ -4,10 +4,10 @@ describe 'user_tips/_tips_table.slim' do
   let(:tip) { create(:tip) }
   let(:user) { tip.user }
   let(:match) { tip.match }
-  let(:presenter) do
-    UserTipsShowPresenter.new(user: user,
-                              tournament: Tournament.new,
-                              user_is_current_user: false)
+  let(:tip_presenters) do
+    presenter = instance_double('TipPresenter')
+    presenter.as_null_object
+    [presenter]
   end
 
   let(:partial_options) do
@@ -16,7 +16,7 @@ describe 'user_tips/_tips_table.slim' do
         formats: %w[html],
         handlers: %w[slim],
         locals: {
-            presenter: presenter,
+            tip_presenters: tip_presenters,
             aggregate: match.aggregate,
             show_as_form: show_as_form
         }
@@ -51,15 +51,25 @@ describe 'user_tips/_tips_table.slim' do
 
   describe 'table row' do
 
-    let(:table_row_as_link_selector) { "tr.link-row[data-href='#{edit_multiple_tips_path(tip_ids: [tip.id])}']" }
+    let(:match_presenter) do
+      presenter = instance_double('MatchPresenter')
+      presenter.as_null_object
+      presenter
+    end
+    let(:table_row_as_link_selector) { "tr.link-row[data-href='#{edit_multiple_tips_path(tip_ids: [5])}']" }
     checkbox_selector = "tr input[type=checkbox]"
+
+    before :each do
+      allow(tip_presenters.first).to receive(:match_presenter).and_return(match_presenter)
+      allow(tip_presenters.first).to receive(:id).and_return(5)
+    end
 
     context 'if show_as_form is true' do
 
       context 'if match is tippable' do
 
         it 'should be displayed as link' do
-          Match.any_instance.should_receive(:tippable?).and_return(true)
+          expect(match_presenter).to receive(:tippable?).and_return(true)
           render partial_options
           rendered.should have_css table_row_as_link_selector
           rendered.should have_css checkbox_selector
@@ -69,7 +79,7 @@ describe 'user_tips/_tips_table.slim' do
       context 'if match is not tippable' do
 
         it 'should not be displayed as link' do
-          Match.any_instance.should_receive(:tippable?).and_return(false)
+          expect(match_presenter).to receive(:tippable?).and_return(false)
           render partial_options
           rendered.should_not have_css table_row_as_link_selector
           rendered.should_not have_css checkbox_selector
@@ -84,7 +94,7 @@ describe 'user_tips/_tips_table.slim' do
       describe 'if show_as_form is false' do
 
         it 'should not be displayed as link' do
-          Match.any_instance.should_not_receive(:tippable?)
+          allow(match_presenter).to receive(:tippable?).and_return(false)
           render partial_options
           rendered.should_not have_css table_row_as_link_selector
           rendered.should_not have_css checkbox_selector

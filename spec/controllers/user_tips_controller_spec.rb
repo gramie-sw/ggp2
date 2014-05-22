@@ -8,41 +8,26 @@ describe UserTipsController do
 
   describe '#show' do
 
-    it 'should return http success' do
-      get :show, id: player.to_param
-      response.should be_success
+    before :each do
+      allow_any_instance_of(ShowAllTipsOfAggregateForUser).to receive(:run_with_presentable)
+      allow_any_instance_of(ShowChampionTip).to receive(:run_with_presentable)
+      allow_any_instance_of(ShowAllPhases).to receive(:run_with_presentable)
     end
 
-    it 'should render template show' do
+    it 'should return http success render template show' do
       get :show, id: player.to_param
+      response.should be_success
       response.should render_template :show
     end
 
-    context 'if given user_id belongs to current_user' do
-      #TODO refactor to only one test
-
-      it 'should assign UserTipsShowPresenter where user_is_current_user equals true' do
-        User.should_receive(:find_player).with(player.to_param).and_return(player)
-
-        UserTipsShowPresenter.
-            should_receive(:new).
-            with(user: player, tournament: kind_of(Tournament), user_is_current_user: true).
-            and_call_original
-        get :show, id: player.to_param
-      end
-    end
-
-    context 'if given user_id belongs not to current_user' do
-
-      it 'should assign UserTipsShowPresenter  where user_is_current_user equals false' do
-        other_player = create(:player)
-        User.should_receive(:find_player).with(other_player.to_param).and_return(other_player)
-        UserTipsShowPresenter.
-            should_receive(:new).
-            with(user: other_player, tournament: kind_of(Tournament), user_is_current_user: false).
-            and_call_original
-        get :show, id: other_player.to_param
-      end
+    it 'should assign UserTipsShowPresenter' do
+      expect(UserTipsShowPresenter).to receive(:new).with(
+                                           user: instance_of(User),
+                                           tournament: instance_of(Tournament),
+                                           user_is_current_user: true
+                                       ).and_call_original
+      get :show, id: player.to_param, aggregate_id: 5
+      expect(assigns(:presenter)).to be_instance_of(UserTipsShowPresenter)
     end
   end
 end

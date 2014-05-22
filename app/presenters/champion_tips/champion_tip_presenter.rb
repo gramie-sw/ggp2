@@ -6,7 +6,8 @@ class ChampionTipPresenter
 
   attr_writer :champion_tip
 
-  def initialize(tournament: tournament, user_is_current_user: user_is_current_user)
+  def initialize(champion_tip: champion_tip, tournament: tournament, user_is_current_user: user_is_current_user)
+    @champion_tip = champion_tip
     @tournament = tournament
     @user_is_current_user = user_is_current_user
   end

@@ -4,7 +4,8 @@ class UserTipsShowPresenter
 
   delegate :champion_tip_deadline, to: :tournament
 
-  attr_writer :tips, :current_aggregate
+  attr_accessor :current_aggregate, :phases
+  attr_writer :tips, :champion_tip
 
   attr_reader :user_is_current_user
   alias user_is_current_user? user_is_current_user
@@ -27,38 +28,21 @@ class UserTipsShowPresenter
     user_is_current_user? ? '' : I18n.t('general.of_subject', subject: user.nickname)
   end
 
-  def show_as_form? aggregate
-    user_is_current_user? ? aggregate.future_matches.exists? : false
+  def show_as_form?
+    user_is_current_user? ? current_aggregate.has_future_matches? : false
   end
 
-  def tip_presenter_for match
-    @tip_presenters = [] unless @tip_presenters
-    @tip_presenters[match.id] || begin
-      Tip.where(user_id: user.id).includes(:match).each do |tip|
-        @tip_presenters[tip.match_id] = TipPresenter.new(tip: tip, is_for_current_user: @user_is_current_user)
-      end
-      tip_presenter_for(match)
-    end
+  def tip_presenters
+    tips.map { |tip| TipPresenter.new(tip: tip, is_for_current_user: user_is_current_user) }
   end
 
-  def show_champion_tip?
-    user_is_current_user || !tournament.champion_tippable?
-  end
-
-  def champion_tippable?
-    user_is_current_user? && tournament.champion_tip_deadline.present? && tournament.champion_tippable?
-  end
-
-  def champion_tip_team
-    user.champion_tip.try(:team)
-  end
-
-  def champion_tip_id
-    user.champion_tip.try(:id)
+  def champion_tip_presenter
+    ChampionTipPresenter.new(tournament: tournament, champion_tip: champion_tip, user_is_current_user: user_is_current_user?)
   end
 
   private
 
-  attr_reader :user
-  attr_reader :tournament
+  attr_reader :tips, :user, :tournament, :user_is_current_user, :champion_tip
+  alias user_is_current_user? user_is_current_user
+
 end
