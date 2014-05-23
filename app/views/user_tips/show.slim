@@ -3,12 +3,25 @@
 
 = render partial: 'champion_tip', locals: {presenter: @presenter.champion_tip_presenter}
 
-ul.nav.nav-tabs
-  - for phase in @presenter.phases
-    li class=('active' if phase.id == @presenter.current_aggregate.id)
-      = link_to phase.name, url_for(aggregate_id: phase.id, only_path: true)
+div.visible-md.visible-lg
+  ul.nav.nav-tabs
+    - for phase in @presenter.phases
+      li class=('active' if phase.id == @presenter.current_aggregate.id)
+        = link_to phase.name, url_for(aggregate_id: phase.id, only_path: true)
 
-h2.text-center = @presenter.current_aggregate.name
+div.row.visible-xs.visible-sm
+  div.col-xs-12
+      div.btn-group.pull-right.ggp2-btn-group
+        button.btn.btn-primary.btn-lg.dropdown-toggle type="button" data-toggle="dropdown"
+          = "#{t('general.menu')} "
+          span.caret
+        ul.dropdown-menu.pull-right.ggp2-dropdown-menu role="menu"
+          - for phase in @presenter.phases
+            li class=('active' if phase.id == @presenter.current_aggregate.id)
+              = link_to phase.name, url_for(aggregate_id: phase.id, only_path: true)
+
+div
+  h2.text-center = @presenter.current_aggregate.name
 
 - if @presenter.show_as_form?
   = form_tag edit_multiple_tips_path

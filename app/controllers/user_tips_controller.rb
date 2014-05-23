@@ -7,6 +7,9 @@ class UserTipsController < ApplicationController
         user_is_current_user: is_user_current_user?(current_resource)
     )
 
+    #TODO should be tested through feature tests
+    session[Ggp2::USER_TIPS_LAST_SHOWN_CURRENT_AGGREGATE_ID_KEY] = params[:aggregate_id]
+
     ShowAllTipsOfAggregateForUser.
         new(tournament: tournament, user_id: params[:id], current_aggregate_id: params[:aggregate_id]).
         run_with_presentable(@presenter)

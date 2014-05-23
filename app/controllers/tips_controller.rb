@@ -17,7 +17,9 @@ class TipsController < ApplicationController
                models: Tip.model_name.human(count: result.succeeded_records.count))
 
     if result.no_errors?
-      redirect_to user_tip_path(current_user), notice: notice
+      #TODO should be tested through feature tests
+      aggregate_id = session[Ggp2::USER_TIPS_LAST_SHOWN_CURRENT_AGGREGATE_ID_KEY]
+      redirect_to user_tip_path(current_user, aggregate_id: aggregate_id), notice: notice
     else
       @presenter = TipsEditMultiplePresenter.new(tips: result.failed_records)
       unless result.succeeded_records.empty?

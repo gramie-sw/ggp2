@@ -60,6 +60,8 @@ module Ggp2
     config.badges_file = "#{Rails.root}/config/badges.yml"
   end
 
+  USER_TIPS_LAST_SHOWN_CURRENT_AGGREGATE_ID_KEY = 'utlscaid'
+
   def self.config
     Application.config
   end
