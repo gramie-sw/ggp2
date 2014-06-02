@@ -3,7 +3,7 @@ FactoryGirl.define do
     sequence(:nickname) { |n| "#{Forgery::Name.first_name}_#{n}" }
     first_name { Forgery::Name.first_name }
     last_name { Forgery::Name.last_name }
-    email { Forgery::Internet.email_address }
+    sequence(:email) { |n| "player_#{n}@test.de" }
     password { Forgery::Basic.password(at_least: 8) }
     password_confirmation { "#{password}" }
     active true
