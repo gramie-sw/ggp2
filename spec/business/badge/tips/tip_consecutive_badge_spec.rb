@@ -1,6 +1,7 @@
 describe TipConsecutiveBadge do
 
-  subject { TipConsecutiveBadge.new(result: 'correct', count: 2, position: 1, icon: 'my_icon', icon_color: 'my_color')}
+  subject { TipConsecutiveBadge.new(result: 'correct', count: 2, position: 1, icon: 'my_icon',
+                                    icon_color: 'my_color', identifier: 'identifier')}
 
   it { should respond_to(:result=, :result) }
   it { should respond_to(:count=, :count) }
@@ -13,6 +14,7 @@ describe TipConsecutiveBadge do
       expect(subject.position).to eq 1
       expect(subject.icon).to eq 'my_icon'
       expect(subject.icon_color).to eq 'my_color'
+      expect(subject.identifier).to eq 'identifier'
     end
   end
 
@@ -37,12 +39,6 @@ describe TipConsecutiveBadge do
       actual_user_ids = subject.eligible_user_ids
       expect(actual_user_ids.size).to eq 2
       expect(actual_user_ids).to include(2,4)
-    end
-  end
-
-  describe '#identifier' do
-    it 'should return symbolized underscored class name with result and count value appended' do
-      expect(subject.identifier).to eq :tip_consecutive_badge_correct_2
     end
   end
 end

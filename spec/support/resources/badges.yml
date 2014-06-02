@@ -5,12 +5,14 @@ comment:
       icon: 'special_icon'
       icon_color: '#123456'
       count: 2
+      identifier: comment_consecutive_created_badge_bronze
   - class: CommentCreatedBadge
     attributes:
       position: 2
       icon: 'cool_icon'
       icon_color: '#123456'
       count: 1
+      identifier: comment_created_badge_gold
 tip:
   - class: TipConsecutiveBadge
     attributes:
@@ -19,6 +21,7 @@ tip:
       icon_color: '#123456'
       result: correct
       count: 3
+      identifier: tip_consecutive_badge_correct_gold
   - class: TipBadge
     attributes:
       position: 4
@@ -26,20 +29,24 @@ tip:
       icon_color: '#123456'
       result: incorrect
       count: 4
+      identifier: tip_badge_incorrect_platinum
   - class: TipMissedBadge
     attributes:
       position: 5
       icon: 'icon'
       icon_color: '#123456'
       count: 2
+      identifier: tip_missed_badge_gold
   - class: TipConsecutiveMissedBadge
     attributes:
       position: 6
       icon: 'icon'
       icon_color: '#123456'
       count: 2
+      identifier: tip_consecutive_missed_badge_platinum
   - class: TipChampionMissedBadge
     attributes:
       position: 7
       icon: 'icon'
       icon_color: '#123456'
+      identifier: tip_champion_missed_badge

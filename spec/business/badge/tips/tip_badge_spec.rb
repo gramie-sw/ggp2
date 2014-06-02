@@ -1,6 +1,6 @@
 describe TipBadge do
 
-  subject { TipBadge.new(result: 'correct', count: 3, position: 1, icon: 'icon', icon_color: 'icon_color')}
+  subject { TipBadge.new(result: 'correct', count: 3, position: 1, icon: 'icon', icon_color: 'icon_color', identifier: 'identifier')}
 
   it { should respond_to(:result=, :result) }
   it { should respond_to(:count=, :count) }
@@ -13,6 +13,7 @@ describe TipBadge do
       expect(subject.position).to eq 1
       expect(subject.icon).to eq 'icon'
       expect(subject.icon_color).to eq 'icon_color'
+      expect(subject.identifier).to eq 'identifier'
     end
   end
 
@@ -27,12 +28,6 @@ describe TipBadge do
                                                                        count: subject.count).and_return(user_ids)
       actual_user_ids = subject.eligible_user_ids
       expect(actual_user_ids).to be user_ids
-    end
-  end
-
-  describe 'identifier' do
-    it 'should return symbolized underscored class name with result and count value appended' do
-      expect(subject.identifier).to eq :tip_badge_correct_3
     end
   end
 end

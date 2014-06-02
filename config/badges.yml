@@ -6,6 +6,7 @@ tip:
       icon_color: '#cd7f32'
       result: correct
       count: 1
+      identifier: tip_badge_correct_bronze
   - class: TipBadge
     attributes:
       position: 2
@@ -13,6 +14,7 @@ tip:
       icon_color: '#b2b9bc'
       result: correct
       count: 3
+      identifier: tip_badge_correct_silver
   - class: TipBadge
     attributes:
       position: 3
@@ -20,6 +22,7 @@ tip:
       icon_color: '#d9bb24'
       result: correct
       count: 6
+      identifier: tip_badge_correct_gold
   - class: TipBadge
     attributes:
       position: 4
@@ -27,6 +30,7 @@ tip:
       icon_color: '#a67b5b'
       result: correct
       count: 10
+      identifier: tip_badge_correct_platinum
   - class: TipConsecutiveBadge
     attributes:
       position: 5
@@ -34,6 +38,7 @@ tip:
       icon_color: '#cd7f32'
       result: correct
       count: 2
+      identifier: tip_consecutive_badge_correct_bronze
   - class: TipConsecutiveBadge
     attributes:
       position: 6
@@ -41,6 +46,7 @@ tip:
       icon_color: '#b2b9bc'
       result: correct
       count: 3
+      identifier: tip_consecutive_badge_correct_silver
   - class: TipConsecutiveBadge
     attributes:
       position: 7
@@ -48,6 +54,7 @@ tip:
       icon_color: '#d9bb24'
       result: correct
       count: 4
+      identifier: tip_consecutive_badge_correct_gold
   - class: TipConsecutiveBadge
     attributes:
       position: 8
@@ -55,6 +62,7 @@ tip:
       icon_color: '#a67b5b'
       result: correct
       count: 5
+      identifier: tip_consecutive_badge_correct_platinum
   - class: TipBadge
     attributes:
       position: 9
@@ -62,6 +70,7 @@ tip:
       icon_color: '#cd7f32'
       result: correct_tendency_only
       count: 1
+      identifier: tip_badge_correct_tendency_only_bronze
   - class: TipBadge
     attributes:
       position: 10
@@ -69,6 +78,7 @@ tip:
       icon_color: '#b2b9bc'
       result: correct_tendency_only
       count: 3
+      identifier: tip_badge_correct_tendency_only_silver
   - class: TipBadge
     attributes:
       position: 11
@@ -76,6 +86,7 @@ tip:
       icon_color: '#d9bb24'
       result: correct_tendency_only
       count: 6
+      identifier: tip_badge_correct_tendency_only_gold
   - class: TipBadge
     attributes:
       position: 12
@@ -83,6 +94,7 @@ tip:
       icon_color: '#a67b5b'
       result: correct_tendency_only
       count: 10
+      identifier: tip_badge_correct_tendency_only_platinum
   - class: TipConsecutiveBadge
     attributes:
       position: 13
@@ -90,6 +102,7 @@ tip:
       icon_color: '#cd7f32'
       result: correct_tendency_only
       count: 2
+      identifier: tip_consecutive_badge_correct_tendency_only_bronze
   - class: TipConsecutiveBadge
     attributes:
       position: 14
@@ -97,6 +110,7 @@ tip:
       icon_color: '#b2b9bc'
       result: correct_tendency_only
       count: 3
+      identifier: tip_consecutive_badge_correct_tendency_only_silver
   - class: TipConsecutiveBadge
     attributes:
       position: 15
@@ -104,6 +118,7 @@ tip:
       icon_color: '#d9bb24'
       result: correct_tendency_only
       count: 4
+      identifier: tip_consecutive_badge_correct_tendency_only_gold
   - class: TipConsecutiveBadge
     attributes:
       position: 16
@@ -111,6 +126,7 @@ tip:
       icon_color: '#a67b5b'
       result: correct_tendency_only
       count: 5
+      identifier: tip_consecutive_badge_correct_tendency_only_platinum
   - class: TipBadge
     attributes:
       position: 17
@@ -118,6 +134,7 @@ tip:
       icon_color: '#cd7f32'
       result: incorrect
       count: 1
+      identifier: tip_badge_incorrect_bronze
   - class: TipBadge
     attributes:
       position: 18
@@ -125,6 +142,7 @@ tip:
       icon_color: '#b2b9bc'
       result: incorrect
       count: 3
+      identifier: tip_badge_incorrect_silver
   - class: TipBadge
     attributes:
       position: 19
@@ -132,6 +150,7 @@ tip:
       icon_color: '#d9bb24'
       result: incorrect
       count: 5
+      identifier: tip_badge_incorrect_gold
   - class: TipBadge
     attributes:
       position: 20
@@ -139,6 +158,7 @@ tip:
       icon_color: '#a67b5b'
       result: incorrect
       count: 10
+      identifier: tip_badge_incorrect_platinum
   - class: TipConsecutiveBadge
     attributes:
       position: 21
@@ -146,6 +166,7 @@ tip:
       icon_color: '#cd7f32'
       result: incorrect
       count: 2
+      identifier: tip_consecutive_badge_incorrect_bronze
   - class: TipConsecutiveBadge
     attributes:
       position: 22
@@ -153,6 +174,7 @@ tip:
       icon_color: '#b2b9bc'
       result: incorrect
       count: 3
+      identifier: tip_consecutive_badge_incorrect_silver
   - class: TipConsecutiveBadge
     attributes:
       position: 23
@@ -160,6 +182,7 @@ tip:
       icon_color: '#d9bb24'
       result: incorrect
       count: 4
+      identifier: tip_consecutive_badge_incorrect_gold
   - class: TipConsecutiveBadge
     attributes:
       position: 24
@@ -167,60 +190,69 @@ tip:
       icon_color: '#a67b5b'
       result: incorrect
       count: 5
+      identifier: tip_consecutive_badge_incorrect_platinum
   - class: TipMissedBadge
     attributes:
       position: 25
       icon: 'fa-globe'
       icon_color: '#cd7f32'
       count: 1
+      identifier: tip_missed_badge_bronze
   - class: TipMissedBadge
     attributes:
       position: 26
       icon: 'fa-globe'
       icon_color: '#b2b9bc'
       count: 2
+      identifier: tip_missed_badge_silver
   - class: TipMissedBadge
     attributes:
       position: 27
       icon: 'fa-globe'
       icon_color: '#d9bb24'
       count: 3
+      identifier: tip_missed_badge_gold
   - class: TipMissedBadge
     attributes:
       position: 28
       icon: 'fa-globe'
       icon_color: '#a67b5b'
       count: 5
+      identifier: tip_missed_badge_platinum
   - class: TipConsecutiveMissedBadge
     attributes:
       position: 29
       icon: 'fa-ambulance'
       icon_color: '#cd7f32'
       count: 2
+      identifier: tip_consecutive_missed_badge_bronze
   - class: TipConsecutiveMissedBadge
     attributes:
       position: 30
       icon: 'fa-ambulance'
       icon_color: '#b2b9bc'
       count: 3
+      identifier: tip_consecutive_missed_badge_silver
   - class: TipConsecutiveMissedBadge
     attributes:
       position: 31
       icon: 'fa-ambulance'
       icon_color: '#d9bb24'
       count: 4
+      identifier: tip_consecutive_missed_badge_gold
   - class: TipConsecutiveMissedBadge
     attributes:
       position: 32
       icon: 'fa-ambulance'
       icon_color: '#a67b5b'
       count: 5
+      identifier: tip_consecutive_missed_badge_platinum
   - class: TipChampionMissedBadge
     attributes:
       position: 33
       icon: 'fa-eye-slash'
       icon_color: '#a67b5b'
-
+      identifier: tip_champion_missed_badge
 
 comment:
   - class: CommentCreatedBadge
@@ -229,39 +261,46 @@ comment:
       icon: 'fa-comments-o'
       icon_color: '#cd7f32'
       count: 1
+      identifier: comment_created_badge_bronze
   - class: CommentCreatedBadge
     attributes:
       position: 36
       icon: 'fa-comments-o'
       icon_color: '#b2b9bc'
       count: 3
+      identifier: comment_created_badge_silver
   - class: CommentCreatedBadge
     attributes:
       position: 37
       icon: 'fa-comments-o'
       icon_color: '#d9bb24'
       count: 5
+      identifier: comment_created_badge_gold
   - class: CommentCreatedBadge
     attributes:
       position: 38
       icon: 'fa-comments-o'
       icon_color: '#a67b5b'
       count: 10
+      identifier: comment_created_badge_platinum
   - class: CommentConsecutiveCreatedBadge
     attributes:
       position: 39
       icon: 'fa-bullhorn'
       icon_color: '#cd7f32'
       count: 3
+      identifier: comment_consecutive_created_badge_bronze
   - class: CommentConsecutiveCreatedBadge
     attributes:
       position: 40
       icon: 'fa-bullhorn'
       icon_color: '#b2b9bc'
       count: 4
+      identifier: comment_consecutive_created_badge_silver
   - class: CommentConsecutiveCreatedBadge
     attributes:
       position: 41
       icon: 'fa-bullhorn'
       icon_color: '#d9bb24'
       count: 5
+      identifier: comment_consecutive_created_badge_gold

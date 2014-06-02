@@ -12,10 +12,6 @@ class TipConsecutiveBadge < Badge
     end
   end
 
-  def identifier
-    "#{self.class.name.underscore}_#{result}_#{count}".to_sym
-  end
-
   private
 
   def at_least_consecutive_results? ordered_user_results, result

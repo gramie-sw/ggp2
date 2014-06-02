@@ -1,6 +1,6 @@
 describe TipChampionMissedBadge do
 
-  subject { TipChampionMissedBadge.new(position: 1, icon: 'icon', icon_color: 'icon_color')}
+  subject { TipChampionMissedBadge.new(position: 1, icon: 'icon', icon_color: 'icon_color', identifier: 'identifier')}
 
   describe '#initialize' do
 
@@ -9,6 +9,7 @@ describe TipChampionMissedBadge do
       expect(subject.position).to eq 1
       expect(subject.icon).to eq 'icon'
       expect(subject.icon_color).to eq 'icon_color'
+      expect(subject.identifier).to eq 'identifier'
     end
   end
 
@@ -38,13 +39,6 @@ describe TipChampionMissedBadge do
         actual_user_ids = subject.eligible_user_ids
         expect(actual_user_ids).to be user_ids
       end
-    end
-  end
-
-  describe '#identifier' do
-
-    it 'should return symbolized underscored class name ' do
-      expect(subject.identifier).to eq :tip_champion_missed_badge
     end
   end
 end

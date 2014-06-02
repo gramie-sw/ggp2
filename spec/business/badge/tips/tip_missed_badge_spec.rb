@@ -1,6 +1,6 @@
 describe TipMissedBadge do
 
-  subject { TipMissedBadge.new(position: 1, icon: 'icon', icon_color: 'icon_color', count: 2) }
+  subject { TipMissedBadge.new(position: 1, icon: 'icon', icon_color: 'icon_color', count: 2, identifier: 'identifier') }
 
   it { should respond_to(:count=, :count) }
 
@@ -12,6 +12,7 @@ describe TipMissedBadge do
       expect(subject.icon).to eq 'icon'
       expect(subject.icon_color).to eq 'icon_color'
       expect(subject.count).to eq 2
+      expect(subject.identifier).to eq 'identifier'
     end
   end
 
@@ -24,13 +25,6 @@ describe TipMissedBadge do
       expect(Tip).to receive(:user_ids_with_at_least_missed_tips).with(count: 2).and_return(user_ids)
       actual_user_ids = subject.eligible_user_ids
       expect(actual_user_ids).to be user_ids
-    end
-  end
-
-  describe '#identifier' do
-
-    it 'should return symbolized underscored class name with count value appended' do
-      expect(subject.identifier).to eq :tip_missed_badge_2
     end
   end
 end

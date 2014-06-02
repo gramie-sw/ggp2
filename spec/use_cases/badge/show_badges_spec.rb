@@ -4,7 +4,7 @@ describe ShowBadges do
 
   describe '::run' do
 
-    it 'should set presenter wit groups and grouped_badges' do
+    it 'should set presenter with groups and grouped_badges' do
 
       expect(Ggp2.config.badges_registry_instance).to receive(:grouped_badges).and_call_original
 

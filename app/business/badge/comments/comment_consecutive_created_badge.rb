@@ -13,8 +13,4 @@ class CommentConsecutiveCreatedBadge < Badge
       user_id if joined_user_ids.include?(user_id.to_s * count)
     end
   end
-
-  def identifier
-    "#{self.class.name.underscore}_#{count}".to_sym
-  end
 end
