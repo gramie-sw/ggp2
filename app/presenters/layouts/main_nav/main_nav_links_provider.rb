@@ -10,6 +10,7 @@ class MainNavLinksProvider
     if current_user.admin?
       links << build_link(Match.model_name.human_plural, matches_path, :matches)
       links << build_link(Aggregate.model_name.human_plural, aggregates_path, :aggregates)
+      links << build_link(Team.model_name.human_plural, teams_path, :teams)
       links << build_link(Venue.model_name.human_plural, venues_path, :venues)
       links << build_link(User.model_name.human_plural, users_path(type: User::USER_TYPE_PLAYERS), :users)
     else
@@ -26,6 +27,7 @@ class MainNavLinksProvider
   #admin menu sections
   section(:aggregates).is_active_for(:aggregates)
   section(:matches).is_active_for(:matches)
+  section(:teams).is_active_for(:teams)
   section(:venues).is_active_for(:venues)
   section(:users).is_active_for(:users)
 

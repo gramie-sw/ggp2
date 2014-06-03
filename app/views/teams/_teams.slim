@@ -1,18 +1,11 @@
-- team_count = teams.count
-- teams.each_with_index do |team, index|
-  - if index % columns == 0
-    <div class="row">
-  div.col-sm-6.col-md-4
-    div.row
-      div.col-xs-10
-        = image_tag("blank.gif", class: "flag flag-#{team.country.downcase}")
-        span.vertical-center = I18n.t team.country, :scope => 'countries'
-      div.col-xs-2
-        td
-          = link_to(team_path(team), method: :delete, data: {confirm: t('model.messages.destroy_really',\
+div.row
+  - for team in teams
+    div.col-lg-3.col-md-4.col-sm-6.col-xs-12.ggp2-flag-with-country-name
+      div.pull-left
+        = standard_flag_image_tag_of team
+        = team.name
+      div.pull-right
+        = link_to(team_path(team), method: :delete, data: {confirm: t('model.messages.destroy_really',\
           model: ("#{Team.model_name.human} #{I18n.t team.country, :scope => 'countries'}")), method: :delete},\
           title: t('model.messages.destroy', model: ("#{Team.model_name.human} #{I18n.t team.country, :scope => 'countries'}"))) do
-            i.fa.fa-trash-o
-
-  - if team_count == (index + 1) || (index != 0 && index % columns == columns - 1)
-    </div>
+          i.fa.fa-trash-o
