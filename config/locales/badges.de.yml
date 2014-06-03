@@ -4,13 +4,13 @@ de:
     description: 1 Spiel richtig getippt
   tip_badge_correct_silver:
     name: Bullseye Silver
-    description: 3 Spiele richtig getippt
+    description: 5 Spiele richtig getippt
   tip_badge_correct_gold:
     name: Bullseye Gold
-    description: 6 Spiele richtig getippt
+    description: 10 Spiele richtig getippt
   tip_badge_correct_platinum:
     name: Bullseye Platinum
-    description: 10 Spiele richtig getippt
+    description: 15 Spiele richtig getippt
   tip_consecutive_badge_correct_bronze:
     name: Rocket Row Bronze
     description: 2 aufeinanderfolgende Spiele richtig getippt
@@ -28,49 +28,49 @@ de:
     description: 1 Spiel mit richtiger Tendenz getippt
   tip_badge_correct_tendency_only_silver:
     name: Collateral Silver
-    description: 3 Spiele mit richtiger Tendenz getippt
+    description: 8 Spiele mit richtiger Tendenz getippt
   tip_badge_correct_tendency_only_gold:
     name: Collateral Gold
-    description: 6 Spiele mit richtiger Tendenz getippt
+    description: 16 Spiele mit richtiger Tendenz getippt
   tip_badge_correct_tendency_only_platinum:
     name: Collateral Platinum
-    description: 10 Spiele mit richtiger Tendenz getippt
+    description: 24 Spiele mit richtiger Tendenz getippt
   tip_consecutive_badge_correct_tendency_only_bronze:
     name: Flow Fighter Bronze
     description: 2 aufeinanderfolgende Spiele mit richtiger Tendenz getippt
   tip_consecutive_badge_correct_tendency_only_silver:
     name: Flow Fighter Silver
-    description: 3 aufeinanderfolgende Spiele mit richtiger Tendenz getippt
+    description: 4 aufeinanderfolgende Spiele mit richtiger Tendenz getippt
   tip_consecutive_badge_correct_tendency_only_gold:
     name: Flow Fighter Gold
-    description: 4 aufeinanderfolgende Spiele mit richtiger Tendenz getippt
+    description: 6 aufeinanderfolgende Spiele mit richtiger Tendenz getippt
   tip_consecutive_badge_correct_tendency_only_platinum:
     name: Flow Fighter Platinum
-    description: 5 aufeinanderfolgende Spiele mit richtiger Tendenz getippt
+    description: 8 aufeinanderfolgende Spiele mit richtiger Tendenz getippt
   tip_badge_incorrect_bronze:
     name: Razzle-Dazzle Bronze
     description: 1 Spiel falsch getippt
   tip_badge_incorrect_silver:
     name: Razzle-Dazzle Silver
-    description: 3 Spiele falsch getippt
+    description: 10 Spiele falsch getippt
   tip_badge_incorrect_gold:
     name: Razzle-Dazzle Gold
-    description: 5 Spiele falsch getippt
+    description: 20 Spiele falsch getippt
   tip_badge_incorrect_platinum:
     name: Razzle-Dazzle Platinum
-    description: 10 Spiele falsch getippt
+    description: 30 Spiele falsch getippt
   tip_consecutive_badge_incorrect_bronze:
     name: Overstrained Bronze
     description: 2 aufeinanderfolgende Spiele falsch getippt
   tip_consecutive_badge_incorrect_silver:
     name: Overstrained Silver
-    description: 3 aufeinanderfolgende Spiele falsch getippt
+    description: 4 aufeinanderfolgende Spiele falsch getippt
   tip_consecutive_badge_incorrect_gold:
     name: Overstrained Gold
-    description: 4 aufeinanderfolgende Spiele falsch getippt
+    description: 6 aufeinanderfolgende Spiele falsch getippt
   tip_consecutive_badge_incorrect_platinum:
     name: Overstrained Platinum
-    description: 5 aufeinanderfolgende Spiele falsch getippt
+    description: 8 aufeinanderfolgende Spiele falsch getippt
   tip_missed_badge_bronze:
     name: Vacationer Bronze
     description: 1 Spiel vergessen zu tippen
@@ -79,10 +79,10 @@ de:
     description: 2 Spiele vergessen zu tippen
   tip_missed_badge_gold:
     name: Vacationer Gold
-    description: 3 Spiele vergessen zu tippen
+    description: 4 Spiele vergessen zu tippen
   tip_missed_badge_platinum:
     name: Vacationer Platinum
-    description: 5 Spiele vergessen zu tippen
+    description: 8 Spiele vergessen zu tippen
   tip_consecutive_missed_badge_bronze:
     name: Call the Ambulance Bronze
     description: 2 aufeinanderfolgende Spiele vergessen zu tippen
@@ -104,13 +104,13 @@ de:
     description: 1 Kommentar auf Pinnwand hinterlassen
   comment_created_badge_silver:
     name: Communicator Silver
-    description: 3 Kommentare auf Pinnwand hinterlassen
+    description: 4 Kommentare auf Pinnwand hinterlassen
   comment_created_badge_gold:
     name: Communicator Gold
-    description: 5 Kommentare auf Pinnwand hinterlassen
+    description: 8 Kommentare auf Pinnwand hinterlassen
   comment_created_badge_platinum:
     name: Communicator Platinum
-    description: 10 Kommentare auf Pinnwand hinterlassen
+    description: 16 Kommentare auf Pinnwand hinterlassen
   comment_consecutive_created_badge_bronze:
     name: Whistleblower Bronze
     description: 3 aufeinanderfolgende Kommentare auf Pinnwand hinterlassen

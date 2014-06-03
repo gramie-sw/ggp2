@@ -13,7 +13,7 @@ tip:
       icon: 'fa-bullseye'
       icon_color: '#b2b9bc'
       result: correct
-      count: 3
+      count: 5
       identifier: tip_badge_correct_silver
   - class: TipBadge
     attributes:
@@ -21,7 +21,7 @@ tip:
       icon: 'fa-bullseye'
       icon_color: '#d9bb24'
       result: correct
-      count: 6
+      count: 10
       identifier: tip_badge_correct_gold
   - class: TipBadge
     attributes:
@@ -29,7 +29,7 @@ tip:
       icon: 'fa-bullseye'
       icon_color: '#a67b5b'
       result: correct
-      count: 10
+      count: 15
       identifier: tip_badge_correct_platinum
   - class: TipConsecutiveBadge
     attributes:
@@ -77,7 +77,7 @@ tip:
       icon: 'fa-star-half-o'
       icon_color: '#b2b9bc'
       result: correct_tendency_only
-      count: 3
+      count: 8
       identifier: tip_badge_correct_tendency_only_silver
   - class: TipBadge
     attributes:
@@ -85,7 +85,7 @@ tip:
       icon: 'fa-star-half-o'
       icon_color: '#d9bb24'
       result: correct_tendency_only
-      count: 6
+      count: 16
       identifier: tip_badge_correct_tendency_only_gold
   - class: TipBadge
     attributes:
@@ -93,7 +93,7 @@ tip:
       icon: 'fa-star-half-o'
       icon_color: '#a67b5b'
       result: correct_tendency_only
-      count: 10
+      count: 24
       identifier: tip_badge_correct_tendency_only_platinum
   - class: TipConsecutiveBadge
     attributes:
@@ -109,7 +109,7 @@ tip:
       icon: 'fa-fighter-jet'
       icon_color: '#b2b9bc'
       result: correct_tendency_only
-      count: 3
+      count: 4
       identifier: tip_consecutive_badge_correct_tendency_only_silver
   - class: TipConsecutiveBadge
     attributes:
@@ -117,7 +117,7 @@ tip:
       icon: 'fa-fighter-jet'
       icon_color: '#d9bb24'
       result: correct_tendency_only
-      count: 4
+      count: 6
       identifier: tip_consecutive_badge_correct_tendency_only_gold
   - class: TipConsecutiveBadge
     attributes:
@@ -125,7 +125,7 @@ tip:
       icon: 'fa-fighter-jet'
       icon_color: '#a67b5b'
       result: correct_tendency_only
-      count: 5
+      count: 8
       identifier: tip_consecutive_badge_correct_tendency_only_platinum
   - class: TipBadge
     attributes:
@@ -141,7 +141,7 @@ tip:
       icon: 'fa-bug'
       icon_color: '#b2b9bc'
       result: incorrect
-      count: 3
+      count: 10
       identifier: tip_badge_incorrect_silver
   - class: TipBadge
     attributes:
@@ -149,7 +149,7 @@ tip:
       icon: 'fa-bug'
       icon_color: '#d9bb24'
       result: incorrect
-      count: 5
+      count: 20
       identifier: tip_badge_incorrect_gold
   - class: TipBadge
     attributes:
@@ -157,7 +157,7 @@ tip:
       icon: 'fa-bug'
       icon_color: '#a67b5b'
       result: incorrect
-      count: 10
+      count: 30
       identifier: tip_badge_incorrect_platinum
   - class: TipConsecutiveBadge
     attributes:
@@ -173,7 +173,7 @@ tip:
       icon: 'fa-medkit'
       icon_color: '#b2b9bc'
       result: incorrect
-      count: 3
+      count: 4
       identifier: tip_consecutive_badge_incorrect_silver
   - class: TipConsecutiveBadge
     attributes:
@@ -181,7 +181,7 @@ tip:
       icon: 'fa-medkit'
       icon_color: '#d9bb24'
       result: incorrect
-      count: 4
+      count: 6
       identifier: tip_consecutive_badge_incorrect_gold
   - class: TipConsecutiveBadge
     attributes:
@@ -189,7 +189,7 @@ tip:
       icon: 'fa-medkit'
       icon_color: '#a67b5b'
       result: incorrect
-      count: 5
+      count: 8
       identifier: tip_consecutive_badge_incorrect_platinum
   - class: TipMissedBadge
     attributes:
@@ -210,14 +210,14 @@ tip:
       position: 27
       icon: 'fa-globe'
       icon_color: '#d9bb24'
-      count: 3
+      count: 4
       identifier: tip_missed_badge_gold
   - class: TipMissedBadge
     attributes:
       position: 28
       icon: 'fa-globe'
       icon_color: '#a67b5b'
-      count: 5
+      count: 8
       identifier: tip_missed_badge_platinum
   - class: TipConsecutiveMissedBadge
     attributes:
@@ -267,21 +267,21 @@ comment:
       position: 36
       icon: 'fa-comments-o'
       icon_color: '#b2b9bc'
-      count: 3
+      count: 4
       identifier: comment_created_badge_silver
   - class: CommentCreatedBadge
     attributes:
       position: 37
       icon: 'fa-comments-o'
       icon_color: '#d9bb24'
-      count: 5
+      count: 8
       identifier: comment_created_badge_gold
   - class: CommentCreatedBadge
     attributes:
       position: 38
       icon: 'fa-comments-o'
       icon_color: '#a67b5b'
-      count: 10
+      count: 16
       identifier: comment_created_badge_platinum
   - class: CommentConsecutiveCreatedBadge
     attributes:
