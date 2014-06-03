@@ -12,7 +12,7 @@ describe BadgeRepository do
       expect(subject.grouped_badges).to be subject.grouped_badges
     end
 
-    it 'should have symbolized keys' do
+    it 'should have recursive symbolized keys' do
 
       actual_grouped_badges = subject.grouped_badges
 

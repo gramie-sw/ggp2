@@ -1,1 +1,1 @@
-Rails.application.config.badges_registry_instance = BadgeRegistry.new
+Rails.application.config.badge_registry = BadgeRegistry.new

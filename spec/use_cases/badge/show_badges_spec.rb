@@ -6,7 +6,7 @@ describe ShowBadges do
 
     it 'should set presenter with groups and grouped_badges' do
 
-      expect(Ggp2.config.badges_registry_instance).to receive(:grouped_badges).and_call_original
+      expect(Ggp2.config.badge_registry).to receive(:grouped_badges).and_call_original
 
       expect(presenter).to receive(:groups=) do |groups|
         expect(groups.size).to eq 2
