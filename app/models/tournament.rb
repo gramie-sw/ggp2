@@ -31,7 +31,13 @@ class Tournament
   end
 
   def current_phase
-    @current_phase ||= next_match.phase
+    @current_phase ||= begin
+      if next_match.present?
+        next_match.phase
+      else
+        last_match.phase
+      end
+    end
   end
 
   private

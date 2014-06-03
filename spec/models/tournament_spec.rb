@@ -146,7 +146,7 @@ describe Tournament do
 
   describe '#finished?' do
 
-    let(:match) { build(:match)}
+    let(:match) { build(:match) }
 
     before :each do
       Match.stub(:last_match).and_return(match)
@@ -163,7 +163,7 @@ describe Tournament do
 
     context 'if last match has no result' do
 
-      it'should return false' do
+      it 'should return false' do
 
         match.stub(:has_result?).and_return(false)
         subject.finished?.should be_false
@@ -173,17 +173,31 @@ describe Tournament do
 
   describe '#current_phase' do
 
+    let(:match) { double('Match') }
+
     before :each do
-      next_match = double('Match')
-      expect(Match).to receive(:next_match).and_return(next_match)
-      expect(next_match).to receive(:phase).and_return(:current_phase)
+      allow(match).to receive(:phase).and_return(:current_phase)
     end
 
-    it 'should return phase of next match' do
-      expect(subject.current_phase).to be :current_phase
+    context 'when next Match exists' do
+
+      it 'should return phase of next match' do
+        expect(Match).to receive(:next_match).and_return(match)
+        expect(subject.current_phase).to be :current_phase
+      end
+    end
+
+    context 'when next Match does not exist' do
+
+      it 'should return phase of last match' do
+        expect(Match).to receive(:next_match).and_return(nil)
+        expect(Match).to receive(:last_match).and_return(match)
+        expect(subject.current_phase).to be :current_phase
+      end
     end
 
     it 'should cache return value' do
+      expect(Match).to receive(:next_match).and_return(match)
       subject.current_phase
       subject.current_phase
     end

@@ -254,7 +254,7 @@ de:
     third_place:
       position: Dritter
       badge: Unsung Hero
-  
+
   badges:
     all: Alle Auszeichnungen
 
@@ -320,6 +320,6 @@ de:
 
   user_mailer:
     user_signed_up:
-      subject: WM-2014-Tippspiel - Herzlich Willkommen
+      subject: WM 2014 Tippspiel - Herzlich Willkommen
 
 

@@ -17,4 +17,4 @@ de:
       forgot_your_password: Passwort vergessen?
       sign_up: Registierung
     passwords:
-      send_initial_instructions: "Du erhältst in wenigen Minuten eine Bestätigungs-E-Mail mit der Anleitung, wie Du Dein Passwort vergeben kannst."
+      send_initial_instructions: "Du erhältst in wenigen Minuten eine E-Mail mit der Anleitung, wie Du Dein Passwort vergeben kannst."
