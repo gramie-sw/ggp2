@@ -33,7 +33,7 @@ class Tip < ActiveRecord::Base
       when RESULTS[:correct_tendency_only]
         Ggp2.config.correct_tendency_tip_only_points
       else
-        Ggp2.config.incorrect_tip_points
+        nil
     end
   end
 

@@ -9,9 +9,10 @@
             '&nbsp;&nbsp;
             = standard_flag_image_tag presenter.team_abbreviation
             = presenter.team_name_or_missing_message
-            br
-            small.ggp2-weakened
-              = presenter.deadline_message
+            - if presenter.tippable?
+              br
+              small.ggp2-weakened
+                = presenter.deadline_message
           - if presenter.tippable?
             div.col-sm-4.text-right.hidden-xs
               = link_to t('model.submit.update', model: Tip.model_name.human),

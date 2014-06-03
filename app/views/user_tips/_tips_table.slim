@@ -20,8 +20,10 @@ div.table-responsive
         - match_presenter = tip_presenter.match_presenter
         - show_as_link = show_as_form && match_presenter.tippable?
         tr *user_tips_table_tr_attributes(show_as_link, tip_presenter.id)
-          - if show_as_link
-            td = check_box_tag 'tip_ids[]', tip_presenter.id
+          - if show_as_form
+            td
+              - if show_as_link
+                = check_box_tag 'tip_ids[]', tip_presenter.id
           td = "#{match_presenter.position}."
           td.ggp2-flag-with-country-name
             = standard_flag_image_tag_of match_presenter.team_1

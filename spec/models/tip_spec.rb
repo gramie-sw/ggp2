@@ -140,9 +140,9 @@ describe Tip do
       subject.points.should eq Ggp2.config.correct_tendency_tip_only_points
     end
 
-    it 'should return 0 if result is nil' do
+    it 'should return nil if result is nil' do
       subject.result = nil
-      subject.points.should eq 0
+      subject.points.should be_nil
     end
   end
 
