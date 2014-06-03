@@ -6,6 +6,6 @@ div.well
           partial: 'results/result_fields', \
           locals: {match_presenter: @match_result_presenter.match_presenter, result: @match_result_presenter, index: 'match_result'}
 
-    div.ggp2-btn-toolbar.submit-group
+    div.btn-toolbar.submit-group
       = submit_tag t('model.submit.save', model: MatchResult.model_name.human), class: 'btn btn-primary'
       = link_to t('general.cancel'), matches_path, class: 'btn btn-default'
