@@ -26,7 +26,7 @@ describe UpdateUserBadges do
 
       expect(UserBadge.all_by_group(:comment).size).to eq 3
 
-      actual_user_badges = UserBadge.all_by_group(:comment).all_by_user_id(user_2.id).order_by_position
+      actual_user_badges = UserBadge.all_by_group(:comment).all_by_user_id(user_2.id).order_by_position_asc
       expect(actual_user_badges.size).to eq 2
       expect(actual_user_badges[0].user_id).to eq user_2.id
       expect(actual_user_badges[0].position).to eq 1
@@ -35,7 +35,7 @@ describe UpdateUserBadges do
       expect(actual_user_badges[1].position).to eq 2
       expect(actual_user_badges[1].icon).to eq 'cool_icon'
 
-      actual_user_badges = UserBadge.all_by_group(:comment).all_by_user_id(user_3.id).order_by_position
+      actual_user_badges = UserBadge.all_by_group(:comment).all_by_user_id(user_3.id).order_by_position_asc
       expect(actual_user_badges.size).to eq 1
       expect(actual_user_badges[0].user_id).to eq user_3.id
       expect(actual_user_badges[0].position).to eq 2

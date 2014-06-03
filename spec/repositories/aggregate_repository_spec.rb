@@ -15,4 +15,18 @@ describe AggregateRepository do
     end
   end
 
+  describe '::all_ordered_by_position_asc_recursive' do
+
+    it 'should return all aggregrate ordered by position recursively' do
+      phase_3 = create(:phase, position: 3)
+      phase_1 = create(:phase, position: 1)
+      phase_2 = create(:phase, position: 2)
+      group_3 = create(:group, position: 3, parent: phase_2)
+      group_1 = create(:group, position: 1, parent: phase_2)
+      group_2 = create(:group, position: 2, parent: phase_2)
+
+      actual_aggregates = subject.all_ordered_by_position_asc_recursive
+      expect(actual_aggregates.count).to eq 6
+    end
+  end
 end

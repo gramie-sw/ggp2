@@ -29,7 +29,7 @@ describe UserBadgeRepository do
     end
   end
 
-  describe '::order_by_position' do
+  describe '::order_by_position_asc' do
 
     it 'should return ordered user_badges by position asc' do
 
@@ -37,7 +37,7 @@ describe UserBadgeRepository do
       expected_user_badge_3 = create(:user_badge, position: 3)
       expected_user_badge_1 = create(:user_badge, position: 1)
 
-      actual_user_badges = UserBadge.order_by_position
+      actual_user_badges = UserBadge.order_by_position_asc
 
       expect(actual_user_badges[0]).to eq expected_user_badge_1
       expect(actual_user_badges[1]).to eq expected_user_badge_2
@@ -74,7 +74,7 @@ describe UserBadgeRepository do
 
       expect(UserBadge).to receive(:all_by_group).with(:comment).and_return(group_relation)
       expect(group_relation).to receive(:all_by_user_id).with(3).and_return(user_id_relation)
-      expect(user_id_relation).to receive(:order_by_position).and_return(user_badges)
+      expect(user_id_relation).to receive(:order_by_position_asc).and_return(user_badges)
 
       actual_user_ids = subject.all_ordered_by_group_and_user_id(group: :comment, user_id: 3)
       expect(actual_user_ids).to be user_badges
@@ -90,7 +90,7 @@ describe UserBadgeRepository do
       user_id_relation = instance_double('ActiveRecord::Relation::ActiveRecord_Relation_UserBadge')
 
       expect(UserBadge).to receive(:all_by_user_id).with(3).and_return(user_id_relation)
-      expect(user_id_relation).to receive(:order_by_position).and_return(user_badges)
+      expect(user_id_relation).to receive(:order_by_position_asc).and_return(user_badges)
 
       actual_user_badges = subject.all_ordered_by_user_id(user_id: 3)
       expect(actual_user_badges).to eq user_badges

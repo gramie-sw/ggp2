@@ -26,13 +26,13 @@ describe Aggregate do
   end
 
   describe 'scopes' do
-    describe '#order_by_position' do
+    describe '#order_by_position_asc' do
       it 'should order by position' do
         aggregate_3 = create(:aggregate, name: "Aggregate 1", position: 3)
         aggregate_1 = create(:aggregate, name: "Aggregate 2", position: 1)
         aggregate_2 = create(:aggregate, name: "Aggregate 3", position: 2)
 
-        aggregates = Aggregate.order_by_position
+        aggregates = Aggregate.order_by_position_asc
         aggregates[0].position.should eq aggregate_1.position
         aggregates[1].position.should eq aggregate_2.position
         aggregates[2].position.should eq aggregate_3.position

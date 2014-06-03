@@ -39,12 +39,6 @@ div.well.well-sm
 
       div.form-group
         div.col-sm-offset-2.col-lg-offset-1.col-sm-10.col-lg-11
-          div.visible-xs
-            div.pull-right
-              div.ggp2-btn-toolbar
-                = f.submit class: 'btn btn-primary'
-                = link_to I18n.t('general.cancel'), aggregates_path, class: "btn btn-default"
-          div.hidden-xs
-            div.ggp2-btn-toolbar
-              = f.submit class: 'btn btn-primary'
-              = link_to I18n.t('general.cancel'), aggregates_path, class: "btn btn-default"
+          div.btn-toolbar
+            = f.submit class: 'btn btn-primary'
+            = link_to I18n.t('general.cancel'), aggregates_path, class: "btn btn-default"

@@ -1,7 +1,7 @@
 module MatchRepresentable
 
   def phases
-    @phases ||= Aggregate.phases.order_by_position
+    @phases ||= Aggregate.phases.order_by_position_asc
   end
 
   def match_presenters_of(aggregate)
@@ -9,7 +9,7 @@ module MatchRepresentable
     @match_presenters[aggregate.id] ||= begin
       aggregate.
           matches_including_of_children.
-          order_by_position.
+          order_by_position_asc.
           includes(:team_1, :team_2).
           collect { |m| MatchPresenter.new m }
     end

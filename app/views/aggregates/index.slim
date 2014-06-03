@@ -15,7 +15,10 @@
       tbody
         - for aggregate in @aggregates
           tr.link-row data-href="#{edit_aggregate_path(aggregate)}"
-            td = aggregate.position
+            td
+              - if aggregate.group?
+                '&nbsp;&nbsp;&nbsp;
+              = "#{aggregate.position}."
             td = aggregate.name
             td = aggregate.parent.name unless aggregate.parent.nil?
             td = link_to(aggregate_path(aggregate), method: :delete, data: {confirm: t('model.messages.destroy_really', \

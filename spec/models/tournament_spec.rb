@@ -7,7 +7,7 @@ describe Tournament do
   before :each do
     relation = double('MatchRelation')
     relation.stub(:first).and_return(first_match)
-    Match.stub(:order_by_position).and_return(relation)
+    Match.stub(:order_by_position_asc).and_return(relation)
   end
 
   describe '#started?' do

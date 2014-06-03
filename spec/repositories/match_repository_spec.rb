@@ -58,7 +58,7 @@ describe MatchRepository do
     end
   end
 
-  describe '::order_by_position' do
+  describe '::order_by_position_asc' do
 
     it 'should order by position' do
 
@@ -66,7 +66,7 @@ describe MatchRepository do
       match_1 = create(:match, position: 1)
       match_2 = create(:match, position: 2)
 
-      actual_matches = Match.order_by_position
+      actual_matches = Match.order_by_position_asc
       expect(actual_matches.first).to eq match_1
       expect(actual_matches.second).to eq match_2
       expect(actual_matches.third).to eq match_3
@@ -175,7 +175,7 @@ describe MatchRepository do
       relation.as_null_object
 
       expect(subject).to receive(:recursive_match_relation_by_aggregate_id).and_return(relation)
-      expect(relation).to receive(:order_by_position).and_return(relation)
+      expect(relation).to receive(:order_by_position_asc).and_return(relation)
       expect(relation).to receive(:includes).with(:team_1, :team_2).and_return(relation)
       subject.all_matches_of_aggregate_for_listing(nil)
     end

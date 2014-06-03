@@ -1,7 +1,7 @@
 class AggregatesController < ApplicationController
 
   def index
-    @aggregates = Aggregate.all
+    @aggregates = Aggregate.all_ordered_by_position_asc_recursive
   end
 
   def new

@@ -47,7 +47,7 @@ class Match < ActiveRecord::Base
   end
 
   def self.ordered_match_ids
-    Match.order_by_position.pluck(:id)
+    Match.order_by_position_asc.pluck(:id)
   end
 
   #TODO test or remove

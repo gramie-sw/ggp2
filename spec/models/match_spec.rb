@@ -180,7 +180,7 @@ describe Match do
     let(:ordered_by_position_match_relation) { double('ordered_by_position_match_relation') }
 
     it 'should return all ordered_match ids' do
-      Match.should_receive(:order_by_position).and_return(ordered_by_position_match_relation)
+      Match.should_receive(:order_by_position_asc).and_return(ordered_by_position_match_relation)
       ordered_by_position_match_relation.should_receive(:pluck).with(:id)
       Match.ordered_match_ids
     end

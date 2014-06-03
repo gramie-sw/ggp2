@@ -14,7 +14,7 @@ describe MatchRepresentable  do
 
     it 'should order by position' do
       relation = double('AggregateRelation')
-      relation.should_receive(:order_by_position)
+      relation.should_receive(:order_by_position_asc)
       Aggregate.stub(:phases).and_return(relation)
       subject.phases
     end
@@ -57,7 +57,7 @@ describe MatchRepresentable  do
     end
 
     it 'should order matches by position' do
-      relation.should_receive(:order_by_position).and_return(relation)
+      relation.should_receive(:order_by_position_asc).and_return(relation)
       subject.match_presenters_of(aggregate)
     end
 
