@@ -1,0 +1,70 @@
+- user = @presenter.user
+- content_for(:title, "#{User.model_name.human} #{user.nickname}")
+
+ul.nav.nav-tabs
+  li class='active'
+    = link_to I18n.t('general.general'), user_path(user)
+  li
+    = link_to Comment.model_name.human_plural, user_path(user)
+
+br
+div.btn-toolbar
+  = link_to edit_user_path(user), class: 'btn btn-primary', type: 'button'
+    i.fa.fa-pencil &nbsp;
+    = t('general.edit')
+  = link_to '', class: 'btn btn-primary', type: 'button'
+    i.fa.fa-lock &nbsp;
+    = t('general.lock')
+  = link_to user_path, class: 'btn btn-primary', type: 'button',
+  data: {method: :delete, confirm: t('model.messages.destroy_really', model: user.nickname)}
+    i.fa.fa-trash-o &nbsp;
+    = t('general.destroy')
+
+div.row
+  div.col-md-6
+
+    h2 = t('general.user_data')
+
+    table.table
+      tr
+        td.ggp2-label = User.human_attribute_name(:first_name)
+        td = user.first_name
+      tr
+        td.ggp2-label = User.human_attribute_name(:last_name)
+        td = user.last_name
+      tr
+        td.ggp2-label = User.human_attribute_name(:email)
+        td = user.email
+      tr
+        td.ggp2-label = User.human_attribute_name(:active)
+        td = user.active
+      tr
+        td.ggp2-label = User.human_attribute_name(:admin)
+        td = user.admin
+      tr
+        td.ggp2-label = User.human_attribute_name(:created_at)
+        td = l user.created_at
+      tr
+        td.ggp2-label = User.human_attribute_name(:updated_at)
+        td = l user.updated_at
+
+  div.col-md-6
+
+    h2 = t('general.login_data')
+
+    table.table
+      tr
+        td.ggp2-label = User.human_attribute_name(:current_sign_in_at)
+        td = l user.current_sign_in_at
+      tr
+        td.ggp2-label = User.human_attribute_name(:last_sign_in_at)
+        td = l user.last_sign_in_at
+      tr
+        td.ggp2-label = User.human_attribute_name(:sign_in_count)
+        td = user.sign_in_count
+      tr
+        td.ggp2-label = User.human_attribute_name(:current_sign_in_ip)
+        td = user.current_sign_in_ip
+      tr
+        td.ggp2-label = User.human_attribute_name(:last_sign_in_ip)
+        td = user.last_sign_in_ip

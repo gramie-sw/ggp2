@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  USER_INDEX_REFERER_COOKIE_KEY =  'uir'
+  USER_INDEX_REFERER_COOKIE_KEY = 'uir'
 
   skip_before_filter :authenticate_user!, only: :new
   before_filter :remember_user_index_referer, only: :index
@@ -11,6 +11,11 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+  end
+
+  def show
+    @presenter = UserShowPresenter.new
+    ShowUser.new(params[:id]).run_with_presentable(@presenter)
   end
 
   def create
@@ -32,6 +37,11 @@ class UsersController < ApplicationController
 
   def update
 
+  end
+
+  def destroy
+    user = DeleteUser.new(params[:id]).run
+    redirect_to users_path, notice: t('model.messages.destroyed', model: user.nickname)
   end
 
   private

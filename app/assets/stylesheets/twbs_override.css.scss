@@ -107,6 +107,17 @@ $ggp2-landing-header-image-min-height: 380px;
   }
 }
 
+.nav-tabs {
+
+  li a {
+    color: $gray-light;
+
+    &:hover {
+      color: $text-color
+    }
+  }
+}
+
 .btn-toolbar {
   a {
     margin-left: 5px;

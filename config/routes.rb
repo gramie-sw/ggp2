@@ -28,11 +28,11 @@ Ggp2::Application.routes.draw do
       post :update_multiple
     end
   end
+  # must be behind devise
+  resources :users
   resources :user_tips, only: :show
   resources :venues
 
-  # must be behind devise
-  resources :users, except: [:show]
 
   root :to => 'roots#show'
 

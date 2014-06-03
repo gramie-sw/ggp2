@@ -113,11 +113,12 @@ de:
         score_team_2: Ergebnis für Team 2
       user:
         admin: Administrator
+        active: Aktiv
         nickname: Benutzername
         email: E-Mail
         first_name: Vorname
         full_name: Name
-        last_name: Name
+        last_name: Nachname
         last_sign_in_at: Letztes Login
         password: Passwort
         password_confirmation: Passwort Bestätigung
@@ -126,6 +127,12 @@ de:
         new_password_confirmation: Neues Passwort Wiederholung
         points: Punkte
         created_at: Angemeldet am
+        updated_at: Geändert am
+        current_sign_in_at: Aktuelles Logindatum
+        last_sign_in_at: Letzes Logindatum
+        sign_in_count: Anzahl Logins
+        current_sign_in_ip: Aktuelle Login-IP
+        last_sign_in_ip: Letzte Login-IP
       venue:
         city: Ort
         stadium: Stadion
@@ -187,12 +194,15 @@ de:
     edit: Bearbeiten
     error: Fehler
     for_subject: für %{subject}
+    general: Allgemein
     hint: Hinweis
     hits:
       one: Volltreffer
       other: Volltreffer
     last_change: Letzte Änderung
+    lock: Sperren
     login: Anmelden
+    login_data: Logindaten
     logged_in_as: Angemeldet als
     logout: Abmelden
     ranking: Rangliste
@@ -225,7 +235,7 @@ de:
     tip: Tipp
     title_foto: Titlefoto
     user_administration: Benutzerverwaltung
-    user_data: Benutzer-Daten
+    user_data: Benutzerdaten
     'yes': Ja
 
   form:

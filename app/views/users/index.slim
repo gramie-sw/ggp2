@@ -1,10 +1,4 @@
-= render partial: 'commons/background_image', locals: {image_name: 'background_image_01.jpg'}
 - content_for(:title, t('general.user_administration'))
-
-/div.well.well-sm
-/  div.btn-toolbar
-/    = link_to I18n.t('general.player.other'), users_path(type: User::USER_TYPE_PLAYERS), class: "btn btn-default"
-/    = link_to I18n.t('general.admin.other'), users_path(type: User::USER_TYPE_ADMINS), class: "btn btn-default"
 
 ul.nav.nav-tabs
   li class=('active' if (params[:type] != User::USER_TYPE_ADMINS))
@@ -12,6 +6,7 @@ ul.nav.nav-tabs
   li class=('active' if (params[:type] == User::USER_TYPE_ADMINS))
     = link_to I18n.t('general.admin.other'), users_path(type: User::USER_TYPE_ADMINS)
 
+br
 - if @users.present?
   div.table-responsive
     table.table.table-hover
@@ -24,7 +19,7 @@ ul.nav.nav-tabs
           th = User.human_attribute_name(:last_sign_in_at)
       tbody
         - for user in @users
-          tr.link-row data-href="#{edit_user_path(user)}"
+          tr.link-row data-href="#{user_path(user)}"
             td = user.nickname
             td = user.first_name
             td = user.last_name
