@@ -254,7 +254,7 @@ de:
     third_place:
       position: Dritter
       badge: Unsung Hero
-
+  
   badges:
     all: Alle Auszeichnungen
 
@@ -274,7 +274,7 @@ de:
     section:
       statistic: Statistik
       badges: Auszeichnungen
-      user_data: Benutzer-Daten
+      user_data: Benutzerdaten
     yours: Dein Profil
     of: Profile von %{name}
 
@@ -317,5 +317,9 @@ de:
     tips:
       edit_multiple:
         title: Spiele tippen
+
+  user_mailer:
+    user_signed_up:
+      subject: WM-2014-Tippspiel - Herzlich Willkommen
 
 

@@ -1,4 +1,23 @@
+= "Hallo #{@user.nickname},"
+br
+br
+'Du hast dich mit der eMail-Adresse
+= @user.email
+'&nbsp;beim WM 2014 Tippspiel angemeldet.
+
+'Um die Registrierung abzuschließen musst du ein persönliches Passwort vergeben.
+'Bitte benutze dazu den folgenden Link:
 
 p
   - reset_password_url = edit_user_password_url(reset_password_token: @token, protocol: Ggp2.config.url_protocol)
   = link_to "Neues Passwort vergeben", reset_password_url
+
+'Aus Sicherheitsgründen ist die Gültigkeitsdauer der Links zur Passwortvergabe auf 2h begrenzt.
+br
+'War es dir nicht möglich innerhalb der Frist ein neues Passwort zu vergeben, benutze bitte die Funktion
+- new_user_password_url = new_user_password_url(protocol: Ggp2.config.url_protocol)
+= link_to "Passwort vergessen", new_user_password_url
+'.
+br
+br
+'Viel Spaß beim Tippen und Fußball schauen.
