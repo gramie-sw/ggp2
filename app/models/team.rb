@@ -6,7 +6,7 @@ class Team < ActiveRecord::Base
 
   validates :country, presence: true, uniqueness: true, length: {maximum: 2}
 
-  scope :order_by_country_name, -> { all.sort_by { |team| I18n.t(team.country, :scope => 'countries') } }
+  scope :order_by_country_name_asc, -> { all.sort_by { |team| I18n.t(team.country, :scope => 'countries') } }
 
   def abbreviation
     country

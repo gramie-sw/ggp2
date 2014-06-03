@@ -57,7 +57,7 @@ describe MatchesController do
 
       it 'should assign notice flash message' do
         post :create, params
-        flash[:notice].should eq t('model.messages.created', model: assigns(:match).message_name)
+        flash[:notice].should eq t('model.messages.added', model: assigns(:match).message_name)
       end
     end
 

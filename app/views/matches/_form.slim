@@ -21,7 +21,7 @@ div.well
         div.col-xs-9.col-md-10
           div.row
             div.col-xs-12.col-sm-7.col-md-6.col-lg-5
-              = f.select :team_1_id, Team.all.collect { |team| [team.name, team.id] }, {include_blank: true}, class: 'form-control'
+              = f.select :team_1_id, Team.order_by_country_name_asc.collect { |team| [team.name, team.id] }, {include_blank: true}, class: 'form-control'
           - if match.errors.get(:team_1) && !match.errors.get(:team_1).empty?
             div.row
               div.field_with_errors
@@ -33,7 +33,7 @@ div.well
         div.col-xs-9.col-md-10
           div.row
             div.col-xs-12.col-sm-7.col-md-6.col-lg-5
-              = f.select :team_2_id, Team.all.collect { |team| [team.name, team.id] }, {include_blank: true}, class: 'form-control'
+              = f.select :team_2_id, Team.order_by_country_name_asc.collect { |team| [team.name, team.id] }, {include_blank: true}, class: 'form-control'
           - if match.errors.get(:team_2) && !match.errors.get(:team_2).empty?
             div.row
               div.field_with_errors

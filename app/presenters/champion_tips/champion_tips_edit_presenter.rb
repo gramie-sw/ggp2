@@ -7,6 +7,6 @@ class ChampionTipsEditPresenter
   end
 
   def teams
-    Team.order_by_country_name
+    Team.order_by_country_name_asc
   end
 end

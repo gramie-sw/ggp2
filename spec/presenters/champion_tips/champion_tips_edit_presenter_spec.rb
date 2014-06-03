@@ -11,7 +11,7 @@ describe ChampionTipsEditPresenter do
   describe '#teams' do
 
     it 'should return Teams ordered by country name' do
-      Team.should_receive(:order_by_country_name).and_return(:teams)
+      Team.should_receive(:order_by_country_name_asc).and_return(:teams)
       subject.teams.should be :teams
     end
   end

@@ -16,7 +16,7 @@ class MatchesController < ApplicationController
     @match = Match.new(params[:match])
 
     if @match.save
-      redirect_to matches_path, notice: t('model.messages.created', model: @match.message_name)
+      redirect_to matches_path, notice: t('model.messages.added', model: @match.message_name)
     else
       render :new
     end

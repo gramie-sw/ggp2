@@ -18,13 +18,13 @@ describe Team do
   end
 
   describe 'scopes' do
-    describe '#order_by_country_name' do
+    describe '#order_by_country_name_asc' do
       it 'should order by country name' do
         team_3 = create(:team, country: 'TH')
         team_1 = create(:team, country: 'BM')
         team_2 = create(:team, country: 'MX')
 
-        teams = Team.order_by_country_name
+        teams = Team.order_by_country_name_asc
         teams[0].name.should eq team_1.name
         teams[1].name.should eq team_2.name
         teams[2].name.should eq team_3.name
