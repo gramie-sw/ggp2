@@ -9,7 +9,7 @@ div.well
         div.col-xs-9
           div.row
             div.col-xs-4.col-sm-2
-              = f.text_field :position, class: 'form-control'
+              = f.text_field :position, class: 'form-control', autofocus: true
           - if match.errors.get(:position) && !match.errors.get(:position).empty?
             div.row
               div.field_with_errors

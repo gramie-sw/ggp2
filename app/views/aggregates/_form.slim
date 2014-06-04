@@ -6,7 +6,7 @@ div.well.well-sm
         div.col-xs-9.col-sm-10.col-lg-11
           div.row
             div.col-xs-12.col-sm-7.col-md-6.col-lg-5
-              = f.text_field :position, class: 'form-control'
+              = f.text_field :position, class: 'form-control', autofocus: true
           - if aggregate.errors.get(:position) && !aggregate.errors.get(:position).empty?
             div.row
               div.field_with_errors

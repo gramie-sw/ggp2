@@ -7,7 +7,7 @@ div.well
       div.ggp2-form-group
         = f.label :country, class: 'control-label'
       div.ggp2-form-group.ggp2-form-group-tighter
-        = country_select(:team, :country, nil, {}, class: "form-control col-sm-2")
+        = country_select(:team, :country, nil, {}, class: "form-control col-sm-2", autofocus: true)
       - if @presenter.new_team.errors.get(:country) && !@presenter.new_team.errors.get(:country).empty?
         div.ggp2-form-group.ggp2-form-group-tighter
           div.field_with_errors
