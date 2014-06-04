@@ -88,8 +88,8 @@ de:
         one: Benutzer
         other: Benutzer
       venue:
-        one: Austragungsort
-        other: Austragungsorte
+        one: Spielort
+        other: Spielorte
     attributes:
       aggregate:
         position: Position
@@ -257,6 +257,7 @@ de:
 
   badges:
     all: Alle Auszeichnungen
+    user_not_yet_awarded: Noch keine Auszeichnung verdient
 
   comments:
     max_allow_char_message: 'max. 500 Zeichen'
