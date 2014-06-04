@@ -5,13 +5,22 @@ class AdaptedDevise::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    result = CreateUser.new.run(params[:user])
 
-    if result.successful?
-      UserMailer.user_signed_up(result.user, result.raw_token).deliver
-      redirect_to new_user_session_path, notice: t('devise.passwords.send_initial_instructions')
+    if verify_recaptcha
+
+      result = CreateUser.new.run(params[:user])
+
+      if result.successful?
+        UserMailer.user_signed_up(result.user, result.raw_token).deliver
+        redirect_to new_user_session_path, notice: t('devise.passwords.send_initial_instructions')
+      else
+        @user = result.user
+        render :new
+      end
+
     else
-      @user = result.user
+      @user = User.new(params[:user])
+      @user.errors[:base] << I18n.t('general.recaptcha_wrong')
       render :new
     end
   end

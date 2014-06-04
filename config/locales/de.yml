@@ -221,6 +221,7 @@ de:
     profile:
       one: Profil
       other: Profile
+    recaptcha_wrong: Captcha wurde nicht korrekt eingegeben
     remove: Entfernen
     of_subject: von %{subject}
     search: Suchen
