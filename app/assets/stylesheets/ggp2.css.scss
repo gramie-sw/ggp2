@@ -45,8 +45,12 @@ body {
     }
   }
 
+  .version-info {
+    font-size: $font-size-base * 0.8;
+  }
+
   .foto-copyright {
-    font-size: $font-size-base * 0.9;
+    font-size: $font-size-base * 0.8;
 
     a {
       color: $ggp2-footer-color;

@@ -231,7 +231,7 @@ de:
     show: Anzeigen
     searchterm: Suchbegriff
     select_all: Alle
-    select_none: Keines
+    select_none: Keine
     statistic: Statistik
     tendency: Tendenz
     tournament: Turnier
@@ -337,7 +337,7 @@ de:
   help:
     tip:
       how_to_match_tip: |
-        In dem Du auf die Tabellezeile des jeweiligen Spiel klickst kannst du einen einzelnen Tipp abgeben.
+        Indem du auf die Tabellenzeile des jeweiligen Spiels klickst kannst du einen einzelnen Tipp abgeben.
         Mit Hilfe der Checkboxen können mehrere Spiele zum Tippen ausgewählt werden.
       deadlines: |
         Bis zum Beginn des jeweiligen Spiels darf ein Tipp beliebig oft verändert werden.
@@ -351,8 +351,8 @@ de:
     sign_up:
       description:
         name: |
-          Schön das du mitspielen willst. Da wir kein anonymes Spiel wollen bitten wir dich, dass du deinen korrekten
-          Vor- und Nachnamen angibst.
+          Schön, dass du mitspielen willst. Da wir kein anonymes Spiel wollen bitten wir dich, deinen korrekten
+          Vor- und Nachnamen anzugeben.
         email: |
           Um den Anmeldeprozess erfolgreich durchzuführen musst du eine gültige E-Mail-Adresse eingeben.
 
