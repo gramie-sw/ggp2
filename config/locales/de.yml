@@ -177,8 +177,8 @@ de:
       other: Administratoren
     award_ceremony: Siegerehrung
     badge:
-      one: Auszeichung
-      other: Auszeichungen
+      one: Auszeichnung
+      other: Auszeichnungen
     changeable_until: änderbar bis %{date}
     close: x
     count:
