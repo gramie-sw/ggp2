@@ -1,12 +1,23 @@
 footer#footer
   div.container
     div.row
-      div.col-md-4
+      div.col-xs-12.visible-xs.visible-sm
         a href="https://github.com/gramie-sw/ggp2" target="blank"
           'ggp2 - Version
           = Ggp2.config.application_version
           '&nbsp;&middot; &copy;&nbsp;2013-2014&nbsp;gramie
+      div.col-md-4.hidden-xs.hidden-sm
+        a href="https://github.com/gramie-sw/ggp2" target="blank"
+          'ggp2 - Version
+          = Ggp2.config.application_version
+          br
+          '&copy;&nbsp;2013-2014&nbsp;gramie
       div.col-md-4
+        i.fa.fa-lg.fa-child
+        '&nbsp
+        i.fa.fa-lg.fa-trophy
+        '&nbsp
+        i.fa.fa-lg.fa-flag
       div.col-md-4.foto-copyright
         '&copy;&nbsp;
         = t('general.title_foto')

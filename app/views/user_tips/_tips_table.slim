@@ -1,10 +1,15 @@
-- if show_as_form
-  - table_id="tip-table-aggregate-#{aggregate.id}"
-  div.btn-toolbar
-    = link_to t('general.select_all'), '#', class: 'btn btn-default btn-sm', \
-            onclick: "checkAllCheckboxes('#{table_id}');return false;"
+div
+  - if show_as_form
+    - table_id="tip-table-aggregate-#{aggregate.id}"
+    div.btn-toolbar.pull-left
+      = link_to t('general.select_all'), '#', class: 'btn btn-default btn-sm', \
+              onclick: "checkAllCheckboxes('#{table_id}');return false;"
 
-    = submit_tag t('views.user_tips.show.tip_selected_matches'), class: 'btn btn-primary btn-sm'
+      = submit_tag t('views.user_tips.show.tip_selected_matches'), class: 'btn btn-primary btn-sm'
+    div.pull-right
+      = link_to '', class: 'btn btn-primary btn-sm',  data: {toggle: :modal, target: "#help-modal"}
+        i.fa.fa-question-circle &nbsp;Hilfe
+
 div.table-responsive
   table.table.table-hover id="#{table_id}"
     thead
@@ -38,3 +43,20 @@ div.table-responsive
           td
             = link_to match_tip_path(match_presenter.id)
               icon.fa.fa-users title="#{t('tip.all_for', subject: "#{Match.model_name.human} #{match_presenter.position}")}"
+
+div class="modal fade" id="help-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+  div class="modal-dialog"
+    div class="modal-content"
+      div class="modal-header"
+        button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+          '&times;
+        h4 class="modal-title" id="myModalLabel"
+          i.fa.fa-question-circle &nbsp;Hilfe
+      div class="modal-body"
+        p = t('help.tip.how_to_match_tip')
+        p = t('help.tip.deadlines')
+        p = t('help.tip.points.preface')
+        ul
+          li = t('help.tip.points.correct_tip', points: t('general.count.point', count: Ggp2.config.correct_tip_points))
+          li = t('help.tip.points.correct_tendency_only_tip', points: t('general.count.point', count: Ggp2.config.correct_tendency_tip_only_points))
+          li = t('help.tip.points.correct_champion_tip', points: t('general.count.point', count: Ggp2.config.correct_champion_tip_points))
