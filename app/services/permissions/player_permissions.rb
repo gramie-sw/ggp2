@@ -26,19 +26,19 @@ class PlayerPermissions
 
     #filters
     add_filter :comments, :create do |resource, params|
-      if params.present? && params.has_key?(:comment) && params[:comment].has_key?(:user_id) && params[:comment][:user_id] != current_user.id.to_s
-        false
-      else
-        true
-      end
+      params[:comment][:user_id] == current_user.id.to_s
     end
 
-    add_filter :comments, :update do |resource, params|
-      if params.present? && params.has_key?(:comment) && params[:comment].has_key?(:user_id) && params[:comment][:user_id] != current_user.id.to_s
-        false
-      else
-        true
-      end
+    add_filter :comments, [:edit, :update] do |resource, params|
+      resource.user_id == current_user.id
+    end
+
+    add_filter :tips, [:edit_multiple, :update_multiple] do |resource, params|
+      Tip.where(id: params[:tip_ids]).all? { |tip| tip.user_id == current_user.id }
+    end
+
+    add_filter :champion_tips, [:edit, :update] do |resource, params|
+      resource.user_id == current_user.id
     end
   end
 end

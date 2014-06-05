@@ -88,8 +88,8 @@ describe CommentsController do
 
   describe '#edit' do
 
-    let(:params) { {id: '5'} }
-    let(:comment) { Comment.new }
+    let(:comment) { create(:comment, user: user) }
+    let(:params) { {id: comment.to_param} }
 
     before :each do
       Comment.stub(:find).and_return(comment)
@@ -114,12 +114,8 @@ describe CommentsController do
 
   describe '#update' do
 
-    let(:comment) { Comment.new }
-    let(:params) { {id: '5', comment: {'content' => 'new_content', }} }
-
-    before :each do
-      Comment.stub(:find).with('5').and_return(comment)
-    end
+    let(:comment) { create(:comment, user: user) }
+    let(:params) { {id: comment.to_param, comment: {'content' => 'new_content', }} }
 
     it 'should use CommentService to update comment' do
       CommentService.should_receive(:new).and_call_original
