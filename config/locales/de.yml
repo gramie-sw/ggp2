@@ -185,7 +185,7 @@ de:
       point:
         one: '%{count} Punkt'
         other: '%{count} Punkte'
-    edited_at: bearbeited am %{date}
+    edited_at: bearbeitet am %{date}
     wm_2014_title: 'WM-2014 Brasilien'
     match_result: 'Ergebnis'
     menu: Menu
