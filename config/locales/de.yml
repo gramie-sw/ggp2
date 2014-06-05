@@ -221,7 +221,6 @@ de:
     profile:
       one: Profil
       other: Profile
-    recaptcha_wrong: Captcha wurde nicht korrekt eingegeben
     remove: Entfernen
     of_subject: von %{subject}
     search: Suchen
@@ -323,5 +322,21 @@ de:
   user_mailer:
     user_signed_up:
       subject: WM 2014 Tippspiel - Herzlich Willkommen
+
+  recaptcha:
+    label: Sicherheitstext eingeben
+    wrong_input: Sicherheitstext ist nicht korrekt
+    custom_translations:
+      instructions_visual: Text hier eingeben
+
+
+  help:
+    sign_up:
+      description:
+        name: |
+          Schön das du mitspielen willst. Da wir kein anonymes Spiel wollen bitten wir dich, dass du deinen korrekten
+          Vor- und Nachnamen angibst.
+        email: |
+          Um den Anmeldeprozess erfolgreich durchzuführen musst du eine gültige E-Mail-Adresse eingeben.
 
 

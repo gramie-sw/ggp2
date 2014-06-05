@@ -20,7 +20,7 @@ class AdaptedDevise::RegistrationsController < Devise::RegistrationsController
 
     else
       @user = User.new(params[:user])
-      @user.errors[:base] << I18n.t('general.recaptcha_wrong')
+      @user.errors[:base] << I18n.t('recaptcha.wrong_input')
       render :new
     end
   end

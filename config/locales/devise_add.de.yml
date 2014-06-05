@@ -11,7 +11,7 @@ de:
       sign_in: Anmelden
       sign_in_provider: "Mit %{provider} anmelden"
       sign_up: Registrieren
-      sign_up_submit: Registierung abschließen
+      sign_up_submit: Registrieren
     title:
       change_your_password: Neues Passwort
       forgot_your_password: Passwort vergessen?
