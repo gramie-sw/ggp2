@@ -140,13 +140,13 @@ describe PlayerPermissions do
     end
 
     before :each do
-      expect(Tip).to receive(:where).with(id: [1, 2]).and_return(tips)
+      expect(Tip).to receive(:where).with(id: ['1', '2']).and_return(tips)
     end
 
     context 'if all tips belong to current_user' do
 
       it 'should be allowed' do
-        should pass_filters(:tips, :update_multiple, params: {tip_ids: [1, 2]})
+        should pass_filters(:tips, :update_multiple, params: {tips: {'1' => {}, '2' => {}}})
       end
     end
 
@@ -154,7 +154,7 @@ describe PlayerPermissions do
 
       it 'should not be allowed' do
         tips.first.user_id = current_user.id + 1
-        should_not pass_filters(:tips, :update_multiple, params: {tip_ids: [1, 2]})
+        should_not pass_filters(:tips, :update_multiple, params: {tips: {'1' => {}, '2' => {}}})
       end
     end
   end

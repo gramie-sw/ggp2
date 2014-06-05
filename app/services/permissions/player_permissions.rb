@@ -33,8 +33,12 @@ class PlayerPermissions
       resource.user_id == current_user.id
     end
 
-    add_filter :tips, [:edit_multiple, :update_multiple] do |resource, params|
+    add_filter :tips, :edit_multiple do |resource, params|
       Tip.where(id: params[:tip_ids]).all? { |tip| tip.user_id == current_user.id }
+    end
+
+    add_filter :tips, :update_multiple do |resource, params|
+      Tip.where(id: params[:tips].keys).all? { |tip| tip.user_id == current_user.id }
     end
 
     add_filter :champion_tips, [:edit, :update] do |resource, params|

@@ -51,7 +51,7 @@ describe TipsController do
 
   describe '#update multiple' do
 
-    let(:tips) { (1..3).map { |p| create(:tip, score_team_1: 4, score_team_2: 4) } }
+    let(:tips) { (1..3).map { |p| create(:tip, score_team_1: 4, score_team_2: 4, user: player) } }
     let(:params) do
       {tips: {
           tips.first.to_param => {'score_team_1' => '1', 'score_team_2' => '0'},
