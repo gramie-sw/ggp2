@@ -4,7 +4,8 @@ div.well
 
     = render \
           partial: 'results/result_fields', \
-          locals: {match_presenter: @match_result_presenter.match_presenter, result: @match_result_presenter, index: 'match_result'}
+          locals: {match_presenter: @match_result_presenter.match_presenter,
+                   result: @match_result_presenter.match_presenter, index: 'match_result'}
 
     div.btn-toolbar.submit-group
       = submit_tag t('model.submit.save', model: MatchResult.model_name.human), class: 'btn btn-primary'
