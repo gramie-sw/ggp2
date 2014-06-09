@@ -42,7 +42,7 @@ class PlayerPermissions
     end
 
     add_filter :champion_tips, [:edit, :update] do |resource, params|
-      resource.user_id == current_user.id
+      resource.user_id == current_user.id && !Tournament.new.started?
     end
   end
 end

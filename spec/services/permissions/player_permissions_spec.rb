@@ -178,14 +178,23 @@ describe PlayerPermissions do
 
   context 'champion_tips#update' do
 
-    context 'if champion_tip belongs to to current_user' do
+    context 'if champion_tip belongs to to current_user and tournament is not started' do
 
       it 'should be allowed' do
+        expect_any_instance_of(Tournament).to receive(:started?).and_return(false)
         should pass_filters(:champion_tips, :edit, resource: ChampionTip.new(user_id: current_user.id))
       end
     end
 
-    context 'if champion_tip belongs to to current_user' do
+    context 'if champion_tip belongs to to current_user but tournament is started' do
+
+      it 'should not be allowed' do
+        expect_any_instance_of(Tournament).to receive(:started?).and_return(true)
+        should_not pass_filters(:champion_tips, :edit, resource: ChampionTip.new(user_id: current_user.id))
+      end
+    end
+
+    context 'if champion_tip does not belong to current_user' do
 
       it 'should not be allowed' do
         should_not pass_filters(:champion_tips, :edit, resource: ChampionTip.new(user_id: current_user.id + 1))
