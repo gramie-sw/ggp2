@@ -42,13 +42,13 @@ class UsersController < ApplicationController
   end
 
   def update_succeeded(user)
-    if request.referrer.match(user_tip_path(user)).present?
-      redirect_to user_tip_path(user)
+    if request.referrer.match('/user_tips').present?
+      redirect_to URI(request.referrer).path
     end
   end
 
   def update_failed(user)
-    if request.referrer.match(user_tip_path(user)).present?
+    if request.referrer.match('/user_tips').present?
       render_403
     end
   end

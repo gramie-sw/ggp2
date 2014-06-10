@@ -44,7 +44,7 @@ describe TipsController do
 
       it 'should assign alert message' do
         post :edit_multiple, params
-        flash[:alert].should eq t('general.none_selected', element: Tip.model_name.human)
+        flash[:alert].should eq t('general.none_selected', element: Match.model_name.human)
       end
     end
   end

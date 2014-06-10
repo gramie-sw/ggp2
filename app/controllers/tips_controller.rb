@@ -5,7 +5,7 @@ class TipsController < ApplicationController
     if params[:tip_ids].present?
       @presenter = TipsEditMultiplePresenter.new(tip_ids: params[:tip_ids])
     else
-      redirect_to request.referer, alert: t('general.none_selected', element: Tip.model_name.human)
+      redirect_to request.referer, alert: t('general.none_selected', element: Match.model_name.human)
     end
   end
 
