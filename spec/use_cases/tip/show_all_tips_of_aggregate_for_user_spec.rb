@@ -22,10 +22,10 @@ describe ShowAllTipsOfAggregateForUser do
 
   let(:matches) do
     [
-        create(:match, date: 1.day.ago, aggregate: groups.first, position: 1),
-        create(:match, date: 1.day.ago, aggregate: groups.first, position: 2),
-        create(:match, date: 1.day.ago, aggregate: groups.second, position: 3),
-        create(:match, date: 1.day.ago, aggregate: groups.second, position: 4),
+        create(:match, date: 4.days.ago, aggregate: groups.first, position: 1),
+        create(:match, date: 2.days.ago, aggregate: groups.first, position: 2),
+        create(:match, date: 1.days.ago, aggregate: groups.second, position: 3),
+        create(:match, date: 3.day.ago, aggregate: groups.second, position: 4),
         create(:match, date: 2.day.from_now, aggregate: phases.second, position: 5),
         create(:match, date: 2.day.from_now, aggregate: phases.second, position: 6),
         create(:match, date: 3.day.from_now, aggregate: phases.third, position: 7),
@@ -92,6 +92,28 @@ describe ShowAllTipsOfAggregateForUser do
         expect(presentable).to receive(:current_aggregate=).with(phases.second)
         expect(presentable).to receive(:tips=) do |actual_tips|
           expect(actual_tips).to eq [tips[4], tips[5]]
+        end
+
+        subject.run_with_presentable(presentable)
+      end
+    end
+
+    context 'when sort given' do
+
+      subject do
+        ShowAllTipsOfAggregateForUser.new(
+            tournament: tournament,
+            user_id: user.id,
+            current_aggregate_id: phases.first.to_param,
+            sort: 'matches.date'
+        )
+      end
+
+      it 'should sort tips by given sort' do
+
+        expect(presentable).to receive(:current_aggregate=).with(phases.first)
+        expect(presentable).to receive(:tips=) do |actual_tips|
+          expect(actual_tips).to eq [tips.first, tips.fourth, tips.second, tips.third]
         end
 
         subject.run_with_presentable(presentable)

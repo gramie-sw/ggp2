@@ -30,13 +30,27 @@ class UsersController < ApplicationController
     end
   end
 
-
   def edit
     @user = current_resource
   end
 
   def update
 
+    UpdateUser.
+        new(current_user: current_user, user_id: params[:id], attributes: params[:user]).
+        run_with_callback(self)
+  end
+
+  def update_succeeded(user)
+    if request.referrer.match(user_tip_path(user)).present?
+      redirect_to user_tip_path(user)
+    end
+  end
+
+  def update_failed(user)
+    if request.referrer.match(user_tip_path(user)).present?
+      render_403
+    end
   end
 
   def destroy

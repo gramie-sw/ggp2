@@ -62,6 +62,8 @@ module Ggp2
 
   USER_TIPS_LAST_SHOWN_CURRENT_AGGREGATE_ID_KEY = 'utlscaid'
 
+  AuthorizationFailedError = Class.new StandardError
+
   def self.config
     Application.config
   end

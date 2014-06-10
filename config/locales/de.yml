@@ -98,7 +98,7 @@ de:
       comment:
         content: Kommentar
       match:
-        position: Spiel
+        position: Spielnummer
         venue: Austragungsort
         team_1: Team 1
         team_2: Team 2
@@ -199,6 +199,7 @@ de:
     error: Fehler
     for_subject: für %{subject}
     general: Allgemein
+    help: Hilfe
     hint: Hinweis
     hits:
       one: Volltreffer
@@ -232,6 +233,7 @@ de:
     searchterm: Suchbegriff
     select_all: Alle
     select_none: Keine
+    sort: Sortierung
     statistic: Statistik
     tendency: Tendenz
     tournament: Turnier
@@ -270,6 +272,9 @@ de:
     description:
       change: |
        Wähle deinen Weltmeister
+
+  match:
+    sort: Spielesortierung
 
   pin_board:
     description: '&bdquo;Der Schiri war blind und die Spieler alles nur Amateure!"'

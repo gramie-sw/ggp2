@@ -69,6 +69,14 @@ $ggp2-landing-header-image-min-height: 380px;
       margin-right: 10px;
     }
   }
+
+  select, input {
+    margin-right: 10px;
+  }
+
+  input[type=submit] {
+    margin-bottom: 0px;
+  }
 }
 
 .well {

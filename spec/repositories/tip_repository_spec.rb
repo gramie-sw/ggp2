@@ -273,19 +273,37 @@ describe TipRepository do
       create(:tip, match: match_1)
 
       actual_tips = subject.
-          all_by_user_id_and_match_ids_for_listing(user_id: user.id, match_ids: [match_3.id, match_1.id, match_2.id])
+          all_by_user_id_and_match_ids_for_listing(user_id: user.id, match_ids: [match_3.id, match_1.id, match_2.id], sort: nil)
       expect(actual_tips.count).to eq 3
       expect(actual_tips).to eq [tip_1, tip_2, tip_3]
     end
   end
 
-  it 'should include match, team_1 and team_2' do
+  let(:relation) do
     relation = double('TipRelation')
     relation.as_null_object
-
     expect(Tip).to receive(:where).and_return(relation)
-    expect(relation).to receive(:includes).with(match: [:team_1, :team_2])
+    relation
+  end
 
+  it 'should include match, team_1 and team_2' do
+    expect(relation).to receive(:includes).with(match: [:team_1, :team_2])
     subject.all_by_user_id_and_match_ids_for_listing(user_id: 3, match_ids: [])
+  end
+
+  context 'when sort given' do
+
+    it 'should use it for ordering' do
+      expect(relation).to receive(:order).with('matches.date')
+      subject.all_by_user_id_and_match_ids_for_listing(user_id: 3, match_ids: [], sort: 'matches.date')
+    end
+  end
+
+  context 'when given sort is nil' do
+
+    it 'should use sort by position' do
+      expect(relation).to receive(:order).with('matches.position')
+      subject.all_by_user_id_and_match_ids_for_listing(user_id: 3, match_ids: [], sort: nil)
+    end
   end
 end

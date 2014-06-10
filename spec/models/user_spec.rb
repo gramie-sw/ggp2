@@ -26,6 +26,10 @@ describe User do
       it { should allow_value(true, false).for(:admin) }
       it { should_not allow_value(nil).for(:admin) }
     end
+
+    describe '#match_sort' do
+      it { should ensure_inclusion_of(:match_sort).in_array(['matches.position', 'matches.date']).allow_nil }
+    end
   end
 
   describe 'associations' do

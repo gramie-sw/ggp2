@@ -27,6 +27,7 @@ describe 'user_tips/_tips_table.slim' do
 
     select_all_link_selector = "div.btn-toolbar a[onclick]"
     submit_button_selector = "div.btn-toolbar input[type='submit']"
+    help_link_selector = ['a', {text: I18n.t('general.help')}]
 
     context 'if show_as_form is true' do
 
@@ -34,17 +35,19 @@ describe 'user_tips/_tips_table.slim' do
         render partial_options
         rendered.should have_css select_all_link_selector
         rendered.should have_css submit_button_selector
+        rendered.should have_css *help_link_selector
       end
     end
 
-    context 'if show_as_form is true' do
+    context 'if show_as_form is false' do
 
       let(:show_as_form) { false }
 
-      it 'should be displayed' do
+      it 'should not be displayed' do
         render partial_options
         rendered.should_not have_css select_all_link_selector
         rendered.should_not have_css submit_button_selector
+        rendered.should_not have_css *help_link_selector
       end
     end
   end

@@ -11,29 +11,36 @@ div.visible-md.visible-lg
 
 div.row.visible-xs.visible-sm
   div.col-xs-12
-      div.btn-group.pull-right.ggp2-btn-group
-        button.btn.btn-primary.btn-lg.dropdown-toggle type="button" data-toggle="dropdown"
-          = "#{t('general.menu')} "
-          span.caret
-        ul.dropdown-menu.pull-right.ggp2-dropdown-menu role="menu"
-          - for phase in @presenter.phases
-            li class=('active' if phase.id == @presenter.current_aggregate.id)
-              = link_to phase.name, url_for(aggregate_id: phase.id, only_path: true)
+    div.btn-group.pull-right.ggp2-btn-group
+      button.btn.btn-primary.btn-lg.dropdown-toggle type="button" data-toggle="dropdown"
+        = "#{t('general.menu')} "
+        span.caret
+      ul.dropdown-menu.pull-right.ggp2-dropdown-menu role="menu"
+        - for phase in @presenter.phases
+          li class=('active' if phase.id == @presenter.current_aggregate.id)
+            = link_to phase.name, url_for(aggregate_id: phase.id, only_path: true)
 
 div
   h2.text-center = @presenter.current_aggregate.name
 
+- partial_options = [ \
+    partial: 'tips_table',
+    locals: { \
+      tip_presenters: @presenter.tip_presenters,
+      aggregate: @presenter.current_aggregate,
+      show_as_form: @presenter.show_as_form? } \
+  ]
+
 - if @presenter.show_as_form?
-  = form_tag edit_multiple_tips_path
-= render partial: 'tips_table',
-            locals: { \
-            tip_presenters: @presenter.tip_presenters,
-            aggregate: @presenter.current_aggregate,
-            show_as_form: @presenter.show_as_form? \
-  }
+  = form_tag edit_multiple_tips_path, id: 'tip-table-form'
+    = render *partial_options
+- else
+  = render *partial_options
 
 - unless @presenter.user_is_current_user?
   small
     strong
       = "#{t('general.hint')}: "
     = t('tip.description.for_showing_others')
+
+= render 'match_sort_form_modal'

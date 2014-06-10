@@ -19,6 +19,7 @@ describe PlayerPermissions do
                  [:rankings, [:show]],
                  [:roots, [:show]],
                  [:tips, [:edit_multiple, :update_multiple]],
+                 [:users, :update],
                  [:user_tips, [:show]]
              )
     end
@@ -30,7 +31,7 @@ describe PlayerPermissions do
     it 'should exactly allow attributes' do
 
       should exactly_allow_attributes(
-                 [:user, [:email, :nickname, :first_name, :last_name, :current_password, :password, :password_confirmation, :remember_me]],
+                 [:user, [:email, :nickname, :first_name, :last_name, :current_password, :password, :password_confirmation, :remember_me, :match_sort]],
                  [:tips, [:score_team_1, :score_team_2]],
                  [:champion_tip, [:team_id]],
                  [:comment, [:user_id, :content]]

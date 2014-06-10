@@ -4,7 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   rescue_from Permissioner::NotAuthorized do
-    render file: "#{Rails.root}/public/403", layout: false, status: :forbidden
+    render_403
+  end
+
+  rescue_from Ggp2::AuthorizationFailedError do
+    render_403
   end
 
   before_filter :authenticate_user!
@@ -40,5 +44,9 @@ class ApplicationController < ActionController::Base
 
   def after_sign_out_path_for(resource_or_scope)
     new_user_session_path
+  end
+
+  def render_403
+    render file: "#{Rails.root}/public/403", layout: false, status: :forbidden
   end
 end

@@ -1,15 +1,16 @@
 class ShowAllTipsOfAggregateForUser
 
-  def initialize(tournament:, user_id:, current_aggregate_id: nil)
+  def initialize(tournament:, user_id:, current_aggregate_id: nil, sort: nil)
     @tournament = tournament
     @user_id = user_id
     @current_aggregate_id = current_aggregate_id
+    @sort = sort
   end
 
   def run_with_presentable(presentable)
 
     match_ids = Match.all_match_ids_by_aggregate_id(current_aggregate.id)
-    tips = Tip.all_by_user_id_and_match_ids_for_listing(user_id: user_id, match_ids: match_ids)
+    tips = Tip.all_by_user_id_and_match_ids_for_listing(user_id: user_id, match_ids: match_ids, sort: sort)
 
     presentable.current_aggregate = current_aggregate
     presentable.tips = tips
@@ -17,7 +18,7 @@ class ShowAllTipsOfAggregateForUser
 
   private
 
-  attr_reader :tournament, :user_id, :current_aggregate_id
+  attr_reader :tournament, :user_id, :current_aggregate_id, :sort
 
   def current_aggregate
     @current_aggregate ||= begin

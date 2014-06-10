@@ -11,7 +11,10 @@ class UserTipsController < ApplicationController
     session[Ggp2::USER_TIPS_LAST_SHOWN_CURRENT_AGGREGATE_ID_KEY] = params[:aggregate_id]
 
     ShowAllTipsOfAggregateForUser.
-        new(tournament: tournament, user_id: params[:id], current_aggregate_id: params[:aggregate_id]).
+        new(tournament: tournament,
+            user_id: params[:id],
+            current_aggregate_id: params[:aggregate_id],
+            sort: current_user.match_sort).
         run_with_presentable(@presenter)
     ShowChampionTip.new(params[:id]).run_with_presentable(@presenter)
     ShowAllPhases.new.run_with_presentable(@presenter)

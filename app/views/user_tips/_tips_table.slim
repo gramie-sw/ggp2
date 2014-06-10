@@ -1,16 +1,20 @@
-div
+div.btn-toolbar
   - if show_as_form
     - table_id="tip-table-aggregate-#{aggregate.id}"
     - checkbox_trigger_link_id="checkbox-trigger-#{aggregate.id}"
-    div.btn-toolbar
-      = link_to t('general.select_all'), '#', id: checkbox_trigger_link_id,  class: 'btn btn-default btn-sm', \
-            onclick: "toggleAllCheckboxes('#{checkbox_trigger_link_id}', '#{table_id}');return false;",
-            data: { toggle_label: t('general.select_none') }
+    = link_to t('general.select_all'), '#', id: checkbox_trigger_link_id,  class: 'btn btn-default btn-sm', \
+          onclick: "toggleAllCheckboxes('#{checkbox_trigger_link_id}', '#{table_id}');return false;",
+          data: { toggle_label: t('general.select_none') }
 
-      = submit_tag t('views.user_tips.show.tip_selected_matches'), class: 'btn btn-primary btn-sm'
-      div.pull-right
-        = link_to '', class: 'btn btn-primary btn-sm',  data: {toggle: :modal, target: "#help-modal"}
-          i.fa.fa-question-circle &nbsp;Hilfe
+    = submit_tag t('views.user_tips.show.tip_selected_matches'), class: 'btn btn-primary btn-sm'
+    div.pull-right
+      = link_to '', class: 'btn btn-primary btn-sm',  data: {toggle: :modal, target: "#help-modal"}
+        i.fa.fa-question-circle
+          span.hidden-xs = " #{t('general.help')}"
+  div.pull-right
+    = link_to '', class: 'btn btn-primary btn-sm',  data: {toggle: :modal, target: "#match-sort-modal"}
+      i.fa.fa-sort-numeric-asc
+        span.hidden-xs = " #{t('general.sort')}"
 
 div.table-responsive
   table.table.table-hover id="#{table_id}"
@@ -46,14 +50,14 @@ div.table-responsive
             = link_to match_tip_path(match_presenter.id)
               icon.fa.fa-users title="#{t('tip.all_for', subject: "#{Match.model_name.human} #{match_presenter.position}")}"
 
-div class="modal fade" id="help-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+div class="modal fade" id="help-modal" tabindex="-1" role="dialog" aria-hidden="true"
   div class="modal-dialog"
     div class="modal-content"
       div class="modal-header"
         button type="button" class="close" data-dismiss="modal" aria-hidden="true"
           '&times;
-        h4 class="modal-title" id="myModalLabel"
-          i.fa.fa-question-circle &nbsp;Hilfe
+        h4 class="modal-title"
+          i.fa.fa-question-circle = " #{t('general.help')}"
       div class="modal-body"
         p = t('help.tip.how_to_match_tip')
         p = t('help.tip.deadlines')
