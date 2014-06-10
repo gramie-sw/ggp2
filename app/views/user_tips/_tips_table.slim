@@ -10,11 +10,11 @@ div.btn-toolbar
     div.pull-right
       = link_to '', class: 'btn btn-primary btn-sm',  data: {toggle: :modal, target: "#help-modal"}
         i.fa.fa-question-circle
-          span.hidden-xs = " #{t('general.help')}"
+        span.hidden-xs = " #{t('general.help')}"
   div.pull-right
     = link_to '', class: 'btn btn-primary btn-sm',  data: {toggle: :modal, target: "#match-sort-modal"}
       i.fa.fa-sort-numeric-asc
-        span.hidden-xs = " #{t('general.sort')}"
+      span.hidden-xs = " #{t('general.sort')}"
 
 div.table-responsive
   table.table.table-hover id="#{table_id}"
