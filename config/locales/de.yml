@@ -342,7 +342,7 @@ de:
   help:
     tip:
       how_to_match_tip: |
-        Indem du auf die Tabellenzeile des jeweiligen Spiels klickst kannst du einen einzelnen Tipp abgeben.
+        Indem du auf die Tabellenzeile des jeweiligen Spiels klickst, kannst du einen einzelnen Tipp abgeben.
         Mit Hilfe der Checkboxen können mehrere Spiele zum Tippen ausgewählt werden.
       deadlines: |
         Bis zum Beginn des jeweiligen Spiels darf ein Tipp beliebig oft verändert werden.
