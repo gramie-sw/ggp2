@@ -341,7 +341,7 @@ de:
 
   help:
     ranking:
-      titleholder: makiert den Titelverteidiger
+      titleholder: markiert den Titelverteidiger
     tip:
       how_to_match_tip: |
         Indem du auf die Tabellenzeile des jeweiligen Spiels klickst, kannst du einen einzelnen Tipp abgeben.
