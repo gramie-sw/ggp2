@@ -2,6 +2,7 @@ class UserRankingPresenter
 
   delegate :nickname,
            :badges_count,
+           :titleholder?,
            to: :user
   delegate :user_id,
            :position,

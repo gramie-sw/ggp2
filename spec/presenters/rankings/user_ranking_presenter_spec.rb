@@ -12,13 +12,13 @@ describe UserRankingPresenter do
         current_user_id: current_user_id)
   end
 
-  it 'should delegate nickname to RankingItem#user' do
+  it 'should delegate User methods to RankingItem#user' do
     user.nickname = 'user_1'
-    subject.nickname.should eq 'user_1'
-  end
-
-  it 'should delegate badges_count to RankingItem#user' do
+    user.titleholder = true
     expect(user).to receive(:badges_count).and_return(5)
+
+    subject.nickname.should eq 'user_1'
+    subject.titleholder?.should be_true
     expect(subject.badges_count).to eq 5
   end
 

@@ -18,7 +18,11 @@ div.table-responsive
         tr class="link-row" data-href="#{profile_path(user_ranking_presenter.user_id)}"
           td = "#{user_ranking_presenter.position}."
           td
-            strong = user_ranking_presenter.nickname
+            strong
+              = user_ranking_presenter.nickname
+              - if user_ranking_presenter.titleholder?
+                '&nbsp;
+                i.fa.fa-trophy
           td.text-center.statistic-field = user_ranking_presenter.points
           td.text-center.statistic-field = user_ranking_presenter.correct_tips_count
           td.text-center.statistic-field = user_ranking_presenter.correct_tendency_tips_only_count
@@ -31,5 +35,13 @@ div.table-responsive
               icon.fa.fa-list title="#{t('tip.all_of', subject: user_ranking_presenter.nickname)}"
 
 = paginate @presenter.pagination_scope
+
+div
+  small
+    strong
+      = "#{t('general.hint')}: "
+    i.fa.fa-trophy
+    '&nbsp;
+    = t('help.ranking.titleholder')
 
 

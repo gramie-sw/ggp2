@@ -1,0 +1,16 @@
+div class="modal fade" id="help-modal" tabindex="-1" role="dialog" aria-hidden="true"
+  div class="modal-dialog"
+    div class="modal-content"
+      div class="modal-header"
+        button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+          '&times;
+        h4 class="modal-title"
+          i.fa.fa-question-circle = " #{t('general.help')}"
+      div class="modal-body"
+        p = t('help.tip.how_to_match_tip')
+        p = t('help.tip.deadlines')
+        p = t('help.tip.points.preface')
+        ul
+          li = t('help.tip.points.correct_tip', points: t('general.count.point', count: Ggp2.config.correct_tip_points))
+          li = t('help.tip.points.correct_tendency_only_tip', points: t('general.count.point', count: Ggp2.config.correct_tendency_tip_only_points))
+          li = t('help.tip.points.correct_champion_tip', points: t('general.count.point', count: Ggp2.config.correct_champion_tip_points))
