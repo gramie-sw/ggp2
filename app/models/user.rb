@@ -21,7 +21,6 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true, length: {maximum: 32}
   validates :admin, inclusion: {in: [true, false]}
   validates :match_sort, inclusion: {in: ['matches.position', 'matches.date']}, allow_nil: true
-  validates :titleholder, inclusion: {in: [true, false]}, allow_nil: true
 
   scope :players, -> { where(admin: false) }
   scope :admins, -> { where(admin: true) }

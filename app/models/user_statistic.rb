@@ -26,8 +26,7 @@ class UserStatistic
 
   def tip_ratio_for subject
     if tournament.played_match_count > 0
-      #TODO cast to float and round
-      send(subject) / tournament.played_match_count
+      (send(subject).to_f / tournament.played_match_count.to_f * 100).to_i
     else
       0
     end

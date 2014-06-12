@@ -30,10 +30,6 @@ describe User do
     describe '#match_sort' do
       it { should ensure_inclusion_of(:match_sort).in_array(['matches.position', 'matches.date']).allow_nil }
     end
-
-    describe '#titleholder' do
-      it { should ensure_inclusion_of(:titleholder).in_array([true, false]).allow_nil }
-    end
   end
 
   describe 'associations' do

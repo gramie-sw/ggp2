@@ -49,7 +49,8 @@ describe UserStatistic do
       it 'should return rounded ratio' do
         tournament.stub(:played_match_count).and_return(9)
         subject.stub(:correct_tips_count).and_return(4)
-        subject.correct_tips_ratio.should eq 0
+        subject.correct_tips_ratio.should eq 44
+
       end
     end
   end
@@ -69,7 +70,7 @@ describe UserStatistic do
       it 'should return rounded ratio' do
         tournament.stub(:played_match_count).and_return(9)
         subject.stub(:correct_tendency_tips_only_count).and_return(4)
-        subject.correct_tendency_tips_only_ratio.should eq 0
+        subject.correct_tendency_tips_only_ratio.should eq 44
       end
     end
   end
