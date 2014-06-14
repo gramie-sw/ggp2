@@ -6,7 +6,7 @@ div.ggp2-comment-box
       p
         = comment_presenter.content
       div
-        - if comment_presenter.edited? && !comment_presenter.censored?
+        - if comment_presenter.edited?
           small
             strong
               = t('general.edited_at', date: l(comment_presenter.updated_at, format: :short))
