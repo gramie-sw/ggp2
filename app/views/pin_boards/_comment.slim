@@ -6,14 +6,22 @@ div.ggp2-comment-box
       p
         = comment_presenter.content
       div
-        - if comment_presenter.edited?
+        - if comment_presenter.edited? && !comment_presenter.censored?
           small
             strong
               = t('general.edited_at', date: l(comment_presenter.updated_at, format: :short))
 
-        - if comment_presenter.is_for_current_user?
+        - if comment_presenter.destroyable?
+          = link_to(comment_path(comment_presenter), method: :delete, data: {confirm: t('model.messages.destroy_really', \
+          model: ("#{Comment.model_name.human}")), \
+          method: :delete}, title: t('model.messages.destroy', \
+          model: ("#{Comment.model_name.human}"))) do
+            i.pull-right.fa.fa-trash-o
+
+        - if comment_presenter.editable?
           = link_to(edit_comment_path(comment_presenter), title: t('model.messages.edit', model: Comment.model_name.human)) do
             i.pull-right.fa.fa-pencil
+
     div.col-sm-4.col-md-3.hidden-xs
       p
         small

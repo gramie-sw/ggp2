@@ -23,16 +23,26 @@ class CommentsController < ApplicationController
   end
 
   def update
+    UpdateComment.
+        new(current_user: current_user, comment_id: params[:id], attributes: params[:comment]).
+        run_with_callback(self)
+  end
 
-    service = CommentService.new
-    result = service.update_comment(current_resource, params[:comment])
+  def update_succeeded comment
+    redirect_to pin_boards_path, notice: t('model.messages.updated', model: Comment.model_name.human)
+  end
 
-    if result.successful?
-      redirect_to pin_boards_path, notice: t('model.messages.updated', model: Comment.model_name.human)
-    else
-      @comment = result.comment
-      render :edit
-    end
+
+  def update_failed comment
+    @comment = comment
+    render :edit
+  end
+
+
+  def destroy
+    DeleteComment.new(params[:id]).run
+    UpdateUserBadges.new.run(:comment)
+    redirect_to pin_boards_path, notice: t('model.messages.destroyed', model: Comment.model_name.human)
   end
 
   private

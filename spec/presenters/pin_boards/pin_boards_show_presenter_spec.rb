@@ -3,13 +3,17 @@ describe PinBoardsShowPresenter do
   let(:current_user_id) { 10 }
   let(:page) { 2 }
   let(:comments_repo) { double('CommentsRepo') }
+  let(:is_admin) { false }
 
   subject do
     PinBoardsShowPresenter.new(
         comments_repo: comments_repo,
         page: page,
-        current_user_id: current_user_id)
+        current_user_id: current_user_id,
+        is_admin: is_admin
+    )
   end
+
 
   describe '#comment_presenters' do
 
@@ -32,8 +36,8 @@ describe PinBoardsShowPresenter do
     end
 
     it 'should set correct is_for_current_user argument when instantiate CommentPresenters' do
-      CommentsPresenter.should_receive(:new).with(comment: comments.first, is_for_current_user: true)
-      CommentsPresenter.should_receive(:new).with(comment: comments.second, is_for_current_user: false)
+      CommentsPresenter.should_receive(:new).with(comment: comments.first, is_for_current_user: true, is_admin: false)
+      CommentsPresenter.should_receive(:new).with(comment: comments.second, is_for_current_user: false, is_admin: false)
       subject.comment_presenters
     end
 

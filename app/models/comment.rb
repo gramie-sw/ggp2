@@ -9,4 +9,5 @@ class Comment < ActiveRecord::Base
 
   scope :order_by_created_at_desc, -> { order(created_at: :desc) }
   scope :comments_for_pin_board, ->(page) { order_by_created_at_desc.includes(:user).page(page).per(10) }
+
 end

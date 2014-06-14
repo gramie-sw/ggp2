@@ -2,7 +2,8 @@ describe 'pin_boards/_comment.slim' do
 
   let(:comment) { build(:comment, id: 5, created_at: Time.current) }
   let(:is_for_current_user) { true }
-  let(:comment_presenter) { CommentsPresenter.new(comment: comment, is_for_current_user: is_for_current_user) }
+  let(:is_admin) { false }
+  let(:comment_presenter) { CommentsPresenter.new(comment: comment, is_for_current_user: is_for_current_user, is_admin: is_admin) }
 
   let(:partial_options) do
     {

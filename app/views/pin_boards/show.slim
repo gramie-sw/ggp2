@@ -1,14 +1,14 @@
 - content_for(:title, t('general.pin_board'))
-
-div.jumbotron.ggp2-jumbotron
-  div.row
-    div.col-xs-12
-      p.lead = t('pin_board.description').html_safe
-  div.row
-    div.col-md-8
-      p = t('pin_board.subdescription')
-    div.col-md-4
-      = link_to t('model.messages.write', model: Comment.model_name.human), new_comment_path, class: 'btn btn-primary pull-right'
+- unless @presenter.is_admin
+  div.jumbotron.ggp2-jumbotron
+    div.row
+      div.col-xs-12
+        p.lead = t('pin_board.description').html_safe
+    div.row
+      div.col-md-8
+        p = t('pin_board.subdescription')
+      div.col-md-4
+        = link_to t('model.messages.write', model: Comment.model_name.human), new_comment_path, class: 'btn btn-primary pull-right'
 
 div.row
   div.col-lg-10

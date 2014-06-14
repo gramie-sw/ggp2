@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20140611155146) do
     t.boolean  "edited"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "censored"
   end
 
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree

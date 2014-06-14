@@ -4,7 +4,8 @@ class PinBoardsController < ApplicationController
     @presenter = PinBoardsShowPresenter.new(
         comments_repo: Comment,
         page: params[:page],
-        current_user_id: current_user.id
+        current_user_id: current_user.id,
+        is_admin: current_user.admin?
     )
   end
 end

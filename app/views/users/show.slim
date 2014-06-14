@@ -1,13 +1,6 @@
 - user = @presenter.user
 - content_for(:title, "#{User.model_name.human} #{user.nickname}")
 
-ul.nav.nav-tabs
-  li class='active'
-    = link_to I18n.t('general.general'), user_path(user)
-  li
-    = link_to Comment.model_name.human_plural, user_path(user)
-
-br
 div.btn-toolbar
   = link_to edit_user_path(user), class: 'btn btn-primary', type: 'button'
     i.fa.fa-pencil &nbsp;
