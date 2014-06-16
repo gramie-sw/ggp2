@@ -10,7 +10,7 @@ div.jumbotron.ggp2-jumbotron
         div.badges-box.col-sm-6.col-lg-3
           = content_tag(:i, '', class: "fa #{user_badge.icon}", style: "color: #{user_badge.icon_color}")
           span.badge = I18n.t("#{user_badge.badge_identifier}.name")
-          div
+          div.ggp2-badge-description
             small = I18n.t("#{user_badge.badge_identifier}.description")
     - else
         div.lead.text-center
