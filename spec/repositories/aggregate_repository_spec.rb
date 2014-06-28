@@ -29,4 +29,18 @@ describe AggregateRepository do
       expect(actual_aggregates.count).to eq 6
     end
   end
+
+  describe 'all_groups_by_phase_id' do
+
+    it 'should return groups with given phase id ordered by given sort' do
+      phase = create(:phase)
+      group_3 = create(:group, parent: phase, position: 3)
+      group_1 = create(:group, parent: phase, position: 1)
+      group_2 = create(:group, parent: phase, position: 2)
+      create(:group, position: 1)
+
+      actual_groups = subject.all_groups_by_phase_id(phase_id: phase.id, sort: :position)
+      expect(actual_groups).to eq [group_1, group_2, group_3]
+    end
+  end
 end

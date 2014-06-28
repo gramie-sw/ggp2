@@ -12,5 +12,9 @@ module AggregateRepository
         [phase, phase.children.order_by_position_asc]
       end.flatten
     end
+
+    def all_groups_by_phase_id(phase_id:, sort:)
+      where(ancestry: phase_id).order(sort)
+    end
   end
 end
