@@ -6,7 +6,9 @@ class UsersController < ApplicationController
   before_filter :remember_user_index_referer, only: :index
 
   def index
-    @users = params[:type] == User::USER_TYPE_ADMINS ? User.admins : User.players
+    @presenter = UsersIndexPresenter.new
+    ShowUsers.new.run_with_presentable(presentable: @presenter, type: params[:type], page: params[:page],
+                                       per_page: Ggp2.config.user_page_count)
   end
 
   def new

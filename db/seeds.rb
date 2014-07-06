@@ -16,7 +16,7 @@ if Rails.env == 'development'
   #---------user creation---------
   create(:admin, email: 'admin@mail.de', password: '12345678')
   create(:player, email: 'player@mail.de', password: '12345678')
-  (1..10).each { create(:player) }
+  (1..60).each { create(:player) }
 
   #---------team creation---------
   teams = (1..32).map { create(:team) }

@@ -24,7 +24,6 @@ class User < ActiveRecord::Base
 
   scope :players, -> { where(admin: false) }
   scope :admins, -> { where(admin: true) }
-  scope :order_by_nickname_asc, -> { order(nickname: :asc) }
 
   def self.find_player id
     players.where(id: id).first

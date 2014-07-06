@@ -1,5 +1,11 @@
-# use Ggp2.config.badge_registry for better caching
 class BadgeRegistry
+
+  # use class variable for better caching
+  @@instance = BadgeRegistry.new
+
+  def self.instance
+    @@instance
+  end
 
   def grouped_badges
 

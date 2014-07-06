@@ -6,6 +6,6 @@ FactoryGirl.define do
     icon { ['icon_1', 'icon_2', 'icon_3'].sample }
     icon_color { "%06x" % (rand * 0xffffff)}
     group { ['comment', 'tip'].sample }
-    badge_identifier { Ggp2.config.badge_registry.grouped_badges[group.to_sym].sample.identifier }
+    badge_identifier { BadgeRegistry.instance.grouped_badges[group.to_sym].sample.identifier }
   end
 end

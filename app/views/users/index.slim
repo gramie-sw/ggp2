@@ -1,13 +1,13 @@
 - content_for(:title, t('general.user_administration'))
 
 ul.nav.nav-tabs
-  li class=('active' if (params[:type] != User::USER_TYPE_ADMINS))
+  li class=('active' if (!@presenter.admin?))
     = link_to I18n.t('general.player.other'), users_path(type: User::USER_TYPE_PLAYERS)
-  li class=('active' if (params[:type] == User::USER_TYPE_ADMINS))
+  li class=('active' if (@presenter.admin?))
     = link_to I18n.t('general.admin.other'), users_path(type: User::USER_TYPE_ADMINS)
 
 br
-- if @users.present?
+- if @presenter.users.present?
   div.table-responsive
     table.table.table-hover
       thead
@@ -18,10 +18,11 @@ br
           th = User.human_attribute_name(:email)
           th = User.human_attribute_name(:last_sign_in_at)
       tbody
-        - for user in @users
+        - for user in @presenter.users
           tr.link-row data-href="#{user_path(user)}"
             td = user.nickname
             td = user.first_name
             td = user.last_name
             td = user.email
             td = l(user.last_sign_in_at, format: :short) if user.last_sign_in_at
+= paginate @presenter.users

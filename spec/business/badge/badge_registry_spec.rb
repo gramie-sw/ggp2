@@ -1,5 +1,7 @@
 describe BadgeRegistry do
 
+  subject { BadgeRegistry.instance }
+
   describe '::grouped_badges' do
 
     it 'should return hash with badges grouped' do

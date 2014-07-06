@@ -84,20 +84,6 @@ describe User do
         admins.include?(admin_2).should be_true
       end
     end
-
-    describe 'order_by_nickname_asc' do
-
-      it 'should order users by nickname' do
-        user_3 = create(:user, nickname: 'user 3')
-        user_1 = create(:user, nickname: 'user 1')
-        user_2 = create(:user, nickname: 'user 2')
-
-        actual_users = User.order_by_nickname_asc
-        actual_users.first.should eq user_1
-        actual_users.second.should eq user_2
-        actual_users.third.should eq user_3
-      end
-    end
   end
 
   describe '::find_player' do
