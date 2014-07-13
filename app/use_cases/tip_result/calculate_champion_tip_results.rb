@@ -8,6 +8,5 @@ class CalculateChampionTipResults
       champion_tip_result_setter.set_result(champion_tip)
       champion_tip.save
     end
-
   end
 end

@@ -21,21 +21,6 @@ describe ChampionTip do
         it { should validate_presence_of(:team) }
       end
     end
-
-    context 'for base' do
-
-      subject { create(:champion_tip) }
-
-      context 'when tournament started' do
-
-        it 'should validate no change' do
-          expect_any_instance_of(Tournament).to receive(:started?).and_return(true)
-          subject.team = create(:team)
-          expect(subject).not_to be_valid
-          subject.errors[:base].should include t('errors.messages.champion_tip_changeable_after_tournament_started')
-        end
-      end
-    end
   end
 
   describe 'associations' do
