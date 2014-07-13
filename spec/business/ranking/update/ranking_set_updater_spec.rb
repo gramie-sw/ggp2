@@ -54,7 +54,7 @@ describe RankingSetUpdater do
 
       ChampionTip.should_receive(:all).and_return(champion_tips)
       champion_tip_ranking_set_factory.
-          should_receive(:build).with(0, champion_tips, previous_ranking_set).and_return(expected_ranking_set)
+          should_receive(:build).with(nil, champion_tips, previous_ranking_set).and_return(expected_ranking_set)
       expected_ranking_set.should_receive(:save)
 
       subject.update_champion_tip_ranking_set(previous_ranking_set).should eq expected_ranking_set

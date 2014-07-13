@@ -19,7 +19,7 @@ class RankingSetUpdater
 
   def update_champion_tip_ranking_set previous_ranking_item
     champion_tips = ChampionTip.all
-    update_ranking_set(0, champion_tips, previous_ranking_item, champion_tip_ranking_set_factory)
+    update_ranking_set(nil, champion_tips, previous_ranking_item, champion_tip_ranking_set_factory)
   end
 
   private
