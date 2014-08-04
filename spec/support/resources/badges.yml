@@ -1,14 +1,14 @@
 comment:
   - class: CommentConsecutiveCreatedBadge
     attributes:
-      position: 1
+      position: 2
       icon: 'special_icon'
       icon_color: '#123456'
       count: 2
       identifier: comment_consecutive_created_badge_bronze
   - class: CommentCreatedBadge
     attributes:
-      position: 2
+      position: 1
       icon: 'cool_icon'
       icon_color: '#123456'
       count: 1
@@ -16,7 +16,7 @@ comment:
 tip:
   - class: TipConsecutiveBadge
     attributes:
-      position: 3
+      position: 5
       icon: 'icon'
       icon_color: '#123456'
       result: correct
@@ -32,7 +32,7 @@ tip:
       identifier: tip_badge_incorrect_platinum
   - class: TipMissedBadge
     attributes:
-      position: 5
+      position: 3
       icon: 'icon'
       icon_color: '#123456'
       count: 2

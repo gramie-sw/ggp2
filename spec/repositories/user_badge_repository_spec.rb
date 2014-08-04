@@ -2,19 +2,6 @@ describe UserBadgeRepository do
 
   subject { UserBadge }
 
-  describe '::all_by_group' do
-
-    it 'should return user_badges filtered by group' do
-      user_badge_1 = create(:user_badge, group: :comment)
-      create(:user_badge, group: :tip)
-      user_badge_2 = create(:user_badge, group: :comment)
-
-      actual_user_badges = subject.all_by_group(:comment)
-      expect(actual_user_badges.size).to eq 2
-      expect(actual_user_badges).to include(user_badge_1, user_badge_2)
-    end
-  end
-
   describe '::all_by_user_id' do
 
     it 'should return user_badges filtered by user_id' do
@@ -29,106 +16,96 @@ describe UserBadgeRepository do
     end
   end
 
-  describe '::order_by_position_asc' do
+  describe '::all_by_badge_identifiers' do
 
-    it 'should return ordered user_badges by position asc' do
+    let(:user_badges) {
+      [
+          create(:user_badge, badge_identifier: 'identifier_1'),
+          create(:user_badge, badge_identifier: 'identifier_2'),
+          create(:user_badge, badge_identifier: 'identifier_3'),
+          create(:user_badge, badge_identifier: 'identifier_3')
+      ]
+    }
 
-      expected_user_badge_2 = create(:user_badge, position: 2)
-      expected_user_badge_3 = create(:user_badge, position: 3)
-      expected_user_badge_1 = create(:user_badge, position: 1)
+    before :each do
+      user_badges
+    end
 
-      actual_user_badges = UserBadge.order_by_position_asc
+    it 'should return user_badges filtered by given badge_identifiers' do
 
-      expect(actual_user_badges[0]).to eq expected_user_badge_1
-      expect(actual_user_badges[1]).to eq expected_user_badge_2
-      expect(actual_user_badges[2]).to eq expected_user_badge_3
+      actual_user_badges = subject.all_by_badge_identifiers([user_badges.first.badge_identifier,
+                                                             user_badges.third.badge_identifier])
+
+      expect(actual_user_badges.size).to eq 3
+      expect(actual_user_badges.first).to eq user_badges.first
+      expect(actual_user_badges.second).to eq user_badges.third
+      expect(actual_user_badges.third).to eq user_badges.fourth
     end
   end
 
-  describe '::groups_by_user_id' do
+  describe '::badges_by_user_id' do
 
-    it 'should return all groups distinct by user_id' do
+    let(:user) { create(:user) }
 
-      create(:user_badge, position: 2, user_id: 1, group: 'comment', badge_identifier: 'identifier')
-      create(:user_badge, position: 3, user_id: 1, group: 'comment', badge_identifier: 'identifier')
-      create(:user_badge, position: 1, user_id: 1, group: 'tip', badge_identifier: 'identifier')
-      create(:user_badge, user_id: 2, group: 'tip', badge_identifier: 'identifier')
-      create(:user_badge, user_id: 2, group: 'champion', badge_identifier: 'identifier')
-      create(:user_badge, position: 5, user_id: 1, group: 'tip', badge_identifier: 'identifier')
+    let(:user_badges) {
+      [
+          create(:user_badge, user: user, badge_identifier: 'tip_consecutive_badge_correct_gold'),
+          create(:user_badge, badge_identifier: 'comment_created_badge_gold'),
+          create(:user_badge, user: user, badge_identifier: 'comment_consecutive_created_badge_bronze')
+      ]
+    }
 
-      groups = subject.groups_by_user_id(user_id: 1)
-      expect(groups.size).to eq 2
-      expect(groups.first).to eq 'tip'
-      expect(groups.second).to eq 'comment'
+    before :each do
+      user_badges
     end
-  end
 
-  describe '::all_ordered_by_group_and_user_id' do
+    it 'should return all badges by given user_id' do
 
-    let(:user_badges) { Array.new }
-
-    it 'should return all ordered by position filtered by group and user_id' do
-
-      group_relation = instance_double('ActiveRecord::Relation::ActiveRecord_Relation_UserBadge')
-      user_id_relation = instance_double('ActiveRecord::Relation::ActiveRecord_Relation_UserBadge')
-
-      expect(UserBadge).to receive(:all_by_group).with(:comment).and_return(group_relation)
-      expect(group_relation).to receive(:all_by_user_id).with(3).and_return(user_id_relation)
-      expect(user_id_relation).to receive(:order_by_position_asc).and_return(user_badges)
-
-      actual_user_ids = subject.all_ordered_by_group_and_user_id(group: :comment, user_id: 3)
-      expect(actual_user_ids).to be user_badges
-    end
-  end
-
-  describe '::all_ordered_by_user_id' do
-
-    let(:user_badges) { Array.new }
-
-    it 'should return all ordered by position filtered by user_id' do
-
-      user_id_relation = instance_double('ActiveRecord::Relation::ActiveRecord_Relation_UserBadge')
-
-      expect(UserBadge).to receive(:all_by_user_id).with(3).and_return(user_id_relation)
-      expect(user_id_relation).to receive(:order_by_position_asc).and_return(user_badges)
-
-      actual_user_badges = subject.all_ordered_by_user_id(user_id: 3)
-      expect(actual_user_badges).to eq user_badges
+      actual_badges = subject.badges_by_user_id user.id
+      expect(actual_badges.size).to eq 2
+      expect(actual_badges.first.identifier).to eq 'comment_consecutive_created_badge_bronze'
+      expect(actual_badges.second.identifier).to eq 'tip_consecutive_badge_correct_gold'
     end
   end
 
   describe '::destroy_and_create_multiple' do
 
-    let(:group) { 'comment' }
-
     let(:user_badges) {
       [
-          build(:user_badge, group: group),
-          build(:user_badge, group: group)
+          create(:user_badge, badge_identifier: 'tip_consecutive_badge_correct_gold'),
+          create(:user_badge, badge_identifier: 'comment_created_badge_gold')
       ]
     }
 
-    it 'should delete all user badges by given group and save given user badges' do
+    let(:new_user_badges) {
+      [
+          build(:user_badge, badge_identifier: 'tip_champion_missed_badge' ),
+          build(:user_badge, badge_identifier: 'tip_missed_badge_gold')
+      ]
+    }
 
-      create(:user_badge, group: group)
-
-      subject.destroy_and_create_multiple group, user_badges
-
-      actual_user_badges = UserBadge.all_by_group(group)
-      expect(actual_user_badges.size).to eq 2
-      expect(actual_user_badges).to include(user_badges.first, user_badges.second)
+    before :each do
+      user_badges
     end
 
-    it 'should delete and save user badges transactionally' do
+    it 'should destroy all user badges by given group and save given new user badges' do
 
-      expected_user_badge = create(:user_badge, group: group)
+      subject.destroy_and_create_multiple :tip, new_user_badges
+
+      actual_user_badges = UserBadge.all
+      expect(actual_user_badges.size).to eq 3
+      expect(actual_user_badges).to include(user_badges.second, new_user_badges.first, new_user_badges.second)
+    end
+
+    it 'should destroy and save user badges transactionally' do
+
       user_badges.stub(:map).with(any_args).and_return([false])
 
-      subject.destroy_and_create_multiple group, user_badges
+      subject.destroy_and_create_multiple :tip, user_badges
 
-      actual_user_badges = UserBadge.all_by_group(group)
-      expect(actual_user_badges.size).to eq 1
-      expect(actual_user_badges).to include(expected_user_badge)
+      actual_user_badges = UserBadge.all
+      expect(actual_user_badges.size).to eq 2
+      expect(actual_user_badges).to include(user_badges.first, user_badges.second)
     end
   end
 end

@@ -1,17 +1,17 @@
-- user_badges = presenter.user_badges
+- badges = presenter.badges
 
 div.jumbotron.ggp2-jumbotron
   h2
     = t('profile.section.badges')
 
   div.row
-    - if user_badges.present?
-      - for user_badge in user_badges
+    - if badges.present?
+      - for badge in badges
         div.badges-box.col-sm-6.col-lg-3
-          = content_tag(:i, '', class: "fa #{user_badge.icon}", style: "color: #{user_badge.icon_color}")
-          span.badge = I18n.t("#{user_badge.badge_identifier}.name")
+          = content_tag(:i, '', class: "fa #{badge.icon}", style: "color: #{badge.icon_color}")
+          span.badge = I18n.t("#{badge.identifier}.name")
           div.ggp2-badge-description
-            small = I18n.t("#{user_badge.badge_identifier}.description")
+            small = I18n.t("#{badge.identifier}.description")
     - else
         div.lead.text-center
           = t('badges.user_not_yet_awarded')

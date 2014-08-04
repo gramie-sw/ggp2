@@ -6,7 +6,7 @@ describe ShowBadges do
 
     it 'should set presenter with groups and grouped_badges' do
 
-      expect(BadgeRegistry.instance).to receive(:grouped_badges).and_call_original
+      expect(BadgeRepository).to receive(:badges_sorted_grouped).and_call_original
 
       expect(presenter).to receive(:groups=) do |groups|
         expect(groups.size).to eq 2
@@ -15,7 +15,7 @@ describe ShowBadges do
       end
 
       expect(presenter).to receive(:grouped_badges=) do |grouped_badges|
-        #alreade tested throughly in BadgeRegistry
+        #already tested throughly in BadgeRegistry
         expect(grouped_badges).to be_an_instance_of Hash
         expect(grouped_badges.keys).to include(:comment, :tip)
 

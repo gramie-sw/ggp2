@@ -11,7 +11,7 @@ describe ProfilesShowPresenter do
                               section: current_section)
   end
 
-  it { should respond_to(:user_badges=, :user_badges)}
+  it { should respond_to(:badges=, :badges)}
 
   it 'should respond to user' do
     subject.should respond_to :user

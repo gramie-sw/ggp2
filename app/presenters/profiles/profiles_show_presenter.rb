@@ -1,6 +1,6 @@
 class ProfilesShowPresenter
 
-  attr_accessor :user_badges
+  attr_accessor :badges
   attr_reader :user, :is_for_current_user
   alias is_for_current_user? is_for_current_user
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140611155146) do
+ActiveRecord::Schema.define(version: 20140802074255) do
 
   create_table "aggregates", force: true do |t|
     t.integer  "position"
@@ -107,10 +107,6 @@ ActiveRecord::Schema.define(version: 20140611155146) do
   create_table "user_badges", force: true do |t|
     t.integer  "user_id"
     t.string   "badge_identifier"
-    t.integer  "position"
-    t.string   "icon"
-    t.string   "icon_color"
-    t.string   "group"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

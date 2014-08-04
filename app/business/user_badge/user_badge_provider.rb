@@ -1,22 +1,18 @@
 class UserBadgeProvider
 
-  def provide_by_group badges, group
+  def provide badges
 
     badges.map do |badge|
-      provide_by_badge badge, group
+      badges_with_eligible_user badge
     end.flatten!
   end
 
-  def provide_by_badge badge, group
+  private
 
-    badge.eligible_user_ids.map do |user_id|
+  def badges_with_eligible_user badge
 
-      UserBadge.new(user_id: user_id,
-                    badge_identifier: badge.identifier,
-                    position: badge.position,
-                    icon: badge.icon,
-                    icon_color: badge.icon_color,
-                    group: group)
+    badge.eligible_user_ids.map! do |user_id|
+      UserBadge.new(user_id: user_id, badge_identifier: badge.identifier)
     end
   end
 end

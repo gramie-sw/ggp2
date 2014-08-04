@@ -2,8 +2,8 @@ describe 'profiles/_badges.slim' do
 
   let(:presenter) { double('Presenter') }
 
-  let(:user_badges) do
-    [UserBadge.new]
+  let(:badges) do
+    [BadgeRepository.badges_sorted.first]
   end
 
   let(:partial_options) do
@@ -18,10 +18,10 @@ describe 'profiles/_badges.slim' do
   end
 
   before :each do
-    allow(presenter).to receive(:user_badges).and_return(user_badges)
+    allow(presenter).to receive(:badges).and_return(badges)
   end
 
-  context 'when UserBadges are present' do
+  context 'when Badges are present' do
 
     it 'should be displayed' do
       render partial_options
@@ -34,9 +34,9 @@ describe 'profiles/_badges.slim' do
     end
   end
 
-  context 'when no UserBadges are present' do
+  context 'when no Badges are present' do
 
-    let(:user_badges) { [] }
+    let(:badges) { [] }
 
     it 'should display user not yet awarded message' do
       render partial_options
