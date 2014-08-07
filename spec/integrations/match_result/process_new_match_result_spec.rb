@@ -17,21 +17,21 @@ describe ProcessNewMatchResult do
 
     subject.run(match.id)
 
-    RankingItem.count.should eq 4
+    expect(RankingItem.count).to eq 4
 
     champion_tip_1.reload
-    champion_tip_1.should_not be_correct
+    expect(champion_tip_1).not_to be_correct
     champion_tip_2.reload
-    champion_tip_2.should be_correct
+    expect(champion_tip_2).to be_correct
 
     tip_1.reload
-    tip_1.should be_correct_tendency_only
+    expect(tip_1).to be_correct_tendency_only
     tip_2.reload
-    tip_2.should be_correct
+    expect(tip_2).to be_correct
 
-    RankingItem.where(match_id: nil, position: 1).first.user_id.should eq user_2.id
+    expect(RankingItem.where(match_id: nil, position: 1).first.user_id).to eq user_2.id
 
-    Property.last_tip_ranking_set_match_id.should eq match.id
-    Property.champion_tip_ranking_set_exists?.should be_true
+    expect(Property.last_tip_ranking_set_match_id).to eq match.id
+    expect(Property.champion_tip_ranking_set_exists?).to be_truthy
   end
 end

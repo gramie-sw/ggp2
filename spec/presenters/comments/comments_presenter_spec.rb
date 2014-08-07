@@ -7,7 +7,7 @@ describe CommentsPresenter do
 
   it 'should respond to is_for_current_user?' do
     #matcher respond_to didn't worked with DelegateClass in rspec-expectations
-    subject.respond_to?(:is_for_current_user).should be_true
+    expect(subject.respond_to?(:is_for_current_user)).to be_truthy
   end
 
   describe 'editable ' do
@@ -15,7 +15,7 @@ describe CommentsPresenter do
     context 'is for current user' do
 
       it 'should be editable' do
-        expect(subject.editable?).to be_true
+        expect(subject.editable?).to be_truthy
       end
     end
 
@@ -24,7 +24,7 @@ describe CommentsPresenter do
       let(:is_for_current_user) { false }
 
       it 'should not be editable' do
-        expect(subject.editable?).to be_false
+        expect(subject.editable?).to be_falsey
 
       end
     end
@@ -37,14 +37,14 @@ describe CommentsPresenter do
       let(:is_admin) { true }
 
       it 'should be destroyable' do
-        expect(subject.destroyable?).to be_true
+        expect(subject.destroyable?).to be_truthy
       end
     end
 
     context 'not admin' do
 
       it 'should not be destroyable' do
-        expect(subject.destroyable?).to be_false
+        expect(subject.destroyable?).to be_falsey
       end
     end
   end

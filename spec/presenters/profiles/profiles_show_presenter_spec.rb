@@ -11,14 +11,14 @@ describe ProfilesShowPresenter do
                               section: current_section)
   end
 
-  it { should respond_to(:badges=, :badges)}
+  it { is_expected.to respond_to(:badges=, :badges)}
 
   it 'should respond to user' do
-    subject.should respond_to :user
+    expect(subject).to respond_to :user
   end
 
   it 'should respond to is_for_current_user?' do
-    subject.should respond_to :is_for_current_user?
+    expect(subject).to respond_to :is_for_current_user?
   end
 
   describe '#initialze' do
@@ -28,7 +28,7 @@ describe ProfilesShowPresenter do
       let(:current_section) { 'statistic' }
 
       it 'should cast given section to symbol' do
-        subject.instance_variable_get(:@section).should eq :statistic
+        expect(subject.instance_variable_get(:@section)).to eq :statistic
       end
     end
 
@@ -36,7 +36,7 @@ describe ProfilesShowPresenter do
       let(:current_section) { nil }
 
       it 'should not try to cast nil' do
-        subject.instance_variable_get(:@section).should be_nil
+        expect(subject.instance_variable_get(:@section)).to be_nil
       end
     end
   end
@@ -44,24 +44,24 @@ describe ProfilesShowPresenter do
   describe '#title' do
 
     context 'when is_for_current_user is true' do
-      it { subject.title.should eq t('profile.yours') }
+      it { expect(subject.title).to eq t('profile.yours') }
     end
 
     context 'when is_for_current_user is false' do
       let(:is_for_current_user) { false }
-      it { subject.title.should eq t('general.profile.one') }
+      it { expect(subject.title).to eq t('general.profile.one') }
     end
   end
 
   describe '#subtitle' do
 
     context 'when is_for_current_user is true' do
-      it { subject.subtitle.should eq '' }
+      it { expect(subject.subtitle).to eq '' }
     end
 
     context 'when is_for_current_user is false' do
       let(:is_for_current_user) { false }
-      it { subject.subtitle.should eq t('general.of_subject', subject: user.nickname) }
+      it { expect(subject.subtitle).to eq t('general.of_subject', subject: user.nickname) }
     end
   end
 
@@ -70,7 +70,7 @@ describe ProfilesShowPresenter do
     context 'if given section is in available section' do
 
       it 'should return given section' do
-        subject.current_section.should eq current_section
+        expect(subject.current_section).to eq current_section
       end
     end
 
@@ -79,7 +79,7 @@ describe ProfilesShowPresenter do
       let(:section) { :wrong_section }
 
       it 'should return first of available sections' do
-        subject.current_section.should eq subject.available_sections.first
+        expect(subject.current_section).to eq subject.available_sections.first
       end
     end
   end
@@ -87,7 +87,7 @@ describe ProfilesShowPresenter do
   describe '#available_sections' do
 
     it 'should return array of available sections' do
-      subject.available_sections.should eq [:statistic, :badges, :user_data]
+      expect(subject.available_sections).to eq [:statistic, :badges, :user_data]
     end
   end
 
@@ -98,8 +98,8 @@ describe ProfilesShowPresenter do
 
     it 'should return player statistic for given user' do
 
-      ShowSingleUserCurrentRanking.any_instance.should_receive(:run).with(user.id).and_return(current_user_ranking_item)
-      UserStatistic.should_receive(:new).
+      expect_any_instance_of(ShowSingleUserCurrentRanking).to receive(:run).with(user.id).and_return(current_user_ranking_item)
+      expect(UserStatistic).to receive(:new).
           with(user: user, tournament: tournament, current_ranking_item: current_user_ranking_item).
           and_return(expected_user_statistic)
 
@@ -107,8 +107,8 @@ describe ProfilesShowPresenter do
     end
 
     it 'should cache object' do
-      ShowSingleUserCurrentRanking.any_instance.should_receive(:run).and_return(current_user_ranking_item)
-      UserStatistic.should_receive(:new).and_return(expected_user_statistic)
+      expect_any_instance_of(ShowSingleUserCurrentRanking).to receive(:run).and_return(current_user_ranking_item)
+      expect(UserStatistic).to receive(:new).and_return(expected_user_statistic)
 
       subject.user_statistic
       subject.user_statistic

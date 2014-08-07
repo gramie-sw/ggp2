@@ -6,7 +6,7 @@ describe PlayerPermissions do
   describe '#actions' do
     it 'should exactly allow controllers' do
 
-      should exactly_allow_actions(
+      is_expected.to exactly_allow_actions(
                  ['devise/sessions', [:new, :create, :destroy]],
                  ['adapted_devise/registrations', [:edit, :update]],
                  [:award_ceremonies, [:show]],
@@ -30,7 +30,7 @@ describe PlayerPermissions do
 
     it 'should exactly allow attributes' do
 
-      should exactly_allow_attributes(
+      is_expected.to exactly_allow_attributes(
                  [:user, [:email, :nickname, :first_name, :last_name, :current_password, :password, :password_confirmation, :remember_me, :match_sort]],
                  [:tips, [:score_team_1, :score_team_2]],
                  [:champion_tip, [:team_id]],
@@ -43,7 +43,7 @@ describe PlayerPermissions do
   describe '#filters' do
 
     it 'should exactly have filters for' do
-      should exactly_have_filters_for(
+      is_expected.to exactly_have_filters_for(
                  [:comments, [:create, :update, :edit]],
                  [:tips, [:edit_multiple, :update_multiple]],
                  [:champion_tips, [:edit, :update]]
@@ -55,14 +55,14 @@ describe PlayerPermissions do
       context 'if user_id of comment belongs to to current_user' do
 
         it 'should be allowed' do
-          should pass_filters(:comments, :create, params: {comment: {user_id: current_user.to_param}})
+          is_expected.to pass_filters(:comments, :create, params: {comment: {user_id: current_user.to_param}})
         end
       end
 
       context 'if user_id of comment does not belong to to current_user' do
 
         it 'should not be allowed' do
-          should_not pass_filters(:comments, :create, params: {comment: {user_id: (current_user.id+1).to_s}})
+          is_expected.not_to pass_filters(:comments, :create, params: {comment: {user_id: (current_user.id+1).to_s}})
         end
       end
     end
@@ -73,14 +73,14 @@ describe PlayerPermissions do
     context 'if comment belongs to to current_user' do
 
       it 'should be allowed' do
-        should pass_filters(:comments, :edit, resource: Comment.new(user_id: current_user.id))
+        is_expected.to pass_filters(:comments, :edit, resource: Comment.new(user_id: current_user.id))
       end
     end
 
     context 'if comment belongs to to current_user' do
 
       it 'should not be allowed' do
-        should_not pass_filters(:comments, :edit, resource: Comment.new(user_id: current_user.id + 1))
+        is_expected.not_to pass_filters(:comments, :edit, resource: Comment.new(user_id: current_user.id + 1))
       end
     end
   end
@@ -90,14 +90,14 @@ describe PlayerPermissions do
     context 'if comment belongs to to current_user' do
 
       it 'should be allowed' do
-        should pass_filters(:comments, :update, resource: Comment.new(user_id: current_user.id))
+        is_expected.to pass_filters(:comments, :update, resource: Comment.new(user_id: current_user.id))
       end
     end
 
     context 'if comment belongs to to current_user' do
 
       it 'should not be allowed' do
-        should_not pass_filters(:comments, :update, resource: Comment.new(user_id: current_user.id + 1))
+        is_expected.not_to pass_filters(:comments, :update, resource: Comment.new(user_id: current_user.id + 1))
       end
     end
   end
@@ -118,7 +118,7 @@ describe PlayerPermissions do
     context 'if all tips belong to current_user' do
 
       it 'should be allowed' do
-        should pass_filters(:tips, :edit_multiple, params: {tip_ids: [1, 2]})
+        is_expected.to pass_filters(:tips, :edit_multiple, params: {tip_ids: [1, 2]})
       end
     end
 
@@ -126,7 +126,7 @@ describe PlayerPermissions do
 
       it 'should not be allowed' do
         tips.first.user_id = current_user.id + 1
-        should_not pass_filters(:tips, :edit_multiple, params: {tip_ids: [1, 2]})
+        is_expected.not_to pass_filters(:tips, :edit_multiple, params: {tip_ids: [1, 2]})
       end
     end
   end
@@ -147,7 +147,7 @@ describe PlayerPermissions do
     context 'if all tips belong to current_user' do
 
       it 'should be allowed' do
-        should pass_filters(:tips, :update_multiple, params: {tips: {'1' => {}, '2' => {}}})
+        is_expected.to pass_filters(:tips, :update_multiple, params: {tips: {'1' => {}, '2' => {}}})
       end
     end
 
@@ -155,7 +155,7 @@ describe PlayerPermissions do
 
       it 'should not be allowed' do
         tips.first.user_id = current_user.id + 1
-        should_not pass_filters(:tips, :update_multiple, params: {tips: {'1' => {}, '2' => {}}})
+        is_expected.not_to pass_filters(:tips, :update_multiple, params: {tips: {'1' => {}, '2' => {}}})
       end
     end
   end
@@ -165,14 +165,14 @@ describe PlayerPermissions do
     context 'if champion_tip belongs to to current_user' do
 
       it 'should be allowed' do
-        should pass_filters(:champion_tips, :edit, resource: ChampionTip.new(user_id: current_user.id))
+        is_expected.to pass_filters(:champion_tips, :edit, resource: ChampionTip.new(user_id: current_user.id))
       end
     end
 
     context 'if champion_tip belongs to to current_user' do
 
       it 'should not be allowed' do
-        should_not pass_filters(:champion_tips, :edit, resource: ChampionTip.new(user_id: current_user.id + 1))
+        is_expected.not_to pass_filters(:champion_tips, :edit, resource: ChampionTip.new(user_id: current_user.id + 1))
       end
     end
   end
@@ -183,7 +183,7 @@ describe PlayerPermissions do
 
       it 'should be allowed' do
         expect_any_instance_of(Tournament).to receive(:started?).and_return(false)
-        should pass_filters(:champion_tips, :edit, resource: ChampionTip.new(user_id: current_user.id))
+        is_expected.to pass_filters(:champion_tips, :edit, resource: ChampionTip.new(user_id: current_user.id))
       end
     end
 
@@ -191,14 +191,14 @@ describe PlayerPermissions do
 
       it 'should not be allowed' do
         expect_any_instance_of(Tournament).to receive(:started?).and_return(true)
-        should_not pass_filters(:champion_tips, :edit, resource: ChampionTip.new(user_id: current_user.id))
+        is_expected.not_to pass_filters(:champion_tips, :edit, resource: ChampionTip.new(user_id: current_user.id))
       end
     end
 
     context 'if champion_tip does not belong to current_user' do
 
       it 'should not be allowed' do
-        should_not pass_filters(:champion_tips, :edit, resource: ChampionTip.new(user_id: current_user.id + 1))
+        is_expected.not_to pass_filters(:champion_tips, :edit, resource: ChampionTip.new(user_id: current_user.id + 1))
       end
     end
   end

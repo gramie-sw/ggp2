@@ -1,20 +1,20 @@
-describe Team do
+describe Team, :type => :model do
 
   it 'should have valid factory' do
-    build(:team).should be_valid
+    expect(build(:team)).to be_valid
   end
 
   describe 'validations' do
     describe '#country' do
-      it { should validate_presence_of(:country) }
-      it { should validate_uniqueness_of(:country) }
+      it { is_expected.to validate_presence_of(:country) }
+      it { is_expected.to validate_uniqueness_of(:country) }
     end
   end
 
   describe 'associations' do
-    it { should have_many(:team_1_matches).class_name(:Match).dependent(:restrict_with_exception) }
-    it { should have_many(:team_2_matches).class_name(:Match).dependent(:restrict_with_exception) }
-    it { should have_many(:champion_tips).dependent(:nullify) }
+    it { is_expected.to have_many(:team_1_matches).class_name(:Match).dependent(:restrict_with_exception) }
+    it { is_expected.to have_many(:team_2_matches).class_name(:Match).dependent(:restrict_with_exception) }
+    it { is_expected.to have_many(:champion_tips).dependent(:nullify) }
   end
 
   describe 'scopes' do
@@ -25,9 +25,9 @@ describe Team do
         team_2 = create(:team, country: 'MX')
 
         teams = Team.order_by_country_name_asc
-        teams[0].name.should eq team_1.name
-        teams[1].name.should eq team_2.name
-        teams[2].name.should eq team_3.name
+        expect(teams[0].name).to eq team_1.name
+        expect(teams[1].name).to eq team_2.name
+        expect(teams[2].name).to eq team_3.name
       end
     end
   end

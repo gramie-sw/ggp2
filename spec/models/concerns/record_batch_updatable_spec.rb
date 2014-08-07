@@ -1,4 +1,4 @@
-describe RecordBatchUpdatable do
+describe RecordBatchUpdatable, :type => :model do
 
   subject { Object.new.extend(RecordBatchUpdatable) }
 
@@ -20,52 +20,52 @@ describe RecordBatchUpdatable do
   describe '#update_multiple' do
 
     it 'should call #update' do
-      subject.should_receive(:update).with(models_attributes.keys, models_attributes.values).and_return(models)
+      expect(subject).to receive(:update).with(models_attributes.keys, models_attributes.values).and_return(models)
       subject.update_multiple(models_attributes)
     end
 
     it 'should return BatchUpdater::Result' do
-      subject.update_multiple(models_attributes).should be_kind_of RecordBatchUpdatable::Result
+      expect(subject.update_multiple(models_attributes)).to be_kind_of RecordBatchUpdatable::Result
     end
 
     context 'when all models could be saved' do
 
       it 'should return result where #no_errors? is true' do
-        subject.update_multiple(models_attributes).no_errors?.should be_true
+        expect(subject.update_multiple(models_attributes).no_errors?).to be_truthy
       end
 
       it 'should return result where #succeeded_records contains all models' do
         succeeded_records = subject.update_multiple(models_attributes).succeeded_records
-        succeeded_records.count.should eq 3
-        succeeded_records.should include *models
+        expect(succeeded_records.count).to eq 3
+        expect(succeeded_records).to include *models
       end
 
       it 'should return result where #failed_records is empty' do
-        subject.update_multiple(models_attributes).failed_records.should be_empty
+        expect(subject.update_multiple(models_attributes).failed_records).to be_empty
       end
     end
 
     context 'when all models could be saved' do
 
       before :each do
-        models.first.stub(:errors).and_return(double(empty?: false))
-        models.third.stub(:errors).and_return(double(empty?: false))
+        allow(models.first).to receive(:errors).and_return(double(empty?: false))
+        allow(models.third).to receive(:errors).and_return(double(empty?: false))
       end
 
       it 'should return result where #no_errors? is false' do
-        subject.update_multiple(models_attributes).no_errors?.should be_false
+        expect(subject.update_multiple(models_attributes).no_errors?).to be_falsey
       end
 
       it 'should return result where #succeded_models all updated models' do
         succeeded_records = subject.update_multiple(models_attributes).succeeded_records
-        succeeded_records.count.should eq 1
-        succeeded_records.should include models.second
+        expect(succeeded_records.count).to eq 1
+        expect(succeeded_records).to include models.second
       end
 
       it 'should return result where #failed_records contains all failed models' do
         failed_records = subject.update_multiple(models_attributes).failed_records
-        failed_records.count.should eq 2
-        failed_records.should include models.first, models.last
+        expect(failed_records.count).to eq 2
+        expect(failed_records).to include models.first, models.last
       end
     end
   end

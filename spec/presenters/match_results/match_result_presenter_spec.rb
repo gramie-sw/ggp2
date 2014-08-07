@@ -10,7 +10,7 @@ describe MatchResultPresenter do
       actual_match_presenter = subject.match_presenter
       #matcher be_kind_of didn't worked with DelegateClass in rspec-expectations
       actual_match_presenter.kind_of?(MatchPresenter)
-      actual_match_presenter.__getobj__.should eq match
+      expect(actual_match_presenter.__getobj__).to eq match
     end
   end
 end

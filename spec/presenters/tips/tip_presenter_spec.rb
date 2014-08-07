@@ -4,10 +4,10 @@ describe TipPresenter do
   let(:is_for_current_user) { true }
   subject { TipPresenter.new(tip: tip, is_for_current_user: is_for_current_user) }
 
-  it {should respond_to :is_for_current_user}
+  it {is_expected.to respond_to :is_for_current_user}
 
   it 'should include ResultPresentable' do
-    TipPresenter.included_modules.should include ResultPresentable
+    expect(TipPresenter.included_modules).to include ResultPresentable
   end
 
   describe '#points' do
@@ -16,15 +16,15 @@ describe TipPresenter do
 
       it 'should return the points' do
         tip.result = Tip::RESULTS[:correct]
-        subject.points.should eq Ggp2.config.correct_tip_points
+        expect(subject.points).to eq Ggp2.config.correct_tip_points
       end
     end
 
     context 'if points not present' do
 
       it 'should return the -' do
-        tip.stub(:points).and_return(nil)
-        subject.points.should eq '-'
+        allow(tip).to receive(:points).and_return(nil)
+        expect(subject.points).to eq '-'
       end
     end
   end
@@ -34,13 +34,13 @@ describe TipPresenter do
     let(:is_for_current_user) { false }
 
     before :each do
-      tip.stub(:tippable?).and_return(true)
+      allow(tip).to receive(:tippable?).and_return(true)
     end
 
     context 'if is_for_current_user is false and tip is tippable' do
 
       it 'should return true' do
-        subject.hide_existing_result?.should be_true
+        expect(subject.hide_existing_result?).to be_truthy
       end
     end
 
@@ -49,15 +49,15 @@ describe TipPresenter do
       let(:is_for_current_user) { true }
 
       it 'should return false' do
-        subject.hide_existing_result?.should be_false
+        expect(subject.hide_existing_result?).to be_falsey
       end
     end
 
     context 'if tip is not tippable anymore' do
 
       it 'should return false' do
-        tip.stub(:tippable?).and_return(false)
-        subject.hide_existing_result?.should be_false
+        allow(tip).to receive(:tippable?).and_return(false)
+        expect(subject.hide_existing_result?).to be_falsey
       end
     end
 
@@ -67,13 +67,13 @@ describe TipPresenter do
 
     it 'should return kind_of MatchPresenter for match of tip' do
       #matcher be_kind_of didn't worked with DelegateClass in rspec-expectations
-      subject.match_presenter.kind_of?(MatchPresenter).should be_true
-      subject.match_presenter.__getobj__.should eq tip.match
+      expect(subject.match_presenter.kind_of?(MatchPresenter)).to be_truthy
+      expect(subject.match_presenter.__getobj__).to eq tip.match
     end
 
     it 'should cache created object' do
       #matcher be didn't worked with DelegateClass in rspec-expectations
-      subject.match_presenter.object_id.should eq subject.match_presenter.object_id
+      expect(subject.match_presenter.object_id).to eq subject.match_presenter.object_id
     end
   end
 end

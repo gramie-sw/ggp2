@@ -1,7 +1,7 @@
 describe SectionConfiguration do
 
-  it { should respond_to(:section, :section=) }
-  it { should respond_to(:active_markers, :active_markers=) }
+  it { is_expected.to respond_to(:section, :section=) }
+  it { is_expected.to respond_to(:active_markers, :active_markers=) }
 
   describe '#initialize' do
 

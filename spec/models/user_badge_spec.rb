@@ -1,7 +1,7 @@
-describe UserBadge do
+describe UserBadge, :type => :model do
 
   it 'should have valid factory' do
-    build(:user_badge).should be_valid
+    expect(build(:user_badge)).to be_valid
   end
 
   it 'should be included with UserBadgeRepository' do

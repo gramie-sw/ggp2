@@ -1,4 +1,4 @@
-describe UserTipsController do
+describe UserTipsController, :type => :controller do
 
   let(:player) { create(:player) }
 
@@ -16,8 +16,8 @@ describe UserTipsController do
 
     it 'should return http success render template show' do
       get :show, id: player.to_param
-      response.should be_success
-      response.should render_template :show
+      expect(response).to be_success
+      expect(response).to render_template :show
     end
 
     it 'should assign UserTipsShowPresenter' do

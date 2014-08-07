@@ -6,11 +6,11 @@ describe RankingSetFactory do
 
     it 'should return properly instantiated RankingSetFactory' do
       expected_ranking_set_factory = double('RankingSetFactory')
-      RankingSetFactory.should_receive(:new).
+      expect(RankingSetFactory).to receive(:new).
           with(ranking_item_factory: TipRankingItemFactory, ranking_items_position_setter: RankingItemPositionSetter).
           and_return(expected_ranking_set_factory)
 
-      subject.create_for_tip_ranking_set.should be expected_ranking_set_factory
+      expect(subject.create_for_tip_ranking_set).to be expected_ranking_set_factory
     end
   end
 
@@ -18,11 +18,11 @@ describe RankingSetFactory do
 
     it 'should return properly instantiated RankingSetFactory' do
       expected_ranking_set_factory = double('RankingSetFactory')
-      RankingSetFactory.should_receive(:new).
+      expect(RankingSetFactory).to receive(:new).
           with(ranking_item_factory: ChampionTipRankingItemFactory, ranking_items_position_setter: RankingItemPositionSetter).
           and_return(expected_ranking_set_factory)
 
-      subject.create_for_champion_tip_ranking_set.should be expected_ranking_set_factory
+      expect(subject.create_for_champion_tip_ranking_set).to be expected_ranking_set_factory
     end
   end
 
@@ -56,17 +56,17 @@ describe RankingSetFactory do
 
       previous_ranking_item_set = RankingSet.new(match_id: 5, ranking_items: previous_ranking_items)
 
-      ranking_item_factory.
-          should_receive(:build).with(tips.first, previous_ranking_items.first).and_return(new_ranking_items.first)
-      ranking_item_factory.
-          should_receive(:build).with(tips.second, previous_ranking_items.second).and_return(new_ranking_items.second)
+      expect(ranking_item_factory).
+          to receive(:build).with(tips.first, previous_ranking_items.first).and_return(new_ranking_items.first)
+      expect(ranking_item_factory).
+          to receive(:build).with(tips.second, previous_ranking_items.second).and_return(new_ranking_items.second)
 
-      ranking_items_position_setter.should_receive(:set_positions).with(new_ranking_items).ordered
+      expect(ranking_items_position_setter).to receive(:set_positions).with(new_ranking_items).ordered
 
-      RankingSet.should_receive(:new).with(match_id: 6, ranking_items: new_ranking_items).ordered.and_call_original
+      expect(RankingSet).to receive(:new).with(match_id: 6, ranking_items: new_ranking_items).ordered.and_call_original
 
       actual_ranking_item_set = subject.build(6, tips, previous_ranking_item_set)
-      actual_ranking_item_set.should be_kind_of(RankingSet)
+      expect(actual_ranking_item_set).to be_kind_of(RankingSet)
     end
   end
 end

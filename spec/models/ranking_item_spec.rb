@@ -1,21 +1,21 @@
-describe RankingItem do
+describe RankingItem, :type => :model do
 
   it 'should have valid factory' do
-    build(:ranking_item).should be_valid
+    expect(build(:ranking_item)).to be_valid
   end
 
   describe 'associations' do
-    it { should belong_to(:match) }
-    it { should belong_to(:user) }
+    it { is_expected.to belong_to(:match) }
+    it { is_expected.to belong_to(:user) }
   end
 
   describe '#ranking_hash' do
 
     it 'should return ranking hash which consists of points correct tips count and correct tendency tips only count' do
       ranking_item = build(:ranking_item, points: 12, correct_tips_count: 13, correct_tendency_tips_only_count: 14)
-      ranking_item.ranking_hash.should eq '0121314'
+      expect(ranking_item.ranking_hash).to eq '0121314'
       ranking_item = build(:ranking_item, correct_champion_tip: true, points: 12, correct_tips_count: 13, correct_tendency_tips_only_count: 14)
-      ranking_item.ranking_hash.should eq '1121314'
+      expect(ranking_item.ranking_hash).to eq '1121314'
     end
   end
 
@@ -25,9 +25,9 @@ describe RankingItem do
 
       it 'should return neutral RankingItem where use_id is nil and position is 0' do
         actual_ranking_item = RankingItem.neutral
-        actual_ranking_item.should be_neutral
-        actual_ranking_item.user_id.should eq nil
-        actual_ranking_item.points.should eq 0
+        expect(actual_ranking_item).to be_neutral
+        expect(actual_ranking_item.user_id).to eq nil
+        expect(actual_ranking_item.points).to eq 0
       end
     end
 
@@ -35,8 +35,8 @@ describe RankingItem do
 
       it 'should return neutral RankingItem with given user_id' do
         actual_ranking_item = RankingItem.neutral(5)
-        actual_ranking_item.should be_neutral
-        actual_ranking_item.user_id.should eq 5
+        expect(actual_ranking_item).to be_neutral
+        expect(actual_ranking_item.user_id).to eq 5
       end
     end
   end
@@ -48,7 +48,7 @@ describe RankingItem do
     context 'when all statistic and id are except points are 0' do
 
       it 'should return true' do
-        subject.should be_neutral
+        expect(subject).to be_neutral
       end
     end
 
@@ -56,9 +56,9 @@ describe RankingItem do
 
       it 'should return false' do
         subject.correct_tips_count = nil
-        subject.should_not be_neutral
+        expect(subject).not_to be_neutral
         subject.correct_tips_count = 1
-        subject.should_not be_neutral
+        expect(subject).not_to be_neutral
       end
     end
   end

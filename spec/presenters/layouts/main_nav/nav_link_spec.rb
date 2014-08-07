@@ -1,8 +1,8 @@
 describe NavLink do
 
-  it { should respond_to(:label, :label=) }
-  it { should respond_to(:url, :url=) }
-  it { should respond_to(:active?, :active=) }
+  it { is_expected.to respond_to(:label, :label=) }
+  it { is_expected.to respond_to(:url, :url=) }
+  it { is_expected.to respond_to(:active?, :active=) }
 
   describe '#initialize' do
 

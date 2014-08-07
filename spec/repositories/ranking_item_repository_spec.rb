@@ -12,8 +12,8 @@ describe RankingItemRepository do
       ]
 
       actual_ranking_items = RankingItem.all_by_match_id(12)
-      actual_ranking_items.size.should eq 2
-      actual_ranking_items.should include ranking_items.first, ranking_items.last
+      expect(actual_ranking_items.size).to eq 2
+      expect(actual_ranking_items).to include ranking_items.first, ranking_items.last
     end
   end
 
@@ -28,8 +28,8 @@ describe RankingItemRepository do
       ]
 
       actual_ranking_items = RankingItem.all_by_user_id_and_match_id(user_id: 7, match_id: 12)
-      actual_ranking_items.size.should eq 2
-      actual_ranking_items.should include ranking_items.first, ranking_items.third
+      expect(actual_ranking_items.size).to eq 2
+      expect(actual_ranking_items).to include ranking_items.first, ranking_items.third
     end
   end
 
@@ -41,18 +41,18 @@ describe RankingItemRepository do
     context 'when RankingItems exists for given match_id' do
 
       it 'should return true' do
-        relation.should_receive(:exists?).and_return(true)
-        subject.should_receive(:all_by_match_id).with(match_id).and_return(relation)
-        subject.exists_by_match_id?(match_id).should be_true
+        expect(relation).to receive(:exists?).and_return(true)
+        expect(subject).to receive(:all_by_match_id).with(match_id).and_return(relation)
+        expect(subject.exists_by_match_id?(match_id)).to be_truthy
       end
     end
 
     context 'when not RankingItem exist for given match_id' do
 
       it 'should return false' do
-        relation.should_receive(:exists?).and_return(false)
-        subject.should_receive(:all_by_match_id).with(match_id).and_return(relation)
-        subject.exists_by_match_id?(match_id).should be_false
+        expect(relation).to receive(:exists?).and_return(false)
+        expect(subject).to receive(:all_by_match_id).with(match_id).and_return(relation)
+        expect(subject.exists_by_match_id?(match_id)).to be_falsey
       end
     end
   end
@@ -76,21 +76,21 @@ describe RankingItemRepository do
       ranking_item_1 = build(:ranking_item, match_id: 12, user_id: 13)
       ranking_item_2 = build(:ranking_item, match_id: 12, user_id: 14)
 
-      subject.destroy_and_create_multiple(12, [ranking_item_1, ranking_item_2]).should be_true
+      expect(subject.destroy_and_create_multiple(12, [ranking_item_1, ranking_item_2])).to be_truthy
 
       actual_ranking_items = RankingItem.all
-      actual_ranking_items.size.should eq 3
+      expect(actual_ranking_items.size).to eq 3
       ranking_item_1.reload
       ranking_item_2.reload
-      actual_ranking_items.should include ranking_items[1], ranking_item_1, ranking_item_2
+      expect(actual_ranking_items).to include ranking_items[1], ranking_item_1, ranking_item_2
     end
 
     it 'should update all given ranking items transactional' do
       ranking_item_1 = build(:ranking_item, match_id: 12, user_id: 13, points: -1)
-      ranking_item_1.should_receive(:save).and_return(false)
+      expect(ranking_item_1).to receive(:save).and_return(false)
 
-      subject.destroy_and_create_multiple(12, [ranking_item_1]).should be_false
-      subject.all.should include ranking_items[0], ranking_items[1]
+      expect(subject.destroy_and_create_multiple(12, [ranking_item_1])).to be_falsey
+      expect(subject.all).to include ranking_items[0], ranking_items[1]
     end
   end
 
@@ -101,7 +101,7 @@ describe RankingItemRepository do
       expected_ranking_item = create(:ranking_item, user_id: 2, match_id: 7)
       create(:ranking_item, user_id: 3, match_id: 7)
 
-      subject.first_by_user_id_and_match_id(user_id: 2, match_id: 7).should eq expected_ranking_item
+      expect(subject.first_by_user_id_and_match_id(user_id: 2, match_id: 7)).to eq expected_ranking_item
     end
   end
 
@@ -113,10 +113,10 @@ describe RankingItemRepository do
       ranking_item_2 = create(:ranking_item, position: 2)
 
       actual_ranking_items = subject.ordered_by_position_asc
-      actual_ranking_items.count.should eq 3
-      actual_ranking_items.first.should eq ranking_item_1
-      actual_ranking_items.second.should eq ranking_item_2
-      actual_ranking_items.third.should eq ranking_item_3
+      expect(actual_ranking_items.count).to eq 3
+      expect(actual_ranking_items.first).to eq ranking_item_1
+      expect(actual_ranking_items.second).to eq ranking_item_2
+      expect(actual_ranking_items.third).to eq ranking_item_3
     end
   end
 
@@ -130,17 +130,17 @@ describe RankingItemRepository do
       create(:ranking_item)
 
       actual_ranking_items = subject.ranking_set_for_listing(match_id: match.id, page: 1, per_page: 2)
-      actual_ranking_items.count.should eq 2
-      actual_ranking_items.first.should eq expected_ranking_item_1
-      actual_ranking_items.second.should eq expected_ranking_item_2
+      expect(actual_ranking_items.count).to eq 2
+      expect(actual_ranking_items.first).to eq expected_ranking_item_1
+      expect(actual_ranking_items.second).to eq expected_ranking_item_2
     end
 
     it 'should includes user, champion_tip and team' do
       relation = double('RankingItemRelation')
       relation.as_null_object
 
-      relation.should_receive(:includes).with(user: {champion_tip: :team})
-      subject.should_receive(:where).and_return(relation)
+      expect(relation).to receive(:includes).with(user: {champion_tip: :team})
+      expect(subject).to receive(:where).and_return(relation)
 
       subject.ranking_set_for_listing(match_id: nil, page: nil, per_page: nil)
     end
@@ -157,15 +157,15 @@ describe RankingItemRepository do
       create(:ranking_item, position: 1)
 
       actual_ranking_items = subject.ranking_set_for_listing_by_positions(match_id: match.id, positions: [1, 2])
-      actual_ranking_items.count.should eq 3
-      actual_ranking_items.should include expected_ranking_item_1, expected_ranking_item_2, expected_ranking_item_3
+      expect(actual_ranking_items.count).to eq 3
+      expect(actual_ranking_items).to include expected_ranking_item_1, expected_ranking_item_2, expected_ranking_item_3
     end
 
     it 'should use scope ranking_set_for_listing and set match_id, page and per_page nil by default' do
       relation = double('RankingSetRelation')
       relation.as_null_object
-      subject.
-          should_receive(:ranking_set_for_listing).with(match_id: nil, page: nil, per_page: nil).
+      expect(subject).
+          to receive(:ranking_set_for_listing).with(match_id: nil, page: nil, per_page: nil).
           and_return(relation)
       subject.ranking_set_for_listing_by_positions(positions: 1)
     end

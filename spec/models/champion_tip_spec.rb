@@ -1,11 +1,11 @@
-describe ChampionTip do
+describe ChampionTip, :type => :model do
 
   it 'should have valid factory' do
-    build(:champion_tip).should be_valid
+    expect(build(:champion_tip)).to be_valid
   end
 
   it 'should include module ChampionTipRepository' do
-    ChampionTip.included_modules.should include ChampionTipRepository
+    expect(ChampionTip.included_modules).to include ChampionTipRepository
   end
 
   describe 'validations' do
@@ -13,19 +13,19 @@ describe ChampionTip do
     context 'for team' do
 
       context 'on create' do
-        it { should_not validate_presence_of(:team) }
+        it { is_expected.not_to validate_presence_of(:team) }
       end
 
       context 'on update' do
         subject { create(:champion_tip) }
-        it { should validate_presence_of(:team) }
+        it { is_expected.to validate_presence_of(:team) }
       end
     end
   end
 
   describe 'associations' do
-    it { should belong_to(:user) }
-    it { should belong_to(:team) }
+    it { is_expected.to belong_to(:user) }
+    it { is_expected.to belong_to(:team) }
   end
 
   describe 'correct?' do
@@ -34,7 +34,7 @@ describe ChampionTip do
 
       it 'should return true' do
         subject.result = ChampionTip::RESULTS[:correct]
-        subject.should be_correct
+        expect(subject).to be_correct
       end
     end
 
@@ -42,7 +42,7 @@ describe ChampionTip do
 
       it 'should return false' do
         subject.result = ChampionTip::RESULTS[:incorrect]
-        subject.should_not be_correct
+        expect(subject).not_to be_correct
       end
     end
   end

@@ -1,4 +1,4 @@
-describe 'pin_boards/_comment.slim' do
+describe 'pin_boards/_comment.slim', :type => :view do
 
   let(:comment) { build(:comment, id: 5, created_at: Time.current) }
   let(:is_for_current_user) { true }
@@ -22,7 +22,7 @@ describe 'pin_boards/_comment.slim' do
 
       it 'should be displayed' do
         render partial_options
-        rendered.should have_css("a[href='#{edit_comment_path(comment)}']")
+        expect(rendered).to have_css("a[href='#{edit_comment_path(comment)}']")
       end
     end
 
@@ -32,7 +32,7 @@ describe 'pin_boards/_comment.slim' do
 
       it 'should be displayed' do
         render partial_options
-        rendered.should_not have_css("a[href='#{edit_comment_path(comment)}']")
+        expect(rendered).not_to have_css("a[href='#{edit_comment_path(comment)}']")
       end
     end
   end

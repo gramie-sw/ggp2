@@ -8,7 +8,7 @@ describe NavLinksProvidable do
   let(:nav_link_builder) { instance_double('NavLinkBuilder') }
   subject { subject_class.new nav_link_builder }
 
-  it { should respond_to :nav_link_builder }
+  it { is_expected.to respond_to :nav_link_builder }
 
   describe '::create' do
 
@@ -59,13 +59,13 @@ describe NavLinksProvidable do
 
   describe NavLinksProvidable::SectionConfigurator do
 
-    let(:section_configuration) { instance_double('SectionConfiguration') }
-    subject { NavLinksProvidable::SectionConfigurator.new(:section_1, section_configuration) }
+    let(:section_registry) { instance_double('SectionRegistry') }
+    subject { NavLinksProvidable::SectionConfigurator.new(:section_1, section_registry) }
 
     describe '#is_active_for' do
 
       it 'should build SectionConfiguration and register it with given section_registry' do
-        expect(section_configuration).to receive(:register_section) do |actual_section_configuration|
+        expect(section_registry).to receive(:register_section) do |actual_section_configuration|
           expect(actual_section_configuration).to be_instance_of SectionConfiguration
           expect(actual_section_configuration.section).to be :section_1
           expect(actual_section_configuration.active_markers).to eq [:active_marker_1]
@@ -74,7 +74,7 @@ describe NavLinksProvidable do
       end
 
       it 'should accept multiple active_markers' do
-        expect(section_configuration).to receive(:register_section) do |actual_section_configuration|
+        expect(section_registry).to receive(:register_section) do |actual_section_configuration|
           expect(actual_section_configuration.active_markers).to eq(
                                                                      [
                                                                          :active_marker_1,
@@ -100,7 +100,7 @@ describe NavLinksProvidable do
   describe '#build_link' do
 
     it 'should delegate to given NavLinkBuilder instance' do
-      nav_link_builder.should_receive(:build).with('label_1', 'url_1', :section_1).and_return(:NavLink)
+      expect(nav_link_builder).to receive(:build).with('label_1', 'url_1', :section_1).and_return(:NavLink)
       expect(subject.build_link('label_1', 'url_1', :section_1)).to be :NavLink
     end
   end

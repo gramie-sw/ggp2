@@ -4,7 +4,7 @@ describe MatchPresenter do
   subject { MatchPresenter.new(match) }
 
   it 'should include ResultPresentable' do
-    MatchPresenter.included_modules.should include ResultPresentable
+    expect(MatchPresenter.included_modules).to include ResultPresentable
   end
 
   describe '#team_1_name_or_placeholder' do
@@ -14,7 +14,7 @@ describe MatchPresenter do
       it 'should return team 1 name' do
         expected_team = create(:team)
         match.team_1 = expected_team
-        subject.team_1_name_or_placeholder.should eq expected_team.name
+        expect(subject.team_1_name_or_placeholder).to eq expected_team.name
       end
     end
 
@@ -23,7 +23,7 @@ describe MatchPresenter do
       it 'should return placeholder' do
         match.placeholder_team_1= :team_1
         match.team_1 = nil
-        subject.team_1_name_or_placeholder.should be :team_1
+        expect(subject.team_1_name_or_placeholder).to be :team_1
       end
     end
   end
@@ -35,7 +35,7 @@ describe MatchPresenter do
       it 'should return team 2 name' do
         expected_team = create(:team)
         match.team_2 = expected_team
-        subject.team_2_name_or_placeholder.should eq expected_team.name
+        expect(subject.team_2_name_or_placeholder).to eq expected_team.name
       end
     end
 
@@ -44,7 +44,7 @@ describe MatchPresenter do
       it 'should return placeholder' do
         match.placeholder_team_2= :team_2
         match.team_2 = nil
-        subject.team_2_name_or_placeholder.should be :team_2
+        expect(subject.team_2_name_or_placeholder).to be :team_2
       end
     end
   end
@@ -60,14 +60,14 @@ describe MatchPresenter do
       context 'if multiline is false' do
 
         it 'should return phase name' do
-          subject.aggregate_name_recursive.should eq aggregate.name
+          expect(subject.aggregate_name_recursive).to eq aggregate.name
         end
       end
 
       context 'if multiline is ture' do
 
         it 'should return array with phase name' do
-          subject.aggregate_name_recursive(multiline: true).should eq [aggregate.name]
+          expect(subject.aggregate_name_recursive(multiline: true)).to eq [aggregate.name]
         end
       end
     end
@@ -78,20 +78,20 @@ describe MatchPresenter do
       context 'if multiline is false' do
 
         it 'should return phase and group name' do
-          subject.aggregate_name_recursive.should eq "#{aggregate.parent.name} - #{aggregate.name}"
+          expect(subject.aggregate_name_recursive).to eq "#{aggregate.parent.name} - #{aggregate.name}"
         end
       end
 
       context 'if multiline is false' do
 
         it 'should return Array with phase and group name' do
-          subject.aggregate_name_recursive(multiline: true).should eq [aggregate.parent.name, aggregate.name]
+          expect(subject.aggregate_name_recursive(multiline: true)).to eq [aggregate.parent.name, aggregate.name]
         end
       end
     end
 
     it 'should cache return value' do
-      subject.aggregate_name_recursive.should be subject.aggregate_name_recursive
+      expect(subject.aggregate_name_recursive).to be subject.aggregate_name_recursive
     end
   end
 end

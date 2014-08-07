@@ -1,28 +1,28 @@
-describe Comment do
+describe Comment, :type => :model do
 
   it 'should have valid factory' do
-    build(:comment).should be_valid
+    expect(build(:comment)).to be_valid
   end
 
   it 'should include module CommentRepository' do
-    Comment.included_modules.should include CommentRepository
+    expect(Comment.included_modules).to include CommentRepository
   end
 
   describe 'validations' do
 
     describe 'user' do
-      it { should validate_presence_of :user }
+      it { is_expected.to validate_presence_of :user }
     end
 
     describe 'content' do
-      it { should validate_presence_of :content }
-      it { should ensure_length_of(:content).is_at_most(500) }
+      it { is_expected.to validate_presence_of :content }
+      it { is_expected.to ensure_length_of(:content).is_at_most(500) }
     end
   end
 
   describe 'associations' do
 
-    it { should belong_to :user }
+    it { is_expected.to belong_to :user }
   end
 
   describe 'scopes' do
@@ -35,9 +35,9 @@ describe Comment do
         comment_2 = create(:comment, created_at: Date.current)
 
         actual_comments = Comment.order_by_created_at_desc
-        actual_comments.first.should eq comment_1
-        actual_comments.second.should eq comment_2
-        actual_comments.third.should eq comment_3
+        expect(actual_comments.first).to eq comment_1
+        expect(actual_comments.second).to eq comment_2
+        expect(actual_comments.third).to eq comment_3
 
       end
     end
@@ -48,12 +48,12 @@ describe Comment do
         relation = double('CommentRelation')
         relation.as_null_object
 
-        Comment.should_receive(:order_by_created_at_desc).and_return(relation)
-        relation.should_receive(:includes).with(:user).and_return(relation)
-        relation.should_receive(:page).with(2).and_return(relation)
-        relation.should_receive(:per).with(10).and_return(relation)
+        expect(Comment).to receive(:order_by_created_at_desc).and_return(relation)
+        expect(relation).to receive(:includes).with(:user).and_return(relation)
+        expect(relation).to receive(:page).with(2).and_return(relation)
+        expect(relation).to receive(:per).with(10).and_return(relation)
 
-        Comment.comments_for_pin_board(2).should eq relation
+        expect(Comment.comments_for_pin_board(2)).to eq relation
       end
     end
   end

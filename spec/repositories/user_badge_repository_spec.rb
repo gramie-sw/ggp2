@@ -99,7 +99,7 @@ describe UserBadgeRepository do
 
     it 'should destroy and save user badges transactionally' do
 
-      user_badges.stub(:map).with(any_args).and_return([false])
+      allow(user_badges).to receive(:map).with(any_args).and_return([false])
 
       subject.destroy_and_create_multiple :tip, user_badges
 

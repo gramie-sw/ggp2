@@ -16,8 +16,8 @@ describe CalculateChampionTipResults do
     subject.run(Tournament.new)
 
     champion_tip_1.reload
-    champion_tip_1.should_not be_correct
+    expect(champion_tip_1).not_to be_correct
     champion_tip_2.reload
-    champion_tip_2.should be_correct
+    expect(champion_tip_2).to be_correct
   end
 end

@@ -24,7 +24,7 @@ describe UpdateComment do
         subject.run_with_callback(callback)
         comment.reload
         expect(comment.content).to eq new_attributes[:content]
-        expect(comment.edited).to be_true
+        expect(comment.edited).to be_truthy
       end
     end
 
@@ -83,7 +83,7 @@ describe UpdateComment do
           callback.as_null_object
           subject.run_with_callback(callback)
           comment.reload
-          expect(comment.edited).to be_true
+          expect(comment.edited).to be_truthy
         end
       end
     end

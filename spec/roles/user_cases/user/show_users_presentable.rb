@@ -1,5 +1,5 @@
 shared_examples_for 'ShowUsersPresentable' do
 
-  it { should respond_to(:users=, :users) }
-  it { should respond_to(:admin=, :admin, :admin?)}
+  it { is_expected.to respond_to(:users=, :users) }
+  it { is_expected.to respond_to(:admin=, :admin, :admin?)}
 end

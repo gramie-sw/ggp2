@@ -12,22 +12,22 @@ describe ShowWinnerRanking do
       ]
 
       presenter = double('Presenter')
-      presenter.should_receive(:first_places=).with do |actual_ranking_items|
-        actual_ranking_items.count.should eq 1
-        actual_ranking_items.should include winner_ranking_items.second
+      expect(presenter).to receive(:first_places=) do |actual_ranking_items|
+        expect(actual_ranking_items.count).to eq 1
+        expect(actual_ranking_items).to include winner_ranking_items.second
       end
 
-      presenter.should_receive(:second_places=).with do |actual_ranking_items|
-        actual_ranking_items.count.should eq 2
-        actual_ranking_items.should include winner_ranking_items.first, winner_ranking_items.third
+      expect(presenter).to receive(:second_places=) do |actual_ranking_items|
+        expect(actual_ranking_items.count).to eq 2
+        expect(actual_ranking_items).to include winner_ranking_items.first, winner_ranking_items.third
       end
-      presenter.should_receive(:third_places=).with do |actual_ranking_items|
-        actual_ranking_items.count.should eq 1
-        actual_ranking_items.should include winner_ranking_items.fourth
+
+      expect(presenter).to receive(:third_places=) do |actual_ranking_items|
+        expect(actual_ranking_items.count).to eq 1
+        expect(actual_ranking_items).to include winner_ranking_items.fourth
       end
 
       subject.run(presenter)
     end
   end
-
 end

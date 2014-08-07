@@ -30,9 +30,9 @@ describe UserBadgeProvider do
   end
 
   before :each do
-    badges[0].stub(:eligible_user_ids).and_return([1,3])
-    badges[1].stub(:eligible_user_ids).and_return([])
-    badges[2].stub(:eligible_user_ids).and_return([3])
+    allow(badges[0]).to receive(:eligible_user_ids).and_return([1,3])
+    allow(badges[1]).to receive(:eligible_user_ids).and_return([])
+    allow(badges[2]).to receive(:eligible_user_ids).and_return([3])
   end
 
   describe '::provide' do

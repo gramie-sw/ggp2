@@ -14,21 +14,21 @@ describe MatchTipsShowPresenter do
 
     it 'should return tip_presenters' do
       actual_tip_presenters = subject.tip_presenters
-      actual_tip_presenters.count.should eq 3
+      expect(actual_tip_presenters.count).to eq 3
       #matcher be_kind_of didn't worked with DelegateClass in rspec-expectations
-      actual_tip_presenters.first.kind_of?(TipPresenter).should be_true
-      tips.should include actual_tip_presenters.first.__getobj__
+      expect(actual_tip_presenters.first.kind_of?(TipPresenter)).to be_truthy
+      expect(tips).to include actual_tip_presenters.first.__getobj__
     end
 
     it 'should set correct is_for_current_user argument when creating TipPresenters' do
-      TipPresenter.should_receive(:new).with(tip: tips.first, is_for_current_user: true)
-      TipPresenter.should_receive(:new).with(tip: tips.second, is_for_current_user: false)
-      TipPresenter.should_receive(:new).with(tip: tips.third, is_for_current_user: false)
+      expect(TipPresenter).to receive(:new).with(tip: tips.first, is_for_current_user: true)
+      expect(TipPresenter).to receive(:new).with(tip: tips.second, is_for_current_user: false)
+      expect(TipPresenter).to receive(:new).with(tip: tips.third, is_for_current_user: false)
       subject.tip_presenters
     end
 
     it 'should cache tip_presenters' do
-      subject.tip_presenters.should eq subject.tip_presenters
+      expect(subject.tip_presenters).to eq subject.tip_presenters
     end
 
     describe 'query methods' do
@@ -40,22 +40,22 @@ describe MatchTipsShowPresenter do
       end
 
       before :each do
-        User.stub(:players).and_return(relation)
+        allow(User).to receive(:players).and_return(relation)
       end
 
       it 'should order users by nickname' do
-        relation.should_receive(:order_by_nickname_asc).and_return(relation)
+        expect(relation).to receive(:order_by_nickname_asc).and_return(relation)
         subject.tip_presenters
       end
 
       it 'should filter for players' do
-        User.should_receive(:players).and_return(relation)
+        expect(User).to receive(:players).and_return(relation)
         subject.tip_presenters
       end
 
       it 'should filter include tips of given match' do
-        relation.should_receive(:includes).with(:tips).and_return(relation)
-        relation.should_receive(:where).with('tips.match_id = ?', match.id).and_return(relation)
+        expect(relation).to receive(:includes).with(:tips).and_return(relation)
+        expect(relation).to receive(:where).with('tips.match_id = ?', match.id).and_return(relation)
         subject.tip_presenters
       end
     end
@@ -65,13 +65,13 @@ describe MatchTipsShowPresenter do
 
     it 'should return MatchPresenter of given match' do
       #matcher be_kind_of didn't worked with DelegateClass in rspec-expectations
-      subject.match_presenter.kind_of?(MatchPresenter).should be_true
-      subject.match_presenter.__getobj__.should be match
+      expect(subject.match_presenter.kind_of?(MatchPresenter)).to be_truthy
+      expect(subject.match_presenter.__getobj__).to be match
     end
 
     it 'should cache match_presenter' do
       #matcher be didn't worked with DelegateClass in rspec-expectations
-      subject.match_presenter.object_id.should eq subject.match_presenter.object_id
+      expect(subject.match_presenter.object_id).to eq subject.match_presenter.object_id
     end
   end
 end

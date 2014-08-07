@@ -1,4 +1,4 @@
-describe MatchTipsController do
+describe MatchTipsController, :type => :controller do
 
   let(:player) { create(:player) }
   let(:match) { create(:match) }
@@ -11,19 +11,19 @@ describe MatchTipsController do
 
     it 'should returns http success' do
       get :show, id: match.to_param
-      response.should be_success
+      expect(response).to be_success
     end
 
     it 'should render show' do
       get :show, id: match.to_param
-      response.should render_template :show
+      expect(response).to render_template :show
     end
 
     it 'should assign correctly instantiated MatchTipsShowPresenter' do
-      MatchTipsShowPresenter.should_receive(:new).
+      expect(MatchTipsShowPresenter).to receive(:new).
           with(match: match, current_user_id: player.id, page: '2').and_call_original
       get :show,{id: match.to_param, page: 2}
-      assigns(:presenter).should be_kind_of MatchTipsShowPresenter
+      expect(assigns(:presenter)).to be_kind_of MatchTipsShowPresenter
     end
   end
 

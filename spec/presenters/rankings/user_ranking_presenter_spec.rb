@@ -17,8 +17,8 @@ describe UserRankingPresenter do
     user.titleholder = true
     expect(user).to receive(:badges_count).and_return(5)
 
-    subject.nickname.should eq 'user_1'
-    subject.titleholder?.should be_true
+    expect(subject.nickname).to eq 'user_1'
+    expect(subject.titleholder?).to be_truthy
     expect(subject.badges_count).to eq 5
   end
 
@@ -29,11 +29,11 @@ describe UserRankingPresenter do
     ranking_item.correct_tips_count = 7
     ranking_item.correct_tendency_tips_only_count = 11
 
-    subject.user_id.should eq 344
-    subject.position.should eq 5
-    subject.points.should eq 67
-    subject.correct_tips_count.should eq 7
-    subject.correct_tendency_tips_only_count.should eq 11
+    expect(subject.user_id).to eq 344
+    expect(subject.position).to eq 5
+    expect(subject.points).to eq 67
+    expect(subject.correct_tips_count).to eq 7
+    expect(subject.correct_tendency_tips_only_count).to eq 11
   end
 
   describe 'champion_tip_team_name' do
@@ -43,7 +43,7 @@ describe UserRankingPresenter do
 
     before :each do
       user.champion_tip = champion_tip
-      champion_tip.team.stub(:name).and_return(expected_team_name)
+      allow(champion_tip.team).to receive(:name).and_return(expected_team_name)
     end
 
     context 'when ChampionTip team is present' do
@@ -53,8 +53,8 @@ describe UserRankingPresenter do
         let(:current_user_id) { user.id }
 
         it 'should return ChampionTip team name' do
-          tournament.should_receive(:started?).never
-          subject.champion_tip_team_name.should eq expected_team_name
+          expect(tournament).to receive(:started?).never
+          expect(subject.champion_tip_team_name).to eq expected_team_name
         end
       end
 
@@ -65,16 +65,16 @@ describe UserRankingPresenter do
         context 'when tournament is started' do
 
           it 'should  return ChampionTip team name' do
-            tournament.stub(:started?).at_least(:once).and_return(true)
-            subject.champion_tip_team_name.should eq expected_team_name
+            allow(tournament).to receive(:started?).at_least(:once).and_return(true)
+            expect(subject.champion_tip_team_name).to eq expected_team_name
           end
         end
 
         context 'when tournament is not started' do
 
           it 'should return present placeholder' do
-            tournament.stub(:started?).and_return(false)
-            subject.champion_tip_team_name.should eq '***'
+            allow(tournament).to receive(:started?).and_return(false)
+            expect(subject.champion_tip_team_name).to eq '***'
           end
         end
       end
@@ -84,8 +84,8 @@ describe UserRankingPresenter do
 
       it 'should return nil' do
         champion_tip.team = nil
-        tournament.should_receive(:started?).never
-        subject.champion_tip_team_name.should eq t('tip.not_present')
+        expect(tournament).to receive(:started?).never
+        expect(subject.champion_tip_team_name).to eq t('tip.not_present')
       end
     end
   end
@@ -98,7 +98,7 @@ describe UserRankingPresenter do
 
     before :each do
       user.champion_tip = champion_tip
-      champion_tip.team.stub(:abbreviation).and_return(expected_team_abbreviation)
+      allow(champion_tip.team).to receive(:abbreviation).and_return(expected_team_abbreviation)
     end
 
     context 'when ChampionTip team is present' do
@@ -108,8 +108,8 @@ describe UserRankingPresenter do
         let(:current_user_id) { user.id }
 
         it 'should return ChampionTip team name' do
-          tournament.should_receive(:started?).never
-          subject.champion_tip_team_abbreviation.should eq expected_team_abbreviation
+          expect(tournament).to receive(:started?).never
+          expect(subject.champion_tip_team_abbreviation).to eq expected_team_abbreviation
         end
       end
 
@@ -120,16 +120,16 @@ describe UserRankingPresenter do
         context 'when tournament is started' do
 
           it 'should  return ChampionTip team name' do
-            tournament.stub(:started?).at_least(:once).and_return(true)
-            subject.champion_tip_team_abbreviation.should eq expected_team_abbreviation
+            allow(tournament).to receive(:started?).at_least(:once).and_return(true)
+            expect(subject.champion_tip_team_abbreviation).to eq expected_team_abbreviation
           end
         end
 
         context 'when tournament is not started' do
 
           it 'should return nil' do
-            tournament.stub(:started?).and_return(false)
-            subject.champion_tip_team_abbreviation.should be_nil
+            allow(tournament).to receive(:started?).and_return(false)
+            expect(subject.champion_tip_team_abbreviation).to be_nil
           end
         end
       end
@@ -139,8 +139,8 @@ describe UserRankingPresenter do
 
       it 'should return nil' do
         champion_tip.team = nil
-        tournament.should_receive(:started?).never
-        subject.champion_tip_team_abbreviation.should be_nil
+        expect(tournament).to receive(:started?).never
+        expect(subject.champion_tip_team_abbreviation).to be_nil
       end
     end
   end

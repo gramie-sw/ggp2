@@ -9,31 +9,31 @@ describe UserTipsShowPresenter do
   it_behaves_like 'ShowChampionPresentable'
   it_behaves_like 'ShowAllPhasesPresentable'
 
-  it { should respond_to(:user_is_current_user?) }
-  it { should respond_to(:current_aggregate) }
-  it { should respond_to(:phases) }
+  it { is_expected.to respond_to(:user_is_current_user?) }
+  it { is_expected.to respond_to(:current_aggregate) }
+  it { is_expected.to respond_to(:phases) }
 
   describe '#title' do
 
     context 'if user is current_user' do
-      it { subject.title.should eq t('tip.yours') }
+      it { expect(subject.title).to eq t('tip.yours') }
     end
 
     context 'if user is not current_user' do
       let(:user_is_current_user) { false }
-      it { subject.title.should eq t('tip.all') }
+      it { expect(subject.title).to eq t('tip.all') }
     end
   end
 
   describe '#subtitle' do
 
     context 'if user is current_user' do
-      it { subject.subtitle.should eq '' }
+      it { expect(subject.subtitle).to eq '' }
     end
 
     context 'if user is not current_user' do
       let(:user_is_current_user) { false }
-      it { subject.subtitle.should eq t('general.of_subject', subject: user.nickname) }
+      it { expect(subject.subtitle).to eq t('general.of_subject', subject: user.nickname) }
     end
   end
 
@@ -53,7 +53,7 @@ describe UserTipsShowPresenter do
 
         it 'should return true' do
           expect(current_aggregate).to receive(:has_future_matches?).and_return(true)
-          expect(subject.show_as_form?).to be_true
+          expect(subject.show_as_form?).to be_truthy
         end
       end
 
@@ -61,7 +61,7 @@ describe UserTipsShowPresenter do
 
         it 'should return false' do
           expect(current_aggregate).to receive(:has_future_matches?).and_return(false)
-          expect(subject.show_as_form?).to be_false
+          expect(subject.show_as_form?).to be_falsey
         end
       end
     end
@@ -71,7 +71,7 @@ describe UserTipsShowPresenter do
       let(:user_is_current_user) { false }
 
       it 'should return false' do
-        expect(subject.show_as_form?).to be_false
+        expect(subject.show_as_form?).to be_falsey
       end
     end
   end

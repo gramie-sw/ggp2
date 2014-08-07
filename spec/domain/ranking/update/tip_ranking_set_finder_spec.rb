@@ -10,14 +10,14 @@ describe TipRankingSetFinder do
       it 'should return created RankingItemSet' do
         expected_ranking_items = [RankingItem.new(match_id: 3)]
 
-        RankingItem.stub(:exists_by_match_id?).with(4).and_return(false)
-        RankingItem.stub(:exists_by_match_id?).with(3).and_return(true)
-        RankingItem.stub(:all_by_match_id).with(3).ordered.and_return(expected_ranking_items)
+        allow(RankingItem).to receive(:exists_by_match_id?).with(4).and_return(false)
+        allow(RankingItem).to receive(:exists_by_match_id?).with(3).and_return(true)
+        allow(RankingItem).to receive(:all_by_match_id).with(3).ordered.and_return(expected_ranking_items)
 
         actual_ranking_set = subject.find_previous(5)
-        actual_ranking_set.should be_an_instance_of RankingSet
-        actual_ranking_set.match_id.should be 3
-        actual_ranking_set.send(:ranking_items).should eq expected_ranking_items
+        expect(actual_ranking_set).to be_an_instance_of RankingSet
+        expect(actual_ranking_set.match_id).to be 3
+        expect(actual_ranking_set.send(:ranking_items)).to eq expected_ranking_items
       end
     end
 
@@ -25,12 +25,12 @@ describe TipRankingSetFinder do
 
 
       it 'should return RankingItemSet with match_id 0 and no RankingItems' do
-        RankingItem.stub(:exists_by_match_id?).with(2).and_return(false)
-        RankingItem.stub(:exists_by_match_id?).with(1).and_return(false)
+        allow(RankingItem).to receive(:exists_by_match_id?).with(2).and_return(false)
+        allow(RankingItem).to receive(:exists_by_match_id?).with(1).and_return(false)
 
         actual_ranking_set = subject.find_previous(3)
-        actual_ranking_set.should be_an_instance_of RankingSet
-        actual_ranking_set.should be_neutral
+        expect(actual_ranking_set).to be_an_instance_of RankingSet
+        expect(actual_ranking_set).to be_neutral
       end
     end
 
@@ -38,8 +38,8 @@ describe TipRankingSetFinder do
 
       it 'should return RankingItemSet with match_id 0 and no RankingItems' do
         actual_ranking_set = subject.find_previous(1)
-        actual_ranking_set.should be_an_instance_of RankingSet
-        actual_ranking_set.should be_neutral
+        expect(actual_ranking_set).to be_an_instance_of RankingSet
+        expect(actual_ranking_set).to be_neutral
       end
     end
   end
@@ -49,28 +49,28 @@ describe TipRankingSetFinder do
     context 'when there are next RankingItems for match id' do
 
       it 'should return created RankingItemSet' do
-        RankingItem.stub(:exists_by_match_id?).with(5).and_return(false)
-        RankingItem.stub(:exists_by_match_id?).with(6).and_return(true)
+        allow(RankingItem).to receive(:exists_by_match_id?).with(5).and_return(false)
+        allow(RankingItem).to receive(:exists_by_match_id?).with(6).and_return(true)
 
-        subject.find_next_match_id(4).should eq 6
+        expect(subject.find_next_match_id(4)).to eq 6
       end
     end
 
     context 'when there are no next RankingItems for match id' do
 
       it 'should return nil' do
-        RankingItem.stub(:exists_by_match_id?).with(6).and_return(false)
-        RankingItem.stub(:exists_by_match_id?).with(7).and_return(false)
+        allow(RankingItem).to receive(:exists_by_match_id?).with(6).and_return(false)
+        allow(RankingItem).to receive(:exists_by_match_id?).with(7).and_return(false)
 
-        subject.find_next_match_id(5).should be_nil
+        expect(subject.find_next_match_id(5)).to be_nil
       end
     end
 
     context 'when current_match_id belongs to last macht' do
 
       it 'should return nil' do
-        RankingItem.stub(:exists_by_match_id?).never
-        subject.find_next_match_id(7).should be_nil
+        allow(RankingItem).to receive(:exists_by_match_id?).never
+        expect(subject.find_next_match_id(7)).to be_nil
       end
     end
   end

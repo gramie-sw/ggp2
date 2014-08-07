@@ -1,4 +1,4 @@
-describe 'profiles/_user_data.slim' do
+describe 'profiles/_user_data.slim', :type => :view do
 
   let(:user) { build(:player, id: 5, created_at: Date.new) }
   let(:is_for_current_user) { true }
@@ -30,9 +30,9 @@ describe 'profiles/_user_data.slim' do
       it 'should display form controls special to current_user' do
         render partial_options
 
-        rendered.should have_css *email_field_css
-        rendered.should have_css *password_field_css
-        rendered.should have_css *edit_link_css
+        expect(rendered).to have_css *email_field_css
+        expect(rendered).to have_css *password_field_css
+        expect(rendered).to have_css *edit_link_css
       end
     end
 
@@ -43,9 +43,9 @@ describe 'profiles/_user_data.slim' do
       it 'should display form controls special to current_user' do
         render partial_options
 
-        rendered.should_not have_css *email_field_css
-        rendered.should_not have_css *password_field_css
-        rendered.should_not have_css *edit_link_css
+        expect(rendered).not_to have_css *email_field_css
+        expect(rendered).not_to have_css *password_field_css
+        expect(rendered).not_to have_css *edit_link_css
       end
     end
   end

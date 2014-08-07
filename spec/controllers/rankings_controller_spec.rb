@@ -1,4 +1,4 @@
-describe RankingsController do
+describe RankingsController, :type => :controller do
 
   let(:current_user) { create(:player) }
 
@@ -9,17 +9,17 @@ describe RankingsController do
   describe '#show' do
 
     before :each do
-      ShowAllUserCurrentRanking.any_instance.stub(:run)
+      allow_any_instance_of(ShowAllUserCurrentRanking).to receive(:run)
     end
 
     it 'should return http success' do
       get :show
-      response.should be_success
+      expect(response).to be_success
     end
 
     it 'should render template show' do
       get :show
-      response.should render_template :show
+      expect(response).to render_template :show
     end
 
     it 'should run uc ShowAllUserCurrentRanking and render show' do
@@ -27,17 +27,17 @@ describe RankingsController do
       show_all_user_current_ranking = ShowAllUserCurrentRanking.new
       page = '2'
 
-      RankingsShowPresenter.should_receive(:new).
+      expect(RankingsShowPresenter).to receive(:new).
           with(tournament: @controller.tournament,
                current_user_id: current_user.id,
                page: page).
           and_return(expected_presenter)
-      ShowAllUserCurrentRanking.should_receive(:new).with(no_args).and_return(show_all_user_current_ranking)
-      show_all_user_current_ranking.should_receive(:run).with(expected_presenter, page)
+      expect(ShowAllUserCurrentRanking).to receive(:new).with(no_args).and_return(show_all_user_current_ranking)
+      expect(show_all_user_current_ranking).to receive(:run).with(expected_presenter, page)
 
       get :show, page: page
 
-      assigns(:presenter).should be expected_presenter
+      expect(assigns(:presenter)).to be expected_presenter
     end
   end
 

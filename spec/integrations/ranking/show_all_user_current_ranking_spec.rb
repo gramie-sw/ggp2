@@ -18,13 +18,13 @@ describe ShowAllUserCurrentRanking do
     it 'should return neutral RankingItem belonging to specified user' do
 
 
-      presenter.should_receive(:ranking_items=).with do |actual_ranking_items|
+      expect(presenter).to receive(:ranking_items=) do |actual_ranking_items|
 
-        actual_ranking_items.count.should eq 2
-        actual_ranking_items.first.user_id.should eq users.first.id
-        actual_ranking_items.first.should be_neutral
-        actual_ranking_items.second.user_id.should eq users.second.id
-        actual_ranking_items.second.should be_neutral
+        expect(actual_ranking_items.count).to eq 2
+        expect(actual_ranking_items.first.user_id).to eq users.first.id
+        expect(actual_ranking_items.first).to be_neutral
+        expect(actual_ranking_items.second.user_id).to eq users.second.id
+        expect(actual_ranking_items.second).to be_neutral
       end
 
       subject.run(presenter, 1)
@@ -39,11 +39,11 @@ describe ShowAllUserCurrentRanking do
       create(:ranking_item, user: users.second, position: 1, match: match)
       Property.set_last_tip_ranking_set_match_id_to match.id
 
-      presenter.should_receive(:ranking_items=).with do |actual_ranking_items|
+      expect(presenter).to receive(:ranking_items=) do |actual_ranking_items|
 
-        actual_ranking_items.count.should eq 2
-        actual_ranking_items.first.user_id.should eq users.second.id
-        actual_ranking_items.second.user_id.should eq users.first.id
+        expect(actual_ranking_items.count).to eq 2
+        expect(actual_ranking_items.first.user_id).to eq users.second.id
+        expect(actual_ranking_items.second.user_id).to eq users.first.id
       end
 
       subject.run(presenter, 1)
@@ -60,11 +60,11 @@ describe ShowAllUserCurrentRanking do
       Property.set_last_tip_ranking_set_match_id_to match.id
       Property.set_champion_tip_ranking_set_exists_to true
 
-      presenter.should_receive(:ranking_items=).with do |actual_ranking_items|
+      expect(presenter).to receive(:ranking_items=) do |actual_ranking_items|
 
-        actual_ranking_items.count.should eq 2
-        actual_ranking_items.first.user_id.should eq users.second.id
-        actual_ranking_items.second.user_id.should eq users.first.id
+        expect(actual_ranking_items.count).to eq 2
+        expect(actual_ranking_items.first.user_id).to eq users.second.id
+        expect(actual_ranking_items.second.user_id).to eq users.first.id
       end
 
       subject.run(presenter, 1)

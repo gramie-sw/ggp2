@@ -1,4 +1,4 @@
-describe UsersController do
+describe UsersController, :type => :controller do
 
   before :each do
     create_and_sign_in :admin

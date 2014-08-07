@@ -1,15 +1,15 @@
-describe ApplicationHelper do
+describe ApplicationHelper, :type => :helper do
 
   describe '#main_navbar_link' do
 
     it 'should return active list item and link when main_navbar_link_active? returns true' do
-      helper.should_receive(:main_navbar_link_active?).with(:active_key).and_return(true)
-      helper.main_navbar_link('title', 'path', :active_key).should eq "<li class=\"active\">#{link_to('title', 'path')}</li>"
+      expect(helper).to receive(:main_navbar_link_active?).with(:active_key).and_return(true)
+      expect(helper.main_navbar_link('title', 'path', :active_key)).to eq "<li class=\"active\">#{link_to('title', 'path')}</li>"
     end
 
     it 'should return non active list item and link when main_navbar_link_active? returns false' do
-      helper.should_receive(:main_navbar_link_active?).with(:active_key).and_return(false)
-      helper.main_navbar_link('title', 'path', :active_key).should eq "<li class=\"\">#{link_to('title', 'path')}</li>"
+      expect(helper).to receive(:main_navbar_link_active?).with(:active_key).and_return(false)
+      expect(helper.main_navbar_link('title', 'path', :active_key)).to eq "<li class=\"\">#{link_to('title', 'path')}</li>"
     end
   end
 
@@ -17,65 +17,65 @@ describe ApplicationHelper do
 
     context 'if aggregates controller is called' do
       before :each do
-        helper.stub(:params).and_return(controller: 'aggregates')
+        allow(helper).to receive(:params).and_return(controller: 'aggregates')
       end
 
       it 'should return true if active key is aggregates' do
-        helper.main_navbar_link_active?(:aggregates).should be_true
+        expect(helper.main_navbar_link_active?(:aggregates)).to be_truthy
       end
 
       it 'should return false if active key is not aggregates' do
-        helper.main_navbar_link_active?(:matches).should be_false
-        helper.main_navbar_link_active?(:venues).should be_false
-        helper.main_navbar_link_active?(:users).should be_false
+        expect(helper.main_navbar_link_active?(:matches)).to be_falsey
+        expect(helper.main_navbar_link_active?(:venues)).to be_falsey
+        expect(helper.main_navbar_link_active?(:users)).to be_falsey
       end
     end
 
     context 'if matches controller is called' do
       before :each do
-        helper.stub(:params).and_return(controller: 'matches')
+        allow(helper).to receive(:params).and_return(controller: 'matches')
       end
 
       it 'should return true if active key is matches' do
-        helper.main_navbar_link_active?(:matches).should be_true
+        expect(helper.main_navbar_link_active?(:matches)).to be_truthy
       end
 
       it 'should return false if active key is not matches' do
-        helper.main_navbar_link_active?(:aggregates).should be_false
-        helper.main_navbar_link_active?(:venues).should be_false
-        helper.main_navbar_link_active?(:users).should be_false
+        expect(helper.main_navbar_link_active?(:aggregates)).to be_falsey
+        expect(helper.main_navbar_link_active?(:venues)).to be_falsey
+        expect(helper.main_navbar_link_active?(:users)).to be_falsey
       end
     end
 
     context 'if venues controller is called' do
       before :each do
-        helper.stub(:params).and_return(controller: 'venues')
+        allow(helper).to receive(:params).and_return(controller: 'venues')
       end
 
       it 'should return true if active key is venues' do
-        helper.main_navbar_link_active?(:venues).should be_true
+        expect(helper.main_navbar_link_active?(:venues)).to be_truthy
       end
 
       it 'should return false if active key is not venues' do
-        helper.main_navbar_link_active?(:aggregates).should be_false
-        helper.main_navbar_link_active?(:matches).should be_false
-        helper.main_navbar_link_active?(:users).should be_false
+        expect(helper.main_navbar_link_active?(:aggregates)).to be_falsey
+        expect(helper.main_navbar_link_active?(:matches)).to be_falsey
+        expect(helper.main_navbar_link_active?(:users)).to be_falsey
       end
     end
 
     context 'if users controller is called' do
       before :each do
-        helper.stub(:params).and_return(controller: 'users')
+        allow(helper).to receive(:params).and_return(controller: 'users')
       end
 
       it 'should return true if active key is users' do
-        helper.main_navbar_link_active?(:users).should be_true
+        expect(helper.main_navbar_link_active?(:users)).to be_truthy
       end
 
       it 'should return false if active key is not users' do
-        helper.main_navbar_link_active?(:aggregates).should be_false
-        helper.main_navbar_link_active?(:matches).should be_false
-        helper.main_navbar_link_active?(:venues).should be_false
+        expect(helper.main_navbar_link_active?(:aggregates)).to be_falsey
+        expect(helper.main_navbar_link_active?(:matches)).to be_falsey
+        expect(helper.main_navbar_link_active?(:venues)).to be_falsey
       end
     end
   end

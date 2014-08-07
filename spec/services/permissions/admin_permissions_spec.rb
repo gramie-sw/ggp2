@@ -5,8 +5,8 @@ describe 'admin permissions' do
 
   describe 'as admin' do
     it 'allows anything' do
-      should allow_action(:anything, :here)
-      should allow_attribute(:anything, :here)
+      is_expected.to allow_action(:anything, :here)
+      is_expected.to allow_attribute(:anything, :here)
     end
   end
 end

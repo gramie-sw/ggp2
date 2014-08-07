@@ -7,7 +7,7 @@ describe NavLinkBuilder do
   describe '#build' do
 
     before :each do
-      section_registry.stub(:is_active?)
+      allow(section_registry).to receive(:is_active?)
     end
 
     it 'should return NavLink with set label and url' do
@@ -21,7 +21,7 @@ describe NavLinkBuilder do
     context 'when SectionRegistry declares link as active' do
 
       it 'should return NavLink where active? is true' do
-        section_registry.should_receive(:is_active?).with(:section_1, *current_active_markers).and_return(true)
+        expect(section_registry).to receive(:is_active?).with(:section_1, *current_active_markers).and_return(true)
 
         actual_nav_link = subject.build('label_1', 'url_1', :section_1)
         expect(actual_nav_link).to be_active
@@ -31,7 +31,7 @@ describe NavLinkBuilder do
     context 'when SectionRegistry declares link as no active' do
 
       it 'should return NavLink where active? is false' do
-        section_registry.should_receive(:is_active?).with(:section_1, *current_active_markers).and_return(false)
+        expect(section_registry).to receive(:is_active?).with(:section_1, *current_active_markers).and_return(false)
 
         actual_nav_link = subject.build('label_1', 'url_1', :section_1)
         expect(actual_nav_link).not_to be_active

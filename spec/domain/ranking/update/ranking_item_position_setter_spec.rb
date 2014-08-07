@@ -16,18 +16,18 @@ describe RankingItemPositionSetter do
     it 'should return sorted ranking items with position set' do
       sorted_ranking_items = RankingItemPositionSetter.set_positions ranking_items
 
-      sorted_ranking_items[0].should eq ranking_items[3]
-      sorted_ranking_items[0].position.should be 1
-      sorted_ranking_items[1].should eq ranking_items[2]
-      sorted_ranking_items[1].position.should be 2
-      sorted_ranking_items[2].should eq ranking_items[4]
-      sorted_ranking_items[2].position.should be 3
-      sorted_ranking_items[3].should eq ranking_items[5]
-      sorted_ranking_items[3].position.should be 4
-      sorted_ranking_items[4].should eq ranking_items[1]
-      sorted_ranking_items[4].position.should be 5
-      sorted_ranking_items[5].should eq ranking_items[0]
-      sorted_ranking_items[5].position.should be 5
+      expect(sorted_ranking_items[0]).to eq ranking_items[3]
+      expect(sorted_ranking_items[0].position).to be 1
+      expect(sorted_ranking_items[1]).to eq ranking_items[2]
+      expect(sorted_ranking_items[1].position).to be 2
+      expect(sorted_ranking_items[2]).to eq ranking_items[4]
+      expect(sorted_ranking_items[2].position).to be 3
+      expect(sorted_ranking_items[3]).to eq ranking_items[5]
+      expect(sorted_ranking_items[3].position).to be 4
+      expect(sorted_ranking_items[4]).to eq ranking_items[1]
+      expect(sorted_ranking_items[4].position).to be 5
+      expect(sorted_ranking_items[5]).to eq ranking_items[0]
+      expect(sorted_ranking_items[5].position).to be 5
     end
   end
 end

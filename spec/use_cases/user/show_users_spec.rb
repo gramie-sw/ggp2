@@ -25,7 +25,7 @@ describe ShowUsers do
       it 'should set on presentable users all admins and admin true' do
 
         subject.run_with_presentable(presentable: presentable, type: User::USER_TYPE_ADMINS, page: 1, per_page: 2)
-        expect(presentable.admin).to be_true
+        expect(presentable.admin).to be_truthy
         actual_users = presentable.users
         expect(actual_users.size).to eq 2
         expect(actual_users.first).to eq users[2]
@@ -38,7 +38,7 @@ describe ShowUsers do
       it 'should set on presentable users all players and admin false' do
 
         subject.run_with_presentable(presentable: presentable, type: User::USER_TYPE_PLAYERS, page: 1, per_page: 2)
-        expect(presentable.admin).to be_false
+        expect(presentable.admin).to be_falsey
         actual_users = presentable.users
         expect(actual_users.size).to eq 2
         expect(actual_users.first).to eq users[3]

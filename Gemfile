@@ -25,9 +25,10 @@ gem 'devise'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'permissioner'
 
+gem 'transpec'
+
 group :development, :test do
-  gem 'rspec-rails'
-  gem 'rspec-fire'
+  gem 'rspec-rails', '~>3.0.2'
   gem 'guard-rspec'
 end
 

@@ -3,7 +3,7 @@ describe TipConsecutiveMissedBadge do
   subject { TipConsecutiveMissedBadge.new(position: 1, icon: 'icon', icon_color: 'icon_color', count: 2,
                                           identifier: 'identifier')}
 
-  it { should respond_to(:count=, :count) }
+  it { is_expected.to respond_to(:count=, :count) }
 
   describe '#initialize' do
 

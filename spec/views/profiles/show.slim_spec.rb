@@ -1,4 +1,4 @@
-describe 'profiles/show.slim' do
+describe 'profiles/show.slim', :type => :view do
 
   let(:user) { build(:player, id: 5) }
   let(:is_for_current_user) { true }
@@ -13,6 +13,6 @@ describe 'profiles/show.slim' do
 
   it 'should render partial for given section' do
     render
-    rendered.should have_css('h2', t('profile.section.statistic'))
+    expect(rendered).to have_css('h2', t('profile.section.statistic'))
   end
 end

@@ -1,11 +1,11 @@
-describe MatchResult do
+describe MatchResult, :type => :model do
 
   it 'should have valid factory' do
-    build(:match_result).should be_valid
+    expect(build(:match_result)).to be_valid
   end
 
   it 'should include module ScoreValidatable' do
-    MatchResult.included_modules.should include ScoreValidatable
+    expect(MatchResult.included_modules).to include ScoreValidatable
   end
 
   describe 'validations' do
@@ -13,13 +13,13 @@ describe MatchResult do
       it 'should be valid if for match_id exists a match' do
         match = create(:match)
         match_result = build(:match_result, match_id: match.id)
-        match_result.valid?.should be_true
+        expect(match_result.valid?).to be_truthy
       end
 
       it 'should not be valid with invalid error message if for match_id no match exists' do
         match_result = build(:match_result, match_id: 0)
-        match_result.valid?.should be_false
-        match_result.errors.get(:match_id).first.should eq I18n.t('errors.messages.invalid')
+        expect(match_result.valid?).to be_falsey
+        expect(match_result.errors.get(:match_id).first).to eq I18n.t('errors.messages.invalid')
       end
     end
   end

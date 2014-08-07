@@ -1,4 +1,4 @@
-describe Tournament do
+describe Tournament, :type => :model do
 
   let(:first_match) { create(:match) }
 
@@ -6,8 +6,8 @@ describe Tournament do
 
   before :each do
     relation = double('MatchRelation')
-    relation.stub(:first).and_return(first_match)
-    Match.stub(:order_by_position_asc).and_return(relation)
+    allow(relation).to receive(:first).and_return(first_match)
+    allow(Match).to receive(:order_by_position_asc).and_return(relation)
   end
 
   describe '#started?' do
@@ -17,16 +17,16 @@ describe Tournament do
       context 'if first match is started' do
 
         it 'should return true' do
-          first_match.should_receive(:started?).and_return(true)
-          subject.should be_started
+          expect(first_match).to receive(:started?).and_return(true)
+          expect(subject).to be_started
         end
       end
 
       context 'if first match is not started' do
 
         it 'should return false' do
-          first_match.should_receive(:started?).and_return(false)
-          subject.should_not be_started
+          expect(first_match).to receive(:started?).and_return(false)
+          expect(subject).not_to be_started
         end
       end
     end
@@ -36,7 +36,7 @@ describe Tournament do
       let(:first_match) { nil }
 
       it 'should return false' do
-        subject.should_not be_started
+        expect(subject).not_to be_started
       end
     end
   end
@@ -46,7 +46,7 @@ describe Tournament do
     context 'if matches exists' do
 
       it 'should return the date of the first match' do
-        subject.start_date.should eq first_match.date
+        expect(subject.start_date).to eq first_match.date
       end
     end
 
@@ -55,7 +55,7 @@ describe Tournament do
       let(:first_match) { nil }
 
       it 'should return the date of the first match' do
-        subject.start_date.should be_nil
+        expect(subject.start_date).to be_nil
       end
     end
   end
@@ -63,7 +63,7 @@ describe Tournament do
   describe '#champion_tip_deadline' do
 
     it 'should be alias of start_date' do
-      subject.method(:champion_tip_deadline).inspect.should match 'start_date'
+      expect(subject.method(:champion_tip_deadline).inspect).to match 'start_date'
     end
   end
 
@@ -74,16 +74,16 @@ describe Tournament do
       context 'if first match is started' do
 
         it 'should return false' do
-          first_match.should_receive(:started?).and_return(true)
-          subject.champion_tippable?.should be_false
+          expect(first_match).to receive(:started?).and_return(true)
+          expect(subject.champion_tippable?).to be_falsey
         end
       end
 
       context 'if first match is not started' do
 
         it 'should return false' do
-          first_match.should_receive(:started?).and_return(false)
-          subject.champion_tippable?.should be_true
+          expect(first_match).to receive(:started?).and_return(false)
+          expect(subject.champion_tippable?).to be_truthy
         end
       end
     end
@@ -93,7 +93,7 @@ describe Tournament do
       let(:first_match) { nil }
 
       it 'should return true' do
-        subject.champion_tippable?.should be_true
+        expect(subject.champion_tippable?).to be_truthy
       end
     end
   end
@@ -101,12 +101,12 @@ describe Tournament do
   describe '#played_match_count' do
 
     it 'should return played match count' do
-      Match.should_receive(:count_all_with_results).and_return(3)
-      subject.played_match_count.should eq 3
+      expect(Match).to receive(:count_all_with_results).and_return(3)
+      expect(subject.played_match_count).to eq 3
     end
 
     it 'should cache value' do
-      Match.should_receive(:count_all_with_results).and_return(3)
+      expect(Match).to receive(:count_all_with_results).and_return(3)
       subject.played_match_count
       subject.played_match_count
     end
@@ -115,12 +115,12 @@ describe Tournament do
   describe '#total_match_count' do
 
     it 'should return total match count' do
-      Match.should_receive(:count).and_return(64)
-      subject.total_match_count.should eq 64
+      expect(Match).to receive(:count).and_return(64)
+      expect(subject.total_match_count).to eq 64
     end
 
     it 'should cache value' do
-      Match.should_receive(:count).and_return(64)
+      expect(Match).to receive(:count).and_return(64)
       subject.total_match_count
       subject.total_match_count
     end
@@ -133,12 +133,12 @@ describe Tournament do
     let(:match) { Match.new(team_1: team_1, team_2: team_2, score_team_1: 1, score_team_2: 4) }
 
     it 'should return winner of last_match' do
-      Match.should_receive(:last_match).and_return(match)
-      subject.champion_team.should eq team_2
+      expect(Match).to receive(:last_match).and_return(match)
+      expect(subject.champion_team).to eq team_2
     end
 
     it 'should cache champion_team' do
-      Match.should_receive(:last_match).once.and_return(match)
+      expect(Match).to receive(:last_match).once.and_return(match)
       subject.champion_team
       subject.champion_team
     end
@@ -149,15 +149,15 @@ describe Tournament do
     let(:match) { build(:match) }
 
     before :each do
-      Match.stub(:last_match).and_return(match)
+      allow(Match).to receive(:last_match).and_return(match)
     end
 
     context 'if last match has result' do
 
       it 'should return true' do
 
-        match.stub(:has_result?).and_return(true)
-        subject.finished?.should be_true
+        allow(match).to receive(:has_result?).and_return(true)
+        expect(subject.finished?).to be_truthy
       end
     end
 
@@ -165,8 +165,8 @@ describe Tournament do
 
       it 'should return false' do
 
-        match.stub(:has_result?).and_return(false)
-        subject.finished?.should be_false
+        allow(match).to receive(:has_result?).and_return(false)
+        expect(subject.finished?).to be_falsey
       end
     end
   end

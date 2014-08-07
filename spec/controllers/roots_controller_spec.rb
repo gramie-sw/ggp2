@@ -1,4 +1,4 @@
-describe RootsController do
+describe RootsController, :type => :controller do
 
   describe '#show' do
 
@@ -12,7 +12,7 @@ describe RootsController do
 
       it 'should redirect to MatchesController#index' do
         get :show
-        response.should redirect_to matches_path
+        expect(response).to redirect_to matches_path
       end
     end
 
@@ -28,9 +28,9 @@ describe RootsController do
 
         it 'should redirect to AwardCeremoniesController#show' do
 
-          Tournament.any_instance.stub(:finished?).and_return(true)
+          allow_any_instance_of(Tournament).to receive(:finished?).and_return(true)
           get :show
-          response.should redirect_to award_ceremonies_path
+          expect(response).to redirect_to award_ceremonies_path
         end
       end
 
@@ -38,9 +38,9 @@ describe RootsController do
 
         it 'should redirect to UserTipsController#show' do
 
-          Tournament.any_instance.stub(:finished?).and_return(false)
+          allow_any_instance_of(Tournament).to receive(:finished?).and_return(false)
           get :show
-          response.should redirect_to user_tip_path(player)
+          expect(response).to redirect_to user_tip_path(player)
         end
       end
     end

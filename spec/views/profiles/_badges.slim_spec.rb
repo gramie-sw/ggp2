@@ -1,4 +1,4 @@
-describe 'profiles/_badges.slim' do
+describe 'profiles/_badges.slim', :type => :view do
 
   let(:presenter) { double('Presenter') }
 
@@ -25,12 +25,12 @@ describe 'profiles/_badges.slim' do
 
     it 'should be displayed' do
       render partial_options
-      rendered.should have_css 'div.badges-box'
+      expect(rendered).to have_css 'div.badges-box'
     end
 
     it 'should not display user not yet awarded message' do
       render partial_options
-      rendered.should_not have_css 'div', text: t('badges.user_not_yet_awarded')
+      expect(rendered).not_to have_css 'div', text: t('badges.user_not_yet_awarded')
     end
   end
 
@@ -40,7 +40,7 @@ describe 'profiles/_badges.slim' do
 
     it 'should display user not yet awarded message' do
       render partial_options
-      rendered.should have_css 'div', text: t('badges.user_not_yet_awarded')
+      expect(rendered).to have_css 'div', text: t('badges.user_not_yet_awarded')
     end
   end
 end

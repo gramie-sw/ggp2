@@ -10,8 +10,8 @@ describe WinnerRankingFinder do
   end
 
   before :each do
-    RankingItem.
-        should_receive(:ranking_set_for_listing_by_positions).with(positions: [1, 2, 3]).
+    expect(RankingItem).
+        to receive(:ranking_set_for_listing_by_positions).with(positions: [1, 2, 3]).
         and_return(winner_ranking_items)
   end
 
@@ -21,8 +21,8 @@ describe WinnerRankingFinder do
 
       it 'should return all ChampionTip-RankingItems with position 1' do
         actual_ranking_items = subject.find_first_places
-        actual_ranking_items.count.should eq 1
-        actual_ranking_items.should include winner_ranking_items.first
+        expect(actual_ranking_items.count).to eq 1
+        expect(actual_ranking_items).to include winner_ranking_items.first
       end
     end
 
@@ -31,7 +31,7 @@ describe WinnerRankingFinder do
       let(:winner_ranking_items) { [] }
 
       it 'should return empty Array' do
-        subject.find_first_places.should eq([])
+        expect(subject.find_first_places).to eq([])
       end
     end
   end
@@ -42,8 +42,8 @@ describe WinnerRankingFinder do
 
       it 'should return all ChampionTip-RankingItems with position 2' do
         actual_ranking_items = subject.find_second_places
-        actual_ranking_items.count.should eq 2
-        actual_ranking_items.should include winner_ranking_items.second, winner_ranking_items.fourth
+        expect(actual_ranking_items.count).to eq 2
+        expect(actual_ranking_items).to include winner_ranking_items.second, winner_ranking_items.fourth
       end
     end
 
@@ -52,7 +52,7 @@ describe WinnerRankingFinder do
       let(:winner_ranking_items) { [] }
 
       it 'should return empty Array' do
-        subject.find_second_places.should eq([])
+        expect(subject.find_second_places).to eq([])
       end
     end
   end
@@ -63,8 +63,8 @@ describe WinnerRankingFinder do
 
       it 'should return all ChampionTip-RankingItems with position 2' do
         actual_ranking_items = subject.find_third_places
-        actual_ranking_items.count.should eq 1
-        actual_ranking_items.should include winner_ranking_items.third
+        expect(actual_ranking_items.count).to eq 1
+        expect(actual_ranking_items).to include winner_ranking_items.third
       end
     end
 
@@ -73,7 +73,7 @@ describe WinnerRankingFinder do
       let(:winner_ranking_items) { [] }
 
       it 'should return empty Array' do
-        subject.find_third_places.should eq([])
+        expect(subject.find_third_places).to eq([])
       end
     end
   end

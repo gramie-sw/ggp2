@@ -1,28 +1,28 @@
-describe Aggregate do
+describe Aggregate, :type => :model do
 
   it 'should have a valid factory' do
-    build(:aggregate).should be_valid
-    build(:aggregate_with_parent).should be_valid
+    expect(build(:aggregate)).to be_valid
+    expect(build(:aggregate_with_parent)).to be_valid
   end
 
   describe 'validations' do
     describe '#position' do
-      it { should validate_presence_of(:position) }
-      it { should validate_numericality_of(:position).only_integer }
-      it { should validate_numericality_of(:position).is_greater_than 0 }
-      it { should validate_numericality_of(:position).is_less_than_or_equal_to 1000 }
-      it { should validate_uniqueness_of(:position).scoped_to(:ancestry) }
+      it { is_expected.to validate_presence_of(:position) }
+      it { is_expected.to validate_numericality_of(:position).only_integer }
+      it { is_expected.to validate_numericality_of(:position).is_greater_than 0 }
+      it { is_expected.to validate_numericality_of(:position).is_less_than_or_equal_to 1000 }
+      it { is_expected.to validate_uniqueness_of(:position).scoped_to(:ancestry) }
     end
     describe '#name' do
-      it { should validate_presence_of(:name) }
-      it { should validate_uniqueness_of(:name).scoped_to(:ancestry) }
-      it { should ensure_length_of(:name).is_at_least(3).is_at_most(32) }
-      it { should_not allow_value('Name%').for(:name) }
+      it { is_expected.to validate_presence_of(:name) }
+      it { is_expected.to validate_uniqueness_of(:name).scoped_to(:ancestry) }
+      it { is_expected.to ensure_length_of(:name).is_at_least(3).is_at_most(32) }
+      it { is_expected.not_to allow_value('Name%').for(:name) }
     end
   end
 
   describe 'associations' do
-    it { should have_many(:matches).dependent(:destroy) }
+    it { is_expected.to have_many(:matches).dependent(:destroy) }
   end
 
   describe 'scopes' do
@@ -33,20 +33,20 @@ describe Aggregate do
         aggregate_2 = create(:aggregate, name: "Aggregate 3", position: 2)
 
         aggregates = Aggregate.order_by_position_asc
-        aggregates[0].position.should eq aggregate_1.position
-        aggregates[1].position.should eq aggregate_2.position
-        aggregates[2].position.should eq aggregate_3.position
+        expect(aggregates[0].position).to eq aggregate_1.position
+        expect(aggregates[1].position).to eq aggregate_2.position
+        expect(aggregates[2].position).to eq aggregate_3.position
       end
     end
   end
 
   describe '#group?' do
     it 'should returns true when aggregate has parent' do
-      build(:aggregate_with_parent).group?.should be_true
+      expect(build(:aggregate_with_parent).group?).to be_truthy
     end
 
     it 'should returns false when aggregate has no parent' do
-      build(:aggregate).group?.should be_false
+      expect(build(:aggregate).group?).to be_falsey
     end
   end
 
@@ -60,9 +60,9 @@ describe Aggregate do
       create(:match)
 
       found_matches = group.matches_including_of_children
-      found_matches.size.should == 2
-      found_matches.first.id.should == match_1.id
-      found_matches.last.id.should == match_2.id
+      expect(found_matches.size).to eq(2)
+      expect(found_matches.first.id).to eq(match_1.id)
+      expect(found_matches.last.id).to eq(match_2.id)
     end
 
     it 'should return all direct matches when aggregate is a phase and has no groups' do
@@ -73,9 +73,9 @@ describe Aggregate do
       create(:match)
 
       found_matches = phase.matches_including_of_children
-      found_matches.size.should == 2
-      found_matches.first.id.should == match_1.id
-      found_matches.last.id.should == match_2.id
+      expect(found_matches.size).to eq(2)
+      expect(found_matches.first.id).to eq(match_1.id)
+      expect(found_matches.last.id).to eq(match_2.id)
     end
 
     it 'should return all matches from belonging groups when aggregate is phase and has groups' do
@@ -90,10 +90,10 @@ describe Aggregate do
       create(:match, aggregate: group_3)
 
       found_matches = phase.matches_including_of_children
-      found_matches.size.should == 3
-      found_matches[0].id.should == match_1.id
-      found_matches[1].id.should == match_2.id
-      found_matches[2].id.should == match_3.id
+      expect(found_matches.size).to eq(3)
+      expect(found_matches[0].id).to eq(match_1.id)
+      expect(found_matches[1].id).to eq(match_2.id)
+      expect(found_matches[2].id).to eq(match_3.id)
     end
   end
 
@@ -108,8 +108,8 @@ describe Aggregate do
       create(:match, date: 2.minutes.ago, aggregate: subject)
 
       actual_match = subject.future_matches
-      actual_match.count.should eq 2
-      actual_match.should include match_1, match_2
+      expect(actual_match.count).to eq 2
+      expect(actual_match).to include match_1, match_2
     end
   end
 
@@ -119,7 +119,7 @@ describe Aggregate do
 
       it 'should return true' do
         expect(subject).to receive(:future_matches).and_return([Match.new])
-        expect(subject.has_future_matches?).to be_true
+        expect(subject.has_future_matches?).to be_truthy
       end
     end
 
@@ -127,7 +127,7 @@ describe Aggregate do
 
       it 'should return false' do
         expect(subject).to receive(:future_matches).and_return([])
-        expect(subject.has_future_matches?).to be_false
+        expect(subject.has_future_matches?).to be_falsey
       end
     end
   end
@@ -141,9 +141,9 @@ describe Aggregate do
       phase_2 = create(:aggregate)
 
       leaves = Aggregate.groupless_aggregates
-      leaves.include?(group_1).should be_true
-      leaves.include?(group_2).should be_true
-      leaves.include?(phase_2).should be_true
+      expect(leaves.include?(group_1)).to be_truthy
+      expect(leaves.include?(group_2)).to be_truthy
+      expect(leaves.include?(phase_2)).to be_truthy
     end
   end
 end

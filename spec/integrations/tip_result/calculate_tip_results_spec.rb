@@ -10,7 +10,7 @@ describe CalculateTipResults do
       tip_4 = create(:tip, match: match, score_team_1: 1, score_team_2: 2)
       tip_5 = create(:tip, match: match, score_team_1: 2, score_team_2: 3)
 
-      expect(subject.run(match.id)).to be_true
+      expect(subject.run(match.id)).to be_truthy
 
       expect(tip_1.reload.result).to eq Tip::RESULTS[:incorrect]
       expect(tip_2.reload.result).to be_nil

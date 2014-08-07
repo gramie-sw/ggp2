@@ -1,4 +1,4 @@
 shared_examples_for 'ShowAllPhasesPresentable' do
 
-  it { should respond_to(:phases=) }
+  it { is_expected.to respond_to(:phases=) }
 end

@@ -1,4 +1,4 @@
-describe ChampionTipsController do
+describe ChampionTipsController, :type => :controller do
 
   let(:user) { create(:player) }
   let(:champion_tip) { create(:champion_tip, user: user) }
@@ -11,18 +11,18 @@ describe ChampionTipsController do
 
     it 'should return http success' do
       get :edit, id: champion_tip.to_param
-      response.should be_success
+      expect(response).to be_success
     end
 
     it 'should render template edit' do
       get :edit, id: champion_tip.to_param
-      response.should render_template :edit
+      expect(response).to render_template :edit
     end
 
     it 'should assign correctly instantiated ChampionTipShowPresenter' do
-      ChampionTipsEditPresenter.should_receive(:new).with(champion_tip).and_call_original
+      expect(ChampionTipsEditPresenter).to receive(:new).with(champion_tip).and_call_original
       get :edit, id: champion_tip.to_param
-      assigns(:presenter).should be_kind_of ChampionTipsEditPresenter
+      expect(assigns(:presenter)).to be_kind_of ChampionTipsEditPresenter
     end
   end
 
@@ -34,23 +34,23 @@ describe ChampionTipsController do
     context 'on success' do
 
       before :each do
-        ChampionTip.any_instance.stub(:valid?).and_return(true)
+        allow_any_instance_of(ChampionTip).to receive(:valid?).and_return(true)
       end
 
       it 'should redirect to user_tips#show' do
         patch :update, params
-        response.should redirect_to user_tip_path(user)
+        expect(response).to redirect_to user_tip_path(user)
       end
 
       it 'should update champion_tip attributes' do
         patch :update, params
         champion_tip.reload
-        champion_tip.team_id.should eq new_champion_tip_team_id
+        expect(champion_tip.team_id).to eq new_champion_tip_team_id
       end
 
       it 'should assign flash message' do
         patch :update, params
-        flash[:notice].should eq t('model.messages.updated', model: ChampionTip.model_name.human)
+        expect(flash[:notice]).to eq t('model.messages.updated', model: ChampionTip.model_name.human)
       end
     end
 
@@ -58,23 +58,23 @@ describe ChampionTipsController do
 
       before :each do
         champion_tip
-        ChampionTip.any_instance.stub(:valid?).and_return(false)
+        allow_any_instance_of(ChampionTip).to receive(:valid?).and_return(false)
       end
 
       it 'should return http success' do
         patch :update, params
-        response.should be_success
+        expect(response).to be_success
       end
 
       it 'should render template edit' do
         patch :update, params
-        response.should render_template :edit
+        expect(response).to render_template :edit
       end
 
       it 'should assign correctly instantiated ChampionTipShowPresenter' do
-        ChampionTipsEditPresenter.should_receive(:new).with(champion_tip).and_call_original
+        expect(ChampionTipsEditPresenter).to receive(:new).with(champion_tip).and_call_original
         get :edit, id: champion_tip.to_param
-        assigns(:presenter).should be_kind_of ChampionTipsEditPresenter
+        expect(assigns(:presenter)).to be_kind_of ChampionTipsEditPresenter
       end
     end
   end

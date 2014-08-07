@@ -11,7 +11,7 @@ describe ChampionTipResultSetter do
 
       it 'should set result to correct' do
         subject.set_result(champion_tip)
-        champion_tip.result.should eq ChampionTip::RESULTS[:correct]
+        expect(champion_tip.result).to eq ChampionTip::RESULTS[:correct]
       end
     end
 
@@ -21,7 +21,7 @@ describe ChampionTipResultSetter do
 
       it 'should set result to incorrect' do
         subject.set_result(champion_tip)
-        champion_tip.result.should eq ChampionTip::RESULTS[:incorrect]
+        expect(champion_tip.result).to eq ChampionTip::RESULTS[:incorrect]
       end
     end
 

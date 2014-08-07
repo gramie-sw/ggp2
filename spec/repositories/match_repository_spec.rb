@@ -12,8 +12,8 @@ describe MatchRepository do
       create(:match, position: 1)
 
       actual_matches = Match.all_following_matches_by_position(match_2.position)
-      actual_matches.size.should eq 2
-      actual_matches.should include match_3, match_4
+      expect(actual_matches.size).to eq 2
+      expect(actual_matches).to include match_3, match_4
     end
   end
 
@@ -27,8 +27,8 @@ describe MatchRepository do
       match_1 =create(:match, position: 1)
 
       actual_matches = Match.all_previous_matches_by_position(match_3.position)
-      actual_matches.size.should eq 2
-      actual_matches.should include match_1, match_2
+      expect(actual_matches.size).to eq 2
+      expect(actual_matches).to include match_1, match_2
     end
   end
 
@@ -40,7 +40,7 @@ describe MatchRepository do
       create(:match, score_team_1: 0, score_team_2: 2)
       create(:match, score_team_1: 1, score_team_2: 1)
 
-      subject.count_all_with_results.should eq 2
+      expect(subject.count_all_with_results).to eq 2
     end
   end
 
@@ -53,8 +53,8 @@ describe MatchRepository do
       create(:match, date: 1.minutes.ago)
 
       actual_matches = Match.future_matches
-      actual_matches.count.should eq 2
-      actual_matches.should include match_1, match_2
+      expect(actual_matches.count).to eq 2
+      expect(actual_matches).to include match_1, match_2
     end
   end
 
@@ -96,8 +96,8 @@ describe MatchRepository do
       create(:match, score_team_1: nil, score_team_2: nil)
 
       actual_matches = Match.all_with_result
-      actual_matches.count.should eq 2
-      actual_matches.should include match_1, match_2
+      expect(actual_matches.count).to eq 2
+      expect(actual_matches).to include match_1, match_2
     end
   end
 
@@ -109,7 +109,7 @@ describe MatchRepository do
       match_1 = create(:match, position: 1)
       create(:match, position: 2)
 
-      subject.first_match.should eq match_1
+      expect(subject.first_match).to eq match_1
     end
   end
 
@@ -121,7 +121,7 @@ describe MatchRepository do
       create(:match, position: 1)
       create(:match, position: 2)
 
-      subject.last_match.should eq match_3
+      expect(subject.last_match).to eq match_3
     end
   end
 

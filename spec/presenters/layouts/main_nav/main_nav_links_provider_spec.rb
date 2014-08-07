@@ -10,7 +10,7 @@ describe MainNavLinksProvider do
     let(:tournament) { instance_double('Tournament') }
 
     before :each do
-      tournament.stub(:finished?)
+      allow(tournament).to receive(:finished?)
     end
 
     context 'when current_user is player' do
@@ -18,7 +18,7 @@ describe MainNavLinksProvider do
       context 'when tournament is finished' do
 
         it 'should return award_ceremony as first link' do
-          tournament.should_receive(:finished?).and_return(true)
+          expect(tournament).to receive(:finished?).and_return(true)
           actual_links = subject.links current_user, tournament
           expect(actual_links.first.url).to eq award_ceremonies_path
         end
@@ -27,7 +27,7 @@ describe MainNavLinksProvider do
       context 'when tournament is not finished' do
 
         it 'should return not award_ceremony as first link' do
-          tournament.should_receive(:finished?).and_return(false)
+          expect(tournament).to receive(:finished?).and_return(false)
           actual_links = subject.links current_user, tournament
           expect(actual_links.first.url).to_not eq award_ceremonies_path
         end

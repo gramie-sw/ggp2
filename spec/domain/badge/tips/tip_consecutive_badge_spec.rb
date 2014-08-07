@@ -3,8 +3,8 @@ describe TipConsecutiveBadge do
   subject { TipConsecutiveBadge.new(result: 'correct', count: 2, position: 1, icon: 'my_icon',
                                     icon_color: 'my_color', identifier: 'identifier')}
 
-  it { should respond_to(:result=, :result) }
-  it { should respond_to(:count=, :count) }
+  it { is_expected.to respond_to(:result=, :result) }
+  it { is_expected.to respond_to(:count=, :count) }
 
   describe '#initialize' do
 

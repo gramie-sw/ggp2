@@ -11,7 +11,7 @@ describe RankingSet do
   subject { RankingSet.new(match_id: 7, ranking_items: ranking_items) }
 
   it 'should respond to match_id' do
-    subject.should respond_to :match_id
+    expect(subject).to respond_to :match_id
   end
 
   describe '#ranking_item_of_user' do
@@ -19,14 +19,14 @@ describe RankingSet do
     context 'when RankingItem of given user_id exists' do
 
       it 'should return RankingItem' do
-        subject.ranking_item_of_user(8).should be ranking_items.second
+        expect(subject.ranking_item_of_user(8)).to be ranking_items.second
       end
     end
 
     context 'when RankingItem of given user_id does not exist' do
 
       it 'should return neutral RankingItem' do
-        subject.ranking_item_of_user(13).should eq RankingItem.neutral
+        expect(subject.ranking_item_of_user(13)).to eq RankingItem.neutral
       end
     end
 
@@ -35,7 +35,7 @@ describe RankingSet do
       subject { RankingSet.new(match_id: 0, ranking_items: []) }
 
       it 'should return neutral RankingItem for any user_id' do
-        subject.ranking_item_of_user(13).should eq RankingItem.neutral
+        expect(subject.ranking_item_of_user(13)).to eq RankingItem.neutral
       end
     end
   end
@@ -47,7 +47,7 @@ describe RankingSet do
       subject { RankingSet.new(match_id: 0, ranking_items: []) }
 
       it 'should return true' do
-        subject.should be_neutral
+        expect(subject).to be_neutral
       end
     end
 
@@ -56,7 +56,7 @@ describe RankingSet do
       subject { RankingSet.new(match_id: 7, ranking_items: []) }
 
       it 'should return true' do
-        subject.should_not be_neutral
+        expect(subject).not_to be_neutral
       end
     end
 
@@ -65,7 +65,7 @@ describe RankingSet do
       subject { RankingSet.new(match_id: 0, ranking_items: [RankingItem.new]) }
 
       it 'should return true' do
-        subject.should_not be_neutral
+        expect(subject).not_to be_neutral
       end
     end
   end
@@ -73,8 +73,8 @@ describe RankingSet do
   describe '#save' do
 
     it 'should update RankingItems with repo' do
-      RankingItem.should_receive(:destroy_and_create_multiple).with(7, ranking_items).and_return(true)
-      subject.save.should be_true
+      expect(RankingItem).to receive(:destroy_and_create_multiple).with(7, ranking_items).and_return(true)
+      expect(subject.save).to be_truthy
     end
   end
 end

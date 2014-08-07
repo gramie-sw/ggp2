@@ -5,14 +5,14 @@ describe ChampionTipsEditPresenter do
 
 
   it 'should respond to champion_tip' do
-    should respond_to :champion_tip
+    is_expected.to respond_to :champion_tip
   end
 
   describe '#teams' do
 
     it 'should return Teams ordered by country name' do
-      Team.should_receive(:order_by_country_name_asc).and_return(:teams)
-      subject.teams.should be :teams
+      expect(Team).to receive(:order_by_country_name_asc).and_return(:teams)
+      expect(subject.teams).to be :teams
     end
   end
 

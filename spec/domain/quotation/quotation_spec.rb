@@ -1,7 +1,7 @@
 describe Quotation do
 
-  it { should respond_to(:author=, :author) }
-  it { should respond_to(:content=, :content) }
+  it { is_expected.to respond_to(:author=, :author) }
+  it { is_expected.to respond_to(:content=, :content) }
 
   describe '#initialize' do
 

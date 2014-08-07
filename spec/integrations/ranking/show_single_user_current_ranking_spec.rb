@@ -7,8 +7,8 @@ describe ShowSingleUserCurrentRanking do
 
     it 'should return neutral RankingItem belonging to specified user' do
       actual_ranking_item = subject.run(user.id)
-      actual_ranking_item.should be_neutral
-      actual_ranking_item.user_id.should eq user.id
+      expect(actual_ranking_item).to be_neutral
+      expect(actual_ranking_item.user_id).to eq user.id
     end
   end
 
@@ -18,7 +18,7 @@ describe ShowSingleUserCurrentRanking do
       expected_ranking_item = create(:ranking_item, user: user)
       Property.set_last_tip_ranking_set_match_id_to expected_ranking_item.match.id
 
-      subject.run(user.id).should eq expected_ranking_item
+      expect(subject.run(user.id)).to eq expected_ranking_item
     end
   end
 
@@ -30,7 +30,7 @@ describe ShowSingleUserCurrentRanking do
       Property.set_last_tip_ranking_set_match_id_to tip_ranking_item.match.id
       Property.set_champion_tip_ranking_set_exists_to true
 
-      subject.run(user.id).should eq expected_champion_tip_ranking_item
+      expect(subject.run(user.id)).to eq expected_champion_tip_ranking_item
     end
   end
 end

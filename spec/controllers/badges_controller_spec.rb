@@ -1,4 +1,4 @@
-describe BadgesController do
+describe BadgesController, :type => :controller do
 
   let(:current_user) { create(:player) }
 
@@ -9,27 +9,27 @@ describe BadgesController do
   describe '#show' do
 
     before :each do
-      ShowBadges.any_instance.stub(:run)
+      allow_any_instance_of(ShowBadges).to receive(:run)
     end
 
     it 'should return http success' do
       get :show
-      response.should be_success
+      expect(response).to be_success
     end
 
     it 'should render template show' do
       get :show
-      response.should render_template :show
+      expect(response).to render_template :show
     end
 
     it 'should run uc ShowBadges and assign presenter' do
       expected_presenter = BadgesShowPresenter.new
-      BadgesShowPresenter.should_receive(:new).and_return(expected_presenter)
-      ShowBadges.any_instance.should_receive(:run).with(expected_presenter)
+      expect(BadgesShowPresenter).to receive(:new).and_return(expected_presenter)
+      expect_any_instance_of(ShowBadges).to receive(:run).with(expected_presenter)
 
       get :show
 
-      assigns(:presenter).should eq expected_presenter
+      expect(assigns(:presenter)).to eq expected_presenter
     end
   end
 end

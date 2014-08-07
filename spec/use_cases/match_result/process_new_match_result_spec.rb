@@ -8,7 +8,7 @@ describe ProcessNewMatchResult do
 
       it 'should calculate results of tips and update ranking for match of given match_id' do
 
-        Tournament.any_instance.should_receive(:champion_team).and_return(nil)
+        expect_any_instance_of(Tournament).to receive(:champion_team).and_return(nil)
 
         calculate_tip_results = CalculateTipResults.new
         expect(CalculateTipResults).to receive(:new).and_return(calculate_tip_results)

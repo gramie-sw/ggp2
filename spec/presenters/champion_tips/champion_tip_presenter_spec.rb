@@ -10,7 +10,7 @@ describe ChampionTipPresenter do
         new(champion_tip: champion_tip, tournament: tournament, user_is_current_user: user_is_current_user)
   end
 
-  it { should respond_to :champion_tip= }
+  it { is_expected.to respond_to :champion_tip= }
 
   it 'should delegate #id to ChampionTip#id' do
     expect(subject.id).to eq 5
@@ -21,7 +21,7 @@ describe ChampionTipPresenter do
     context 'when user is current user' do
 
       it 'should return true' do
-        expect(subject.show?).to be_true
+        expect(subject.show?).to be_truthy
       end
     end
 
@@ -32,16 +32,16 @@ describe ChampionTipPresenter do
       context 'if champion is tippable' do
 
         it 'should return false' do
-          tournament.stub(:champion_tippable?).and_return(true)
-          subject.show?.should be_false
+          allow(tournament).to receive(:champion_tippable?).and_return(true)
+          expect(subject.show?).to be_falsey
         end
       end
 
       context 'if champion is not tippable' do
 
         it 'should return false' do
-          tournament.stub(:champion_tippable?).and_return(false)
-          subject.show?.should be_true
+          allow(tournament).to receive(:champion_tippable?).and_return(false)
+          expect(subject.show?).to be_truthy
         end
       end
     end
@@ -51,14 +51,14 @@ describe ChampionTipPresenter do
   describe '#tippable?' do
 
     before :each do
-      tournament.stub(:champion_tip_deadline).and_return(Time.new)
-      tournament.stub(:champion_tippable?).and_return(true)
+      allow(tournament).to receive(:champion_tip_deadline).and_return(Time.new)
+      allow(tournament).to receive(:champion_tippable?).and_return(true)
     end
 
     context 'if user is current user and tournament has champion tip deadline and champion is tippable' do
 
       it 'should return true' do
-        subject.tippable?.should be_true
+        expect(subject.tippable?).to be_truthy
       end
     end
 
@@ -67,29 +67,29 @@ describe ChampionTipPresenter do
       let(:user_is_current_user) { false }
 
       it 'should return false' do
-        subject.tippable?.should be_false
+        expect(subject.tippable?).to be_falsey
       end
     end
 
     context 'if tournament has no champion tip deadline ' do
 
       before :each do
-        tournament.stub(:champion_tip_deadline).and_return(nil)
+        allow(tournament).to receive(:champion_tip_deadline).and_return(nil)
       end
 
       it 'should return false' do
-        subject.tippable?.should be_false
+        expect(subject.tippable?).to be_falsey
       end
     end
 
     context 'if champion is not tippable ' do
 
       before :each do
-        tournament.stub(:champion_tippable?).and_return(false)
+        allow(tournament).to receive(:champion_tippable?).and_return(false)
       end
 
       it 'should return false' do
-        subject.tippable?.should be_false
+        expect(subject.tippable?).to be_falsey
       end
     end
   end

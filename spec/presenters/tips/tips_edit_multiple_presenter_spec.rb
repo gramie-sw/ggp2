@@ -21,12 +21,12 @@ describe TipsEditMultiplePresenter do
 
       it 'should return all TipPresenters for tips of given ids' do
         actual_tip_presenters = subject.tip_presenters
-        actual_tip_presenters.count.should eq 2
+        expect(actual_tip_presenters.count).to eq 2
         #be_kind_of matcher doesn't work with DelegateClass
-        actual_tip_presenters.first.kind_of?(TipPresenter).should be_true
-        actual_tip_presenters.first.__getobj__.should eq tips.first
-        actual_tip_presenters.second.kind_of?(TipPresenter).should be_true
-        actual_tip_presenters.second.__getobj__.should eq tips.second
+        expect(actual_tip_presenters.first.kind_of?(TipPresenter)).to be_truthy
+        expect(actual_tip_presenters.first.__getobj__).to eq tips.first
+        expect(actual_tip_presenters.second.kind_of?(TipPresenter)).to be_truthy
+        expect(actual_tip_presenters.second.__getobj__).to eq tips.second
       end
 
       describe 'chained scopes' do
@@ -38,22 +38,22 @@ describe TipsEditMultiplePresenter do
         end
 
         before :each do
-          Tip.should_receive(:where).and_return(relation)
+          expect(Tip).to receive(:where).and_return(relation)
         end
 
         it 'should includes match' do
-          relation.should_receive(:includes).with(:match).and_return(relation)
+          expect(relation).to receive(:includes).with(:match).and_return(relation)
           subject.tip_presenters
         end
 
         it 'should order tips by match position' do
-          relation.should_receive(:order_by_match_position).and_return(relation)
+          expect(relation).to receive(:order_by_match_position).and_return(relation)
           subject.tip_presenters
         end
       end
 
       it 'should cache TipPresenters' do
-        subject.tip_presenters.should be subject.tip_presenters
+        expect(subject.tip_presenters).to be subject.tip_presenters
       end
     end
 
@@ -63,12 +63,12 @@ describe TipsEditMultiplePresenter do
 
       it 'should return TipPresenters for given tips' do
         actual_tip_presenters = subject.tip_presenters
-        actual_tip_presenters.count.should eq 2
+        expect(actual_tip_presenters.count).to eq 2
         #be_kind_of matcher doesn't work with DelegateClass
-        actual_tip_presenters.first.kind_of?(TipPresenter).should be_true
-        actual_tip_presenters.first.__getobj__.should eq tips.first
-        actual_tip_presenters.second.kind_of?(TipPresenter).should be_true
-        actual_tip_presenters.second.__getobj__.should eq tips.second
+        expect(actual_tip_presenters.first.kind_of?(TipPresenter)).to be_truthy
+        expect(actual_tip_presenters.first.__getobj__).to eq tips.first
+        expect(actual_tip_presenters.second.kind_of?(TipPresenter)).to be_truthy
+        expect(actual_tip_presenters.second.__getobj__).to eq tips.second
       end
     end
   end

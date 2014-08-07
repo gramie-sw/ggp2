@@ -7,7 +7,7 @@ describe TipResult do
       let(:tip) { build(:tip, score_team_1: 1, score_team_2: 2) }
 
       it 'should return true' do
-        expect(subject.correct?(match, tip)).to be_true
+        expect(subject.correct?(match, tip)).to be_truthy
       end
     end
 
@@ -15,7 +15,7 @@ describe TipResult do
       let(:tip) { build(:tip, score_team_1: 1, score_team_2: 3) }
 
       it 'should return false' do
-        expect(subject.correct?(match, tip)).to be_false
+        expect(subject.correct?(match, tip)).to be_falsey
       end
     end
 
@@ -23,7 +23,7 @@ describe TipResult do
       let(:tip) { build(:tip, score_team_1: 2, score_team_2: 1) }
 
       it 'should return false' do
-        expect(subject.correct?(match, tip)).to be_false
+        expect(subject.correct?(match, tip)).to be_falsey
       end
     end
   end
@@ -35,7 +35,7 @@ describe TipResult do
       let(:tip) { build(:tip, score_team_1: 3, score_team_2: 3) }
 
       it 'should return true' do
-        expect(subject.correct_tendency?(match, tip)).to be_true
+        expect(subject.correct_tendency?(match, tip)).to be_truthy
       end
     end
 
@@ -44,7 +44,7 @@ describe TipResult do
       let(:tip) { build(:tip, score_team_1: 3, score_team_2: 4) }
 
       it 'should return false' do
-        expect(subject.correct_tendency?(match, tip)).to be_false
+        expect(subject.correct_tendency?(match, tip)).to be_falsey
       end
     end
 
@@ -54,7 +54,7 @@ describe TipResult do
       let(:tip) { build(:tip, score_team_1: 4, score_team_2: 1) }
 
       it 'should return true' do
-        expect(subject.correct_tendency?(match, tip)).to be_true
+        expect(subject.correct_tendency?(match, tip)).to be_truthy
       end
     end
 
@@ -63,7 +63,7 @@ describe TipResult do
       let(:tip) { build(:tip, score_team_1: 4, score_team_2: 1) }
 
       it 'should return false' do
-        expect(subject.correct_tendency?(match, tip)).to be_false
+        expect(subject.correct_tendency?(match, tip)).to be_falsey
       end
     end
 
@@ -73,7 +73,7 @@ describe TipResult do
       let(:tip) { build(:tip, score_team_1: 0, score_team_2: 1) }
 
       it 'should return true' do
-        expect(subject.correct_tendency?(match, tip)).to be_true
+        expect(subject.correct_tendency?(match, tip)).to be_truthy
       end
     end
 
@@ -82,7 +82,7 @@ describe TipResult do
       let(:tip) { build(:tip, score_team_1: 4, score_team_2: 1) }
 
       it 'should return false' do
-        expect(subject.correct_tendency?(match, tip)).to be_false
+        expect(subject.correct_tendency?(match, tip)).to be_falsey
       end
     end
   end

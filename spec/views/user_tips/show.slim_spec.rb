@@ -1,8 +1,8 @@
-describe 'user_tips/show.slim' do
+describe 'user_tips/show.slim', :type => :view do
 
   let(:current_user) { User.new }
   let(:presenter) do
-    presenter = instance_double('UserTipsShowPresenter')
+    presenter = double('UserTipsShowPresenter')
     presenter.as_null_object
     presenter
   end
@@ -19,18 +19,18 @@ describe 'user_tips/show.slim' do
     context 'if presenter#show_as_form? returns true' do
 
       it 'should be showed as form' do
-        presenter.stub(:show_as_form?).and_return(true)
+        allow(presenter).to receive(:show_as_form?).and_return(true)
         render
-        rendered.should have_css tip_table_form_css
+        expect(rendered).to have_css tip_table_form_css
       end
     end
 
     context 'if presenter#show_as_form? returns false' do
 
       it 'should be showed as form' do
-        presenter.stub(:show_as_form?).and_return(false)
+        allow(presenter).to receive(:show_as_form?).and_return(false)
         render
-        rendered.should_not have_css tip_table_form_css
+        expect(rendered).not_to have_css tip_table_form_css
       end
     end
   end
