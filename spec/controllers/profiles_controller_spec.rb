@@ -29,7 +29,7 @@ describe ProfilesController, :type => :controller do
                is_for_current_user: false,
                section: 'statistic').and_call_original
 
-      expect_any_instance_of(ShowUserBadges).to receive(:run).with(instance_of(ProfilesShowPresenter))
+      expect_any_instance_of(FindUserBadges).to receive(:run)
 
       get :show, id: requested_user.id, section: 'statistic'
     end

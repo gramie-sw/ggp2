@@ -1,4 +1,4 @@
-describe ShowUserBadges do
+describe FindUserBadges do
 
   let(:users) do
     [
@@ -16,7 +16,7 @@ describe ShowUserBadges do
     ]
   end
 
-  let(:presenter) { double('presenter') }
+  subject { FindUserBadges.new users.first.id }
 
   before :each do
     user_badges
@@ -24,18 +24,14 @@ describe ShowUserBadges do
 
   describe '#run' do
 
-    it 'should set ordered badges by user on presenter' do
+    it 'should return ordered badges by given user_id' do
 
-      expect(presenter).to receive(:user).and_return(users.first)
+      actual_badges = subject.run
 
-      expect(presenter).to receive(:badges=) do |badges|
-        expect(badges.size).to eq 3
-        expect(badges.first.identifier).to eq user_badges.second.badge_identifier
-        expect(badges.second.identifier).to eq user_badges.first.badge_identifier
-        expect(badges.third.identifier).to eq user_badges.fourth.badge_identifier
-      end
-
-      subject.run presenter
+      expect(actual_badges.size).to eq 3
+      expect(actual_badges.first.identifier).to eq user_badges.second.badge_identifier
+      expect(actual_badges.second.identifier).to eq user_badges.first.badge_identifier
+      expect(actual_badges.third.identifier).to eq user_badges.fourth.badge_identifier
     end
   end
 end
