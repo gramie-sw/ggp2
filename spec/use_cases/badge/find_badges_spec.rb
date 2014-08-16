@@ -2,7 +2,7 @@ describe FindBadges do
 
   describe '::run' do
 
-    it 'should result with groups and grouped_badges set' do
+    it 'should return struct with groups and grouped_badges' do
 
       result = subject.run
 

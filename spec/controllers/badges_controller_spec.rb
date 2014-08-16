@@ -18,8 +18,7 @@ describe BadgesController, :type => :controller do
       expect(response).to render_template :show
     end
 
-    it 'should run uc FindBadges and assign presenter' do
-
+    it 'should assign presenter' do
       get :show
       expect(assigns(:presenter)).to be_an_instance_of(BadgesShowPresenter)
     end

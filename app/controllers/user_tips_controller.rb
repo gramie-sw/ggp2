@@ -16,7 +16,7 @@ class UserTipsController < ApplicationController
             current_aggregate_id: params[:aggregate_id],
             sort: current_user.match_sort).
         run_with_presentable(@presenter)
-    ShowChampionTip.new(params[:id]).run_with_presentable(@presenter)
+    @presenter.champion_tip = FindChampionTip.new(params[:id]).run
     ShowAllPhases.new.run_with_presentable(@presenter)
   end
 

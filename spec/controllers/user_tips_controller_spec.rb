@@ -10,7 +10,7 @@ describe UserTipsController, :type => :controller do
 
     before :each do
       allow_any_instance_of(ShowAllTipsOfAggregateForUser).to receive(:run_with_presentable)
-      allow_any_instance_of(ShowChampionTip).to receive(:run_with_presentable)
+      allow_any_instance_of(FindChampionTip).to receive(:run_with_presentable)
       allow_any_instance_of(ShowAllPhases).to receive(:run_with_presentable)
     end
 
