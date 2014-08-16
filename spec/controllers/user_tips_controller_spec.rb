@@ -11,7 +11,7 @@ describe UserTipsController, :type => :controller do
     before :each do
       allow_any_instance_of(ShowAllTipsOfAggregateForUser).to receive(:run_with_presentable)
       allow_any_instance_of(FindChampionTip).to receive(:run_with_presentable)
-      allow_any_instance_of(ShowAllPhases).to receive(:run_with_presentable)
+      allow_any_instance_of(FindAllPhases).to receive(:run_with_presentable)
     end
 
     it 'should return http success render template show' do
