@@ -20,9 +20,7 @@ describe UpdateChampionTip do
 
       let(:current_user) { create(:user) }
 
-      before :each do
-        current_user
-      end
+      subject { UpdateChampionTip.new(current_user: current_user, champion_tip_id: champion_tip.id, attributes: new_attributes)}
 
       context 'when tournament not started' do
 
@@ -30,7 +28,7 @@ describe UpdateChampionTip do
 
           allow_any_instance_of(Tournament).to receive(:started?).and_return(false)
 
-          result = subject.run(current_user: current_user, champion_tip_id: champion_tip.id, attributes: new_attributes)
+          result = subject.run
 
           expect(result.successful).to be_truthy
           champion_tip.reload
@@ -44,7 +42,7 @@ describe UpdateChampionTip do
 
           allow_any_instance_of(Tournament).to receive(:started?).and_return(true)
 
-          result = subject.run(current_user: current_user, champion_tip_id: champion_tip.id, attributes: new_attributes)
+          result = subject.run
 
           expect(result.successful).to be_falsey
           expect(result.champion_tip).to eq champion_tip
@@ -62,11 +60,13 @@ describe UpdateChampionTip do
         current_user
       end
 
+      subject { UpdateChampionTip.new(current_user: current_user, champion_tip_id: champion_tip.id, attributes: new_attributes)}
+
       it 'should return result successful true and updated champion_tip' do
 
         allow_any_instance_of(Tournament).to receive(:started?).and_return(true)
 
-        result = subject.run(current_user: current_user, champion_tip_id: champion_tip.id, attributes: new_attributes)
+        result = subject.run
 
         expect(result.successful).to be_truthy
         champion_tip.reload

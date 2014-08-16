@@ -6,9 +6,8 @@ class ChampionTipsController < ApplicationController
 
   def update
 
-    result = UpdateChampionTip.new.run(current_user: current_user, champion_tip_id: params[:id],
-                                       attributes: params[:champion_tip])
-
+    result = UpdateChampionTip.new(current_user: current_user, champion_tip_id: params[:id],
+                                       attributes: params[:champion_tip]).run
 
     if result.successful
       redirect_to user_tip_path(current_user), notice: t('model.messages.updated', model: ChampionTip.model_name.human)

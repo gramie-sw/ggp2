@@ -2,7 +2,13 @@ class UpdateChampionTip
 
   Result = Struct.new(:successful, :champion_tip)
 
-  def run(current_user:, champion_tip_id:, attributes:)
+  def initialize(current_user:, champion_tip_id:, attributes:)
+    @current_user = current_user
+    @champion_tip_id = champion_tip_id
+    @attributes = attributes
+  end
+
+  def run
 
     champion_tip = ChampionTip.find(champion_tip_id)
 
@@ -20,4 +26,9 @@ class UpdateChampionTip
 
     result
   end
+
+  private
+
+  attr_reader :current_user, :champion_tip_id, :attributes
+
 end
