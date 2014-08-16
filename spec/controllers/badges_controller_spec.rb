@@ -8,10 +8,6 @@ describe BadgesController, :type => :controller do
 
   describe '#show' do
 
-    before :each do
-      allow_any_instance_of(ShowBadges).to receive(:run)
-    end
-
     it 'should return http success' do
       get :show
       expect(response).to be_success
@@ -22,14 +18,10 @@ describe BadgesController, :type => :controller do
       expect(response).to render_template :show
     end
 
-    it 'should run uc ShowBadges and assign presenter' do
-      expected_presenter = BadgesShowPresenter.new
-      expect(BadgesShowPresenter).to receive(:new).and_return(expected_presenter)
-      expect_any_instance_of(ShowBadges).to receive(:run).with(expected_presenter)
+    it 'should run uc FindBadges and assign presenter' do
 
       get :show
-
-      expect(assigns(:presenter)).to eq expected_presenter
+      expect(assigns(:presenter)).to be_an_instance_of(BadgesShowPresenter)
     end
   end
 end

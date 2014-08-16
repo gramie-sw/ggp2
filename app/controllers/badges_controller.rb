@@ -1,7 +1,9 @@
 class BadgesController < ApplicationController
 
   def show
+    result = FindBadges.new.run
     @presenter = BadgesShowPresenter.new
-    ShowBadges.new.run(@presenter)
+    @presenter.groups = result.groups
+    @presenter.grouped_badges = result.grouped_badges
   end
 end
