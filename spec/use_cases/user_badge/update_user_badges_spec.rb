@@ -1,5 +1,7 @@
 describe UpdateUserBadges do
 
+  subject { UpdateUserBadges.new(:comment)}
+
   describe'#run' do
 
     it 'should update user badges by given group' do
@@ -17,7 +19,7 @@ describe UpdateUserBadges do
       create(:comment, user: user_2)
       create(:comment, user: user_3)
 
-      subject.run(:comment)
+      subject.run
 
       expect(UserBadge.all.size).to eq 4
 

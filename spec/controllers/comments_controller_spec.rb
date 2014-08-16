@@ -50,7 +50,7 @@ describe CommentsController, :type => :controller do
 
       it 'should run uc UpdateUserBadges with given group (:comment)' do
         expect_any_instance_of(Comment).to receive(:save).with(no_args).and_return(true)
-        expect_any_instance_of(UpdateUserBadges).to receive(:run).with(:comment)
+        expect_any_instance_of(UpdateUserBadges).to receive(:run)
         post :create, params
       end
 
