@@ -1,6 +1,10 @@
 class CalculateChampionTipResults
 
-  def run tournament
+  def initialize tournament
+    @tournament = tournament
+  end
+
+  def run
 
     champion_tip_result_setter = ChampionTipResultSetter.new tournament.champion_team
 
@@ -9,4 +13,6 @@ class CalculateChampionTipResults
       champion_tip.save
     end
   end
+
+  attr_reader :tournament
 end

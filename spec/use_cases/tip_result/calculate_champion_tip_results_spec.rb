@@ -1,17 +1,19 @@
 describe CalculateChampionTipResults do
 
-  subject { CalculateChampionTipResults.new }
+  let(:tournament) { Tournament.new }
+
+  subject { CalculateChampionTipResults.new tournament }
 
   describe '#run' do
 
     it 'should set result on all ChampionTips and save them' do
-      champion_team = Team.new(id: 5)
-      tournament = Tournament.new
-      champion_tip_result_setter = ChampionTipResultSetter.new nil
 
+      champion_team = Team.new(id: 5)
+      champion_tip_result_setter = ChampionTipResultSetter.new nil
       champion_tips = [ChampionTip.new, ChampionTip.new]
 
       expect(tournament).to receive(:champion_team).and_return(champion_team)
+
       expect(ChampionTipResultSetter).to receive(:new).with(champion_team).and_return(champion_tip_result_setter)
       expect(ChampionTip).to receive(:all).and_return(champion_tips)
 
@@ -21,8 +23,7 @@ describe CalculateChampionTipResults do
       expect(champion_tip_result_setter).to receive(:set_result).ordered.with(champion_tips.second)
       expect(champion_tips.second).to receive(:save).ordered
 
-      subject.run(tournament)
+      subject.run
     end
   end
-
 end

@@ -36,9 +36,9 @@ describe ProcessNewMatchResult do
         expect(CalculateTipResults).to receive(:new).and_return(calculate_tip_results)
         expect(calculate_tip_results).to receive(:run).with(match_id).ordered
 
-        calculate_champion_tip_results = CalculateChampionTipResults.new
+        calculate_champion_tip_results = CalculateChampionTipResults.new tournament
         expect(CalculateChampionTipResults).to receive(:new).and_return(calculate_champion_tip_results)
-        expect(calculate_champion_tip_results).to receive(:run).with(tournament)
+        expect(calculate_champion_tip_results).to receive(:run)
 
         update_ranking = UpdateRanking.new
         expect(UpdateRanking).to receive(:new).and_return(update_ranking)
