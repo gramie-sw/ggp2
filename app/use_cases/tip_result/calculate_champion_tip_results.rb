@@ -1,18 +1,21 @@
 class CalculateChampionTipResults
 
-  def initialize tournament
-    @tournament = tournament
+  def initialize champion_team
+    @champion_team = champion_team
   end
 
   def run
 
-    champion_tip_result_setter = ChampionTipResultSetter.new tournament.champion_team
+    champion_tip_result_setter = ChampionTipResultSetter.new champion_team
 
-    ChampionTip.all.each do |champion_tip|
+    champion_tips = ChampionTip.all
+
+    champion_tips.each do |champion_tip|
       champion_tip_result_setter.set_result(champion_tip)
-      champion_tip.save
     end
+
+    ChampionTip.save_multiple champion_tips
   end
 
-  attr_reader :tournament
+  attr_reader :champion_team
 end

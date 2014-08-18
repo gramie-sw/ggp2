@@ -1,29 +1,36 @@
 describe CalculateChampionTipResults do
 
-  let(:tournament) { Tournament.new }
+  let(:teams) {
+    [
+      create(:team),
+      create(:team)
+    ]
+  }
 
-  subject { CalculateChampionTipResults.new tournament }
+  let(:champion_team) { teams.second }
+
+  let(:champion_tips) {
+    [
+      create(:champion_tip, team: teams.second),
+      create(:champion_tip, team: teams.first)
+    ]
+  }
+
+  subject { CalculateChampionTipResults.new champion_team }
+
+  before :each do
+    champion_tips
+  end
 
   describe '#run' do
 
-    it 'should set result on all ChampionTips and save them' do
-
-      champion_team = Team.new(id: 5)
-      champion_tip_result_setter = ChampionTipResultSetter.new nil
-      champion_tips = [ChampionTip.new, ChampionTip.new]
-
-      expect(tournament).to receive(:champion_team).and_return(champion_team)
-
-      expect(ChampionTipResultSetter).to receive(:new).with(champion_team).and_return(champion_tip_result_setter)
-      expect(ChampionTip).to receive(:all).and_return(champion_tips)
-
-      expect(champion_tip_result_setter).to receive(:set_result).ordered.with(champion_tips.first)
-      expect(champion_tips.first).to receive(:save).ordered
-
-      expect(champion_tip_result_setter).to receive(:set_result).ordered.with(champion_tips.second)
-      expect(champion_tips.second).to receive(:save).ordered
+    it 'should calculate result on all ChampionTips and save them' do
 
       subject.run
+
+      actual_champion_tips = ChampionTip.all
+      expect(actual_champion_tips.first.result).to eq ChampionTip::RESULTS[:correct]
+      expect(actual_champion_tips.second.result).to eq ChampionTip::RESULTS[:incorrect]
     end
   end
 end

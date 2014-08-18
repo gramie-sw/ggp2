@@ -30,13 +30,13 @@ describe ProcessNewMatchResult do
 
         tournament = Tournament.new
         expect(Tournament).to receive(:new).and_return(tournament)
-        expect(tournament).to receive(:champion_team).and_return(ChampionTip.new)
+        expect(tournament).to receive(:champion_team).twice.and_return(ChampionTip.new)
 
         calculate_tip_results = CalculateTipResults.new
         expect(CalculateTipResults).to receive(:new).and_return(calculate_tip_results)
         expect(calculate_tip_results).to receive(:run).with(match_id).ordered
 
-        calculate_champion_tip_results = CalculateChampionTipResults.new tournament
+        calculate_champion_tip_results = CalculateChampionTipResults.new ChampionTip.new
         expect(CalculateChampionTipResults).to receive(:new).and_return(calculate_champion_tip_results)
         expect(calculate_champion_tip_results).to receive(:run)
 

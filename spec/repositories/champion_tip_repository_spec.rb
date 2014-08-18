@@ -32,4 +32,32 @@ describe ChampionTipRepository do
       expect(actual_user_ids).to be user_ids
     end
   end
+
+  describe '::save_multiple' do
+
+    let(:champion_tips) {
+      [
+          build(:champion_tip),
+          build(:champion_tip)
+      ]
+    }
+
+    it 'should save multiple champion tips' do
+
+      result = subject.save_multiple champion_tips
+
+      expect(result).to be_truthy
+      expect(ChampionTip.count).to eq 2
+    end
+
+    it 'should save multiple champion tips transactionally' do
+
+      expect(champion_tips.second).to receive(:save).and_return(false)
+
+      result = subject.save_multiple champion_tips
+
+      expect(result).to be_falsey
+      expect(ChampionTip.count).to eq 0
+    end
+  end
 end

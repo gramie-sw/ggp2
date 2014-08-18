@@ -5,8 +5,9 @@ class ProcessNewMatchResult
 
     CalculateTipResults.new.run(match_id)
     tournament = Tournament.new
+
     if tournament.champion_team.present?
-      CalculateChampionTipResults.new(tournament).run
+      CalculateChampionTipResults.new(tournament.champion_team).run
     end
     UpdateRanking.new.run(match_id)
   end
