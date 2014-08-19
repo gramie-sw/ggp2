@@ -26,7 +26,7 @@ module RankingItemRepository
     end
 
     def destroy_and_create_multiple match_id, ranking_items
-      #TODO check transaction
+
       RankingItem.transaction do
         (RankingItem.destroy_all(match_id: match_id).all? && ranking_items.map(&:save).all?) || raise(ActiveRecord::Rollback)
       end

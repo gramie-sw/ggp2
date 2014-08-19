@@ -71,7 +71,7 @@ describe RankingItemRepository do
       ranking_items
     end
 
-    it 'should update all given ranking items' do
+    it 'should destroy and create all given ranking items' do
 
       ranking_item_1 = build(:ranking_item, match_id: 12, user_id: 13)
       ranking_item_2 = build(:ranking_item, match_id: 12, user_id: 14)
