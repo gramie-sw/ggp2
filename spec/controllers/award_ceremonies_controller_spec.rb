@@ -9,7 +9,7 @@ describe AwardCeremoniesController, :type => :controller do
   describe '#show' do
 
     before :each do
-      allow_any_instance_of(ShowWinnerRanking).to receive(:run)
+      allow_any_instance_of(FindWinnerRanking).to receive(:run)
     end
 
     it 'should return http success' do
@@ -25,7 +25,7 @@ describe AwardCeremoniesController, :type => :controller do
     it 'should run uc ShowWinnerRanking and assign presenter' do
       expected_presenter = AwardCeremoniesShowPresenter.new nil
       expect(AwardCeremoniesShowPresenter).to receive(:new).with(@controller.tournament).and_return(expected_presenter)
-      expect_any_instance_of(ShowWinnerRanking).to receive(:run).with(expected_presenter)
+      expect_any_instance_of(FindWinnerRanking).to receive(:run).with(expected_presenter)
 
       get :show
 

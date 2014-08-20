@@ -1,4 +1,4 @@
-describe ShowWinnerRanking do
+describe FindWinnerRanking do
 
   describe '#run' do
 

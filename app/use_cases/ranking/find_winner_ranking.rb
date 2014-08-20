@@ -1,4 +1,4 @@
-class ShowWinnerRanking
+class FindWinnerRanking
 
   def run presenter
     finder = WinnerRankingFinder.new
