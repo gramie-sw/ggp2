@@ -1,4 +1,4 @@
-describe ShowRandomQuotation do
+describe FindRandomQuotation do
 
   describe '#run' do
 

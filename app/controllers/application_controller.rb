@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   def random_quotation
-    ShowRandomQuotation.new.run
+    FindRandomQuotation.new.run
   end
 
   def main_nav_links

@@ -1,4 +1,4 @@
-class ShowRandomQuotation
+class FindRandomQuotation
 
   def run
     QuotationRepository.sample
