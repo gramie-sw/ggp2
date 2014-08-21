@@ -21,16 +21,5 @@ describe AwardCeremoniesController, :type => :controller do
       get :show
       expect(response).to render_template :show
     end
-
-    it 'should run uc ShowWinnerRanking and assign presenter' do
-      expected_presenter = AwardCeremoniesShowPresenter.new nil
-      expect(AwardCeremoniesShowPresenter).to receive(:new).with(@controller.tournament).and_return(expected_presenter)
-      expect_any_instance_of(FindWinnerRanking).to receive(:run).with(expected_presenter)
-
-      get :show
-
-      expect(assigns(:presenter)).to eq expected_presenter
-    end
-
   end
 end

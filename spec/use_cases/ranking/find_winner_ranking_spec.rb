@@ -11,23 +11,18 @@ describe FindWinnerRanking do
           create(:ranking_item, match: nil, position: 3)
       ]
 
-      presenter = double('Presenter')
-      expect(presenter).to receive(:first_places=) do |actual_ranking_items|
-        expect(actual_ranking_items.count).to eq 1
-        expect(actual_ranking_items).to include winner_ranking_items.second
-      end
+      result = subject.run
 
-      expect(presenter).to receive(:second_places=) do |actual_ranking_items|
-        expect(actual_ranking_items.count).to eq 2
-        expect(actual_ranking_items).to include winner_ranking_items.first, winner_ranking_items.third
-      end
+      expect(result).to be_an_instance_of(FindWinnerRanking::Result)
 
-      expect(presenter).to receive(:third_places=) do |actual_ranking_items|
-        expect(actual_ranking_items.count).to eq 1
-        expect(actual_ranking_items).to include winner_ranking_items.fourth
-      end
+      expect(result.first_places.size).to eq 1
+      expect(result.first_places.first).to eq winner_ranking_items.second
 
-      subject.run(presenter)
+      expect(result.second_places.size).to eq 2
+      expect(result.second_places).to include(winner_ranking_items.first, winner_ranking_items.third)
+
+      expect(result.third_places.size).to eq 1
+      expect(result.third_places.first).to eq winner_ranking_items.fourth
     end
   end
 end

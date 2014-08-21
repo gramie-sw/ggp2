@@ -11,17 +11,17 @@ div.row
     p.place = t('award_ceremony.first_place.position')
     i.fa.fa-trophy
     span.badge = t('award_ceremony.first_place.badge')
-    - for ranking_item in @presenter.first_places
+    - for ranking_item in @presenter.places.first_places
       = render partial: 'user_label', locals: {ranking_item: ranking_item}
   div.winner-ranking-box.second-place-box.col-sm-4
     div.place = t('award_ceremony.second_place.position')
     i.fa.fa-trophy
     span.badge = t('award_ceremony.second_place.badge')
-    - for ranking_item in @presenter.second_places
+    - for ranking_item in @presenter.places.second_places
       = render partial: 'user_label', locals: {ranking_item: ranking_item}
   div.winner-ranking-box.third-place-box.col-sm-4
     div.place = t('award_ceremony.third_place.position')
     i.fa.fa-trophy
     span.badge = t('award_ceremony.third_place.badge')
-    - for ranking_item in @presenter.third_places
+    - for ranking_item in @presenter.places.third_places
       = render partial: 'user_label', locals: {ranking_item: ranking_item}

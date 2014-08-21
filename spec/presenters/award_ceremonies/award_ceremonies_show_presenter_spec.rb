@@ -3,19 +3,9 @@ describe AwardCeremoniesShowPresenter do
   let(:tournament) { Tournament.new }
   subject { AwardCeremoniesShowPresenter.new tournament }
 
-  it 'should provide first_places accessors' do
-    expect(subject).to respond_to(:first_places)
-    expect(subject).to respond_to(:first_places=)
-  end
-
-  it 'should provide second_places accessors' do
-    expect(subject).to respond_to(:second_places)
-    expect(subject).to respond_to(:second_places=)
-  end
-
-  it 'should provide third_places accessors' do
-    expect(subject).to respond_to(:third_places)
-    expect(subject).to respond_to(:third_places=)
+  it 'should provide places accessors' do
+    expect(subject).to respond_to(:places)
+    expect(subject).to respond_to(:places=)
   end
 
   describe '#description_one' do
