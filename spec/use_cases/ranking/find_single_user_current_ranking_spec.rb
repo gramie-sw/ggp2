@@ -1,4 +1,4 @@
-describe ShowSingleUserCurrentRanking do
+describe FindSingleUserCurrentRanking do
 
   describe '#run' do
 

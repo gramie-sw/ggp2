@@ -1,6 +1,6 @@
-describe ShowSingleUserCurrentRanking do
+describe FindSingleUserCurrentRanking do
 
-  subject { ShowSingleUserCurrentRanking.new }
+  subject { FindSingleUserCurrentRanking.new }
   let(:user) { create(:player) }
 
   context 'when no current Tip-RankingItem for specified user exits' do
