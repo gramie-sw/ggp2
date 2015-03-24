@@ -16,7 +16,7 @@ describe Aggregate, :type => :model do
     describe '#name' do
       it { is_expected.to validate_presence_of(:name) }
       it { is_expected.to validate_uniqueness_of(:name).scoped_to(:ancestry) }
-      it { is_expected.to ensure_length_of(:name).is_at_least(3).is_at_most(32) }
+      it { is_expected.to validate_length_of(:name).is_at_least(3).is_at_most(32) }
       it { is_expected.not_to allow_value('Name%').for(:name) }
     end
   end

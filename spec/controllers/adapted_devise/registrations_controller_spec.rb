@@ -49,7 +49,7 @@ describe AdaptedDevise::RegistrationsController, :type => :controller do
           expect(user).to eq result.user
           expect(raw_token).to eq result.raw_token
         end.and_return(message)
-        expect(message).to receive(:deliver)
+        expect(message).to receive(:deliver_now)
         post :create, params
       end
     end

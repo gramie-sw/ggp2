@@ -9,12 +9,12 @@ describe Property, :type => :model do
     describe 'key' do
       it { is_expected.to validate_presence_of :key }
       it { is_expected.to validate_uniqueness_of :key }
-      it { is_expected.to ensure_length_of(:key).is_at_most 64 }
+      it { is_expected.to validate_length_of(:key).is_at_most 64 }
     end
 
     describe 'value' do
       it { is_expected.to validate_presence_of :value }
-      it { is_expected.to ensure_length_of(:value).is_at_most 128 }
+      it { is_expected.to validate_length_of(:value).is_at_most 128 }
     end
   end
 

@@ -21,9 +21,9 @@ describe MatchPresenter do
     context 'if match has no team_1' do
 
       it 'should return placeholder' do
-        match.placeholder_team_1= :team_1
+        match.placeholder_team_1= 'team_1'
         match.team_1 = nil
-        expect(subject.team_1_name_or_placeholder).to be :team_1
+        expect(subject.team_1_name_or_placeholder).to eq 'team_1'
       end
     end
   end
@@ -42,9 +42,9 @@ describe MatchPresenter do
     context 'if match has no team_2' do
 
       it 'should return placeholder' do
-        match.placeholder_team_2= :team_2
+        match.placeholder_team_2= 'team_2'
         match.team_2 = nil
-        expect(subject.team_2_name_or_placeholder).to be :team_2
+        expect(subject.team_2_name_or_placeholder).to eq 'team_2'
       end
     end
   end

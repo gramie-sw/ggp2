@@ -156,7 +156,7 @@ describe VenuesController, :type => :controller do
 
     it 'should destroy venue' do
       delete :destroy, id: venue.to_param
-      expect(Venue.exists?(venue)).to be_falsey
+      expect(Venue.exists?(venue.id)).to be_falsey
     end
 
     it 'should assign notice flash message' do

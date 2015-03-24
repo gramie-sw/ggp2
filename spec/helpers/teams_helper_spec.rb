@@ -12,7 +12,7 @@ describe TeamsHelper, :type => :helper do
     context 'when country is present' do
 
       it 'should return img tag' do
-        expect(helper.standard_flag_image_tag('Germany')).to eq "<img alt=\"Blank\" class=\"flag flag-germany\" src=\"/assets/blank.gif\" />"
+        expect(helper.standard_flag_image_tag('Germany')).to eq "<img class=\"flag flag-germany\" src=\"/assets/blank.gif\" alt=\"Blank\" />"
       end
     end
   end

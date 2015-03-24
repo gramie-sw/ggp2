@@ -11,7 +11,7 @@ class AdaptedDevise::RegistrationsController < Devise::RegistrationsController
       result = CreateUser.new.run(params[:user])
 
       if result.successful?
-        UserMailer.user_signed_up(result.user, result.raw_token).deliver
+        UserMailer.user_signed_up(result.user, result.raw_token).deliver_now
         redirect_to new_user_session_path, notice: t('devise.passwords.send_initial_instructions')
       else
         @user = result.user

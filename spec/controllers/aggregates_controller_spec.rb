@@ -154,7 +154,7 @@ describe AggregatesController, :type => :controller do
 
     it 'should destroy aggregate' do
       delete :destroy, id: aggregate.to_param
-      expect(Aggregate.exists?(aggregate)).to be_falsey
+      expect(Aggregate.exists?(aggregate.id)).to be_falsey
     end
 
     it 'should assign notice flash message' do

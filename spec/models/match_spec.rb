@@ -47,7 +47,7 @@ describe Match, :type => :model do
     end
 
     describe '#placeholder_team_1' do
-      it { is_expected.to ensure_length_of(:placeholder_team_1).is_at_least(3).is_at_most(64) }
+      it { is_expected.to validate_length_of(:placeholder_team_1).is_at_least(3).is_at_most(64) }
       it { is_expected.not_to allow_value('Test%').for(:placeholder_team_1) }
 
       it 'should allow blank if team_1 is set' do
@@ -60,7 +60,7 @@ describe Match, :type => :model do
     end
 
     describe '#placeholder_team_2' do
-      it { is_expected.to ensure_length_of(:placeholder_team_2).is_at_least(3).is_at_most(64) }
+      it { is_expected.to validate_length_of(:placeholder_team_2).is_at_least(3).is_at_most(64) }
       it { is_expected.not_to allow_value('Test%').for(:placeholder_team_2) }
 
       it 'should allow blank if team_2 is set' do

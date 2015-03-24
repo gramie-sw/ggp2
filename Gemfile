@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.1.4'
+gem 'rails', '~> 4.2.1'
 gem 'actionmailer'
 gem 'jbuilder'
 gem 'mysql2'
@@ -28,7 +28,7 @@ gem 'permissioner'
 gem 'transpec'
 
 group :development, :test do
-  gem 'rspec-rails', '~>3.0.2'
+  gem 'rspec-rails', '~>3.2.1'
   gem 'guard-rspec'
 end
 
@@ -55,6 +55,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'forgery'
 end
+
 
 group :doc do
   gem 'sdoc', require: false

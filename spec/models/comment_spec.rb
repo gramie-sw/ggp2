@@ -16,7 +16,7 @@ describe Comment, :type => :model do
 
     describe 'content' do
       it { is_expected.to validate_presence_of :content }
-      it { is_expected.to ensure_length_of(:content).is_at_most(500) }
+      it { is_expected.to validate_length_of(:content).is_at_most(500) }
     end
   end
 

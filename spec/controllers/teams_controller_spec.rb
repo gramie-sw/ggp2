@@ -74,7 +74,7 @@ describe TeamsController, :type => :controller do
 
     it '#should destroy team' do
       delete :destroy, id: team.to_param
-      expect(Team.exists?(team)).to be_falsey
+      expect(Team.exists?(team.to_param)).to be_falsey
     end
 
     it '#should assign flash notice' do

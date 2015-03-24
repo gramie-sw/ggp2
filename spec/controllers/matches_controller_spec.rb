@@ -153,7 +153,7 @@ describe MatchesController, :type => :controller do
 
     it 'should destroy match' do
       delete :destroy, id: match.to_param
-      expect(Match.exists?(match)).to be_falsey
+      expect(Match.exists?(match.id)).to be_falsey
     end
 
     it 'should assign flash notice' do

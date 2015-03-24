@@ -9,17 +9,17 @@ describe User, :type => :model do
     describe '#nickname' do
       it { is_expected.to validate_presence_of(:nickname) }
       it { is_expected.to validate_uniqueness_of(:nickname) }
-      it { is_expected.to ensure_length_of(:nickname).is_at_least(3).is_at_most(32) }
+      it { is_expected.to validate_length_of(:nickname).is_at_least(3).is_at_most(32) }
     end
 
     describe '#first_name' do
       it { is_expected.to validate_presence_of(:first_name) }
-      it { is_expected.to ensure_length_of(:first_name).is_at_most(32) }
+      it { is_expected.to validate_length_of(:first_name).is_at_most(32) }
     end
 
     describe '#last_name' do
       it { is_expected.to validate_presence_of(:last_name) }
-      it { is_expected.to ensure_length_of(:last_name).is_at_most(32) }
+      it { is_expected.to validate_length_of(:last_name).is_at_most(32) }
     end
 
     describe '#admin' do
@@ -28,7 +28,7 @@ describe User, :type => :model do
     end
 
     describe '#match_sort' do
-      it { is_expected.to ensure_inclusion_of(:match_sort).in_array(['matches.position', 'matches.date']).allow_nil }
+      it { is_expected.to validate_inclusion_of(:match_sort).in_array(['matches.position', 'matches.date']).allow_nil }
     end
   end
 
