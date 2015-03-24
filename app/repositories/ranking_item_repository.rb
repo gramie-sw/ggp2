@@ -3,11 +3,11 @@ module RankingItemRepository
 
   included do
     scope :all_by_match_id, ->(match_id) { where(match_id: match_id) }
-    scope :all_by_user_id_and_match_id, ->(user_id: user_id, match_id: match_id) do
+    scope :all_by_user_id_and_match_id, ->(user_id:, match_id:) do
       where(user_id: user_id, match_id: match_id)
     end
     scope :ordered_by_position_asc, -> { order(position: :asc) }
-    scope :ranking_set_for_listing, ->(match_id: match_id, page: page, per_page:) do
+    scope :ranking_set_for_listing, ->(match_id:, page:, per_page:) do
       where(match_id: match_id).ordered_by_position_asc.includes(user: {champion_tip: :team}).page(page).per(per_page)
     end
     scope :ranking_set_for_listing_by_positions, ->(match_id: nil, positions:) do
@@ -17,7 +17,7 @@ module RankingItemRepository
 
   module ClassMethods
 
-    def first_by_user_id_and_match_id(user_id: user_id, match_id: match_id)
+    def first_by_user_id_and_match_id(user_id:, match_id:)
       all_by_user_id_and_match_id(user_id: user_id, match_id: match_id).first
     end
 

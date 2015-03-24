@@ -11,7 +11,7 @@ class UserRankingPresenter
            :correct_tendency_tips_only_count,
            to: :ranking_item
 
-  def initialize ranking_item: ranking_item, tournament: tournment, current_user_id: current_user_id
+  def initialize ranking_item:, tournament:, current_user_id:
     @ranking_item = ranking_item
     @tournament = tournament
     @current_user_id = current_user_id

@@ -1,7 +1,7 @@
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
-notification :notifysend, t: 1000
+#notification :notifysend, t: 1000
 
 guard :rspec, cmd: 'spring rspec', failed_mode: :none, notification: true do
   watch(%r{^spec/.+_spec\.rb$})
