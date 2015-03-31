@@ -11,7 +11,6 @@ class MainNavLinksProvider
       links << build_link(Match.model_name.human_plural, matches_path, :matches)
       links << build_link(Aggregate.model_name.human_plural, aggregates_path, :aggregates)
       links << build_link(Team.model_name.human_plural, teams_path, :teams)
-      links << build_link(Venue.model_name.human_plural, venues_path, :venues)
       links << build_link(t('general.pin_board'), pin_boards_path, :pin_boards)
       links << build_link(User.model_name.human_plural, users_path(type: User::USER_TYPE_PLAYERS), :users)
     else

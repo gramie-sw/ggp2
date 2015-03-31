@@ -4,7 +4,6 @@ class Match < ActiveRecord::Base
   include ScoreValidatable
 
   belongs_to :aggregate
-  belongs_to :venue
   has_many :tips, dependent: :destroy
   has_many :ranking_items, dependent: :destroy
 

@@ -87,9 +87,6 @@ de:
       user:
         one: Benutzer
         other: Benutzer
-      venue:
-        one: Spielort
-        other: Spielorte
     attributes:
       aggregate:
         position: Position
