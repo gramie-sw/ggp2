@@ -28,14 +28,14 @@ gem 'permissioner'
 gem 'transpec'
 
 group :development, :test do
-  gem 'rspec-rails', '~>3.2.1'
+  gem 'rspec-rails'
   gem 'guard-rspec'
 end
 
 group :development do
   gem 'letter_opener'
   gem 'meta_request'
-  gem "pry-rails", "~> 0.3.2"
+  gem 'pry-rails'
   gem 'quiet_assets'
   gem 'spring'
   gem 'spring-commands-rspec', require: false
