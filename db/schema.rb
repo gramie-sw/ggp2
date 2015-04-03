@@ -11,20 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140802074255) do
+ActiveRecord::Schema.define(version: 20150403125340) do
 
-  create_table "aggregates", force: true do |t|
-    t.integer  "position"
-    t.string   "name"
-    t.string   "ancestry"
+  create_table "aggregates", force: :cascade do |t|
+    t.integer  "position",   limit: 4
+    t.string   "name",       limit: 255
+    t.string   "ancestry",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "champion_tips", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "team_id"
-    t.integer  "result"
+  create_table "champion_tips", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "team_id",    limit: 4
+    t.integer  "result",     limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,26 +32,25 @@ ActiveRecord::Schema.define(version: 20140802074255) do
   add_index "champion_tips", ["team_id"], name: "index_champion_tips_on_team_id", using: :btree
   add_index "champion_tips", ["user_id"], name: "index_champion_tips_on_user_id", using: :btree
 
-  create_table "comments", force: true do |t|
-    t.integer  "user_id"
-    t.text     "content"
-    t.boolean  "edited"
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.text     "content",    limit: 65535
+    t.boolean  "edited",     limit: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
-  create_table "matches", force: true do |t|
-    t.integer  "position"
-    t.integer  "aggregate_id"
-    t.integer  "team_1_id"
-    t.integer  "team_2_id"
-    t.integer  "score_team_1"
-    t.integer  "score_team_2"
-    t.string   "placeholder_team_1"
-    t.string   "placeholder_team_2"
-    t.integer  "venue_id"
+  create_table "matches", force: :cascade do |t|
+    t.integer  "position",           limit: 4
+    t.integer  "aggregate_id",       limit: 4
+    t.integer  "team_1_id",          limit: 4
+    t.integer  "team_2_id",          limit: 4
+    t.integer  "score_team_1",       limit: 4
+    t.integer  "score_team_2",       limit: 4
+    t.string   "placeholder_team_1", limit: 255
+    t.string   "placeholder_team_2", limit: 255
     t.datetime "date"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -60,23 +59,22 @@ ActiveRecord::Schema.define(version: 20140802074255) do
   add_index "matches", ["aggregate_id"], name: "index_matches_on_aggregate_id", using: :btree
   add_index "matches", ["team_1_id"], name: "index_matches_on_team_1_id", using: :btree
   add_index "matches", ["team_2_id"], name: "index_matches_on_team_2_id", using: :btree
-  add_index "matches", ["venue_id"], name: "index_matches_on_venue_id", using: :btree
 
-  create_table "properties", force: true do |t|
-    t.string   "key"
-    t.string   "value"
+  create_table "properties", force: :cascade do |t|
+    t.string   "key",        limit: 255
+    t.string   "value",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "ranking_items", force: true do |t|
-    t.integer  "match_id"
-    t.integer  "user_id"
-    t.integer  "position"
-    t.boolean  "correct_champion_tip"
-    t.integer  "correct_tips_count"
-    t.integer  "correct_tendency_tips_only_count"
-    t.integer  "points"
+  create_table "ranking_items", force: :cascade do |t|
+    t.integer  "match_id",                         limit: 4
+    t.integer  "user_id",                          limit: 4
+    t.integer  "position",                         limit: 4
+    t.boolean  "correct_champion_tip",             limit: 1
+    t.integer  "correct_tips_count",               limit: 4
+    t.integer  "correct_tendency_tips_only_count", limit: 4
+    t.integer  "points",                           limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -84,18 +82,18 @@ ActiveRecord::Schema.define(version: 20140802074255) do
   add_index "ranking_items", ["match_id"], name: "index_ranking_items_on_match_id", using: :btree
   add_index "ranking_items", ["user_id"], name: "index_ranking_items_on_user_id", using: :btree
 
-  create_table "teams", force: true do |t|
-    t.string   "country"
+  create_table "teams", force: :cascade do |t|
+    t.string   "country",    limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "tips", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "match_id"
-    t.integer  "score_team_1"
-    t.integer  "score_team_2"
-    t.integer  "result"
+  create_table "tips", force: :cascade do |t|
+    t.integer  "user_id",      limit: 4
+    t.integer  "match_id",     limit: 4
+    t.integer  "score_team_1", limit: 4
+    t.integer  "score_team_2", limit: 4
+    t.integer  "result",       limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -103,46 +101,38 @@ ActiveRecord::Schema.define(version: 20140802074255) do
   add_index "tips", ["match_id"], name: "index_tips_on_match_id", using: :btree
   add_index "tips", ["user_id"], name: "index_tips_on_user_id", using: :btree
 
-  create_table "user_badges", force: true do |t|
-    t.integer  "user_id"
-    t.string   "badge_identifier"
+  create_table "user_badges", force: :cascade do |t|
+    t.integer  "user_id",          limit: 4
+    t.string   "badge_identifier", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "user_badges", ["user_id"], name: "index_user_badges_on_user_id", using: :btree
 
-  create_table "users", force: true do |t|
-    t.string   "email",                  default: "",   null: false
-    t.string   "encrypted_password",     default: "",   null: false
-    t.string   "reset_password_token"
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  limit: 255, default: "",   null: false
+    t.string   "encrypted_password",     limit: 255, default: "",   null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,    null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "nickname"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.boolean  "admin"
-    t.boolean  "active",                 default: true
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "nickname",               limit: 255
+    t.string   "first_name",             limit: 255
+    t.string   "last_name",              limit: 255
+    t.boolean  "admin",                  limit: 1
+    t.boolean  "active",                 limit: 1,   default: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "match_sort"
-    t.boolean  "titleholder"
+    t.string   "match_sort",             limit: 255
+    t.boolean  "titleholder",            limit: 1
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
-  create_table "venues", force: true do |t|
-    t.string   "city"
-    t.string   "stadium"
-    t.integer  "capacity"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
 end
