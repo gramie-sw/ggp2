@@ -11,6 +11,7 @@ gem 'sass-rails'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
+gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'uglifier'
 gem 'therubyracer', platforms: :ruby
