@@ -29,7 +29,6 @@ gem 'transpec'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'guard-rspec'
 end
 
 group :development do
@@ -37,6 +36,10 @@ group :development do
   gem 'meta_request'
   gem 'pry-rails'
   gem 'quiet_assets'
+  
+  gem 'guard-rspec', require: false
+  gem 'guard-livereload', require: false
+  gem 'rack-livereload'
   gem 'spring'
   gem 'spring-commands-rspec', require: false
 
