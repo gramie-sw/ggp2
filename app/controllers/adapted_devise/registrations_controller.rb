@@ -22,7 +22,11 @@ class AdaptedDevise::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_update_path_for(user)
-    profile_path(user, section: :user_data)
+    if user.admin?
+      edit_user_registration_path
+    else
+      profile_path(user, section: :user_data)
+    end
   end
 
 end

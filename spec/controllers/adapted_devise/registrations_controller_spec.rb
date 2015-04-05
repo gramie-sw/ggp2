@@ -1,31 +1,16 @@
 describe AdaptedDevise::RegistrationsController, :type => :controller do
 
+  let(:user) { create(:player) }
+  let(:admin) { create(:admin) }
+
   before :each do
     @request.env["devise.mapping"] = Devise.mappings[:user]
   end
 
-  describe '#new' do
-    it 'should return http success' do
-      get :new
-      expect(response).to be_success
-    end
-
-    it 'should render template new' do
-      get :new
-      expect(response).to render_template :new
-    end
-
-    it 'should assign @user' do
-      get :new
-      expect(assigns(:user)).to be_a_new User
-    end
-  end
-
   describe '#create' do
 
-    let(:params) { {user: {'email' => 'test@mail.de'}}}
-    let(:user) { create(:player)}
-    let(:result) {CreateUser::ResultWithToken.new(user, true, 'raw_token') }
+    let(:params) { {user: {'email' => 'test@mail.de'}} }
+    let(:result) { CreateUser::ResultWithToken.new(user, true, 'raw_token') }
 
     before :each do
       allow_any_instance_of(CreateUser).to receive(:run).with(params[:user]).and_return(result)
@@ -56,7 +41,7 @@ describe AdaptedDevise::RegistrationsController, :type => :controller do
 
     context 'on failure' do
 
-      let(:result) {CreateUser::ResultWithToken.new(user, false, nil) }
+      let(:result) { CreateUser::ResultWithToken.new(user, false, nil) }
 
       it 'should return success' do
         post :create, params
@@ -68,11 +53,22 @@ describe AdaptedDevise::RegistrationsController, :type => :controller do
         expect(response).to render_template :new
       end
 
-      it'should assign user with correct arguments' do
+      it 'should assign user with correct arguments' do
         post :create, params
         expect(assigns(:user)).to be_a(User)
         expect(assigns(:user)).to be result.user
       end
+    end
+  end
+
+  describe '#after_update_path' do
+
+    it 'returns edit_user_registration_path if current user is admin' do
+      expect(subject.after_update_path_for(admin)).to eq edit_user_registration_path
+    end
+
+    it 'returns profile_path if current user is not an admin' do
+      expect(subject.after_update_path_for(user)).to eq profile_path(user, section: :user_data)
     end
   end
 end
