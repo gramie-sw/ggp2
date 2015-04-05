@@ -1,0 +1,44 @@
+div.col-sm-offset-1.col-sm-10.col-md-offset-2.col-md-8.col-lg-offset-3.col-lg-6
+  div.well
+    = simple_form_for @user,
+                      html: {class: 'form-horizontal', role: 'form'},
+                      defaults: {label_html: {class: 'col-sm-3'},
+                                 input_wrapper_html: {class: 'col-sm-9 col-md-8'},
+                                 required: false} do |f|
+
+      legend
+        = I18n.t('devise.title.sign_up')
+
+      p = t('help.sign_up.description.name')
+      p = t('help.sign_up.description.email')
+      br
+
+      = f.input :email, input_html: {autofocus: true}
+
+      = f.input :nickname
+
+      = f.input :first_name
+
+      = f.input :last_name
+
+      div.form-group
+        label.col-sm-3.control-label
+          = t('recaptcha.label')
+        div.col-sm-9.col-md-8
+          javascript:
+            var RecaptchaOptions = {
+              theme: 'white',
+              lang: "#{I18n.locale}",
+              custom_translations: {instructions_visual: "#{t('recaptcha.custom_translations.instructions_visual')}"}
+            };
+          = recaptcha_tags
+          - if f.object.errors.get(:base) && !f.object.errors.get(:base).empty?
+            div.row
+              div.field_with_errors
+                p.help-block.col-xs-12 = f.object.errors.get(:base).first
+
+      = render partial: 'commons/form_buttons',
+               locals: {form_builder: f,
+                        submit_button_label: t('devise.links.sign_up_submit'),
+                        cancel_path: new_user_session_path,
+                        wrapper_html: {class: 'col-sm-offset-3 col-sm-9 col-md-8'}}

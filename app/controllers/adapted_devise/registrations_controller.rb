@@ -1,9 +1,5 @@
 class AdaptedDevise::RegistrationsController < Devise::RegistrationsController
 
-  def new
-    super
-  end
-
   def create
 
     if verify_recaptcha
@@ -29,5 +25,4 @@ class AdaptedDevise::RegistrationsController < Devise::RegistrationsController
     profile_path(user, section: :user_data)
   end
 
-  private
 end

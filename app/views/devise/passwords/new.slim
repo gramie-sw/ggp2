@@ -1,23 +1,20 @@
 div.col-sm-offset-2.col-sm-8.col-md-offset-3.col-md-6.col-lg-5
   div.well
-    = form_for(resource, as: resource_name, url: password_path(resource_name), html: \
-                 { class: 'form-horizontal', role: 'form', method: :post }) do |f|
+    = simple_form_for(resource, as: resource_name, url: password_path(resource_name),
+                      html: {class: 'form-horizontal', role: 'form', method: :post},
+                      defaults: {label_html: {class: 'col-sm-2'},
+                                 input_wrapper_html: {class: 'col-sm-9'},
+                                 required: false}) do |f|
       legend
         = I18n.t('devise.title.forgot_your_password')
 
       - label_wrapper_classes = 'col-sm-2'
       - value_wrapper_classes = 'col-sm-9 col-md-9'
 
-      = render partial: 'commons/horizontal_fieldset', \
-          locals: { \
-          form_builder: f, control: :email_field, control_options: {autocomplete: 'off', \
-          autofocus: 'true' }, attribute: :email, \
-          label: User.human_attribute_name(:email), \
-          label_wrapper_classes: label_wrapper_classes, value_wrapper_classes: value_wrapper_classes }
+      = f.input :email, input_html: {autofocus: true}
 
-      div.form-group
-        div.col-sm-offset-2.col-sm-10.col-md-10
-          div.btn-toolbar
-            = f.submit I18n.t('devise.links.send_reset_password_instructions'), class: 'btn btn-primary'
-              |:&nbsp; :&nbsp;
-            = link_to I18n.t('general.cancel'), new_user_session_path, class: 'btn btn-default'
+      = render partial: 'commons/form_buttons',
+               locals: {form_builder: f,
+                        submit_button_label: I18n.t('devise.links.send_reset_password_instructions'),
+                        cancel_path: new_user_session_path,
+                        wrapper_html: {class: 'col-sm-offset-2 col-sm-10'}}

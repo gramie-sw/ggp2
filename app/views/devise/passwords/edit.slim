@@ -1,30 +1,21 @@
 div.col-sm-offset-1.col-sm-10.col-md-offset-2.col-md-8.col-lg-offset-3.col-lg-6
   div.well
-    = form_for(resource, as: resource_name, url: password_path(resource_name), html: \
-               { class: 'form-horizontal', role: 'form', method: :put }) do |f|
+    = simple_form_for(resource, as: resource_name, url: password_path(resource_name),
+                      html: { class: 'form-horizontal', role: 'form', method: :put },
+                      defaults: {label_html: {class: 'col-sm-4 col-md-4'},
+                                 input_wrapper_html: {class: 'col-sm-8 col-md-7'},
+                                 required: false}) do |f|
+
       legend
         = I18n.t('devise.title.change_your_password')
 
-      - label_wrapper_classes = 'col-sm-4 col-md-4'
-      - value_wrapper_classes = 'col-sm-8 col-md-7'
+      = f.input :reset_password_token, as: :hidden
 
-      = f.hidden_field :reset_password_token
+      = f.input :password, input_html: {autofocus: true}
 
-      = render partial: 'commons/horizontal_fieldset', \
-        locals: { \
-        form_builder: f, control: :password_field, control_options: {autocomplete: 'off', \
-        autofocus: 'true' }, attribute: :password, \
-        label: User.human_attribute_name(:password), \
-        label_wrapper_classes: label_wrapper_classes, value_wrapper_classes: value_wrapper_classes }
+      = f.input :password_confirmation
 
-      = render partial: 'commons/horizontal_fieldset', \
-        locals: { \
-        form_builder: f, control: :password_field, control_options: {autocomplete: 'off' }, \
-        attribute: :password_confirmation, \
-        label: User.human_attribute_name(:password_confirmation), \
-        label_wrapper_classes: label_wrapper_classes, value_wrapper_classes: value_wrapper_classes }
-
-      div.form-group
-        div.col-sm-offset-4.col-sm-8.col-md-7
-          div.btn-toolbar
-            = f.submit I18n.t('devise.links.change_my_password'), class: 'btn btn-primary'
+      = render partial: 'commons/form_buttons',
+               locals: {form_builder: f,
+                        submit_button_label: t('devise.links.change_my_password'),
+                        wrapper_html: {class: 'col-sm-offset-4 col-sm-8 col-md-7'}}

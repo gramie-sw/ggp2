@@ -2,7 +2,11 @@
 
 div.well
 
-  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-horizontal', role: 'form'}) do |f|
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name),
+                    html: {class: 'form-horizontal', role: 'form'},
+                    defaults: {label_html: {class: 'col-sm-3 col-lg-2'},
+                               input_wrapper_html: {class: 'col-sm-7 col-md-6 col-lg-5'},
+                               required: false}) do |f|
 
     legend
       = t('model.messages.change', model: t('general.user_data'))
@@ -21,4 +25,5 @@ div.well
     = render partial: 'commons/form_buttons',
              locals: { form_builder: f,
                        submit_button_label: t('model.messages.change', model: t('general.user_data')),
-                       cancel_path: profile_path(resource, section: :user_data) }
+                       cancel_path: profile_path(resource, section: :user_data),
+                       wrapper_html: {class: 'col-sm-offset-3 col-lg-offset-2 col-sm-9 col-md-10'}}
