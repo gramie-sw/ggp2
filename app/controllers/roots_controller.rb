@@ -3,7 +3,7 @@ class RootsController < ApplicationController
   def show
 
     if current_user.admin?
-      redirect_to matches_path
+      redirect_to match_schedules_path
     elsif current_user.player?
       if tournament.finished?
         redirect_to award_ceremonies_path

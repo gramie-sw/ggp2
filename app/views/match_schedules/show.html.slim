@@ -1,0 +1,51 @@
+- content_for(:title, t('general.match_schedule'))
+- current_aggregate = @presenter.current_aggregate
+
+/= link_to I18n.t('model.messages.add', model: Match.model_name.human), new_match_path, class: "btn btn-default"
+
+- if current_aggregate.nil?
+
+  = t('match_schedule.not_present')
+
+- else
+
+  div.row
+    div.col-xs-12
+      = render partial: 'aggregates_menu',
+               locals: {current_phase: @presenter.current_phase,
+                        current_group: @presenter.current_group,
+                        all_phases: @presenter.all_phases,
+                        all_groups: @presenter.all_groups}
+
+      = render partial: 'actions_menu', locals: {phase: @presenter.current_phase, group: @presenter.current_group}
+
+  div.table-responsive
+    table.table.table-hover
+      thead
+        tr
+          th colspan='3' = Match.human_attribute_name(:position)
+          th.text-center = I18n.t('general.match_result')
+          th = Match.human_attribute_name(:date)
+          th
+          th
+      tbody
+        - for match_presenter in @presenter.match_presenters
+          tr.link-row data-href="#{new_match_result_path(match_id: match_presenter.id)}"
+            td = "#{match_presenter.position}."
+            td.ggp2-flag-with-country-name
+              = standard_flag_image_tag_of match_presenter.team_1
+              = match_presenter.team_1_name_or_placeholder
+            td.ggp2-flag-with-country-name
+              = standard_flag_image_tag_of match_presenter.team_2
+              = match_presenter.team_2_name_or_placeholder
+            td.text-center = match_presenter.result
+            td = l match_presenter.date, format: :short
+            td
+              = link_to(edit_match_path(match_presenter), title: t('model.messages.edit', model: ("#{Match.model_name.human}\
+                                                                                        #{match_presenter.__getobj__.position}"))) do
+                i.fa.fa-pencil
+            td
+              = link_to(match_path(match_presenter), method: :delete, data: {confirm: t('model.messages.destroy_really', \
+              model: ("#{Match.model_name.human} #{match_presenter.__getobj__.position}")), method: :delete}, title: t('model.messages.destroy', \
+              model: ("#{Match.model_name.human} #{match_presenter.__getobj__.position}"))) do
+                i.fa.fa-trash-o

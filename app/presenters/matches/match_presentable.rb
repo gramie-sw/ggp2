@@ -1,7 +1,7 @@
-module MatchRepresentable
+module MatchPresentable
 
   def phases
-    @phases ||= Aggregate.phases.order_by_position_asc
+    @phases ||= Aggregate.all_phases_ordered_by_position_asc
   end
 
   def match_presenters_of(aggregate)

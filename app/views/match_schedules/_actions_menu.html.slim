@@ -1,0 +1,64 @@
+- _new_match_path = new_match_path
+- _new_phase_path = new_aggregate_path
+- _edit_phase_phase = edit_aggregate_path(phase)
+- if group.nil?
+  - _new_group_phase = new_aggregate_path
+- if group.present?
+  - _edit_group_phase = edit_aggregate_path(group)
+
+div.visible-md.visible-lg
+  div.match-schedule-actions-menu.pull-right
+    div.btn-group
+      = link_to _new_match_path, class: "btn btn-sm btn-default"
+        i.fa.fa-plus &nbsp;
+        = t('model.messages.add', model: Match.model_name.human)
+    div.btn-group
+      = link_to _new_phase_path, class: "btn btn-sm btn-default"
+        i.fa.fa-plus &nbsp;
+        = t('model.messages.add', model: t('general.phase.other'))
+      = link_to _edit_phase_phase, class: "btn btn-sm btn-default"
+        i.fa.fa-pencil &nbsp;
+        = t('model.messages.edit', model: t('general.phase.one'))
+    div.btn-group
+      - if group.nil?
+        = link_to _new_group_phase, class: "btn btn-sm btn-default"
+          i.fa.fa-plus &nbsp;
+          = t('model.messages.add', model: t('general.group.other'))
+      - if group.present?
+        = link_to _edit_group_phase, class: "btn btn-sm btn-default"
+          i.fa.fa-pencil &nbsp;
+          = t('model.messages.edit', model: t('general.group.one'))
+
+div.pull-right.visible-xs.visible-sm
+  div.btn-group
+    button.btn.btn-default.dropdown-toggle type='button' data-toggle='dropdown' aria-expanded='false'
+      = t('general.action.other')
+      |&nbsp;
+      span.caret
+    ul.dropdown-menu.pull-right role='menu'
+      li
+        = link_to _new_match_path
+          i.fa.fa-plus &nbsp;
+          = t('model.messages.add', model: Match.model_name.human)
+      li.divider role='presentation'
+      li
+        = link_to _new_phase_path
+          i.fa.fa-plus &nbsp;
+          = t('model.messages.add', model: t('general.phase.other'))
+      li
+        = link_to _edit_phase_phase
+          i.fa.fa-pencil &nbsp;
+          = t('model.messages.edit', model: t('general.phase.one'))
+      li.divider role='presentation'
+      - if group.nil?
+        li
+          = link_to _new_group_phase
+            i.fa.fa-plus &nbsp;
+            = t('model.messages.add', model: t('general.group.other'))
+      - if group.present?
+        li
+          = link_to _edit_group_phase
+            i.fa.fa-pencil &nbsp;
+            = t('model.messages.edit', model: t('general.group.one'))
+
+

@@ -1,6 +1,6 @@
 class UserTipsShowPresenter
 
-  include MatchRepresentable
+  include MatchPresentable
 
   delegate :champion_tip_deadline, to: :tournament
 

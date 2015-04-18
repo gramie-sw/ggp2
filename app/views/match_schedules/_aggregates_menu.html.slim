@@ -1,0 +1,37 @@
+- label_all_groups = t('general.all_objects', objects: t('general.group.other'))
+
+div.visible-md.visible-lg
+  ul.aggregates-menu-lg.nav.nav-tabs
+    - for phase in all_phases
+      li class=('active' if phase.id == current_phase.id)
+        = link_to phase.name, url_for(aggregate_id: phase.id, only_path: true)
+  - if all_groups.present?
+    ul.aggregates-menu-lg.groups-menu.nav.nav-pills
+      li class=('active' if current_group.nil?)
+        = link_to label_all_groups,
+                  url_for(aggregate_id: current_phase.id, only_path: true)
+      - for group in all_groups
+        li class=('active' if group.id == current_group.try(:id))
+          = link_to group.name, url_for(aggregate_id: group.id, only_path: true)
+
+div.pull-left.visible-xs.visible-sm
+  div.aggregates-menu-xs.btn-group.pull-left
+    button.btn.btn-primary.dropdown-toggle type="button" data-toggle="dropdown"
+      = "#{current_phase.name} "
+      span.caret
+    ul.dropdown-menu role="menu"
+      - for phase in all_phases
+        li class=('active' if phase.id == current_phase.id)
+          = link_to phase.name, url_for(aggregate_id: phase.id, only_path: true)
+  - if all_groups.present?
+    div.aggregates-menu-xs.groups-menu.btn-group.pull-left
+      button.btn.btn-primary.dropdown-toggle type="button" data-toggle="dropdown"
+        = "#{current_group.try(:name) || label_all_groups} "
+        span.caret
+      ul.dropdown-menu role="menu"
+        li class=('active' if current_group.nil?)
+          = link_to label_all_groups,
+                    url_for(aggregate_id: current_phase.id, only_path: true)
+        - for group in all_groups
+          li class=('active' if group.id == current_group.try(:id))
+            = link_to group.name, url_for(aggregate_id: group.id, only_path: true)

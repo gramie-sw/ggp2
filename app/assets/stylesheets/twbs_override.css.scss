@@ -106,9 +106,25 @@ $ggp2-landing-header-image-min-height: 380px;
 
   li {
     a {
-      color: $text-color;
+      color: $gray-light;
 
       &:hover {
+        color: $text-color
+      }
+    }
+
+//    &.active {
+//      a, a:hover {
+//        color: $text-color;
+//        background-color: $body-bg;
+//        border: 1px solid $nav-tabs-border-color;
+//      }
+//    }
+  }
+
+  &.nav-stacked {
+    li:not(.active) {
+      a {
         color: $text-color
       }
     }
@@ -122,6 +138,12 @@ $ggp2-landing-header-image-min-height: 380px;
 
     &:hover {
       color: $text-color
+    }
+
+    &.active {
+      a, a:hover {
+        background-color: #000000;
+      }
     }
   }
 }

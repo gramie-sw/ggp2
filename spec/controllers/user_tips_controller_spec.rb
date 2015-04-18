@@ -10,8 +10,8 @@ describe UserTipsController, :type => :controller do
 
     before :each do
       allow_any_instance_of(ShowAllTipsOfAggregateForUser).to receive(:run_with_presentable)
-      allow_any_instance_of(FindChampionTip).to receive(:run_with_presentable)
-      allow_any_instance_of(FindAllPhases).to receive(:run_with_presentable)
+      allow_any_instance_of(FindChampionTip).to receive(:run)
+      allow(Aggregate).to receive(:all_phases_ordered_by_position_asc)
     end
 
     it 'should return http success render template show' do

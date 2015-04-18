@@ -4,24 +4,6 @@ describe MatchesController, :type => :controller do
     create_and_sign_in :admin
   end
 
-  describe '#index' do
-    it 'should return success' do
-      get :index
-      expect(response).to be_success
-    end
-
-    it 'should render index' do
-      get :index
-      expect(response).to render_template :index
-    end
-
-    it 'should assign @presenter' do
-      expect(MatchesIndexPresenter).to receive(:new).with(no_args).and_call_original
-      get :index
-      expect(assigns(:presenter)).to be_an_instance_of MatchesIndexPresenter
-    end
-  end
-
   describe '#new' do
     it 'should return http success' do
       get :new
@@ -40,13 +22,14 @@ describe MatchesController, :type => :controller do
   end
 
   describe '#create' do
+
     context 'if successful' do
       let(:aggregate) { create(:aggregate) }
       let(:params) { {match: {position: 1, aggregate_id: aggregate.id, placeholder_team_1: 'Team1', placeholder_team_2: 'Team 2', date: Time.now}} }
 
-      it 'should redirect to index' do
+      it 'should redirect to match_schedules_path' do
         post :create, params
-        expect(response).to redirect_to matches_path
+        expect(response).to redirect_to match_schedules_path(aggregate_id: aggregate.to_param)
       end
 
       it 'should create match with values from params' do
@@ -103,15 +86,16 @@ describe MatchesController, :type => :controller do
   end
 
   describe '#update' do
+
     let(:match) { create(:match) }
 
     context 'if successful' do
 
       let(:params) { {id: match.to_param, match: {placeholder_team_1: 'Team 1 Updated', placeholder_team_2: 'Team 2 Updated'}}}
 
-      it 'should redirect to index' do
+      it 'should redirect to match_schedules_path' do
         patch :update, params
-        expect(response).to redirect_to matches_path
+        expect(response).to redirect_to match_schedules_path(aggregate_id: match.aggregate_id)
       end
 
       it 'should update match with given params' do

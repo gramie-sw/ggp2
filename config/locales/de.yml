@@ -169,9 +169,13 @@ de:
         updated: '%{count} %{models} erfolgreich geändert'
 
   general:
+    action:
+      one: Aktion
+      other: Aktionen
     admin:
       one: Administrator
       other: Administratoren
+    all_objects: Alle %{objects}
     award_ceremony: Siegerehrung
     badge:
       one: Auszeichnung
@@ -183,6 +187,9 @@ de:
         one: '%{count} Punkt'
         other: '%{count} Punkte'
     edited_at: bearbeitet am %{date}
+    group:
+      one: Gruppe
+      other: Gruppen
     wm_2014_title: 'WM-2014 Brasilien'
     match_result: 'Ergebnis'
     menu: Menu
@@ -209,10 +216,14 @@ de:
     logout: Abmelden
     ranking: Rangliste
     result: Ergebnis
+    match_schedule: Spieplan
     'no': Nein
     none_selected: Kein %{element} gewählt
     original: Original
     pin_board: Pinnwand
+    phase:
+      one: Runde
+      other: Runden
     player:
       one: Spieler
       other: Spieler
@@ -272,6 +283,9 @@ de:
 
   match:
     sort: Spielesortierung
+
+  match_schedule:
+    not_present: Noch keine Runden, Gruppen oder Spiele erstellt.
 
   pin_board:
     description: '&bdquo;Der Schiri war blind und die Spieler alles nur Amateure!"'

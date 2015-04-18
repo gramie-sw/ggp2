@@ -37,7 +37,7 @@ describe MatchResultsController, :type => :controller do
 
       it 'should redirect to matches index' do
         post :create, params
-        expect(response).to redirect_to matches_path
+        expect(response).to redirect_to match_schedules_path(aggregate_id: match.aggregate_id)
       end
 
       it 'should call save on @match_result'  do

@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 4.2.1'
 gem 'actionmailer'
-gem 'jbuilder'
+gem 'virtus'
 gem 'mysql2'
 gem 'puma'
 
@@ -58,8 +58,8 @@ group :test do
   gem 'factory_girl_rails'
   # require false necessary to remove minitest warning
   #see https://github.com/rspec/rspec-rails/pull/772
-  gem 'shoulda-matchers'
   gem 'forgery'
+  gem 'shoulda-matchers', require: false
 end
 
 

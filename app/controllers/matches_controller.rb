@@ -1,9 +1,5 @@
 class MatchesController < ApplicationController
 
-  def index
-    @presenter = MatchesIndexPresenter.new
-  end
-
   def new
     @match = Match.new
   end
@@ -16,7 +12,8 @@ class MatchesController < ApplicationController
     @match = Match.new(params[:match])
 
     if @match.save
-      redirect_to matches_path, notice: t('model.messages.added', model: @match.message_name)
+      redirect_to match_schedules_path(aggregate_id: @match.aggregate_id),
+                  notice: t('model.messages.added', model: @match.message_name)
     else
       render :new
     end
@@ -26,7 +23,7 @@ class MatchesController < ApplicationController
     @match = current_resource
 
     if @match.update_attributes(params[:match])
-      redirect_to matches_path, notice: t('model.messages.updated', model: @match.message_name)
+      redirect_to match_schedules_path(aggregate_id: @match.aggregate_id), notice: t('model.messages.updated', model: @match.message_name)
     else
       render :edit
     end

@@ -19,6 +19,7 @@ module Ggp2
 
     config.autoload_paths += %W(#{config.root}/lib/validators)
     config.autoload_paths += Dir["#{config.root}/app/domain/**/"]
+    config.autoload_paths += Dir["#{config.root}/app/models/**/"]
     config.autoload_paths += Dir["#{config.root}/app/plugins/**/"]
     config.autoload_paths += Dir["#{config.root}/app/presenters/**/"]
     config.autoload_paths += Dir["#{config.root}/app/services/**/"]

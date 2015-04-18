@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(user)
     if user.admin?
-      matches_path
+      match_schedules_path
     else
       user_tip_path(user)
     end

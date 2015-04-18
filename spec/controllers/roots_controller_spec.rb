@@ -10,9 +10,9 @@ describe RootsController, :type => :controller do
         sign_in admin
       end
 
-      it 'should redirect to MatchesController#index' do
+      it 'should redirect to match_schedule_path' do
         get :show
-        expect(response).to redirect_to matches_path
+        expect(response).to redirect_to match_schedules_path
       end
     end
 

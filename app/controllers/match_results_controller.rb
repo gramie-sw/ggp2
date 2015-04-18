@@ -14,7 +14,8 @@ class MatchResultsController < ApplicationController
       update_user_badges = UpdateUserBadges.new(:tip)
       update_user_badges.run
 
-      redirect_to matches_path, notice: t('model.messages.updated', model: @match_result.message_name)
+      redirect_to match_schedules_path(aggregate_id: @match_result.match.aggregate_id),
+                  notice: t('model.messages.updated', model: @match_result.message_name)
     else
       @match_result_presenter = MatchResultPresenter.new(@match_result)
       render :new

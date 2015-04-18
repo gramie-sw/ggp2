@@ -1,3 +1,0 @@
-class MatchesIndexPresenter
-  include MatchRepresentable
-end

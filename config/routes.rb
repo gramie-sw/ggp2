@@ -13,8 +13,9 @@ Ggp2::Application.routes.draw do
   resource  :badges, only: :show
   resources :champion_tips, only: [:edit, :update]
   resources :comments, only: [:new, :create, :edit, :update, :destroy]
-  resources :matches
+  resources :matches, except: :index
   resources :match_results, only: [:new, :create]
+  resource  :match_schedules, only: :show
   resources :match_tips, only: :show
   resource :pin_boards, only: :show
   resources :profiles, only: :show
@@ -32,7 +33,6 @@ Ggp2::Application.routes.draw do
   resources :users
   resources :user_tips, only: :show
   resources :venues
-
 
   root :to => 'roots#show'
 

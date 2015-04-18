@@ -1,22 +1,16 @@
-describe MatchRepresentable  do
+describe MatchPresentable  do
 
   subject do
-    subject_object = Object.new.extend MatchRepresentable
+    subject_object = Object.new.extend MatchPresentable
     subject_object.instance_variable_set(:@match_presenters, [])
     subject_object
   end
 
   describe '#phases' do
-    it 'should return all phases' do
-      expect(Aggregate).to receive(:phases).and_call_original
-      subject.phases
-    end
 
-    it 'should order by position' do
-      relation = double('AggregateRelation')
-      expect(relation).to receive(:order_by_position_asc)
-      allow(Aggregate).to receive(:phases).and_return(relation)
-      subject.phases
+    it 'returns all phases order by position' do
+      expect(Aggregate).to receive(:all_phases_ordered_by_position_asc).and_return(:phases)
+      expect(subject.phases).to be :phases
     end
 
     it 'should cache phases' do
