@@ -1,4 +1,6 @@
 = render partial: 'commons/background_image', locals: {image_name: 'background_image_01.jpg'}
-- content_for(:title, I18n.t('model.messages.edit', model: Match.model_name.human))
+- content_for(:title, Match.model_name.human_plural)
 
-= render partial: 'form', locals: {match: @match}
+= render partial: 'form',
+         locals: {match: @match,
+                  legend: t('model.messages.edit', model: "#{Match.model_name.human} #{@match.id} ")}

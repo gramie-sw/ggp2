@@ -1,7 +1,7 @@
 class MatchesController < ApplicationController
 
   def new
-    @match = Match.new
+    @match = Match.new(aggregate_id: params[:aggregate_id])
   end
 
   def edit
@@ -9,11 +9,17 @@ class MatchesController < ApplicationController
   end
 
   def create
-    @match = Match.new(params[:match])
+    @match = Match.create(params[:match])
 
-    if @match.save
-      redirect_to match_schedules_path(aggregate_id: @match.aggregate_id),
-                  notice: t('model.messages.added', model: @match.message_name)
+    if @match.errors.blank?
+
+      notice = t('model.messages.added', model: @match.message_name)
+
+      if params[:subsequent_match]
+        redirect_to new_match_path(aggregate_id: @match.aggregate_id), notice: notice
+      else
+        redirect_to match_schedules_path(aggregate_id: @match.aggregate_id), notice: notice
+      end
     else
       render :new
     end
@@ -33,7 +39,7 @@ class MatchesController < ApplicationController
     @match = current_resource
     @match.destroy
 
-    redirect_to matches_path, notice: t('model.messages.destroyed', model: @match.message_name)
+    redirect_to match_schedules_path, notice: t('model.messages.destroyed', model: @match.message_name)
   end
 
   private

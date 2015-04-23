@@ -5,51 +5,65 @@ describe MatchesController, :type => :controller do
   end
 
   describe '#new' do
-    it 'should return http success' do
-      get :new
+
+    it 'assigns matches with set aggregate_id and renders template new' do
+      expected_aggregate_id = 783
+
+      get :new, aggregate_id: expected_aggregate_id
+
       expect(response).to be_success
-    end
-
-    it 'should render template new' do
-      get :new
+      match = assigns(:match)
+      expect(match).to be_a_new Match
+      expect(match.aggregate_id).to eq expected_aggregate_id
       expect(response).to render_template :new
-    end
-
-    it 'should assign @matches' do
-      get :new
-      expect(assigns(:match)).to be_a_new Match
     end
   end
 
   describe '#create' do
 
-    context 'if successful' do
-      let(:aggregate) { create(:aggregate) }
-      let(:params) { {match: {position: 1, aggregate_id: aggregate.id, placeholder_team_1: 'Team1', placeholder_team_2: 'Team 2', date: Time.now}} }
+    let(:created_match) { Match.new(position: 223, aggregate_id: 453) }
+    let(:match_attributes) { {'match_key' => 'match_value'} }
+    let(:params) { {match: match_attributes} }
 
-      it 'should redirect to match_schedules_path' do
+    before :each do
+      allow(Match).to receive(:create).and_return(created_match)
+    end
+
+    context 'on successful' do
+
+      it 'creates match with values from params' do
+        expect(Match).to receive(:create).with(match_attributes).and_return(created_match)
         post :create, params
-        expect(response).to redirect_to match_schedules_path(aggregate_id: aggregate.to_param)
+        expect(assigns(:match)).to be created_match
       end
 
-      it 'should create match with values from params' do
-        post :create, params
-        expect(assigns(:match)).not_to be_a_new Match
-        expect(assigns(:match).position).to eq 1
-      end
-
-      it 'should assign notice flash message' do
+      it 'assigns notice flash message' do
         post :create, params
         expect(flash[:notice]).to eq t('model.messages.added', model: assigns(:match).message_name)
       end
+
+      context 'if subsequent_match is not present in params^' do
+
+        it 'redirects to match_schedules_path' do
+          post :create, params
+          expect(response).to redirect_to match_schedules_path(aggregate_id: created_match.aggregate_id)
+        end
+      end
+
+      context 'if subsequent_match is present in params' do
+
+        it 'redirects to match_schedules_path' do
+          params[:subsequent_match] = '1'
+          post :create, params
+          expect(response).to redirect_to new_match_path(aggregate_id: created_match.aggregate_id)
+        end
+      end
     end
 
-    context 'if failing' do
-
-      let(:params) { {match: {position: 1, aggregate_id: 2, placeholder_team_1: 'Team1', placeholder_team_2: 'Team 2', date: Time.now}} }
+    context 'on failure' do
 
       before :each do
-        allow_any_instance_of(Aggregate).to receive(:valid?).and_return(false)
+        created_match.errors.add(:base, 'error')
       end
 
       it 'should render new' do
@@ -57,10 +71,9 @@ describe MatchesController, :type => :controller do
         expect(response).to render_template :new
       end
 
-      it 'should assign @match' do
+      it 'should assign match' do
         post :create, params
-        expect(assigns(:match)).to be_a_new Match
-        expect(assigns(:match).position).to eq 1
+        expect(assigns(:match)).to be created_match
       end
     end
   end
@@ -91,7 +104,7 @@ describe MatchesController, :type => :controller do
 
     context 'if successful' do
 
-      let(:params) { {id: match.to_param, match: {placeholder_team_1: 'Team 1 Updated', placeholder_team_2: 'Team 2 Updated'}}}
+      let(:params) { {id: match.to_param, match: {placeholder_team_1: 'Team 1 Updated', placeholder_team_2: 'Team 2 Updated'}} }
 
       it 'should redirect to match_schedules_path' do
         patch :update, params
@@ -112,7 +125,7 @@ describe MatchesController, :type => :controller do
 
     context 'if failing' do
 
-      let(:params) { {id: match.to_param, match: {position: -1}}}
+      let(:params) { {id: match.to_param, match: {position: -1}} }
 
       it 'should render edit' do
         patch :update, params
@@ -128,20 +141,22 @@ describe MatchesController, :type => :controller do
 
   describe '#destroy' do
 
-    let(:match) { create(:match) }
+    let(:match) { Match.new(id: 567) }
 
-    it 'should redirect to index' do
-      delete :destroy, id: match.to_param
-      expect(response).to redirect_to matches_path
+    before :each do
+      allow(Match).to receive(:find).and_return(match)
     end
 
     it 'should destroy match' do
+      expect(Match).to receive(:find).with(match.to_param).and_return(match)
+      expect(match).to receive(:destroy)
       delete :destroy, id: match.to_param
       expect(Match.exists?(match.id)).to be_falsey
     end
 
-    it 'should assign flash notice' do
+    it 'should redirect to match_schedule_path and assign flash notice' do
       delete :destroy, id: match.to_param
+      expect(response).to redirect_to match_schedules_path
       expect(flash[:notice]).to eq t('model.messages.destroyed', model: match.message_name)
     end
   end

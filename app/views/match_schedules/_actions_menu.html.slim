@@ -1,33 +1,42 @@
-- _new_match_path = new_match_path
-- _new_phase_path = new_aggregate_path
-- _edit_phase_phase = edit_aggregate_path(phase)
+- new_match_link_path = new_match_path(aggregate_id: group.try(:id) || phase.id)
+- new_match_link_label = t('model.messages.create', model: Match.model_name.human_plural)
+
+- new_phase_link_path = new_aggregate_path
+- new_phase_link_label = t('model.messages.create', model: t('general.phase.other'))
+
+- edit_phase_link_path = edit_aggregate_path(phase)
+- edit_phase_link_label = t('model.messages.edit', model: t('general.phase.one'))
+
 - if group.nil?
-  - _new_group_phase = new_aggregate_path
+  - new_group_link_path = new_aggregate_path
+  - new_group_link_label = t('model.messages.create', model: t('general.group.other'))
+
 - if group.present?
-  - _edit_group_phase = edit_aggregate_path(group)
+  - edit_group_link_path = edit_aggregate_path(group)
+  - edit_group_link_label = t('model.messages.edit', model: t('general.group.one'))
 
 div.visible-md.visible-lg
   div.match-schedule-actions-menu.pull-right
     div.btn-group
-      = link_to _new_match_path, class: "btn btn-sm btn-default"
+      = link_to new_match_link_path, class: "btn btn-sm btn-default"
         i.fa.fa-plus &nbsp;
-        = t('model.messages.add', model: Match.model_name.human)
+        = new_match_link_label
     div.btn-group
-      = link_to _new_phase_path, class: "btn btn-sm btn-default"
+      = link_to new_phase_link_path, class: "btn btn-sm btn-default"
         i.fa.fa-plus &nbsp;
-        = t('model.messages.add', model: t('general.phase.other'))
-      = link_to _edit_phase_phase, class: "btn btn-sm btn-default"
+        = new_phase_link_label
+      = link_to edit_phase_link_path, class: "btn btn-sm btn-default"
         i.fa.fa-pencil &nbsp;
-        = t('model.messages.edit', model: t('general.phase.one'))
+        = edit_phase_link_label
     div.btn-group
       - if group.nil?
-        = link_to _new_group_phase, class: "btn btn-sm btn-default"
+        = link_to new_group_link_path, class: "btn btn-sm btn-default"
           i.fa.fa-plus &nbsp;
-          = t('model.messages.add', model: t('general.group.other'))
+          = new_group_link_label
       - if group.present?
-        = link_to _edit_group_phase, class: "btn btn-sm btn-default"
+        = link_to edit_group_link_path, class: "btn btn-sm btn-default"
           i.fa.fa-pencil &nbsp;
-          = t('model.messages.edit', model: t('general.group.one'))
+          = edit_group_link_label
 
 div.pull-right.visible-xs.visible-sm
   div.btn-group
@@ -37,28 +46,28 @@ div.pull-right.visible-xs.visible-sm
       span.caret
     ul.dropdown-menu.pull-right role='menu'
       li
-        = link_to _new_match_path
+        = link_to new_match_link_path
           i.fa.fa-plus &nbsp;
-          = t('model.messages.add', model: Match.model_name.human)
+          = new_match_link_label
       li.divider role='presentation'
       li
-        = link_to _new_phase_path
+        = link_to new_phase_link_path
           i.fa.fa-plus &nbsp;
-          = t('model.messages.add', model: t('general.phase.other'))
+          = new_phase_link_label
       li
-        = link_to _edit_phase_phase
+        = link_to edit_phase_link_path
           i.fa.fa-pencil &nbsp;
-          = t('model.messages.edit', model: t('general.phase.one'))
+          = edit_phase_link_label
       li.divider role='presentation'
       - if group.nil?
         li
-          = link_to _new_group_phase
+          = link_to new_group_link_path
             i.fa.fa-plus &nbsp;
-            = t('model.messages.add', model: t('general.group.other'))
+            = new_group_link_label
       - if group.present?
         li
-          = link_to _edit_group_phase
+          = link_to edit_group_link_path
             i.fa.fa-pencil &nbsp;
-            = t('model.messages.edit', model: t('general.group.one'))
+            = edit_group_link_label
 
 

@@ -145,6 +145,7 @@ de:
       added:  '%{model} hinzugefügt'
       all: Alle %{models}
       change: '%{model} ändern'
+      create: '%{model} anlegen'
       created: '%{model} erfolgreich erstellt'
       destroy: '%{model} löschen'
       destroyed: '%{model} erfolgreich gelöscht'
@@ -283,6 +284,7 @@ de:
 
   match:
     sort: Spielesortierung
+    add_subsequent: Weiteres Spiel im Anschluss anlegen
 
   match_schedule:
     not_present: Noch keine Runden, Gruppen oder Spiele erstellt.

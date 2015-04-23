@@ -12,4 +12,8 @@ module TeamsHelper
       image_tag 'blank.gif', class: "flag flag-#{team_abbreviation.downcase}"
     end
   end
+
+  def team_collection_for_select
+    Team.order_by_country_name_asc.collect { |team| [team.name, team.id] }
+  end
 end

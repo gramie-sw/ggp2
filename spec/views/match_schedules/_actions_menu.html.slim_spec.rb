@@ -1,4 +1,4 @@
-describe 'match_schedules/_actions_menu.html.slim_spec.rb' do
+describe 'match_schedules/_actions_menu.html.slim.rb' do
 
   let(:partial) do
     {
@@ -15,9 +15,31 @@ describe 'match_schedules/_actions_menu.html.slim_spec.rb' do
   let(:phase) { Aggregate.new(id: 545) }
   let(:group) { Aggregate.new(id: 575) }
 
-  describe 'add group link' do
+  describe 'add games link aggregate_id parameter' do
 
-    let(:add_group_link_label) { t('model.messages.add', model: t('general.group.other')) }
+    context 'if group is present' do
+
+      it 'has group_id as value' do
+        render partial
+        expect(rendered).to include new_match_path(aggregate_id: group.id)
+      end
+    end
+
+    context 'if group is not present' do
+
+      let(:group) { nil }
+
+      it 'has group_id as value' do
+        render partial
+        expect(rendered).to include new_match_path(aggregate_id: phase.id)
+      end
+    end
+
+  end
+
+  describe 'add groups link' do
+
+    let(:add_group_link_label) { t('model.messages.create', model: t('general.group.other')) }
 
     context 'if group is present' do
 

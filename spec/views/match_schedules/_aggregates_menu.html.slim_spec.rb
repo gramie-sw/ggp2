@@ -1,4 +1,4 @@
-describe 'match_schedules/_aggregates_menu.html.slim_spec.rb' do
+describe 'match_schedules/_aggregates_menu.html.slim.rb' do
 
   let(:partial) do
     {
