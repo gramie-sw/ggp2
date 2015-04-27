@@ -37,16 +37,14 @@ describe MatchesController, :type => :controller do
         expect(assigns(:match)).to be created_match
       end
 
-      it 'assigns notice flash message' do
-        post :create, params
-        expect(flash[:notice]).to eq t('model.messages.added', model: assigns(:match).message_name)
-      end
+      let(:notice_message) { t('model.messages.added', model: assigns(:match).message_name) }
 
       context 'if subsequent_match is not present in params^' do
 
         it 'redirects to match_schedules_path' do
           post :create, params
           expect(response).to redirect_to match_schedules_path(aggregate_id: created_match.aggregate_id)
+          expect(flash[:notice]).to eq notice_message
         end
       end
 
@@ -56,6 +54,7 @@ describe MatchesController, :type => :controller do
           params[:subsequent_match] = '1'
           post :create, params
           expect(response).to redirect_to new_match_path(aggregate_id: created_match.aggregate_id)
+          expect(flash[:notice]).to eq notice_message
         end
       end
     end

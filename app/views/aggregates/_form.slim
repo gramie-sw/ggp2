@@ -1,44 +1,32 @@
+- aggregate = presenter.aggregate
+
 div.well
-  = form_for aggregate, html: {class: 'form-horizontal', role: 'form'} do |f|
-    fieldset
-      div.form-group
-        = f.label :position, class: 'col-xs-3 col-sm-2 col-lg-1 control-label'
-        div.col-xs-9.col-sm-10.col-lg-11
-          div.row
-            div.col-xs-12.col-sm-7.col-md-6.col-lg-5
-              = f.text_field :position, class: 'form-control', autofocus: true
-          - if aggregate.errors.get(:position) && !aggregate.errors.get(:position).empty?
-            div.row
-              div.field_with_errors
-                p.help-block.col-xs-12
-                  = aggregate.errors.full_messages_for(:position).first
+  = simple_form_for aggregate,
+                    html: {class: 'form-horizontal', role: 'form'},
+                    defaults: {label_html: {class: 'col-sm-3 col-lg-2'},
+                               input_wrapper_html: {class: 'col-sm-7 col-md-6 col-lg-5'},
+                               required: false} do |f|
 
-      div.form-group
-        = f.label :name, class: 'col-xs-3 col-sm-2 col-lg-1 control-label'
-        div.col-xs-9.col-sm-10.col-lg-11
-          div.row
-            div.col-xs-12.col-sm-7.col-md-6.col-lg-5
-              = f.text_field :name, class: 'form-control'
-          - if aggregate.errors.get(:name) && !aggregate.errors.get(:name).empty?
-            div.row
-              div.field_with_errors
-                p.help-block.col-xs-12
-                  = aggregate.errors.full_messages_for(:name).first
+    legend = legend
 
-      div.form-group
-        = f.label :ancestry, class: 'col-xs-3 col-sm-2 col-lg-1 control-label'
-        div.col-xs-9.col-sm-10.col-lg-11
-          div.row
-            div.col-xs-12.col-sm-7.col-md-6.col-lg-5
-              = f.select :parent_id, Aggregate.roots.collect { |aggregate| [aggregate.name, aggregate.id] }, { include_blank: true}, class: 'form-control'
-          - if aggregate.errors.get(:ancestry_id) && !match.errors.get(:ancestry_id).empty?
-            div.row
-              div.field_with_errors
-                p.help-block.col-xs-12
-                  = aggregate.errors.full_messages_for(:ancestry_id).first
+    - if aggregate.group?
+      = f.input :parent, as: :string,
+                input_html: {value: aggregate.parent.name, name: 'phase_name', disabled: true},
+                label: t('general.phase.one')
+    = f.input :parent_id, as: :hidden
+    = f.input :position
+    = f.input :name
 
-      div.form-group
-        div.col-sm-offset-2.col-lg-offset-1.col-sm-10.col-lg-11
-          div.btn-toolbar
-            = f.submit class: 'btn btn-primary'
-            = link_to I18n.t('general.cancel'), aggregates_path, class: "btn btn-default"
+    - if aggregate.new_record?
+      .form-group
+        .col-sm-offset-3.col-lg-offset-2.col-sm-7.col-md-6.col-lg-5
+          .checkbox
+            label
+              = check_box_tag(:subsequent_aggregate, '1', params[:subsequent_aggregate].present?)
+              = t('aggregates.add_subsequent', aggregate: presenter.model_translation )
+
+    = render partial: 'commons/form_buttons',
+             locals: {form_builder: f,
+                      submit_button_label: t('model.submit.save', model: presenter.model_translation),
+                      cancel_path: match_schedules_path(aggregate_id: aggregate.id || aggregate.parent_id),
+                      wrapper_html: {class: 'col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10'}}

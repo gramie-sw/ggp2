@@ -67,8 +67,8 @@ de:
   activerecord:
     models:
       aggregate:
-        one: "Phase/Gruppe"
-        other: Phasen/Gruppen
+        one: "Runde/Gruppe"
+        other: Runden/Gruppen
       champion_tip:
         one: Weltmeister-Tipp
         other: Weltemeister-Tipps
@@ -256,6 +256,9 @@ de:
   form:
     errors:
       title: 'Bitte berichtigen:'
+
+  aggregates:
+      add_subsequent: Im Anschluss weitere %{aggregate} anlegen
 
   award_ceremony:
     description_one: Aus, aus, aus - aus! Das Spiel ist aus! %{champion_team} ist Weltmeister.

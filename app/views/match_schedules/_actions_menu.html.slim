@@ -7,13 +7,21 @@
 - edit_phase_link_path = edit_aggregate_path(phase)
 - edit_phase_link_label = t('model.messages.edit', model: t('general.phase.one'))
 
+- destroy_phase_link_path = aggregate_path(phase)
+- destroy_phase_link_label = t('model.messages.destroy', model: t('general.phase.one'))
+- destroy_phase_confirmation_text = t('model.messages.destroy_really', model: t('general.phase.one'))
+
 - if group.nil?
-  - new_group_link_path = new_aggregate_path
+  - new_group_link_path = new_aggregate_path(phase_id: phase.id)
   - new_group_link_label = t('model.messages.create', model: t('general.group.other'))
 
 - if group.present?
   - edit_group_link_path = edit_aggregate_path(group)
   - edit_group_link_label = t('model.messages.edit', model: t('general.group.one'))
+
+  - destroy_group_link_path = aggregate_path(group)
+  - destroy_group_link_label = t('model.messages.destroy', model: t('general.group.one'))
+  - destroy_group_confirmation_text = t('model.messages.destroy_really', model: t('general.group.one'))
 
 div.visible-md.visible-lg
   div.match-schedule-actions-menu.pull-right
@@ -28,6 +36,10 @@ div.visible-md.visible-lg
       = link_to edit_phase_link_path, class: "btn btn-sm btn-default"
         i.fa.fa-pencil &nbsp;
         = edit_phase_link_label
+      = link_to destroy_phase_link_path,  method: :delete, class: "btn btn-sm btn-default",
+                data: {confirm: destroy_phase_confirmation_text}
+        i.fa.fa-trash &nbsp;
+        = destroy_phase_link_label
     div.btn-group
       - if group.nil?
         = link_to new_group_link_path, class: "btn btn-sm btn-default"
@@ -37,6 +49,10 @@ div.visible-md.visible-lg
         = link_to edit_group_link_path, class: "btn btn-sm btn-default"
           i.fa.fa-pencil &nbsp;
           = edit_group_link_label
+        = link_to destroy_group_link_path, method: :delete, class: "btn btn-sm btn-default",
+                  data: {confirm: destroy_group_confirmation_text}
+          i.fa.fa-trash &nbsp;
+          = destroy_group_link_label
 
 div.pull-right.visible-xs.visible-sm
   div.btn-group
@@ -58,6 +74,11 @@ div.pull-right.visible-xs.visible-sm
         = link_to edit_phase_link_path
           i.fa.fa-pencil &nbsp;
           = edit_phase_link_label
+      li
+        = link_to destroy_phase_link_path, method: :delete,
+                  data: {confirm: destroy_phase_confirmation_text}
+          i.fa.fa-trash &nbsp;
+          = destroy_phase_link_label
       li.divider role='presentation'
       - if group.nil?
         li
@@ -69,5 +90,8 @@ div.pull-right.visible-xs.visible-sm
           = link_to edit_group_link_path
             i.fa.fa-pencil &nbsp;
             = edit_group_link_label
-
-
+        li
+          = link_to destroy_group_link_path, method: :delete,
+                    data: {confirm: destroy_group_confirmation_text}
+            i.fa.fa-trash &nbsp;
+            = destroy_group_link_label

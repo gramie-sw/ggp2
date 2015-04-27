@@ -1,42 +1,48 @@
 class AggregatesController < ApplicationController
 
-  def index
-    @aggregates = Aggregate.all_ordered_by_position_asc_recursive
-  end
-
   def new
-    @aggregate = Aggregate.new
+    @presenter = AggregateFormPresenter.new(Aggregate.new(parent_id: params[:phase_id]))
   end
 
   def edit
-    @aggregate = current_resource
+    @presenter = AggregateFormPresenter.new(current_resource)
   end
 
   def create
-    @aggregate = Aggregate.new(params[:aggregate])
+    aggregate = Aggregate.create(params[:aggregate])
 
-    if @aggregate.save
-      redirect_to aggregates_path, notice: t('model.messages.created', model: @aggregate.message_name)
+    if aggregate.errors.blank?
+      notice = t('model.messages.created', model: aggregate.message_name)
+
+      if params[:subsequent_aggregate].present?
+        redirect_to new_aggregate_path(phase_id: aggregate.parent_id), notice: notice
+      else
+        redirect_to match_schedules_path(aggregate_id: aggregate.id), notice: notice
+      end
     else
+      @presenter = AggregateFormPresenter.new(aggregate)
       render :new
     end
   end
 
   def update
-    @aggregate = current_resource
+    aggregate = current_resource
 
-    if @aggregate.update_attributes(params[:aggregate])
-      redirect_to aggregates_path, notice: t('model.messages.updated', model: @aggregate.message_name)
+    if aggregate.update_attributes(params[:aggregate])
+      redirect_to match_schedules_path(aggregate_id: aggregate.parent_id),
+                  notice: t('model.messages.updated', model: aggregate.message_name)
     else
+      @presenter = AggregateFormPresenter.new(aggregate)
       render :edit
     end
   end
 
   def destroy
-    @aggregate = current_resource
-    @aggregate.destroy
+    aggregate = current_resource
+    aggregate.destroy
 
-    redirect_to aggregates_path, notice: t('model.messages.destroyed', model: @aggregate.message_name)
+    redirect_to match_schedules_path(aggregate_id: aggregate.parent_id),
+                notice: t('model.messages.destroyed', model: aggregate.message_name)
   end
 
   private
