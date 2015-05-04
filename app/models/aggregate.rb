@@ -50,6 +50,11 @@ class Aggregate < ActiveRecord::Base
   end
 
   def message_name
-    "#{Aggregate.model_name.human}: \"#{name}\""
+    if phase?
+      model_name = I18n.t('general.phase.one')
+    else
+      model_name = I18n.t('general.group.one')
+    end
+    "#{model_name} \"#{name}\""
   end
 end

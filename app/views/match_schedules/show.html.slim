@@ -5,7 +5,15 @@
 
 - if current_aggregate.nil?
 
-  = t('match_schedule.not_present')
+  div.text-center
+    div
+      = t('match_schedule.not_present')
+
+    br
+    div
+      = link_to new_aggregate_path, class: "btn btn-sm btn-default"
+        i.fa.fa-plus &nbsp;
+        = t('model.messages.create', model: t('general.phase.other'))
 
 - else
 

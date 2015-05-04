@@ -146,4 +146,23 @@ describe Aggregate, :type => :model do
       expect(leaves.include?(phase_2)).to be_truthy
     end
   end
+
+  describe '#message_name' do
+
+    let(:name) {'Aggregate 1'}
+
+    before :each do
+      subject.name = name
+    end
+
+    it 'returns message name for group if aggregate is a group' do
+      expect(subject).to receive(:phase?).and_return(false)
+      expect(subject.message_name).to eq "#{t('general.group.one')} \"#{name}\""
+    end
+
+    it 'returns message name for group if aggregate is a group' do
+      expect(subject).to receive(:phase?).and_return(true)
+      expect(subject.message_name).to eq "#{t('general.phase.one')} \"#{name}\""
+    end
+  end
 end
