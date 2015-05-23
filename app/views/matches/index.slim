@@ -1,6 +1,6 @@
 - content_for(:title, Match.model_name.human_plural)
 
-= link_to I18n.t('model.messages.add', model: Match.model_name.human), new_match_path, class: "btn btn-default"
+= link_to I18n.t('model.messages.add', model: Match.model_name.human), new_match_path, class: "btn btn-cancel"
 
 div.visible-md.visible-lg
   ul.nav.nav-tabs

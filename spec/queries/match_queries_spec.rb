@@ -2,7 +2,7 @@ describe MatchQueries do
 
   subject { Match }
 
-  describe '::all_by_aggregate_id_ordered' do
+  describe '::all_by_aggregate_id' do
 
     context 'if aggregate is a group' do
 
@@ -13,7 +13,7 @@ describe MatchQueries do
         match_2 = create(:match, aggregate: group, position: 2)
         create(:match, position: 4)
 
-        actual_matches = subject.all_by_aggregate_id_ordered(group.id, order: :position)
+        actual_matches = subject.all_by_aggregate_id(group.id, order: :position)
         expect(actual_matches).to eq [match_1, match_2, match_3]
 
       end
@@ -27,7 +27,7 @@ describe MatchQueries do
           match_2 = create(:match, aggregate: phase, position: 2)
           create(:match, position: 4)
 
-          actual_matches = subject.all_by_aggregate_id_ordered(phase.id, order: :position)
+          actual_matches = subject.all_by_aggregate_id(phase.id, order: :position)
           expect(actual_matches).to eq [match_1, match_2, match_3]
 
         end
@@ -45,7 +45,7 @@ describe MatchQueries do
           match_2 = create(:match, aggregate: group_2, position: 2)
           create(:match, position: 5)
 
-          actual_matches = subject.all_by_aggregate_id_ordered(phase.id, order: :position)
+          actual_matches = subject.all_by_aggregate_id(phase.id, order: :position)
           expect(actual_matches).to eq [match_1, match_2, match_3, match_4]
         end
       end
@@ -59,7 +59,7 @@ describe MatchQueries do
       expect(Match).to receive(:where).and_return(relation)
       expect(relation).to receive(:includes).with(:team_1, :team_2).and_return(relation)
 
-      subject.all_by_aggregate_id_ordered(phase.id, order: :position, includes: [:team_1, :team_2])
+      subject.all_by_aggregate_id(phase.id, order: :position, includes: [:team_1, :team_2])
     end
   end
 end

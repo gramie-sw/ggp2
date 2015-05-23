@@ -1,17 +1,11 @@
-class UserTipsShowPresenter
-
-  include MatchPresentable
-
-  delegate :champion_tip_deadline, to: :tournament
-
-  attr_accessor :current_aggregate, :phases
-  attr_writer :tips, :champion_tip
+class UserTipsPresenter < MatchSchedulePresenter
 
   attr_reader :user_is_current_user
   alias user_is_current_user? user_is_current_user
 
-  def initialize(user:, tournament:, user_is_current_user:)
+  def initialize(user:, current_aggregate:, tournament:, user_is_current_user:)
     @user = user
+    @current_aggregate = current_aggregate
     @tournament = tournament
     @user_is_current_user = user_is_current_user
   end
@@ -37,12 +31,22 @@ class UserTipsShowPresenter
   end
 
   def champion_tip_presenter
-    ChampionTipPresenter.new(tournament: tournament, champion_tip: champion_tip, user_is_current_user: user_is_current_user?)
+    ChampionTipPresenter.new(tournament: tournament,
+                             champion_tip: champion_tip,
+                             user_is_current_user: user_is_current_user?)
   end
 
   private
 
-  attr_reader :tips, :user, :tournament, :user_is_current_user, :champion_tip
-  alias user_is_current_user? user_is_current_user
+  attr_reader :tips, :user, :tournament
+
+  def tips
+    Tip.all_eager_by_user_id_and_aggregate_id_ordered_by_position(user.id, current_aggregate.id)
+  end
+
+  def champion_tip
+    ChampionTip.find_by_user_id(user.id)
+  end
+
 
 end

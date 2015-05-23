@@ -3,4 +3,4 @@ div.form-group
     div.btn-toolbar
       = form_builder.submit submit_button_label, class: 'btn btn-primary'
       - if defined? cancel_path
-        = link_to I18n.t('general.cancel'), cancel_path, class: "btn btn-default"
+        = link_to I18n.t('general.cancel'), cancel_path, class: "btn btn-cancel"

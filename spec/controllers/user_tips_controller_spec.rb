@@ -8,26 +8,36 @@ describe UserTipsController, :type => :controller do
 
   describe '#show' do
 
+    let(:aggregate) { Aggregate.new(id: 1234) }
+    let(:params) { {id: player.id, aggregate_id: aggregate.to_param} }
+
     before :each do
-      allow_any_instance_of(ShowAllTipsOfAggregateForUser).to receive(:run_with_presentable)
-      allow_any_instance_of(FindChampionTip).to receive(:run)
-      allow(Aggregate).to receive(:all_phases_ordered_by_position_asc)
+      allow(Aggregates::FindOrFindCurrentPhase).to receive(:run).and_return(aggregate)
     end
 
-    it 'should return http success render template show' do
-      get :show, id: player.to_param
-      expect(response).to be_success
+    it 'passes correct params to Aggregates::FindOrFindCurrentPhase' do
+      expect(Aggregates::FindOrFindCurrentPhase).to receive(:run).with(id: aggregate.to_param).and_return(aggregate)
+      get :show, params
+    end
+
+    it 'assigns UserTipsPresenter and renders template show' do
+      expect(@controller).to receive(:is_user_current_user?).with(player).and_return(:is_is_current_user)
+      expect(UserTipsPresenter).to receive(:new).with(
+                                       user: player,
+                                       current_aggregate: aggregate,
+                                       tournament: @controller.tournament,
+                                       user_is_current_user: :is_is_current_user
+                                   ).and_return(:presenter)
+      get :show, params
+
+      expect(assigns(:presenter)).to be :presenter
       expect(response).to render_template :show
     end
 
-    it 'should assign UserTipsShowPresenter' do
-      expect(UserTipsShowPresenter).to receive(:new).with(
-                                           user: instance_of(User),
-                                           tournament: instance_of(Tournament),
-                                           user_is_current_user: true
-                                       ).and_call_original
-      get :show, id: player.to_param, aggregate_id: 5
-      expect(assigns(:presenter)).to be_instance_of(UserTipsShowPresenter)
+    it 'stores aggregate_id in session' do
+      get :show, params
+      expect(@controller.session[Ggp2::USER_TIPS_LAST_SHOWN_AGGREGATE_ID_KEY]).to eq aggregate.to_param
     end
+
   end
 end

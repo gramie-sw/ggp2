@@ -1,7 +1,7 @@
 - content_for(:title, t('general.match_schedule'))
 - current_aggregate = @presenter.current_aggregate
 
-/= link_to I18n.t('model.messages.add', model: Match.model_name.human), new_match_path, class: "btn btn-default"
+/= link_to I18n.t('model.messages.add', model: Match.model_name.human), new_match_path, class: "btn btn-cancel"
 
 - if current_aggregate.nil?
 
@@ -11,7 +11,7 @@
 
     br
     div
-      = link_to new_aggregate_path, class: "btn btn-sm btn-default"
+      = link_to new_aggregate_path, class: "btn btn-sm btn-cancel"
         i.fa.fa-plus &nbsp;
         = t('model.messages.create', model: t('general.phase.other'))
 

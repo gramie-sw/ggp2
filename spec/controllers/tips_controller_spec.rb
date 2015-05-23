@@ -79,16 +79,18 @@ describe TipsController, :type => :controller do
     context 'on success' do
 
       it 'should redirect to user_tip_path for current_user' do
+        current_aggregate_id = 2
+        @controller.session[Ggp2::USER_TIPS_LAST_SHOWN_AGGREGATE_ID_KEY] = current_aggregate_id
         post :update_multiple, params
-        expect(response).to redirect_to user_tip_path(player)
+        expect(response).to redirect_to user_tip_path(player, aggregate_id: current_aggregate_id)
       end
 
       it 'should assign flash message' do
         post :update_multiple, params
         expect(flash[:notice]).to eq t('model.messages.count.saved',
-                                   models: Tip.model_name.human(count: tips.count),
-                                   count: tips.count
-                                 )
+                                       models: Tip.model_name.human(count: tips.count),
+                                       count: tips.count
+                                     )
       end
     end
 
@@ -123,9 +125,9 @@ describe TipsController, :type => :controller do
         it 'should assign flash message for succeeded tips' do
           post :update_multiple, params
           expect(flash.now[:notice]).to eq t('model.messages.count.saved',
-                                         models: Tip.model_name.human(count: result.succeeded_records.count),
-                                         count: result.succeeded_records.count
-                                       )
+                                             models: Tip.model_name.human(count: result.succeeded_records.count),
+                                             count: result.succeeded_records.count
+                                           )
         end
       end
 

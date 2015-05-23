@@ -61,7 +61,7 @@ module Ggp2
     config.badges_file = "#{Rails.root}/config/badges.yml"
   end
 
-  USER_TIPS_LAST_SHOWN_CURRENT_AGGREGATE_ID_KEY = 'utlscaid'
+  USER_TIPS_LAST_SHOWN_AGGREGATE_ID_KEY = 'utlscaid'
 
   AuthorizationFailedError = Class.new StandardError
 

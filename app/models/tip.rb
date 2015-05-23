@@ -2,6 +2,7 @@ class Tip < ActiveRecord::Base
 
   extend RecordBatchUpdatable
   include TipRepository
+  extend TipQueries
   include ScoreValidatable
 
   RESULTS = {incorrect: 0, correct: 1, correct_tendency_only: 2 }

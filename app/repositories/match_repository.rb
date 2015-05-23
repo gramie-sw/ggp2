@@ -28,10 +28,6 @@ module MatchRepository
     recursive_match_relation_by_aggregate_id(aggregate_id).order_by_position_asc.includes(:team_1, :team_2)
   end
 
-  def all_match_ids_by_aggregate_id(aggregate_id)
-    recursive_match_relation_by_aggregate_id(aggregate_id).pluck(:id)
-  end
-
   private
 
   def recursive_match_relation_by_aggregate_id(aggregate_id)

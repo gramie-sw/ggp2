@@ -26,7 +26,7 @@ class MatchSchedulePresenter
 
   def match_presenters
     @match_presenters ||= begin
-      matches = Match.all_by_aggregate_id_ordered(current_aggregate.id, order: :position, includes: [:team_1, :team_2])
+      matches = Match.all_by_aggregate_id(current_aggregate.id, order: :position, includes: [:team_1, :team_2])
       matches.collect { |m| MatchPresenter.new m }
     end
   end

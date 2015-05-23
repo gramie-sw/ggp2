@@ -2,7 +2,7 @@ describe 'user_tips/show.slim', :type => :view do
 
   let(:current_user) { User.new }
   let(:presenter) do
-    presenter = double('UserTipsShowPresenter')
+    presenter = double('UserTipsPresenter')
     presenter.as_null_object
     presenter
   end

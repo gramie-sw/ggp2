@@ -10,4 +10,5 @@ div.well
 
     div.btn-toolbar.submit-group
       = submit_tag t('model.submit.save', model: Tip.model_name.human_plural), class: 'btn btn-primary'
-      = link_to t('general.cancel'), user_tip_path(current_user), class: 'btn btn-default'
+      - aggregate_id = session[Ggp2::USER_TIPS_LAST_SHOWN_AGGREGATE_ID_KEY]
+      = link_to t('general.cancel'), user_tip_path(current_user, aggregate_id: aggregate_id), class: 'btn btn-cancel'

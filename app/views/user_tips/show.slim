@@ -3,32 +3,20 @@
 
 = render partial: 'champion_tip', locals: {presenter: @presenter.champion_tip_presenter}
 
-div.visible-md.visible-lg
-  ul.nav.nav-tabs
-    - for phase in @presenter.phases
-      li class=('active' if phase.id == @presenter.current_aggregate.id)
-        = link_to phase.name, url_for(aggregate_id: phase.id, only_path: true)
-
-div.row.visible-xs.visible-sm
+div.row
   div.col-xs-12
-    div.btn-group.pull-right.ggp2-btn-group
-      button.btn.btn-primary.btn-lg.dropdown-toggle type="button" data-toggle="dropdown"
-        = "#{t('general.menu')} "
-        span.caret
-      ul.dropdown-menu.pull-right.ggp2-dropdown-menu role="menu"
-        - for phase in @presenter.phases
-          li class=('active' if phase.id == @presenter.current_aggregate.id)
-            = link_to phase.name, url_for(aggregate_id: phase.id, only_path: true)
+    = render partial: 'match_schedules/aggregates_menu',
+             locals: {current_phase: @presenter.current_phase,
+                      current_group: @presenter.current_group,
+                      all_phases: @presenter.all_phases,
+                      all_groups: @presenter.all_groups}
 
-div
-  h2.text-center = @presenter.current_aggregate.name
-
-- partial_options = [ \
+- partial_options = [\
     partial: 'tips_table',
-    locals: { \
+    locals: {\
       tip_presenters: @presenter.tip_presenters,
-      aggregate: @presenter.current_aggregate,
-      show_as_form: @presenter.show_as_form? } \
+             aggregate: @presenter.current_aggregate,
+             show_as_form: @presenter.show_as_form?} \
   ]
 
 - if @presenter.show_as_form?

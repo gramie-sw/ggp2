@@ -57,7 +57,7 @@ describe MatchSchedulePresenter do
       matches = [Match.new(id: 876), Match.new(id: 543)]
 
       expect(Match).
-          to receive(:all_by_aggregate_id_ordered).
+          to receive(:all_by_aggregate_id).
                  with(current_aggregate.id,
                       order: :position,
                       includes: [:team_1, :team_2]).and_return(matches)

@@ -148,6 +148,8 @@ $ggp2-landing-header-image-min-height: 380px;
   }
 }
 
+//== Buttons
+
 .btn-toolbar {
   a {
     margin-left: 5px;
@@ -165,4 +167,13 @@ $ggp2-landing-header-image-min-height: 380px;
 
 .btn-lg {
   height: 42px;
+}
+
+// added custom button type cancel
+$btn-cancel-color: #fff !default;
+$btn-cancel-bg: $gray-dark !default;
+$btn-cancel-border: darken($btn-cancel-bg, 5%) !default;
+
+.btn-cancel {
+  @include button-variant($btn-cancel-color, $btn-cancel-bg, $btn-cancel-border);
 }

@@ -1,23 +1,17 @@
 class UserTipsController < ApplicationController
 
   def show
-    @presenter = UserTipsShowPresenter.new(
+
+    current_aggregate = Aggregates::FindOrFindCurrentPhase.run(id: params[:aggregate_id])
+
+    @presenter = UserTipsPresenter.new(
         user: current_resource,
+        current_aggregate: current_aggregate,
         tournament: tournament,
         user_is_current_user: is_user_current_user?(current_resource)
     )
 
-    #TODO should be tested through feature tests
-    session[Ggp2::USER_TIPS_LAST_SHOWN_CURRENT_AGGREGATE_ID_KEY] = params[:aggregate_id]
-
-    ShowAllTipsOfAggregateForUser.
-        new(tournament: tournament,
-            user_id: params[:id],
-            current_aggregate_id: params[:aggregate_id],
-            sort: current_user.match_sort).
-        run_with_presentable(@presenter)
-    @presenter.champion_tip = FindChampionTip.new(params[:id]).run
-    @presenter.phases = Aggregate.all_phases_ordered_by_position_asc
+    session[Ggp2::USER_TIPS_LAST_SHOWN_AGGREGATE_ID_KEY] = params[:aggregate_id]
   end
 
   private
