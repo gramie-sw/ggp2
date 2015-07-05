@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20150403125340) do
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.text     "content",    limit: 65535
-    t.boolean  "edited",     limit: 1
+    t.boolean  "edited"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20150403125340) do
     t.integer  "match_id",                         limit: 4
     t.integer  "user_id",                          limit: 4
     t.integer  "position",                         limit: 4
-    t.boolean  "correct_champion_tip",             limit: 1
+    t.boolean  "correct_champion_tip"
     t.integer  "correct_tips_count",               limit: 4
     t.integer  "correct_tendency_tips_only_count", limit: 4
     t.integer  "points",                           limit: 4
@@ -124,12 +124,12 @@ ActiveRecord::Schema.define(version: 20150403125340) do
     t.string   "nickname",               limit: 255
     t.string   "first_name",             limit: 255
     t.string   "last_name",              limit: 255
-    t.boolean  "admin",                  limit: 1
-    t.boolean  "active",                 limit: 1,   default: true
+    t.boolean  "admin"
+    t.boolean  "active",                             default: true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "match_sort",             limit: 255
-    t.boolean  "titleholder",            limit: 1
+    t.boolean  "titleholder"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

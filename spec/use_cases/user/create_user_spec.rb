@@ -35,6 +35,8 @@ describe CreateUser do
 
         expect_any_instance_of(TipFactory).to receive(:build_all).and_return(tips)
         expect_any_instance_of(User).to receive(:save).and_return true
+        expect_any_instance_of(User).to receive(:update).with({reset_password_token: encrypted_reset_password_token,
+                                                              reset_password_sent_at: current_time}).and_return true
 
         result = subject.run user_attributes
         expect(result.successful?).to be_truthy
@@ -47,8 +49,6 @@ describe CreateUser do
         expect(result.user.active).to be_truthy
         expect(result.user.password).to eq password_token
         expect(result.user.password_confirmation).to eq password_token
-        expect(result.user.reset_password_token).to eq encrypted_reset_password_token
-        expect(result.user.reset_password_sent_at).to eq current_time
         expect(result.user.tips.size).to eq 1
         expect(result.user.champion_tip).not_to be_nil
         expect(result.raw_token).to eq raw_reset_password_token

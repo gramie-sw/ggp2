@@ -10,7 +10,7 @@ describe TipsEditMultiplePresenter do
       it 'should raise error' do
         expect {
           TipsEditMultiplePresenter.new
-        }.to raise_error
+        }.to raise_error "Only tips_ids or tips must be given, not both"
       end
     end
   end
