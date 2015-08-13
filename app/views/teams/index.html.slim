@@ -1,5 +1,4 @@
-= render partial: 'commons/background_image', locals: {image_name: 'background_image_01.jpg'}
-- content_for(:title, Team.model_name.human_plural)
+= render partial: 'settings/menu', locals: {section: :teams, section_translation: Team.model_name.human_plural}
 
 div.well
   = form_for @presenter.new_team, html: {class: 'form-inline', role: 'form'} do |f|
@@ -14,9 +13,10 @@ div.well
             div.help-block
               = @presenter.new_team.errors.full_messages_for(:country).first
       div.ggp2-form-group
-        = f.submit class: 'btn btn-primary'
+        = f.submit t('model.messages.add', model: Team.model_name.human), class: 'btn btn-primary'
 
 div.visible-sm
   = render partial: 'teams', locals: {columns: 2, teams: @presenter.teams}
 div.hidden-sm
   = render partial: 'teams', locals: {columns: 3, teams: @presenter.teams}
+br

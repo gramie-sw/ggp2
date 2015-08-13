@@ -44,7 +44,7 @@ de:
       model_not_saved: 'Konnte %{model} nicht speichern: %{count} Fehler'
       team_to_delete_is_associated_to_games: 'Team konnte nicht gelöscht werden, da es in mindestens in einem Spiel gesetzt ist'
       scores_not_changeable_after_match_started: 'Ergebnis darf nach Spielstart nicht geändert werden.'
-      champion_tip_changeable_after_tournament_started: 'Weltmeistertipp darf nach Turnierbeginn nicht mehr geändert werden.'
+      champion_tip_changeable_after_tournament_started: 'Tipp darf nach Turnierbeginn nicht mehr geändert werden.'
 
   time:
     formats:
@@ -59,10 +59,16 @@ de:
       match_result:
         one: Ergebnis
         other: Ergebnisse
+      tournament_settings_form:
+        one: Turniereinstellung
+        other: Turniereinstellungen
     attributes:
       match_result:
         score_team_1: Ergebnis Team 1
         score_team_2: Ergebnis Team 2
+      tournament_settings_form:
+        tournament_title: Turniertitel
+        champion_title: Championtitel
 
   activerecord:
     models:
@@ -70,8 +76,8 @@ de:
         one: "Runde/Gruppe"
         other: Runden/Gruppen
       champion_tip:
-        one: Weltmeister-Tipp
-        other: Weltemeister-Tipps
+        one: Champion-Tipp
+        other: Champion-Tipps
       comment:
         one: Kommentar
         other: Kommentare
@@ -169,6 +175,8 @@ de:
         saved: '%{count} %{models} erfolgreich gespeichert'
         updated: '%{count} %{models} erfolgreich geändert'
 
+  app_title: Tippspiel
+
   general:
     action:
       one: Aktion
@@ -182,6 +190,9 @@ de:
       one: Auszeichnung
       other: Auszeichnungen
     changeable_until: änderbar bis %{date}
+    champion_tip:
+      one: '%{champion_title}-Tipp'
+      others: '%{champion_title}-Tipps'
     close: x
     count:
       point:
@@ -191,7 +202,6 @@ de:
     group:
       one: Gruppe
       other: Gruppen
-    wm_2014_title: 'WM-2014 Brasilien'
     match_result: 'Ergebnis'
     menu: Menu
     add: Erstellen
@@ -237,8 +247,10 @@ de:
       other: Profile
     remove: Entfernen
     of_subject: von %{subject}
+    save: Speichern
     search: Suchen
     show: Anzeigen
+    settings: Einstellungen
     searchterm: Suchbegriff
     select_all: Alle
     select_none: Keine
@@ -261,7 +273,7 @@ de:
       add_subsequent: Im Anschluss weitere %{aggregate} anlegen
 
   award_ceremony:
-    description_one: Aus, aus, aus - aus! Das Spiel ist aus! %{champion_team} ist Weltmeister.
+    description_one: Aus, aus, aus - aus! Das Spiel ist aus! %{champion_team} ist %{champion_title}.
     description_two: Wir gratulieren den Siegern und bedanken uns bei allen Mitspieler.
     first_place:
       position: Sieger
@@ -283,7 +295,7 @@ de:
   champion_tip:
     description:
       change: |
-       Wähle deinen Weltmeister
+       Wähle deinen %{champion_title}
 
   match:
     sort: Spielesortierung
@@ -364,12 +376,12 @@ de:
         Mit Hilfe der Checkboxen können mehrere Spiele zum Tippen ausgewählt werden.
       deadlines: |
         Bis zum Beginn des jeweiligen Spiels darf ein Tipp beliebig oft verändert werden.
-        Die Abgabe des Weltmeister-Tipps ist nur bis zum Start des Eröffnungsspiels möglich.
+        Die Abgabe des %{champion_tips} ist nur bis zum Start des Eröffnungsspiels möglich.
       points:
         preface: 'Es gibt folgende Punkteverteilung:'
         correct_tip: 'Richtiger Tipp: %{points}'
         correct_tendency_only_tip: 'Richtige Tendenz (nur Sieger richtig bzw. Unentschieden): %{points}'
-        correct_champion_tip: 'Richtiger Weltmeister-Tipp: %{points}'
+        correct_champion_tip: 'Richtiger %{champion_tip}: %{points}'
 
     sign_up:
       description:

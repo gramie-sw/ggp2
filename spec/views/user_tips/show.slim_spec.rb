@@ -10,6 +10,7 @@ describe 'user_tips/show.slim', :type => :view do
   before :each do
     assign(:presenter, presenter)
     allow(view).to receive(:current_user).and_return(current_user)
+    allow(view).to receive(:champion_title).and_return('World Champion')
   end
 
   describe 'tips_table' do

@@ -1,0 +1,4 @@
+li class=('active' if section == :teams)
+  = link_to Team.model_name.human_plural, teams_path
+li class=('active' if section == :tournament)
+  = link_to t('general.tournament'), edit_tournament_settings_path

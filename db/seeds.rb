@@ -122,8 +122,11 @@ if Rails.env == 'production'
       first_name: 'Mister',
       last_name: 'Administrator',
       email: 'admin@mail.de',
-      password: 'change_me_immediately',
-      password_confirmation: 'change_me_immediately',
+      password: 'change me immediately',
+      password_confirmation: 'change me immediately',
       admin: true
   )
+
+  Property.create(key: Property::TOURNAMENT_TITLE_KEY, value: 'Tournament Title')
+  Property.create(key: Property::CHAMPION_TITLE_KEY, value: 'Champion Title')
 end

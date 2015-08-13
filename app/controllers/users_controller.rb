@@ -28,7 +28,6 @@ class UsersController < ApplicationController
     else
       @user = result.user
       render :new
-
     end
   end
 

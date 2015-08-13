@@ -21,7 +21,7 @@ describe Property, :type => :model do
   describe '::set_last_tip_ranking_set_match_id_to' do
 
     it 'should save given match_id with key LAST_TIP_RANKING_SET_MATCH_ID_KEY' do
-      expect(Property).to receive(:save_value).with(Property::LAST_TIP_RANKING_SET_MATCH_ID_KEY, 5)
+      expect(PropertyQueries).to receive(:save_value).with(Property::LAST_TIP_RANKING_SET_MATCH_ID_KEY, 5)
       Property.set_last_tip_ranking_set_match_id_to 5
     end
   end
@@ -31,7 +31,7 @@ describe Property, :type => :model do
     context 'when property with CHAMPION_TIP_RANKING_SET_EXISTS_KEY exists' do
 
       it 'should return value of CHAMPION_TIP_RANKING_SET_EXISTS_KEY casted to integer' do
-        expect(Property).to receive(:find_value).with(Property::LAST_TIP_RANKING_SET_MATCH_ID_KEY).and_return('5')
+        expect(PropertyQueries).to receive(:find_value).with(Property::LAST_TIP_RANKING_SET_MATCH_ID_KEY).and_return('5')
         expect(Property.last_tip_ranking_set_match_id).to eq 5
       end
     end
@@ -39,7 +39,8 @@ describe Property, :type => :model do
     context 'when property with CHAMPION_TIP_RANKING_SET_EXISTS_KEY not exists' do
 
       it 'should return nil' do
-        expect(Property).to receive(:find_value).with(Property::LAST_TIP_RANKING_SET_MATCH_ID_KEY).and_return(nil)
+        expect(PropertyQueries).
+            to receive(:find_value).with(Property::LAST_TIP_RANKING_SET_MATCH_ID_KEY).and_return(nil)
         expect(Property.last_tip_ranking_set_match_id).to be_nil
       end
     end
@@ -47,7 +48,8 @@ describe Property, :type => :model do
     context 'when property with CHAMPION_TIP_RANKING_SET_EXISTS_KEY is not a number' do
 
       it 'should return nil' do
-        expect(Property).to receive(:find_value).with(Property::LAST_TIP_RANKING_SET_MATCH_ID_KEY).and_return('nil')
+        expect(PropertyQueries).
+            to receive(:find_value).with(Property::LAST_TIP_RANKING_SET_MATCH_ID_KEY).and_return('nil')
         expect(Property.last_tip_ranking_set_match_id).to be_nil
       end
     end
@@ -56,7 +58,7 @@ describe Property, :type => :model do
   describe '::set_champion_tip_ranking_set_exists_to' do
 
     it 'should save given boolean with key CHAMPION_TIP_RANKING_SET_EXISTS_KEY' do
-      expect(Property).to receive(:save_value).with(Property::CHAMPION_TIP_RANKING_SET_EXISTS_KEY, true)
+      expect(PropertyQueries).to receive(:save_value).with(Property::CHAMPION_TIP_RANKING_SET_EXISTS_KEY, true)
       Property.set_champion_tip_ranking_set_exists_to true
     end
   end
@@ -66,7 +68,8 @@ describe Property, :type => :model do
     context 'when property with CHAMPION_TIP_RANKING_SET_EXISTS_KEY not exists' do
 
       it 'should should return false' do
-        expect(Property).to receive(:find_value).with(Property::CHAMPION_TIP_RANKING_SET_EXISTS_KEY).and_return(nil)
+        expect(PropertyQueries).
+            to receive(:find_value).with(Property::CHAMPION_TIP_RANKING_SET_EXISTS_KEY).and_return(nil)
         Property.champion_tip_ranking_set_exists?
       end
     end
@@ -74,7 +77,8 @@ describe Property, :type => :model do
     context 'when property with CHAMPION_TIP_RANKING_SET_EXISTS_KEY is 0' do
 
       it 'should should return false casted to boolean' do
-        expect(Property).to receive(:find_value).with(Property::CHAMPION_TIP_RANKING_SET_EXISTS_KEY).and_return('0')
+        expect(PropertyQueries).
+            to receive(:find_value).with(Property::CHAMPION_TIP_RANKING_SET_EXISTS_KEY).and_return('0')
         expect(Property.champion_tip_ranking_set_exists?).to be_falsey
       end
     end
@@ -82,7 +86,8 @@ describe Property, :type => :model do
     context 'when property with CHAMPION_TIP_RANKING_SET_EXISTS_KEY is true' do
 
       it 'should should return true casted to boolean' do
-        expect(Property).to receive(:find_value).with(Property::CHAMPION_TIP_RANKING_SET_EXISTS_KEY).and_return('1')
+        expect(PropertyQueries).
+            to receive(:find_value).with(Property::CHAMPION_TIP_RANKING_SET_EXISTS_KEY).and_return('1')
         expect(Property.champion_tip_ranking_set_exists?).to be_truthy
       end
     end

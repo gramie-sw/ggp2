@@ -1,0 +1,16 @@
+- content_for(:title, t('general.settings'))
+
+div.row
+  div.col-xs-12
+    div.hidden-xs
+      ul._nav-tabbed-menu-lg.nav.nav-tabs
+        = render partial: 'settings/menu_link_list', locals: {section: section}
+
+    div.pull-left.visible-xs
+      div._nav-tabbed-menu-xs.btn-group.pull-left
+        button.btn.btn-primary.dropdown-toggle type="button" data-toggle="dropdown"
+          = section_translation
+          | &nbsp;
+          span.caret
+        ul.dropdown-menu role="menu"
+          = render partial: 'settings/menu_link_list', locals: {section: section}

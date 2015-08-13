@@ -11,7 +11,7 @@ div.table-responsive
         th.text-center.statistic-field = t('ranking.correct_tips_count')
         th.text-center.statistic-field = t('ranking.correct_tendency_tips_only_count')
         th.text-center.statistic-field = t('general.badge.other')
-        th = t('activerecord.models.champion_tip.one')
+        th = t('general.champion_tip.one', champion_title: champion_title)
         th
     tbody
       - for user_ranking_presenter in @presenter.user_ranking_presenters

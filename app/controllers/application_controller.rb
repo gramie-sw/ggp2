@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   before_filter :authorize
 
-  helper_method :main_nav_links, :random_quotation
+  helper_method :main_nav_links, :random_quotation, :tournament_title, :champion_title
 
   def after_sign_in_path_for(user)
     if user.admin?
@@ -22,6 +22,14 @@ class ApplicationController < ActionController::Base
     else
       user_tip_path(user)
     end
+  end
+
+  def tournament_title
+    tournament.title
+  end
+
+  def champion_title
+    tournament.champion_title
   end
 
   def tournament

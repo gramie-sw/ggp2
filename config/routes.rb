@@ -32,6 +32,7 @@ Ggp2::Application.routes.draw do
   # must be behind devise
   resources :users
   resources :user_tips, only: :show
+  resource  :tournament_settings, only: [:edit, :update]
   resources :venues
 
   root :to => 'roots#show'

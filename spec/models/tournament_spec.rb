@@ -10,6 +10,22 @@ describe Tournament, :type => :model do
     allow(Match).to receive(:order_by_position_asc).and_return(relation)
   end
 
+  describe 'title' do
+
+    it 'returns the champion_title' do
+      expect(PropertyQueries).to receive(:find_value).with(Property::TOURNAMENT_TITLE_KEY).and_return(:tournament_title)
+      expect(subject.title).to be :tournament_title
+    end
+  end
+
+  describe 'champion_title' do
+
+    it 'returns the champion_title' do
+      expect(PropertyQueries).to receive(:find_value).with(Property::CHAMPION_TITLE_KEY).and_return(:champion_title)
+      expect(subject.champion_title).to be :champion_title
+    end
+  end
+
   describe '#started?' do
 
     context 'if matches exists' do

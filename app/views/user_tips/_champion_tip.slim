@@ -5,7 +5,7 @@
         div.row
           div.col-sm-8.ggp2-flag-with-country-name
             strong
-              = "#{ChampionTip.model_name.human}:"
+              = "#{t('general.champion_tip.one', champion_title: champion_title)}:"
             '&nbsp;&nbsp;
             = standard_flag_image_tag presenter.team_abbreviation
             = presenter.team_name_or_missing_message

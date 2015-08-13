@@ -12,7 +12,7 @@ header#header
           - if current_user.admin?
             'Administration
           - else
-            'WM 2014 Tippspiel
+            ="#{tournament_title} #{t('app_title')}"
       div.collapse.navbar-collapse
         ul.nav.navbar-nav.navbar-right
           - for link in main_nav_links

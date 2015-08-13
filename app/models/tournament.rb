@@ -1,5 +1,13 @@
 class Tournament
 
+  def title
+    @tournament_title ||= PropertyQueries.find_value(Property::TOURNAMENT_TITLE_KEY)
+  end
+
+  def champion_title
+    @champion_title ||= PropertyQueries.find_value(Property::CHAMPION_TITLE_KEY)
+  end
+
   def started?
     first_match.present? && first_match.started?
   end

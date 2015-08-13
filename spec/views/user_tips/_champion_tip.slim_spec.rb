@@ -17,7 +17,10 @@ describe 'user_tips/_champion_tip.slim', :type => :view do
     }
   end
 
+  let(:champion_title) {'World Champion'}
+
   before :each do
+    allow(view).to receive(:champion_title).and_return(champion_title)
     allow(presenter).to receive(:show?).and_return(true)
   end
 
@@ -28,7 +31,7 @@ describe 'user_tips/_champion_tip.slim', :type => :view do
       it 'should be showed' do
         expect(presenter).to receive(:show?).and_return(true)
         render partial
-        expect(rendered).to match ChampionTip.model_name.human
+        expect(rendered).to match t('general.champion_tip.one', champion_title: champion_title)
       end
     end
 
@@ -37,7 +40,7 @@ describe 'user_tips/_champion_tip.slim', :type => :view do
       it 'should be showed' do
         expect(presenter).to receive(:show?).and_return(false)
         render partial
-        expect(rendered).not_to match ChampionTip.model_name.human
+        expect(rendered).not_to match t('general.champion_tip.one', champion_title: champion_title)
       end
     end
   end

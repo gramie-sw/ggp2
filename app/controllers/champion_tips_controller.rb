@@ -7,10 +7,12 @@ class ChampionTipsController < ApplicationController
   def update
 
     result = UpdateChampionTip.new(current_user: current_user, champion_tip_id: params[:id],
-                                       attributes: params[:champion_tip]).run
+                                   attributes: params[:champion_tip]).run
 
     if result.successful
-      redirect_to user_tip_path(current_user), notice: t('model.messages.updated', model: ChampionTip.model_name.human)
+      redirect_to user_tip_path(current_user),
+                  notice: t('model.messages.updated',
+                            model: t('general.champion_tip.one', champion_title: champion_title))
     else
       @presenter = ChampionTipsEditPresenter.new(result.champion_tip)
       render :edit

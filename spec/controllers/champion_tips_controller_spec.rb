@@ -28,12 +28,15 @@ describe ChampionTipsController, :type => :controller do
 
   describe '#update' do
 
+    let(:champion_title) {'World Champion'}
     let(:new_champion_tip_team_id) { champion_tip.team.id+1 }
     let(:params) { {id: champion_tip.id, champion_tip: {team_id: new_champion_tip_team_id}} }
 
     context 'on success' do
 
       before :each do
+        expect(@controller).to respond_to(:champion_title)
+        allow(@controller). to receive(:champion_title).and_return(champion_title)
         allow_any_instance_of(ChampionTip).to receive(:valid?).and_return(true)
       end
 
@@ -50,7 +53,9 @@ describe ChampionTipsController, :type => :controller do
 
       it 'should assign flash message' do
         patch :update, params
-        expect(flash[:notice]).to eq t('model.messages.updated', model: ChampionTip.model_name.human)
+        expect(flash[:notice]).to eq t('model.messages.updated',
+                                       model: t('general.champion_tip.one', champion_title: champion_title))
+
       end
     end
 

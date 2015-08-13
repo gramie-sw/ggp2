@@ -9,6 +9,7 @@ class UserMailer < ActionMailer::Base
   def user_signed_up(user, token)
     @user = user
     @token = token
+    @tournament_title = PropertyQueries.find_value(Property::TOURNAMENT_TITLE_KEY)
 
     mail to: user.email
   end

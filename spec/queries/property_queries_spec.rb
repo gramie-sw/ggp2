@@ -1,6 +1,6 @@
-describe PropertyRepository do
+describe PropertyQueries do
 
-  subject { Property }
+  subject { PropertyQueries }
 
   describe '::save_value' do
 
@@ -9,7 +9,7 @@ describe PropertyRepository do
       it 'should create new Property with given key and value' do
         subject.save_value('key_1', 'value_1')
 
-        actual_property = subject.find_by_key('key_1')
+        actual_property = Property.find_by_key('key_1')
         expect(actual_property.key).to eq 'key_1'
         expect(actual_property.value).to eq 'value_1'
       end
@@ -22,7 +22,7 @@ describe PropertyRepository do
 
         subject.save_value('key_1', 'value_2')
 
-        actual_property = subject.find_by_key('key_1')
+        actual_property = Property.find_by_key('key_1')
         expect(actual_property.key).to eq 'key_1'
         expect(actual_property.value).to eq 'value_2'
       end
