@@ -22,8 +22,10 @@ div.well
     = f.input :password_confirmation, label: User.human_attribute_name(:new_password_confirmation),
               input_html: { placeholder: t('user_data.form.hint.new_password')}
 
-    = render partial: 'commons/form_buttons',
-             locals: { form_builder: f,
-                       submit_button_label: t('model.messages.change', model: t('general.user_data')),
-                       cancel_path: profile_path(resource, section: :user_data),
-                       wrapper_html: {class: 'col-sm-offset-3 col-lg-offset-2 col-sm-9 col-md-10'}}
+    - locals = { form_builder: f,
+                 submit_button_label: t('model.messages.change', model: t('general.user_data')),
+                 wrapper_html: {class: 'col-sm-offset-3 col-lg-offset-2 col-sm-9 col-md-10'}}
+
+    - locals[:cancel_path] = profile_path(resource, section: :user_data) unless current_user.admin?
+
+    = render partial: 'commons/form_buttons', locals: locals
