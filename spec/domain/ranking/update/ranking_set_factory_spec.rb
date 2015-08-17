@@ -61,7 +61,7 @@ describe RankingSetFactory do
       expect(ranking_item_factory).
           to receive(:build).with(tips.second, previous_ranking_items.second).and_return(new_ranking_items.second)
 
-      expect(ranking_items_position_setter).to receive(:set_positions).with(new_ranking_items).ordered
+      expect(ranking_items_position_setter).to receive(:set_positions!).with(new_ranking_items).ordered
 
       expect(RankingSet).to receive(:new).with(match_id: 6, ranking_items: new_ranking_items).ordered.and_call_original
 

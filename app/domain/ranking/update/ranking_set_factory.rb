@@ -22,7 +22,7 @@ class RankingSetFactory
 
   def build match_id, tips, previous_ranking_set
     ranking_items = create_ranking_items(tips, previous_ranking_set)
-    ranking_items_position_setter.set_positions(ranking_items)
+    ranking_items_position_setter.set_positions!(ranking_items)
     RankingSet.new(match_id: match_id, ranking_items: ranking_items)
   end
 
