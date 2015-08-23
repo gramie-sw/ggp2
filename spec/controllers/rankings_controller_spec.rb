@@ -9,7 +9,7 @@ describe RankingsController, :type => :controller do
   describe '#show' do
 
     before :each do
-      allow_any_instance_of(FindAllUserCurrentRanking).to receive(:run)
+      allow(Ranking::FindCurrentForAllUsers).to receive(:run)
     end
 
     it 'should return http success' do

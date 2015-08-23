@@ -1,4 +1,4 @@
-describe FindAllUserCurrentRanking do
+describe Ranking::FindCurrentForAllUsers do
 
   let(:matches) {
     [
@@ -18,7 +18,7 @@ describe FindAllUserCurrentRanking do
     ]
   }
 
-  subject { FindAllUserCurrentRanking.new(2) }
+  subject { Ranking::FindCurrentForAllUsers }
 
   before :each do
     ranking_items
@@ -31,7 +31,7 @@ describe FindAllUserCurrentRanking do
       expect(AllUserRankingProvider).to receive(:user_page_count).and_return(2)
       expect(Property).to receive(:last_tip_ranking_set_match_id).and_return(matches.second.id)
 
-      actual_ranking_items = subject.run
+      actual_ranking_items = subject.run(page: 2)
 
       expect(actual_ranking_items.size).to eq 1
       expect(actual_ranking_items.first).to eq ranking_items.fourth
