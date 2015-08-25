@@ -1,9 +1,5 @@
 class CurrentRankingFinder
 
-  def self.create_for_single_user
-    CurrentRankingFinder.new(SingleUserRankingProvider)
-  end
-
   def self.create_for_all_users
     CurrentRankingFinder.new(AllUserRankingProvider)
   end

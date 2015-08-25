@@ -17,22 +17,6 @@ describe RankingItemRepository do
     end
   end
 
-  describe '::all_by_user_id_and_match_id' do
-
-    it 'should return ranking items with given match id' do
-      ranking_items = [
-          create(:ranking_item, user_id: 7, match_id: 12),
-          create(:ranking_item, user_id: 7, match_id: 13),
-          create(:ranking_item, user_id: 7, match_id: 12),
-          create(:ranking_item, user_id: 6, match_id: 12)
-      ]
-
-      actual_ranking_items = RankingItem.all_by_user_id_and_match_id(user_id: 7, match_id: 12)
-      expect(actual_ranking_items.size).to eq 2
-      expect(actual_ranking_items).to include ranking_items.first, ranking_items.third
-    end
-  end
-
   describe '::exists_by_match_id?' do
 
     let(:match_id) { 3 }
@@ -91,32 +75,6 @@ describe RankingItemRepository do
 
       expect(subject.destroy_and_create_multiple(12, [ranking_item_1])).to be_falsey
       expect(subject.all).to include ranking_items[0], ranking_items[1]
-    end
-  end
-
-  describe '::first_by_user_id_and_match_id' do
-
-    it 'should return ranking_item for given user_id and match_id' do
-      create(:ranking_item, user_id: 2, match_id: 1)
-      expected_ranking_item = create(:ranking_item, user_id: 2, match_id: 7)
-      create(:ranking_item, user_id: 3, match_id: 7)
-
-      expect(subject.first_by_user_id_and_match_id(user_id: 2, match_id: 7)).to eq expected_ranking_item
-    end
-  end
-
-  describe '::order_by_position_asc' do
-
-    it 'should return RankingItems ordered by position' do
-      ranking_item_3 = create(:ranking_item, position: 3)
-      ranking_item_1 = create(:ranking_item, position: 1)
-      ranking_item_2 = create(:ranking_item, position: 2)
-
-      actual_ranking_items = subject.ordered_by_position_asc
-      expect(actual_ranking_items.count).to eq 3
-      expect(actual_ranking_items.first).to eq ranking_item_1
-      expect(actual_ranking_items.second).to eq ranking_item_2
-      expect(actual_ranking_items.third).to eq ranking_item_3
     end
   end
 

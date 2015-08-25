@@ -1,22 +1,10 @@
 describe CurrentRankingFinder do
 
-  let(:ranking_provider) { SingleUserRankingProvider }
+  let(:ranking_provider) { AllUserRankingProvider }
   let(:options) { {match_id: 7, page: 2} }
   subject { CurrentRankingFinder.new(ranking_provider) }
 
-  describe '::create_for_single_user' do
-
-    subject { CurrentRankingFinder }
-
-    it 'should return CurrentRankingFinder with a injected SingleUserRankingProvider' do
-        expected_current_ranking_finder = double('CurrentRankingFinder')
-        expect(CurrentRankingFinder).to receive(:new).with(SingleUserRankingProvider).
-            and_return(expected_current_ranking_finder)
-        expect(subject.create_for_single_user).to eq expected_current_ranking_finder
-    end
-  end
-
-  describe '::create_for_single_user' do
+  describe '::create_for_all_user' do
 
     subject { CurrentRankingFinder }
 
