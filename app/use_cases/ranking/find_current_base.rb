@@ -4,7 +4,7 @@ module Ranking
     def run
 
       if ::Property.champion_tip_ranking_set_exists?
-        ranking_item_by_match_id(nil)
+        ranking_by_match_id(nil)
       else
 
         match_id = ::Property.last_tip_ranking_set_match_id
@@ -12,7 +12,7 @@ module Ranking
         if match_id.nil?
           neutral_ranking
         else
-          ranking_item_by_match_id(match_id)
+          ranking_by_match_id(match_id)
         end
       end
 
@@ -26,6 +26,6 @@ module Ranking
   end
 
   # template method
-  def ranking_item_by_match_id(match_id)
+  def ranking_by_match_id(match_id)
   end
 end
