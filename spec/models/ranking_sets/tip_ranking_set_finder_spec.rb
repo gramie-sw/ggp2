@@ -10,9 +10,11 @@ describe TipRankingSetFinder do
       it 'should return created RankingItemSet' do
         expected_ranking_items = [RankingItem.new(match_id: 3)]
 
-        allow(RankingItem).to receive(:exists_by_match_id?).with(4).and_return(false)
-        allow(RankingItem).to receive(:exists_by_match_id?).with(3).and_return(true)
-        allow(RankingItem).to receive(:all_by_match_id).with(3).ordered.and_return(expected_ranking_items)
+        expect(RankingItemQueries).to respond_to(:exists_by_match_id?)
+        allow(RankingItemQueries).to receive(:exists_by_match_id?).with(4).and_return(false)
+        allow(RankingItemQueries).to receive(:exists_by_match_id?).with(3).and_return(true)
+        expect(RankingItemQueries).to respond_to(:all_by_match_id)
+        allow(RankingItemQueries).to receive(:all_by_match_id).with(3).ordered.and_return(expected_ranking_items)
 
         actual_ranking_set = subject.find_previous(5)
         expect(actual_ranking_set).to be_an_instance_of RankingSet
@@ -23,10 +25,10 @@ describe TipRankingSetFinder do
 
     context 'when there are no previous RankingItems for current_match_id' do
 
-
       it 'should return RankingItemSet with match_id 0 and no RankingItems' do
-        allow(RankingItem).to receive(:exists_by_match_id?).with(2).and_return(false)
-        allow(RankingItem).to receive(:exists_by_match_id?).with(1).and_return(false)
+        expect(RankingItemQueries).to respond_to(:exists_by_match_id?)
+        allow(RankingItemQueries).to receive(:exists_by_match_id?).with(2).and_return(false)
+        allow(RankingItemQueries).to receive(:exists_by_match_id?).with(1).and_return(false)
 
         actual_ranking_set = subject.find_previous(3)
         expect(actual_ranking_set).to be_an_instance_of RankingSet
@@ -49,8 +51,8 @@ describe TipRankingSetFinder do
     context 'when there are next RankingItems for match id' do
 
       it 'should return created RankingItemSet' do
-        allow(RankingItem).to receive(:exists_by_match_id?).with(5).and_return(false)
-        allow(RankingItem).to receive(:exists_by_match_id?).with(6).and_return(true)
+        allow(RankingItemQueries).to receive(:exists_by_match_id?).with(5).and_return(false)
+        allow(RankingItemQueries).to receive(:exists_by_match_id?).with(6).and_return(true)
 
         expect(subject.find_next_match_id(4)).to eq 6
       end

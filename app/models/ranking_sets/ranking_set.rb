@@ -16,7 +16,7 @@ class RankingSet
   end
 
   def save
-    RankingItem.destroy_and_create_multiple(match_id, ranking_items)
+    RankingItemQueries.destroy_and_create_multiple(match_id, ranking_items)
   end
 
   private

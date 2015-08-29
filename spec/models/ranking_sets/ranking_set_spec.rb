@@ -73,7 +73,8 @@ describe RankingSet do
   describe '#save' do
 
     it 'should update RankingItems with repo' do
-      expect(RankingItem).to receive(:destroy_and_create_multiple).with(7, ranking_items).and_return(true)
+      expect(RankingItemQueries).to respond_to(:destroy_and_create_multiple)
+      expect(RankingItemQueries).to receive(:destroy_and_create_multiple).with(7, ranking_items).and_return(true)
       expect(subject.save).to be_truthy
     end
   end

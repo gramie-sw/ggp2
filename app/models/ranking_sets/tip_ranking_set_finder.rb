@@ -9,11 +9,12 @@ class TipRankingSetFinder
     match_id = find_next_ranking_set_match_id previous_match_ids.reverse
 
     if match_id
-      create_ranking_set(match_id, RankingItem.all_by_match_id(match_id))
+      create_ranking_set(match_id, RankingItemQueries.all_by_match_id(match_id))
     else
       create_ranking_set(0, [])
     end
   end
+
 
   def find_next_match_id current_match_id
     next_ordered_match_ids = ordered_match_ids[ordered_match_ids.index(current_match_id)+1, ordered_match_ids.size-1]
@@ -26,7 +27,7 @@ class TipRankingSetFinder
 
   def find_next_ranking_set_match_id ordered_match_ids
     ordered_match_ids.detect do |match_id|
-      RankingItem.exists_by_match_id?(match_id)
+      RankingItemQueries.exists_by_match_id?(match_id)
     end
   end
 

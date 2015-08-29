@@ -1,7 +1,5 @@
 class RankingItem < ActiveRecord::Base
 
-  include RankingItemRepository
-
   belongs_to :match
   belongs_to :user
 
