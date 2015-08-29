@@ -1,4 +1,4 @@
-class UserQueries
+module UserQueries
 
   class << self
 

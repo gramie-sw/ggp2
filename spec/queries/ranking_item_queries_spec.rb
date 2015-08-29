@@ -53,6 +53,11 @@ describe RankingItemQueries do
       expect(actual_ranking_items.current_page).to be 2
       expect(actual_ranking_items.total_count).to be 4
     end
+
+    it 'returns only RankingItems with certain position if position is given' do
+      actual_ranking_items = subject.ranking_set_for_ranking_view_by_match_id(match_id, positions: [1,2])
+      expect(actual_ranking_items).to eq [ranking_items[1], ranking_items[2]]
+    end
   end
 
 end

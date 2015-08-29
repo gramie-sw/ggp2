@@ -2,6 +2,6 @@ class AwardCeremoniesController < ApplicationController
 
   def show
     @presenter = AwardCeremoniesShowPresenter.new tournament
-    @presenter.places = FindWinnerRanking.new.run
+    @presenter.places = Ranking::FindWinners.new.run
   end
 end
