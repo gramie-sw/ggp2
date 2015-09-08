@@ -1,4 +1,4 @@
-module Ranking
+module Rankings
   class FindCurrentForUser < FindCurrentBase
 
     attribute :user_id, Integer

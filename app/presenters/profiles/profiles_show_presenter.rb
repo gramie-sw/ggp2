@@ -29,7 +29,7 @@ class ProfilesShowPresenter
 
   def user_statistic
     @user_statistic ||= begin
-      current_ranking_item = Ranking::FindCurrentForUser.run(user_id: user.id)
+      current_ranking_item = Rankings::FindCurrentForUser.run(user_id: user.id)
       UserStatistic.new(user: user, tournament: tournament, current_ranking_item: current_ranking_item)
     end
   end

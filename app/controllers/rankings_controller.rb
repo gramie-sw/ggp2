@@ -1,7 +1,7 @@
 class RankingsController < ApplicationController
 
   def show
-    ranking_items = Ranking::FindCurrentForAllUsers.run(page: params[:page])
+    ranking_items = Rankings::FindCurrentForAllUsers.run(page: params[:page])
     @presenter = RankingPresenter.new(
         ranking_items: ranking_items,
         tournament: tournament,

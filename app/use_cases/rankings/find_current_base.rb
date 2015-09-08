@@ -1,4 +1,4 @@
-module Ranking
+module Rankings
   class FindCurrentBase < UseCase
 
     def run

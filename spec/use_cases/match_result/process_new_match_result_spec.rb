@@ -16,7 +16,7 @@ describe ProcessNewMatchResult do
 
         expect_any_instance_of(CalculateChampionTipResults).to receive(:run).never
         
-        expect(Ranking::Update).to receive(:run).with(match_id: match_id).ordered
+        expect(Rankings::Update).to receive(:run).with(match_id: match_id).ordered
 
         subject.run(match_id)
       end
@@ -38,7 +38,7 @@ describe ProcessNewMatchResult do
         expect(CalculateChampionTipResults).to receive(:new).and_return(calculate_champion_tip_results)
         expect(calculate_champion_tip_results).to receive(:run)
 
-        expect(Ranking::Update).to receive(:run).with(match_id: match_id).ordered
+        expect(Rankings::Update).to receive(:run).with(match_id: match_id).ordered
 
         subject.run(match_id)
       end

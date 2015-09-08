@@ -1,6 +1,6 @@
-describe Ranking::Update do
+describe Rankings::Update do
 
-  subject { Ranking::Update }
+  subject { Rankings::Update }
 
   let(:user_1) { create(:player) }
   let(:user_2) { create(:player) }

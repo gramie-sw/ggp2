@@ -1,13 +1,13 @@
-describe Ranking::FindCurrentForAllUsers do
+describe Rankings::FindCurrentForAllUsers do
 
-  subject { Ranking::FindCurrentForAllUsers }
+  subject { Rankings::FindCurrentForAllUsers }
 
   describe 'defaults' do
 
     it 'page should be one' do
-      expect(Ranking::FindCurrentForAllUsers.new(page: nil).page).to be 1
-      expect(Ranking::FindCurrentForAllUsers.new(page: 0).page).to be 1
-      expect(Ranking::FindCurrentForAllUsers.new.page).to be 1
+      expect(Rankings::FindCurrentForAllUsers.new(page: nil).page).to be 1
+      expect(Rankings::FindCurrentForAllUsers.new(page: 0).page).to be 1
+      expect(Rankings::FindCurrentForAllUsers.new.page).to be 1
     end
   end
 

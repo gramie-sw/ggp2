@@ -1,4 +1,4 @@
-module Ranking
+module Rankings
   class FindCurrentForAllUsers < FindCurrentBase
 
     attribute :page, Integer
