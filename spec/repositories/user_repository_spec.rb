@@ -18,32 +18,6 @@ describe UserRepository do
     end
   end
 
-  describe 'players_for_ranking_listing' do
-
-    it 'should return all users being players paginated' do
-
-      create(:admin)
-      expected_user_1 = create(:player)
-      expected_user_2 = create(:player)
-      create(:player)
-
-      actual_users = subject.players_for_ranking_listing(page: 1, per_page: 2)
-      expect(actual_users.count).to eq 2
-      expect(actual_users).to include expected_user_1, expected_user_2
-    end
-
-    it 'should includes champion_tip and team' do
-
-      relation = double('UserRelation')
-      relation.as_null_object
-
-      expect(subject).to receive(:players).and_return(relation)
-      expect(relation).to receive(:includes).with(champion_tip: :team)
-
-      subject.players_for_ranking_listing(page: nil, per_page: nil)
-    end
-  end
-
   describe 'users_listing' do
 
     context 'when admins' do

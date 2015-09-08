@@ -5,6 +5,8 @@ describe Ranking::FindCurrentForAllUsers do
   describe 'defaults' do
 
     it 'page should be one' do
+      expect(Ranking::FindCurrentForAllUsers.new(page: nil).page).to be 1
+      expect(Ranking::FindCurrentForAllUsers.new(page: 0).page).to be 1
       expect(Ranking::FindCurrentForAllUsers.new.page).to be 1
     end
   end
@@ -22,12 +24,16 @@ describe Ranking::FindCurrentForAllUsers do
 
     context 'when no RankingSet exist' do
 
+      player_count = 101
+
       before :each do
-        expect(UserQueries).to respond_to(:all_for_ranking)
-        expect(UserQueries).to receive(:all_for_ranking).with(page: page, per_page: per_page).and_return(users)
+        expect(UserQueries).to respond_to(:player_count)
+        expect(UserQueries).to receive(:player_count).and_return(player_count)
+        expect(UserQueries).to respond_to(:all_for_ranking_view)
+        expect(UserQueries).to receive(:all_for_ranking_view).with(page: page, per_page: per_page).and_return(users)
       end
 
-      it 'should return neutral RankingItems with set user and user_id' do
+      it 'should return neutral paginatlable RankingItems with set user and user_id' do
         actual_ranking_items = subject.run(page: page)
 
         expect(actual_ranking_items.size).to be 2
@@ -37,6 +43,10 @@ describe Ranking::FindCurrentForAllUsers do
         expect(actual_ranking_items.second).to be_instance_of RankingItem
         expect(actual_ranking_items.second).to be_neutral
         expect(actual_ranking_items.second.user_id).to eq users.second.id
+        
+        expect(actual_ranking_items.limit_value).to be per_page
+        expect(actual_ranking_items.current_page).to be page
+        # expect(actual_ranking_items.total_count).to be 1000
       end
 
       context 'when given page is 1' do

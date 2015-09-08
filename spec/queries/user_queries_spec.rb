@@ -2,31 +2,38 @@ describe UserQueries do
 
   subject { UserQueries }
 
-  describe 'all_players' do
+  describe '::' do
 
-    it 'should return all users who are not admins' do
-      user_1 = create(:user)
-      user_2 = create(:user)
-      create(:admin)
-
-      players = User.players
-      expect(players.count).to be 2
-      expect(players.include?(user_1)).to be_truthy
-      expect(players.include?(user_2)).to be_truthy
+    it 'returns player count' do
+      User.create_unvalidated(email: 'mail1', admin: false)
+      User.create_unvalidated(email: 'mail2', admin: true)
+      User.create_unvalidated(email: 'mail3', admin: false)
+      expect(subject.player_count).to be 2
     end
   end
 
-  describe 'all_for_ranking' do
+  describe '::all_for_ranking_view' do
 
-    it 'should return all users being players paginated' do
-      create(:admin)
-      expected_user_1 = create(:player)
-      expected_user_2 = create(:player)
-      create(:player)
+    let!(:users) do
+      [
+          create(:admin),
+          create(:player),
+          create(:player),
+          create(:player)
+      ]
+    end
 
-      actual_users = subject.all_for_ranking(page: 1, per_page: 2)
-      expect(actual_users.count).to eq 2
-      expect(actual_users).to include expected_user_1, expected_user_2
+    it 'returns all users being players' do
+      actual_users = subject.all_for_ranking_view
+      expect(actual_users).to eq [users[1], users[2], users[3]]
+    end
+
+    it 'paginates result' do
+      actual_users = subject.all_for_ranking_view(page: 1, per_page: 2)
+      expect(actual_users).to eq [users[1], users[2]]
+      expect(actual_users.count).to be 2
+      expect(actual_users.current_page).to be 1
+      expect(actual_users.total_count).to be 3
     end
   end
 end

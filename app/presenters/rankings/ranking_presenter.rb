@@ -1,12 +1,9 @@
-class RankingsShowPresenter
-
-  attr_accessor :ranking_items
-
-  def initialize(tournament:, current_user_id:, page:)
+class RankingPresenter
+  
+  def initialize(ranking_items:, tournament:, current_user_id:)
     @tournament = tournament
     @current_user_id = current_user_id
-    @page = page
-    @ranking_items = []
+    @ranking_items = ranking_items
   end
 
   def subtitle
@@ -28,18 +25,11 @@ class RankingsShowPresenter
     end
   end
 
-  #TODO refactor
-  #uc ShowAllUserCurrentRanking sets sometimes an Array of neutral RankingItems
-  #in this case we have no pagination scope and have to provide our own
   def pagination_scope
-    if ranking_items.instance_of?(Array)
-      User.players_for_ranking_listing(page: page, per_page: Ggp2.config.user_page_count)
-    else
-      ranking_items
-    end
+    ranking_items
   end
 
   private
 
-  attr_reader :tournament, :current_user_id, :page
+  attr_reader :ranking_items, :tournament, :current_user_id, :page
 end

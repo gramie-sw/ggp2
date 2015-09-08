@@ -2,12 +2,12 @@ module UserQueries
 
   class << self
 
-    def all_players
-      User.where(admin: false)
+    def all_for_ranking_view(page: nil, per_page: nil)
+      User.where(admin: false).includes(champion_tip: :team).page(page).per(per_page)
     end
 
-    def all_for_ranking(page: nil, per_page: nil)
-      self.all_players.page(page).per(per_page).includes(champion_tip: :team)
+    def player_count
+      User.where(admin: false).count
     end
   end
 end
