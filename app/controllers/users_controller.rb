@@ -16,8 +16,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @presenter = UserShowPresenter.new
-    ShowUser.new(params[:id]).run_with_presentable(@presenter)
+    @user = current_resource
   end
 
   def create

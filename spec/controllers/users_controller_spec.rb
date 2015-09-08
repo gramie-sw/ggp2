@@ -6,10 +6,10 @@ describe UsersController, :type => :controller do
 
   describe '#show' do
 
-    let(:user) { create(:user) }
+    let(:user) { User.new(id: 786) }
 
     before :each do
-      allow_any_instance_of(ShowUser).to receive(:run_with_presentable)
+      allow(User).to receive(:find).and_return(user)
     end
 
     it 'should render show and return http success ' do
@@ -19,12 +19,10 @@ describe UsersController, :type => :controller do
     end
 
     it 'should run uc ShowUser and assign presenter' do
-      expect(ShowUser).to receive(:new).with(user.to_param).and_call_original
-      expect_any_instance_of(ShowUser).to receive(:run_with_presentable).with(instance_of(UserShowPresenter))
+      expect(User).to receive(:find).with(user.to_param).and_return(user)
 
       get :show, id: user.to_param
-
-      expect(assigns(:presenter)).to be_instance_of UserShowPresenter
+      expect(assigns(:user)).to be user
     end
 
   end
