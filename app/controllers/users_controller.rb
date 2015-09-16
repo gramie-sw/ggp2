@@ -20,10 +20,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    result = CreateUser.new.run(params[:user])
+    result = Users::Create.run(user_attributes: params[:user])
 
-    if result.successful?
-
+    if result.user.errors.empty?
+      redirect_to users_path
     else
       @user = result.user
       render :new

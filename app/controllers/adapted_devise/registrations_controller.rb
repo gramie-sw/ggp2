@@ -4,9 +4,9 @@ class AdaptedDevise::RegistrationsController < Devise::RegistrationsController
 
     if verify_recaptcha
 
-      result = CreateUser.new.run(params[:user])
+      result = Users::Create.run(user_attributes: params[:user])
 
-      if result.successful?
+      if result.user.errors.empty?
         UserMailer.user_signed_up(result.user, result.raw_token).deliver_now
         redirect_to new_user_session_path, notice: t('devise.passwords.send_initial_instructions')
       else
