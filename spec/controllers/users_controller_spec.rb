@@ -69,17 +69,18 @@ describe UsersController, :type => :controller do
     let(:user) { create(:user) }
 
     before :each do
-      allow_any_instance_of(DeleteUser).to receive(:run).and_return(user)
+      allow(Users::Delete).to receive(:run).and_return(user)
     end
 
-    it 'should redirect to users_path and assign flash messgae' do
+    it 'should run uc Users::Delete' do
+      expect(Users::Delete).to receive(:run).and_return(user)
+      delete :destroy, id: user.to_param
+    end
+
+    it 'should redirect to users_path and assign flash messge' do
       delete :destroy, id: user.to_param
       expect(response).to redirect_to(users_path)
       expect(flash[:notice]).to eq t('model.messages.destroyed', model: user.nickname)
-    end
-
-    it 'should run uc DeleteUser' do
-      delete :destroy, id: user.to_param
     end
   end
 

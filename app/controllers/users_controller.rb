@@ -54,7 +54,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user = DeleteUser.new(params[:id]).run
+    user = Users::Delete.run(id: params[:id])
     redirect_to users_path, notice: t('model.messages.destroyed', model: user.nickname)
   end
 
