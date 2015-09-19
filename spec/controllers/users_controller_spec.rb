@@ -4,6 +4,28 @@ describe UsersController, :type => :controller do
     create_and_sign_in :admin
   end
 
+  describe '#index' do
+
+    params = {type: User::TYPES[:admin], page: '3'}
+
+    before :each do
+      allow(Users::FindAllByType).to receive(:run).and_return(:users)
+    end
+
+    it 'calls Users::FindAllByType and assigns UsersIndexPresenter' do
+      expect(Users::FindAllByType).to receive(:run).with(type: params[:type], page: params[:page]).and_return(:users)
+      get :index, params
+    end
+
+    it 'assigns UserIndexPresenter and renders index' do
+      expect(UsersIndexPresenter).to receive(:new).with(:users, params[:type]).and_return(:presenter)
+      get :index, params
+      expect(assigns[:presenter]).to be :presenter
+      expect(response).to be_success
+      expect(response).to render_template :index
+    end
+  end
+
   describe '#create' do
 
     let(:user) { User.new }

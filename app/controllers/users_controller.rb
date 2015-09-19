@@ -2,13 +2,11 @@ class UsersController < ApplicationController
 
   USER_INDEX_REFERER_COOKIE_KEY = 'uir'
 
-  skip_before_filter :authenticate_user!, only: :new
   before_filter :remember_user_index_referer, only: :index
 
   def index
-    @presenter = UsersIndexPresenter.new
-    ShowUsers.new.run_with_presentable(presentable: @presenter, type: params[:type], page: params[:page],
-                                       per_page: Ggp2.config.user_page_count)
+    users = Users::FindAllByType.run(type: params[:type], page: params[:page])
+    @presenter = UsersIndexPresenter.new(users, params[:type])
   end
 
   def new

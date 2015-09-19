@@ -1,10 +1,10 @@
 - content_for(:title, t('general.user_administration'))
 
 ul.nav.nav-tabs
-  li class=('active' if (!@presenter.admin?))
-    = link_to I18n.t('general.player.other'), users_path(type: User::USER_TYPE_PLAYERS)
-  li class=('active' if (@presenter.admin?))
-    = link_to I18n.t('general.admin.other'), users_path(type: User::USER_TYPE_ADMINS)
+  li class=('active' if (!@presenter.showing_admins?))
+    = link_to I18n.t('general.player.other'), users_path(type: User::TYPES[:player])
+  li class=('active' if (@presenter.showing_admins?))
+    = link_to I18n.t('general.admin.other'), users_path(type: User::TYPES[:admin])
 
 br
 - if @presenter.users.present?

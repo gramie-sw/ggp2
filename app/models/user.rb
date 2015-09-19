@@ -2,8 +2,10 @@ class User < ActiveRecord::Base
 
   include UserRepository
 
-  USER_TYPE_ADMINS = 'admins'
-  USER_TYPE_PLAYERS = 'players'
+  TYPES = {
+      admin: 'admin',
+      player: 'player'
+  }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
