@@ -83,7 +83,63 @@ describe UsersController, :type => :controller do
       get :show, id: user.to_param
       expect(assigns(:user)).to be user
     end
+  end
 
+  describe '#update' do
+
+    let(:user) { create(:user) }
+    let(:params) { {id: user.to_param, user: {'email' => 'test@mail.de'}} }
+    let(:result) { Users::Create::ResultWithToken.new(user, 'raw_token') }
+    let(:referrer) { 'users' }
+
+    before :each do
+      allow(@controller.request).to receive(:referrer).and_return(referrer)
+      allow(Users::Update).to receive(:run).and_return(user)
+    end
+
+    it 'passes correct params to Users::Update' do
+      expect(Users::Update).
+          to receive(:run).with(current_user: @controller.current_user,
+                                user_id: params[:id],
+                                user_attributes: params[:user]).and_return(user)
+
+      patch :update, params
+    end
+
+    describe 'on success' do
+
+      it 'redirects to users_path and set flash message' do
+        patch :update, params
+
+        expect(response).to redirect_to(user_path(user))
+        expect(flash[:notice]).to eq I18n.t('model.messages.updated', model: User.model_name.human)
+      end
+
+      describe 'if referrer contains /user_tips' do
+
+        let(:referrer) { '/user_tips/33' }
+
+        it 'it redirects to referrer path' do
+          patch :update, params
+          expect(response).to redirect_to URI(request.referrer).path
+        end
+      end
+    end
+
+    describe 'on failure' do
+
+      before :each do
+        user.errors.add :base, 'message'
+      end
+
+      it 'assigns user and renders edit' do
+        patch :update, params
+
+        expect(assigns(:user)).to be user
+        expect(response).to be_success
+        expect(response).to render_template(:edit)
+      end
+    end
   end
 
   describe '#destroy' do

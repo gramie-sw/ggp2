@@ -12,7 +12,7 @@ class MainNavLinksProvider
       links << build_link(t('general.settings'), teams_path, :settings)
       # links << build_link(Team.model_name.human_plural, teams_path, :teams)
       links << build_link(t('general.pin_board'), pin_boards_path, :pin_boards)
-      links << build_link(User.model_name.human_plural, users_path(type: User::USER_TYPE_PLAYERS), :users)
+      links << build_link(User.model_name.human_plural, users_path(type: User::TYPES[:player]), :users)
       links << build_link(t('general.profile.one'), edit_user_registration_path, :profile )
     else
       if tournament.finished?

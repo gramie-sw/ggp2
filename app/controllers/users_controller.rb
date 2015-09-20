@@ -33,21 +33,18 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = Users::Update.run(current_user: current_user, user_id: params[:id], user_attributes: params[:user])
 
-    UpdateUser.
-        new(current_user: current_user, user_id: params[:id], attributes: params[:user]).
-        run_with_callback(self)
-  end
+    if @user.errors.blank?
 
-  def update_succeeded(user)
-    if request.referrer.match('/user_tips').present?
-      redirect_to URI(request.referrer).path
-    end
-  end
+      if request.referrer.match('/user_tips').present?
+        redirect_to URI(request.referrer).path
+      else
+        redirect_to user_path(@user), notice: I18n.t('model.messages.updated', model: User.model_name.human)
+      end
+    else
 
-  def update_failed(user)
-    if request.referrer.match('/user_tips').present?
-      render_403
+      render :edit
     end
   end
 
