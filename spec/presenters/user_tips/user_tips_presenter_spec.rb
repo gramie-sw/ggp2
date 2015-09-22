@@ -1,6 +1,6 @@
 describe UserTipsPresenter do
 
-  let(:user) { User.new(id: 34, nickname: 'nickname_1') }
+  let(:user) { User.new(id: 34, nickname: 'nickname_1', match_sort: 'matches.position') }
   let(:current_aggregate) { Aggregate.new(id: 345) }
   let(:user_is_current_user) { true }
   let(:tournament) { Tournament.new }
@@ -80,8 +80,9 @@ describe UserTipsPresenter do
     let(:tips) { [Tip.new, Tip.new] }
 
     it 'should return TipPresenters for all tips of current_aggregate and user' do
-      expect(Tip).to receive(:all_eager_by_user_id_and_aggregate_id_ordered_by_position).
-                          with(user.id, current_aggregate.id).and_return(tips)
+      expect(TipQueries).to respond_to(:all_eager_by_user_id_and_aggregate_id_ordered_by_position)
+      expect(TipQueries).to receive(:all_eager_by_user_id_and_aggregate_id_ordered_by_position).
+                          with(user.id, current_aggregate.id, order: user.match_sort).and_return(tips)
 
       expect(TipPresenter).to receive(:new).
                                   with(tip: tips.first, is_for_current_user: user_is_current_user).

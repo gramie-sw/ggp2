@@ -41,7 +41,7 @@ class UserTipsPresenter < MatchSchedulePresenter
   attr_reader :tips, :user, :tournament
 
   def tips
-    Tip.all_eager_by_user_id_and_aggregate_id_ordered_by_position(user.id, current_aggregate.id)
+    TipQueries.all_eager_by_user_id_and_aggregate_id_ordered_by_position(user.id, current_aggregate.id, order: user.match_sort)
   end
 
   def champion_tip

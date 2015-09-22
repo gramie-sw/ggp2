@@ -14,6 +14,7 @@ module Users
       user = User.new(user_attributes)
       user.tips = TipFactory.new(Match).build_all
       user.champion_tip = ChampionTip.new
+      user.match_sort = 'matches.position'
       successful = user.save
 
       # we have to extra update reset_password_token and reset_password_sent_at, because Devise has a before_save filter

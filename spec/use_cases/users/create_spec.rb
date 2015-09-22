@@ -35,7 +35,7 @@ describe Users::Create do
         allow_any_instance_of(User).to receive(:valid?).and_return true
       end
 
-      it 'should return ResultWithToken with user and successful? with true and raw token set' do
+      it 'returns ResultWithToken with created user and raw token' do
 
         expect_any_instance_of(TipFactory).to receive(:build_all).and_return(tips)
         expect_any_instance_of(User).to receive(:update).with({reset_password_token: encrypted_reset_password_token,
@@ -51,12 +51,13 @@ describe Users::Create do
         expect(result.user.password_confirmation).to eq password_token
         expect(result.user.tips.size).to eq 1
         expect(result.user.champion_tip).to be_present
+        expect(result.user.match_sort).to eq 'matches.position'
         expect(result.raw_token).to eq raw_reset_password_token
       end
 
-      context 'when user_attributes contains admin = treu' do
+      context 'when user_attributes contains admin = true' do
 
-        it 'create admin user' do
+        it 'creates admin user' do
           result = subject.run(user_attributes: user_attributes.merge(admin: true))
           expect(result.user.admin).to be true
         end

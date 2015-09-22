@@ -1,6 +1,6 @@
 describe TipQueries do
 
-  subject { Tip }
+  subject { TipQueries }
 
   describe '#all_eager_by_user_id_and_aggregate_id_ordered' do
 
