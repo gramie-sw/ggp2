@@ -5,7 +5,7 @@ module Users
     attribute :page, Integer
 
     def run
-      UserQueries.all_by_type_ordered(type: type, order: :nickname, page: page, per_page: per_page)
+      UserQueries.paginated_by_type(type: type, order: :nickname, page: page, per_page: per_page)
     end
 
     private

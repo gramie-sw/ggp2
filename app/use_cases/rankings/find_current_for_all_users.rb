@@ -14,7 +14,7 @@ module Rankings
     private
 
     def neutral_ranking
-      users = ::UserQueries.all_for_ranking_view(page: page, per_page: per_page)
+      users = ::UserQueries.paginated_for_ranking_view(page: page, per_page: per_page)
 
       ranking_items = users.each_with_index.map do |user, index|
         ranking_item = ::RankingItem.neutral(user_id: user.id)
@@ -27,7 +27,7 @@ module Rankings
     end
 
     def ranking_by_match_id(match_id)
-      RankingItemQueries.ranking_set_for_ranking_view_by_match_id(match_id, page: page, per_page: per_page)
+      RankingItemQueries.paginated_by_match_id_for_ranking_view(match_id, page: page, per_page: per_page)
     end
 
     def per_page

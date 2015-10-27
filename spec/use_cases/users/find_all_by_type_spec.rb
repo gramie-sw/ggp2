@@ -13,8 +13,8 @@ describe 'Users::FindAllByType' do
     end
 
     it 'returns all users paginated by given type ordered by nickname' do
-      expect(UserQueries).to respond_to(:all_by_type_ordered)
-      expect(UserQueries).to receive(:all_by_type_ordered).with(
+      expect(UserQueries).to respond_to(:paginated_by_type)
+      expect(UserQueries).to receive(:paginated_by_type).with(
                                  type: type,
                                  order: :nickname,
                                  page: page,
@@ -27,8 +27,8 @@ describe 'Users::FindAllByType' do
     describe 'if no type given' do
 
       it 'it uses type players' do
-        expect(UserQueries).to respond_to(:all_by_type_ordered)
-        expect(UserQueries).to receive(:all_by_type_ordered).with(
+        expect(UserQueries).to respond_to(:paginated_by_type)
+        expect(UserQueries).to receive(:paginated_by_type).with(
                                    type: User::TYPES[:player],
                                    order: :nickname,
                                    page: page,

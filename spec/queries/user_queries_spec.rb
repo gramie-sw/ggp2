@@ -3,7 +3,7 @@ describe UserQueries do
   subject { UserQueries }
 
 
-  describe '::all_by_type_ordered' do
+  describe '::paginated_by_type' do
 
     let!(:users) do
       [
@@ -15,49 +15,34 @@ describe UserQueries do
       ]
     end
 
-    describe 'if no type given' do
-
-      it 'returns all players' do
-        expect(subject.all_by_type_ordered).to eq [users[0], users[2], users[4]]
-      end
+    it 'returns all players if no type given' do
+      expect(subject.paginated_by_type).to eq [users[0], users[2], users[4]]
     end
 
-    describe 'if type player is given' do
-
-      it 'returns all players' do
-        expect(subject.all_by_type_ordered(type: User::TYPES[:player])).to eq [users[0], users[2], users[4]]
-      end
+    it 'returns all players if type player is given' do
+      expect(subject.paginated_by_type(type: User::TYPES[:player])).to eq [users[0], users[2], users[4]]
     end
 
-    describe 'if type admin is given' do
-
-      it 'returns all admins' do
-        expect(subject.all_by_type_ordered(type: User::TYPES[:admin])).to eq [users[1], users[3]]
-      end
+    it 'returns all admins if type admin is given' do
+      expect(subject.paginated_by_type(type: User::TYPES[:admin])).to eq [users[1], users[3]]
     end
 
-    describe 'if order parameter is given' do
-
-      it 'sorts player by order value' do
-        expect(subject.all_by_type_ordered(type: User::TYPES[:player], order: :email)).
-            to eq [users[2], users[0], users[4]]
-      end
+    it 'sorts player by order value if order parameter is given' do
+      expect(subject.paginated_by_type(type: User::TYPES[:player], order: :email)).
+          to eq [users[2], users[0], users[4]]
     end
 
-    describe 'if pagination parameters are given' do
-
-      it 'paginates result' do
-        actual_users = subject.all_by_type_ordered(type: User::TYPES[:player], page: 2, per_page: 2)
-        expect(actual_users).to eq [users[4]]
-        expect(actual_users.count).to be 1
-        expect(actual_users.current_page).to be 2
-        expect(actual_users.total_count).to be 3
-      end
+    it 'paginates result if pagination parameters are given' do
+      actual_users = subject.paginated_by_type(type: User::TYPES[:player], page: 2, per_page: 2)
+      expect(actual_users).to eq [users[4]]
+      expect(actual_users.count).to be 1
+      expect(actual_users.current_page).to be 2
+      expect(actual_users.total_count).to be 3
     end
   end
 
 
-  describe '::all_for_ranking_view' do
+  describe '::paginated_for_ranking_view' do
 
     let!(:users) do
       [
@@ -69,12 +54,12 @@ describe UserQueries do
     end
 
     it 'returns all users being players' do
-      actual_users = subject.all_for_ranking_view
+      actual_users = subject.paginated_for_ranking_view
       expect(actual_users).to eq [users[1], users[2], users[3]]
     end
 
     it 'paginates result' do
-      actual_users = subject.all_for_ranking_view(page: 1, per_page: 2)
+      actual_users = subject.paginated_for_ranking_view(page: 1, per_page: 2)
       expect(actual_users).to eq [users[1], users[2]]
       expect(actual_users.count).to be 2
       expect(actual_users.current_page).to be 1

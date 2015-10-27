@@ -47,7 +47,7 @@ describe RankingItemQueries do
     end
   end
 
-  describe '::ranking_set_for_ranking_view_by_match_id' do
+  describe '::paginated_by_match_id_for_ranking_view' do
 
     match_id = 567
 
@@ -64,28 +64,23 @@ describe RankingItemQueries do
     end
 
     it 'returns RankingItems with given match_id ordered by position' do
-      actual_ranking_items = subject.ranking_set_for_ranking_view_by_match_id(match_id)
+      actual_ranking_items = subject.paginated_by_match_id_for_ranking_view(match_id)
       expect(actual_ranking_items).to eq [ranking_items[1], ranking_items[2], ranking_items[0], ranking_items[3]]
     end
 
 
     it 'returns RankinItems with no match_id if given match_id is nil' do
-      actual_ranking_items = subject.ranking_set_for_ranking_view_by_match_id(nil)
+      actual_ranking_items = subject.paginated_by_match_id_for_ranking_view(nil)
       expect(actual_ranking_items).to eq [ranking_items[6], ranking_items[5]]
     end
 
     it 'paginates RankingItems' do
-      actual_ranking_items = subject.ranking_set_for_ranking_view_by_match_id(match_id, page: 2, per_page: 2)
+      actual_ranking_items = subject.paginated_by_match_id_for_ranking_view(match_id, page: 2, per_page: 2)
 
       expect(actual_ranking_items).to eq [ranking_items[0], ranking_items[3]]
       expect(actual_ranking_items.count).to be 2
       expect(actual_ranking_items.current_page).to be 2
       expect(actual_ranking_items.total_count).to be 4
-    end
-
-    it 'returns only RankingItems with certain position if position is given' do
-      actual_ranking_items = subject.ranking_set_for_ranking_view_by_match_id(match_id, positions: [1,2])
-      expect(actual_ranking_items).to eq [ranking_items[1], ranking_items[2]]
     end
   end
 

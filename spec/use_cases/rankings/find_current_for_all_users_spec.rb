@@ -29,8 +29,8 @@ describe Rankings::FindCurrentForAllUsers do
       before :each do
         expect(UserQueries).to respond_to(:player_count)
         expect(UserQueries).to receive(:player_count).and_return(player_count)
-        expect(UserQueries).to respond_to(:all_for_ranking_view)
-        expect(UserQueries).to receive(:all_for_ranking_view).with(page: page, per_page: per_page).and_return(users)
+        expect(UserQueries).to respond_to(:paginated_for_ranking_view)
+        expect(UserQueries).to receive(:paginated_for_ranking_view).with(page: page, per_page: per_page).and_return(users)
       end
 
       it 'should return neutral paginatlable RankingItems with set user and user_id' do
@@ -87,8 +87,8 @@ describe Rankings::FindCurrentForAllUsers do
 
         it 'returns RankinItems for all last updated Tip-RankingSet' do
           expected_ranking_items = 'ExpectedRankingItems'
-          expect(RankingItemQueries).to respond_to(:ranking_set_for_ranking_view_by_match_id)
-          expect(RankingItemQueries).to receive(:ranking_set_for_ranking_view_by_match_id).
+          expect(RankingItemQueries).to respond_to(:paginated_by_match_id_for_ranking_view)
+          expect(RankingItemQueries).to receive(:paginated_by_match_id_for_ranking_view).
                                             with(match_id, page: page, per_page: per_page).
                                             and_return(expected_ranking_items)
 
@@ -105,8 +105,8 @@ describe Rankings::FindCurrentForAllUsers do
 
         it 'returns RankinItem with for user_id of ChampionTip-RankingSet' do
           expected_ranking_items = 'ExpectedRankingItems'
-          expect(RankingItemQueries).to respond_to(:ranking_set_for_ranking_view_by_match_id)
-          expect(RankingItemQueries).to receive(:ranking_set_for_ranking_view_by_match_id).
+          expect(RankingItemQueries).to respond_to(:paginated_by_match_id_for_ranking_view)
+          expect(RankingItemQueries).to receive(:paginated_by_match_id_for_ranking_view).
                                             with(nil, page: page, per_page: per_page).
                                             and_return(expected_ranking_items)
 
