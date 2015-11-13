@@ -7,7 +7,8 @@ class ChampionTip < ActiveRecord::Base
 
   RESULTS = {incorrect: 0, correct: 1}
 
-  validates :team, presence: true, on: :update
+  # we must comment this out because we cannot set a result on ChampionTip without a Team
+  # validates :team, presence: true, on: :update
 
   def correct?
     result == RESULTS[:correct]

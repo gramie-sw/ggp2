@@ -13,5 +13,9 @@ module TipQueries
           where('tips.user_id' => user_id, 'matches.aggregate_id' => aggregate_ids).
           order(order)
     end
+
+    def clear_all_results_by_match_id(match_id)
+      Tip.where(match_id: match_id).update_all(result: nil)
+    end
   end
 end

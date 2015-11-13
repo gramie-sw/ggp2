@@ -105,6 +105,16 @@ describe Match, :type => :model do
     end
   end
 
+  describe '#clear_result' do
+
+    it 'sets both score fields to nil' do
+      match = Match.new(score_team_1: 1, score_team_2: 2)
+      match.clear_result
+      expect(match.score_team_1).to be nil
+      expect(match.score_team_2).to be nil
+    end
+  end
+
   describe '#has_result?' do
 
     context 'if score_team_1 and score_team_2 present' do
@@ -172,17 +182,6 @@ describe Match, :type => :model do
       it 'should return true' do
         expect(subject).to be_tippable
       end
-    end
-  end
-
-  describe '::ordered_match_ids' do
-
-    let(:ordered_by_position_match_relation) { double('ordered_by_position_match_relation') }
-
-    it 'should return all ordered_match ids' do
-      expect(Match).to receive(:order_by_position_asc).and_return(ordered_by_position_match_relation)
-      expect(ordered_by_position_match_relation).to receive(:pluck).with(:id)
-      Match.ordered_match_ids
     end
   end
 

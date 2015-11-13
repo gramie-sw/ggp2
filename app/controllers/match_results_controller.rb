@@ -21,4 +21,10 @@ class MatchResultsController < ApplicationController
       render :new
     end
   end
+
+  def destroy
+    MatchResults::Delete.run(match_id: params[:id])
+
+    redirect_to match_schedules_path, notice: t('model.messages.destroyed', model: t('match.result'))
+  end
 end

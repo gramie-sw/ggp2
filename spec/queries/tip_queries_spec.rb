@@ -66,4 +66,23 @@ describe TipQueries do
       end
     end
   end
+
+  describe '#clear_all_results_by_match_id' do
+
+    match_id = 6
+
+    let!(:tips) do
+      [Tip.create_unvalidated(result: 0, match_id: match_id),
+       Tip.create_unvalidated(result: 2, match_id: match_id),
+       Tip.create_unvalidated(result: 1, match_id: match_id+1)]
+    end
+
+    it 'destroys all Tips for given match_id' do
+      subject.clear_all_results_by_match_id(match_id)
+      tips.each(&:reload)
+      expect(tips.first.result).to be_nil
+      expect(tips.second.result).to be_nil
+      expect(tips.third.result).to be 1
+    end
+  end
 end

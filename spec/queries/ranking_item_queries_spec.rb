@@ -116,4 +116,23 @@ describe RankingItemQueries do
     end
   end
 
+  describe 'destroy_all_by_match_id' do
+
+    match_id =  1234
+
+    let!(:ranking_items) do
+      [
+          RankingItem.create_unvalidated(match_id: match_id),
+          RankingItem.create_unvalidated(match_id: match_id + 1),
+          RankingItem.create_unvalidated(match_id: match_id),
+          RankingItem.create_unvalidated(match_id: match_id + 2),
+      ]
+    end
+
+    it 'destroy all RinkingItems with given match_id' do
+      subject.destroy_all_by_match_id(match_id)
+      expect(RankingItem.all).to eq [ranking_items[1], ranking_items[3]]
+    end
+  end
+
 end

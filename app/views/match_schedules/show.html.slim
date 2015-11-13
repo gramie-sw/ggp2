@@ -35,7 +35,6 @@
           th.text-center = I18n.t('general.match_result')
           th = Match.human_attribute_name(:date)
           th
-          th
       tbody
         - for match_presenter in @presenter.match_presenters
           tr.link-row data-href="#{new_match_result_path(match_id: match_presenter.id)}"
@@ -49,11 +48,22 @@
             td.text-center = match_presenter.result
             td = l match_presenter.date, format: :short
             td
-              = link_to(edit_match_path(match_presenter), title: t('model.messages.edit', model: ("#{Match.model_name.human}\
-                                                                                        #{match_presenter.__getobj__.position}"))) do
+              = link_to(edit_match_path(match_presenter),
+                        title: t('model.messages.edit',
+                                 model: ("#{Match.model_name.human} #{match_presenter.__getobj__.position}")))
                 i.fa.fa-pencil
-            td
-              = link_to(match_path(match_presenter), method: :delete, data: {confirm: t('model.messages.destroy_really', \
-              model: ("#{Match.model_name.human} #{match_presenter.__getobj__.position}")), method: :delete}, title: t('model.messages.destroy', \
-              model: ("#{Match.model_name.human} #{match_presenter.__getobj__.position}"))) do
+              '&nbsp;
+              = link_to(match_result_path(match_presenter),
+                        data: {confirm: t('model.messages.destroy_really',
+                                          model: t('match.result')),
+                               method: :delete},
+                        title: t('model.messages.destroy', model: t('match.result')))
+                i.fa.fa-times
+              '&nbsp;
+              = link_to(match_path(match_presenter),
+                        data: {confirm: t('model.messages.destroy_really',
+                                          model: ("#{Match.model_name.human} #{match_presenter.__getobj__.position}")),
+                               method: :delete},
+                        title: t('model.messages.destroy',
+                                 model: "#{Match.model_name.human} #{match_presenter.__getobj__.position}")) do
                 i.fa.fa-trash-o

@@ -4,7 +4,7 @@ describe MatchSchedulePresenter do
 
   subject { MatchSchedulePresenter.new(current_aggregate: current_aggregate) }
 
-  it { is_expected.to respond_to(:current_aggregate)}
+  it { is_expected.to respond_to(:current_aggregate) }
 
   describe '#current_phase' do
 
@@ -56,11 +56,10 @@ describe MatchSchedulePresenter do
     it 'returns ordered MatchPresenters for all Matches of current_aggregate' do
       matches = [Match.new(id: 876), Match.new(id: 543)]
 
-      expect(Match).
-          to receive(:all_by_aggregate_id).
-                 with(current_aggregate.id,
-                      order: :position,
-                      includes: [:team_1, :team_2]).and_return(matches)
+      expect(MatchQueries).to respond_to(:all_by_aggregate_id)
+      expect(MatchQueries).to receive(:all_by_aggregate_id).with(current_aggregate.id,
+                                                                 order: :position,
+                                                                 includes: [:team_1, :team_2]).and_return(matches)
 
       match_presenters = subject.match_presenters
       expect(match_presenters.count).to eq 2

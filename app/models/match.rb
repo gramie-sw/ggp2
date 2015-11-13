@@ -1,7 +1,6 @@
 class Match < ActiveRecord::Base
 
   extend MatchRepository
-  extend MatchQueries
   include ScoreValidatable
 
   belongs_to :aggregate
@@ -24,6 +23,11 @@ class Match < ActiveRecord::Base
               length: {minimum: 3, maximum: 64}, technical_name_allowed_chars: true, allow_blank: true
   end
 
+  def clear_result
+    self.score_team_1 = nil
+    self.score_team_2 = nil
+  end
+
   def has_result?
     score_team_1.present? && score_team_2.present?
   end
@@ -44,10 +48,6 @@ class Match < ActiveRecord::Base
     if has_result? && score_team_1 != score_team_2
       score_team_1 > score_team_2 ? team_1 : team_2
     end
-  end
-
-  def self.ordered_match_ids
-    Match.order_by_position_asc.pluck(:id)
   end
 
   #TODO test or remove

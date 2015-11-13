@@ -77,5 +77,18 @@ describe MatchResultsController, :type => :controller do
         expect(assigns[:match_result_presenter].score_team_1).to eq 2.to_s
       end
     end
+
+    describe '#destroy' do
+
+      it 'calls MatchResults::Delete and redirects to match_schedule_path' do
+        match_id = '98'
+        expect(MatchResults::Delete).to receive(:run).with(match_id: match_id)
+
+        delete :destroy, id: match_id
+        expect(response).to redirect_to(match_schedules_path)
+        expect(flash[:notice]).to eq t('model.messages.destroyed', model: t('match.result'))
+
+      end
+    end
   end
 end

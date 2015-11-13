@@ -1,12 +1,7 @@
 class TipRankingSetFinder
 
-  def initialize ordered_match_ids
-    @ordered_match_ids = ordered_match_ids
-  end
-
-  def find_previous current_match_id
-    previous_match_ids = ordered_match_ids[0, ordered_match_ids.index(current_match_id)]
-    match_id = find_next_ranking_set_match_id previous_match_ids.reverse
+  def find_previous(match_id)
+    match_id = find_next_ranking_set_match_id(match_id, reverse_search: true)
 
     if match_id
       create_ranking_set(match_id, RankingItemQueries.all_by_match_id(match_id))
@@ -15,18 +10,39 @@ class TipRankingSetFinder
     end
   end
 
+  def find_next_match_id(match_id)
+    find_next_ranking_set_match_id(match_id)
+  end
 
-  def find_next_match_id current_match_id
-    next_ordered_match_ids = ordered_match_ids[ordered_match_ids.index(current_match_id)+1, ordered_match_ids.size-1]
-    find_next_ranking_set_match_id(next_ordered_match_ids)
+  def find_previous_match_id(match_id)
+    find_next_ranking_set_match_id(match_id, reverse_search: true)
+  end
+
+  def exists_next?(match_id)
+    find_next_ranking_set_match_id(match_id).present?
+  end
+
+  def exists_for_last_match?
+    RankingItemQueries.exists_by_match_id?(ordered_match_ids.last)
   end
 
   private
 
-  attr_reader :ordered_match_ids
+  def ordered_match_ids
+    @ordered_match_ids ||= MatchQueries.all_match_ids_ordered_by_position.to_a
+  end
 
-  def find_next_ranking_set_match_id ordered_match_ids
-    ordered_match_ids.detect do |match_id|
+  def find_next_ranking_set_match_id(match_id, reverse_search: false)
+
+    match_id_index = ordered_match_ids.index(match_id)
+
+    if reverse_search
+      match_ids_to_search_through = ordered_match_ids[0, match_id_index].reverse
+    else
+      match_ids_to_search_through = ordered_match_ids[match_id_index + 1, ordered_match_ids.size]
+    end
+
+    match_ids_to_search_through.detect do |match_id|
       RankingItemQueries.exists_by_match_id?(match_id)
     end
   end

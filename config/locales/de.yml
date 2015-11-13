@@ -298,6 +298,7 @@ de:
        Wähle deinen %{champion_title}
 
   match:
+    result: Spielergebnis
     sort: Spielesortierung
     add_subsequent: Weiteres Spiel im Anschluss anlegen
 

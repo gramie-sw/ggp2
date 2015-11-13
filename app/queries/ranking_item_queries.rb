@@ -31,6 +31,10 @@ module RankingItemQueries
       end
       successful
     end
+
+    def destroy_all_by_match_id(match_id)
+      RankingItem.destroy_all(match_id: match_id)
+    end
   end
 
 end

@@ -20,7 +20,7 @@ describe Rankings::Update do
     create(:champion_tip, user: user_3, result: ChampionTip::RESULTS[:incorrect])
   end
 
-  it 'should create RankingItems for given match_id and ChampionTips' do
+  it 'creates RankingItems for given match_id and ChampionTips' do
 
     subject.run(match_id: match_1.id)
 
@@ -78,7 +78,7 @@ describe Rankings::Update do
     expect(Property.champion_tip_ranking_set_exists?).to be_truthy
   end
 
-  it 'should override existing RakingItems for given and subsequent matches' do
+  it 'overrides existing RakingItems for given and subsequent matches' do
 
     subject.run(match_id: match_2.id)
 

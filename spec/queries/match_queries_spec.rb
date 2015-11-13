@@ -1,6 +1,6 @@
 describe MatchQueries do
 
-  subject { Match }
+  subject { MatchQueries }
 
   describe '::all_by_aggregate_id' do
 
@@ -60,6 +60,21 @@ describe MatchQueries do
       expect(relation).to receive(:includes).with(:team_1, :team_2).and_return(relation)
 
       subject.all_by_aggregate_id(phase.id, order: :position, includes: [:team_1, :team_2])
+    end
+  end
+
+  describe '::all_match_ids_ordered_by_position' do
+
+    let!(:matches) do
+      [
+          Match.create_unvalidated(position: 3),
+          Match.create_unvalidated(position: 1),
+          Match.create_unvalidated(position: 2)
+      ]
+    end
+
+    it 'returns all match_ids order by position' do
+      expect(subject.all_match_ids_ordered_by_position).to eq [matches[1].id, matches[2].id, matches[0].id]
     end
   end
 end
