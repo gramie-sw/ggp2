@@ -9,13 +9,13 @@ describe RankingsController, :type => :controller do
   describe '#show' do
 
     before :each do
-      allow(Rankings::FindCurrentForAllUsers).to receive(:run)
+      allow(RankingSets::FindCurrent).to receive(:run)
     end
 
 
-    it 'calls Rankings::FindCurrentForAllUsers and assigns RankingShowPresenter' do
+    it 'calls RankingSets::FindCurrent and assigns RankingShowPresenter' do
       page = '2'
-      expect(Rankings::FindCurrentForAllUsers).to receive(:run).with(page: page).and_return(:ranking_items)
+      expect(RankingSets::FindCurrent).to receive(:run).with(page: page).and_return(:ranking_items)
       expect(RankingPresenter).to receive(:new).with(
                                            ranking_items: :ranking_items,
                                            tournament: @controller.tournament,

@@ -1,4 +1,4 @@
-module Rankings
+module RankingItems
   class FindWinners
 
     Result = Struct.new(:first_places, :second_places, :third_places)

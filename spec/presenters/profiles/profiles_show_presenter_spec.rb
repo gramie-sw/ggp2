@@ -98,7 +98,7 @@ describe ProfilesShowPresenter do
 
     it 'should return player statistic for given user' do
 
-      expect(Rankings::FindCurrentForUser).to receive(:run).with(user_id: user.id).and_return(current_user_ranking_item)
+      expect(RankingItems::FindCurrentForUser).to receive(:run).with(user_id: user.id).and_return(current_user_ranking_item)
       expect(UserStatistic).to receive(:new).
           with(user: user, tournament: tournament, current_ranking_item: current_user_ranking_item).
           and_return(expected_user_statistic)
@@ -107,7 +107,7 @@ describe ProfilesShowPresenter do
     end
 
     it 'should cache object' do
-      expect(Rankings::FindCurrentForUser).to receive(:run).and_return(current_user_ranking_item)
+      expect(RankingItems::FindCurrentForUser).to receive(:run).and_return(current_user_ranking_item)
       expect(UserStatistic).to receive(:new).and_return(expected_user_statistic)
 
       subject.user_statistic

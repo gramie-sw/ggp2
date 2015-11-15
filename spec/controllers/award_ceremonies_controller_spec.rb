@@ -9,7 +9,7 @@ describe AwardCeremoniesController, :type => :controller do
   describe '#show' do
 
     before :each do
-      allow_any_instance_of(Rankings::FindWinners).to receive(:run)
+      allow_any_instance_of(RankingItems::FindWinners).to receive(:run)
     end
 
     it 'should return http success' do

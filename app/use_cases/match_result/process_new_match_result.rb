@@ -9,6 +9,6 @@ class ProcessNewMatchResult
     if tournament.champion_team.present?
       CalculateChampionTipResults.new(tournament.champion_team).run
     end
-    Rankings::Update.run(match_id: match_id)
+    RankingSets::Update.run(match_id: match_id)
   end
 end

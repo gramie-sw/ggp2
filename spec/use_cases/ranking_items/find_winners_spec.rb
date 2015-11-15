@@ -1,4 +1,4 @@
-describe Rankings::FindWinners do
+describe RankingItems::FindWinners do
 
   describe '#run' do
 

@@ -1,5 +1,5 @@
-module Rankings
-  class FindCurrentForAllUsers < FindCurrentBase
+module RankingSets
+  class FindCurrent < UseCase
 
     attribute :page, Integer
 
@@ -9,6 +9,24 @@ module Rankings
       # We cannot use default option von Virtus attribute-method to achieve the same,
       # because this would not be uses when page with value nil is given
       @page = 1 if page.nil? || page == 0
+    end
+
+    def run
+
+      # We can unify this code with RankingItems::FindCurrentForUser
+      if ::Property.champion_tip_ranking_set_exists?
+        ranking_by_match_id(nil)
+      else
+
+        match_id = ::Property.last_tip_ranking_set_match_id
+
+        if match_id.nil?
+          neutral_ranking
+        else
+          ranking_by_match_id(match_id)
+        end
+      end
+
     end
 
     private

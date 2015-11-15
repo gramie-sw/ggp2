@@ -15,7 +15,7 @@ module RankingSets
       next_match_id = tip_ranking_set_finder.find_next_match_id(match_id)
 
       if next_match_id.present?
-        ::Rankings::Update.run(match_id: next_match_id)
+        ::RankingSets::Update.run(match_id: next_match_id)
       else
         previous_match_id = tip_ranking_set_finder.find_previous_match_id(match_id)
         ::Property.set_last_tip_ranking_set_match_id_to(previous_match_id)

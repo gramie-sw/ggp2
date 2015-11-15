@@ -1,6 +1,6 @@
-describe Rankings::FindCurrentForUser do
+describe RankingItems::FindCurrentForUser do
 
-  subject { Rankings::FindCurrentForUser }
+  subject { RankingItems::FindCurrentForUser }
 
   describe '#run' do
 

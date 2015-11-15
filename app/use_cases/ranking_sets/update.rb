@@ -1,4 +1,4 @@
-module Rankings
+module RankingSets
   class Update < UseCase
 
     attribute :match_id

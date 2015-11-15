@@ -29,10 +29,10 @@ describe RankingSets::Delete do
 
   describe '#run' do
 
-    describe 'if no subsequent RankingSet exists it does not call Rankings::Update' do
+    describe 'if no subsequent RankingSet exists it does not call RankingSets::Update' do
 
       before :each do
-        expect(Rankings::Update).not_to receive(:run)
+        expect(RankingSets::Update).not_to receive(:run)
         subject.run(match_id: match_2.id)
       end
 
@@ -46,7 +46,7 @@ describe RankingSets::Delete do
       end
     end
 
-    describe 'if subsequent RankingSet exits it calls Rankings::Update and' do
+    describe 'if subsequent RankingSet exits it calls RankingSets::Update and' do
 
       let!(:match_3_ranking_items) do
         [create(:ranking_item, user: user_1, match: match_3),
@@ -54,7 +54,7 @@ describe RankingSets::Delete do
       end
 
       before :each do
-        expect(Rankings::Update).to receive(:run).with(match_id: match_3.id)
+        expect(RankingSets::Update).to receive(:run).with(match_id: match_3.id)
         subject.run(match_id: match_2.id)
       end
 
