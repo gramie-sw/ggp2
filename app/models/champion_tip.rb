@@ -7,10 +7,17 @@ class ChampionTip < ActiveRecord::Base
 
   RESULTS = {incorrect: 0, correct: 1}
 
-  # we must comment this out because we cannot set a result on ChampionTip without a Team
-  # validates :team, presence: true, on: :update
+  validates :team, presence: true, on: :update
 
   def correct?
     result == RESULTS[:correct]
+  end
+
+  def set_result champion_team
+    if team_id == champion_team.id
+      self.result = ChampionTip::RESULTS[:correct]
+    else
+      self.result = ChampionTip::RESULTS[:incorrect]
+    end
   end
 end

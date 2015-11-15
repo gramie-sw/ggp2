@@ -6,15 +6,15 @@ class CalculateChampionTipResults
 
   def run
 
-    champion_tip_result_setter = ChampionTipResultSetter.new champion_team
-
     champion_tips = ChampionTip.all
 
     champion_tips.each do |champion_tip|
-      champion_tip_result_setter.set_result(champion_tip)
-    end
+      champion_tip.set_result(champion_team)
 
-    ChampionTip.save_multiple champion_tips
+      # We save the result unvalidated because if no team has been set
+      # a validation error occurs
+      champion_tip.save(validate: false)
+    end
   end
 
   attr_reader :champion_team
