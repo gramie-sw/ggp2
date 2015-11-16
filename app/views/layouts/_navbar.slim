@@ -15,7 +15,7 @@ header#header
             ="#{tournament_title} #{t('app_title')}"
       div.collapse.navbar-collapse
         ul.nav.navbar-nav.navbar-right
-          - for link in main_nav_links
+          - for link in main_navbar_presenter.nav_links
             li class=(link.active? ? 'active' : '') = link_to link.label, link.url
           li
             = link_to destroy_user_session_path, method: :delete, title: t('views.layouts.navigation.main_menu.logout')

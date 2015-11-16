@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   before_filter :authorize
 
-  helper_method :main_nav_links, :random_quotation, :tournament_title, :champion_title
+  helper_method :main_navbar_presenter, :random_quotation, :tournament_title, :champion_title
 
   def after_sign_in_path_for(user)
     if user.admin?
@@ -44,8 +44,12 @@ class ApplicationController < ActionController::Base
     FindRandomQuotation.new.run
   end
 
-  def main_nav_links
-    MainNavLinksProvider.create(params[:controller], params[:action]).links(current_user, tournament)
+  def main_navbar_presenter
+    if current_user.admin?
+      AdminMainNavbarPresenter.new(params: params)
+    else
+      UserMainNavbarPresenter.new(params: params, current_user: current_user, tournament: tournament)
+    end
   end
 
   protected
