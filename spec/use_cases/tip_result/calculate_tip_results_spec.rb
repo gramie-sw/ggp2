@@ -3,7 +3,8 @@ describe CalculateTipResults do
   let(:match) { create(:match, score_team_1: 1, score_team_2: 2) }
 
   describe '#run' do
-    it 'should set result on tipped tips by given match id and saves them' do
+
+    it 'sets result on tipped tips by given match id and saves them' do
       tip_1 = create(:tip, match: match, score_team_1: 2, score_team_2: 1)
       tip_2 = create(:tip, score_team_1: 2, score_team_2: 1)
       tip_3 = create(:tip, match: match, score_team_1: nil, score_team_2: nil)

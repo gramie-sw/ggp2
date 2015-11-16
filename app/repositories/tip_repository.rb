@@ -11,7 +11,6 @@ module TipRepository
     end
     scope :not_tipped, -> { where("tips.score_team_1 IS NULL AND tips.score_team_2 IS NULL") }
     scope :order_by_match_position, -> { joins(:match).order('matches.position').references(:matches) }
-    scope :tipped, -> { where("tips.score_team_1 IS NOT NULL AND tips.score_team_2 IS NOT NULL") }
   end
 
   module ClassMethods
@@ -34,12 +33,6 @@ module TipRepository
 
     def user_ids_with_at_least_missed_tips(count:)
       missed_tips.group_by_user_with_at_least_tips(count).pluck(:user_id)
-    end
-
-    def update_multiple_tips tips
-      Tip.transaction do
-        tips.map(&:save).all? || raise(ActiveRecord::Rollback)
-      end
     end
   end
 end

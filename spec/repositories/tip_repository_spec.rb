@@ -149,47 +149,6 @@ describe TipRepository do
     end
   end
 
-  describe '::tipped' do
-
-    it 'should return all tipped tips' do
-
-      tip_1 = create(:tip, score_team_1: 1, score_team_2: 0)
-      create(:tip, score_team_1: nil, score_team_2: nil)
-      tip_3 = create(:tip, score_team_1: 2, score_team_2: 2)
-
-      tips = subject.tipped
-      expect(tips.count).to eq 2
-      expect(tips).to include tip_1, tip_3
-    end
-  end
-
-  describe '::update_multiple_tips' do
-
-    let(:tips) do
-      [
-          build(:tip),
-          build(:tip),
-          build(:tip)
-      ]
-    end
-
-    it 'should update all given tips' do
-
-      expect(subject.update_multiple_tips(tips)).to be_truthy
-      expect(tips[0].reload.new_record?).to be_falsey
-      expect(tips[1].reload.new_record?).to be_falsey
-      expect(tips[2].reload.new_record?).to be_falsey
-    end
-
-    it 'should update all given tips transactional' do
-
-      tips[1].score_team_1 = -1
-
-      expect(subject.update_multiple_tips(tips)).to be_falsey
-      expect(Tip.all.size).to eq 0
-    end
-  end
-
   describe '::results_by_user_id' do
 
     it 'should return all results by given user_id' do

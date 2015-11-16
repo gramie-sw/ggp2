@@ -1,4 +1,4 @@
-describe Tip, :type => :model do
+describe Tip do
 
   it 'should have valid factory' do
     expect(build(:tip)).to be_valid
@@ -60,13 +60,6 @@ describe Tip, :type => :model do
     it { is_expected.to belong_to(:match) }
   end
 
-  describe '::MISSED' do
-
-    it 'should not be one of ::RESULTS values' do
-      expect(Tip::RESULTS.values).not_to include(Tip::MISSED)
-    end
-  end
-
   describe '#tippable?' do
 
     let(:match) { Match.new }
@@ -92,34 +85,25 @@ describe Tip, :type => :model do
   describe '#tipped?' do
 
     let(:match) { Match.new }
-    subject { Tip.new(match: match)}
+    subject { Tip.new(match: match) }
 
-    it 'should return true if score_team_1 and score_team_2 are set' do
-      subject.score_team_1 = 1
-      subject.score_team_2 = 1
+    it 'returns true if score_team_1 and score_team_2 present' do
+      subject = Tip.new(score_team_1: 1, score_team_2: 1)
+      expect(subject.tipped?).to be true
 
-      expect(subject.tipped?).to be_truthy
+      subject = Tip.new(score_team_1: 0, score_team_2: 0)
+      expect(subject.tipped?).to be true
     end
 
-    it 'should return true if score_team_1 is not set' do
-      subject.score_team_1 = nil
-      subject.score_team_2 = 1
+    it 'returns false if at least on score value is missing' do
+      subject = Tip.new(score_team_1: nil, score_team_2: 1)
+      expect(subject.tipped?).to be false
 
-      expect(subject.tipped?).to be_falsey
-    end
+      subject = Tip.new(score_team_1: 1, score_team_2: nil)
+      expect(subject.tipped?).to be false
 
-    it 'should return true if score_team_1 is not set' do
-      subject.score_team_1 = 1
-      subject.score_team_2 = nil
-
-      expect(subject.tipped?).to be_falsey
-    end
-
-    it 'should return false if score_team_1 and score_team_2 are not set' do
-      subject.score_team_1 = nil
-      subject.score_team_2 = nil
-
-      expect(subject.tipped?).to be_falsey
+      subject = Tip.new(score_team_1: nil, score_team_2: nil)
+      expect(subject.tipped?).to be false
     end
   end
 
@@ -197,6 +181,45 @@ describe Tip, :type => :model do
         subject.result = Tip::RESULTS[:incorrect]
         expect(subject).not_to be_correct_tendency_only
       end
+    end
+  end
+
+  describe '#set_result' do
+
+    let(:match) { Match.new(score_team_1: 1, score_team_2: 2) }
+
+    it 'sets result to incorrect if tip is wrong' do
+      subject = Tip.new(score_team_1: 1, score_team_2: 0)
+      subject.set_result(match)
+      expect(subject.result).to be Tip::RESULTS[:incorrect]
+
+      subject = Tip.new(score_team_1: nil, score_team_2: nil)
+      subject.set_result(match)
+      expect(subject.result).to be Tip::RESULTS[:incorrect]
+
+      subject = Tip.new(score_team_1: 2, score_team_2: 1)
+      subject.set_result(match)
+      expect(subject.result).to be Tip::RESULTS[:incorrect]
+    end
+
+    it 'sets result to correct_tendency_only if tip has correct tendence' do
+      subject = Tip.new(score_team_1: 2, score_team_2: 3)
+      subject.set_result(match)
+      expect(subject.result).to be Tip::RESULTS[:correct_tendency_only]
+
+      subject = Tip.new(score_team_1: 0, score_team_2: 1)
+      subject.set_result(match)
+      expect(subject.result).to be Tip::RESULTS[:correct_tendency_only]
+
+      subject = Tip.new(score_team_1: 1, score_team_2: 1)
+      subject.set_result(Match.new(score_team_1: 2, score_team_2: 2))
+      expect(subject.result).to be Tip::RESULTS[:correct_tendency_only]
+    end
+
+    it 'sets result to correct if tip is correct' do
+      subject = Tip.new(score_team_1: 1, score_team_2: 2)
+      subject.set_result(match)
+      expect(subject.result).to be Tip::RESULTS[:correct]
     end
   end
 end

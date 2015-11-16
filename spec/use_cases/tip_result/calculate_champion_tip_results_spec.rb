@@ -10,7 +10,7 @@ describe CalculateChampionTipResults do
   let!(:champion_tips) do
     [create(:champion_tip, team: teams.second),
      create(:champion_tip, team: teams.first),
-     # we check that also ChampionTips with no Team will get a result
+     # we check that also ChampionTips with no Team will get an result
      create(:champion_tip, team: nil)]
   end
 
