@@ -6,17 +6,13 @@ describe ProcessNewMatchResult do
 
     context 'when tournament has no champion_team' do
 
-      it 'should calculate results of tips and update ranking for match of given match_id' do
-
+      it 'calculates results of tips and update ranking for match of given match_id' do
         expect_any_instance_of(Tournament).to receive(:champion_team).and_return(nil)
 
-        calculate_tip_results = CalculateTipResults.new
-        expect(CalculateTipResults).to receive(:new).and_return(calculate_tip_results)
-        expect(calculate_tip_results).to receive(:run).with(match_id).ordered
-
-        expect_any_instance_of(CalculateChampionTipResults).to receive(:run).never
-        
+        expect(Tips::SetResults).to receive(:run).with(match_id: match_id).ordered
         expect(RankingSets::Update).to receive(:run).with(match_id: match_id).ordered
+
+        expect(ChampionTips::SetResults).not_to receive(:run)
 
         subject.run(match_id)
       end
@@ -24,20 +20,15 @@ describe ProcessNewMatchResult do
 
     context 'when tournament has champion_team' do
 
-      it 'should calculate results of tips, champion_tips and update ranking for match of given match_id' do
+      it 'calculates results of tips, champion_tips and update ranking for match of given match_id' do
+        champion_team = Team.new(id: 98)
 
         tournament = Tournament.new
         expect(Tournament).to receive(:new).and_return(tournament)
-        expect(tournament).to receive(:champion_team).twice.and_return(ChampionTip.new)
+        expect(tournament).to receive(:champion_team).twice.and_return(champion_team)
 
-        calculate_tip_results = CalculateTipResults.new
-        expect(CalculateTipResults).to receive(:new).and_return(calculate_tip_results)
-        expect(calculate_tip_results).to receive(:run).with(match_id).ordered
-
-        calculate_champion_tip_results = CalculateChampionTipResults.new ChampionTip.new
-        expect(CalculateChampionTipResults).to receive(:new).and_return(calculate_champion_tip_results)
-        expect(calculate_champion_tip_results).to receive(:run)
-
+        expect(Tips::SetResults).to receive(:run).with(match_id: match_id).ordered
+        expect(ChampionTips::SetResults).to receive(:run).with(champion_team_id: champion_team.id).ordered
         expect(RankingSets::Update).to receive(:run).with(match_id: match_id).ordered
 
         subject.run(match_id)

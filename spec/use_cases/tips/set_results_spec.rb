@@ -1,4 +1,6 @@
-describe CalculateTipResults do
+describe Tips::SetResults do
+
+  subject { Tips::SetResults }
 
   let(:match) { create(:match, score_team_1: 1, score_team_2: 2) }
 
@@ -11,7 +13,7 @@ describe CalculateTipResults do
       tip_4 = create(:tip, match: match, score_team_1: 1, score_team_2: 2)
       tip_5 = create(:tip, match: match, score_team_1: 2, score_team_2: 3)
 
-      expect(subject.run(match.id)).to be_truthy
+      subject.run(match_id: match.id)
 
       expect(tip_1.reload.result).to eq Tip::RESULTS[:incorrect]
       expect(tip_2.reload.result).to be_nil

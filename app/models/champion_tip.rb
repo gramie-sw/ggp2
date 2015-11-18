@@ -13,8 +13,8 @@ class ChampionTip < ActiveRecord::Base
     result == RESULTS[:correct]
   end
 
-  def set_result champion_team
-    if team_id == champion_team.id
+  def set_result champion_team_id
+    if team_id == champion_team_id
       self.result = ChampionTip::RESULTS[:correct]
     else
       self.result = ChampionTip::RESULTS[:incorrect]

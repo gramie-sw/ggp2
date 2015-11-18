@@ -49,22 +49,22 @@ describe ChampionTip, :type => :model do
 
   describe '#set_result' do
 
-    let(:champion_team) { Team.new(id: 5) }
+    champion_team_id = 5
 
     it 'set result to correct if team_id equals team_id of given champion_team' do
       subject.team_id = 5
-      subject.set_result(champion_team)
+      subject.set_result(champion_team_id)
       expect(subject.result).to eq ChampionTip::RESULTS[:correct]
     end
 
     it 'set result to incorrect if team_id does not equal team_id of given champion_team' do
       subject.team_id = 6
-      subject.set_result(champion_team)
+      subject.set_result(champion_team_id)
       expect(subject.result).to eq ChampionTip::RESULTS[:incorrect]
     end
 
     it 'set result to incorrect if team_id is nil' do
-      subject.set_result(champion_team)
+      subject.set_result(champion_team_id)
       expect(subject.result).to eq ChampionTip::RESULTS[:incorrect]
     end
   end
