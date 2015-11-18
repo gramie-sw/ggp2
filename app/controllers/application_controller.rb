@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
   end
 
   def random_quotation
-    FindRandomQuotation.new.run
+    QuotationQueries.find_sample
   end
 
   def main_navbar_presenter

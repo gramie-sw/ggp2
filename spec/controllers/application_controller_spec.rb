@@ -1,5 +1,16 @@
 describe ApplicationController do
 
+  describe '#random_quotation' do
+
+    it 'returns random quotation' do
+      quotation = Quotation.new
+      expect(QuotationQueries).to respond_to(:find_sample)
+      expect(QuotationQueries).to receive(:find_sample).and_return(quotation)
+
+      expect(subject.random_quotation).to be quotation
+    end
+  end
+
   describe '#main_navbar_presenter' do
 
     let(:params) { {controller: 'users'} }
