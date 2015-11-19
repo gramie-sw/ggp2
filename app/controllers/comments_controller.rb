@@ -40,7 +40,7 @@ class CommentsController < ApplicationController
 
 
   def destroy
-    DeleteComment.new(params[:id]).run
+    Comments::Delete.run(id: params[:id])
     UpdateUserBadges.new(:comment).run
     redirect_to pin_boards_path, notice: t('model.messages.destroyed', model: Comment.model_name.human)
   end

@@ -43,5 +43,4 @@ describe ApplicationController do
       end
     end
   end
-  
 end

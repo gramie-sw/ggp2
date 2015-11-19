@@ -111,4 +111,19 @@ describe CommentsController, :type => :controller do
       expect(assigns(:comment)).to be comment
     end
   end
+
+  describe '#destroy' do
+
+    let(:user) { create(:admin) }
+    let(:comment) { create(:comment, user: user) }
+
+    it 'calls Comment::Delete and redirect to pin_board_path' do
+      expect(Comments::Delete).to receive(:run).with(id: comment.to_param).and_return(comment)
+
+      delete :destroy, id: comment.id
+      
+      expect(response).to redirect_to(pin_boards_path)
+      expect(flash[:notice]).to eq t('model.messages.destroyed', model: Comment.model_name.human)
+    end
+  end
 end
