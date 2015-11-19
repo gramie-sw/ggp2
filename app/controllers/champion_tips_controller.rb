@@ -6,15 +6,13 @@ class ChampionTipsController < ApplicationController
 
   def update
 
-    result = UpdateChampionTip.new(current_user: current_user, champion_tip_id: params[:id],
-                                   attributes: params[:champion_tip]).run
+    champion_tip = ChampionTips::SetTeam.run(id: params[:id], team_id: params[:champion_tip][:team_id])
 
-    if result.successful
-      redirect_to user_tip_path(current_user),
-                  notice: t('model.messages.updated',
+    if champion_tip.errors.blank?
+      redirect_to user_tip_path(current_user), notice: t('model.messages.updated',
                             model: t('general.champion_tip.one', champion_title: champion_title))
     else
-      @presenter = ChampionTipsEditPresenter.new(result.champion_tip)
+      @presenter = ChampionTipsEditPresenter.new(champion_tip)
       render :edit
     end
   end
