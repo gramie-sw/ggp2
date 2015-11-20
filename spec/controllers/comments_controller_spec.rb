@@ -25,63 +25,42 @@ describe CommentsController, :type => :controller do
     end
   end
 
+
   describe '#create' do
 
-    let(:params) { {comment: {'user_id' => user.id.to_s, 'content' => 'content'}} }
+    describe 'calls Comments::Create and' do
 
-    context 'on success' do
-
-      before :each do
-        allow_any_instance_of(Comment).to receive(:save).and_return(true)
-      end
-
-      it 'should redirect to pin_board_path' do
-        post :create, params
-        expect(response).to redirect_to pin_boards_path
-      end
-
-      it 'should assign comment and save it' do
-        comment = double('Comment')
-        expect(Comment).to receive(:new).with(params[:comment]).and_return(comment)
-        expect(comment).to receive(:save).and_return(true)
-        post :create, params
-        expect(assigns(:comment)).to be comment
-      end
-
-      it 'should run uc UpdateUserBadges with given group (:comment)' do
-        expect_any_instance_of(Comment).to receive(:save).with(no_args).and_return(true)
-        expect_any_instance_of(UpdateUserBadges).to receive(:run)
-        post :create, params
-      end
-
-      it 'should assign flash notice' do
-        post :create, params
-        expect(flash[:notice]).to eq t('model.messages.created', model: Comment.model_name.human)
-      end
-    end
-
-    context 'on failure' do
+      let(:params) { {comment: {'content' => 'content'}} }
+      let(:comment) { Comment.new }
 
       before :each do
-        allow_any_instance_of(Comment).to receive(:save).and_return(false)
+        expect(Comments::Create).to receive(:run).
+            with(user_id: user.id, comment_attributes: params[:comment]).and_return(comment)
       end
 
-      it 'should return http success' do
-        post :create, params
-        expect(response).to be_success
+      describe 'on success' do
+
+        it 'assigns flash message and redirects to pin_boards_path' do
+          post :create, params
+
+          expect(response).to redirect_to pin_boards_path
+          expect(flash[:notice]).to eq t('model.messages.created', model: Comment.model_name.human)
+        end
       end
 
-      it 'should render new' do
-        post :create, params
-        expect(response).to render_template :new
-      end
+      describe 'on failure' do
 
-      it 'should assign comment and save it' do
-        comment = double('Comment')
-        expect(Comment).to receive(:new).with(params[:comment]).and_return(comment)
-        expect(comment).to receive(:save).and_return(false)
-        post :create, params
-        expect(assigns(:comment)).to be comment
+        before :each do
+          comment.errors.add(:base, 'message')
+        end
+
+        it 'assigns comment renders new' do
+          post :create, params
+
+          expect(response).to be_success
+          expect(response).to render_template :new
+          expect(assigns(:comment)).to be comment
+        end
       end
     end
   end
@@ -112,6 +91,45 @@ describe CommentsController, :type => :controller do
     end
   end
 
+  describe '#update' do
+
+    describe 'calls Comments::Update and' do
+
+      let(:params) { {id: comment.to_param, comment: {'content' => 'new content'}} }
+      let(:comment) { create(:comment, user: user) }
+
+      before :each do
+        expect(Comments::Update).to receive(:run).
+            with(id: comment.to_param, comment_attributes: params[:comment]).and_return(comment)
+      end
+
+      describe 'on success' do
+
+        it 'assigns flash message and redirects to pin_boards_path' do
+          patch :update, params
+
+          expect(response).to redirect_to pin_boards_path
+          expect(flash[:notice]).to eq t('model.messages.updated', model: Comment.model_name.human)
+        end
+      end
+
+      describe 'on failure' do
+
+        before :each do
+          comment.errors.add(:base, 'message')
+        end
+
+        it 'assigns comment renders edit' do
+          patch :update, params
+
+          expect(response).to be_success
+          expect(response).to render_template :edit
+          expect(assigns(:comment)).to be comment
+        end
+      end
+    end
+  end
+
   describe '#destroy' do
 
     let(:user) { create(:admin) }
@@ -121,7 +139,7 @@ describe CommentsController, :type => :controller do
       expect(Comments::Delete).to receive(:run).with(id: comment.to_param).and_return(comment)
 
       delete :destroy, id: comment.id
-      
+
       expect(response).to redirect_to(pin_boards_path)
       expect(flash[:notice]).to eq t('model.messages.destroyed', model: Comment.model_name.human)
     end

@@ -26,10 +26,6 @@ class PlayerPermissions
     allow_attributes :comment, [:user_id, :content]
 
     #filters
-    add_filter :comments, :create do |resource, params|
-      params[:comment][:user_id] == current_user.id.to_s
-    end
-
     add_filter :comments, [:edit, :update] do |resource, params|
       resource.user_id == current_user.id
     end

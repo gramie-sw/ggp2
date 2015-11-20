@@ -5,12 +5,12 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new(params[:comment])
+    @comment = Comments::Create.run(user_id: current_user.id, comment_attributes: params[:comment])
 
-    if @comment.save
+    if @comment.errors.blank?
 
-      update_user_badges = UpdateUserBadges.new(:comment)
-      update_user_badges.run
+      # TODO @crimi move call uc to Comments::Create
+      UpdateUserBadges.new(:comment).run
 
       redirect_to pin_boards_path, notice: t('model.messages.created', model: Comment.model_name.human)
     else
@@ -23,25 +23,22 @@ class CommentsController < ApplicationController
   end
 
   def update
-    UpdateComment.
-        new(current_user: current_user, comment_id: params[:id], attributes: params[:comment]).
-        run_with_callback(self)
+    @comment = Comments::Update.run(id: params[:id], comment_attributes: params[:comment])
+
+    if @comment.errors.blank?
+      redirect_to pin_boards_path, notice: t('model.messages.updated', model: Comment.model_name.human)
+    else
+      render :edit
+    end
+
   end
-
-  def update_succeeded comment
-    redirect_to pin_boards_path, notice: t('model.messages.updated', model: Comment.model_name.human)
-  end
-
-
-  def update_failed comment
-    @comment = comment
-    render :edit
-  end
-
 
   def destroy
     Comments::Delete.run(id: params[:id])
+
+    # TODO @crimi move call uc to Comments::Delete
     UpdateUserBadges.new(:comment).run
+
     redirect_to pin_boards_path, notice: t('model.messages.destroyed', model: Comment.model_name.human)
   end
 

@@ -44,27 +44,10 @@ describe PlayerPermissions do
 
     it 'should exactly have filters for' do
       is_expected.to exactly_have_filters_for(
-                 [:comments, [:create, :update, :edit]],
+                 [:comments, [:update, :edit]],
                  [:tips, [:edit_multiple, :update_multiple]],
                  [:champion_tips, [:edit, :update]]
              )
-    end
-
-    context 'comments#create' do
-
-      context 'if user_id of comment belongs to to current_user' do
-
-        it 'should be allowed' do
-          is_expected.to pass_filters(:comments, :create, params: {comment: {user_id: current_user.to_param}})
-        end
-      end
-
-      context 'if user_id of comment does not belong to to current_user' do
-
-        it 'should not be allowed' do
-          is_expected.not_to pass_filters(:comments, :create, params: {comment: {user_id: (current_user.id+1).to_s}})
-        end
-      end
     end
   end
 
