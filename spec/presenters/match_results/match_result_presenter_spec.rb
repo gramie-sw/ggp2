@@ -4,6 +4,8 @@ describe MatchResultPresenter do
   let(:match_result) { MatchResult.new(match_id: match.id) }
   subject { MatchResultPresenter.new(match_result) }
 
+  it { is_expected.to respond_to(:match_result)}
+
   describe '#match_presenter' do
 
     it 'should return MatchPresenter for wrapped match' do

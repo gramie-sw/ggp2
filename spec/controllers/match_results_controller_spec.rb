@@ -6,89 +6,74 @@ describe MatchResultsController, :type => :controller do
     sign_in admin
   end
 
-  describe '#new' do
+  describe '#edit' do
 
-    let(:match) { create(:match)}
+    match_id = '78'
 
-    it 'should render http success' do
-      get :new, match_id: match.id
+    it 'assigns MatchResultPresenter and renders edit' do
+      get :edit, id: match_id
+
       expect(response).to be_success
-    end
-
-    it 'should render new' do
-      get :new, match_id: match.id
-      expect(response).to render_template :new
-    end
-
-    it 'should assign @match_result_presenter' do
-      get :new, match_id: match.id
-      assigns(:match_result_presenter).kind_of? MatchResultPresenter
-      expect(assigns(:match_result_presenter).match_id).to eq match.id.to_s
+      expect(response).to render_template :edit
+      expect(assigns(:presenter)).to be_instance_of MatchResultPresenter
+      expect(assigns(:presenter).match_id).to be match_id
     end
   end
 
-  describe '#create' do
+  describe '#udpate' do
 
-    let(:match) { create(:match)}
+    describe 'calls MatchResults::Update and' do
 
-    context 'when successful' do
+      let(:match) { Match.new(position: 1, aggregate_id: 34) }
+      let(:match_result) { MatchResult.new(match: match) }
 
-      let(:params) { {match_result: { match_id: match.id, score_team_1: 2, score_team_2: 2 }}}
+      let(:params) { {id: '98', match_result: {'score_team_1' => '1', 'score_team_2' => '2'}} }
 
-      it 'should redirect to matches index' do
-        post :create, params
-        expect(response).to redirect_to match_schedules_path(aggregate_id: match.aggregate_id)
+
+      before :each do
+        expect(MatchResults::Update).to receive(:run).
+            with(match_id: params[:id], match_result_attributes: params[:match_result]).
+            and_return(match_result)
       end
 
-      it 'should call save on @match_result'  do
-        expect_any_instance_of(MatchResult).to receive(:save).with(no_args).and_call_original
-        post :create, params
+      context 'on success' do
+
+        it 'redirects to match_schedule_path' do
+          patch :update, params
+
+          expect(response).to redirect_to match_schedules_path(aggregate_id: match.aggregate_id)
+          expect(flash[:notice]).to eq t('model.messages.updated', model: match_result.message_name)
+        end
       end
 
-      it 'should run uc ProcessNewMatchResult with given match id' do
-        expect_any_instance_of(MatchResult).to receive(:save).with(no_args).and_return(true)
-        expect_any_instance_of(ProcessNewMatchResult).to receive(:run).with(match.id)
-        post :create, params
-      end
+      context 'on failure' do
 
-      it 'should run uc UpdateUserBadges with given group (:tip)' do
-        expect_any_instance_of(MatchResult).to receive(:save).with(no_args).and_return(true)
-        expect_any_instance_of(UpdateUserBadges).to receive(:run)
-        post :create, params
-      end
+        before :each do
+          match_result.errors.add(:add, 'message')
+        end
 
-      it 'should assign flash notice' do
-        post :create, params
-        expect(flash[:notice]).to eq t('model.messages.updated', model: assigns(:match_result).message_name)
-      end
-    end
+        it 'assigns MatchResultPresenter and renders edit' do
+          patch :update, params
 
-    context 'when failing' do
-
-      let(:params) { {match_result: { match_id: match.id, score_team_1: 2 }}}
-
-      it 'should render new' do
-        post :create, params
-        expect(response).to render_template :new
-      end
-
-      it 'should assign @match_result_presenter' do
-        post :create, params
-        expect(assigns[:match_result_presenter].score_team_1).to eq 2.to_s
+          expect(response).to be_success
+          expect(response).to render_template :edit
+          expect(assigns(:presenter)).to be_instance_of MatchResultPresenter
+          expect(assigns(:presenter).match_result).to eq match_result
+        end
       end
     end
+  end
 
-    describe '#destroy' do
+  describe '#destroy' do
 
-      it 'calls MatchResults::Delete and redirects to match_schedule_path' do
-        match_id = '98'
-        expect(MatchResults::Delete).to receive(:run).with(match_id: match_id)
+    it 'calls MatchResults::Delete and redirects to match_schedule_path' do
+      match_id = '98'
+      expect(MatchResults::Delete).to receive(:run).with(match_id: match_id)
 
-        delete :destroy, id: match_id
-        expect(response).to redirect_to(match_schedules_path)
-        expect(flash[:notice]).to eq t('model.messages.destroyed', model: t('match.result'))
+      delete :destroy, id: match_id
+      expect(response).to redirect_to(match_schedules_path)
+      expect(flash[:notice]).to eq t('model.messages.destroyed', model: t('match.result'))
 
-      end
     end
   end
 end

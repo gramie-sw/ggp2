@@ -37,7 +37,7 @@
           th
       tbody
         - for match_presenter in @presenter.match_presenters
-          tr.link-row data-href="#{new_match_result_path(match_id: match_presenter.id)}"
+          tr.link-row data-href="#{edit_match_result_path(match_presenter.id)}"
             td = "#{match_presenter.position}."
             td.ggp2-flag-with-country-name
               = standard_flag_image_tag_of match_presenter.team_1

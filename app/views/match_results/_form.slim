@@ -1,11 +1,9 @@
 div.well
-  = form_for match_result,  html: {class: 'result-form', role: :form}  do |f|
-    = f.hidden_field :match_id
+  = form_for(presenter, url: match_result_path(presenter.match_id), method: 'patch', html: {class: 'result-form', role: :form}) do |f|
 
-    = render \
-          partial: 'results/result_fields', \
-          locals: {match_presenter: @match_result_presenter.match_presenter,
-                   result: @match_result_presenter.match_presenter, index: 'match_result'}
+    = render partial: 'results/result_fields',
+    locals: {match_presenter: presenter.match_presenter,
+    result: @presenter.match_presenter, index: 'match_result'}
 
     div.btn-toolbar.submit-group
       = submit_tag t('model.submit.save', model: MatchResult.model_name.human), class: 'btn btn-primary'

@@ -14,7 +14,7 @@ Ggp2::Application.routes.draw do
   resources :champion_tips, only: [:edit, :update]
   resources :comments, only: [:new, :create, :edit, :update, :destroy]
   resources :matches, except: :index
-  resources :match_results, only: [:new, :create, :destroy]
+  resources :match_results, only: [:new, :edit, :create, :update, :destroy]
   resource  :match_schedules, only: :show
   resources :match_tips, only: :show
   resource :pin_boards, only: :show

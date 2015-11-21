@@ -5,7 +5,7 @@ class MatchResult
   delegate :message_name, to: :match
 
   validate :validate_match_id
-  attr_accessor :match_id, :score_team_1, :score_team_2
+  attr_accessor :match, :match_id, :score_team_1, :score_team_2
 
   alias :score_team_1? :score_team_1
   alias :score_team_2? :score_team_2
