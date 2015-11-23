@@ -261,8 +261,8 @@
 			:CP => "Clipperton-Insel",
 			:DG => "Diego Garcia",
 			:TA => "Tristan da Cunha",
-      :EN => "England",
 			:ZZ => "Unbekannte Region",
+      :england => "England",
     }
 
   }
