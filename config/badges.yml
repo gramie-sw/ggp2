@@ -1,306 +1,172 @@
 tip:
   - class: TipBadge
     attributes:
-      position: 1
+      result: correct
       icon: 'fa-bullseye'
-      icon_color: '#cd7f32'
-      result: correct
-      count: 1
-      identifier: tip_badge_correct_bronze
-  - class: TipBadge
-    attributes:
-      position: 2
-      icon: 'fa-bullseye'
-      icon_color: '#b2b9bc'
-      result: correct
-      count: 5
-      identifier: tip_badge_correct_silver
-  - class: TipBadge
-    attributes:
-      position: 3
-      icon: 'fa-bullseye'
-      icon_color: '#d9bb24'
-      result: correct
-      count: 10
-      identifier: tip_badge_correct_gold
-  - class: TipBadge
-    attributes:
-      position: 4
-      icon: 'fa-bullseye'
-      icon_color: '#a67b5b'
-      result: correct
-      count: 15
-      identifier: tip_badge_correct_platinum
+      levels:
+        - achievement: 1
+          color: bronze
+          score: 10
+        - achievement: 5
+          color: silver
+          score: 20
+        - achievement: 10
+          color: gold
+          score: 30
+        - achievement: 15
+          color: platinum
+          score: 15
   - class: TipConsecutiveBadge
     attributes:
-      position: 5
+      result: correct
       icon: 'fa-rocket'
-      icon_color: '#cd7f32'
-      result: correct
-      count: 2
-      identifier: tip_consecutive_badge_correct_bronze
-  - class: TipConsecutiveBadge
-    attributes:
-      position: 6
-      icon: 'fa-rocket'
-      icon_color: '#b2b9bc'
-      result: correct
-      count: 3
-      identifier: tip_consecutive_badge_correct_silver
-  - class: TipConsecutiveBadge
-    attributes:
-      position: 7
-      icon: 'fa-rocket'
-      icon_color: '#d9bb24'
-      result: correct
-      count: 4
-      identifier: tip_consecutive_badge_correct_gold
-  - class: TipConsecutiveBadge
-    attributes:
-      position: 8
-      icon: 'fa-rocket'
-      icon_color: '#a67b5b'
-      result: correct
-      count: 5
-      identifier: tip_consecutive_badge_correct_platinum
+      levels:
+        - achievement: 2
+          color: bronze
+          score: 11
+        - achievement: 3
+          color: silver
+          score: 16
+        - achievement: 4
+          color: gold
+          score: 16
+        - achievement: 5
+          color: platinum
+          score: 16
   - class: TipBadge
     attributes:
-      position: 9
+      result: correct_tendency_only
       icon: 'fa-star-half-o'
-      icon_color: '#cd7f32'
-      result: correct_tendency_only
-      count: 1
-      identifier: tip_badge_correct_tendency_only_bronze
-  - class: TipBadge
-    attributes:
-      position: 10
-      icon: 'fa-star-half-o'
-      icon_color: '#b2b9bc'
-      result: correct_tendency_only
-      count: 8
-      identifier: tip_badge_correct_tendency_only_silver
-  - class: TipBadge
-    attributes:
-      position: 11
-      icon: 'fa-star-half-o'
-      icon_color: '#d9bb24'
-      result: correct_tendency_only
-      count: 16
-      identifier: tip_badge_correct_tendency_only_gold
-  - class: TipBadge
-    attributes:
-      position: 12
-      icon: 'fa-star-half-o'
-      icon_color: '#a67b5b'
-      result: correct_tendency_only
-      count: 24
-      identifier: tip_badge_correct_tendency_only_platinum
+      levels:
+        - achievement: 1
+          color: bronze
+          score: 100
+        - achievement: 8
+          color: silver
+          score: 150
+        - achievment: 16
+          color: gold
+          score: 200
+        - achivement: 24
+          color: platinum
+          score: 250
   - class: TipConsecutiveBadge
     attributes:
-      position: 13
+      result: correct_tendency_only
       icon: 'fa-fighter-jet'
-      icon_color: '#cd7f32'
-      result: correct_tendency_only
-      count: 2
-      identifier: tip_consecutive_badge_correct_tendency_only_bronze
-  - class: TipConsecutiveBadge
-    attributes:
-      position: 14
-      icon: 'fa-fighter-jet'
-      icon_color: '#b2b9bc'
-      result: correct_tendency_only
-      count: 4
-      identifier: tip_consecutive_badge_correct_tendency_only_silver
-  - class: TipConsecutiveBadge
-    attributes:
-      position: 15
-      icon: 'fa-fighter-jet'
-      icon_color: '#d9bb24'
-      result: correct_tendency_only
-      count: 6
-      identifier: tip_consecutive_badge_correct_tendency_only_gold
-  - class: TipConsecutiveBadge
-    attributes:
-      position: 16
-      icon: 'fa-fighter-jet'
-      icon_color: '#a67b5b'
-      result: correct_tendency_only
-      count: 8
-      identifier: tip_consecutive_badge_correct_tendency_only_platinum
+      levels:
+        - achievement: 2
+          color: bronze
+          score: 110
+        - achievement: 4
+          color: silver
+          score: 160
+        - achievment: 6
+          color: gold
+          score: 210
+        - achivement: 8
+          color: platinum
+          score: 260
   - class: TipBadge
     attributes:
-      position: 17
-      icon: 'fa-bug'
-      icon_color: '#cd7f32'
       result: incorrect
-      count: 1
-      identifier: tip_badge_incorrect_bronze
-  - class: TipBadge
-    attributes:
-      position: 18
       icon: 'fa-bug'
-      icon_color: '#b2b9bc'
-      result: incorrect
-      count: 10
-      identifier: tip_badge_incorrect_silver
-  - class: TipBadge
-    attributes:
-      position: 19
-      icon: 'fa-bug'
-      icon_color: '#d9bb24'
-      result: incorrect
-      count: 20
-      identifier: tip_badge_incorrect_gold
-  - class: TipBadge
-    attributes:
-      position: 20
-      icon: 'fa-bug'
-      icon_color: '#a67b5b'
-      result: incorrect
-      count: 30
-      identifier: tip_badge_incorrect_platinum
+      levels:
+        - achievement: 1
+          color: bronze
+          score: 120
+        - achievement: 10
+          color: silver
+          score: 170
+        - achievment: 20
+          color: gold
+          score: 220
+        - achivement: 30
+          color: platinum
+          score: 270
   - class: TipConsecutiveBadge
     attributes:
-      position: 21
-      icon: 'fa-medkit'
-      icon_color: '#cd7f32'
       result: incorrect
-      count: 2
-      identifier: tip_consecutive_badge_incorrect_bronze
-  - class: TipConsecutiveBadge
-    attributes:
-      position: 22
       icon: 'fa-medkit'
-      icon_color: '#b2b9bc'
-      result: incorrect
-      count: 4
-      identifier: tip_consecutive_badge_incorrect_silver
-  - class: TipConsecutiveBadge
-    attributes:
-      position: 23
-      icon: 'fa-medkit'
-      icon_color: '#d9bb24'
-      result: incorrect
-      count: 6
-      identifier: tip_consecutive_badge_incorrect_gold
-  - class: TipConsecutiveBadge
-    attributes:
-      position: 24
-      icon: 'fa-medkit'
-      icon_color: '#a67b5b'
-      result: incorrect
-      count: 8
-      identifier: tip_consecutive_badge_incorrect_platinum
+      levels:
+        - achievement: 2
+          color: bronze
+          score: 130
+        - achievement: 4
+          color: silver
+          score: 180
+        - achievment: 6
+          color: gold
+          score: 230
+        - achievment: 6
+          color: platinum
+          score: 280
   - class: TipMissedBadge
     attributes:
-      position: 25
       icon: 'fa-globe'
-      icon_color: '#cd7f32'
-      count: 1
-      identifier: tip_missed_badge_bronze
-  - class: TipMissedBadge
-    attributes:
-      position: 26
-      icon: 'fa-globe'
-      icon_color: '#b2b9bc'
-      count: 2
-      identifier: tip_missed_badge_silver
-  - class: TipMissedBadge
-    attributes:
-      position: 27
-      icon: 'fa-globe'
-      icon_color: '#d9bb24'
-      count: 4
-      identifier: tip_missed_badge_gold
-  - class: TipMissedBadge
-    attributes:
-      position: 28
-      icon: 'fa-globe'
-      icon_color: '#a67b5b'
-      count: 8
-      identifier: tip_missed_badge_platinum
+      levels:
+        - achievement: 1
+          color: bronze
+          score: 135
+        - achievement: 2
+          color: silver
+          score: 185
+        - achievment: 4
+          color: gold
+          score: 235
+        - achievment: 8
+          color: platinum
+          score: 285
   - class: TipConsecutiveMissedBadge
     attributes:
-      position: 29
       icon: 'fa-ambulance'
-      icon_color: '#cd7f32'
-      count: 2
-      identifier: tip_consecutive_missed_badge_bronze
-  - class: TipConsecutiveMissedBadge
-    attributes:
-      position: 30
-      icon: 'fa-ambulance'
-      icon_color: '#b2b9bc'
-      count: 3
-      identifier: tip_consecutive_missed_badge_silver
-  - class: TipConsecutiveMissedBadge
-    attributes:
-      position: 31
-      icon: 'fa-ambulance'
-      icon_color: '#d9bb24'
-      count: 4
-      identifier: tip_consecutive_missed_badge_gold
-  - class: TipConsecutiveMissedBadge
-    attributes:
-      position: 32
-      icon: 'fa-ambulance'
-      icon_color: '#a67b5b'
-      count: 5
-      identifier: tip_consecutive_missed_badge_platinum
+      levels:
+        - achievement: 2
+          color: bronze
+          score: 140
+        - achievement: 3
+          color: silver
+          score: 190
+        - achievment: 4
+          color: gold
+          score: 240
+        - achievment: 5
+          color: platinum
+          score: 290
   - class: TipChampionMissedBadge
     attributes:
-      position: 33
       icon: 'fa-eye-slash'
-      icon_color: '#a67b5b'
-      identifier: tip_champion_missed_badge
-
+      levels:
+        - achivement: 1
+          color: platinum
+          score: 50
 comment:
   - class: CommentCreatedBadge
     attributes:
-      position: 35
       icon: 'fa-comments-o'
-      icon_color: '#cd7f32'
-      count: 1
-      identifier: comment_created_badge_bronze
-  - class: CommentCreatedBadge
-    attributes:
-      position: 36
-      icon: 'fa-comments-o'
-      icon_color: '#b2b9bc'
-      count: 4
-      identifier: comment_created_badge_silver
-  - class: CommentCreatedBadge
-    attributes:
-      position: 37
-      icon: 'fa-comments-o'
-      icon_color: '#d9bb24'
-      count: 8
-      identifier: comment_created_badge_gold
-  - class: CommentCreatedBadge
-    attributes:
-      position: 38
-      icon: 'fa-comments-o'
-      icon_color: '#a67b5b'
-      count: 16
-      identifier: comment_created_badge_platinum
+      levels:
+        - achievement: 1
+          color: bronze
+          score: 5
+        - achievement: 4
+          color: silver
+          score: 6
+        - achievement: 8
+          color: gold
+          score: 10
+        - achievement: 16
+          color: platinum
+          score: 15
   - class: CommentConsecutiveCreatedBadge
     attributes:
-      position: 39
       icon: 'fa-bullhorn'
-      icon_color: '#cd7f32'
-      count: 3
-      identifier: comment_consecutive_created_badge_bronze
-  - class: CommentConsecutiveCreatedBadge
-    attributes:
-      position: 40
-      icon: 'fa-bullhorn'
-      icon_color: '#b2b9bc'
-      count: 4
-      identifier: comment_consecutive_created_badge_silver
-  - class: CommentConsecutiveCreatedBadge
-    attributes:
-      position: 41
-      icon: 'fa-bullhorn'
-      icon_color: '#d9bb24'
-      count: 5
-      identifier: comment_consecutive_created_badge_gold
+      levels:
+        - achievement: 3
+          color: bronze
+          score: 2
+        - achievement: 4
+          color: silver
+          score: 3
+        - achievement: 5
+          color: gold
+          score: 4

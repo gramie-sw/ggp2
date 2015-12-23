@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     if @comment.errors.blank?
 
       # TODO @crimi move call uc to Comments::Create
-      UpdateUserBadges.new(:comment).run
+      update_user_badges = UpdateUserBadges.run(group: :comment)
 
       redirect_to pin_boards_path, notice: t('model.messages.created', model: Comment.model_name.human)
     else
@@ -37,7 +37,7 @@ class CommentsController < ApplicationController
     Comments::Delete.run(id: params[:id])
 
     # TODO @crimi move call uc to Comments::Delete
-    UpdateUserBadges.new(:comment).run
+    UpdateUserBadges.run(group: :comment)
 
     redirect_to pin_boards_path, notice: t('model.messages.destroyed', model: Comment.model_name.human)
   end

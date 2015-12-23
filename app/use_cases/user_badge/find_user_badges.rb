@@ -1,13 +1,8 @@
-class FindUserBadges
+class FindUserBadges < UseCase
 
-  def initialize user_id
-    @user_id = user_id
-  end
+  attribute :user_id
 
   def run
-    UserBadge.badges_by_user_id(user_id)
+    BadgeRepository.badges_by_user_id user_id, :desc
   end
-
-  attr_reader :user_id
-
 end

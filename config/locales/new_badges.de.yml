@@ -1,0 +1,6 @@
+de:
+  tip_badge_correct:
+    name: 'Bullseye %{ranking}'
+    description:
+      one: 1 Spiel richtig getippt
+      other: '%{count} Spiele richtig getippt'

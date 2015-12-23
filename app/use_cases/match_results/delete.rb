@@ -14,7 +14,7 @@ module MatchResults
         ChampionTipQueries.clear_all_results
 
         RankingSets::Delete.run(match_id: match_id)
-        UpdateUserBadges.new(:tip).run
+        UpdateUserBadges.run(group: :tip)
       end
     end
   end

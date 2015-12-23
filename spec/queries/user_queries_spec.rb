@@ -76,4 +76,24 @@ describe UserQueries do
       expect(subject.player_count).to be 2
     end
   end
+
+  describe '::all_player_ids' do
+
+    let!(:users) do
+      [
+          create(:admin),
+          create(:player),
+          create(:player),
+          create(:player)
+      ]
+    end
+
+    it 'returns all player ids' do
+
+      player_ids = subject.all_player_ids
+
+      expect(player_ids.count).to be 3
+      expect(player_ids).to include users.second.id, users.third.id, users.fourth.id
+    end
+  end
 end

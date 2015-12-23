@@ -59,6 +59,7 @@ module Ggp2
 
     config.quotations_file = "#{Rails.root}/config/quotations.yml"
     config.badges_file = "#{Rails.root}/config/badges.yml"
+    config.color_codes_file = "#{Rails.root}/config/color_codes.yml"
   end
 
   USER_TIPS_LAST_SHOWN_AGGREGATE_ID_KEY = 'utlscaid'

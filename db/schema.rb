@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150403125340) do
+ActiveRecord::Schema.define(version: 20151107095951) do
 
   create_table "aggregates", force: :cascade do |t|
     t.integer  "position",   limit: 4
@@ -102,10 +102,11 @@ ActiveRecord::Schema.define(version: 20150403125340) do
   add_index "tips", ["user_id"], name: "index_tips_on_user_id", using: :btree
 
   create_table "user_badges", force: :cascade do |t|
-    t.integer  "user_id",          limit: 4
-    t.string   "badge_identifier", limit: 255
+    t.integer  "user_id",                limit: 4
+    t.string   "badge_identifier",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "badge_group_identifier", limit: 255
   end
 
   add_index "user_badges", ["user_id"], name: "index_user_badges_on_user_id", using: :btree

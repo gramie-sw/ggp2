@@ -1,56 +1,80 @@
-module BadgeRepository
+module
+BadgeRepository
+
   extend self
 
-  def find_by_indentifiers_sorted identifiers
-    badges_sorted.select do |badge|
-      identifiers.include? badge.identifier
-    end
+  def badges
+    badges_hash.values
   end
 
-  def identifiers_belong_to_group group, identifiers
-    identifiers_by_group(group) & identifiers
+  def badges_by_user_id user_id, sort = :asc
+    all_badges_hash = BadgeRepository.badges_hash
+    user_badges = UserBadgeQueries.all_by_user_id user_id
+
+    badges = user_badges.map do |user_badge|
+      all_badges_hash[user_badge.badge_identifier]
+    end
+
+    badges.sort_by! { |badge| badge.score }
+    badges.reverse! if sort == :desc
+    badges
+  end
+
+  def badges_hash
+
+    badges_hash = {}
+
+    grouped_group_identifiers_badges.values.each do |group_identifiers|
+      group_identifiers.values.each do |badges|
+        badges.each do |badge|
+          badges_hash[badge.identifier] = badge
+        end
+      end
+    end
+
+    badges_hash
   end
 
   def groups
-    badges_grouped.keys
+    grouped_group_identifiers_badges.keys
   end
 
-  def by_group(group)
-    badges_sorted_grouped[group]
-  end
 
-  def badges_sorted_grouped
+  def grouped_badges
 
-    @badges_sorted_grouped ||= begin
+    grouped_badges = {}
 
-      badges_sorted_grouped = {}
+    grouped_group_identifiers_badges.each do |group, group_grouped_identifiers_badges|
+      badges = []
 
-      groups.each do |key|
-        badges_sorted_grouped[key] = badges_grouped[key].sort_by! { |badge| badge.position }
+      group_grouped_identifiers_badges.values.each do |group_identifier_badges|
+        badges += group_identifier_badges
       end
-
-      badges_sorted_grouped
+      grouped_badges[group] = badges
     end
+
+    grouped_badges
   end
 
-  def badges_sorted
-
-    badges_sorted_grouped.keys.map do |key|
-      badges_sorted_grouped[key]
-    end.flatten!
+  def grouped_group_identifiers_badges
+    @grouped_group_identifiers_badges ||= GroupedBadgesBuilder.build(BadgeDescriptionFileReader.read)
   end
 
-  private
-
-  def badges_grouped
-    @badges_grouped ||= BadgesGroupedBuilder.new.build(file_read_badges_hash)
+  def group_identifiers group
+    grouped_group_identifiers_badges[group].keys
   end
 
-  def identifiers_by_group group
-    by_group(group).map(&:identifier)
+  def group_identifiers_belong_to_group group, group_identifiers
+    group_identifiers(group) & group_identifiers
   end
 
-  def file_read_badges_hash
-    BadgeFileReader.instance.read
+  def group_identifiers_grouped_badges group
+    group_identifiers_grouped_badges = []
+
+    grouped_group_identifiers_badges[group].values.each do |group_identifier_grouped_badges|
+      group_identifiers_grouped_badges << group_identifier_grouped_badges
+    end
+
+    group_identifiers_grouped_badges
   end
 end

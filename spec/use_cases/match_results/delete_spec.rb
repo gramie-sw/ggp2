@@ -25,9 +25,7 @@ describe MatchResults::Delete do
       ensure_result_is_cleared
     end
 
-    update_user_badges = double(:run)
-    expect(UpdateUserBadges).to receive(:new).with(:tip).and_return(update_user_badges)
-    expect(update_user_badges).to receive(:run).ordered
+    expect(UpdateUserBadges).to receive(:run).with(group: :tip)
 
     subject.run(match_id: match.id)
   end

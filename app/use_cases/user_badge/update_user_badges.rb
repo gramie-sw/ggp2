@@ -1,18 +1,11 @@
-class UpdateUserBadges
+class UpdateUserBadges < UseCase
 
-  def initialize group
-    @group = group
-  end
+  attribute :group
 
   def run
-
-    badges =  BadgeRepository.by_group group
-    new_user_badges = UserBadgeProvider.new.provide(badges)
-    UserBadge.destroy_and_create_multiple(group, new_user_badges)
+    group_identifiers_grouped_badges = BadgeRepository.group_identifiers_grouped_badges group
+    user_ids = UserQueries.all_player_ids
+    new_user_badges = UserBadgeProvider.new.provide(user_ids, group_identifiers_grouped_badges)
+    UserBadgeQueries.destroy_and_create_multiple(group, new_user_badges)
   end
-
-  private
-
-  attr_reader :group
-
 end

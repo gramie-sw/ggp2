@@ -1,6 +1,7 @@
 class UserBadge < ActiveRecord::Base
 
-  include UserBadgeRepository
+  extend UserBadgeQueries
 
   belongs_to :user
+
 end

@@ -6,6 +6,6 @@ class ProfilesController < ApplicationController
                                            tournament: tournament,
                                            is_for_current_user: is_user_current_user?(user),
                                            section: params[:section])
-    @presenter.badges= FindUserBadges.new(user.id).run
+    @presenter.badges = FindUserBadges.run(user_id: user.id)
   end
 end

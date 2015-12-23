@@ -3,7 +3,7 @@ describe 'profiles/_badges.slim', :type => :view do
   let(:presenter) { double('Presenter') }
 
   let(:badges) do
-    [BadgeRepository.badges_sorted.first]
+    [BadgeRepository.badges.first]
   end
 
   let(:partial_options) do
@@ -19,6 +19,7 @@ describe 'profiles/_badges.slim', :type => :view do
 
   before :each do
     allow(presenter).to receive(:badges).and_return(badges)
+    allow(view).to receive(:colors) { {'bronze' => '#123456'}}
   end
 
   context 'when Badges are present' do

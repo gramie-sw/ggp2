@@ -1,92 +1,185 @@
 describe BadgeRepository do
 
-  describe '::find_by_identifiers_sorted' do
+  describe '::badges_hash' do
 
-    it 'should return all badges by given identifiers sorted' do
+    it 'returns hash with badge_identifier as keys and badges as values' do
 
-      badge_identifiers = ['tip_consecutive_badge_correct_gold', 'comment_consecutive_created_badge_bronze']
+      badges_hash = BadgeRepository.badges_hash
 
-      actual_badges = subject.find_by_indentifiers_sorted(badge_identifiers)
+      expect(badges_hash.keys.size).to be 23
 
-      expect(actual_badges.size).to eq 2
-      expect(actual_badges.first.identifier).to eq badge_identifiers.second
-      expect(actual_badges.second.identifier).to eq badge_identifiers.first
+      badges_hash.keys.each do |badge_identifier|
+        expect(badges_hash[badge_identifier].identifier).to eq badge_identifier
+      end
     end
   end
 
-  describe '::identifiers_belong_to_group' do
+  describe '::badges' do
 
-    it 'should return all identifiers by given group and found in identifiers' do
+    it 'returns badges' do
 
-      badge_identifiers = ['comment_consecutive_created_badge_bronze', 'comment_consecutive_created_badge_bronze',
-                           'tip_consecutive_badge_correct_gold']
+      badges = BadgeRepository.badges
 
-      actual_identifiers = subject.identifiers_belong_to_group(:comment, badge_identifiers)
+      expect(badges.size).to be 23
 
-      expect(actual_identifiers.size).to eq 1
-      expect(actual_identifiers.first).to eq 'comment_consecutive_created_badge_bronze'
+      badges.each do |badge|
+        expect(badge).to be_a_kind_of Badge
+      end
+    end
+  end
+
+  describe '::badges_by_user_id' do
+
+    let(:users) do
+      [
+          create(:player),
+          create(:player)
+      ]
+    end
+
+    let(:badges) { BadgeRepository.badges }
+
+    let!(:user_badges) do
+      [
+          create(:user_badge,
+                 user: users.first,
+                 badge_group_identifier: badges.first.group_identifier,
+                 badge_identifier: badges.first.identifier),
+
+          create(:user_badge,
+                 user: users.second,
+                 badge_group_identifier: badges.second.group_identifier,
+                 badge_identifier: badges.second.identifier
+          ),
+
+          create(:user_badge,
+                 user: users.first,
+                 badge_group_identifier: badges.last.group_identifier,
+                 badge_identifier: badges.last.identifier)
+      ]
+    end
+
+
+    it 'returns badges by given user_id desc sorted by badge score as default' do
+
+      actual_badges = BadgeRepository.badges_by_user_id users.first
+
+      expect(actual_badges.size).to be 2
+      expect(actual_badges.first).to eq badges.first
+      expect(actual_badges.second).to eq badges.last
+    end
+
+    it 'returns badges sorted by given sort direction and user_id' do
+
+      actual_badges = BadgeRepository.badges_by_user_id users.first, :desc
+
+      expect(actual_badges.size).to be 2
+      expect(actual_badges.first).to eq badges.last
+      expect(actual_badges.second).to eq badges.first
     end
   end
 
   describe '::groups' do
 
-    it 'should return all groups' do
+    it 'returns all groups' do
 
-      actual_groups = subject.groups
+      actual_groups = BadgeRepository.groups
       expect(actual_groups.size).to eq 2
       expect(actual_groups).to include(:comment, :tip)
     end
   end
 
-  describe '::by_group' do
+  describe '::grouped_badges' do
 
-    it 'should return all badges by group' do
+    it 'returns grouped badges' do
 
-      actual_badges = subject.by_group(:comment)
-      expect(actual_badges.size).to eq (2)
-      expect(actual_badges.first).to be_an_instance_of(CommentCreatedBadge)
-      expect(actual_badges.second).to be_an_instance_of(CommentConsecutiveCreatedBadge)
-    end
-  end
+      actual_grouped_badges = BadgeRepository.grouped_badges
+      expect(actual_grouped_badges.size).to be 2
 
-  describe '::badges_sorted_grouped' do
+      actual_tip_badges = actual_grouped_badges[:tip]
+      expect(actual_tip_badges.size).to be 17
 
-    it 'expect to return all badges sorted and grouped' do
-
-      expected_badges_sorted_grouped = BadgeRepository.badges_sorted_grouped
-
-      expect(expected_badges_sorted_grouped.keys.size).to eq 2
-      expect(expected_badges_sorted_grouped.keys.first).to eq :comment
-      expect(expected_badges_sorted_grouped.keys.second).to eq :tip
-
-      expect(expected_badges_sorted_grouped[:comment].size).to eq 2
-      expect(expected_badges_sorted_grouped[:comment].first.position).to eq 1
-      expect(expected_badges_sorted_grouped[:comment].second.position).to eq 2
-
-      expect(expected_badges_sorted_grouped[:tip].size).to eq 5
-      expect(expected_badges_sorted_grouped[:tip][0].position).to eq 3
-      expect(expected_badges_sorted_grouped[:tip][1].position).to eq 4
-      expect(expected_badges_sorted_grouped[:tip][2].position).to eq 5
-      expect(expected_badges_sorted_grouped[:tip][3].position).to eq 6
-      expect(expected_badges_sorted_grouped[:tip][4].position).to eq 7
-    end
-
-    it 'expect to cache badges sorted grouped' do
-      expect(BadgeRepository.badges_sorted_grouped).to eq BadgeRepository.badges_sorted_grouped
-    end
-  end
-
-  describe '::badges_sorted' do
-
-    it 'expect to return all badges sorted' do
-
-      expected_badges_sorted = BadgeRepository.badges_sorted
-
-      expect(expected_badges_sorted.size).to eq 7
-
-      (1..7).each do |n|
-        expect(expected_badges_sorted[(n-1)].position).to eq n
+      actual_tip_badges.each do |tip_badge|
+        expect(tip_badge.identifier).to match('tip')
       end
+
+      actual_comment_badges = actual_grouped_badges[:comment]
+      expect(actual_comment_badges.size).to be 6
+
+      actual_comment_badges.each do |comment_badge|
+        expect(comment_badge.identifier).to match('comment')
+      end
+    end
+  end
+
+  describe '::group_identifiers' do
+
+    it 'returns group_identifiers by given group' do
+      group_identifiers = BadgeRepository.group_identifiers :comment
+
+      expect(group_identifiers.count).to be 2
+      expect(group_identifiers).to include 'comment_created_badge', 'comment_consecutive_created_badge'
+    end
+  end
+
+  describe '::group_identifiers_belong_to_group' do
+
+    it 'returns group_identifiers which belong to given group and are included in given ' do
+      group_identifiers = BadgeRepository.group_identifiers_belong_to_group(
+          :comment, ['tip_badge#correct', 'comment_created_badge'])
+
+      expect(group_identifiers.count).to be 1
+      expect(group_identifiers.first).to eq 'comment_created_badge'
+    end
+  end
+
+  describe '::grouped_group_identifiers_badges' do
+
+    it 'returns grouped group_identifiers badges' do
+
+      actual_grouped_group_identifiers_badges = BadgeRepository.grouped_group_identifiers_badges
+
+      expect(actual_grouped_group_identifiers_badges.size).to eq 2
+
+      actual_tip_group_identifiers_badges = actual_grouped_group_identifiers_badges[:tip]
+      expect(actual_tip_group_identifiers_badges.size).to eq 5
+
+      actual_tip_group_identifiers_badges.values.each do |identifier_grouped_badges|
+        identifier_grouped_badges.each do |badge|
+          expect(badge.identifier).to match('tip')
+        end
+      end
+
+      actual_comment_group_identifiers_badges = actual_grouped_group_identifiers_badges[:comment]
+      expect(actual_comment_group_identifiers_badges.size).to eq 2
+
+      actual_comment_group_identifiers_badges.values.each do |identifier_grouped_badges|
+        identifier_grouped_badges.each do |badge|
+          expect(badge.identifier).to match('comment')
+        end
+      end
+    end
+
+    it 'grouped group_identifiers badges are cached' do
+      expect(BadgeRepository.grouped_group_identifiers_badges).to eq BadgeRepository.grouped_group_identifiers_badges
+    end
+  end
+
+  describe '::group_identifiers_grouped_badges' do
+
+    it 'returns arrays of group_identifier grouped badges by given group' do
+
+      grouped_badges = BadgeRepository.group_identifiers_grouped_badges :tip
+
+      expect(grouped_badges.size).to eq 5
+
+      tip_missed_badges = grouped_badges[0]
+
+      expect(tip_missed_badges.size).to eq 4
+      expect(tip_missed_badges.first.identifier).to eq 'tip_missed_badge#bronze'
+      expect(tip_missed_badges.second.identifier).to eq 'tip_missed_badge#silver'
+      expect(tip_missed_badges.third.identifier).to eq 'tip_missed_badge#gold'
+      expect(tip_missed_badges.fourth.identifier).to eq 'tip_missed_badge#platinum'
     end
   end
 end

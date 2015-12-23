@@ -8,7 +8,7 @@ div.jumbotron.ggp2-jumbotron
     - if badges.present?
       - for badge in badges
         div.badges-box.col-sm-6.col-lg-3
-          = content_tag(:i, '', class: "fa #{badge.icon}", style: "color: #{badge.icon_color}")
+          = content_tag(:i, '', class: "fa #{badge.icon}", style: "color: #{colors[badge.color]}")
           span.badge = I18n.t("#{badge.identifier}.name")
           div.ggp2-badge-description
             small = I18n.t("#{badge.identifier}.description")

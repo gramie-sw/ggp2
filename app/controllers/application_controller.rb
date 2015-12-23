@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   before_filter :authorize
 
-  helper_method :main_navbar_presenter, :random_quotation, :tournament_title, :champion_title
+  helper_method :champion_title, :colors, :main_navbar_presenter, :random_quotation, :tournament_title,
 
   def after_sign_in_path_for(user)
     if user.admin?
@@ -42,6 +42,10 @@ class ApplicationController < ActionController::Base
 
   def random_quotation
     QuotationQueries.find_sample
+  end
+
+  def colors
+    ColorCodeQueries.all
   end
 
   def main_navbar_presenter

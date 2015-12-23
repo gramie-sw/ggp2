@@ -13,5 +13,9 @@ module UserQueries
     def player_count
       User.where(admin: false).count
     end
+
+    def all_player_ids
+      User.where(admin: false).pluck(:id)
+    end
   end
 end

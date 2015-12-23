@@ -1,0 +1,6 @@
+class TipChampionMissedBadge < Badge
+
+  def eligible_user_ids user_ids
+    Tournament.new.started? ? ChampionTip.missed_champion_tip_user_ids(user_ids) : []
+  end
+end

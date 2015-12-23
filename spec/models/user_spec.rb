@@ -1,6 +1,6 @@
 describe User, :type => :model do
 
-  it 'should have valid factory' do
+  it 'has valid factory' do
     expect(create(:user)).to be_valid
   end
 
