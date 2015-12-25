@@ -182,4 +182,42 @@ describe BadgeRepository do
       expect(tip_missed_badges.fourth.identifier).to eq 'tip_missed_badge#platinum'
     end
   end
+
+  describe '::sum_badge_scores_by_user_id' do
+
+    let(:users) do
+      [
+          create(:player),
+          create(:player)
+      ]
+    end
+
+    let(:badges) { BadgeRepository.badges }
+
+    let!(:user_badges) do
+      [
+          create(:user_badge,
+                 user: users.first,
+                 badge_group_identifier: badges.first.group_identifier,
+                 badge_identifier: badges.first.identifier),
+
+          create(:user_badge,
+                 user: users.second,
+                 badge_group_identifier: badges.second.group_identifier,
+                 badge_identifier: badges.second.identifier
+          ),
+
+          create(:user_badge,
+                 user: users.first,
+                 badge_group_identifier: badges.last.group_identifier,
+                 badge_identifier: badges.last.identifier)
+      ]
+    end
+
+    it 'returns sum of of badge scors by given user_id' do
+
+      badge_score_sum = BadgeRepository.sum_badge_scores_by_user_id users.first.id
+      expect(badge_score_sum).to eq 810
+    end
+  end
 end

@@ -10,10 +10,5 @@
     h2.text-center = I18n.t("general.#{group}")
     hr
   div.row
-    -for badge in @presenter.grouped_badges[group.to_sym]
-      div.badges-box.col-sm-6.col-md-3
-        = content_tag(:i, '', class: "fa #{badge.icon}", style: "color: #{colors[badge.color]}")
-        span.badge = I18n.t("#{badge.identifier}.name")
-        div
-          small = I18n.t("#{badge.identifier}.description")
-
+    - for badge in @presenter.grouped_badges[group.to_sym]
+      = render partial: 'badge', locals: {badge: badge,  colors: colors}

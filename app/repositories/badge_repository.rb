@@ -45,12 +45,7 @@ BadgeRepository
     grouped_badges = {}
 
     grouped_group_identifiers_badges.each do |group, group_grouped_identifiers_badges|
-      badges = []
-
-      group_grouped_identifiers_badges.values.each do |group_identifier_badges|
-        badges += group_identifier_badges
-      end
-      grouped_badges[group] = badges
+      grouped_badges[group] = group_grouped_identifiers_badges.values.flatten
     end
 
     grouped_badges
@@ -76,5 +71,10 @@ BadgeRepository
     end
 
     group_identifiers_grouped_badges
+  end
+
+  def sum_badge_scores_by_user_id user_id
+    badges = badges_by_user_id user_id
+    badges.map(&:score).inject(0, :+)
   end
 end

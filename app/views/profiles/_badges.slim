@@ -7,11 +7,7 @@ div.jumbotron.ggp2-jumbotron
   div.row
     - if badges.present?
       - for badge in badges
-        div.badges-box.col-sm-6.col-lg-3
-          = content_tag(:i, '', class: "fa #{badge.icon}", style: "color: #{colors[badge.color]}")
-          span.badge = I18n.t("#{badge.identifier}.name")
-          div.ggp2-badge-description
-            small = I18n.t("#{badge.identifier}.description")
+        = render partial: 'badges/badge', locals: {badge: badge,  colors: colors}
     - else
         div.lead.text-center
           = t('badges.user_not_yet_awarded')

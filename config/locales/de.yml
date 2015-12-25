@@ -136,11 +136,6 @@ de:
         sign_in_count: Anzahl Logins
         current_sign_in_ip: Aktuelle Login-IP
         last_sign_in_ip: Letzte Login-IP
-      venue:
-        city: Ort
-        stadium: Stadion
-        capacity: Kapazität
-
   model:
     submit:
       create: '%{model} anlegen'
@@ -189,6 +184,9 @@ de:
     badge:
       one: Auszeichnung
       other: Auszeichnungen
+    badge_point:
+      one: '%{count} Punkt'
+      other: '%{count} Punkte'
     changeable_until: änderbar bis %{date}
     champion_tip:
       one: '%{champion_title}-Tipp'
@@ -264,6 +262,7 @@ de:
     user_administration: Benutzerverwaltung
     user_data: Benutzerdaten
     'yes': Ja
+
 
   form:
     errors:
