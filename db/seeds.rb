@@ -18,6 +18,14 @@ if Rails.env == 'development'
   create(:player, email: 'player@mail.de', password: '12345678')
   (1..60).each { create(:player) }
 
+
+  puts "#---------tournament creation---"
+  TournamentSettings::Update.run(tournament_settings_attributes:
+                                     {
+                                         tournament_title: "WM-2014",
+                                         champion_title: "Weltmeister"
+                                     })
+
   puts "#---------team creation---------"
   teams = (1..32).map { create(:team) }
 
@@ -117,7 +125,7 @@ if Rails.env == 'development'
     Random.rand(5).times.each { create(:comment, user: user) }
   end
 
-  puts "#---------update match result-------"
+  puts "#---------update match result---"
   Match.all.each do |match|
     MatchResults::Update.run(match_id: match.id, match_result_attributes: {score_team_1: match.score_team_1,
                                                                            score_team_2: match.score_team_2})
