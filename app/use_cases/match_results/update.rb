@@ -13,6 +13,8 @@ module MatchResults
         set_tip_results
         set_champion_tip_results_if_necessary
         update_ranking_sets
+        update_user_badges
+
       end
 
       match_result
@@ -34,6 +36,10 @@ module MatchResults
 
     def update_ranking_sets
       RankingSets::Update.run(match_id: match_id)
+    end
+
+    def update_user_badges
+      UpdateUserBadges.run(group: :tip)
     end
   end
 end

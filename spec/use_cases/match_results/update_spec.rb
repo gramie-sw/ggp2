@@ -26,6 +26,7 @@ describe MatchResults::Update do
           ensure_result_of_match_has_been_updated
         end.ordered
         expect(RankingSets::Update).to receive(:run).with(match_id: match.id).ordered
+        expect(UpdateUserBadges).to receive(:run).with(group: :tip).ordered
         expect(ChampionTips::SetResults).not_to receive(:run)
 
         subject.run(match_id: match.id, match_result_attributes: attributes)
@@ -43,6 +44,7 @@ describe MatchResults::Update do
         end.ordered
         expect(ChampionTips::SetResults).to receive(:run).with(champion_team_id: champion_team.id).ordered
         expect(RankingSets::Update).to receive(:run).with(match_id: match.id).ordered
+        expect(UpdateUserBadges).to receive(:run).with(group: :tip).ordered
 
         subject.run(match_id: match.id, match_result_attributes: attributes)
       end
