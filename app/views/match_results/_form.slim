@@ -5,6 +5,6 @@ div.well
     locals: {match_presenter: presenter.match_presenter,
     result: @presenter.match_presenter, index: 'match_result'}
 
-    div.btn-toolbar.submit-group
+    div.btn-toolbar._submit-group
       = submit_tag t('model.submit.save', model: MatchResult.model_name.human), class: 'btn btn-primary'
       = link_to t('general.cancel'), match_schedules_path, class: 'btn btn-cancel'

@@ -1,0 +1,35 @@
+#_header-image {
+  background-size: cover;
+  background-position: 0% 50%;
+  background-image: url(image_path('background/background_image_01.jpg'));
+
+  color: #fff;
+
+  #_header-image-color-layer {
+    background-color: rgba( $_ci-color-1, .75 )
+  }
+
+  #_slogan {
+    font-size: 24px;
+    line-height: 30px;
+    font-style: italic;
+    letter-spacing: 2px;
+    font-weight: 200;
+  }
+
+  #_quotation {
+    font-size: 15.4px;
+    line-height: 21.56px;
+    font-weight: bold;
+  }
+
+  #_quotation_author {
+    line-height: 2em;
+  }
+
+  .container {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    min-height: 140px;
+  }
+}

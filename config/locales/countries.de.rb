@@ -146,7 +146,7 @@
 			:NL => "Niederlande",
 			:BG => "Bulgarien",
 			:BY => "Belarus",
-			:CZ => "Tschechische Republik",
+			:CZ => "Tschechien",
 			:HU => "Ungarn",
 			:MD => "Republik Moldau",
 			:PL => "Polen",
@@ -156,7 +156,7 @@
 			:UA => "Ukraine",
 			:AD => "Andorra",
 			:AL => "Albanien",
-			:BA => "Bosnien und Herzegowina",
+			:BA => "Bosnien-Herzegowina", #longest possible country name
 			:ES => "Spanien",
 			:GI => "Gibraltar",
 			:GR => "Griechenland",

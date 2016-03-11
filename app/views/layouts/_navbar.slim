@@ -1,23 +1,23 @@
-header#header
-  div.navbar.navbar-default.navbar-fixed-top
-    div.container
-      div.navbar-header
+div.navbar.navbar-inverse.navbar-fixed-top
+  div.container
+    div.navbar-header
 
-        button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-collapse"
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
+      button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-collapse"
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
 
-        span.navbar-brand
-          - if current_user.admin?
-            'Administration
-          - else
-            ="#{tournament_title} #{t('app_title')}"
-      div.collapse.navbar-collapse
-        ul.nav.navbar-nav.navbar-right
-          - for link in main_navbar_presenter.nav_links
-            li class=(link.active? ? 'active' : '') = link_to link.label, link.url
-          li
-            = link_to destroy_user_session_path, method: :delete, title: t('views.layouts.navigation.main_menu.logout')
-              i.fa.fa-sign-out
-              = " #{t('views.layouts.navigation.main_menu.logout')}"
+      span.navbar-brand
+        ="#{tournament_title} "
+        span._sub-navbar-brand
+          = t('app_title')
+        - if current_user.admin?
+        - else
+    div.collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-right
+        - for link in main_navbar_presenter.nav_links
+          li class=(link.active? ? 'active' : '') = link_to link.label, link.url
+        li
+          = link_to destroy_user_session_path, method: :delete, title: t('views.layouts.navigation.main_menu.logout')
+            i.fa.fa-sign-out
+            = " #{t('views.layouts.navigation.main_menu.logout')}"

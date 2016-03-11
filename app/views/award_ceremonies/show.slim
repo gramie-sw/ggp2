@@ -1,26 +1,26 @@
 - content_for(:title, t('general.award_ceremony'))
 
-div.jumbotron.ggp2-jumbotron.text-center
+div.jumbotron.text-center
   p.lead
     = @presenter.description_one
   p
     = t('award_ceremony.description_two')
 
 div.row
-  div.winner-ranking-box.first-place-box.col-sm-4
-    p.place = t('award_ceremony.first_place.position')
+  div._winner-ranking-box._first-place-box.col-sm-4
+    p._place = t('award_ceremony.first_place.position')
     i.fa.fa-trophy
     span.badge = t('award_ceremony.first_place.badge')
     - for ranking_item in @presenter.places.first_places
       = render partial: 'user_label', locals: {ranking_item: ranking_item}
-  div.winner-ranking-box.second-place-box.col-sm-4
-    div.place = t('award_ceremony.second_place.position')
+  div._winner-ranking-box._second-place-box.col-sm-4
+    div._place = t('award_ceremony.second_place.position')
     i.fa.fa-trophy
     span.badge = t('award_ceremony.second_place.badge')
     - for ranking_item in @presenter.places.second_places
       = render partial: 'user_label', locals: {ranking_item: ranking_item}
-  div.winner-ranking-box.third-place-box.col-sm-4
-    div.place = t('award_ceremony.third_place.position')
+  div._winner-ranking-box._third-place-box.col-sm-4
+    div._place = t('award_ceremony.third_place.position')
     i.fa.fa-trophy
     span.badge = t('award_ceremony.third_place.badge')
     - for ranking_item in @presenter.places.third_places

@@ -1,18 +1,17 @@
-div.jumbotron.ggp2-jumbotron
-  h2 = t('profile.section.statistic')
-  div.row
-    - user_statistic = presenter.user_statistic
-    = render partial: 'statistic_item', \
-    locals: {label: t('ranking.position'), value: "#{user_statistic.position == 0 ? '-' : user_statistic.position}"}
-    = render partial: 'statistic_item', \
-    locals: {label: t('general.point.other'), value: "#{user_statistic.points}" }
-    = render partial: 'statistic_item', \
-     locals: {label: t('ranking.correct_tips_count'), value: "#{user_statistic.correct_tips_count}"}
-    = render partial: 'statistic_item', \
-    locals: {label: t('ranking.correct_tendency_tips_only_count'), value: "#{user_statistic.correct_tendency_tips_only_count}"}
-    = render partial: 'statistic_item', \
-    locals: {label: t('ranking.correct_tips_ratio'), value: user_statistic.correct_tips_ratio }
-    = render partial: 'statistic_item', \
-    locals: {label: t('ranking.correct_tendency_tips_only_ratio'), value: "#{user_statistic.correct_tendency_tips_only_ratio}"}
-    = render partial: 'statistic_item', \
-    locals: {label: t('general.badge.other'), value: "#{user_statistic.badges_count}"}
+- user_statistic = presenter.user_statistic
+.row
+  = render partial: 'statistic_item', \
+  locals: {label: t('ranking.position'), value: "#{user_statistic.position == 0 ? '-' : "#{user_statistic.position}."}"}
+  = render partial: 'statistic_item', \
+  locals: {label: t('general.point.other'), value: "#{user_statistic.points}" }
+  = render partial: 'statistic_item', \
+  locals: {label: t('general.badge.other'), value: "#{user_statistic.badges_count}"}
+.row
+  = render partial: 'statistic_item', \
+   locals: {label: t('ranking.correct_tips_count'), value: "#{user_statistic.correct_tips_count}"}
+  = render partial: 'statistic_item', \
+  locals: {label: t('ranking.correct_tendency_tips_only_count'), value: user_statistic.correct_tendency_tips_only_count}
+  = render partial: 'statistic_item', \
+  locals: {label: t('ranking.correct_tips_count'), value: "#{user_statistic.correct_tips_ratio}%" }
+  = render partial: 'statistic_item', \
+  locals: {label: t('ranking.correct_tendency_tips_only_count'), value: "#{user_statistic.correct_tendency_tips_only_ratio}%"}

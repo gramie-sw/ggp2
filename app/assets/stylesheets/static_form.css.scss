@@ -1,0 +1,39 @@
+._static-form-lead-values {
+
+  ._static-form-label {
+    padding-top: ($padding-base-vertical);
+  }
+
+  ._static-form-value {
+    //styled according .lead
+    font-size: floor(($font-size-base * 1.15));
+    font-weight: 200;
+    line-height: 1.4;
+
+    @media (min-width: $screen-sm-min) {
+      font-size: ($font-size-base * 1.5);
+    }
+  }
+}
+
+
+._static-form {
+
+  ._static-form-group {
+    margin-bottom: 20px;
+    // Make form groups behave like rows
+    @include make-row();
+  }
+
+  // Only right align form labels here when the columns stop stacking
+  @media (min-width: $screen-sm-min) {
+
+    ._static-form-label {
+      text-align: right;
+    }
+  }
+
+  ._static-form-label {
+    font-weight: bold;
+  }
+}

@@ -1,5 +1,4 @@
-div.well
-  = simple_form_for user,
+= simple_form_for user,
                     html: {class: 'form-horizontal', role: 'form'},
                     defaults: {label_html: {class: 'col-sm-3 col-lg-2'},
                                input_wrapper_html: {class: 'col-sm-7 col-md-6 col-lg-5'},
@@ -16,7 +15,6 @@ div.well
     = f.input :last_name
 
     = render partial: 'commons/form_buttons',
-             locals: {form_builder: f,
-                      submit_button_label: t('model.submit.save', model: User.model_name.human),
+             locals: {submit_button_label: t('model.submit.save', model: User.model_name.human),
                       cancel_path: user_index_path,
                       wrapper_html: {class: 'col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10'}}

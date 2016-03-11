@@ -1,0 +1,23 @@
+.jumbotron {
+
+  @media (max-width: $screen-lg-min - 1px) {
+    margin-left: -15px;
+    margin-right: -15px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .container &,
+  .container-fluid & {
+    border-radius: 0;
+  }
+
+  p {
+
+    font-size: $font-size-base;
+
+    &.lead {
+      font-size: $font-size-base * 1.5;
+    }
+  }
+}

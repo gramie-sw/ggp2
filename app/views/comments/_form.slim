@@ -1,17 +1,18 @@
-div.well
-  = form_for(comment, html: { class: 'form-horizontal', role: 'form'}) do |f|
-    legend = legend
+= form_for(comment, html: {role: 'form'}) do |f|
+  legend = legend
 
-    = render partial: 'commons/error_messages', locals: { model: comment}
+  = render partial: 'commons/error_messages', locals: { model: comment}
 
-    div.form-group
+  .row
+    .form-group
       div.col-sm-9.col-md-7.col-lg-6
         = f.text_area :content, class: 'form-control', rows: 7
+        br
       div.col-sm-3.col-md-5.col-lg-6
         = "(#{t('comments.max_allow_char_message')})"
 
-    div.form-group
-      div.col-sm-9.col-md-10
-        div.btn-toolbar
-          = f.submit t('model.messages.save', model: Comment.model_name.human), class: 'btn btn-primary'
+    .form-group
+      .col-sm-9.col-md-10
+        .btn-toolbar
+          = f.submit t('general.save'), class: 'btn btn-primary'
           = link_to I18n.t('general.cancel'), pin_boards_path, class: "btn btn-cancel"

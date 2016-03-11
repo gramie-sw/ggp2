@@ -1,16 +1,12 @@
 - badges = presenter.badges
 
-div.jumbotron.ggp2-jumbotron
-  h2
-    = t('profile.section.badges')
-
-  div.row
-    - if badges.present?
-      - for badge in badges
+.row
+  - if badges.present?
+    - for badge in badges
         = render partial: 'badges/badge', locals: {badge: badge,  colors: colors}
-    - else
-        div.lead.text-center
-          = t('badges.user_not_yet_awarded')
+  - else
+    div.lead.text-center
+      = t('badges.user_not_yet_awarded')
 
-  div.text-center
-    = link_to t('badges.all'), badges_path, class: 'btn btn-primary'
+.text-center
+  = link_to t('badges.all'), badges_path, class: 'btn btn-primary'

@@ -9,7 +9,7 @@ describe User, :type => :model do
     describe '#nickname' do
       it { is_expected.to validate_presence_of(:nickname) }
       it { is_expected.to validate_uniqueness_of(:nickname) }
-      it { is_expected.to validate_length_of(:nickname).is_at_least(3).is_at_most(32) }
+      it { is_expected.to validate_length_of(:nickname).is_at_least(3).is_at_most(20) }
     end
 
     describe '#first_name' do

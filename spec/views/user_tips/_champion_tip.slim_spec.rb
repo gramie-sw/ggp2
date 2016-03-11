@@ -84,7 +84,7 @@ describe 'user_tips/_champion_tip.slim', :type => :view do
     context 'if presenter#tippable? returns true' do
 
       it 'should be showed' do
-        expect(presenter).to receive(:tippable?).and_return(true)
+        expect(presenter).to receive(:tippable?).and_return(true).at_least(:once)
         render partial
         expect(rendered).to have_css *deadline_message_css
       end
@@ -92,8 +92,8 @@ describe 'user_tips/_champion_tip.slim', :type => :view do
 
     context 'if presenter#champion_tippable? returns false' do
 
-      it 'should be showed' do
-        expect(presenter).to receive(:tippable?).and_return(false)
+      it 'should not be showed' do
+        expect(presenter).to receive(:tippable?).and_return(false).at_least(:once)
         render partial
         expect(rendered).not_to have_css *deadline_message_css
       end

@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   has_many :user_badges, dependent: :destroy
   has_one :champion_tip, dependent: :destroy, inverse_of: :user
 
-  validates :nickname, presence: true, uniqueness: true, length: {minimum: 3, maximum: 32}
+  validates :nickname, presence: true, uniqueness: true, length: {minimum: 3, maximum: 20}
   validates :first_name, presence: true, length: {maximum: 32}
   validates :last_name, presence: true, length: {maximum: 32}
   validates :admin, inclusion: {in: [true, false]}

@@ -6,9 +6,9 @@
   = " #{I18n.t('general.back')}"
 
 - for group in @presenter.groups
-  div.row
-    h2.text-center = I18n.t("general.#{group}")
+  .row
+    h3.text-center = I18n.t("general.#{group}")
     hr
-  div.row
+  .row
     - for badge in @presenter.grouped_badges[group.to_sym]
       = render partial: 'badge', locals: {badge: badge,  colors: colors}

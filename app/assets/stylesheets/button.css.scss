@@ -1,0 +1,18 @@
+.btn-toolbar {
+
+  //We override this because in bootstrap 3 only .btn as direct child of .btn-toolbar has margin-left
+  .btn {
+    margin-left: 5px;
+  }
+}
+
+._unstyled-button {
+
+  &, &:active, &:hover {
+
+    border: none;
+    background: none;
+    outline: none;
+  }
+}
+

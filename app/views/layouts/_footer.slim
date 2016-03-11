@@ -1,29 +1,26 @@
-footer#footer
-  div.container
-    div.row
-      div.col-xs-12.visible-xs.visible-sm.version-info
-        p
+footer
+  section.top
+    .container
+      .row
+        .col-xs-12.visible-xs.visible-sm.version-info
           a href="https://github.com/gramie-sw/ggp2" target="blank"
             'ggp2 - Version
             = Ggp2.config.application_version
-            '&nbsp;&middot; &copy;&nbsp;2013-2014&nbsp;gramie
-      div.col-md-4.hidden-xs.hidden-sm.version-info
-        p
-          a href="https://github.com/gramie-sw/ggp2" target="blank"
-            'ggp2 - Version
-            = Ggp2.config.application_version
-            br
-            '&copy;&nbsp;2013-2014&nbsp;gramie
-      div.col-xs-12.col-md-4
-        p
-          i.fa.fa-lg.fa-child
-          '&nbsp
-          i.fa.fa-lg.fa-trophy
-          '&nbsp
-          i.fa.fa-lg.fa-flag
-      div.col-xs-12.col-md-4.foto-copyright
-        '&copy;&nbsp;
-        = t('general.title_foto')
-        ': R.&nbsp;Sturm /
-        a href="http://www.pixelio.de/" target="blank"
-          'www.pixelio.de
+            '&nbsp;&middot; &copy;&nbsp;2013-2016&nbsp;gramie
+        .col-md-4.hidden-xs.hidden-sm.version-info
+          p
+            a href="https://github.com/gramie-sw/ggp2" target="blank"
+              'ggp2 - Version
+              = Ggp2.config.application_version
+              br
+              '&copy;&nbsp;2013-2016&nbsp;gramie
+        .col-xs-12.col-md-4
+          p
+            i.fa.fa-lg.fa-child
+            '&nbsp
+            i.fa.fa-lg.fa-trophy
+            '&nbsp
+            i.fa.fa-lg.fa-flag
+        .col-xs-12.col-md-4
+          = render 'layouts/copyrights'
+  section.bottom

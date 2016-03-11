@@ -1,0 +1,59 @@
+body#login-page {
+  padding-top: 0;
+
+  background-size: cover;
+  background-position: 0% 50%;
+  background-image: url(image_path('background/background_image.jpg'));
+
+  #login-page-color-layer {
+    width: 100%;
+    min-height: 100%;
+
+    background-color: rgba($_ci-color-1, .75);
+  }
+
+  #login, #registration, #forget-password {
+    padding: 60px 60px 40px;
+    background-color: white;
+
+    .intro {
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+  }
+
+  #login {
+    margin: 20% 0;
+
+    input[type=submit] {
+      margin: 20px 0 30px;
+
+    }
+  }
+
+  #registration {
+    margin: 5% 0;
+
+  }
+
+  #forget-password {
+    margin: 20% 0;
+  }
+
+  #foto-copyright {
+    float: right;
+    margin-top: -30px;
+    margin-right: 10px;
+
+    font-size: 10px;
+    color: $gray-dark;
+
+    a {
+      color: $gray-dark;
+
+      &:hover {
+        color: $gray-dark;
+      }
+    }
+  }
+}

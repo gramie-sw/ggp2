@@ -1,13 +1,10 @@
 = content_for(:title, t('views.tips.edit_multiple.title'))
 
-div.well
-  = form_tag update_multiple_tips_path, class: 'result-form', role: :form
-    - for tip_presenter in @presenter.tip_presenters
-      = render \
-      partial: 'results/result_fields', \
-      locals: { match_presenter: tip_presenter.match_presenter, result: tip_presenter, index: 'tips[]'}
+= form_tag update_multiple_tips_path, class: 'tip-form', id: 'tips-form', role: :form
+  - for tip_presenter in @presenter.tip_presenters
+    = render partial: 'results/result_fields',
+            locals: {match_presenter: tip_presenter.match_presenter, result: tip_presenter, index: 'tips[]'}
 
-    div.btn-toolbar.submit-group
-      = submit_tag t('model.submit.save', model: Tip.model_name.human_plural), class: 'btn btn-primary'
-      - aggregate_id = session[Ggp2::USER_TIPS_LAST_SHOWN_AGGREGATE_ID_KEY]
-      = link_to t('general.cancel'), user_tip_path(current_user, aggregate_id: aggregate_id), class: 'btn btn-cancel'
+  - aggregate_id = session[Ggp2::USER_TIPS_LAST_SHOWN_AGGREGATE_ID_KEY]
+  = render partial: 'commons/form_buttons',
+           locals: {cancel_path:  user_tip_path(current_user, aggregate_id: aggregate_id)}

@@ -1,0 +1,25 @@
+html, body {
+  height: 100%;
+  font-weight: 200;
+}
+
+body {
+  padding-top: 60px;
+}
+
+a {
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+._text-weaker {
+  color: $_weaker-text-color;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+._no_wrap {
+  white-space: nowrap;
+}

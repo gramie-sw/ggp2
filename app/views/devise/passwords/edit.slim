@@ -16,6 +16,5 @@ div.col-sm-offset-1.col-sm-10.col-md-offset-2.col-md-8.col-lg-offset-3.col-lg-6
       = f.input :password_confirmation
 
       = render partial: 'commons/form_buttons',
-               locals: {form_builder: f,
-                        submit_button_label: t('devise.links.change_my_password'),
+               locals: {submit_button_label: t('devise.links.change_my_password'),
                         wrapper_html: {class: 'col-sm-offset-4 col-sm-8 col-md-7'}}

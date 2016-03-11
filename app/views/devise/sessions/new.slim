@@ -1,21 +1,17 @@
-div#login.col-xs-12.col-sm-7.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
-  div.well
+.col-xs-12.col-sm-7.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
+  #login
     = render 'layouts/messages'
 
     = form_for(resource, :as => resource_name, :url => session_path(resource_name), html: \
               { role: 'form'}) do |f|
-      div.form-group
+      .form-group
         = f.email_field :email, placeholder: User.human_attribute_name(:email), :autofocus => true, class: 'form-control'
-      div.form-group
+      .form-group
         = f.password_field :password, placeholder: User.human_attribute_name(:password), class: 'form-control'
-      - if devise_mapping.rememberable?
-        div.form-group
-          = f.check_box :remember_me
-          |&nbsp;
-          = f.label I18n.t('devise.label.remember_me'), class: 'control-label'
-      div.btn-toolbar
-        = f.submit I18n.t('devise.links.sign_in'), class: 'btn btn btn-primary'
-        - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+
+      = f.submit I18n.t('devise.links.sign_in'), class: 'btn btn-primary', style: "width: 100%"
+
+      .text-center
+          = link_to I18n.t('devise.links.sign_up'), new_registration_path(resource_name)
+          '&nbsp;|&nbsp
           = link_to I18n.t('devise.links.forgot_password'), new_password_path(resource_name)
-  div.text-center
-    = render "devise/shared/links"

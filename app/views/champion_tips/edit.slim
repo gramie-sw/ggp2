@@ -2,11 +2,11 @@
 
 p.lead = "#{t('champion_tip.description.change', champion_title: champion_title)} ..."
 = render partial: 'commons/error_messages', locals: {model: @presenter.champion_tip}
-div.row
+.row#champion-tip-forms
   - for team in @presenter.teams
-    div.col-lg-3.col-md-4.col-sm-6.col-xs-12.ggp2-flag-with-country-name.ggp2-champion-tip-box
+    .col-lg-3.col-md-4.col-sm-6.col-xs-12._champion-tip-box
       = form_for @presenter.champion_tip do |f|
         = f.hidden_field :team_id, value: team.id
-        button.ggp2-unstyled-button
-          = standard_flag_image_tag_of team
+        button._unstyled-button._flag-with-country-name._team-name-32
+          = flag_image_tag(team.country, size: 32)
           = team.name

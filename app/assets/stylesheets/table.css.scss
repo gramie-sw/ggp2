@@ -1,0 +1,61 @@
+table {
+
+  &.table {
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    tbody td {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      vertical-align: middle;
+    }
+  }
+
+  tr.link-row {
+    cursor: pointer;
+  }
+
+  ._table-vertical-group {
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+
+  ._table-label-horizontal, ._table-label-vertical {
+    color: $_weaker-text-color;
+    font-size: 12px;
+  }
+
+  ._table-label-vertical {
+    line-height: 1.35;
+  }
+
+  ._table-value-horizontal {
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  ._table-value-vertical {
+    font-size: 16px;
+    min-width: 30px;
+    margin-right: 5px;
+  }
+
+  ._table_nickname {
+    font-size: 20px;
+  }
+}
+
+.table-responsive {
+
+  border: none;
+  width: auto;
+
+  @media (max-width: $screen-xs-max) {
+    margin-left: -$grid-gutter-width/2;
+    margin-right: -$grid-gutter-width/2;
+  }
+}
+
+._table-legend {
+  line-height: 1.2;
+}

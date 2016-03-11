@@ -1,24 +1,39 @@
 - if presenter.show?
-  div.panel.panel-default#champion-tip
-    div.panel-body
-      div
-        div.row
-          div.col-sm-8.ggp2-flag-with-country-name
-            strong
-              = "#{t('general.champion_tip.one', champion_title: champion_title)}:"
-            '&nbsp;&nbsp;
-            = standard_flag_image_tag presenter.team_abbreviation
+  .well._well-full-width
+
+    .row.hidden-xs
+      .col-sm-8
+        strong
+          = "#{t('general.champion_tip.one', champion_title: champion_title)}"
+        '&nbsp;&nbsp;
+        span._flag-with-country-name._team-name-24
+          = flag_image_tag(presenter.team_abbreviation, size: 24)
+          = presenter.team_name_or_missing_message
+        - if presenter.tippable?
+          br
+          small._text-weaker
+            = presenter.deadline_message
+      - if presenter.tippable?
+        .col-sm-4.text-right.hidden-xs
+          = link_to t('model.submit.update', model: Tip.model_name.human),
+              edit_champion_tip_path(presenter.id),
+              class: 'btn btn-primary'
+
+    .visible-xs
+      strong
+        = "#{t('general.champion_tip.one', champion_title: champion_title)}"
+        '&nbsp;&nbsp;
+      .row
+        .col-xs-8
+          span._flag-with-country-name._team-name-24
+            = flag_image_tag(presenter.team_abbreviation, size: 24)
             = presenter.team_name_or_missing_message
+        .col-xs-4
+          .pull-right
             - if presenter.tippable?
-              br
-              small.ggp2-weakened
-                = presenter.deadline_message
-          - if presenter.tippable?
-            div.col-sm-4.text-right.hidden-xs
               = link_to t('model.submit.update', model: Tip.model_name.human),
-                  edit_champion_tip_path(presenter.id),
-                  class: 'btn btn-primary'
-            div.col-xs-12.text-center.visible-xs.ggp2-panel-body-box
-              = link_to t('model.submit.update', model: Tip.model_name.human),
-                  edit_champion_tip_path(presenter.id),
-                  class: 'btn btn-primary'
+                edit_champion_tip_path(presenter.id),
+                class: 'btn btn-primary'
+      - if presenter.tippable?
+        small._text-weaker
+          = presenter.deadline_message

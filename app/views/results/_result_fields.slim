@@ -1,27 +1,31 @@
 fieldset
-  legend = "Spiel #{match_presenter.position}"
-  div.row.hidden-lg.hidden-md
-    div.col-xs-12.ggp2-weakened.legend-neutralize
+  div.row.hidden-lg
+    div.col-xs-12._text-weaker._legend-horizontal
       = "#{match_presenter.aggregate_name_recursive}, #{l match_presenter.date, format: :short}"
   = render partial: 'commons/error_messages', locals: {model: result}
-  div.row.form-group
-    /TODO not optimal top spacing, spacing should be similar to .form-horizontal spacing
-    div.col-xs-6.col-sm-8.col-md-5.col-lg-5
-      label.control-label.ggp2-flag-with-country-name
-        = standard_flag_image_tag_of(match_presenter.team_1)
+  .row.form-group
+    .col-sm-4.col-md-4.col-lg-3.hidden-xs
+      ._flag-with-country-name._team-name-32
+        = flag_image_tag(match_presenter.team_1.country, size: 32)
         = match_presenter.team_1_name_or_placeholder
-        span.ggp2-text-normal
-          '&nbsp;&nbsp;vs.&nbsp;&nbsp;
-      label.control-label.ggp2-flag-with-country-name
-        = standard_flag_image_tag_of(match_presenter.team_2)
+    .col-sm-4.col-md-4.col-lg-3.hidden-xs
+      ._flag-with-country-name._team-name-32
+        = flag_image_tag(match_presenter.team_2.country, size: 32)
         = match_presenter.team_2_name_or_placeholder
-    div.col-xs-6.col-sm-4.col-md-3.col-lg-2
+    .col-xs-7.visible-xs
+      ._flag-with-country-name._team-name-24
+        = flag_image_tag(match_presenter.team_1.country, size: 24)
+        = match_presenter.team_1_name_or_placeholder
+        br
+        = flag_image_tag(match_presenter.team_2.country, size: 24)
+        = match_presenter.team_2_name_or_placeholder
+    .col-xs-5.col-sm-4.col-md-4.col-lg-2
       = fields_for index, result do |f|
-        = f.text_field :score_team_1, class: 'form-control score-input', maxlength: 2
+        = f.text_field :score_team_1, class: 'form-control _score-input', maxlength: 2
         = ":"
-        = f.text_field :score_team_2, class: 'form-control score-input', maxlength: 2
-    div.col-md-4.col-lg-5.visible-md.visible-lg
-      div.ggp2-weakened
-        = match_presenter.aggregate_name_recursive
+        = f.text_field :score_team_2, class: 'form-control _score-input', maxlength: 2
+    .col-lg-4.visible-lg
+      div._text-weaker
+        = "Spiel #{match_presenter.position}, #{match_presenter.aggregate_name_recursive}"
         br
         = l match_presenter.date

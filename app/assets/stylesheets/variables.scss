@@ -1,0 +1,53 @@
+//== colors
+
+$gray-base: #000;
+$gray-darker: lighten($gray-base, 13.5%);
+$gray-dark: #212121;
+$gray: #666;
+$gray-light: #888;
+$gray-lighter: #bbb;
+
+$font-size-base: 14px;
+
+$text-color: $gray-dark;
+$_weaker-text-color: $gray-light;
+
+$_ci-color-1: #89c200;
+$_ci-color-2: #FDD835;
+$_ci-color-3: #353535;
+
+$_well-background-color: #EEEEEE;
+
+$brand-primary: $_ci-color-1;
+
+$link-color: $_ci-color-1;
+
+$jumbotron-bg: $_well-background-color;
+
+$navbar-inverse-brand-color: #fff;
+$navbar-inverse-link-color: $gray-lighter;
+$navbar-inverse-color: #fff;
+$navbar-inverse-bg: #333;
+
+$component-active-bg: $_ci-color-1;
+
+$input-border-focus: $_ci-color-1;
+
+$nav-pills-active-link-hover-bg: $_ci-color-1;
+
+$nav-tabs-border-color: $gray-lighter;
+$nav-tabs-active-link-hover-color: $text-color;
+$nav-tabs-active-link-hover-border-color: $_ci-color-1;
+
+$font-size-h1: 40px;
+$headings-font-weight: 200;
+
+$grid-float-breakpoint: 992px;
+
+$alert-border-radius: 0;
+$alert-success-bg: #2196F3;
+
+//== grid
+
+// Padding between columns. Gets divided in half for the left and right.
+$grid-gutter-width: 20px;

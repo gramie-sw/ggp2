@@ -20,8 +20,8 @@ describe 'profiles/_user_data.slim', :type => :view do
 
   describe 'static-form' do
 
-    let(:email_field_css) { ['.ggp2-static-form-label', {text: User.human_attribute_name(:email)}] }
-    let(:password_field_css) { ['.ggp2-static-form-label', {text: User.human_attribute_name(:password)}] }
+    let(:email_field_css) { ['._static-form-label', {text: User.human_attribute_name(:email)}] }
+    let(:password_field_css) { ['._static-form-label', {text: User.human_attribute_name(:password)}] }
     let(:edit_link_css) { ['a', {text: t('model.messages.change', model: t('general.user_data'))}] }
 
     context 'when is_for_current_user is true' do

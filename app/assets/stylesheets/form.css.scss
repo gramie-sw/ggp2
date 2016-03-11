@@ -1,0 +1,20 @@
+form {
+
+  //.alert-danger ul {
+  //  margin-top: 10px;
+  //}
+
+  .field_with_errors {
+    @extend .has-error;
+  }
+  .legend-neutralize {
+    margin-top: -$line-height-computed;
+    margin-bottom: $line-height-computed;
+  }
+
+  ._submit-group {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+  }
+}

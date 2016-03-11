@@ -6,7 +6,7 @@ div.visible-md.visible-lg
       li class=('active' if phase.id == current_phase.id)
         = link_to phase.name, url_for(aggregate_id: phase.id, only_path: true)
   - if all_groups.present?
-    ul._nav-tabbed-menu-lg.groups-menu.nav.nav-pills
+    ul._nav-tabbed-menu-lg._menu-level-2.groups-menu.nav.nav-tabs
       li class=('active' if current_group.nil?)
         = link_to label_all_groups,
                   url_for(aggregate_id: current_phase.id, only_path: true)

@@ -1,8 +1,72 @@
 ._nav-tabbed-menu-lg {
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
 ._nav-tabbed-menu-xs {
   margin-right: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 25px;
+}
+
+.nav-tabs {
+
+  border-color: $_ci-color-1;
+  border-width: 2px;
+
+  > li > a,
+  > li > a:focus {
+
+    border-radius: 0;
+
+    //@include box-shadow(inset 0 -1px 0 $gray-light);
+    box-shadow: none;
+    border-bottom: 1px solid $_ci-color-1;
+
+    &:hover {
+      color: $text-color;
+      box-shadow: none;
+    }
+  }
+
+  & > li.active > a,
+  & > li.active > a:focus {
+
+    background-color: $_ci-color-1;
+    color: #fff;
+    box-shadow: none;
+
+    &:hover {
+      background-color: $_ci-color-1;
+      color: #fff;
+      box-shadow: none;
+    }
+  }
+
+  &._menu-level-2 {
+
+    border: none;
+
+    > li > a,
+    > li > a:focus {
+
+      border-bottom: none;
+      box-shadow: none;
+
+      &:hover {
+        color: $text-color;
+        @include box-shadow(inset 0 -2px 0 $_ci-color-1);
+        background-color: transparent;
+      }
+    }
+
+    & > li.active > a,
+    & > li.active > a:focus {
+      @include box-shadow(inset 0 -2px 0 $_ci-color-1);
+      background-color: transparent;
+      color: $text-color;
+
+      &:hover {
+        color: $text-color;
+      }
+    }
+  }
 }

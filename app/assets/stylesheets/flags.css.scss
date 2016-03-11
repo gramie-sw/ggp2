@@ -1,0 +1,28 @@
+._flag-with-country-name {
+
+  font-weight: 200;
+
+  &._team-name-16 {
+    line-height: 16px;
+  }
+
+  ._team-16-with-flag-24 {
+    line-height: 24px;
+  }
+
+  &._team-name-24 {
+    font-size: 17px;
+    line-height: 24px;
+  }
+
+  &._team-name-32 {
+    font-size: 18px;
+    line-height: 32px;
+  }
+
+  //.flag-16 can be removed flag is in for all flag image tags
+  .flag, .flag-16 {
+    vertical-align: top;
+    margin-right: 10px;
+  }
+}

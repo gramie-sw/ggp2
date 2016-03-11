@@ -201,7 +201,6 @@ de:
       one: Gruppe
       other: Gruppen
     match_result: 'Ergebnis'
-    menu: Menu
     add: Erstellen
     back: Zurück
     cancel: Abbrechen
@@ -320,8 +319,6 @@ de:
     position: Platz
     correct_tips_count: Korrekte Tipps
     correct_tendency_tips_only_count: Korrekte Tendenz
-    correct_tips_ratio: Korrekte Tipps in %
-    correct_tendency_tips_only_ratio: Korrekte Tendenz in %
 
   tip:
     all: Alle Tipps
@@ -329,7 +326,7 @@ de:
     all_for: Alle Tipps für %{subject}
     description:
       for_showing_others: |
-        Die Tipps der Mitspieler sind erst sichtbar, wenn das Spiel begonnen hat.
+        Die Tipps der Mitspieler sind erst nach Spielbeginn sichtbar.
         Die * zeigen an, ob ein Tipp abgegeben wurde.
     not_present: Nicht getippt
     yours: Deine Tipps
@@ -351,7 +348,8 @@ de:
           logout: Abmelden
     user_tips:
       show:
-        tip_selected_matches: Ausgwählte Spiele tippen
+        tip_selected_matches: Markierte Spiele tippen
+
     tips:
       edit_multiple:
         title: Spiele tippen
@@ -368,6 +366,9 @@ de:
 
 
   help:
+    forgot_password:
+      description: Geb einfach deine e-Mail an, wir schicken Dir ein neues zu.
+
     ranking:
       titleholder: markiert den Titelverteidiger
     tip:

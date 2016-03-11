@@ -1,0 +1,21 @@
+._badge-item {
+  margin-bottom : 20px;
+  padding: 10px;
+  height: 110px;
+  color: white;
+  background-color: #FDD835;
+  text-align: center;
+
+  .fa {
+    font-size: 40px;
+  }
+
+  ._item-label {
+    font-size: 14px;
+  }
+
+  ._item-description {
+    font-size: 11px;
+    line-height: 1.1;
+  }
+}

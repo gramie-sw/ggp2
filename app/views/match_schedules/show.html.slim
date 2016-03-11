@@ -39,10 +39,10 @@
         - for match_presenter in @presenter.match_presenters
           tr.link-row data-href="#{edit_match_result_path(match_presenter.id)}"
             td = "#{match_presenter.position}."
-            td.ggp2-flag-with-country-name
+            td._flag-with-country-name
               = standard_flag_image_tag_of match_presenter.team_1
               = match_presenter.team_1_name_or_placeholder
-            td.ggp2-flag-with-country-name
+            td._flag-with-country-name
               = standard_flag_image_tag_of match_presenter.team_2
               = match_presenter.team_2_name_or_placeholder
             td.text-center = match_presenter.result

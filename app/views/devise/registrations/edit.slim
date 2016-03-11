@@ -1,31 +1,22 @@
-- content_for(:title, t('general.profile.one'))
+- content_for(:title, t('model.messages.change', model: t('general.user_data')))
 
-div.well
+.row
+  .col-xs-12.col-sm-8.col-md-6
+    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name),
+                      html: {role: 'form'}, defaults: {required: false}) do |f|
 
-  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name),
-                    html: {class: 'form-horizontal', role: 'form'},
-                    defaults: {label_html: {class: 'col-sm-3 col-lg-2'},
-                               input_wrapper_html: {class: 'col-sm-7 col-md-6 col-lg-5'},
-                               required: false}) do |f|
+      = f.input :email
 
-    legend
-      = t('model.messages.change', model: t('general.user_data'))
+      = f.input :current_password,
+                input_html: {placeholder: t('user_data.form.hint.current_password')}
 
-    = f.input :email
+      = f.input :password, label: User.human_attribute_name(:new_password),
+                input_html: { placeholder: t('user_data.form.hint.new_password')}
 
-    = f.input :current_password,
-              input_html: {placeholder: t('user_data.form.hint.current_password')}
+      = f.input :password_confirmation, label: User.human_attribute_name(:new_password_confirmation),
+                input_html: { placeholder: t('user_data.form.hint.new_password')}
 
-    = f.input :password, label: User.human_attribute_name(:new_password),
-              input_html: { placeholder: t('user_data.form.hint.new_password')}
+      - locals = { form_builder: f}
+      - locals[:cancel_path] = profile_path(resource, section: :user_data) unless current_user.admin?
 
-    = f.input :password_confirmation, label: User.human_attribute_name(:new_password_confirmation),
-              input_html: { placeholder: t('user_data.form.hint.new_password')}
-
-    - locals = { form_builder: f,
-                 submit_button_label: t('model.messages.change', model: t('general.user_data')),
-                 wrapper_html: {class: 'col-sm-offset-3 col-lg-offset-2 col-sm-9 col-md-10'}}
-
-    - locals[:cancel_path] = profile_path(resource, section: :user_data) unless current_user.admin?
-
-    = render partial: 'commons/form_buttons', locals: locals
+      = render partial: 'commons/form_buttons', locals: locals

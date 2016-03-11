@@ -27,7 +27,6 @@ describe 'user_tips/_tips_table.slim', :type => :view do
 
     select_all_link_selector = "div.btn-toolbar a[onclick]"
     submit_button_selector = "div.btn-toolbar input[type='submit']"
-    help_link_selector = ['a', {text: I18n.t('general.help')}]
 
     context 'if show_as_form is true' do
 
@@ -35,7 +34,6 @@ describe 'user_tips/_tips_table.slim', :type => :view do
         render partial_options
         expect(rendered).to have_css select_all_link_selector
         expect(rendered).to have_css submit_button_selector
-        expect(rendered).to have_css *help_link_selector
       end
     end
 
@@ -47,7 +45,6 @@ describe 'user_tips/_tips_table.slim', :type => :view do
         render partial_options
         expect(rendered).not_to have_css select_all_link_selector
         expect(rendered).not_to have_css submit_button_selector
-        expect(rendered).not_to have_css *help_link_selector
       end
     end
   end

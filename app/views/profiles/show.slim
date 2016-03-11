@@ -1,21 +1,23 @@
 - content_for(:title, @presenter.title)
 - content_for(:subtitle, @presenter.subtitle)
 
-div.visible-xs.visible-sm
-  div.btn-group.pull-right.ggp2-btn-group
-    button.btn.btn-primary.btn-lg.dropdown-toggle type="button" data-toggle="dropdown"
-      = "#{t('general.menu')} "
+div.row
+  div.col-xs-12.hidden-xs
+    ul._nav-tabbed-menu-lg.nav.nav-tabs.nav-tabs-lg
+      - for section in @presenter.available_sections
+        li *show_menu_li_attributes(section, @presenter.current_section)
+              = link_to t("profile.section.#{section}"), profile_path(@presenter.user, section: section)
+
+div.visible-xs
+  div._nav-tabbed-menu-xs.btn-group
+    button.btn.btn-primary.btn.dropdown-toggle type="button" data-toggle="dropdown"
+      = t("profile.section.#{@presenter.current_section}")
+      |&nbsp;
       span.caret
-    ul.dropdown-menu.pull-right.ggp2-dropdown-menu role="menu"
+    ul.dropdown-menu role="menu"
       - for section in @presenter.available_sections
         li *show_menu_li_attributes(section, @presenter.current_section)
           = link_to t("profile.section.#{section}"), profile_path(@presenter.user, section: section)
 
-div.row
-  div.col-xs-12.col-md-9.col-lg-10
-    = render partial: "#{@presenter.current_section}", locals: {presenter: @presenter}
-  div.col-md-3.col-lg-2.visible-md.visible-lg
-    ul.nav.nav-pills.nav-stacked
-      - for section in @presenter.available_sections
-        li *show_menu_li_attributes(section, @presenter.current_section)
-          = link_to t("profile.section.#{section}"), profile_path(@presenter.user, section: section)
+
+= render partial: "#{@presenter.current_section}", locals: {presenter: @presenter}

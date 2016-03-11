@@ -2,80 +2,69 @@
 - content_for(:title, t('tip.all'))
 - content_for(:subtitle, t('general.for_subject', subject: "#{Match.model_name.human} #{match_presenter.position}"))
 
-div.row
-  div.col-xs-12.hidden-md.hidden-lg
-    div.panel.panel-default
-      div.panel-heading
-        = "#{Match.model_name.human} #{match_presenter.position}"
-      div.panel-body
-        div.row.ggp2-panel-body-box
-          div.col-xs-12.ggp2-weakened
-            = "#{match_presenter.aggregate_name_recursive}, #{l match_presenter.date, format: :short}"
-        div.row.ggp2-panel-body-box
-          div.col-xs-7.ggp2-flag-with-country-name
-            span.ggp2-no-wrap
-              = standard_flag_image_tag_of match_presenter.team_1
-              strong = match_presenter.team_1_name_or_placeholder
-            span.ggp2-text-normal
-              '&nbsp;&nbsp;vs.&nbsp;&nbsp;
-            span.ggp2-no-wrap
-              = standard_flag_image_tag_of match_presenter.team_2
-              strong = match_presenter.team_2_name_or_placeholder
-          div.col-xs-5
-            strong = match_presenter.result
+#match-tips
+  .well._well-full-width.hidden-md.hidden-lg
+    ._horizontal-match-panel.text-center
+      .row
+        .col-xs-4.col-sm-5
+          = flag_image_tag(match_presenter.team_1.country, size: 64)
+          ._team-name
+            = match_presenter.team_1_name_or_placeholder
+        .col-xs-4.col-sm-2
+          ._result
+            = match_presenter.result
+        .col-xs-4.col-sm-5
+          = flag_image_tag(match_presenter.team_2.country, size: 64)
+          ._team-name
+            = match_presenter.team_2_name_or_placeholder
+      ._text-weaker
+        = match_presenter.aggregate_name_recursive(multiline: true).join(' ')
+        = " - #{l match_presenter.date, format: :short}"
 
-  div.col-xs-12.col-md-9.col-lg-10
-    div.table-responsive
-      table.table.table-hover
-        thead
-          tr
-            th = t('general.player.one')
-            th.text-center = Tip.model_name.human
-            th.text-center = t('general.point.other')
-            th = t('general.last_change')
-            th
-        tbody
-          - for tip_presenter in @presenter.tip_presenters
-            tr
-              td = tip_presenter.user.nickname
-              td.text-center = tip_presenter.result
-              td.text-center = tip_presenter.points
-              td = l tip_presenter.updated_at, format: :short
-              td
-                = link_to user_tip_path(tip_presenter.user_id)
-                  icon.fa.fa-list title="#{t('tip.all_of', subject: tip_presenter.user.nickname)}"
 
-    = paginate @presenter.pagination_scope
+  .row
+    .col-xs-12.col-md-8
+      ._table-legend
+        small
+          = t('tip.description.for_showing_others')
+      .table-responsive
+        table.table.table-hover
+          tbody
+            - for tip_presenter in @presenter.tip_presenters
+              tr
+                td._table_nickname
+                  = tip_presenter.user.nickname
+                td.text-center.hidden-xs
+                  ._table-value-horizontal = tip_presenter.result
+                  ._table-label-horizontal = t('general.result')
+                td.text-center.hidden-xs
+                  ._table-value-horizontal = tip_presenter.points
+                  ._table-label-horizontal = t('general.point.other')
+                td.visible-xs
+                  ._table-vertical-group
+                    span._table-value-vertical = tip_presenter.result
+                    span._table-label-vertical = Tip.model_name.human
+                  ._table-vertical-group
+                    span._table-value-vertical = tip_presenter.points
+                    span._table-label-vertical = t('general.point', count: tip_presenter.points)
+                td
+                  = link_to user_tip_path(tip_presenter.user_id)
+                    icon.fa.fa-list title="#{t('tip.all_of', subject: tip_presenter.user.nickname)}"
 
-    div
-      small
-        strong
-          = "#{t('general.hint')}: "
-        = t('tip.description.for_showing_others')
+      = paginate @presenter.pagination_scope
 
-  div.col-md-3.col-lg-2.hidden-xs.hidden-sm
-    div.panel.panel-default.text-center
-      div.panel-heading
-        = "#{Match.model_name.human} #{match_presenter.position}"
-      div.panel-body
-        div.ggp2-panel-body-box
-          div
-            = standard_flag_image_tag_of match_presenter.team_1
-          div
-            strong = match_presenter.team_1_name_or_placeholder
-        div.ggp2-panel-body-box
-          strong = match_presenter.result
-        div.ggp2-panel-body-box
-          div
-            = standard_flag_image_tag_of match_presenter.team_2
-          div
-            strong = match_presenter.team_2_name_or_placeholder
-        div.ggp2-panel-body-box.ggp2-weakened
-          - for aggregate_name in match_presenter.aggregate_name_recursive(multiline: true)
-            div
-              = aggregate_name
-        div.ggp2-panel-body-box.ggp2-weakened
-          div
-            = l match_presenter.date, format: :only_date
-          div
-            = l match_presenter.date, format: :only_time
+
+    .col-md-4.col-lg-3.col-lg-offset-1.hidden-xs.hidden-sm
+      ._vertical-match-panel.well.text-center
+        = flag_image_tag(match_presenter.team_1.country, size: 64)
+        ._team-name
+          = match_presenter.team_1_name_or_placeholder
+        ._result
+          = match_presenter.result
+        = flag_image_tag(match_presenter.team_2.country, size: 64)
+        ._team-name
+          = match_presenter.team_2_name_or_placeholder
+        ._text-weaker
+          = match_presenter.aggregate_name_recursive(multiline: true).join(' ')
+          br
+          = l match_presenter.date, format: :short

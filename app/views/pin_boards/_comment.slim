@@ -1,4 +1,4 @@
-div.ggp2-comment-box
+div._comment-item
   div.title
     = link_to comment_presenter.user.nickname, profile_path(comment_presenter.user)
   div.row
@@ -27,7 +27,7 @@ div.ggp2-comment-box
         small
           strong
             = t('general.time_ago', time: time_ago_in_words(comment_presenter.created_at))
-      p.ggp2-weakened
+      p._text-weaker
         = l comment_presenter.created_at, format: :only_date_full
         br
         = l comment_presenter.created_at, format: :only_time
@@ -38,7 +38,7 @@ div.ggp2-comment-box
             = t('general.time_ago', time: time_ago_in_words(comment_presenter.created_at))
             '&nbsp;
         br
-        span.ggp2-weakened
+        span._text-weaker
           = l comment_presenter.created_at, format: :only_date_full
           '&nbsp;
           = l comment_presenter.created_at, format: :only_time

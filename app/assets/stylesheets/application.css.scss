@@ -1,19 +1,41 @@
-//order is important
-// 1. import overwrite bootstrap variables
-@import 'twbs_variables';
-// 2. bootstrap and other predefined
-@import 'bootstrap';
+@import "variables";
+
+@import "bootstrap-sprockets";
+@import "bootswatch/paper/variables";
+
+@import "bootstrap";
+@import "bootswatch/paper/bootswatch";
+
 @import 'font-awesome';
-// 3. import bootstrap overwrite here
-@import 'twbs_override';
-// 4. application style
-@import 'ggp2';
+
+@import 'alerts';
+@import 'basic';
+@import 'button';
+@import 'form';
+@import 'header';
+@import 'header_image';
+@import 'headlines';
+@import 'flags';
+@import 'footer';
+@import 'jumbotron';
+@import 'navbar';
 @import 'nav';
-@import 'ggp2_rankings';
-@import 'ggp2_award_ceremonies';
-@import 'ggp2_badges';
-@import 'ggp2_champion_tips';
-@import 'match_schedule';
-@import 'tips_table';
-// 5. additional css files
-@import 'world_flags/world_flags-16';
+@import 'static_form';
+@import 'table';
+@import 'well';
+
+@import 'features/award_ceremonies';
+@import 'features/badges';
+@import 'features/champion_tips';
+@import 'features/comments';
+@import 'features/match_tips';
+@import 'features/rankings';
+@import 'features/statistics';
+@import 'features/sessions';
+@import 'features/tips';
+
+@import 'world_flags/world_flags-16 ';
+@import 'world_flags/world_flags-24 ';
+@import 'world_flags/world_flags-32 ';
+@import 'world_flags/world_flags-48 ';
+@import 'world_flags/world_flags-64 ';

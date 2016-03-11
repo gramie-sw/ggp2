@@ -1,36 +1,34 @@
 doctype html
 html lang="en"
-  = render 'layouts/header'
+  = render 'layouts/head'
 
-body
-  div#header-and-content
-    - if current_user.present?
-      = render 'layouts/navbar'
-      div.ggp2-restricted-header-image
-        div.container
-          div.row
-            = render 'layouts/title'
-            = render 'layouts/phrases'
+- if current_user.present?
+  body
+    div#none-footer
+      header
+        = render 'layouts/navbar'
+        = render 'layouts/header_image'
       div.container
-        div.ggp2-main-content-area
+        div
           = render 'layouts/messages'
           div.page-header
             h1
               = content_for(:title) if content_for?(:title)
               - if content_for?(:subtitle)
                 '&nbsp;
-                small = content_for(:subtitle)
+                small._no_wrap = content_for(:subtitle)
           = yield
-    - else
-      div.hidden-xs.hidden-sm
-        div.ggp2-login-page-top-spacer
 
-      div.ggp2-login-header-image
-        div.container
-          div.row
-            = render 'layouts/title'
-          div.row
-            = yield
+    = render 'layouts/footer'
+    = render 'layouts/javascripts'
 
-  = render 'layouts/footer'
-  = render 'layouts/javascripts'
+- else
+  body#login-page
+    #login-page-color-layer
+      .row
+        = yield
+
+    = render 'layouts/copyrights'
+
+
+    = render 'layouts/javascripts'

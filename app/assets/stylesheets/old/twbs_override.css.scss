@@ -1,40 +1,4 @@
-//@import url("http://fonts.googleapis.com/css?family=Lato:400,700,900,400italic");
-
-$ggp2-navbar-top-border-color: $ggp2-emphasize-color;
-
-$ggp2-content-background-color: #fff;
-
-$ggp2-footer-color: #999;
-//$ggp2-footer-background-color: #f6f6f6;
-$ggp2-footer-background-color: $ggp2-secondary-color;
-
-////header-height
-$ggp2-border-top-height: 3px;
-////footer-height
-$ggp2-footer-height: 120px;
-
-$ggp2-restricted-header-image-min-height: 140px;
 $ggp2-landing-header-image-min-height: 380px;
-
-.navbar-fixed-top {
-  opacity: 0.95;
-  border-top: $ggp2-border-top-height solid $ggp2-navbar-top-border-color;
-}
-
-.field_with_errors {
-  @extend .has-error;
-}
-
-//hack
-//moves the label in a form right close to input field on xs small screen
-//https://www.bountysource.com/issues/1036528-horizontal-form-problem-jumping-label-for-different-screen-width-when-col-xs-is-set
-.form-horizontal {
-  @media (min-width: $screen-xs-min) {
-    .control-label {
-      text-align: right;
-    }
-  }
-}
 
 //hack
 //fixes collapsed block elements in form-inline have top height
@@ -131,23 +95,6 @@ $ggp2-landing-header-image-min-height: 380px;
   }
 }
 
-.nav-tabs {
-
-  li a {
-    color: $gray-light;
-
-    &:hover {
-      color: $text-color
-    }
-
-    &.active {
-      a, a:hover {
-        background-color: #000000;
-      }
-    }
-  }
-}
-
 //== Buttons
 
 .btn-toolbar {
@@ -157,23 +104,14 @@ $ggp2-landing-header-image-min-height: 380px;
 }
 
 //fixes wrong input button height in firefox compared to a or button buttons
-.btn {
-  height: 34px;
-
-  &.btn-sm {
-    height: 30px;
-  }
-}
+//.btn {
+//  height: 34px;
+//
+//  &.btn-sm {
+//    height: 30px;
+//  }
+//}
 
 .btn-lg {
   height: 42px;
-}
-
-// added custom button type cancel
-$btn-cancel-color: #fff !default;
-$btn-cancel-bg: $gray-dark !default;
-$btn-cancel-border: darken($btn-cancel-bg, 5%) !default;
-
-.btn-cancel {
-  @include button-variant($btn-cancel-color, $btn-cancel-bg, $btn-cancel-border);
 }

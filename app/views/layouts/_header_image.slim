@@ -1,0 +1,14 @@
+#_header-image
+  #_header-image-color-layer
+    .container
+      .row
+        #_slogan.col-sm-5.hidden-xs
+          'Makes Football
+          br
+          'even more exciting.
+        .col-xs-12.col-sm-offset-1.col-sm-6
+          - quotation = random_quotation
+          #_quotation
+            = "\"#{quotation.content}\""
+          #_quotation_author
+            = quotation.author

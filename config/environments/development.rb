@@ -26,10 +26,10 @@ Ggp2::Application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
-  config.assets.debug = true
+  config.assets.debug = false
 
   #used in email for links
   config.url_protocol = :http
 
-  config.middleware.use Rack::LiveReload
+  config.middleware.use Rack::LiveReload, live_reload_port: 33443
 end

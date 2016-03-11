@@ -1,37 +1,33 @@
 - user = presenter.user
-div.jumbotron.ggp2-jumbotron
-  h2 = t('profile.section.user_data')
-
-  div.ggp2-static-form.ggp2-static-form-lead-values
-    div.ggp2-static-form-group
-      div.col-sm-3.col-lg-2.ggp2-static-form-label
-        = User.human_attribute_name(:full_name)
-      div.col-sm-9.col-lg-10.ggp2-static-form-value
-        = user.full_name
-    div.ggp2-static-form-group
-      div.col-sm-3.col-lg-2.ggp2-static-form-label
-        = User.human_attribute_name(:nickname)
-      div.col-sm-9.col-lg-10.ggp2-static-form-value
-        = user.nickname
-    - if presenter.is_for_current_user
-      div.ggp2-static-form-group
-        div.col-sm-3.col-lg-2.ggp2-static-form-label
-          = User.human_attribute_name(:email)
-        div.col-sm-9.col-lg-10.ggp2-static-form-value
-          = user.email
-      div.ggp2-static-form-group
-        div.col-sm-3.col-lg-2.ggp2-static-form-label
-          = User.human_attribute_name(:password)
-        div.col-sm-9.col-lg-10.ggp2-static-form-value
-          '****
-    div.ggp2-static-form-group
-      div.col-sm-3.col-lg-2.ggp2-static-form-label
-        = User.human_attribute_name(:created_at)
-      div.col-sm-9.col-lg-10.ggp2-static-form-value
-        = l user.created_at, format: :short
-
+._static-form._static-form-lead-values
+  ._static-form-group
+    .col-sm-3.col-lg-2._static-form-label
+      = User.human_attribute_name(:full_name)
+    .col-sm-9.col-lg-10._static-form-value
+      = user.full_name
+  ._static-form-group
+    .col-sm-3.col-lg-2._static-form-label
+      = User.human_attribute_name(:nickname)
+    .col-sm-9.col-lg-10._static-form-value
+      = user.nickname
   - if presenter.is_for_current_user
-    div.row
-      div.col-sm-offset-3.col-lg-offset-2.col-sm-9.col-md-10
-        = link_to t('model.messages.change', model: t('general.user_data')), edit_account_path, class: 'btn btn-primary'
+    ._static-form-group
+      .col-sm-3.col-lg-2._static-form-label
+        = User.human_attribute_name(:email)
+      .col-sm-9.col-lg-10._static-form-value
+        = user.email
+    ._static-form-group
+      .col-sm-3.col-lg-2._static-form-label
+        = User.human_attribute_name(:password)
+      .col-sm-9.col-lg-10._static-form-value
+        '****
+  ._static-form-group
+    .col-sm-3.col-lg-2._static-form-label
+      = User.human_attribute_name(:created_at)
+    .col-sm-9.col-lg-10._static-form-value
+      = l user.created_at, format: :short
+- if presenter.is_for_current_user
+  .row
+    .col-sm-offset-3.col-lg-offset-2.col-sm-9.col-md-10
+      = link_to t('model.messages.change', model: t('general.user_data')), edit_account_path, class: 'btn btn-primary'
 

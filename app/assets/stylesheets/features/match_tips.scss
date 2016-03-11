@@ -1,0 +1,29 @@
+#match-tips {
+
+  ._vertical-match-panel {
+
+    ._team-name, ._result {
+      font-size: 20px;
+      line-height: 2;
+      margin-bottom: 10px;
+    }
+
+    ._result {
+      font-weight: normal;
+    }
+  }
+
+  ._horizontal-match-panel {
+
+    ._team-name {
+      line-height: 1;
+      margin-bottom: 15px;
+    }
+
+    ._result {
+      font-size: 25px;
+      line-height: 3;
+      font-weight: normal;
+    }
+  }
+}
