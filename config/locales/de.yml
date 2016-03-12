@@ -171,6 +171,10 @@ de:
         updated: '%{count} %{models} erfolgreich geändert'
 
   app_title: Tippspiel
+  slogan:
+    full: Makes football even more exciting
+    part_1: Makes football
+    part_2: even more exciting
 
   general:
     action:
