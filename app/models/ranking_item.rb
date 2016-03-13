@@ -19,5 +19,4 @@ class RankingItem < ActiveRecord::Base
         :points
     ].all? { |attribute| self.send(attribute) == 0 }
   end
-
 end

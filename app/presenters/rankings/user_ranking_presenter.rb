@@ -39,6 +39,14 @@ class UserRankingPresenter
     end
   end
 
+  def badge_icon
+    'fa-bullseye'
+  end
+
+  def badge_color
+    'gold'
+  end
+
   private
 
   attr_reader :ranking_item, :tournament, :current_user_id

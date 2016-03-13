@@ -7,23 +7,29 @@
       tbody
         - for user_ranking_presenter in @presenter.user_ranking_presenters
           tr class="link-row" data-href="#{profile_path(user_ranking_presenter.user_id)}"
-            td._table-full-width-xs-padding-column
+            td._table-full-width-xs-padding-column.hidden-xs
               = "#{user_ranking_presenter.position}."
-            td.hidden-xs.hidden-sm
+            td.hidden-xs
               ._table-value-horizontal
                 = user_ranking_presenter.nickname
                 - if user_ranking_presenter.titleholder?
                   '&nbsp;
                   i.fa.fa-trophy
+
             td.text-center.hidden-xs.hidden-sm
               ._table-value-horizontal = user_ranking_presenter.points
               ._table-label-horizontal = t('general.point.other')
+
+            td.highest-badge.text-center.hidden-xs.hidden-sm.hidden-md style="color: #{colors[user_ranking_presenter.badge_color]}"
+              = render partial: 'badges/badge_icon', locals: {icon: user_ranking_presenter.badge_icon}
+
             td.text-center.hidden-xs.hidden-sm.hidden-md
               ._table-value-horizontal = user_ranking_presenter.correct_tips_count
               ._table-label-horizontal = t('ranking.correct_tips_count')
             td.text-center.hidden-xs.hidden-sm.hidden-md
               ._table-value-horizontal = user_ranking_presenter.correct_tendency_tips_only_count
               ._table-label-horizontal = t('ranking.correct_tendency_tips_only_count')
+
             td.visible-md
               ._table-vertical-group
                 ._table-value-vertical.text-right.pull-left = user_ranking_presenter.correct_tips_count
@@ -33,10 +39,12 @@
                 ._table-value-vertical.text-right.pull-left = user_ranking_presenter.correct_tendency_tips_only_count
                 ._table-label-vertical = t('ranking.correct_tendency_tips_only_count')
                 .clearfix
-            td.text-center.hidden-xs.hidden-sm
+
+            td.text-center.hidden-xs.hidden-sm.hidden-md
               ._table-value-horizontal = user_ranking_presenter.badges_count
               ._table-label-horizontal = t('general.badge.other')
-            td.visible-sm.visible-xs
+
+            td.visible-xs.visible-sm
               ._table-vertical-group
                 span._table-value-vertical.text-right.pull-left = user_ranking_presenter.points
                 span._table-label-vertical = t('general.point.other')
@@ -49,30 +57,29 @@
                 span._table-value-vertical.text-right.pull-left = user_ranking_presenter.correct_tendency_tips_only_count
                 span._table-label-vertical = t('ranking.correct_tendency_tips_only_count')
                 .clearfix
-            td.visible-sm.visible-xs
-              ._table-vertical-group
-                span._table-value-vertical.text.right.pull-left = user_ranking_presenter.badges_count
+
+            td.visible-xs.visible-sm.visible-md
+              ._table-vertical-group.text-center
+                span._table-value-vertical = user_ranking_presenter.badges_count
                 span._table-label-vertical = t('general.badge.other')
                 .clearfix
+              ._table-vertical-group.highest-badge.text-center style="color: #{colors[user_ranking_presenter.badge_color]}"
+                = render partial: 'badges/badge_icon', locals: {icon: user_ranking_presenter.badge_icon}
 
-            td.text-center.hidden-xs
+            /td.hidden-xs.hidden-sm.hidden-md
+            /  ._table-vertical-group
+            /    span._table-value-vertical.text.right.pull-left = user_ranking_presenter.badges_count
+            /    span._table-label-vertical = t('general.badge.other')
+            /    .clearfix
+
+            td.text-center
               ._table-value-horizontal
-                ._flag-with-country-name._team-name-24.hidden-xs
-                  = flag_image_tag(user_ranking_presenter.champion_tip_team_abbreviation, size: 24)
-                  = user_ranking_presenter.champion_tip_team_name
+                = flag_image_tag(user_ranking_presenter.champion_tip_team_abbreviation, size: 32)
               ._table-label-horizontal = t('general.champion_tip.one', champion_title: champion_title)
+
             td
               = link_to user_tip_path(user_ranking_presenter.user_id)
                 icon.fa.fa-list title="#{t('tip.all_of', subject: user_ranking_presenter.nickname)}"
-
-
-
-
-
-
-
-
-
 
 
 = paginate @presenter.pagination_scope
@@ -84,5 +91,3 @@ div
     i.fa.fa-trophy
     '&nbsp;
     = t('help.ranking.titleholder')
-
-

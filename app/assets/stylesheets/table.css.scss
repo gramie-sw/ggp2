@@ -11,6 +11,10 @@ table {
     }
   }
 
+  td {
+    @extend ._no_wrap;
+  }
+
   tr.link-row {
     cursor: pointer;
   }

@@ -1,5 +1,11 @@
 #rankings {
 
+  .highest-badge {
+    .fa {
+      font-size: 30px;
+    }
+  }
+
   ._ranking {
     //font-weight: bold;
     font-size: $font-size-base*1.25;
@@ -8,4 +14,5 @@
   ._nickname {
     font-size: $font-size-base*1.25;
   }
+
 }
