@@ -1,5 +1,7 @@
 correct_tip_points: 3
-correct_tendency_tip_only_points: 1
+correct_tendency_only_tip_points: 1
+correct_tendency_with_score_difference_tip_points: 2
+correct_tendency_with_one_score_tip_points: 2
 incorrect_tip_points: 0
 correct_champion_tip_points: 4
 

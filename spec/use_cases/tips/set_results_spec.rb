@@ -19,7 +19,7 @@ describe Tips::SetResults do
       expect(tip_2.reload.result).to be_nil
       expect(tip_3.reload.result).to be_nil
       expect(tip_4.reload.result).to eq Tip::RESULTS[:correct]
-      expect(tip_5.reload.result).to eq Tip::RESULTS[:correct_tendency_only]
+      expect(tip_5.reload.result).to eq Tip::RESULTS[:correct_tendency_with_score_difference]
     end
   end
 end

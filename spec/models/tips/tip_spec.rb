@@ -109,22 +109,14 @@ describe Tip do
 
   describe '#points' do
 
-    it 'should return correct tip points if correct tip' do
-      subject.result = Tip::RESULTS[:correct]
-      expect(subject.points).to eq Ggp2.config.correct_tip_points
+    it 'returns correct points' do
+      Tip::RESULTS.keys.each do |result_key|
+        subject.result = Tip::RESULTS[result_key]
+        expect(subject.points).to eq Ggp2.config.send("#{result_key}_tip_points")
+      end
     end
 
-    it 'should return incorrect tip points if incorrect tip' do
-      subject.result = Tip::RESULTS[:incorrect]
-      expect(subject.points).to eq Ggp2.config.incorrect_tip_points
-    end
-
-    it 'should return correct tendency tip only points if correct tendency tip only' do
-      subject.result = Tip::RESULTS[:correct_tendency_only]
-      expect(subject.points).to eq Ggp2.config.correct_tendency_tip_only_points
-    end
-
-    it 'should return nil if result is nil' do
+    it 'returns nil if no result set' do
       subject.result = nil
       expect(subject.points).to be_nil
     end
@@ -157,67 +149,52 @@ describe Tip do
     end
   end
 
-  describe 'correct_tendency_only?' do
-
-    context 'when result is correct' do
-
-      it 'should return false' do
-        subject.result = Tip::RESULTS[:correct]
-        expect(subject).not_to be_correct_tendency_only
-      end
-    end
-
-    context 'when result is correct_tendency_only' do
-
-      it 'should return true' do
-        subject.result = Tip::RESULTS[:correct_tendency_only]
-        expect(subject).to be_correct_tendency_only
-      end
-    end
-
-    context 'when result is incorrect' do
-
-      it 'should return false' do
-        subject.result = Tip::RESULTS[:incorrect]
-        expect(subject).not_to be_correct_tendency_only
-      end
-    end
-  end
-
   describe '#set_result' do
 
     let(:match) { Match.new(score_team_1: 1, score_team_2: 2) }
 
-    it 'sets result to incorrect if tip is wrong' do
-      subject = Tip.new(score_team_1: 1, score_team_2: 0)
+    it 'sets result properly to incorrect' do
+      subject.assign_attributes(score_team_1: nil, score_team_2: nil)
       subject.set_result(match)
       expect(subject.result).to be Tip::RESULTS[:incorrect]
 
-      subject = Tip.new(score_team_1: nil, score_team_2: nil)
+      subject.assign_attributes(score_team_1: 1, score_team_2: 0)
       subject.set_result(match)
       expect(subject.result).to be Tip::RESULTS[:incorrect]
 
-      subject = Tip.new(score_team_1: 2, score_team_2: 1)
+      subject.assign_attributes(score_team_1: 2, score_team_2: 1)
       subject.set_result(match)
       expect(subject.result).to be Tip::RESULTS[:incorrect]
     end
 
-    it 'sets result to correct_tendency_only if tip has correct tendence' do
-      subject = Tip.new(score_team_1: 2, score_team_2: 3)
+    it 'sets result properly to correct_tendency_only' do
+      subject.assign_attributes(score_team_1: 0, score_team_2: 3)
       subject.set_result(match)
       expect(subject.result).to be Tip::RESULTS[:correct_tendency_only]
+    end
 
-      subject = Tip.new(score_team_1: 0, score_team_2: 1)
+    it 'sets result properly to correct_tendency_with_score_difference' do
+      subject.assign_attributes(score_team_1: 2, score_team_2: 3)
       subject.set_result(match)
-      expect(subject.result).to be Tip::RESULTS[:correct_tendency_only]
+      expect(subject.result).to be Tip::RESULTS[:correct_tendency_with_score_difference]
 
-      subject = Tip.new(score_team_1: 1, score_team_2: 1)
+      subject.assign_attributes(score_team_1: 1, score_team_2: 1)
       subject.set_result(Match.new(score_team_1: 2, score_team_2: 2))
-      expect(subject.result).to be Tip::RESULTS[:correct_tendency_only]
+      expect(subject.result).to be Tip::RESULTS[:correct_tendency_with_score_difference]
     end
 
-    it 'sets result to correct if tip is correct' do
-      subject = Tip.new(score_team_1: 1, score_team_2: 2)
+    it 'sets result properly to correct_tendency_with_one_score' do
+      subject.assign_attributes(score_team_1: 0, score_team_2: 2)
+      subject.set_result(match)
+      expect(subject.result).to be Tip::RESULTS[:correct_tendency_with_one_score]
+
+      subject.assign_attributes(score_team_1: 1, score_team_2: 3)
+      subject.set_result(match)
+      expect(subject.result).to be Tip::RESULTS[:correct_tendency_with_one_score]
+    end
+
+    it 'sets result properly to correct' do
+      subject.assign_attributes(score_team_1: 1, score_team_2: 2)
       subject.set_result(match)
       expect(subject.result).to be Tip::RESULTS[:correct]
     end

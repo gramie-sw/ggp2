@@ -34,7 +34,7 @@ describe RankingSets::Update do
 
     ranking_1_second_ranking_item = RankingItem.where(match_id: match_1.id, position: 2).first
     expect(ranking_1_second_ranking_item.user_id).to eq user_1.id
-    expect(ranking_1_second_ranking_item.points).to eq Ggp2.config.correct_tendency_tip_only_points
+    expect(ranking_1_second_ranking_item.points).to eq Ggp2.config.correct_tendency_only_tip_points
 
     ranking_1_third_ranking_item = RankingItem.where(match_id: match_1.id, position: 3).first
     expect(ranking_1_third_ranking_item.user_id).to eq user_2.id
@@ -49,7 +49,7 @@ describe RankingSets::Update do
     ranking_2_first_ranking_item = RankingItem.where(match_id: match_2.id, position: 1).first
     expect(ranking_2_first_ranking_item.user_id).to eq user_3.id
     expect(ranking_2_first_ranking_item.points).
-        to eq (Ggp2.config.correct_tendency_tip_only_points + Ggp2.config.correct_tip_points)
+        to eq (Ggp2.config.correct_tendency_only_tip_points + Ggp2.config.correct_tip_points)
 
     ranking_2_second_ranking_item = RankingItem.where(match_id: match_2.id, position: 2).first
     expect(ranking_2_second_ranking_item.user_id).to eq user_2.id
@@ -57,18 +57,18 @@ describe RankingSets::Update do
 
     ranking_2_third_ranking_item = RankingItem.where(match_id: match_2.id, position: 3).first
     expect(ranking_2_third_ranking_item.user_id).to eq user_1.id
-    expect(ranking_2_third_ranking_item.points).to eq Ggp2.config.correct_tendency_tip_only_points
+    expect(ranking_2_third_ranking_item.points).to eq Ggp2.config.correct_tendency_only_tip_points
 
     # champion tip ranking
     ranking_3_first_ranking_item = RankingItem.where(match_id: nil, position: 1).first
     expect(ranking_3_first_ranking_item.user_id).to eq user_1.id
     expect(ranking_3_first_ranking_item.points).
-        to eq (Ggp2.config.correct_tendency_tip_only_points + Ggp2.config.correct_champion_tip_points)
+        to eq (Ggp2.config.correct_tendency_only_tip_points + Ggp2.config.correct_champion_tip_points)
 
     ranking_3_second_ranking_item = RankingItem.where(match_id: nil, position: 2).first
     expect(ranking_3_second_ranking_item.user_id).to eq user_3.id
     expect(ranking_3_second_ranking_item.points).
-        to eq (Ggp2.config.correct_tendency_tip_only_points + Ggp2.config.correct_tip_points)
+        to eq (Ggp2.config.correct_tendency_only_tip_points + Ggp2.config.correct_tip_points)
 
     ranking_3_second_ranking_item = RankingItem.where(match_id: nil, position: 3).first
     expect(ranking_3_second_ranking_item.user_id).to eq user_2.id
@@ -92,7 +92,7 @@ describe RankingSets::Update do
 
     ranking_1_second_ranking_item = RankingItem.where(match_id: match_2.id, position: 2).first
     expect(ranking_1_second_ranking_item.user_id).to eq user_3.id
-    expect(ranking_1_second_ranking_item.points).to eq Ggp2.config.correct_tendency_tip_only_points
+    expect(ranking_1_second_ranking_item.points).to eq Ggp2.config.correct_tendency_only_tip_points
 
     ranking_1_third_ranking_item = RankingItem.where(match_id: match_2.id, position: 3).first
     expect(ranking_1_third_ranking_item.user_id).to eq user_1.id
@@ -110,7 +110,7 @@ describe RankingSets::Update do
     ranking_2_first_ranking_item = RankingItem.where(match_id: match_2.id, position: 1).first
     expect(ranking_2_first_ranking_item.user_id).to eq user_3.id
     expect(ranking_2_first_ranking_item.points).
-        to eq (Ggp2.config.correct_tendency_tip_only_points + Ggp2.config.correct_tip_points)
+        to eq (Ggp2.config.correct_tendency_only_tip_points + Ggp2.config.correct_tip_points)
 
     ranking_2_second_ranking_item = RankingItem.where(match_id: match_2.id, position: 2).first
     expect(ranking_2_second_ranking_item.user_id).to eq user_2.id
@@ -118,6 +118,6 @@ describe RankingSets::Update do
 
     ranking_2_third_ranking_item = RankingItem.where(match_id: match_2.id, position: 3).first
     expect(ranking_2_third_ranking_item.user_id).to eq user_1.id
-    expect(ranking_2_third_ranking_item.points).to eq Ggp2.config.correct_tendency_tip_only_points
+    expect(ranking_2_third_ranking_item.points).to eq Ggp2.config.correct_tendency_only_tip_points
   end
 end
