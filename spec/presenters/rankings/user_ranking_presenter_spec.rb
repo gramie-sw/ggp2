@@ -27,13 +27,13 @@ describe UserRankingPresenter do
     ranking_item.position = 5
     ranking_item.points = 67
     ranking_item.correct_tips_count = 7
-    ranking_item.correct_tendency_tips_only_count = 11
+    ranking_item.correct_tendeny_tips_count = 11
 
     expect(subject.user_id).to eq 344
     expect(subject.position).to eq 5
     expect(subject.points).to eq 67
     expect(subject.correct_tips_count).to eq 7
-    expect(subject.correct_tendency_tips_only_count).to eq 11
+    expect(subject.correct_tendeny_tips_count).to eq 11
   end
 
   describe 'champion_tip_team_name' do

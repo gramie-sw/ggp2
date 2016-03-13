@@ -12,9 +12,9 @@ describe RankingItem, :type => :model do
   describe '#ranking_hash' do
 
     it 'should return ranking hash which consists of points correct tips count and correct tendency tips only count' do
-      ranking_item = build(:ranking_item, points: 12, correct_tips_count: 13, correct_tendency_tips_only_count: 14)
+      ranking_item = build(:ranking_item, points: 12, correct_tips_count: 13, correct_tendeny_tips_count: 14)
       expect(ranking_item.ranking_hash).to eq '0121314'
-      ranking_item = build(:ranking_item, correct_champion_tip: true, points: 12, correct_tips_count: 13, correct_tendency_tips_only_count: 14)
+      ranking_item = build(:ranking_item, correct_champion_tip: true, points: 12, correct_tips_count: 13, correct_tendeny_tips_count: 14)
       expect(ranking_item.ranking_hash).to eq '1121314'
     end
   end
@@ -43,7 +43,7 @@ describe RankingItem, :type => :model do
 
   describe '#neutral?' do
 
-    subject { RankingItem.new(id: 0, position: 0, correct_tips_count: 0, correct_tendency_tips_only_count: 0, points: 0) }
+    subject { RankingItem.new(id: 0, position: 0, correct_tips_count: 0, correct_tendeny_tips_count: 0, points: 0) }
 
     context 'when all statistic and id are except points are 0' do
 

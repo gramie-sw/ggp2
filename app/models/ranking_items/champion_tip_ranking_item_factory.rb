@@ -7,7 +7,7 @@ module ChampionTipRankingItemFactory
         user_id: previous_ranking_item.user_id,
         points: previous_ranking_item.points,
         correct_tips_count: previous_ranking_item.correct_tips_count,
-        correct_tendency_tips_only_count: previous_ranking_item.correct_tendency_tips_only_count,
+        correct_tendeny_tips_count: previous_ranking_item.correct_tendeny_tips_count,
         correct_champion_tip: previous_ranking_item.correct_champion_tip
     }
 

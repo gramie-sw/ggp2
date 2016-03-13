@@ -27,10 +27,10 @@ describe UserStatistic, :type => :model do
     end
   end
 
-  describe 'correct_tendency_tips_only_count' do
+  describe 'correct_tendeny_tips_count' do
 
-    it 'should return correct_tendency_tips_only_count of current_ranking_item' do
-      expect(subject.correct_tendency_tips_only_count).to eq current_ranking_item.correct_tendency_tips_only_count
+    it 'should return correct_tendeny_tips_count of current_ranking_item' do
+      expect(subject.correct_tendeny_tips_count).to eq current_ranking_item.correct_tendeny_tips_count
     end
   end
 
@@ -69,7 +69,7 @@ describe UserStatistic, :type => :model do
 
       it 'should return rounded ratio' do
         allow(tournament).to receive(:played_match_count).and_return(9)
-        allow(subject).to receive(:correct_tendency_tips_only_count).and_return(4)
+        allow(subject).to receive(:correct_tendeny_tips_count).and_return(4)
         expect(subject.correct_tendency_tips_only_ratio).to eq 44
       end
     end
