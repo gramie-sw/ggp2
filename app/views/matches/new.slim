@@ -1,4 +1,3 @@
-- content_for(:title, Match.model_name.human_plural)
+- content_for(:title, t('model.messages.create', model: Match.model_name.human))
 
-= render partial: 'form', locals: {match: @match,
-                                  legend: t('model.messages.create', model: Match.model_name.human)}
+= render partial: 'form', locals: {match: @match}

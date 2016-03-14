@@ -5,11 +5,6 @@
       margin-top: 5px;
     }
   }
-
-  ._date {
-    color: $_weaker-text-color;
-    line-height: 1.5;
-  }
 }
 
 #tips-form {
@@ -24,14 +19,6 @@
 
   ._team-name-32 {
     margin: 5px 0;
-  }
-
-  input[type=text]._score-input {
-    display: inline-block;
-    margin-left: 5px;
-    margin-right: 5px;
-    text-align: center;
-    width: 45px;
   }
 
   .field_with_errors {

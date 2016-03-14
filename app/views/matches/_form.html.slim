@@ -1,34 +1,35 @@
-div.well
-  = simple_form_for match,
-                    html: {class: 'form-horizontal', role: 'form'},
-                    defaults: {label_html: {class: 'col-sm-3 col-lg-2'},
-                               input_wrapper_html: {class: 'col-sm-7 col-md-6 col-lg-5'},
-                               required: false} do |f|
-    legend = legend
 
-    - aggregate = match.aggregate
-    = f.input :aggregate, as: :string,
-              input_html: {value: aggregate.name, name: 'aggregate_name', disabled: true},
-              label: aggregate.phase? ? t('general.phase.one') : t('general.group.one')
-    = f.input :aggregate_id, as: :hidden
+= simple_form_for match, html: {ole: 'form'}, defaults: {required: false} do |f|
 
-    = f.input :position, input_wrapper_html: {class: 'col-sm-4 col-md-2'}
-    = f.association :team_1, as: :select, collection: team_collection_for_select
-    = f.association :team_2, as: :select, collection: team_collection_for_select
-    = f.input :placeholder_team_1
-    = f.input :placeholder_team_2
-    = f.input :date, input_wrapper_html: {class: 'form-inline col-sm-9 col-lg-10'}
+  - aggregate = match.aggregate
+  .row
+    .col-xs-12.col-sm-6.col-lg-5
+      = f.input :aggregate, as: :string,
+                input_html: {value: aggregate.name, name: 'aggregate_name', disabled: true},
+                label: aggregate.phase? ? t('general.phase.one') : t('general.group.one')
+      = f.input :aggregate_id, as: :hidden
 
-    - if match.new_record?
-      .form-group
-        .col-sm-offset-3.col-lg-offset-2.col-sm-7.col-md-6.col-lg-5
-          .checkbox
-            label
-              = check_box_tag(:subsequent_match, '1', params[:subsequent_match].present?)
-              = t('match.add_subsequent')
+      = f.input :position
+  .row
+    .col-xs-12.col-sm-6.col-lg-5
+      = f.association :team_1, as: :select, collection: team_collection_for_select
+      = f.association :team_2, as: :select, collection: team_collection_for_select
+    .col-xs-12.col-sm-6.col-lg-5
+      = f.input :placeholder_team_1
+      = f.input :placeholder_team_2
 
-    = render partial: 'commons/form_buttons',
-             locals: {form_builder: f,
-                      submit_button_label: t('model.submit.save', model: Match.model_name.human),
-                      cancel_path: match_schedules_path(aggregate_id: match.aggregate_id),
-                      wrapper_html: {class: 'col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10'}}
+  .form-group
+    label{class="string optional control-label"} =Match.human_attribute_name(:date)
+    .form-inline
+      = f.input :date, label: false
+
+  - if match.new_record?
+    br
+    .form-group
+      .checkbox
+        label
+          = check_box_tag(:subsequent_match, '1', params[:subsequent_match].present?)
+          = t('match.add_subsequent')
+
+  = render partial: 'commons/form_buttons',
+           locals: {form_builder: f, cancel_path: match_schedules_path(aggregate_id: match.aggregate_id)}

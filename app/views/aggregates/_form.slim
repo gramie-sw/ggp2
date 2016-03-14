@@ -1,32 +1,25 @@
 - aggregate = presenter.aggregate
 
-div.well
-  = simple_form_for aggregate,
-                    html: {class: 'form-horizontal', role: 'form'},
-                    defaults: {label_html: {class: 'col-sm-3 col-lg-2'},
-                               input_wrapper_html: {class: 'col-sm-7 col-md-6 col-lg-5'},
-                               required: false} do |f|
+.row
+  .col-xs-12.col-sm-8.col-md-6.col-lg-5
+    = simple_form_for aggregate, html: {role: 'form'}, defaults: {required: false} do |f|
 
-    legend = legend
+      - if aggregate.group?
+        = f.input :parent, as: :string,
+                  input_html: {value: aggregate.parent.name, name: 'phase_name', disabled: true},
+                  label: t('general.phase.one')
+      = f.input :parent_id, as: :hidden
+      = f.input :position
+      = f.input :name
 
-    - if aggregate.group?
-      = f.input :parent, as: :string,
-                input_html: {value: aggregate.parent.name, name: 'phase_name', disabled: true},
-                label: t('general.phase.one')
-    = f.input :parent_id, as: :hidden
-    = f.input :position
-    = f.input :name
-
-    - if aggregate.new_record?
-      .form-group
-        .col-sm-offset-3.col-lg-offset-2.col-sm-7.col-md-6.col-lg-5
+      - if aggregate.new_record?
+        .form-group
           .checkbox
             label
               = check_box_tag(:subsequent_aggregate, '1', params[:subsequent_aggregate].present?)
               = t('aggregates.add_subsequent', aggregate: presenter.model_translation )
 
-    = render partial: 'commons/form_buttons',
-             locals: {form_builder: f,
-                      submit_button_label: t('model.submit.save', model: presenter.model_translation),
-                      cancel_path: match_schedules_path(aggregate_id: aggregate.id || aggregate.parent_id),
-                      wrapper_html: {class: 'col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10'}}
+      = render partial: 'commons/form_buttons',
+               locals: {form_builder: f,
+                        submit_button_label: t('model.submit.save', model: presenter.model_translation),
+                        cancel_path: match_schedules_path(aggregate_id: aggregate.id || aggregate.parent_id)}

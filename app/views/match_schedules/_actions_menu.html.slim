@@ -23,13 +23,13 @@
   - destroy_group_link_label = t('model.messages.destroy', model: t('general.group.one'))
   - destroy_group_confirmation_text = t('model.messages.destroy_really', model: t('general.group.one'))
 
-div.visible-md.visible-lg
-  div.match-schedule-actions-menu.pull-right
-    div.btn-group
+.visible-md.visible-lg
+  ._action-menu-right.pull-right
+    .btn-group
       = link_to new_match_link_path, class: "btn btn-sm btn-default"
         i.fa.fa-plus &nbsp;
         = new_match_link_label
-    div.btn-group
+    .btn-group
       = link_to new_phase_link_path, class: "btn btn-sm btn-default"
         i.fa.fa-plus &nbsp;
         = new_phase_link_label
@@ -40,7 +40,7 @@ div.visible-md.visible-lg
                 data: {confirm: destroy_phase_confirmation_text}
         i.fa.fa-trash &nbsp;
         = destroy_phase_link_label
-    div.btn-group
+    .btn-group
       - if group.nil?
         = link_to new_group_link_path, class: "btn btn-sm btn-default"
           i.fa.fa-plus &nbsp;

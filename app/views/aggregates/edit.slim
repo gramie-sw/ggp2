@@ -1,4 +1,4 @@
-- content_for(:title, @presenter.model_translation(plural: true))
+- content_for(:title, t('model.messages.edit', model: @presenter.model_translation))
 
 = render partial: 'form',
-         locals: {presenter: @presenter, legend: t('model.messages.edit', model: @presenter.model_translation)}
+         locals: {presenter: @presenter}

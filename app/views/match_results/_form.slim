@@ -1,10 +1,8 @@
-div.well
-  = form_for(presenter, url: match_result_path(presenter.match_id), method: 'patch', html: {class: 'result-form', role: :form}) do |f|
+= form_for(presenter, url: match_result_path(presenter.match_id),
+        method: 'patch', html: {class: 'result-form', role: :form}) do |f|
 
-    = render partial: 'results/result_fields',
-    locals: {match_presenter: presenter.match_presenter,
-    result: @presenter.match_presenter, index: 'match_result'}
+  = render partial: 'results/result_fields',
+  locals: {match_presenter: presenter.match_presenter,
+  result: @presenter.match_presenter, index: 'match_result'}
 
-    div.btn-toolbar._submit-group
-      = submit_tag t('model.submit.save', model: MatchResult.model_name.human), class: 'btn btn-primary'
-      = link_to t('general.cancel'), match_schedules_path, class: 'btn btn-cancel'
+  = render partial: 'commons/form_buttons', locals: {cancel_path:  match_schedules_path}
