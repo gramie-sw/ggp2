@@ -1,11 +1,12 @@
-div.row
+.row
   - for team in teams
-    div.col-lg-3.col-md-4.col-sm-6.col-xs-12._flag-with-country-name
-      div.pull-left
-        = standard_flag_image_tag_of team
-        = team.name
-      div.pull-right
-        = link_to(team_path(team), method: :delete, data: {confirm: t('model.messages.destroy_really',\
-          model: ("#{Team.model_name.human} #{I18n.t team.country, :scope => 'countries'}")), method: :delete},\
-          title: t('model.messages.destroy', model: ("#{Team.model_name.human} #{I18n.t team.country, :scope => 'countries'}"))) do
-          i.fa.fa-trash-o
+    .col-lg-3.col-md-4.col-sm-6.col-xs-12._flag-with-country-name
+      ._flag-with-country-name._team-name-16
+        .pull-left
+          = flag_image_tag(team.country, size: 16)
+          = team.name
+        .pull-right
+          = link_to(team_path(team), method: :delete, data: {confirm: t('model.messages.destroy_really',\
+            model: ("#{Team.model_name.human} #{I18n.t team.country, :scope => 'countries'}")), method: :delete},\
+            title: t('model.messages.destroy', model: ("#{Team.model_name.human} #{I18n.t team.country, :scope => 'countries'}"))) do
+            i.fa.fa-trash-o
