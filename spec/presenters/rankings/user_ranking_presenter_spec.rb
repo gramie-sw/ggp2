@@ -36,6 +36,22 @@ describe UserRankingPresenter do
     expect(subject.correct_tendeny_tips_count).to eq 11
   end
 
+  describe 'champion_label' do
+
+    it 'returns champion title if champion_tip_team_display_state returns :show' do
+      allow(subject).to receive(:champion_tip_team_display_state) { :show }
+      allow(subject.send(:tournament)).to receive(:champion_title ) { 'Weltmeister' }
+
+      expect(subject.champion_label).to eq subject.send(:tournament).champion_title
+    end
+
+    it 'returns empty string if champion_tip_team_display_state does not returns :show' do
+      allow(subject).to receive(:champion_tip_team_display_state) { :something_else }
+
+      expect(subject.champion_label).to eq ''
+    end
+  end
+
   describe 'champion_tip_team_name' do
 
     let(:expected_team_name) { 'team_1' }

@@ -17,6 +17,10 @@ class UserRankingPresenter
     @current_user_id = current_user_id
   end
 
+  def champion_label
+    champion_tip_team_display_state == :show ? tournament.champion_title : ''
+  end
+
   def champion_tip_team_name
 
     case champion_tip_team_display_state
