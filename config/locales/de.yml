@@ -385,7 +385,9 @@ de:
       points:
         preface: 'Es gibt folgende Punkteverteilung:'
         correct_tip: 'Richtiger Tipp: %{points}'
-        correct_tendency_only_tip: 'Richtige Tendenz (nur Sieger richtig bzw. Unentschieden): %{points}'
+        correct_tendency_only_tip: 'Richtiger Sieger (bzw. Unentschieden): %{points}'
+        correct_tendency_with_score_difference: '... mit richtigen Torabstand: %{points}'
+        correct_tendency_with_one_goal: '... mit einem richtigen Torwert: %{points}'
         correct_champion_tip: 'Richtiger %{champion_tip}: %{points}'
 
     sign_up:

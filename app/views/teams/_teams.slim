@@ -1,9 +1,9 @@
 .row
   - for team in teams
-    .col-lg-3.col-md-4.col-sm-6.col-xs-12._flag-with-country-name
-      ._flag-with-country-name._team-name-16
+    .col-lg-3.col-md-4.col-sm-6.col-xs-12
+      ._team-box._flag-with-country-name._team-name-24
         .pull-left
-          = flag_image_tag(team.country, size: 16)
+          = flag_image_tag(team.country, size: 24)
           = team.name
         .pull-right
           = link_to(team_path(team), method: :delete, data: {confirm: t('model.messages.destroy_really',\

@@ -12,8 +12,17 @@ div class="modal fade" id="help-modal" tabindex="-1" role="dialog" aria-hidden="
         p = t('help.tip.deadlines', champion_tips: t('general.champion_tip.others', champion_title: champion_title))
         p = t('help.tip.points.preface')
         ul
-          li = t('help.tip.points.correct_tip', points: t('general.count.point', count: Ggp2.config.correct_tip_points))
-          li = t('help.tip.points.correct_tendency_only_tip', points: t('general.count.point', count: Ggp2.config.correct_tendency_only_tip_points))
+          li = t('help.tip.points.correct_tip',
+                  points: t('general.count.point', count: Ggp2.config.correct_tip_points))
+          li
+             = t('help.tip.points.correct_tendency_only_tip',
+                  points: t('general.count.point', count: Ggp2.config.correct_tendency_only_tip_points))
+             br
+             = t('help.tip.points.correct_tendency_with_score_difference',
+                  points: t('general.count.point', count: Ggp2.config.correct_tendency_with_score_difference_tip_points))
+             br
+             = t('help.tip.points.correct_tendency_with_one_goal',
+                  points: t('general.count.point', count: Ggp2.config.correct_tendency_with_one_score_tip_points))
           li = t('help.tip.points.correct_champion_tip',
                  points: t('general.count.point', count: Ggp2.config.correct_champion_tip_points),
                  champion_tip: t('general.champion_tip.one', champion_title: champion_title))
