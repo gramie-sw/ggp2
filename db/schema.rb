@@ -68,13 +68,13 @@ ActiveRecord::Schema.define(version: 20160313104010) do
   end
 
   create_table "ranking_items", force: :cascade do |t|
-    t.integer  "match_id",                   limit: 4
-    t.integer  "user_id",                    limit: 4
-    t.integer  "position",                   limit: 4
+    t.integer  "match_id",                         limit: 4
+    t.integer  "user_id",                          limit: 4
+    t.integer  "position",                         limit: 4
     t.boolean  "correct_champion_tip"
-    t.integer  "correct_tips_count",         limit: 4
-    t.integer  "correct_tendeny_tips_count", limit: 4
-    t.integer  "points",                     limit: 4
+    t.integer  "correct_tips_count",               limit: 4
+    t.integer  "correct_tendency_tips_only_count", limit: 4
+    t.integer  "points",                           limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
