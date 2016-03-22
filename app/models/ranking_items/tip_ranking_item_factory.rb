@@ -7,7 +7,7 @@ module TipRankingItemFactory
         match_id: tip.match_id,
         user_id: tip.user_id,
         correct_tips_count: calculate_correct_tips_count(tip, previous_ranking_item),
-        correct_tendeny_tips_count: calculate_correct_tendeny_tips_count(tip, previous_ranking_item))
+        correct_tendency_tips_count: calculate_correct_tendeny_tips_count(tip, previous_ranking_item))
     ranking_item.points = calculate_points(tip, previous_ranking_item)
     ranking_item
   end
@@ -26,9 +26,9 @@ module TipRankingItemFactory
     if [Tip::RESULTS[:correct_tendency_only],
         Tip::RESULTS[:correct_tendency_with_score_difference],
         Tip::RESULTS[:correct_tendency_with_one_score]].include?(tip.result)
-      previous_ranking_item.correct_tendeny_tips_count + 1
+      previous_ranking_item.correct_tendency_tips_count + 1
     else
-      previous_ranking_item.correct_tendeny_tips_count
+      previous_ranking_item.correct_tendency_tips_count
     end
   end
 

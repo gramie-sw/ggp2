@@ -8,7 +8,7 @@ class UserRankingPresenter
            :position,
            :points,
            :correct_tips_count,
-           :correct_tendeny_tips_count,
+           :correct_tendency_tips_count,
            to: :ranking_item
 
   def initialize ranking_item:, tournament:, current_user_id:

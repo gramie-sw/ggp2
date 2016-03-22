@@ -10,14 +10,14 @@ class UserStatistic
     @current_ranking_item = current_ranking_item
   end
 
-  delegate :position, :points, :correct_tips_count, :correct_tendeny_tips_count, to: :current_ranking_item
+  delegate :position, :points, :correct_tips_count, :correct_tendency_tips_count, to: :current_ranking_item
 
   def correct_tips_ratio
     tip_ratio_for :correct_tips_count
   end
 
   def correct_tendency_tips_only_ratio
-    tip_ratio_for :correct_tendeny_tips_count
+    tip_ratio_for :correct_tendency_tips_count
   end
 
   private

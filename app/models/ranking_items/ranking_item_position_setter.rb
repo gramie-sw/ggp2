@@ -22,7 +22,7 @@ module RankingItemPositionSetter
           -ranking_item.points,
           (ranking_item.correct_champion_tip? ? 0 : 1),
           -ranking_item.correct_tips_count,
-          -ranking_item.correct_tendeny_tips_count,
+          -ranking_item.correct_tendency_tips_count,
           ranking_item.user.created_at
       ]
     end

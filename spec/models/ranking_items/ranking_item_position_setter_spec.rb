@@ -5,38 +5,38 @@ describe RankingItemPositionSetter do
         RankingItem.new(
             points: 5,
             correct_tips_count: 99,
-            correct_tendeny_tips_count: 99,
+            correct_tendency_tips_count: 99,
             user: User.new(admin: false, created_at: 8.days.ago)),
         RankingItem.new(
             points: 5,
             correct_tips_count: 99,
-            correct_tendeny_tips_count: 99,
+            correct_tendency_tips_count: 99,
             user: User.new(admin: false, created_at: 9.days.ago)),
         RankingItem.new(
             points: 6,
             correct_tips_count: 100,
-            correct_tendeny_tips_count: 100,
+            correct_tendency_tips_count: 100,
             user: User.new(admin: false, created_at: 10.days.ago)),
         RankingItem.new(
             points: 6,
             correct_champion_tip: true,
             correct_tips_count: 100,
-            correct_tendeny_tips_count: 100,
+            correct_tendency_tips_count: 100,
             user: User.new(admin: false, created_at: 10.days.ago)),
         RankingItem.new(
             points: 5,
             correct_tips_count: 100,
-            correct_tendeny_tips_count: 100,
+            correct_tendency_tips_count: 100,
             user: User.new(admin: false, created_at: 10.day.ago)),
         RankingItem.new(
             points: 5,
             correct_tips_count: 99,
-            correct_tendeny_tips_count: 100,
+            correct_tendency_tips_count: 100,
             user: User.new(admin: false, created_at: 10.days.ago)),
         RankingItem.new(
             points: 4,
             correct_tips_count: 99,
-            correct_tendeny_tips_count: 100,
+            correct_tendency_tips_count: 100,
             user: User.new(admin: false, created_at: 10.days.ago))
     ]
   end

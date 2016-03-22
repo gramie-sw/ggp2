@@ -4,7 +4,7 @@ def write_to_file(ranking_item)
                  "#{ranking_item.user.nickname}, " +
                  "Points: #{ranking_item.points}, " +
                  "Correct Tips: #{ranking_item.correct_tips_count}, " +
-                 "Correct Winners: #{ranking_item.correct_tendeny_tips_count}, " +
+                 "Correct Winners: #{ranking_item.correct_tendency_tips_count}, " +
                  "Correct Champion Tip: #{ranking_item.correct_champion_tip}\n",
              mode: 'a')
 end

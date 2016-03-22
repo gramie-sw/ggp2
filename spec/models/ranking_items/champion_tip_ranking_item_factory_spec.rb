@@ -9,7 +9,7 @@ describe ChampionTipRankingItemFactory do
           user_id: 3,
           points: 55,
           correct_tips_count: 7,
-          correct_tendeny_tips_count: 12,
+          correct_tendency_tips_count: 12,
       )
     end
 
@@ -23,7 +23,7 @@ describe ChampionTipRankingItemFactory do
         expect(actual_ranking_item.user_id).to eq previous_ranking_item.user_id
         expect(actual_ranking_item.points).to eq previous_ranking_item.points + Ggp2.config.correct_champion_tip_points
         expect(actual_ranking_item.correct_tips_count).to eq previous_ranking_item.correct_tips_count
-        expect(actual_ranking_item.correct_tendeny_tips_count).to eq previous_ranking_item.correct_tendeny_tips_count
+        expect(actual_ranking_item.correct_tendency_tips_count).to eq previous_ranking_item.correct_tendency_tips_count
         expect(actual_ranking_item.correct_champion_tip).to be_truthy
       end
     end
@@ -38,7 +38,7 @@ describe ChampionTipRankingItemFactory do
         expect(actual_ranking_item.user_id).to eq previous_ranking_item.user_id
         expect(actual_ranking_item.points).to eq previous_ranking_item.points
         expect(actual_ranking_item.correct_tips_count).to eq previous_ranking_item.correct_tips_count
-        expect(actual_ranking_item.correct_tendeny_tips_count).to eq previous_ranking_item.correct_tendeny_tips_count
+        expect(actual_ranking_item.correct_tendency_tips_count).to eq previous_ranking_item.correct_tendency_tips_count
         expect(actual_ranking_item.correct_champion_tip).to be_falsey
       end
     end

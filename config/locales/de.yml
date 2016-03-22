@@ -322,7 +322,7 @@ de:
   ranking:
     position: Platz
     correct_tips_count: Korrekte Tipps
-    correct_tendeny_tips_count: Korrekte Sieger
+    correct_tendency_tips_count: Korrekte Sieger
 
   tip:
     all: Alle Tipps

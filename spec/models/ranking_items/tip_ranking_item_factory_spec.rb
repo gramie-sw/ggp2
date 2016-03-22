@@ -2,15 +2,15 @@ describe TipRankingItemFactory do
 
   let(:previous_ranking_item) do
     correct_tips_count = 3
-    correct_tendeny_tips_count = 5
+    correct_tendency_tips_count = 5
     points =
         correct_tips_count * Ggp2.config.correct_tip_points +
-            correct_tendeny_tips_count * Ggp2.config.correct_tendency_only_tip_points
+            correct_tendency_tips_count * Ggp2.config.correct_tendency_only_tip_points
 
     RankingItem.new(
         points: points,
         correct_tips_count: correct_tips_count,
-        correct_tendeny_tips_count: correct_tendeny_tips_count)
+        correct_tendency_tips_count: correct_tendency_tips_count)
   end
 
   let(:tip) { Tip.new match_id: 10, user_id: 11, result: Tip::RESULTS[:incorrect] }
@@ -24,7 +24,7 @@ describe TipRankingItemFactory do
       expect(actual_ranking_item.match_id).to eq tip.match_id
       expect(actual_ranking_item.points).to eq previous_ranking_item.points
       expect(actual_ranking_item.correct_tips_count).to eq previous_ranking_item.correct_tips_count
-      expect(actual_ranking_item.correct_tendeny_tips_count).to eq previous_ranking_item.correct_tendeny_tips_count
+      expect(actual_ranking_item.correct_tendency_tips_count).to eq previous_ranking_item.correct_tendency_tips_count
       expect(actual_ranking_item.correct_champion_tip).to be_nil
     end
 
@@ -38,8 +38,8 @@ describe TipRankingItemFactory do
             to eq previous_ranking_item.points + Ggp2.config.correct_tip_points
         expect(actual_ranking_item.correct_tips_count).
             to eq previous_ranking_item.correct_tips_count + 1
-        expect(actual_ranking_item.correct_tendeny_tips_count).
-            to eq previous_ranking_item.correct_tendeny_tips_count
+        expect(actual_ranking_item.correct_tendency_tips_count).
+            to eq previous_ranking_item.correct_tendency_tips_count
       end
     end
 
@@ -53,8 +53,8 @@ describe TipRankingItemFactory do
             to eq previous_ranking_item.points + Ggp2.config.correct_tendency_only_tip_points
         expect(actual_ranking_item.correct_tips_count).
             to eq previous_ranking_item.correct_tips_count
-        expect(actual_ranking_item.correct_tendeny_tips_count).
-            to eq previous_ranking_item.correct_tendeny_tips_count + 1
+        expect(actual_ranking_item.correct_tendency_tips_count).
+            to eq previous_ranking_item.correct_tendency_tips_count + 1
       end
     end
 
@@ -68,8 +68,8 @@ describe TipRankingItemFactory do
             to eq previous_ranking_item.points + Ggp2.config.correct_tendency_with_score_difference_tip_points
         expect(actual_ranking_item.correct_tips_count).
             to eq previous_ranking_item.correct_tips_count
-        expect(actual_ranking_item.correct_tendeny_tips_count).
-            to eq previous_ranking_item.correct_tendeny_tips_count + 1
+        expect(actual_ranking_item.correct_tendency_tips_count).
+            to eq previous_ranking_item.correct_tendency_tips_count + 1
       end
     end
 
@@ -83,8 +83,8 @@ describe TipRankingItemFactory do
             to eq previous_ranking_item.points + Ggp2.config.correct_tendency_with_one_score_tip_points
         expect(actual_ranking_item.correct_tips_count).
             to eq previous_ranking_item.correct_tips_count
-        expect(actual_ranking_item.correct_tendeny_tips_count).
-            to eq previous_ranking_item.correct_tendeny_tips_count + 1
+        expect(actual_ranking_item.correct_tendency_tips_count).
+            to eq previous_ranking_item.correct_tendency_tips_count + 1
       end
     end
   end
