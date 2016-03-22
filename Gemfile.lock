@@ -386,6 +386,3 @@ DEPENDENCIES
   uglifier
   virtus
   web-console
-
-BUNDLED WITH
-   1.11.2
