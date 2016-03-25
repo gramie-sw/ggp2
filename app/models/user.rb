@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
 
-  include UserRepository
-
   TYPES = {
       admin: 'admin',
       player: 'player'

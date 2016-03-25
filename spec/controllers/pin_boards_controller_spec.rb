@@ -23,7 +23,7 @@ describe PinBoardsController, :type => :controller do
     it 'should assign correctly instantiated PinBoardsShowPresenter' do
       page = 2
       expect(PinBoardsShowPresenter).to receive(:new).with(
-          comments_repo: Comment, page: page.to_param, current_user_id: user.id, is_admin: is_admin
+          comments_repo: CommentQueries, page: page.to_param, current_user_id: user.id, is_admin: is_admin
       ).and_return(:pin_boards_show_presenter)
       get :show, page: page
       expect(assigns(:presenter)).to eq :pin_boards_show_presenter

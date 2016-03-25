@@ -30,34 +30,22 @@ describe MatchTipsShowPresenter do
     it 'should cache tip_presenters' do
       expect(subject.tip_presenters).to eq subject.tip_presenters
     end
+  end
 
-    describe 'query methods' do
+  describe '#paginated_ordered_players_for_a_match' do
 
-      let(:relation) do
-        relation = double('UserRelation')
-        relation.as_null_object
-        relation
-      end
+    let(:relation) do
+      relation = double('UserRelation')
+      relation.as_null_object
+      relation
+    end
 
-      before :each do
-        allow(User).to receive(:players).and_return(relation)
-      end
 
-      it 'should order users by nickname' do
-        expect(relation).to receive(:order_by_nickname_asc).and_return(relation)
-        subject.tip_presenters
-      end
+    it 'returns players with given match ordered and paginated' do
+      expect(UserQueries).to receive(:players_ordered_by_nickname_asc_for_a_match_paginated).
+          with(match_id: match.id, page: subject.page).and_return(relation)
 
-      it 'should filter for players' do
-        expect(User).to receive(:players).and_return(relation)
-        subject.tip_presenters
-      end
-
-      it 'should filter include tips of given match' do
-        expect(relation).to receive(:includes).with(:tips).and_return(relation)
-        expect(relation).to receive(:where).with('tips.match_id = ?', match.id).and_return(relation)
-        subject.tip_presenters
-      end
+      expect(subject.paginated_ordered_players_for_a_match).to eq relation
     end
   end
 

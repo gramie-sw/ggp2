@@ -2,6 +2,26 @@ describe UserQueries do
 
   subject { UserQueries }
 
+  describe '::players_ordered_by_nickname_asc_for_a_match_paginated' do
+
+    let(:match) { create(:match)}
+
+    let!(:players) do
+      [
+          create(:player, nickname: 'Bob', tips: [create(:tip, match_id: match.id)]),
+          create(:player, nickname: 'Cesar', tips: [create(:tip, match_id: match.id)]),
+          create(:player, nickname: 'Anton', tips: [create(:tip, match_id: match.id)])
+      ]
+    end
+
+    it 'returns players ordered by nickname asc with given match paginated' do
+      actual_users = UserQueries.players_ordered_by_nickname_asc_for_a_match_paginated(match_id: match.id,
+      page: 2, per_page: 2)
+
+      expect(actual_users.size).to be 1
+      expect(actual_users.first.nickname).to eq 'Cesar'
+    end
+  end
 
   describe '::paginated_by_type' do
 

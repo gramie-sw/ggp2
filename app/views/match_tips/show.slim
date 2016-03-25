@@ -51,7 +51,7 @@
                   = link_to user_tip_path(tip_presenter.user_id)
                     icon.fa.fa-list title="#{t('tip.all_of', subject: tip_presenter.user.nickname)}"
 
-      = paginate @presenter.pagination_scope
+      = paginate @presenter.paginated_ordered_players_for_a_match
 
 
     .col-md-4.col-lg-3.col-lg-offset-1.hidden-xs.hidden-sm
