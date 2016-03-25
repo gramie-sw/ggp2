@@ -36,7 +36,7 @@ describe MatchSchedulePresenter do
   describe '#all_phases' do
 
     it 'returns all Phases ordered by position asc' do
-      expect(Aggregate).to receive(:all_phases_ordered_by_position_asc).and_return(:phases)
+      expect(AggregateQueries).to receive(:all_phases_ordered_by_position_asc).and_return(:phases)
       expect(subject.all_phases).to eq :phases
     end
   end
@@ -45,7 +45,7 @@ describe MatchSchedulePresenter do
 
     it 'returns all groups of current_phase' do
       expect(subject).to receive(:current_phase).and_return(current_aggregate)
-      expect(Aggregate).
+      expect(AggregateQueries).
           to receive(:all_groups_by_phase_id).with(phase_id: current_aggregate.id, sort: :position).and_return(:groups)
       expect(subject.all_groups).to be :groups
     end

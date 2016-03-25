@@ -1,5 +1,4 @@
-module
-BadgeRepository
+module BadgeRepository
 
   extend self
 
@@ -38,7 +37,6 @@ BadgeRepository
   def groups
     grouped_group_identifiers_badges.keys
   end
-
 
   def grouped_badges
 

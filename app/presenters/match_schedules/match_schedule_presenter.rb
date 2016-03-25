@@ -17,11 +17,11 @@ class MatchSchedulePresenter
   end
 
   def all_phases
-    @phases ||= Aggregate.all_phases_ordered_by_position_asc
+    @phases ||= AggregateQueries.all_phases_ordered_by_position_asc
   end
 
   def all_groups
-    Aggregate.all_groups_by_phase_id(phase_id: current_phase.id, sort: :position)
+    AggregateQueries.all_groups_by_phase_id(phase_id: current_phase.id, sort: :position)
   end
 
   def match_presenters

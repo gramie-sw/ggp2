@@ -25,21 +25,6 @@ describe Aggregate, :type => :model do
     it { is_expected.to have_many(:matches).dependent(:destroy) }
   end
 
-  describe 'scopes' do
-    describe '#order_by_position_asc' do
-      it 'should order by position' do
-        aggregate_3 = create(:aggregate, name: "Aggregate 1", position: 3)
-        aggregate_1 = create(:aggregate, name: "Aggregate 2", position: 1)
-        aggregate_2 = create(:aggregate, name: "Aggregate 3", position: 2)
-
-        aggregates = Aggregate.order_by_position_asc
-        expect(aggregates[0].position).to eq aggregate_1.position
-        expect(aggregates[1].position).to eq aggregate_2.position
-        expect(aggregates[2].position).to eq aggregate_3.position
-      end
-    end
-  end
-
   describe '#group?' do
     it 'should returns true when aggregate has parent' do
       expect(build(:aggregate_with_parent).group?).to be_truthy
