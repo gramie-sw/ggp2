@@ -1,7 +1,5 @@
 class ChampionTip < ActiveRecord::Base
 
-  include ChampionTipRepository
-
   belongs_to :user
   belongs_to :team
 

@@ -4,10 +4,6 @@ describe ChampionTip, :type => :model do
     expect(build(:champion_tip)).to be_valid
   end
 
-  it 'should include module ChampionTipRepository' do
-    expect(ChampionTip.included_modules).to include ChampionTipRepository
-  end
-
   describe 'validations' do
 
     describe 'for team' do
