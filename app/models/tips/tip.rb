@@ -33,18 +33,7 @@ class Tip < ActiveRecord::Base
   end
 
   def points
-    result.present? ? Ggp2.config.send("#{RESULTS.key(result)}_tip_points") : nil
-
-    # case result
-    #   when RESULTS[:incorrect]
-    #     Ggp2.config.incorrect_tip_points
-    #   when RESULTS[:correct]
-    #     Ggp2.config.correct_tip_points
-    #   when RESULTS[:correct_tendency_only]
-    #     Ggp2.config.correct_tendency_only_tip_points
-    #   else
-    #     nil
-    # end
+    result.present? ? Ggp2.config.send("#{RESULTS.key(result)}_tip_points") : 0
   end
 
   def correct?

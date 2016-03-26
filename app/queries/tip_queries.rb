@@ -14,8 +14,8 @@ module TipQueries
           order(order)
     end
 
-    def all_tipped_by_match_id(match_id)
-      Tip.where(match_id: match_id).where("tips.score_team_1 IS NOT NULL AND tips.score_team_2 IS NOT NULL")
+    def all_by_match_id(match_id)
+      Tip.where(match_id: match_id)
     end
 
     def clear_all_results_by_match_id(match_id)

@@ -116,9 +116,9 @@ describe Tip do
       end
     end
 
-    it 'returns nil if no result set' do
+    it 'returns 0 if no result set' do
       subject.result = nil
-      expect(subject.points).to be_nil
+      expect(subject.points).to be 0
     end
   end
 

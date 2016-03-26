@@ -10,7 +10,8 @@ class TipPresenter < DelegateClass(Tip)
   end
 
   def points
-    super || '-'
+    # TODO we must use __getobj__ because result is accidentally overriden by ResultPresentable
+    __getobj__.result.present? ? super : '-'
   end
 
   def hide_existing_result?

@@ -1,6 +1,6 @@
 describe TipPresenter do
 
-  let(:tip) { create(:tip) }
+  let(:tip) { Tip.new }
   let(:is_for_current_user) { true }
   subject { TipPresenter.new(tip: tip, is_for_current_user: is_for_current_user) }
 
@@ -14,16 +14,18 @@ describe TipPresenter do
 
     context 'if points present' do
 
-      it 'should return the points' do
+      it 'returns the points' do
+        tip.result = Tip::RESULTS[:incorrect]
+        expect(subject.points).to eq 0
+
         tip.result = Tip::RESULTS[:correct]
         expect(subject.points).to eq Ggp2.config.correct_tip_points
       end
     end
 
-    context 'if points not present' do
+    context 'if result is not present' do
 
-      it 'should return the -' do
-        allow(tip).to receive(:points).and_return(nil)
+      it 'return the -' do
         expect(subject.points).to eq '-'
       end
     end

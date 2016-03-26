@@ -67,21 +67,18 @@ describe TipQueries do
     end
   end
 
-  describe '::all_tipped_by_match_id' do
+  describe '::all_by_match_id' do
 
     match_id = 34
 
     let(:tips) do
       [Tip.create_unvalidated(match_id: match_id, score_team_1: 0, score_team_2: 1),
        Tip.create_unvalidated(match_id: match_id, score_team_1: nil, score_team_2: 1),
-       Tip.create_unvalidated(match_id: match_id+1, score_team_1: 2, score_team_2: 1),
-       Tip.create_unvalidated(match_id: match_id, score_team_1: 1, score_team_2: nil),
-       Tip.create_unvalidated(match_id: match_id, score_team_1: nil, score_team_2: nil),
-       Tip.create_unvalidated(match_id: match_id, score_team_1: 1, score_team_2: 1)]
+       Tip.create_unvalidated(match_id: match_id+1, score_team_1: 2, score_team_2: 1)]
     end
 
-    it 'returns all Tips of match_id being tipped' do
-      expect(subject.all_tipped_by_match_id(match_id)).to eq [tips.first, tips.last]
+    it 'returns all Tips of match_id' do
+      expect(subject.all_by_match_id(match_id)).to eq [tips.first, tips.second]
     end
   end
 
