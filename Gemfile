@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.3.0'
+
 gem 'rails', '~> 4.2.6'
 gem 'actionmailer'
 gem 'virtus'
@@ -13,7 +15,6 @@ gem 'jquery-rails'
 gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'uglifier'
-gem 'therubyracer', platforms: :ruby
 
 gem 'rails-i18n'
 gem 'localized_country_select'
@@ -39,7 +40,7 @@ group :development do
   gem 'meta_request'
   gem 'pry-rails'
   gem 'quiet_assets'
-  
+
   gem 'guard-rspec', require: false
   gem 'guard-livereload', require: false
   gem 'rack-livereload'
@@ -67,4 +68,8 @@ end
 
 group :doc do
   gem 'sdoc', require: false
+end
+
+group :production do
+  gem 'therubyracer', platforms: :ruby
 end
