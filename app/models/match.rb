@@ -1,6 +1,5 @@
 class Match < ActiveRecord::Base
 
-  extend MatchRepository
   include ScoreValidatable
 
   belongs_to :aggregate

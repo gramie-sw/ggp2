@@ -2,9 +2,9 @@ module Aggregates
   class FindCurrentPhase < UseCase
 
     def run
-      match = Match.next_match
+      match = MatchQueries.next_match
       if match.nil?
-        match = Match.last_match
+        match = MatchQueries.last_match
       end
       match.present? ? match.phase : nil
     end

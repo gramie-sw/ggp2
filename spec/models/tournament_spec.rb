@@ -7,7 +7,7 @@ describe Tournament, :type => :model do
   before :each do
     relation = double('MatchRelation')
     allow(relation).to receive(:first).and_return(first_match)
-    allow(Match).to receive(:order_by_position_asc).and_return(relation)
+    allow(MatchQueries).to receive(:order_by_position_asc).and_return(relation)
   end
 
   describe 'title' do
@@ -117,12 +117,12 @@ describe Tournament, :type => :model do
   describe '#played_match_count' do
 
     it 'should return played match count' do
-      expect(Match).to receive(:count_all_with_results).and_return(3)
+      expect(MatchQueries).to receive(:count_all_with_results).and_return(3)
       expect(subject.played_match_count).to eq 3
     end
 
     it 'should cache value' do
-      expect(Match).to receive(:count_all_with_results).and_return(3)
+      expect(MatchQueries).to receive(:count_all_with_results).and_return(3)
       subject.played_match_count
       subject.played_match_count
     end
@@ -149,12 +149,12 @@ describe Tournament, :type => :model do
     let(:match) { Match.new(team_1: team_1, team_2: team_2, score_team_1: 1, score_team_2: 4) }
 
     it 'should return winner of last_match' do
-      expect(Match).to receive(:last_match).and_return(match)
+      expect(MatchQueries).to receive(:last_match).and_return(match)
       expect(subject.champion_team).to eq team_2
     end
 
     it 'should cache champion_team' do
-      expect(Match).to receive(:last_match).once.and_return(match)
+      expect(MatchQueries).to receive(:last_match).once.and_return(match)
       subject.champion_team
       subject.champion_team
     end
@@ -165,7 +165,7 @@ describe Tournament, :type => :model do
     let(:match) { build(:match) }
 
     before :each do
-      allow(Match).to receive(:last_match).and_return(match)
+      allow(MatchQueries).to receive(:last_match).and_return(match)
     end
 
     context 'if last match has result' do
@@ -198,7 +198,7 @@ describe Tournament, :type => :model do
     context 'when next Match exists' do
 
       it 'should return phase of next match' do
-        expect(Match).to receive(:next_match).and_return(match)
+        expect(MatchQueries).to receive(:next_match).and_return(match)
         expect(subject.current_phase).to be :current_phase
       end
     end
@@ -206,14 +206,14 @@ describe Tournament, :type => :model do
     context 'when next Match does not exist' do
 
       it 'should return phase of last match' do
-        expect(Match).to receive(:next_match).and_return(nil)
-        expect(Match).to receive(:last_match).and_return(match)
+        expect(MatchQueries).to receive(:next_match).and_return(nil)
+        expect(MatchQueries).to receive(:last_match).and_return(match)
         expect(subject.current_phase).to be :current_phase
       end
     end
 
     it 'should cache return value' do
-      expect(Match).to receive(:next_match).and_return(match)
+      expect(MatchQueries).to receive(:next_match).and_return(match)
       subject.current_phase
       subject.current_phase
     end

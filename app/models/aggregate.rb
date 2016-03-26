@@ -31,14 +31,14 @@ class Aggregate < ActiveRecord::Base
 
   def matches_including_of_children
     if phase? && has_groups?
-      Match.where(aggregate_id: children).references(:aggregates)
+      MatchQueries.matches_with_aggregates children
     else
       matches
     end
   end
 
   def future_matches
-    matches_including_of_children.future_matches
+    matches_including_of_children.merge(MatchQueries.future_matches)
   end
 
   def has_future_matches?

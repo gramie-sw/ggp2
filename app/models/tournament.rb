@@ -23,7 +23,7 @@ class Tournament
   end
 
   def played_match_count
-    @played_match_count ||= Match.count_all_with_results
+    @played_match_count ||= MatchQueries.count_all_with_results
   end
 
   def total_match_count
@@ -51,14 +51,14 @@ class Tournament
   private
 
   def first_match
-    @first_match ||= Match.first_match
+    @first_match ||= MatchQueries.first_match
   end
 
   def last_match
-    @last_match ||= Match.last_match
+    @last_match ||= MatchQueries.last_match
   end
 
   def next_match
-    @next_match ||= Match.next_match
+    @next_match ||= MatchQueries.next_match
   end
 end
