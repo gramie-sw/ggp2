@@ -3,7 +3,6 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 #require 'rspec/autorun'
-require 'shoulda-matchers'
 require 'permissioner/matchers'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -62,4 +61,13 @@ RSpec.configure do |config|
 # from the file location. You can explicitly opt-in to this feature using this
 # snippet:
   config.infer_spec_type_from_file_location!
+
+  config.include(Shoulda::Matchers::ActiveModel)
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
 end

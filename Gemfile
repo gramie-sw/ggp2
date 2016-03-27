@@ -29,8 +29,6 @@ gem 'devise'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'permissioner'
 
-gem 'transpec'
-
 group :development, :test do
   gem 'rspec-rails'
 end
@@ -62,7 +60,7 @@ group :test do
   # require false necessary to remove minitest warning
   #see https://github.com/rspec/rspec-rails/pull/772
   gem 'forgery'
-  gem 'shoulda-matchers', require: false
+  gem 'shoulda-matchers'
 end
 
 
