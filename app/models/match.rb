@@ -65,18 +65,17 @@ class Match < ActiveRecord::Base
   private
 
   def validate_placeholder_team_1_not_eq_placeholder_team_2_besides_nil_or_blank
-    if placeholder_team_1 == placeholder_team_2
-      unless placeholder_team_1 == nil or placeholder_team_1 == ""
-        errors[:placeholder_team_2]<< I18n.t('errors.messages.must_not_equals_team_1_placeholder')
-      end
-    end
+    validate_to_be_eq_besides_nil_or_blank(placeholder_team_1, placeholder_team_2, :placeholder_team_2,
+                                           I18n.t('errors.messages.must_not_equals_team_1_placeholder'))
   end
 
   def validate_team_1_not_equal_team_2
-    if team_1 == team_2
-      unless team_1 == nil or team_1 == ""
-        errors[:team_2]<< I18n.t('errors.messages.must_not_equals_team_1')
-      end
+    validate_to_be_eq_besides_nil_or_blank team_1, team_2, :team_2, I18n.t('errors.messages.must_not_equals_team_1')
+  end
+
+  def validate_to_be_eq_besides_nil_or_blank value_1, value_2, key_2, error_message
+    if value_1 == value_2
+      errors[key_2]<< error_message unless value_1.blank?
     end
   end
 end
