@@ -10,14 +10,14 @@ describe TipConsecutiveMissedBadge do
 
       user_ids = [1, 2, 3, 4]
 
-      expect(Tip).to receive(:user_ids_with_at_least_missed_tips).with(
+      expect(TipQueries).to receive(:user_ids_with_at_least_missed_tips).with(
                          user_ids: user_ids, count: subject.achievement) { [2, 3, 4] }
 
-      expect(Tip).to receive(:ordered_results_having_finished_match_by_user_id).with(2).and_return(
+      expect(TipQueries).to receive(:finished_match_position_ordered_results).with(2).and_return(
                          [nil, Tip::RESULTS[:incorrect], nil, nil])
-      expect(Tip).to receive(:ordered_results_having_finished_match_by_user_id).with(3).and_return(
+      expect(TipQueries).to receive(:finished_match_position_ordered_results).with(3).and_return(
                          [nil, Tip::RESULTS[:incorrect], nil])
-      expect(Tip).to receive(:ordered_results_having_finished_match_by_user_id).with(4).and_return(
+      expect(TipQueries).to receive(:finished_match_position_ordered_results).with(4).and_return(
                          [nil, nil, nil])
 
       actual_user_ids = subject.eligible_user_ids user_ids

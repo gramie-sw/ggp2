@@ -29,29 +29,6 @@ describe TipsEditMultiplePresenter do
         expect(actual_tip_presenters.second.__getobj__).to eq tips.second
       end
 
-      describe 'chained scopes' do
-
-        let(:relation) do
-          relation = double('TipRelation')
-          relation.as_null_object
-          relation
-        end
-
-        before :each do
-          expect(Tip).to receive(:where).and_return(relation)
-        end
-
-        it 'should includes match' do
-          expect(relation).to receive(:includes).with(:match).and_return(relation)
-          subject.tip_presenters
-        end
-
-        it 'should order tips by match position' do
-          expect(relation).to receive(:order_by_match_position).and_return(relation)
-          subject.tip_presenters
-        end
-      end
-
       it 'should cache TipPresenters' do
         expect(subject.tip_presenters).to be subject.tip_presenters
       end

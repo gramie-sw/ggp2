@@ -1,8 +1,6 @@
 class Tip < ActiveRecord::Base
 
   extend RecordBatchUpdatable
-  include TipRepository
-  extend TipQueries
   include ScoreValidatable
 
   RESULTS = {

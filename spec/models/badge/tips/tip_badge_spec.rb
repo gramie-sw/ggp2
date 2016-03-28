@@ -22,7 +22,7 @@ describe TipBadge do
       actual_user_ids = instance_double('Hash')
 
       expect(subject.result).to receive(:to_sym).and_call_original
-      expect(Tip).to receive(:user_ids_with_at_least_result_tips).with(
+      expect(TipQueries).to receive(:user_ids_with_at_least_result_tips).with(
                          result: Tip::RESULTS[:correct],
                          user_ids: user_ids,
                          count: subject.achievement).and_return(actual_user_ids)

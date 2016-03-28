@@ -1,4 +1,7 @@
+#todo refactor
 class TipsEditMultiplePresenter
+
+  attr_reader :tip_ids
 
   def initialize tip_ids: nil, tips: nil
     raise "Only tips_ids or tips must be given, not both" if tip_ids.nil? && tips.nil?
@@ -6,9 +9,10 @@ class TipsEditMultiplePresenter
     @tip_presenters = wrap_in_tip_presenters(tips) unless tips.nil?
   end
 
+
   def tip_presenters
     @tip_presenters ||= begin
-      wrap_in_tip_presenters(Tip.where(id: @tip_ids).includes(:match).order_by_match_position)
+      wrap_in_tip_presenters(TipQueries.order_by_match_position_by_given_ids(tip_ids))
     end
   end
 

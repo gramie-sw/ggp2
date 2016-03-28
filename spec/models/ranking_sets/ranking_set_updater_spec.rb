@@ -38,7 +38,7 @@ describe RankingSetUpdater do
     it 'should return create and saved new tip ranking_set for tips' do
       tips = double('Tips')
 
-      expect(Tip).to receive(:all_by_match_id).with(3).and_return(tips)
+      expect(TipQueries).to receive(:all_by_match_id).with(3).and_return(tips)
       expect(tip_ranking_set_factory).
           to receive(:build).with(3, tips, previous_ranking_set).and_return(expected_ranking_set)
       expect(expected_ranking_set).to receive(:save)

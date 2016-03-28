@@ -7,9 +7,9 @@ class TipConsecutiveBadge < Badge
   end
 
   def eligible_user_ids user_ids
-    Tip.user_ids_with_at_least_result_tips(result: Tip::RESULTS[result.to_sym], user_ids: user_ids,
+    TipQueries.user_ids_with_at_least_result_tips(result: Tip::RESULTS[result.to_sym], user_ids: user_ids,
                                            count: achievement).select do |user_id|
-      user_id if at_least_consecutive_results?(Tip.ordered_results_by_user_id(user_id), Tip::RESULTS[result.to_sym].to_s)
+      user_id if at_least_consecutive_results?(TipQueries.match_position_ordered_results(user_id), Tip::RESULTS[result.to_sym].to_s)
     end
   end
 

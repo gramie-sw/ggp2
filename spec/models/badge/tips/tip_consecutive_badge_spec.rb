@@ -19,16 +19,16 @@ describe TipConsecutiveBadge do
 
       expect(subject.result).to receive(:to_sym).at_least(1).and_call_original
 
-      expect(Tip).to receive(:user_ids_with_at_least_result_tips).with(result: Tip::RESULTS[:correct], user_ids: user_ids,
+      expect(TipQueries).to receive(:user_ids_with_at_least_result_tips).with(result: Tip::RESULTS[:correct], user_ids: user_ids,
                                 count: subject.achievement).and_return([2,3,4,5])
 
-      expect(Tip).to receive(:ordered_results_by_user_id).with(2).and_return(
+      expect(TipQueries).to receive(:match_position_ordered_results).with(2).and_return(
              [Tip::RESULTS[:correct], Tip::RESULTS[:incorrect], Tip::RESULTS[:correct], Tip::RESULTS[:correct]])
-      expect(Tip).to receive(:ordered_results_by_user_id).with(3).and_return(
+      expect(TipQueries).to receive(:match_position_ordered_results).with(3).and_return(
              [Tip::RESULTS[:correct], Tip::RESULTS[:incorrect], Tip::RESULTS[:correct]])
-      expect(Tip).to receive(:ordered_results_by_user_id).with(4).and_return(
+      expect(TipQueries).to receive(:match_position_ordered_results).with(4).and_return(
              [Tip::RESULTS[:correct], Tip::RESULTS[:correct], Tip::RESULTS[:correct]])
-      expect(Tip).to receive(:ordered_results_by_user_id).with(5).and_return(
+      expect(TipQueries).to receive(:match_position_ordered_results).with(5).and_return(
              [Tip::RESULTS[:correct], nil, Tip::RESULTS[:correct]])
 
       actual_user_ids = subject.eligible_user_ids user_ids

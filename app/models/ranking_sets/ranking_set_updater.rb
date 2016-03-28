@@ -13,7 +13,7 @@ class RankingSetUpdater
   end
 
   def update_tip_ranking_set match_id, previous_ranking_set
-    tips = Tip.all_by_match_id(match_id)
+    tips = TipQueries.all_by_match_id(match_id)
     update_ranking_set(match_id, tips, previous_ranking_set, tip_ranking_set_factory)
   end
 
