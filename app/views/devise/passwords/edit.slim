@@ -1,10 +1,8 @@
-div.col-sm-offset-1.col-sm-10.col-md-offset-2.col-md-8.col-lg-offset-3.col-lg-6
-  div.well
+.col-xs-12.col-sm-7.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
+  #forget-password
     = simple_form_for(resource, as: resource_name, url: password_path(resource_name),
-                      html: { class: 'form-horizontal', role: 'form', method: :put },
-                      defaults: {label_html: {class: 'col-sm-4 col-md-4'},
-                                 input_wrapper_html: {class: 'col-sm-8 col-md-7'},
-                                 required: false}) do |f|
+                      html: { role: 'form', method: :put },
+                      defaults: {required: false}) do |f|
 
       legend
         = I18n.t('devise.title.change_your_password')
@@ -15,6 +13,4 @@ div.col-sm-offset-1.col-sm-10.col-md-offset-2.col-md-8.col-lg-offset-3.col-lg-6
 
       = f.input :password_confirmation
 
-      = render partial: 'commons/form_buttons',
-               locals: {submit_button_label: t('devise.links.change_my_password'),
-                        wrapper_html: {class: 'col-sm-offset-4 col-sm-8 col-md-7'}}
+      = render partial: 'commons/form_buttons'

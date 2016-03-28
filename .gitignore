@@ -17,15 +17,15 @@
 
 # Ignore all Images
 /public/uploads
-
 /config/database.yml
 /config/instance_config.yml
 /config/recaptcha.yml
 
 Capfile
 /config/deploy.rb
-/config/deploy/production.rb
-/config/deploy/staging.rb
+/config/deploy/*
+!/config/deploy/production.example
+!/config/deploy/staging.example
 
 /.idea
 .ruby-version
