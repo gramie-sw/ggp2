@@ -363,8 +363,8 @@ de:
       subject: WM 2014 Tippspiel - Herzlich Willkommen
 
   recaptcha:
-    label: Sicherheitstext eingeben
-    wrong_input: Sicherheitstext ist nicht korrekt
+    label: Verifizierung
+    wrong_input: Verifizierung fehlgeschlagen
     custom_translations:
       instructions_visual: Text hier eingeben
 
