@@ -44,10 +44,10 @@ tip:
         - achievement: 8
           color: silver
           score: 150
-        - achievment: 16
+        - achievement: 16
           color: gold
           score: 200
-        - achivement: 24
+        - achievement: 24
           color: platinum
           score: 250
   - class: TipConsecutiveBadge
@@ -61,10 +61,10 @@ tip:
         - achievement: 4
           color: silver
           score: 160
-        - achievment: 6
+        - achievement: 6
           color: gold
           score: 210
-        - achivement: 8
+        - achievement: 8
           color: platinum
           score: 260
   - class: TipBadge
@@ -78,10 +78,10 @@ tip:
         - achievement: 10
           color: silver
           score: 170
-        - achievment: 20
+        - achievement: 20
           color: gold
           score: 220
-        - achivement: 30
+        - achievement: 30
           color: platinum
           score: 270
   - class: TipConsecutiveBadge
@@ -95,10 +95,10 @@ tip:
         - achievement: 4
           color: silver
           score: 180
-        - achievment: 6
+        - achievement: 6
           color: gold
           score: 230
-        - achievment: 6
+        - achievement: 6
           color: platinum
           score: 280
   - class: TipMissedBadge
@@ -111,10 +111,10 @@ tip:
         - achievement: 2
           color: silver
           score: 185
-        - achievment: 4
+        - achievement: 4
           color: gold
           score: 235
-        - achievment: 8
+        - achievement: 8
           color: platinum
           score: 285
   - class: TipConsecutiveMissedBadge
@@ -127,17 +127,17 @@ tip:
         - achievement: 3
           color: silver
           score: 190
-        - achievment: 4
+        - achievement: 4
           color: gold
           score: 240
-        - achievment: 5
+        - achievement: 5
           color: platinum
           score: 290
   - class: TipChampionMissedBadge
     attributes:
       icon: 'fa-eye-slash'
       levels:
-        - achivement: 1
+        - achievement: 1
           color: platinum
           score: 50
 comment:

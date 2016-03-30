@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313104010) do
+ActiveRecord::Schema.define(version: 20160329184433) do
 
   create_table "aggregates", force: :cascade do |t|
     t.integer  "position",   limit: 4
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(version: 20160313104010) do
     t.datetime "updated_at"
     t.string   "match_sort",             limit: 255
     t.boolean  "titleholder"
+    t.string   "most_valuable_badge",    limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
