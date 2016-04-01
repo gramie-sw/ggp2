@@ -266,3 +266,4 @@
 .flag-64.flag-united-nations { background-position: -64px -1024px; width: 64px; height: 64px; }
 .flag-64.flag-unknown { background-position: -128px -1024px; width: 64px; height: 64px; }
 .flag-64.flag-wales { background-position: -192px -1024px; width: 64px; height: 64px; }
+.flag-64.flag-northern_ireland { background-image: image-url('world_flags/northern_ireland-64.png'); width: 64px; height: 64px; }

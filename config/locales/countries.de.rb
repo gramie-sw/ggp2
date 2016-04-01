@@ -262,7 +262,9 @@
 			:DG => "Diego Garcia",
 			:TA => "Tristan da Cunha",
 			:ZZ => "Unbekannte Region",
-      :england => "England",
+      :ENGLAND => "England",
+      :WALES => "Wales",
+      :NORTHERN_IRELAND => "Nordirland"
     }
 
   }
