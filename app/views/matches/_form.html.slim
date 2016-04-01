@@ -9,7 +9,7 @@
                 label: aggregate.phase? ? t('general.phase.one') : t('general.group.one')
       = f.input :aggregate_id, as: :hidden
 
-      = f.input :position
+      = f.input :position, input_html: {autofocus: true}
   .row
     .col-xs-12.col-sm-6.col-lg-5
       = f.association :team_1, as: :select, collection: team_collection_for_select

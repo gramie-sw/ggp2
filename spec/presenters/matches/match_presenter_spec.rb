@@ -1,7 +1,27 @@
 describe MatchPresenter do
 
-  let(:match) { create(:match) }
+  let(:match) { Match.new }
   subject { MatchPresenter.new(match) }
+
+  describe '#team_1_code' do
+
+    it 'returns team 1 code or nil' do
+      expect(subject.team_1_code).to be nil
+
+      match.team_1 = Team.new(country: 'NL')
+      expect(subject.team_1_code).to eq 'NL'
+    end
+  end
+  
+  describe '#team_2_code' do
+
+    it 'returns team 2 code or nil' do
+      expect(subject.team_2_code).to be nil
+
+      match.team_2 = Team.new(country: 'NL')
+      expect(subject.team_2_code).to eq 'NL'
+    end
+  end
 
   it 'should include ResultPresentable' do
     expect(MatchPresenter.included_modules).to include ResultPresentable

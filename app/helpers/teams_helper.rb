@@ -1,8 +1,8 @@
 module TeamsHelper
 
-  def flag_image_tag(team_abbreviation, size: 16)
-    if team_abbreviation.present?
-      image_tag 'blank.gif', class: "flag flag-#{size} flag-#{team_abbreviation.downcase}"
+  def flag_image_tag(team_code, size: 16)
+    if team_code.present?
+      image_tag 'blank.gif', class: "flag flag-#{size} flag-#{team_code.downcase}"
     end
   end
 

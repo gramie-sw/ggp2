@@ -7,14 +7,14 @@
     ._horizontal-match-panel.text-center
       .row
         .col-xs-4.col-sm-5
-          = flag_image_tag(match_presenter.team_1.country, size: 64)
+          = flag_image_tag(match_presenter.team_1_code, size: 64)
           ._team-name
             = match_presenter.team_1_name_or_placeholder
         .col-xs-4.col-sm-2
           ._result
             = match_presenter.result
         .col-xs-4.col-sm-5
-          = flag_image_tag(match_presenter.team_2.country, size: 64)
+          = flag_image_tag(match_presenter.team_2_code, size: 64)
           ._team-name
             = match_presenter.team_2_name_or_placeholder
       ._text-weaker
@@ -56,12 +56,12 @@
 
     .col-md-4.col-lg-3.col-lg-offset-1.hidden-xs.hidden-sm
       ._vertical-match-panel.well.text-center
-        = flag_image_tag(match_presenter.team_1.country, size: 64)
+        = flag_image_tag(match_presenter.team_1_code, size: 64)
         ._team-name
           = match_presenter.team_1_name_or_placeholder
         ._result
           = match_presenter.result
-        = flag_image_tag(match_presenter.team_2.country, size: 64)
+        = flag_image_tag(match_presenter.team_2_code, size: 64)
         ._team-name
           = match_presenter.team_2_name_or_placeholder
         ._text-weaker
