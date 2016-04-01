@@ -8,10 +8,6 @@
       legend
         = I18n.t('devise.title.change_your_password')
 
-
-      - resource.errors.add(:reset_password_token, 'ist nicht gültig')
-      - resource.errors.add(:reset_password_token, 'ist nicht nein')
-
       = display_attribute_errors(resource, attribute: :reset_password_token)
 
       = f.input :reset_password_token, as: :hidden
