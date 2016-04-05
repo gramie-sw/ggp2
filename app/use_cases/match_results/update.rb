@@ -14,7 +14,7 @@ module MatchResults
         set_champion_tip_results_if_necessary
         update_ranking_sets
         update_user_badges
-
+        update_most_valuable_badge
       end
 
       match_result
@@ -32,6 +32,10 @@ module MatchResults
       if champion_team.present?
         ChampionTips::SetResults.run(champion_team_id: champion_team.id)
       end
+    end
+
+    def update_most_valuable_badge
+      Users::UpdateMostValuableBadge.run
     end
 
     def update_ranking_sets

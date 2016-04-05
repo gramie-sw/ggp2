@@ -138,4 +138,13 @@ describe User, :type => :model do
       expect(subject.badges_count).to eq 5
     end
   end
+
+  describe '#most_valuable_badge' do
+
+    let(:player) { create(:player, most_valuable_badge: 'tip_missed_badge#bronze')}
+
+    it 'returns most_valuable_badge' do
+      expect(player.most_valuable_badge.class).to eq TipMissedBadge
+    end
+  end
 end

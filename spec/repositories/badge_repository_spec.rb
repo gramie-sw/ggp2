@@ -1,9 +1,17 @@
 describe BadgeRepository do
 
+  describe '::badge_by_identifier' do
+
+    it 'returns badge by given badge_identifier' do
+      badge = BadgeRepository.badge_by_identifier('tip_missed_badge#bronze')
+
+      expect(badge.identifier).to eq 'tip_missed_badge#bronze'
+    end
+  end
+
   describe '::badges_hash' do
 
     it 'returns hash with badge_identifier as keys and badges as values' do
-
       badges_hash = BadgeRepository.badges_hash
 
       expect(badges_hash.keys.size).to be 23
@@ -17,7 +25,6 @@ describe BadgeRepository do
   describe '::badges' do
 
     it 'returns badges' do
-
       badges = BadgeRepository.badges
 
       expect(badges.size).to be 23
@@ -30,13 +37,7 @@ describe BadgeRepository do
 
   describe '::badges_by_user_id' do
 
-    let(:users) do
-      [
-          create(:player),
-          create(:player)
-      ]
-    end
-
+    let(:users) { (1..2).map { create(:player) } }
     let(:badges) { BadgeRepository.badges }
 
     let!(:user_badges) do
@@ -183,15 +184,39 @@ describe BadgeRepository do
     end
   end
 
-  describe '::sum_badge_scores_by_user_id' do
+  describe '::most_valuable_badge' do
 
-    let(:users) do
+    let(:users) { (1..2).map { create(:player) } }
+    let(:badges) { BadgeRepository.badges }
+
+    let!(:user_badges) do
       [
-          create(:player),
-          create(:player)
+          create(:user_badge,
+                 user: users.first,
+                 badge_group_identifier: badges.last.group_identifier,
+                 badge_identifier: badges.last.identifier),
+
+          create(:user_badge,
+                 user: users.first,
+                 badge_group_identifier: badges.first.group_identifier,
+                 badge_identifier: badges.first.identifier),
+
+          create(:user_badge,
+                 user: users.second,
+                 badge_group_identifier: badges.second.group_identifier,
+                 badge_identifier: badges.second.identifier
+          )
       ]
     end
 
+    it 'returns most valuable badge by given user_id' do
+      expect(BadgeRepository.most_valuable_badge users.first.id).to eq badges.last
+    end
+  end
+
+  describe '::sum_badge_scores_by_user_id' do
+
+    let(:users) { (1..2).map { create(:player) } }
     let(:badges) { BadgeRepository.badges }
 
     let!(:user_badges) do
@@ -214,9 +239,8 @@ describe BadgeRepository do
       ]
     end
 
-    it 'returns sum of of badge scors by given user_id' do
-
-      badge_score_sum = BadgeRepository.sum_badge_scores_by_user_id users.first.id
+    it 'returns sum of of badge scores by given user_id' do
+      badge_score_sum = BadgeRepository.sum_badge_scores users.first.id
       expect(badge_score_sum).to eq 810
     end
   end

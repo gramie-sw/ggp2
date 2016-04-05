@@ -2,6 +2,10 @@ module BadgeRepository
 
   extend self
 
+  def badge_by_identifier badge_identifier
+    badges_hash[badge_identifier]
+  end
+
   def badges
     badges_hash.values
   end
@@ -71,7 +75,12 @@ module BadgeRepository
     group_identifiers_grouped_badges
   end
 
-  def sum_badge_scores_by_user_id user_id
+  def most_valuable_badge user_id
+    badges = badges_by_user_id user_id
+    badges.max_by { |badge| badge.score }
+  end
+
+  def sum_badge_scores user_id
     badges = badges_by_user_id user_id
     badges.map(&:score).inject(0, :+)
   end

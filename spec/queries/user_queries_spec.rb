@@ -1,10 +1,29 @@
 describe UserQueries do
 
-  subject { UserQueries }
+  describe '::all_player_ids' do
+
+    let!(:users) do
+      [
+          create(:admin),
+          create(:player),
+          create(:player),
+          create(:player)
+      ]
+    end
+
+    it 'returns all player ids' do
+
+      player_ids = subject.all_player_ids
+
+      expect(player_ids.count).to be 3
+      expect(player_ids).to include users.second.id, users.third.id, users.fourth.id
+    end
+  end
+
 
   describe '::players_ordered_by_nickname_asc_for_a_match_paginated' do
 
-    let(:match) { create(:match)}
+    let(:match) { create(:match) }
 
     let!(:players) do
       [
@@ -16,7 +35,7 @@ describe UserQueries do
 
     it 'returns players ordered by nickname asc with given match paginated' do
       actual_users = UserQueries.players_ordered_by_nickname_asc_for_a_match_paginated(match_id: match.id,
-      page: 2, per_page: 2)
+                                                                                       page: 2, per_page: 2)
 
       expect(actual_users.size).to be 1
       expect(actual_users.first.nickname).to eq 'Cesar'
@@ -97,23 +116,33 @@ describe UserQueries do
     end
   end
 
-  describe '::all_player_ids' do
+  describe '::update_most_valuable_badge' do
 
-    let!(:users) do
+    it 'updates every most valuable badge for every given user_id' do
+      user_ids = [1,2]
+      expect(UserQueries).to receive(:update_most_valuable_badge_by_user_id).with(1)
+      expect(UserQueries).to receive(:update_most_valuable_badge_by_user_id).with(2)
+
+      UserQueries.update_most_valuable_badge user_ids
+    end
+  end
+
+  describe '::update_most_valuable_badge_by_user_id' do
+
+    let(:player) { create(:player) }
+
+    let!(:user_badges) do
       [
-          create(:admin),
-          create(:player),
-          create(:player),
-          create(:player)
+        create(:user_badge, user: player, badge_identifier: 'comment_created_badge#gold'),
+        create(:user_badge, user: player, badge_identifier: 'tip_missed_badge#bronze')
       ]
     end
 
-    it 'returns all player ids' do
+    it 'updates most valuable badge for given user_id' do
+      UserQueries.update_most_valuable_badge_by_user_id player.id
+      player.reload
 
-      player_ids = subject.all_player_ids
-
-      expect(player_ids.count).to be 3
-      expect(player_ids).to include users.second.id, users.third.id, users.fourth.id
+      expect(player.most_valuable_badge.identifier).to eq 'comment_created_badge#gold'
     end
   end
 end

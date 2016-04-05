@@ -1,6 +1,6 @@
 describe UserRankingPresenter do
 
-  let(:user) { User.new(id: 7) }
+  let(:user) { User.new(id: 7, most_valuable_badge: 'comment_created_badge#gold') }
   let(:ranking_item) { RankingItem.new(user: user) }
   let(:tournament) { Tournament.new }
   let(:current_user_id) { 5 }
@@ -157,6 +157,42 @@ describe UserRankingPresenter do
         champion_tip.team = nil
         expect(tournament).to receive(:started?).never
         expect(subject.champion_tip_team_abbreviation).to be_nil
+      end
+    end
+  end
+
+  describe '#badge_color' do
+
+    context 'associated user has most valuable badge' do
+
+      it 'returns color of most valuable badge' do
+        expect(subject.badge_color).to eq BadgeRepository.badge_by_identifier('comment_created_badge#gold').color
+      end
+    end
+
+    context 'associated user has no most valuable badge' do
+
+      it 'returns neutral badge color' do
+        user.most_valuable_badge= nil
+        expect(subject.badge_color).to eq UserRankingPresenter::NEUTRAL_BADGE_COLOR
+      end
+    end
+  end
+
+  describe '#badge_icon' do
+
+    context 'associated user has most_valuable_badge' do
+
+      it 'returns icon of most valuable badge' do
+        expect(subject.badge_icon).to eq BadgeRepository.badge_by_identifier('comment_created_badge#gold').icon
+      end
+    end
+
+    context 'associated user has no most_valuable_badge' do
+
+      it 'returns neutral badge icon' do
+        user.most_valuable_badge= nil
+        expect(subject.badge_icon).to eq UserRankingPresenter::NEUTRAL_BADGE_ICON
       end
     end
   end

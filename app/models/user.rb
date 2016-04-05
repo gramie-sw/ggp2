@@ -44,4 +44,8 @@ class User < ActiveRecord::Base
   def badges_count
     user_badges.count
   end
+
+  def most_valuable_badge
+    BadgeRepository.badge_by_identifier super
+  end
 end

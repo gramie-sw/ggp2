@@ -1,5 +1,9 @@
 class UserRankingPresenter
 
+  NEUTRAL_BADGE_ICON = 'fa-close'
+  NEUTRAL_BADGE_COLOR = 'lightgrey'
+
+
   delegate :nickname,
            :badges_count,
            :titleholder?,
@@ -43,12 +47,12 @@ class UserRankingPresenter
     end
   end
 
-  def badge_icon
-    'fa-bullseye'
+  def badge_color
+    user.most_valuable_badge ? user.most_valuable_badge.color : NEUTRAL_BADGE_COLOR
   end
 
-  def badge_color
-    'gold'
+  def badge_icon
+    user.most_valuable_badge ? user.most_valuable_badge.icon : NEUTRAL_BADGE_ICON
   end
 
   private
@@ -56,7 +60,7 @@ class UserRankingPresenter
   attr_reader :ranking_item, :tournament, :current_user_id
 
   #TODO refactor
-  #desicions should be done by permission service
+  #decisions should be done by permission service
   def champion_tip_team_display_state
     @champion_tip_team_display_state ||= begin
 
