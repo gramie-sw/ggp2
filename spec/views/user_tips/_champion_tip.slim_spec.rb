@@ -17,9 +17,10 @@ describe 'user_tips/_champion_tip.slim', :type => :view do
     }
   end
 
-  let(:champion_title) {'World Champion'}
+  let(:champion_title) { 'World Champion' }
 
   before :each do
+    view.define_singleton_method(:champion_title) {}
     allow(view).to receive(:champion_title).and_return(champion_title)
     allow(presenter).to receive(:show?).and_return(true)
   end

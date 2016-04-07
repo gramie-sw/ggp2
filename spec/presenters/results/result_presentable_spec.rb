@@ -1,6 +1,16 @@
 describe ResultPresentable do
 
-  subject { Object.new.extend(ResultPresentable) }
+  class TestClass
+    include ResultPresentable
+
+    def score_team_1;
+    end
+
+    def score_team_2;
+    end
+  end
+
+  subject { TestClass.new }
 
   describe '#result' do
 

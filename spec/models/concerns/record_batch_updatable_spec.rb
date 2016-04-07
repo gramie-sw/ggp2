@@ -10,9 +10,12 @@ describe RecordBatchUpdatable, :type => :model do
     ]
   end
 
-  let(:models_attributes) { {1 => :attributes_1, 2 => :attributes_2, 3 => :attributes_3, } }
+  let(:models_attributes) do
+    ActionController::Parameters.new({1 => :attributes_1, 2 => :attributes_2, 3 => :attributes_3, })
+  end
 
   before :each do
+    subject.define_singleton_method(:update) { |keys, values|}
     allow(subject).to receive(:update).and_return(models)
     allow(models_attributes).to receive(:permitted?).and_return(true)
   end
@@ -75,7 +78,7 @@ describe RecordBatchUpdatable, :type => :model do
     it 'should raise ActiveModel::ForbiddenAttributesError' do
       expect(models_attributes).to receive(:permitted?).and_return(false)
       expect(subject).not_to receive(:update)
-      expect{subject.update_multiple(models_attributes)}.to raise_error ActiveModel::ForbiddenAttributesError
+      expect { subject.update_multiple(models_attributes) }.to raise_error ActiveModel::ForbiddenAttributesError
     end
   end
 end

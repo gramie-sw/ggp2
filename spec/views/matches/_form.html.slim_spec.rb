@@ -14,7 +14,7 @@ describe 'matches/_form.html.slim.rb' do
   let(:match) {Match.new(aggregate: Aggregate.new(id: 676))}
 
   before :each do
-    allow(view).to receive(:legend)
+    view.define_singleton_method(:legend) {:legend}
   end
 
   describe 'subsequent checkbox' do
