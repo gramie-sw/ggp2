@@ -360,7 +360,7 @@ de:
 
   user_mailer:
     user_signed_up:
-      subject: WM 2014 Tippspiel - Herzlich Willkommen
+      subject: '%{tournament_title} Tippspiel - Herzlich Willkommen'
 
   recaptcha:
     label: Verifizierung
