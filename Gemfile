@@ -56,6 +56,7 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'fuubar'
   gem 'factory_girl_rails'
   # require false necessary to remove minitest warning
   #see https://github.com/rspec/rspec-rails/pull/772
