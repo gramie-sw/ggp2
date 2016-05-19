@@ -10,6 +10,11 @@ describe Comments::Create do
     context 'on success' do
 
       it 'creates comment and returns it' do
+
+        expect(Comment).to receive(:create).and_call_original.ordered
+        expect(UpdateUserBadges).to receive(:run).with(group: :comment).ordered
+        expect(Users::UpdateMostValuableBadge).to receive(:run).ordered
+
         actual_comment = subject.run
 
         expect(actual_comment).to be_persisted
@@ -24,6 +29,11 @@ describe Comments::Create do
       let(:attributes) { {content: ''} }
 
       it 'does not save comment and returns it with error' do
+
+        expect(Comment).to receive(:create).and_call_original.ordered
+        expect(UpdateUserBadges).not_to receive(:run).with(group: :comment).ordered
+        expect(Users::UpdateMostValuableBadge).not_to receive(:run).ordered
+
         actual_comment = subject.run
 
         expect(actual_comment).not_to be_persisted

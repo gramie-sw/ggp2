@@ -4,9 +4,9 @@ module Comments
     attribute :id, Integer
 
     def run
-      comment = Comment.find(id)
-      comment.destroy
-      comment
+      Comment.destroy(id)
+      UpdateUserBadges.run(group: :comment)
+      Users::UpdateMostValuableBadge.run
     end
   end
 end
