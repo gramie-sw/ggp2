@@ -6,16 +6,16 @@ tip:
       levels:
         - achievement: 1
           color: bronze
-          score: 10
+          score: 4400
         - achievement: 5
           color: silver
-          score: 20
+          score: 4500
         - achievement: 10
           color: gold
-          score: 30
+          score: 8800
         - achievement: 15
           color: platinum
-          score: 15
+          score: 8900
   - class: TipConsecutiveBadge
     attributes:
       result: correct
@@ -23,16 +23,16 @@ tip:
       levels:
         - achievement: 2
           color: bronze
-          score: 11
+          score: 5400
         - achievement: 3
           color: silver
-          score: 16
+          score: 5500
         - achievement: 4
           color: gold
-          score: 16
+          score: 9800
         - achievement: 5
           color: platinum
-          score: 16
+          score: 9900
   - class: TipBadge
     attributes:
       result: correct_tendency_only
@@ -40,16 +40,16 @@ tip:
       levels:
         - achievement: 1
           color: bronze
-          score: 100
+          score: 2400
         - achievement: 8
           color: silver
-          score: 150
+          score: 2500
         - achievement: 16
           color: gold
-          score: 200
+          score: 6800
         - achievement: 24
           color: platinum
-          score: 250
+          score: 6900
   - class: TipConsecutiveBadge
     attributes:
       result: correct_tendency_only
@@ -57,16 +57,16 @@ tip:
       levels:
         - achievement: 2
           color: bronze
-          score: 110
+          score: 3400
         - achievement: 4
           color: silver
-          score: 160
+          score: 3500
         - achievement: 6
           color: gold
-          score: 210
+          score: 7800
         - achievement: 8
           color: platinum
-          score: 260
+          score: 7900
   - class: TipBadge
     attributes:
       result: incorrect
@@ -74,16 +74,16 @@ tip:
       levels:
         - achievement: 1
           color: bronze
-          score: 120
+          score: -6400
         - achievement: 10
           color: silver
-          score: 170
+          score: -6300
         - achievement: 20
           color: gold
-          score: 220
+          score: -2400
         - achievement: 30
           color: platinum
-          score: 270
+          score: -2300
   - class: TipConsecutiveBadge
     attributes:
       result: incorrect
@@ -91,55 +91,55 @@ tip:
       levels:
         - achievement: 2
           color: bronze
-          score: 130
+          score: -7400
         - achievement: 4
           color: silver
-          score: 180
+          score: -7300
         - achievement: 6
           color: gold
-          score: 230
+          score: -3400
         - achievement: 6
           color: platinum
-          score: 280
+          score: -3300
   - class: TipMissedBadge
     attributes:
       icon: 'fa-globe'
       levels:
         - achievement: 1
           color: bronze
-          score: 135
+          score: -8400
         - achievement: 2
           color: silver
-          score: 185
+          score: -8300
         - achievement: 4
           color: gold
-          score: 235
+          score: -4400
         - achievement: 8
           color: platinum
-          score: 285
+          score: -4300
   - class: TipConsecutiveMissedBadge
     attributes:
       icon: 'fa-ambulance'
       levels:
         - achievement: 2
           color: bronze
-          score: 140
+          score: -9400
         - achievement: 3
           color: silver
-          score: 190
+          score: -9300
         - achievement: 4
           color: gold
-          score: 240
+          score: -5400
         - achievement: 5
           color: platinum
-          score: 290
+          score: -5300
   - class: TipChampionMissedBadge
     attributes:
       icon: 'fa-eye-slash'
       levels:
         - achievement: 1
           color: platinum
-          score: 50
+          score: -10000
 comment:
   - class: CommentCreatedBadge
     attributes:
@@ -147,26 +147,26 @@ comment:
       levels:
         - achievement: 1
           color: bronze
-          score: 5
+          score: 1100
         - achievement: 4
           color: silver
-          score: 6
+          score: 1200
         - achievement: 8
           color: gold
-          score: 10
+          score: 1300
         - achievement: 16
           color: platinum
-          score: 15
+          score: 1400
   - class: CommentConsecutiveCreatedBadge
     attributes:
       icon: 'fa-bullhorn'
       levels:
         - achievement: 3
           color: bronze
-          score: 2
+          score: -300
         - achievement: 4
           color: silver
-          score: 3
+          score: -200
         - achievement: 5
           color: gold
-          score: 4
+          score: -100
