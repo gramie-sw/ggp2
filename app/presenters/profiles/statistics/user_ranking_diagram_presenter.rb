@@ -25,7 +25,13 @@ class UserRankingDiagramPresenter
   end
 
   def h_axis_max_value
-    played_match_count == 1 ? 1 : total_match_count
+    if played_match_count == 0
+      total_match_count
+    elsif played_match_count == 1
+      1
+    elsif played_match_count > 1
+      played_match_count
+    end
   end
 
   def h_axis_ticks
