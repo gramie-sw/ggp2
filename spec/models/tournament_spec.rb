@@ -229,4 +229,15 @@ describe Tournament, :type => :model do
       subject.player_count
     end
   end
+
+  describe 'highest_match_position_with_result' do
+
+    it 'returns highest position of match with result and caches value' do
+      expect(MatchQueries).to receive(:highest_match_position_with_result).and_return(34)
+      expect(subject.highest_match_position_with_result).to be 34
+
+      #tests that value is cached
+      subject.highest_match_position_with_result
+    end
+  end
 end

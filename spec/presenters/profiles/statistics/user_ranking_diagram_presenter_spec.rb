@@ -74,9 +74,10 @@ describe UserRankingDiagramPresenter do
       expect(subject.h_axis_max_value).to be 1
     end
 
-    it 'returns played_match_count if played match count is greater 1' do
+    it 'returns highest position of match with result if played match count is greater 1' do
       expect(tournament).to receive(:played_match_count).and_return(2)
-      expect(subject.h_axis_max_value).to be 2
+      expect(tournament).to receive(:highest_match_position_with_result).and_return(5)
+      expect(subject.h_axis_max_value).to be 5
     end
   end
 
@@ -94,7 +95,8 @@ describe UserRankingDiagramPresenter do
 
     it 'returns correct ticks array if played match count is greater 1' do
       expect(tournament).to receive(:played_match_count).and_return(2)
-      expect(subject.h_axis_ticks).to eq [1, 2]
+      expect(tournament).to receive(:highest_match_position_with_result).and_return(5)
+      expect(subject.h_axis_ticks).to eq [1, 5]
     end
   end
 

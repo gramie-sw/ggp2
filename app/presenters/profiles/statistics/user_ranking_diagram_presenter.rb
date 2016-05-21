@@ -30,7 +30,7 @@ class UserRankingDiagramPresenter
     elsif played_match_count == 1
       1
     elsif played_match_count > 1
-      played_match_count
+      highest_match_position_with_result
     end
   end
 
@@ -40,7 +40,7 @@ class UserRankingDiagramPresenter
     elsif played_match_count == 1
       [0, 1]
     elsif played_match_count > 1
-      [1, played_match_count]
+      [1, highest_match_position_with_result]
     end
   end
 
@@ -68,6 +68,10 @@ class UserRankingDiagramPresenter
 
   def player_count
     @player_count ||= tournament.player_count
+  end
+
+  def highest_match_position_with_result
+    @highest_match_position_with_result ||= tournament.highest_match_position_with_result
   end
 
   def diagram_data_provider

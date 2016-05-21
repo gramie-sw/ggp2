@@ -167,6 +167,21 @@ describe MatchQueries do
     end
   end
 
+  describe '#highest_match_position_with_result' do
+
+    let!(:matches) do
+      [Match.create_unvalidated(position: 2, score_team_1: 2, score_team_2: 2)]
+      [Match.create_unvalidated(position: 5, score_team_1: 2, score_team_2: 2)]
+      [Match.create_unvalidated(position: 7, score_team_1: 1)]
+      [Match.create_unvalidated(position: 8, score_team_2: 2)]
+      [Match.create_unvalidated(position: 9)]
+    end
+
+    it 'returns the highest match position with result' do
+      expect(subject.highest_match_position_with_result).to be 5
+    end
+  end
+
   describe '::order_by_date_asc' do
 
     it 'returns matches ordered by date asc' do

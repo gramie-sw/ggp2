@@ -42,6 +42,10 @@ module MatchQueries
       order_by_date_asc.where('date >= ? ', Time.now).first
     end
 
+    def highest_match_position_with_result
+      matches_with_result.maximum(:position)
+    end
+
     def order_by_date_asc
       Match.order(date: :asc)
     end

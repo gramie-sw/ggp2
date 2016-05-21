@@ -52,6 +52,10 @@ class Tournament
     @player_count ||= UserQueries.player_count
   end
 
+  def highest_match_position_with_result
+    @highest_match_position_with_result ||= MatchQueries.highest_match_position_with_result
+  end
+
   private
 
   def first_match
