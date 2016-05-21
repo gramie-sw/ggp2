@@ -324,6 +324,9 @@ de:
     correct_tips_count: Korrekte Tipps
     correct_tendency_tips_count: Korrekte Sieger
 
+  statistic:
+    ranking_chart: Ranking-Verlauf
+
   tip:
     all: Alle Tipps
     all_of: Alle Tipps von %{subject}

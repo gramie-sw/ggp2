@@ -1,7 +1,7 @@
 class ProfilesShowPresenter
 
   attr_accessor :badges
-  attr_reader :user, :is_for_current_user
+  attr_reader :tournament, :user, :is_for_current_user
   alias is_for_current_user? is_for_current_user
 
   def initialize(user:, tournament:, is_for_current_user:, section: nil)
@@ -46,7 +46,7 @@ class ProfilesShowPresenter
     @available_sections ||= [:statistic, :badges, :user_data]
   end
 
-  private
-
-  attr_reader :tournament
+  def user_ranking_diagram_presenter
+    UserRankingDiagramPresenter.new(user.id, tournament)
+  end
 end

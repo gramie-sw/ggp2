@@ -3,7 +3,7 @@
   = render partial: 'statistic_item', \
   locals: {label: t('ranking.position'), value: "#{user_statistic.position == 0 ? '-' : "#{user_statistic.position}."}"}
   = render partial: 'statistic_item', \
-  locals: {label: t('general.point.other'), value: "#{user_statistic.points}" }
+  locals: {label: t('general.point.other'), value: "#{user_statistic.points}"}
   = render partial: 'statistic_item', \
   locals: {label: t('general.badge.other'), value: "#{user_statistic.badges_count}"}
 .row
@@ -12,6 +12,51 @@
   = render partial: 'statistic_item', \
   locals: {label: t('ranking.correct_tendency_tips_count'), value: user_statistic.correct_tendency_tips_count}
   = render partial: 'statistic_item', \
-  locals: {label: t('ranking.correct_tips_count'), value: "#{user_statistic.correct_tips_ratio}%" }
+  locals: {label: t('ranking.correct_tips_count'), value: "#{user_statistic.correct_tips_ratio}%"}
   = render partial: 'statistic_item', \
   locals: {label: t('ranking.correct_tendency_tips_count'), value: "#{user_statistic.correct_tendency_tips_only_ratio}%"}
+
+
+h4.text-center = t('statistic.ranking_chart')
+
+div id="chart_div" style="height: 350px;"
+
+- diagram_presenter = presenter.user_ranking_diagram_presenter
+
+script src="https://www.gstatic.com/charts/loader.js"
+javascript:
+  google.charts.load('current', {'packages': ['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable(#{{diagram_presenter.diagram_data}});
+
+    var options = {
+      hAxis: {
+        title: "#{Match.model_name.human}",
+        titleTextStyle: {color: '#aaa', italic: false},
+        minValue: #{diagram_presenter.h_axis_min_value},
+        maxValue: #{diagram_presenter.h_axis_max_value},
+        ticks: #{diagram_presenter.h_axis_ticks}
+      },
+      vAxis: {
+        title: "#{t('ranking.position')}",
+        minValue: #{diagram_presenter.v_axis_min_value},
+        maxValue: #{diagram_presenter.v_axis_max_value},
+        ticks: #{diagram_presenter.v_axis_ticks},
+        direction: -1,
+        titleTextStyle: {color: '#aaa', italic: false}
+      },
+      legend: 'none',
+      chartArea: {
+        left: 45, top: 10, right: 45, bottom: 45, width: '100%', height: '100%', backgroundColor: {
+          fill: '#607D8B',
+          stroke: 'white'
+        }
+      },
+      colors: ['white'],
+      areaOpacity: 1.0
+    };
+
+    var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }

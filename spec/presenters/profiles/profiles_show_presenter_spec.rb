@@ -114,4 +114,14 @@ describe ProfilesShowPresenter do
       subject.user_statistic
     end
   end
+
+  describe 'user_ranking_diagram_presenter' do
+
+    it 'returns correct instance of UserRankingDiagramPresenter' do
+      diagram_presenter = subject.user_ranking_diagram_presenter
+      expect(diagram_presenter).to be_instance_of UserRankingDiagramPresenter
+      expect(diagram_presenter.user_id).to be user.id
+      expect(diagram_presenter.tournament).to be tournament
+    end
+  end
 end

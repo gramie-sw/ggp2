@@ -9,9 +9,9 @@ describe RankingItems::FindWinners do
     ]
 
     before :each do
-      expect(RankingItemQueries).to respond_to(:paginated_by_match_id_for_ranking_view)
+      expect(RankingItemQueries).to respond_to(:winner_ranking_items)
       expect(RankingItemQueries).
-          to receive(:paginated_by_match_id_for_ranking_view).with(nil, page: 1, per_page: 3).and_return(ranking_items)
+          to receive(:winner_ranking_items).and_return(ranking_items)
     end
 
     it 'returns result with correct RankingItem for place 1, 2 and 3' do

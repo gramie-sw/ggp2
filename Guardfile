@@ -3,7 +3,7 @@
 
 #notification :notifysend, t: 1000
 
-guard :rspec, cmd: 'spring rspec', failed_mode: :none, notification: true do
+guard :rspec, cmd: 'spring rspec --format progress', failed_mode: :none, notification: true do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }

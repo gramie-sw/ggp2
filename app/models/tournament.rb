@@ -48,6 +48,10 @@ class Tournament
     end
   end
 
+  def player_count
+    @player_count ||= UserQueries.player_count
+  end
+
   private
 
   def first_match

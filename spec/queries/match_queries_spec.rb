@@ -76,6 +76,23 @@ describe MatchQueries do
     end
   end
 
+  describe '::all_matches_with_result_ordered_by_position' do
+
+    let!(:matches) do
+      [
+          Match.create_unvalidated(position: 3, score_team_1: 1, score_team_2: 2),
+          Match.create_unvalidated(position: 1, score_team_1: 1, score_team_2: 2),
+          Match.create_unvalidated(position: 4, score_team_2: 2),
+          Match.create_unvalidated(position: 5, score_team_1: 1),
+          Match.create_unvalidated(position: 2)
+      ]
+    end
+
+    it 'returns all match_ids order by position' do
+      expect(subject.all_matches_with_result_ordered_by_position).to eq [matches[1], matches[0]]
+    end
+  end
+
   describe '::matches_with_aggregates' do
 
     let(:aggregates) { (1..2).map { create(:aggregate) } }

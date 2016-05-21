@@ -4,7 +4,7 @@ module RankingItems
     Result = Struct.new(:first_places, :second_places, :third_places)
 
     def run
-      ranking_items = RankingItemQueries.paginated_by_match_id_for_ranking_view(nil, page: 1, per_page: 3)
+      ranking_items = RankingItemQueries.winner_ranking_items
 
       result = Result.new
       result.first_places= ranking_items_with_position(1, ranking_items)

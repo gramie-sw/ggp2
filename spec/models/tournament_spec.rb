@@ -218,4 +218,15 @@ describe Tournament, :type => :model do
       subject.current_phase
     end
   end
+
+  describe 'player_count' do
+
+    it 'returns player count and caches value' do
+      expect(UserQueries).to receive(:player_count).and_return(34)
+      expect(subject.player_count).to be 34
+
+      #tests that value is cached
+      subject.player_count
+    end
+  end
 end

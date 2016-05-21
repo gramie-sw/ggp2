@@ -32,6 +32,18 @@ describe RankingItemQueries do
     end
   end
 
+  describe '::all_by_user_id' do
+
+    it 'returns all RankingItems for given user_id' do
+      ranking_items = [
+          RankingItem.create_unvalidated(user_id: 1),
+          RankingItem.create_unvalidated(user_id: 1),
+          RankingItem.create_unvalidated(user_id: 2)
+      ]
+      expect(subject.all_by_user_id(1)).to eq [ranking_items[0], ranking_items[1]]
+    end
+  end
+
   describe '::exists_by_match_id?' do
 
     match_id = 765
@@ -84,6 +96,28 @@ describe RankingItemQueries do
     end
   end
 
+  describe '::winner_ranking_items' do
+
+    match_id = 567
+
+    let!(:ranking_items) do
+      [
+          RankingItem.create_unvalidated(match_id: nil, position: 3),
+          RankingItem.create_unvalidated(match_id: nil, position: 1),
+          RankingItem.create_unvalidated(match_id: nil, position: 2),
+          RankingItem.create_unvalidated(match_id: nil, position: 4),
+          RankingItem.create_unvalidated(match_id: nil, position: 2),
+          RankingItem.create_unvalidated(match_id: match_id+1, position: 2),
+          RankingItem.create_unvalidated(match_id: match_id, position: 2),
+          RankingItem.create_unvalidated(match_id: match_id, position: 1)
+      ]
+    end
+
+    it 'returns all winner ranking items' do
+      expect(subject.winner_ranking_items).to eq [ranking_items[1], ranking_items[2], ranking_items[4], ranking_items[0]]
+    end
+  end
+
   describe '::destroy_and_create_multiple' do
 
     let!(:ranking_items) do
@@ -118,7 +152,7 @@ describe RankingItemQueries do
 
   describe 'destroy_all_by_match_id' do
 
-    match_id =  1234
+    match_id = 1234
 
     let!(:ranking_items) do
       [

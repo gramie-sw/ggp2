@@ -10,6 +10,10 @@ module RankingItemQueries
       RankingItem.where(match_id: match_id)
     end
 
+    def all_by_user_id(user_id)
+      RankingItem.where(user_id: user_id)
+    end
+
     def exists_by_match_id?(match_id)
       RankingItem.where(match_id: match_id).exists?
     end
@@ -19,6 +23,10 @@ module RankingItemQueries
           order(position: :asc).
           includes(user: {champion_tip: :team}).
           page(page).per(per_page)
+    end
+
+    def winner_ranking_items
+      RankingItem.where(match_id: nil).order(position: :asc).where('position <= 3')
     end
 
     def destroy_and_create_multiple match_id, ranking_items

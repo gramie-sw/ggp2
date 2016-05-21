@@ -14,12 +14,16 @@ module MatchQueries
       Match.order(:position).pluck(:id)
     end
 
+    def all_matches_with_result_ordered_by_position
+      matches_with_result.order(:position)
+    end
+
     def matches_with_aggregates aggregates
       Match.where(aggregate_id: aggregates).references(:aggregates)
     end
 
     def count_all_with_results
-      Match.where('score_team_1 IS NOT NULL AND score_team_2 IS NOT NULL').count
+      matches_with_result.count
     end
 
     def first_match
@@ -44,6 +48,12 @@ module MatchQueries
 
     def order_by_position_asc
       Match.order(position: :asc)
+    end
+
+    private
+
+    def matches_with_result
+      Match.where('score_team_1 IS NOT NULL AND score_team_2 IS NOT NULL')
     end
   end
 end
