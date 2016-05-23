@@ -11,7 +11,7 @@ describe TipMissedBadge do
     it 'returns all user ids which have at least count missed tips restricted by given user ids' do
       eligible_user_ids = 'eligible_user_ids'
 
-      expect(TipQueries).to receive(:user_ids_with_at_least_missed_tips).with(
+      expect(TipQueries).to receive(:user_ids_with_at_least_result_tips).with(result: Tip::RESULTS[:missed],
                          user_ids: user_ids, count: subject.achievement) { eligible_user_ids }
 
       actual_user_ids = subject.eligible_user_ids user_ids

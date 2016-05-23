@@ -23,28 +23,28 @@ de:
   tip_consecutive_badge#correct#platinum:
     name: Rocket Row Platinum
     description: 5 aufeinanderfolgende Spiele richtig getippt
-  tip_badge#correct_tendency_only#bronze:
+  tip_correct_tendency_badge#bronze:
     name: Collateral Bronze
     description: 1 Spiel mit richtiger Tendenz getippt
-  tip_badge#correct_tendency_only#silver:
+  tip_correct_tendency_badge#silver:
     name: Collateral Silver
     description: 8 Spiele mit richtiger Tendenz getippt
-  tip_badge#correct_tendency_only#gold:
+  tip_correct_tendency_badge#gold:
     name: Collateral Gold
     description: 16 Spiele mit richtiger Tendenz getippt
-  tip_badge#correct_tendency_only#platinum:
+  tip_correct_tendency_badge#platinum:
     name: Collateral Platinum
     description: 24 Spiele mit richtiger Tendenz getippt
-  tip_consecutive_badge#correct_tendency_only#bronze:
+  tip_consecutive_correct_tendency_badge#bronze:
     name: Flow Fighter Bronze
     description: 2 aufeinanderfolgende Spiele mit richtiger Tendenz getippt
-  tip_consecutive_badge#correct_tendency_only#silver:
+  tip_consecutive_correct_tendency_badge#silver:
     name: Flow Fighter Silver
     description: 4 aufeinanderfolgende Spiele mit richtiger Tendenz getippt
-  tip_consecutive_badge#correct_tendency_only#gold:
+  tip_consecutive_correct_tendency_badge#gold:
     name: Flow Fighter Gold
     description: 6 aufeinanderfolgende Spiele mit richtiger Tendenz getippt
-  tip_consecutive_badge#correct_tendency_only#platinum:
+  tip_consecutive_correct_tendency_badge#platinum:
     name: Flow Fighter Platinum
     description: 8 aufeinanderfolgende Spiele mit richtiger Tendenz getippt
   tip_badge#incorrect#bronze:

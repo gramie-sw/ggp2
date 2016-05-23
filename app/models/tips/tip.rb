@@ -9,9 +9,9 @@ class Tip < ActiveRecord::Base
       #we use the therm tendency instead of winner because it includes draw matches
       correct_tendency_only: 2,
       correct_tendency_with_score_difference: 3,
-      correct_tendency_with_one_score: 4
+      correct_tendency_with_one_score: 4,
+      missed: 9
   }
-  MISSED = -99
 
   belongs_to :user
   belongs_to :match
@@ -43,8 +43,10 @@ class Tip < ActiveRecord::Base
       self.result = Tip::RESULTS[:correct]
     elsif tip_has_correct_tendency?(match)
       set_correct_tendency_result(match)
-    else
+    elsif tipped?
       self.result = Tip::RESULTS[:incorrect]
+    else
+      self.result = Tip::RESULTS[:missed]
     end
   end
 

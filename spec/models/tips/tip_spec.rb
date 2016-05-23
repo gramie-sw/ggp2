@@ -149,11 +149,13 @@ describe Tip do
 
     let(:match) { Match.new(score_team_1: 1, score_team_2: 2) }
 
-    it 'sets result properly to incorrect' do
+    it 'setes result properly to missed' do
       subject.assign_attributes(score_team_1: nil, score_team_2: nil)
       subject.set_result(match)
-      expect(subject.result).to be Tip::RESULTS[:incorrect]
+      expect(subject.result).to be Tip::RESULTS[:missed]
+    end
 
+    it 'sets result properly to incorrect' do
       subject.assign_attributes(score_team_1: 1, score_team_2: 0)
       subject.set_result(match)
       expect(subject.result).to be Tip::RESULTS[:incorrect]

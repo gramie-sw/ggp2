@@ -33,9 +33,8 @@ tip:
         - achievement: 5
           color: platinum
           score: 9900
-  - class: TipBadge
+  - class: TipCorrectTendencyBadge
     attributes:
-      result: correct_tendency_only
       icon: 'fa-star-half-o'
       levels:
         - achievement: 1
@@ -50,9 +49,8 @@ tip:
         - achievement: 24
           color: platinum
           score: 6900
-  - class: TipConsecutiveBadge
+  - class: TipConsecutiveCorrectTendencyBadge
     attributes:
-      result: correct_tendency_only
       icon: 'fa-fighter-jet'
       levels:
         - achievement: 2

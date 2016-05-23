@@ -222,26 +222,4 @@ describe TipQueries do
       expect(actual_user_ids).to eq [players.first.id, players.third.id]
     end
   end
-
-  describe '::user_ids_with_at_least_missed_tips' do
-
-    let(:players) { (1..4).map { create(:player) } }
-
-    it 'returns all user ids which have at least count missed tips restricted by given user_ids' do
-      create(:tip, user: players.first, score_team_1: nil, score_team_2: nil, match: create(:match, score_team_1: 1, score_team_2: 2))
-      create(:tip, user: players.first, score_team_1: nil, score_team_2: nil)
-      create(:tip, user: players.first, match: create(:match, score_team_1: 1, score_team_2: 2))
-      create(:tip, user: players.second, score_team_1: nil, score_team_2: nil, match: create(:match, score_team_1: 1, score_team_2: 2))
-      create(:tip, user: players.second, score_team_1: nil, score_team_2: nil, match: create(:match, score_team_1: 1, score_team_2: 2))
-      create(:tip, user: players.third, score_team_1: nil, score_team_2: nil, match: create(:match, score_team_1: 1, score_team_2: 2))
-      create(:tip, user: players.third, score_team_1: nil, score_team_2: nil, match: create(:match, score_team_1: 1, score_team_2: 2))
-      create(:tip, user: players.third, score_team_1: nil, score_team_2: nil, match: create(:match, score_team_1: 1, score_team_2: 2))
-      create(:tip, user: players.fourth, score_team_1: nil, score_team_2: nil, match: create(:match, score_team_1: 1, score_team_2: 2))
-      create(:tip, user: players.fourth, score_team_1: nil, score_team_2: nil, match: create(:match, score_team_1: 1, score_team_2: 2))
-
-      considered_players = [players.first, players.second, players.third]
-      actual_user_ids = TipQueries.user_ids_with_at_least_missed_tips(user_ids: considered_players, count: 2)
-      expect(actual_user_ids).to eq [players.second.id, players.third.id]
-    end
-  end
 end

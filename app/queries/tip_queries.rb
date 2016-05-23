@@ -52,9 +52,5 @@ module TipQueries
     def user_ids_with_at_least_result_tips(result:, user_ids:, count:)
       Tip.where(user_id: user_ids, result: result).merge(group_by_user_with_at_least_tips(count)).pluck(:user_id)
     end
-
-    def user_ids_with_at_least_missed_tips(user_ids:, count:)
-      Tip.where(user_id: user_ids).merge(missed_tips).merge(group_by_user_with_at_least_tips(count)).pluck(:user_id)
-    end
   end
 end

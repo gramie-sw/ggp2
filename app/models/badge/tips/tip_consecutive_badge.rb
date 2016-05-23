@@ -16,6 +16,6 @@ class TipConsecutiveBadge < Badge
   private
 
   def at_least_consecutive_results? ordered_user_results, result
-    ordered_user_results.map! { |value| value || Tip::MISSED }.join.include?(result * achievement)
+    ordered_user_results.map! { |value| value || Tip::RESULTS[:missed] }.join.include?(result * achievement)
   end
 end
