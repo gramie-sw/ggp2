@@ -4,6 +4,7 @@ correct_tendency_with_score_difference_tip_points: 2
 correct_tendency_with_one_score_tip_points: 2
 incorrect_tip_points: 0
 correct_champion_tip_points: 4
+missed_tip_points: 0
 
 user_page_count: 25
 
