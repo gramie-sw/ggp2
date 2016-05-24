@@ -39,7 +39,7 @@ describe MatchResultsController, :type => :controller do
       context 'on success' do
 
         it 'redirects to match_schedule_path' do
-          patch :update, params
+          patch :update, params, {Ggp2::MATCH_SCHEDULE_LAST_SHOWN_AGGREGATE_ID_KEY => match.aggregate_id}
 
           expect(response).to redirect_to match_schedules_path(aggregate_id: match.aggregate_id)
           expect(flash[:notice]).to eq t('model.messages.updated', model: match_result.message_name)
