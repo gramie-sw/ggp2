@@ -20,11 +20,11 @@
               class: 'btn btn-primary'
 
     .visible-xs
-      strong
-        = "#{t('general.champion_tip.one', champion_title: champion_title)}"
-        '&nbsp;&nbsp;
       .row
         .col-xs-8
+          strong
+            = "#{t('general.champion_tip.one', champion_title: champion_title)}"
+          br
           span._flag-with-country-name._team-name-24
             = flag_image_tag(presenter.team_abbreviation, size: 24)
             = presenter.team_name_or_missing_message

@@ -146,13 +146,13 @@ comment:
         - achievement: 1
           color: bronze
           score: 1100
-        - achievement: 4
+        - achievement: 8
           color: silver
           score: 1200
-        - achievement: 8
+        - achievement: 16
           color: gold
           score: 1300
-        - achievement: 16
+        - achievement: 24
           color: platinum
           score: 1400
   - class: CommentConsecutiveCreatedBadge

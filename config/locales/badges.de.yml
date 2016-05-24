@@ -104,13 +104,13 @@ de:
     description: 1 Kommentar auf Pinnwand hinterlassen
   comment_created_badge#silver:
     name: Communicator Silver
-    description: 4 Kommentare auf Pinnwand hinterlassen
+    description: 8 Kommentare auf Pinnwand hinterlassen
   comment_created_badge#gold:
     name: Communicator Gold
-    description: 8 Kommentare auf Pinnwand hinterlassen
+    description: 16 Kommentare auf Pinnwand hinterlassen
   comment_created_badge#platinum:
     name: Communicator Platinum
-    description: 16 Kommentare auf Pinnwand hinterlassen
+    description: 24 Kommentare auf Pinnwand hinterlassen
   comment_consecutive_created_badge#bronze:
     name: Whistleblower Bronze
     description: 3 aufeinanderfolgende Kommentare auf Pinnwand hinterlassen
