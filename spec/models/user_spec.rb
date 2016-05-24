@@ -145,6 +145,9 @@ describe User, :type => :model do
 
     it 'returns most_valuable_badge' do
       expect(player.most_valuable_badge.class).to eq TipMissedBadge
+
+      #test to ensure value is cached
+      player.most_valuable_badge
     end
   end
 end

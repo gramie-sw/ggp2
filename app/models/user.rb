@@ -46,6 +46,6 @@ class User < ActiveRecord::Base
   end
 
   def most_valuable_badge
-    BadgeRepository.badge_by_identifier super
+    @most_valuable_badge ||= BadgeRepository.badge_by_identifier super
   end
 end

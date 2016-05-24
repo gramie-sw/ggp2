@@ -63,6 +63,7 @@ module Ggp2
   end
 
   USER_TIPS_LAST_SHOWN_AGGREGATE_ID_KEY = 'utlscaid'
+  MATCH_SCHEDULE_LAST_SHOWN_AGGREGATE_ID_KEY = 'mtlscaid'
 
   AuthorizationFailedError = Class.new StandardError
 

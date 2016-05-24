@@ -290,6 +290,7 @@ de:
   badges:
     all: Alle Auszeichnungen
     user_not_yet_awarded: Noch keine Auszeichnung verdient
+    none: Keine Auszeichnung
 
   comments:
     max_allow_char_message: 'max. 500 Zeichen'

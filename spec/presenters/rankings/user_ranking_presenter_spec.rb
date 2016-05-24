@@ -196,4 +196,23 @@ describe UserRankingPresenter do
       end
     end
   end
+
+  describe '#badge_title' do
+
+    context 'associated user has most_valuable_badge' do
+
+      it 'returns icon of most valuable badge' do
+        expect(subject.badge_title).
+            to eq t("#{BadgeRepository.badge_by_identifier('comment_created_badge#gold').identifier}.name")
+      end
+    end
+
+    context 'associated user has no most_valuable_badge' do
+
+      it 'returns neutral badge icon' do
+        user.most_valuable_badge= nil
+        expect(subject.badge_title).to eq t('badges.none')
+      end
+    end
+  end
 end

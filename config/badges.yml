@@ -6,16 +6,16 @@ tip:
       levels:
         - achievement: 1
           color: bronze
-          score: 4400
+          score: 2400
         - achievement: 5
           color: silver
-          score: 4500
+          score: 4400
         - achievement: 10
           color: gold
-          score: 8800
+          score: 6400
         - achievement: 15
           color: platinum
-          score: 8900
+          score: 8400
   - class: TipConsecutiveBadge
     attributes:
       result: correct
@@ -23,48 +23,48 @@ tip:
       levels:
         - achievement: 2
           color: bronze
-          score: 5400
+          score: 2600
         - achievement: 3
           color: silver
-          score: 5500
+          score: 4600
         - achievement: 4
           color: gold
-          score: 9800
+          score: 6600
         - achievement: 5
           color: platinum
-          score: 9900
+          score: 8600
   - class: TipCorrectTendencyBadge
     attributes:
       icon: 'fa-star-half-o'
       levels:
         - achievement: 1
           color: bronze
-          score: 2400
+          score: 2000
         - achievement: 8
           color: silver
-          score: 2500
+          score: 4000
         - achievement: 16
           color: gold
-          score: 6800
+          score: 6000
         - achievement: 24
           color: platinum
-          score: 6900
+          score: 8000
   - class: TipConsecutiveCorrectTendencyBadge
     attributes:
       icon: 'fa-fighter-jet'
       levels:
         - achievement: 2
           color: bronze
-          score: 3400
-        - achievement: 4
+          score: 2200
+        - achievement: 5
           color: silver
-          score: 3500
-        - achievement: 6
-          color: gold
-          score: 7800
+          score: 4200
         - achievement: 8
+          color: gold
+          score: 6200
+        - achievement: 12
           color: platinum
-          score: 7900
+          score: 8200
   - class: TipBadge
     attributes:
       result: incorrect

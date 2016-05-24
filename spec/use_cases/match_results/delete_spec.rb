@@ -23,9 +23,9 @@ describe MatchResults::Delete do
   it 'calls RankingSets::Delete with given match_id and UpdateUserBadges after clearing results' do
     expect(RankingSets::Delete).to receive(:run).with(match_id: match.id).ordered do
       ensure_result_is_cleared
-    end
-
-    expect(UpdateUserBadges).to receive(:run).with(group: :tip)
+    end.ordered
+    expect(UpdateUserBadges).to receive(:run).with(group: :tip).ordered
+    expect(Users::UpdateMostValuableBadge).to receive(:run).ordered
 
     subject.run(match_id: match.id)
   end

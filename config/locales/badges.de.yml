@@ -40,13 +40,13 @@ de:
     description: 2 aufeinanderfolgende Spiele mit richtiger Tendenz getippt
   tip_consecutive_correct_tendency_badge#silver:
     name: Flow Fighter Silver
-    description: 4 aufeinanderfolgende Spiele mit richtiger Tendenz getippt
+    description: 5 aufeinanderfolgende Spiele mit richtiger Tendenz getippt
   tip_consecutive_correct_tendency_badge#gold:
     name: Flow Fighter Gold
-    description: 6 aufeinanderfolgende Spiele mit richtiger Tendenz getippt
+    description: 8 aufeinanderfolgende Spiele mit richtiger Tendenz getippt
   tip_consecutive_correct_tendency_badge#platinum:
     name: Flow Fighter Platinum
-    description: 8 aufeinanderfolgende Spiele mit richtiger Tendenz getippt
+    description: 12 aufeinanderfolgende Spiele mit richtiger Tendenz getippt
   tip_badge#incorrect#bronze:
     name: Razzle-Dazzle Bronze
     description: 1 Spiel falsch getippt
@@ -97,7 +97,7 @@ de:
     description: 5 aufeinanderfolgende Spiele vergessen zu tippen
   tip_champion_missed_badge#platinum:
     name: Skeptic
-    description: Weltmeister vergessen zu tippen
+    description: Turniersieger vergessen zu tippen
 
   comment_created_badge#bronze:
     name: Communicator Bronze

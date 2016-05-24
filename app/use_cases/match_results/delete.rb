@@ -15,6 +15,7 @@ module MatchResults
 
         RankingSets::Delete.run(match_id: match_id)
         UpdateUserBadges.run(group: :tip)
+        Users::UpdateMostValuableBadge.run
       end
     end
   end

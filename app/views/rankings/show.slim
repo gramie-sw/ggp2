@@ -51,7 +51,8 @@
               ._table-label-horizontal = t('general.point.other')
 
             td.highest-badge.text-center.hidden-xs.hidden-sm.hidden-md style="color: #{colors[user_ranking_presenter.badge_color]}"
-              = render partial: 'badges/badge_icon', locals: {icon: user_ranking_presenter.badge_icon}
+              = render partial: 'badges/badge_icon', locals: {icon: user_ranking_presenter.badge_icon,
+                                                              title: user_ranking_presenter.badge_title}
 
             td.text-center.hidden-xs.hidden-sm.hidden-md
               ._table-value-horizontal = user_ranking_presenter.correct_tips_count
@@ -90,7 +91,8 @@
 
             td.visible-sm.visible-md
               ._table-vertical-group.highest-badge.text-center style="color: #{colors[user_ranking_presenter.badge_color]}"
-                = render partial: 'badges/badge_icon', locals: {icon: user_ranking_presenter.badge_icon}
+                = render partial: 'badges/badge_icon', locals: {icon: user_ranking_presenter.badge_icon,
+                                                                title: user_ranking_presenter.badge_title}
               ._table-vertical-group.text-center
                 span._table-value-vertical = user_ranking_presenter.badges_count
                 span._table-label-vertical = t('general.badge.other')
@@ -98,7 +100,8 @@
 
             td.visible-xs
               ._table-vertical-group.highest-badge.text-center style="color: #{colors[user_ranking_presenter.badge_color]}"
-                = render partial: 'badges/badge_icon', locals: {icon: user_ranking_presenter.badge_icon}
+                = render partial: 'badges/badge_icon', locals: {icon: user_ranking_presenter.badge_icon,
+                                                                title: user_ranking_presenter.badge_title}
 
             td.text-center
               ._table-value-horizontal

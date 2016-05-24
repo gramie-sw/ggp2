@@ -10,7 +10,7 @@ class MatchResultsController < ApplicationController
                                             match_result_attributes: params[:match_result])
 
     if match_result.errors.blank?
-      redirect_to match_schedules_path(aggregate_id: match_result.match.aggregate_id),
+      redirect_to match_schedules_path(aggregate_id: session[Ggp2::MATCH_SCHEDULE_LAST_SHOWN_AGGREGATE_ID_KEY]),
                   notice: t('model.messages.updated', model: match_result.message_name)
     else
       @presenter = MatchResultPresenter.new(match_result)

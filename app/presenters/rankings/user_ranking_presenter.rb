@@ -55,6 +55,10 @@ class UserRankingPresenter
     user.most_valuable_badge ? user.most_valuable_badge.icon : NEUTRAL_BADGE_ICON
   end
 
+  def badge_title
+    user.most_valuable_badge ? I18n.t("#{user.most_valuable_badge.identifier}.name") : I18n.t('badges.none')
+  end
+
   private
 
   attr_reader :ranking_item, :tournament, :current_user_id
