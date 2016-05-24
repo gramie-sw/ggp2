@@ -1,6 +1,5 @@
-- content_for(:title, t('model.messages.change', model: t('general.champion_tip.one', champion_title: champion_title)))
+- content_for(:title, "#{t('champion_tip.description.change', champion_title: champion_title)} ...")
 
-p.lead = "#{t('champion_tip.description.change', champion_title: champion_title)} ..."
 = render partial: 'commons/error_messages', locals: {model: @presenter.champion_tip}
 .row#champion-tip-forms
   - for team in @presenter.teams
