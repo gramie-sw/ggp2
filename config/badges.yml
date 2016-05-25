@@ -162,9 +162,9 @@ comment:
         - achievement: 3
           color: bronze
           score: -300
-        - achievement: 4
+        - achievement: 5
           color: silver
           score: -200
-        - achievement: 5
+        - achievement: 8
           color: gold
           score: -100

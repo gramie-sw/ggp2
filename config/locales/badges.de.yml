@@ -116,7 +116,7 @@ de:
     description: 3 aufeinanderfolgende Kommentare auf Pinnwand hinterlassen
   comment_consecutive_created_badge#silver:
     name: Whistleblower Silver
-    description: 4 aufeinanderfolgende Kommentare auf Pinnwand hinterlassen
+    description: 5 aufeinanderfolgende Kommentare auf Pinnwand hinterlassen
   comment_consecutive_created_badge#gold:
     name: Whistleblower Gold
-    description: 5 aufeinanderfolgende Kommentare auf Pinnwand hinterlassen
+    description: 8 aufeinanderfolgende Kommentare auf Pinnwand hinterlassen
