@@ -15,6 +15,6 @@ de:
     title:
       change_your_password: Neues Passwort
       forgot_your_password: Passwort vergessen?
-      sign_up: Registierung
+      sign_up: Registrierung
     passwords:
       send_initial_instructions: "Du erhältst in wenigen Minuten eine E-Mail mit der Anleitung, wie Du Dein Passwort vergeben kannst."
