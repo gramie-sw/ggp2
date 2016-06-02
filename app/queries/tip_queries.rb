@@ -25,10 +25,6 @@ module TipQueries
       Tip.select(:user_id).group(:user_id).having("count(user_id) >= ?", count)
     end
 
-    def finished_match_position_ordered_results user_id
-      Tip.where(user_id: user_id).merge(tips_with_finished_match).merge(order_by_match_position).pluck(:result)
-    end
-
     def match_position_ordered_results user_id
       Tip.where(user_id: user_id).merge(order_by_match_position).pluck(:result)
     end

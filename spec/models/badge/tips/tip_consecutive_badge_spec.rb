@@ -23,7 +23,7 @@ describe TipConsecutiveBadge do
                                 count: subject.achievement).and_return([2,3,4,5])
 
       expect(TipQueries).to receive(:match_position_ordered_results).with(2).and_return(
-             [Tip::RESULTS[:correct], Tip::RESULTS[:incorrect], Tip::RESULTS[:correct], Tip::RESULTS[:correct]])
+             [Tip::RESULTS[:correct], Tip::RESULTS[:incorrect], Tip::RESULTS[:correct], nil, Tip::RESULTS[:correct]])
       expect(TipQueries).to receive(:match_position_ordered_results).with(3).and_return(
              [Tip::RESULTS[:correct], Tip::RESULTS[:incorrect], Tip::RESULTS[:correct]])
       expect(TipQueries).to receive(:match_position_ordered_results).with(4).and_return(
@@ -32,8 +32,8 @@ describe TipConsecutiveBadge do
              [Tip::RESULTS[:correct], nil, Tip::RESULTS[:correct]])
 
       actual_user_ids = subject.eligible_user_ids user_ids
-      expect(actual_user_ids.size).to eq 2
-      expect(actual_user_ids).to include(2,4)
+      expect(actual_user_ids.size).to eq 1
+      expect(actual_user_ids).to include(4)
     end
   end
 end

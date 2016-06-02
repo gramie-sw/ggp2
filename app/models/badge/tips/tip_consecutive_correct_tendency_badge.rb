@@ -11,9 +11,7 @@ class TipConsecutiveCorrectTendencyBadge < Badge
   private
 
   def at_least_consecutive_correct_tendency_tips? user_id
-    results_string = TipQueries.finished_match_position_ordered_results(user_id).map! { |result|
-      result || Tip::RESULTS[:missed]
-    }.join
+    results_string = TipQueries.match_position_ordered_results(user_id).map! { |result| result || Tip::NULL }.join
 
     /[#{results.join}]{#{achievement},}/.match(results_string)
 

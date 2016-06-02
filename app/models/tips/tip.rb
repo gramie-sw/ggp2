@@ -3,6 +3,8 @@ class Tip < ActiveRecord::Base
   extend RecordBatchUpdatable
   include ScoreValidatable
 
+  NULL = 'N'
+
   RESULTS = {
       incorrect: 0,
       correct: 1,

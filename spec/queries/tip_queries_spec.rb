@@ -114,36 +114,19 @@ describe TipQueries do
     end
   end
 
-  describe '::finished_match_position_ordered_results' do
-
-    let(:players) { (1..2).map { create(:player) } }
-
-    it 'returns all results from finished matches in order of match position by given user_id' do
-      match_1 = create(:match, score_team_1: 1, score_team_2: 2, position: 1)
-      match_2 = create(:match, score_team_1: 1, score_team_2: 2, position: 2)
-      match_3 = create(:match, score_team_1: nil, score_team_2: nil, position: 3)
-
-      create(:tip, user: players.first, match: match_2, result: Tip::RESULTS[:correct])
-      create(:tip, user: players.first, match: match_3, result: Tip::RESULTS[:incorrect])
-      create(:tip, user: players.first, match: match_1, result: Tip::RESULTS[:incorrect])
-      create(:tip, user: players.second, match: match_1)
-
-      expect(TipQueries.finished_match_position_ordered_results(players.first)).to eq [Tip::RESULTS[:incorrect],
-                                                                                       Tip::RESULTS[:correct]]
-    end
-  end
-
   describe '::match_position_ordered_results' do
 
     let(:players) { (1..2).map { create(:player) } }
-    let(:matches) { (1..2).map { create(:match) } }
+    let(:matches) { (1..3).map { create(:match) } }
 
     it 'returns all results ordered by match position by given user_id' do
+      create(:tip, match: matches.third, user: players.first)
       create(:tip, match: matches.second, user: players.first, result: Tip::RESULTS[:correct])
       create(:tip, match: matches.second, user: players.second, result: Tip::RESULTS[:incorrect])
       create(:tip, match: matches.first, user: players.first, result: Tip::RESULTS[:incorrect])
 
-      expect(TipQueries.match_position_ordered_results(players.first)).to eq [Tip::RESULTS[:incorrect], Tip::RESULTS[:correct]]
+      expect(TipQueries.match_position_ordered_results(players.first)).to eq [Tip::RESULTS[:incorrect], Tip::RESULTS[:correct], nil]
+
     end
   end
 

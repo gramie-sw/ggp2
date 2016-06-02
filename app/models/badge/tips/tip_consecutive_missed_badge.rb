@@ -10,7 +10,7 @@ class TipConsecutiveMissedBadge < Badge
   private
 
   def at_least_consecutive_missed_tips? user_id
-    TipQueries.finished_match_position_ordered_results(user_id).map! { |result| result || Tip::RESULTS[:missed] }.join.include?(
+    TipQueries.match_position_ordered_results(user_id).map! { |result| result || Tip::NULL }.join.include?(
         Tip::RESULTS[:missed].to_s * achievement)
   end
 end
