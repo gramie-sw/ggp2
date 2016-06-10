@@ -19,8 +19,8 @@ module RankingItemQueries
     end
 
     def paginated_by_match_id_for_ranking_view(match_id, page: nil, per_page: nil)
-      RankingItem.where(match_id: match_id).
-          order(position: :asc).
+      ranking_items = RankingItem.where(match_id: match_id).
+          order(position: :asc, user_id: :asc).
           includes(user: {champion_tip: :team}).
           page(page).per(per_page)
     end
