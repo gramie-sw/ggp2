@@ -112,11 +112,11 @@ de:
     name: Communicator Platinum
     description: 24 Kommentare auf Pinnwand hinterlassen
   comment_consecutive_created_badge#bronze:
-    name: Whistleblower Bronze
+    name: Spam-King Bronze
     description: 3 aufeinanderfolgende Kommentare auf Pinnwand hinterlassen
   comment_consecutive_created_badge#silver:
-    name: Whistleblower Silver
+    name: Spam-King Silver
     description: 5 aufeinanderfolgende Kommentare auf Pinnwand hinterlassen
   comment_consecutive_created_badge#gold:
-    name: Whistleblower Gold
+    name: Spam-King Gold
     description: 8 aufeinanderfolgende Kommentare auf Pinnwand hinterlassen
