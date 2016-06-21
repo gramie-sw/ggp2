@@ -96,7 +96,7 @@ tip:
         - achievement: 6
           color: gold
           score: -3400
-        - achievement: 6
+        - achievement: 8
           color: platinum
           score: -3300
   - class: TipMissedBadge
