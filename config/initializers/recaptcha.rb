@@ -1,4 +1,5 @@
 Recaptcha.configure do |config|
-  config.public_key  = YAML.load_file("#{Rails.root}/config/recaptcha.yml")['public_key']
-  config.private_key = YAML.load_file("#{Rails.root}/config/recaptcha.yml")['private_key']
+  recaptcha_config = YAML.load_file("#{Rails.root}/config/recaptcha.yml")
+  config.public_key  = recaptcha_config['public_key']
+  config.private_key = recaptcha_config['private_key']
 end
