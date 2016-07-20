@@ -5,15 +5,15 @@ fieldset._result-fieldset
   = render partial: 'commons/error_messages', locals: {model: result}
   .row.form-group
     .col-sm-4.col-md-4.col-lg-3.hidden-xs
-      ._flag-with-country-name._team-name-32
+      ._emblem-with-team-name._team-name-32
         = flag_image_tag(match_presenter.team_1_code, size: 32)
         = match_presenter.team_1_name_or_placeholder
     .col-sm-4.col-md-4.col-lg-3.hidden-xs
-      ._flag-with-country-name._team-name-32
+      ._emblem-with-team-name._team-name-32
         = flag_image_tag(match_presenter.team_2_code, size: 32)
         = match_presenter.team_2_name_or_placeholder
     .col-xs-7.visible-xs
-      ._flag-with-country-name._team-name-24
+      ._emblem-with-team-name._team-name-24
         = flag_image_tag(match_presenter.team_1_code, size: 24)
         = match_presenter.team_1_name_or_placeholder
         br

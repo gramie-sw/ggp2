@@ -8,7 +8,7 @@ class TeamsController < ApplicationController
     @team = Team.new(params[:team])
 
     if @team.save
-      redirect_to teams_path, notice: t('model.messages.created', model: @team.message_country_name)
+      redirect_to teams_path, notice: t('model.messages.created', model: @team.message_team_name)
     else
       @presenter = TeamsIndexPresenter.new(@team)
       render :index
@@ -19,7 +19,7 @@ class TeamsController < ApplicationController
     @team = current_resource
     @team.destroy
 
-    redirect_to teams_path, notice: t('model.messages.destroyed', model: @team.message_country_name)
+    redirect_to teams_path, notice: t('model.messages.destroyed', model: @team.message_team_name)
   end
 
   private

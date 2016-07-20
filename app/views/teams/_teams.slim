@@ -1,12 +1,12 @@
 .row
   - for team in teams
     .col-lg-3.col-md-4.col-sm-6.col-xs-12
-      ._team-box._flag-with-country-name._team-name-24
+      ._team-box._emblem-with-team-name._team-name-24
         .pull-left
-          = flag_image_tag(team.country, size: 24)
+          = flag_image_tag(team.team_code, size: 24)
           = team.name
         .pull-right
           = link_to(team_path(team), method: :delete, data: {confirm: t('model.messages.destroy_really',\
-            model: ("#{Team.model_name.human} #{I18n.t team.country, :scope => 'countries'}")), method: :delete},\
-            title: t('model.messages.destroy', model: ("#{Team.model_name.human} #{I18n.t team.country, :scope => 'countries'}"))) do
+            model: ("#{Team.model_name.human} #{I18n.t team.team_code, :scope => 'teams'}")), method: :delete},\
+            title: t('model.messages.destroy', model: ("#{Team.model_name.human} #{I18n.t team.team_code, :scope => 'teams'}"))) do
             i.fa.fa-trash-o

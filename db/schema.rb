@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329184433) do
+ActiveRecord::Schema.define(version: 20160718194819) do
 
   create_table "aggregates", force: :cascade do |t|
     t.integer  "position",   limit: 4
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20160329184433) do
   add_index "ranking_items", ["user_id"], name: "index_ranking_items_on_user_id", using: :btree
 
   create_table "teams", force: :cascade do |t|
-    t.string   "country",    limit: 255
+    t.string   "team_code",  limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end

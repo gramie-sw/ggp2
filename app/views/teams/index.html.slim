@@ -2,12 +2,12 @@
 
 #teams-form.clearfix
   = form_for @presenter.new_team, html: {class: 'form-inline', role: 'form'} do |f|
-      = country_select(:team, :country, nil, {}, class: "form-control col-sm-2", autofocus: true)
-      - if @presenter.new_team.errors.get(:country) && !@presenter.new_team.errors.get(:country).empty?
-        .ggp2-form-group.ggp2-form-group-tighter
-          .field_with_errors
-            .help-block
-              = @presenter.new_team.errors.full_messages_for(:country).first
-      = f.submit t('model.messages.add', model: Team.model_name.human), class: 'btn btn-primary'
+    = f.select :team_code, available_teams_collection_for_select, {}, class: "form-control col-sm-2"
+    - if @presenter.new_team.errors.get(:team_code) && !@presenter.new_team.errors.get(:team_code).empty?
+      .ggp2-form-group.ggp2-form-group-tighter
+        .field_with_errors
+          .help-block
+            = @presenter.new_team.errors.full_messages_for(:team_code).first
+    = f.submit t('model.messages.add', model: Team.model_name.human), class: 'btn btn-primary'
 
 = render partial: 'teams', locals: {columns: 2, teams: @presenter.teams}

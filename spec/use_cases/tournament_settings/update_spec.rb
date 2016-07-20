@@ -5,7 +5,8 @@ describe TournamentSettings::Update do
   let(:tournament_settings_attributes) do
     {
         tournament_title: 'Great Tournament',
-        champion_title: 'Great Winner'
+        champion_title: 'Great Winner',
+        team_type: 'countries'
     }
   end
 
@@ -25,6 +26,8 @@ describe TournamentSettings::Update do
             to eq tournament_settings_attributes[:tournament_title]
         expect(PropertyQueries.find_value(Property::CHAMPION_TITLE_KEY)).
             to eq tournament_settings_attributes[:champion_title]
+        expect(PropertyQueries.find_value(Property::TEAM_TYPE_KEY)).
+            to eq tournament_settings_attributes[:team_type]
       end
     end
 
@@ -33,6 +36,7 @@ describe TournamentSettings::Update do
       it 'updates given tournament_settings_attributes in DB' do
         PropertyQueries.save_value(Property::TOURNAMENT_TITLE_KEY, 'Old Title')
         PropertyQueries.save_value(Property::CHAMPION_TITLE_KEY, 'Old Title')
+        PropertyQueries.save_value(Property::TEAM_TYPE_KEY, 'country')
 
         subject.run(tournament_settings_attributes: tournament_settings_attributes)
         expect(PropertyQueries.find_value(Property::TOURNAMENT_TITLE_KEY)).

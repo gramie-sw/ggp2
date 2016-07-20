@@ -41,7 +41,7 @@ class UserRankingPresenter
 
     case champion_tip_team_display_state
       when :show
-        user.champion_tip.team.abbreviation
+        user.champion_tip.team.team_code
       else
         nil
     end

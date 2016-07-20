@@ -11,6 +11,8 @@ module TournamentSettings
                                    tournament_settings_form.tournament_title)
         PropertyQueries.save_value(Property::CHAMPION_TITLE_KEY,
                                    tournament_settings_form.champion_title)
+        PropertyQueries.save_value(Property::TEAM_TYPE_KEY,
+                                   tournament_settings_form.team_type)
       end
 
       tournament_settings_form

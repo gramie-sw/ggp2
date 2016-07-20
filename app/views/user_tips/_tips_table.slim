@@ -29,13 +29,13 @@
                   = check_box_tag 'tip_ids[]', tip_presenter.id
             td.hidden-xs._table-full-width-xs-padding-column
               = "#{match_presenter.position}."
-            td._flag-with-country-name._team-name-24.hidden-xs.hidden-sm
+            td._emblem-with-team-name._team-name-24.hidden-xs.hidden-sm
               = flag_image_tag(match_presenter.team_1_code, size: 24)
               = match_presenter.team_1_name_or_placeholder
-            td._flag-with-country-name._team-name-24.hidden-xs.hidden-sm
+            td._emblem-with-team-name._team-name-24.hidden-xs.hidden-sm
               = flag_image_tag(match_presenter.team_2_code, size: 24)
               = match_presenter.team_2_name_or_placeholder
-            td._flag-with-country-name._team-name-24.visible-sm
+            td._emblem-with-team-name._team-name-24.visible-sm
               = flag_image_tag(match_presenter.team_1_code, size: 24)
               = match_presenter.team_1_name_or_placeholder
               br
@@ -44,7 +44,7 @@
             td.visible-xs._table-full-width-xs-padding-column
               ._text-weaker
                 = "#{Match.model_name.human} #{match_presenter.position}, #{l match_presenter.date, format: :short}"
-              ._flag-with-country-name._team-16-with-flag-24
+              ._emblem-with-team-name._team-16-with-emblem-24
                 = flag_image_tag(match_presenter.team_1_code, size: 24)
                 = match_presenter.team_1_name_or_placeholder
                 br

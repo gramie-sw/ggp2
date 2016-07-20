@@ -17,7 +17,7 @@ describe TipRankingSetFinder do
       allow(RankingItemQueries).to receive(:exists_by_match_id?).with(4).and_return(false)
       allow(RankingItemQueries).to receive(:exists_by_match_id?).with(3).and_return(true)
       expect(RankingItemQueries).to respond_to(:all_by_match_id)
-      allow(RankingItemQueries).to receive(:all_by_match_id).with(3).ordered.and_return(expected_ranking_items)
+      allow(RankingItemQueries).to receive(:all_by_match_id).with(3).and_return(expected_ranking_items)
 
       actual_ranking_set = subject.find_previous(5)
       expect(actual_ranking_set).to be_an_instance_of RankingSet

@@ -47,4 +47,15 @@ describe PropertyQueries do
     end
   end
 
+  describe '::delete' do
+
+    it 'deletes row with key if exists' do
+      Property.create(key: 'key_1', value: 'value_1')
+      Property.create(key: 'key_2', value: 'value_2')
+      subject.delete('key_1')
+      expect(Property.count).to be 1
+      expect(PropertyQueries.find_value('key_2')).to eq 'value_2'
+    end
+  end
+
 end

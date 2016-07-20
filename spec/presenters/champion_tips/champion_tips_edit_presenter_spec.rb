@@ -10,8 +10,8 @@ describe ChampionTipsEditPresenter do
 
   describe '#teams' do
 
-    it 'should return Teams ordered by country name' do
-      expect(Team).to receive(:order_by_country_name_asc).and_return(:teams)
+    it 'should return Teams ordered by team name' do
+      expect(Team).to receive(:order_by_team_name_asc).and_return(:teams)
       expect(subject.teams).to be :teams
     end
   end

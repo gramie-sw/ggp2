@@ -1,10 +1,11 @@
 describe TournamentSettingsForm do
 
   describe 'validations' do
-    it { is_expected.to validate_presence_of(:tournament_title)}
+    it { is_expected.to validate_presence_of(:tournament_title) }
     it { is_expected.to validate_length_of(:tournament_title).is_at_least(5).is_at_most(32) }
-    it { is_expected.to validate_presence_of(:champion_title)}
+    it { is_expected.to validate_presence_of(:champion_title) }
     it { is_expected.to validate_length_of(:champion_title).is_at_least(5).is_at_most(32) }
+    it { is_expected.to validate_inclusion_of(:team_type).in_array(Team::TYPES) }
   end
 
   describe '#tournament_title' do
@@ -36,6 +37,23 @@ describe TournamentSettingsForm do
           to receive(:find_value).with(Property::TOURNAMENT_TITLE_KEY).and_return('Great Champion')
       expect(subject.tournament_title).to eq 'Great Champion'
       expect(subject.tournament_title).to eq 'Great Champion'
+    end
+  end
+
+
+  describe '#champion_title' do
+
+    it 'returns cached team_type if already set' do
+      subject.tournament_title = 'club'
+      expect(subject.tournament_title).to eq 'club'
+    end
+
+    it 'returns fetched team_type from db and cache it if not already set' do
+      expect(PropertyQueries).to respond_to(:find_value)
+      expect(PropertyQueries).
+          to receive(:find_value).with(Property::TEAM_TYPE_KEY).and_return('club')
+      expect(subject.team_type).to eq 'club'
+      expect(subject.team_type).to eq 'club'
     end
   end
 

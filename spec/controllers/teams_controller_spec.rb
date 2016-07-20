@@ -24,7 +24,7 @@ describe TeamsController, :type => :controller do
 
   describe '#create' do
 
-    let(:params) { { team: { country: 'ZZ' }}}
+    let(:params) { { team: { team_code: 'ZZ' }}}
 
     context 'if successful' do
       it 'should redirect to index' do
@@ -35,12 +35,12 @@ describe TeamsController, :type => :controller do
       it 'should create team with values from params' do
         post :create, params
         expect(assigns(:team)).not_to be_a_new Match
-        expect(assigns(:team).country).to eq 'ZZ'
+        expect(assigns(:team).team_code).to eq 'ZZ'
       end
 
       it 'should assign flash notice' do
         post :create, params
-        expect(flash[:notice]).to eq t('model.messages.created', model: assigns(:team).message_country_name)
+        expect(flash[:notice]).to eq t('model.messages.created', model: assigns(:team).message_team_name)
       end
     end
 
@@ -58,7 +58,7 @@ describe TeamsController, :type => :controller do
       it 'should assign @team' do
         post :create, params
         expect(assigns(:team)).to be_a_new(Team)
-        expect(assigns(:team).country).to eq 'ZZ'
+        expect(assigns(:team).team_code).to eq 'ZZ'
       end
     end
   end
@@ -79,7 +79,7 @@ describe TeamsController, :type => :controller do
 
     it '#should assign flash notice' do
       delete :destroy, id: team.to_param
-      expect(flash[:notice]).to eq t('model.messages.destroyed', model: assigns(:team).message_country_name)
+      expect(flash[:notice]).to eq t('model.messages.destroyed', model: assigns(:team).message_team_name)
     end
   end
 end

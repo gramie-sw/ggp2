@@ -6,7 +6,7 @@
         strong
           = "#{t('general.champion_tip.one', champion_title: champion_title)}"
         '&nbsp;&nbsp;
-        span._flag-with-country-name._team-name-24
+        span._emblem-with-team-name._team-name-24
           = flag_image_tag(presenter.team_abbreviation, size: 24)
           = presenter.team_name_or_missing_message
         - if presenter.tippable?
@@ -25,7 +25,7 @@
           strong
             = "#{t('general.champion_tip.one', champion_title: champion_title)}"
           br
-          span._flag-with-country-name._team-name-24
+          span._emblem-with-team-name._team-name-24
             = flag_image_tag(presenter.team_abbreviation, size: 24)
             = presenter.team_name_or_missing_message
         .col-xs-4

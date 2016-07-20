@@ -114,7 +114,7 @@ describe UserRankingPresenter do
 
     before :each do
       user.champion_tip = champion_tip
-      allow(champion_tip.team).to receive(:abbreviation).and_return(expected_team_abbreviation)
+      allow(champion_tip.team).to receive(:team_code).and_return(expected_team_abbreviation)
     end
 
     context 'when ChampionTip team is present' do

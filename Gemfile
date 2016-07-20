@@ -17,7 +17,6 @@ gem 'font-awesome-rails'
 gem 'uglifier'
 
 gem 'rails-i18n'
-gem 'localized_country_select'
 
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'

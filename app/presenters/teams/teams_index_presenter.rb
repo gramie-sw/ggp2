@@ -5,7 +5,7 @@ class TeamsIndexPresenter
   end
 
   def teams
-    @teams ||= Team.order_by_country_name_asc
+    @teams ||= Team.order_by_team_name_asc
   end
 
   def new_team

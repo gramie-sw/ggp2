@@ -69,6 +69,7 @@ de:
       tournament_settings_form:
         tournament_title: Turniertitel
         champion_title: Championtitel
+        team_type: Teamtyp
 
   activerecord:
     models:
@@ -110,7 +111,7 @@ de:
         aggregate: 'Gruppe'
         date: Datum
       team:
-        country: Team
+        team_code: Team
       tip:
         score_team_1: Ergebnis für Team 1
         score_team_2: Ergebnis für Team 2
@@ -339,6 +340,10 @@ de:
     not_present: Nicht getippt
     yours: Deine Tipps
 
+  team:
+    type:
+      countries: Länder
+      clubs: Clubs
 
   tournament:
     progress: nach %{played_match_count} von %{total_match_count} Spielen

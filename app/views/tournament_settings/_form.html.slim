@@ -2,10 +2,11 @@
   = simple_form_for tournament_settings_form,
           url: tournament_settings_path,
           as: 'tournament_settings',
-          html: {crole: 'form'},
+          html: {role: 'form'},
           defaults: {required: false} do |f|
 
     = f.input :tournament_title
     = f.input :champion_title
+    = f.input :team_type, as: :select, collection: team_type_select_options, default: false
 
     = render partial: 'commons/form_buttons', locals: {form_builder: f}

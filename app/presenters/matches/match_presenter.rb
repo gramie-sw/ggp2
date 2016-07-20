@@ -3,11 +3,11 @@ class MatchPresenter < DelegateClass(Match)
   include ResultPresentable
 
   def team_1_code
-    team_1.try(:country)
+    team_1.try(:team_code)
   end
 
   def team_2_code
-    team_2.try(:country)
+    team_2.try(:team_code)
   end
 
   def team_1_name_or_placeholder

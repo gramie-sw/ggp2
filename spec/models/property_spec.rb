@@ -1,4 +1,4 @@
-describe Property, :type => :model do
+describe Property do
 
   it 'should have valid factory' do
     expect(build(:property)).to be_valid
@@ -93,4 +93,11 @@ describe Property, :type => :model do
     end
   end
 
+  describe '::team_type' do
+
+    it 'returns team_type' do
+      expect(PropertyQueries).to receive(:find_value).with(Property::TEAM_TYPE_KEY).and_return('countries')
+      expect(Property.team_type).to eq 'countries'
+    end
+  end
 end

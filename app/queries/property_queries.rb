@@ -9,5 +9,9 @@ module PropertyQueries
     def find_value(key)
       Property.find_by_key(key).try(:value)
     end
+
+    def delete(key)
+      Property.find_by_key(key).try(:destroy)
+    end
   end
 end

@@ -12,8 +12,8 @@
       = f.input :position, input_html: {autofocus: true}
   .row
     .col-xs-12.col-sm-6.col-lg-5
-      = f.association :team_1, as: :select, collection: team_collection_for_select
-      = f.association :team_2, as: :select, collection: team_collection_for_select
+      = f.association :team_1, as: :select, collection: tournament_teams_collection_for_select
+      = f.association :team_2, as: :select, collection: tournament_teams_collection_for_select
     .col-xs-12.col-sm-6.col-lg-5
       = f.input :placeholder_team_1
       = f.input :placeholder_team_2

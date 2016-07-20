@@ -6,6 +6,6 @@
     .col-lg-3.col-md-4.col-sm-6.col-xs-12._champion-tip-box
       = form_for @presenter.champion_tip do |f|
         = f.hidden_field :team_id, value: team.id
-        button._unstyled-button._flag-with-country-name._team-name-32
-          = flag_image_tag(team.country, size: 32)
+        button._unstyled-button._emblem-with-team-name._team-name-32
+          = flag_image_tag(team.team_code, size: 32)
           = team.name

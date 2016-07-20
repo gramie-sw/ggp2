@@ -21,7 +21,7 @@ class ChampionTipPresenter
   end
 
   def team_abbreviation
-    champion_tip.team.try(:abbreviation)
+    champion_tip.team.try(:team_code)
   end
 
   def team_name_or_missing_message

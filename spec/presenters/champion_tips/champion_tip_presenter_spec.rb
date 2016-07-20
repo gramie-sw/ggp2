@@ -2,7 +2,7 @@ describe ChampionTipPresenter do
 
   let(:tournament) { instance_double('Tournament') }
   let(:user_is_current_user) { true }
-  let(:champion_tip_team) { Team.new(country: 'DE') }
+  let(:champion_tip_team) { Team.new(team_code: 'DE') }
   let(:champion_tip) { ChampionTip.new(id: 5, team: champion_tip_team) }
 
   subject do
@@ -117,7 +117,7 @@ describe ChampionTipPresenter do
     context 'when ChampionTip has team' do
 
       it "should return name of Team in ChampionTip" do
-        expect(subject.team_name_or_missing_message).to eq I18n.t('DE', :scope => 'countries')
+        expect(subject.team_name_or_missing_message).to eq I18n.t('DE', scope: 'teams')
       end
     end
 

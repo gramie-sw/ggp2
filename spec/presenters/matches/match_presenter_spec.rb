@@ -8,7 +8,7 @@ describe MatchPresenter do
     it 'returns team 1 code or nil' do
       expect(subject.team_1_code).to be nil
 
-      match.team_1 = Team.new(country: 'NL')
+      match.team_1 = Team.new(team_code: 'NL')
       expect(subject.team_1_code).to eq 'NL'
     end
   end
@@ -18,7 +18,7 @@ describe MatchPresenter do
     it 'returns team 2 code or nil' do
       expect(subject.team_2_code).to be nil
 
-      match.team_2 = Team.new(country: 'NL')
+      match.team_2 = Team.new(team_code: 'NL')
       expect(subject.team_2_code).to eq 'NL'
     end
   end
