@@ -264,8 +264,39 @@ de:
     WALES: Wales
     NORTHERN_IRELAND: Nordirland
   clubs: &clubs
-    CLUB_AL: Arsenal London
+    CLUB_AL: Arsenal FC
+    CLUB_AM: AS Monaco
+    CLUB_AD: Atlético Madrid
+    CLUB_BM: Bayern München
+    CLUB_BK: Bayer Leverkusen
+    CLUB_BL: Benfica Lissabon3
+    CLUB_BS: Beşiktaş
+    CLUB_BD: Borussia Dortmund
+    CLUB_BM: Bor. Mönchengladbach
+    CLUB_DK: Celtic Glasgow
+    CLUB_DK: Dynamo Kiev
+    CLUB_DZ: Dinamo Zagreb
+    CLUB_FB: FC Barcelona
+    CLUB_BA: FC Basel
+    CLUB_BG: FC Brügge
+    CLUB_FK: FC Kopenhagen
+    CLUB_FP: FC Porto
+    CLUB_FR: FK Rostov
+    CLUB_JT: Juventus Turin
+    CLUB_LW: Legia Warszawa
+    CLUB_LC: Leicester City
+    CLUB_MC: Manchester City
     CLUB_MU: Manchester United
+    CLUB_OL: Olympique Lyon
+    CLUB_LR: PFC Ludogorets Razgrad
+    CLUB_PS: Paris Saint-Germain
+    CLUB_PE: PSV Eindhoven
+    CLUB_RM: Real Madrid
+    CLUB_SF: Sevilla FC
+    CLUB_SC: Sporting CP
+    CLUB_SN: SSC Neapel
+    CLUB_TH: Tottenham Hotspur
+    CLUB_ZM: ZSKA Moskau
   teams:
     <<: *countries
     <<: *clubs
