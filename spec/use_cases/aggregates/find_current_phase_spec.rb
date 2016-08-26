@@ -1,7 +1,7 @@
 describe Aggregates::FindCurrentPhase do
 
-  let(:expected_phase) { create(:phase) }
-  let(:group) { create(:group, parent: expected_phase) }
+  let!(:expected_phase) { create(:phase) }
+  let!(:group) { create(:group, parent: expected_phase) }
 
   subject { Aggregates::FindCurrentPhase }
 
@@ -47,8 +47,8 @@ describe Aggregates::FindCurrentPhase do
 
   context 'if there are no matches at all' do
 
-    it 'returns nil' do
-      expect(subject.run).to be_nil
+    it 'returns first aggregate' do
+      expect(subject.run).to eq expected_phase
     end
   end
 end

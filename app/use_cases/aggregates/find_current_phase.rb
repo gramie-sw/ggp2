@@ -6,7 +6,7 @@ module Aggregates
       if match.nil?
         match = MatchQueries.last_match
       end
-      match.present? ? match.phase : nil
+      match.present? ? match.phase : Aggregate.first
     end
   end
 end
