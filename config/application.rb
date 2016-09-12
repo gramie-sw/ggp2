@@ -54,7 +54,7 @@ module Ggp2
     config.application_version = YAML.load_file("#{Rails.root}/config/version.yml")['version']
 
     #needed for devise
-    config.action_mailer.default_url_options = {host: config.toplevel_domain}
+    config.action_mailer.default_url_options = {host: config.server_domain}
     config.action_mailer.default_options = {from: config.sender_email}
 
     config.quotations_file = "#{Rails.root}/config/quotations.yml"

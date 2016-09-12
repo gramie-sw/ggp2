@@ -8,6 +8,6 @@ missed_tip_points: 0
 
 user_page_count: 25
 
-toplevel_domain: 'localhost'
+server_domain: 'localhost'
 sender_email: 'no-reply@mail.de'
 
