@@ -37,7 +37,6 @@ describe Users::Create do
 
       it 'returns ResultWithToken with created user and raw token' do
 
-        expect_any_instance_of(TipFactory).to receive(:build_all).and_return(tips)
         expect_any_instance_of(User).to receive(:update).with({reset_password_token: encrypted_reset_password_token,
                                                               reset_password_sent_at: current_time}).and_return true
 
@@ -49,10 +48,22 @@ describe Users::Create do
         expect(result.user.active).to be true
         expect(result.user.password).to eq password_token
         expect(result.user.password_confirmation).to eq password_token
-        expect(result.user.tips.size).to eq 1
         expect(result.user.champion_tip).to be_present
         expect(result.user.match_sort).to eq 'matches.position'
         expect(result.raw_token).to eq raw_reset_password_token
+      end
+
+      it 'create Tips for every match' do
+        matches = [create(:match), create(:match)]
+
+        user = subject.run(user_attributes: user_attributes).user
+
+        tips = Tip.all
+        expect(tips.size).to be 2
+        expect(tips[0].match_id).to be matches[0].id
+        expect(tips[0].user_id).to be user.id
+        expect(tips[1].match_id).to be matches[1].id
+        expect(tips[1].user_id).to be user.id
       end
 
       context 'when user_attributes contains admin = true' do

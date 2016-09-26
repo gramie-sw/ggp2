@@ -59,6 +59,9 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
+  config.filter_run focus: true
+  config.run_all_when_everything_filtered = true
+
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include ControllerMacros, :type => :controller
   config.include FactoryGirl::Syntax::Methods

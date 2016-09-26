@@ -12,7 +12,7 @@ module Users
       set_additional_user_attributes(user_attributes, TokenFactory.password_token)
 
       user = User.new(user_attributes)
-      user.tips = TipFactory.new(Match).build_all
+      user.tips = Match.all.map { |match| Tip.new(match_id: match.id) }
       user.champion_tip = ChampionTip.new
       user.match_sort = 'matches.position'
       successful = user.save

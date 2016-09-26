@@ -9,7 +9,7 @@ class MatchesController < ApplicationController
   end
 
   def create
-    @match = Match.create(params[:match])
+    @match = Matches::Create.run(match_attributes: params[:match])
 
     if @match.errors.blank?
 

@@ -21,20 +21,20 @@ describe MatchesController, :type => :controller do
 
   describe '#create' do
 
-    let(:created_match) { Match.new(position: 223, aggregate_id: 453) }
+    let(:match) { Match.new(position: 223, aggregate_id: 453) }
     let(:match_attributes) { {'match_key' => 'match_value'} }
     let(:params) { {match: match_attributes} }
 
     before :each do
-      allow(Match).to receive(:create).and_return(created_match)
+      expect(Matches::Create).to receive(:run).with(match_attributes: match_attributes).and_return(match)
     end
 
     context 'on successful' do
 
+
       it 'creates match with values from params' do
-        expect(Match).to receive(:create).with(match_attributes).and_return(created_match)
         post :create, params
-        expect(assigns(:match)).to be created_match
+        expect(assigns(:match)).to be match
       end
 
       let(:notice_message) { t('model.messages.added', model: assigns(:match).message_name) }
@@ -43,7 +43,7 @@ describe MatchesController, :type => :controller do
 
         it 'redirects to match_schedules_path' do
           post :create, params
-          expect(response).to redirect_to match_schedules_path(aggregate_id: created_match.aggregate_id)
+          expect(response).to redirect_to match_schedules_path(aggregate_id: match.aggregate_id)
           expect(flash[:notice]).to eq notice_message
         end
       end
@@ -53,7 +53,7 @@ describe MatchesController, :type => :controller do
         it 'redirects to match_schedules_path' do
           params[:subsequent_match] = '1'
           post :create, params
-          expect(response).to redirect_to new_match_path(aggregate_id: created_match.aggregate_id)
+          expect(response).to redirect_to new_match_path(aggregate_id: match.aggregate_id)
           expect(flash[:notice]).to eq notice_message
         end
       end
@@ -62,7 +62,7 @@ describe MatchesController, :type => :controller do
     context 'on failure' do
 
       before :each do
-        created_match.errors.add(:base, 'error')
+        match.errors.add(:base, 'error')
       end
 
       it 'should render new' do
@@ -72,7 +72,7 @@ describe MatchesController, :type => :controller do
 
       it 'should assign match' do
         post :create, params
-        expect(assigns(:match)).to be created_match
+        expect(assigns(:match)).to be match
       end
     end
   end
