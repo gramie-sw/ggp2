@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
     render_403
   end
 
-  before_filter :authenticate_user!
-  before_filter :authorize
+  before_action :authenticate_user!
+  before_action :authorize
 
   helper_method :champion_title, :colors, :main_navbar_presenter, :random_quotation, :tournament_title,
 

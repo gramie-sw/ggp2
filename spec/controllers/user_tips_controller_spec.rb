@@ -17,7 +17,7 @@ describe UserTipsController, :type => :controller do
 
     it 'passes correct params to Aggregates::FindOrFindCurrentPhase' do
       expect(Aggregates::FindOrFindCurrentPhase).to receive(:run).with(id: aggregate.to_param).and_return(aggregate)
-      get :show, params
+      get :show, params: params
     end
 
     it 'assigns UserTipsPresenter and renders template show' do
@@ -28,14 +28,14 @@ describe UserTipsController, :type => :controller do
                                        tournament: @controller.tournament,
                                        user_is_current_user: :is_is_current_user
                                    ).and_return(:presenter)
-      get :show, params
+      get :show, params: params
 
       expect(assigns(:presenter)).to be :presenter
       expect(response).to render_template :show
     end
 
     it 'stores aggregate_id in session' do
-      get :show, params
+      get :show, params: params
       expect(@controller.session[Ggp2::USER_TIPS_LAST_SHOWN_AGGREGATE_ID_KEY]).to eq aggregate.to_param
     end
 

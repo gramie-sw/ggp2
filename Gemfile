@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 ruby '2.3.1'
 
-gem 'rails', '~> 4.2.7.1'
+# gem 'rails', '4.2.7.1'
+gem 'rails', '5.0.0.1'
 gem 'actionmailer'
 gem 'virtus'
 gem 'mysql2'
@@ -36,7 +37,6 @@ group :development do
   gem 'letter_opener_web'
   gem 'meta_request'
   gem 'pry-rails'
-  gem 'quiet_assets'
 
   gem 'guard-rspec', require: false
   gem 'guard-livereload', require: false
@@ -54,6 +54,8 @@ group :development do
 end
 
 group :test do
+  # require false ist necessary that view helpers in view test are available
+  gem 'rails-controller-testing', require: false
   gem 'capybara'
   gem 'fuubar'
   gem 'factory_girl_rails'

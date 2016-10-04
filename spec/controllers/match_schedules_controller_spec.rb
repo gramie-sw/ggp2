@@ -15,13 +15,13 @@ describe MatchSchedulesController do
 
     it 'passed correct params to Aggregates::FindOrFindCurrentPhase' do
       expect(Aggregates::FindOrFindCurrentPhase).to receive(:run).with(id: aggregate.to_param).and_return(aggregate)
-      get :show, params
+      get :show, params: params
     end
 
     it 'assigns MatchSchedulePresenter and renders show' do
       expect(MatchSchedulePresenter).to receive(:new).with(current_aggregate: aggregate).and_call_original
 
-      get :show, params
+      get :show, params: params
       expect(assigns(:presenter)).to be_instance_of MatchSchedulePresenter
       expect(response).to render_template :show
     end

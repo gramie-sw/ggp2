@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   USER_INDEX_REFERER_COOKIE_KEY = 'uir'
 
-  before_filter :remember_user_index_referer, only: :index
+  before_action :remember_user_index_referer, only: :index
 
   def index
     users = Users::FindAllByType.run(type: params[:type], page: params[:page])

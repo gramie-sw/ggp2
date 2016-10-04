@@ -16,7 +16,7 @@ describe AggregatesController, :type => :controller do
       phase_id = '343'
       expect(Aggregate).to receive(:new).with(parent_id: phase_id).and_return(new_aggregate)
       expect(AggregateFormPresenter).to receive(:new).with(new_aggregate).and_return(:presenter)
-      get :new, phase_id: phase_id
+      get :new, params: {phase_id: phase_id}
 
       expect(assigns(:presenter)).to be (:presenter)
     end
@@ -39,8 +39,10 @@ describe AggregatesController, :type => :controller do
     context 'if successful' do
 
       it 'creates aggregate with values from params' do
-        expect(Aggregate).to receive(:create).with(params[:aggregate]).and_return(created_aggregate)
-        post :create, params
+        expect(Aggregate).to receive(:create).with(
+            ActionController::Parameters.new(params[:aggregate]).permit!).
+            and_return(created_aggregate)
+        post :create, params: params
       end
 
       let(:notice_message) { t('model.messages.created', model: created_aggregate.message_name) }
@@ -48,7 +50,7 @@ describe AggregatesController, :type => :controller do
       context 'if subsequent_aggregate is not present' do
 
         it 'redirects to new_aggregate_path and assigns notice message' do
-          post :create, params
+          post :create, params: params
           expect(response).to redirect_to match_schedules_path(aggregate_id: created_aggregate.id)
           expect(flash[:notice]).to eq notice_message
         end
@@ -60,7 +62,7 @@ describe AggregatesController, :type => :controller do
           allow(created_aggregate).to receive(:parent_id).and_return(333)
           params[:subsequent_aggregate] = '1'
 
-          post :create, params
+          post :create, params: params
           expect(response).to redirect_to new_aggregate_path(phase_id: created_aggregate.parent_id)
           expect(flash[:notice]).to eq notice_message
         end
@@ -75,7 +77,7 @@ describe AggregatesController, :type => :controller do
 
       it 'assigns AggregateFormPresenter and render new' do
         expect(AggregateFormPresenter).to receive(:new).with(created_aggregate).and_return(:presenter)
-        post :create, params
+        post :create, params: params
         expect(assigns(:presenter)).to be :presenter
         expect(response).to render_template :new
       end
@@ -94,12 +96,12 @@ describe AggregatesController, :type => :controller do
       expect(Aggregate).to receive(:find).with(aggregate.to_param).and_return(aggregate)
       expect(AggregateFormPresenter).to receive(:new).with(aggregate).and_return(:presenter)
 
-      get :edit, id: aggregate.to_param
+      get :edit, params: {id: aggregate.to_param}
       expect(assigns(:presenter)).to be :presenter
     end
 
     it 'should render template edit' do
-      get :edit, id: aggregate.to_param
+      get :edit, params: {id: aggregate.to_param}
       expect(response).to render_template :edit
     end
   end
@@ -121,15 +123,17 @@ describe AggregatesController, :type => :controller do
 
       it 'should update aggregate with given params' do
         expect(Aggregate).to receive(:find).with(aggregate.to_param).and_return(aggregate)
-        expect(aggregate).to receive(:update_attributes).with(params[:aggregate]).and_return(true)
+        expect(aggregate).to receive(:update_attributes).
+            with(ActionController::Parameters.new(params[:aggregate]).permit!).
+            and_return(true)
 
-        patch :update, params
+        patch :update, params: params
       end
 
       it 'should redirect to match_schedules_path and assign notice message' do
         parent_id = 222
         expect(aggregate).to receive(:parent_id).and_return(parent_id)
-        patch :update, params
+        patch :update, params: params
         expect(response).to redirect_to match_schedules_path(aggregate_id: parent_id)
         expect(flash[:notice]).to eq t('model.messages.updated', model: aggregate.message_name)
       end
@@ -143,7 +147,7 @@ describe AggregatesController, :type => :controller do
 
       it 'should assign AggregateFormPresenter and render edit' do
         expect(AggregateFormPresenter).to receive(:new).with(aggregate).and_return(:presenter)
-        patch :update, params
+        patch :update, params: params
         expect(assigns(:presenter)).to eq :presenter
         expect(response).to render_template :edit
       end
@@ -160,13 +164,13 @@ describe AggregatesController, :type => :controller do
 
     it 'should destroy aggregate' do
       expect(aggregate).to receive(:destroy)
-      delete :destroy, id: aggregate.to_param
+      delete :destroy, params: {id: aggregate.to_param}
     end
 
     it 'should redirect to match_schedule_path and assing_notice' do
       parent_id = 222
       expect(aggregate).to receive(:parent_id).and_return(parent_id)
-      delete :destroy, id: aggregate.to_param
+      delete :destroy, params: {id: aggregate.to_param}
       expect(response).to redirect_to match_schedules_path(aggregate_id: parent_id)
       expect(flash[:notice]).to eq t('model.messages.destroyed', model: aggregate.message_name)
     end

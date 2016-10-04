@@ -10,12 +10,12 @@ describe ProfilesController, :type => :controller do
   describe '#show' do
 
     it 'should return http success' do
-      get :show, id: requested_user.id
+      get :show, params: {id: requested_user.id}
       expect(response).to be_success
     end
 
     it 'should render template show' do
-      get :show, id: requested_user.id
+      get :show, params: {id: requested_user.id}
       expect(response).to render_template :show
     end
 
@@ -31,7 +31,7 @@ describe ProfilesController, :type => :controller do
 
       expect_any_instance_of(FindUserBadges).to receive(:run)
 
-      get :show, id: requested_user.id, section: 'statistic'
+      get :show, params: {id: requested_user.id, section: 'statistic'}
     end
   end
 end

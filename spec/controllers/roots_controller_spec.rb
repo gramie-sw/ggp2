@@ -1,4 +1,4 @@
-describe RootsController, :type => :controller do
+describe RootsController do
 
   describe '#show' do
 

@@ -24,22 +24,22 @@ describe TeamsController, :type => :controller do
 
   describe '#create' do
 
-    let(:params) { { team: { team_code: 'ZZ' }}}
+    let(:params) { {team: {team_code: 'ZZ'}} }
 
     context 'if successful' do
       it 'should redirect to index' do
-        post :create, params
+        post :create, params: params
         expect(response).to redirect_to teams_path
       end
 
       it 'should create team with values from params' do
-        post :create, params
+        post :create, params: params
         expect(assigns(:team)).not_to be_a_new Match
         expect(assigns(:team).team_code).to eq 'ZZ'
       end
 
       it 'should assign flash notice' do
-        post :create, params
+        post :create, params: params
         expect(flash[:notice]).to eq t('model.messages.created', model: assigns(:team).message_team_name)
       end
     end
@@ -51,12 +51,12 @@ describe TeamsController, :type => :controller do
       end
 
       it 'should render index' do
-        post :create, params
+        post :create, params: params
         expect(response).to render_template :index
       end
 
       it 'should assign @team' do
-        post :create, params
+        post :create, params: params
         expect(assigns(:team)).to be_a_new(Team)
         expect(assigns(:team).team_code).to eq 'ZZ'
       end
@@ -68,17 +68,17 @@ describe TeamsController, :type => :controller do
     let(:team) { create(:team) }
 
     it '#should redirect to index' do
-      delete :destroy, id: team.to_param
+      delete :destroy, params: {id: team.to_param}
       expect(response).to redirect_to teams_path
     end
 
     it '#should destroy team' do
-      delete :destroy, id: team.to_param
+      delete :destroy, params: {id: team.to_param}
       expect(Team.exists?(team.to_param)).to be_falsey
     end
 
     it '#should assign flash notice' do
-      delete :destroy, id: team.to_param
+      delete :destroy, params: {id: team.to_param}
       expect(flash[:notice]).to eq t('model.messages.destroyed', model: assigns(:team).message_team_name)
     end
   end

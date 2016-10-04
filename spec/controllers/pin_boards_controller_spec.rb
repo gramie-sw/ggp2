@@ -25,7 +25,7 @@ describe PinBoardsController, :type => :controller do
       expect(PinBoardsShowPresenter).to receive(:new).with(
           comments_repo: CommentQueries, page: page.to_param, current_user_id: user.id, is_admin: is_admin
       ).and_return(:pin_boards_show_presenter)
-      get :show, page: page
+      get :show, params: {page: page}
       expect(assigns(:presenter)).to eq :pin_boards_show_presenter
     end
   end

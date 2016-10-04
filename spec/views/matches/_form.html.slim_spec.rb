@@ -1,5 +1,6 @@
 describe 'matches/_form.html.slim.rb' do
 
+
   let(:partial) do
     {
         partial: 'matches/form',

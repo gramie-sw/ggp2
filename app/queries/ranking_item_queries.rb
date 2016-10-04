@@ -34,14 +34,14 @@ module RankingItemQueries
       successful = false
 
       RankingItem.transaction do
-        successful = (RankingItem.destroy_all(match_id: match_id).all? && ranking_items.map(&:save).all?)
+        successful = (RankingItem.where(match_id: match_id).destroy_all.all? && ranking_items.map(&:save).all?)
         raise(ActiveRecord::Rollback) unless successful
       end
       successful
     end
 
     def destroy_all_by_match_id(match_id)
-      RankingItem.destroy_all(match_id: match_id)
+      RankingItem.where(match_id: match_id).destroy_all
     end
   end
 

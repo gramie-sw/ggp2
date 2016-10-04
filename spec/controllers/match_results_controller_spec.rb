@@ -11,7 +11,7 @@ describe MatchResultsController, :type => :controller do
     match_id = '78'
 
     it 'assigns MatchResultPresenter and renders edit' do
-      get :edit, id: match_id
+      get :edit, params: {id: match_id}
 
       expect(response).to be_success
       expect(response).to render_template :edit
@@ -32,14 +32,15 @@ describe MatchResultsController, :type => :controller do
 
       before :each do
         expect(MatchResults::Update).to receive(:run).
-            with(match_id: params[:id], match_result_attributes: params[:match_result]).
+            with(match_id: params[:id],
+                 match_result_attributes: ActionController::Parameters.new(params[:match_result]).permit!).
             and_return(match_result)
       end
 
       context 'on success' do
 
         it 'redirects to match_schedule_path' do
-          patch :update, params, {Ggp2::MATCH_SCHEDULE_LAST_SHOWN_AGGREGATE_ID_KEY => match.aggregate_id}
+          patch :update, params: params, session: {Ggp2::MATCH_SCHEDULE_LAST_SHOWN_AGGREGATE_ID_KEY => match.aggregate_id}
 
           expect(response).to redirect_to match_schedules_path(aggregate_id: match.aggregate_id)
           expect(flash[:notice]).to eq t('model.messages.updated', model: match_result.message_name)
@@ -53,7 +54,7 @@ describe MatchResultsController, :type => :controller do
         end
 
         it 'assigns MatchResultPresenter and renders edit' do
-          patch :update, params
+          patch :update, params: params
 
           expect(response).to be_success
           expect(response).to render_template :edit
@@ -70,7 +71,7 @@ describe MatchResultsController, :type => :controller do
       match_id = '98'
       expect(MatchResults::Delete).to receive(:run).with(match_id: match_id)
 
-      delete :destroy, id: match_id
+      delete :destroy, params: {id: match_id}
       expect(response).to redirect_to(match_schedules_path)
       expect(flash[:notice]).to eq t('model.messages.destroyed', model: t('match.result'))
 

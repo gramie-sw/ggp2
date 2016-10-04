@@ -13,18 +13,20 @@ describe TipsController, :type => :controller do
       let(:params) { {tip_ids: ['1', '2', '3']} }
 
       it 'should return http success' do
-        post :edit_multiple, params
+        post :edit_multiple, params: params
         expect(response).to be_success
       end
 
       it 'should render template edit_multiple' do
-        post :edit_multiple, params
+        post :edit_multiple, params: params
         expect(response).to render_template(:edit_multiple)
       end
 
       it 'should assign TipsEditMultiplePresenter' do
-        expect(TipsEditMultiplePresenter).to receive(:new).with(tip_ids: params[:tip_ids]).and_call_original
-        post :edit_multiple, params
+        expect(TipsEditMultiplePresenter).to receive(:new).
+            with(tip_ids: params[:tip_ids]).
+            and_call_original
+        post :edit_multiple, params: params
         expect(assigns(:presenter)).to be_kind_of TipsEditMultiplePresenter
       end
     end
@@ -34,16 +36,16 @@ describe TipsController, :type => :controller do
       let(:params) { {} }
 
       before :each do
-        allow(@request).to receive(:referer).and_return(user_tip_path(player))
+        @request.env['HTTP_REFERER'] = user_tip_path(player)
       end
 
       it 'should redirect to referer_path' do
-        post :edit_multiple, params
+        post :edit_multiple, params: params
         expect(response).to redirect_to user_tip_path(player)
       end
 
       it 'should assign alert message' do
-        post :edit_multiple, params
+        post :edit_multiple, params: params
         expect(flash[:alert]).to eq t('general.none_selected', element: Match.model_name.human)
       end
     end
@@ -72,8 +74,10 @@ describe TipsController, :type => :controller do
     end
 
     it 'should call Tip#update_multiple with correct arguments' do
-      expect(Tip).to receive(:update_multiple).with(params[:tips]).and_call_original
-      post :update_multiple, params
+      expect(Tip).to receive(:update_multiple).
+          with(ActionController::Parameters.new(params[:tips]).permit!).
+          and_call_original
+      post :update_multiple, params: params
     end
 
     context 'on success' do
@@ -81,12 +85,12 @@ describe TipsController, :type => :controller do
       it 'should redirect to user_tip_path for current_user' do
         current_aggregate_id = 2
         @controller.session[Ggp2::USER_TIPS_LAST_SHOWN_AGGREGATE_ID_KEY] = current_aggregate_id
-        post :update_multiple, params
+        post :update_multiple, params: params
         expect(response).to redirect_to user_tip_path(player, aggregate_id: current_aggregate_id)
       end
 
       it 'should assign flash message' do
-        post :update_multiple, params
+        post :update_multiple, params: params
         expect(flash[:notice]).to eq t('model.messages.count.saved',
                                        models: Tip.model_name.human(count: tips.count),
                                        count: tips.count
@@ -105,25 +109,26 @@ describe TipsController, :type => :controller do
       end
 
       it 'should return http success' do
-        post :update_multiple, params
+        post :update_multiple, params: params
         expect(response).to be_success
       end
 
       it 'should render edit_multiple' do
-        post :update_multiple, params
+        post :update_multiple, params: params
         expect(response).to render_template :edit_multiple
       end
 
       it 'should assign TipsEditMultiplePresenter' do
-        expect(TipsEditMultiplePresenter).to receive(:new).with(tips: result.failed_records).and_call_original
-        post :update_multiple, params
+        expect(TipsEditMultiplePresenter).to receive(:new).
+            with(tips: result.failed_records).and_call_original
+        post :update_multiple, params: params
         expect(assigns(:presenter)).to be_kind_of TipsEditMultiplePresenter
       end
 
       context 'if a least one tip was valid' do
 
         it 'should assign flash message for succeeded tips' do
-          post :update_multiple, params
+          post :update_multiple, params: params
           expect(flash.now[:notice]).to eq t('model.messages.count.saved',
                                              models: Tip.model_name.human(count: result.succeeded_records.count),
                                              count: result.succeeded_records.count
@@ -135,7 +140,7 @@ describe TipsController, :type => :controller do
 
         it 'should assign flash message for succeeded tips' do
           result.succeeded_records = []
-          post :update_multiple, params
+          post :update_multiple, params: params
           expect(flash.now[:notice]).to be_nil
         end
       end

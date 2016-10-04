@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -13,128 +12,121 @@
 
 ActiveRecord::Schema.define(version: 20160718194819) do
 
-  create_table "aggregates", force: :cascade do |t|
-    t.integer  "position",   limit: 4
-    t.string   "name",       limit: 255
-    t.string   "ancestry",   limit: 255
+  create_table "aggregates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "position"
+    t.string   "name"
+    t.string   "ancestry"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "champion_tips", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.integer  "team_id",    limit: 4
-    t.integer  "result",     limit: 4
+  create_table "champion_tips", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.integer  "result"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["team_id"], name: "index_champion_tips_on_team_id", using: :btree
+    t.index ["user_id"], name: "index_champion_tips_on_user_id", using: :btree
   end
 
-  add_index "champion_tips", ["team_id"], name: "index_champion_tips_on_team_id", using: :btree
-  add_index "champion_tips", ["user_id"], name: "index_champion_tips_on_user_id", using: :btree
-
-  create_table "comments", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "user_id"
     t.text     "content",    limit: 65535
     t.boolean  "edited"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
-
-  create_table "matches", force: :cascade do |t|
-    t.integer  "position",           limit: 4
-    t.integer  "aggregate_id",       limit: 4
-    t.integer  "team_1_id",          limit: 4
-    t.integer  "team_2_id",          limit: 4
-    t.integer  "score_team_1",       limit: 4
-    t.integer  "score_team_2",       limit: 4
-    t.string   "placeholder_team_1", limit: 255
-    t.string   "placeholder_team_2", limit: 255
+  create_table "matches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "position"
+    t.integer  "aggregate_id"
+    t.integer  "team_1_id"
+    t.integer  "team_2_id"
+    t.integer  "score_team_1"
+    t.integer  "score_team_2"
+    t.string   "placeholder_team_1"
+    t.string   "placeholder_team_2"
     t.datetime "date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["aggregate_id"], name: "index_matches_on_aggregate_id", using: :btree
+    t.index ["team_1_id"], name: "index_matches_on_team_1_id", using: :btree
+    t.index ["team_2_id"], name: "index_matches_on_team_2_id", using: :btree
   end
 
-  add_index "matches", ["aggregate_id"], name: "index_matches_on_aggregate_id", using: :btree
-  add_index "matches", ["team_1_id"], name: "index_matches_on_team_1_id", using: :btree
-  add_index "matches", ["team_2_id"], name: "index_matches_on_team_2_id", using: :btree
-
-  create_table "properties", force: :cascade do |t|
-    t.string   "key",        limit: 255
-    t.string   "value",      limit: 255
+  create_table "properties", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "key"
+    t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "ranking_items", force: :cascade do |t|
-    t.integer  "match_id",                    limit: 4
-    t.integer  "user_id",                     limit: 4
-    t.integer  "position",                    limit: 4
+  create_table "ranking_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "match_id"
+    t.integer  "user_id"
+    t.integer  "position"
     t.boolean  "correct_champion_tip"
-    t.integer  "correct_tips_count",          limit: 4
-    t.integer  "correct_tendency_tips_count", limit: 4
-    t.integer  "points",                      limit: 4
+    t.integer  "correct_tips_count"
+    t.integer  "correct_tendency_tips_count"
+    t.integer  "points"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["match_id"], name: "index_ranking_items_on_match_id", using: :btree
+    t.index ["user_id"], name: "index_ranking_items_on_user_id", using: :btree
+  end
+
+  create_table "teams", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "team_code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "ranking_items", ["match_id"], name: "index_ranking_items_on_match_id", using: :btree
-  add_index "ranking_items", ["user_id"], name: "index_ranking_items_on_user_id", using: :btree
-
-  create_table "teams", force: :cascade do |t|
-    t.string   "team_code",  limit: 255
+  create_table "tips", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "user_id"
+    t.integer  "match_id"
+    t.integer  "score_team_1"
+    t.integer  "score_team_2"
+    t.integer  "result"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["match_id"], name: "index_tips_on_match_id", using: :btree
+    t.index ["user_id"], name: "index_tips_on_user_id", using: :btree
   end
 
-  create_table "tips", force: :cascade do |t|
-    t.integer  "user_id",      limit: 4
-    t.integer  "match_id",     limit: 4
-    t.integer  "score_team_1", limit: 4
-    t.integer  "score_team_2", limit: 4
-    t.integer  "result",       limit: 4
+  create_table "user_badges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "user_id"
+    t.string   "badge_identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "badge_group_identifier"
+    t.index ["user_id"], name: "index_user_badges_on_user_id", using: :btree
   end
 
-  add_index "tips", ["match_id"], name: "index_tips_on_match_id", using: :btree
-  add_index "tips", ["user_id"], name: "index_tips_on_user_id", using: :btree
-
-  create_table "user_badges", force: :cascade do |t|
-    t.integer  "user_id",                limit: 4
-    t.string   "badge_identifier",       limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "badge_group_identifier", limit: 255
-  end
-
-  add_index "user_badges", ["user_id"], name: "index_user_badges_on_user_id", using: :btree
-
-  create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "",   null: false
-    t.string   "encrypted_password",     limit: 255, default: "",   null: false
-    t.string   "reset_password_token",   limit: 255
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "email",                  default: "",   null: false
+    t.string   "encrypted_password",     default: "",   null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,    null: false
+    t.integer  "sign_in_count",          default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
-    t.string   "nickname",               limit: 255
-    t.string   "first_name",             limit: 255
-    t.string   "last_name",              limit: 255
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "nickname"
+    t.string   "first_name"
+    t.string   "last_name"
     t.boolean  "admin"
-    t.boolean  "active",                             default: true
+    t.boolean  "active",                 default: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "match_sort",             limit: 255
+    t.string   "match_sort"
     t.boolean  "titleholder"
-    t.string   "most_valuable_badge",    limit: 255
+    t.string   "most_valuable_badge"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

@@ -19,7 +19,7 @@ describe MatchResult, :type => :model do
       it 'should not be valid with invalid error message if for match_id no match exists' do
         match_result = build(:match_result, match_id: 0)
         expect(match_result.valid?).to be_falsey
-        expect(match_result.errors.get(:match_id).first).to eq I18n.t('errors.messages.invalid')
+        expect(match_result.errors[:match_id].first).to eq I18n.t('errors.messages.invalid')
       end
     end
   end

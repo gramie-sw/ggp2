@@ -19,7 +19,7 @@ describe TournamentSettingsController, type: :controller do
   describe '#update' do
 
     let(:tournament_settings_form) { TournamentSettingsForm.new }
-    let(:params) { {tournament_settings: 'tournament_settings_values'} }
+    let(:params) { {tournament_settings: {'key_1' => 'value_1'}} }
 
     before :each do
       allow(TournamentSettings::Update).to receive(:run).and_return(tournament_settings_form)
@@ -27,16 +27,17 @@ describe TournamentSettingsController, type: :controller do
 
     it 'calls TournamentSettings::Update' do
       expect(TournamentSettings::Update).
-          to receive(:run).with(tournament_settings_attributes: params[:tournament_settings]).
-                 and_return(tournament_settings_form)
+          to receive(:run).with(
+              tournament_settings_attributes: ActionController::Parameters.new(params[:tournament_settings]).permit!).
+              and_return(tournament_settings_form)
 
-      patch :update, params
+      patch :update, params: params
     end
 
     describe 'on success' do
 
       it 'assigns flash message and redirects to edit' do
-        patch :update, params
+        patch :update, params: params
         expect(response).to redirect_to(edit_tournament_settings_path)
         expect(flash[:notice]).to eq t('model.messages.updated', model: t('general.settings'))
       end
@@ -49,7 +50,7 @@ describe TournamentSettingsController, type: :controller do
       end
 
       it 'assigns form and render edit' do
-        patch :update, params
+        patch :update, params: params
         expect(response).to render_template(:edit)
         expect(assigns(:tournament_settings_form)).to be tournament_settings_form
       end

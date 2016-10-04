@@ -22,14 +22,16 @@ describe AdaptedDevise::RegistrationsController, :type => :controller do
       end
 
       it 'passes correct params to User::Create' do
-        expect(Users::Create).to receive(:run).with(user_attributes: params[:user]).and_return(result)
-        post :create, params
+        expect(Users::Create).to receive(:run).
+            with(user_attributes: ActionController::Parameters.new(params[:user]).permit!).
+            and_return(result)
+        post :create, params: params
       end
 
       context 'on success' do
 
         it 'redirects to new_user_session_path and assign notice message' do
-          post :create, params
+          post :create, params: params
           expect(response).to redirect_to(new_user_session_path)
           expect(flash[:notice]).to eq t('devise.passwords.send_initial_instructions')
         end
@@ -41,7 +43,7 @@ describe AdaptedDevise::RegistrationsController, :type => :controller do
             expect(raw_token).to eq result.raw_token
           end.and_return(message)
           expect(message).to receive(:deliver_now)
-          post :create, params
+          post :create, params: params
         end
       end
 
@@ -52,13 +54,13 @@ describe AdaptedDevise::RegistrationsController, :type => :controller do
         end
 
         it 'renders new' do
-          post :create, params
+          post :create, params: params
           expect(response).to be_success
           expect(response).to render_template :new
         end
 
         it 'should assign user with correct arguments' do
-          post :create, params
+          post :create, params: params
           expect(assigns(:user)).to be_a(User)
           expect(assigns(:user)).to be result.user
         end
@@ -73,14 +75,15 @@ describe AdaptedDevise::RegistrationsController, :type => :controller do
       end
 
       it 'renders new' do
-        post :create, params
+        post :create, params: params
         expect(response).to be_success
         expect(response).to render_template :new
       end
 
       it 'assigns user with given attributes and captcha error massage and renders new' do
-        expect(User).to receive(:new).with(params[:user]).and_return(user)
-        post :create, params
+        expect(User).to receive(:new).
+            with(ActionController::Parameters.new(params[:user]).permit!).and_return(user)
+        post :create, params: params
         expect(assigns(:user)).to be user
         expect(assigns(:user).errors[:base]).to include I18n.t('recaptcha.wrong_input')
       end

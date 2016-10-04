@@ -10,7 +10,7 @@ describe ChampionTipsController, :type => :controller do
   describe '#edit' do
 
     it 'assigns ChampionTipShowPresenter and renders edit' do
-      get :edit, id: champion_tip.to_param
+      get :edit, params: {id: champion_tip.to_param}
 
       expect(response).to be_success
       expect(response).to render_template :edit
@@ -37,7 +37,7 @@ describe ChampionTipsController, :type => :controller do
           expect(@controller).to respond_to(:champion_title)
           allow(@controller).to receive(:champion_title).and_return(champion_title)
 
-          patch :update, params
+          patch :update, params: params
 
           expect(response).to redirect_to user_tip_path(user)
           expect(flash[:notice]).to eq t('model.messages.updated',
@@ -52,7 +52,7 @@ describe ChampionTipsController, :type => :controller do
         end
 
         it 'assigns ChampionTipShowPresenter and renders edit' do
-          patch :update, params
+          patch :update, params: params
 
           expect(response).to be_success
           expect(response).to render_template :edit

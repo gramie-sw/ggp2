@@ -17,12 +17,12 @@ describe RankingsController, :type => :controller do
       page = '2'
       expect(RankingSets::FindCurrent).to receive(:run).with(page: page).and_return(:ranking_items)
       expect(RankingPresenter).to receive(:new).with(
-                                           ranking_items: :ranking_items,
-                                           tournament: @controller.tournament,
-                                           current_user_id: current_user.id
-                                       ).and_return(:presenter)
+          ranking_items: :ranking_items,
+          tournament: @controller.tournament,
+          current_user_id: current_user.id
+      ).and_return(:presenter)
 
-      get :show, page: page
+      get :show, params: {page: page}
       expect(assigns(:presenter)).to be :presenter
     end
 
