@@ -5,6 +5,7 @@ $(document).ready ->
     if(!clicked_element.is('input') && !clicked_element.is('a') && clicked_element.closest('a').length is 0)
       window.location = $(this).attr("data-href")
 
+#not used in the moment
 window.toggleAllCheckboxes = (link_id, container_id) ->
   link = $('#' + link_id)
   old_label = link.text()
@@ -16,3 +17,7 @@ window.toggleAllCheckboxes = (link_id, container_id) ->
   link.data('checked-state', new_checked_state)
   $('#' + container_id + ' input[type=checkbox]').prop 'checked', new_checked_state
   return
+
+window.checkAllCheckboxesAndSubmit = (container_id) ->
+  $('#' + container_id + ' input[type=checkbox]').prop 'checked', true
+  $('#' + container_id).closest('form').submit();

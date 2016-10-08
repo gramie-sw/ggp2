@@ -3,8 +3,14 @@
     - if show_as_form
       - table_id="tip-table-aggregate-#{aggregate.id}"
       - checkbox_trigger_link_id="checkbox-trigger-#{aggregate.id}"
-      = link_to t('general.select_all'), '#', id: checkbox_trigger_link_id,  class: 'btn btn-default btn-sm', \
-            onclick: "toggleAllCheckboxes('#{checkbox_trigger_link_id}', '#{table_id}');return false;",
+
+      / Link which toggles state of all checkboxes
+      /= link_to t('general.select_all'), '#', id: checkbox_trigger_link_id,  class: 'btn btn-default btn-sm', \
+      /      onclick: "toggleAllCheckboxes('#{checkbox_trigger_link_id}', '#{table_id}');return false;",
+      /      data: { toggle_label: t('general.select_none') }
+
+      = link_to 'Alle tippen', '#', id: checkbox_trigger_link_id,  class: 'btn btn-default btn-sm', \
+            onclick: "checkAllCheckboxesAndSubmit('#{table_id}');return false;",
             data: { toggle_label: t('general.select_none') }
 
       = submit_tag t('views.user_tips.show.tip_selected_matches'), class: 'btn btn-default btn-sm'

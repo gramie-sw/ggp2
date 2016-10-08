@@ -361,7 +361,8 @@ de:
           logout: Abmelden
     user_tips:
       show:
-        tip_selected_matches: Markierte Spiele tippen
+        tip_all_matches: Alle tippen
+        tip_selected_matches: Markierte tippen
 
     tips:
       edit_multiple:
