@@ -14,3 +14,6 @@
 #= require jquery_ujs
 #= require bootstrap
 #= require common
+#= require react/react.bundle
+
+blubi();
