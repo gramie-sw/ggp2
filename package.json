@@ -13,10 +13,12 @@
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
+    "babel-polyfill": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "mobx": "^2.6.1",
     "mobx-react": "^3.5.8",
     "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react-dom": "^15.3.2",
+    "whatwg-fetch": "^2.0.1"
   }
 }

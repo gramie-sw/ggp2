@@ -1,6 +1,8 @@
 module.exports = {
 
-  entry: './frontend/main.js',
+  // bable-polyfill for Promise support
+  // whatwg-fetch for fetch support
+  entry: ['babel-polyfill', 'whatwg-fetch', './frontend/main.js'],
   output: {
     path: './app/assets/javascripts/react',
     filename: 'react.bundle.js'

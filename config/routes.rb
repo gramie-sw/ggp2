@@ -8,6 +8,10 @@ Ggp2::Application.routes.draw do
     get 'edit_account' => 'adapted_devise/registrations#edit'
   end
 
+  scope module: :admin do
+    resources :available_teams, only: :index
+  end
+
   resources :aggregates, except: :index
   resource  :award_ceremonies, only: :show
   resource  :badges, only: :show
