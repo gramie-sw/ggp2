@@ -1,6 +1,9 @@
 #react-settings
+br
+br
 
 = render partial: 'settings/menu', locals: {section: :teams, section_translation: Team.model_name.human_plural}
+
 
 #teams-form.clearfix
   = form_for @presenter.new_team, html: {class: 'form-inline', role: 'form'} do |f|

@@ -8,18 +8,21 @@ Ggp2::Application.routes.draw do
     get 'edit_account' => 'adapted_devise/registrations#edit'
   end
 
-  scope module: :admin do
-    resources :available_teams, only: :index
+  namespace :frontend do
+    scope module: :admin do
+      resources :available_teams, only: :index
+      resources :teams, only: :index
+    end
   end
 
   resources :aggregates, except: :index
-  resource  :award_ceremonies, only: :show
-  resource  :badges, only: :show
+  resource :award_ceremonies, only: :show
+  resource :badges, only: :show
   resources :champion_tips, only: [:edit, :update]
   resources :comments, only: [:new, :create, :edit, :update, :destroy]
   resources :matches, except: :index
   resources :match_results, only: [:new, :edit, :create, :update, :destroy]
-  resource  :match_schedules, only: :show
+  resource :match_schedules, only: :show
   resources :match_tips, only: :show
   resource :pin_boards, only: :show
   resources :profiles, only: :show
@@ -36,7 +39,7 @@ Ggp2::Application.routes.draw do
   # must be behind devise
   resources :users
   resources :user_tips, only: :show
-  resource  :tournament_settings, only: [:edit, :update]
+  resource :tournament_settings, only: [:edit, :update]
   resources :venues
 
   root :to => 'roots#show'

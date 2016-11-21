@@ -1,7 +1,17 @@
+import React from 'react';
 import ReactDOM from 'react-dom';
 
+import TeamSelect from './components/TeamSelect'
 
-ReactDOM.render(
-  <h1>Hello, world!</h1>,
-  document.getElementById('root')
-);
+import TeamsStore from './stores/TeamStore'
+
+
+export default () => {
+
+  let teamStore = new TeamsStore();
+
+  ReactDOM.render(
+    <TeamSelect teamStore={teamStore} />,
+    document.getElementById('react-settings')
+  );
+}
