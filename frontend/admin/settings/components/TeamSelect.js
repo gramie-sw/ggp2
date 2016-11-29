@@ -11,8 +11,10 @@ export default class TeamSelect extends Component {
   render() {
     const teamStore = this.props.teamStore;
     return (
-      <div>
+      <div className="clearfix">
+
         <form className='form-inline' onSubmit={this.onSubmit.bind(this)}>
+
           <input value={this.value} list='available-teams-list' onChange={this.onChange.bind(this)}
                  className='form-control col-sm-2'/>
           <datalist id='available-teams-list'>
@@ -22,6 +24,7 @@ export default class TeamSelect extends Component {
           </datalist>
           &nbsp;&nbsp;&nbsp;
           <button type="submit" className="btn btn-primary">Team Hinzufügen</button>
+
         </form>
       </div>
     );

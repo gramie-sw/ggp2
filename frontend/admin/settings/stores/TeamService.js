@@ -1,7 +1,7 @@
 export default {
 
   AVAILABLE_TEAMS_PATH: '/frontend/available_teams',
-  SELECTEd_TEAMS_PATH: '/frontend/teams',
+  SELECTED_TEAMS_PATH: '/frontend/teams',
 
   availableTeams() {
 
@@ -21,7 +21,7 @@ export default {
 
   selectedTeams() {
 
-    return fetch(this.SELECTEd_TEAMS_PATH, {
+    return fetch(this.SELECTED_TEAMS_PATH, {
       credentials: 'same-origin'
     }).then((response) => {
       return response.json();
