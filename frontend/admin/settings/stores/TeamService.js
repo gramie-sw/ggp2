@@ -29,7 +29,7 @@ export default {
       return jsonData.data.map((entry) => {
         return {
           id: entry.id,
-          code: entry.attributes.id,
+          code: entry.attributes.code,
           name: entry.attributes.name
         };
       });

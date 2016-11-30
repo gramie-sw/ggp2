@@ -8671,11 +8671,11 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _Teams = __webpack_require__(476);
+	var _Teams = __webpack_require__(471);
 
 	var _Teams2 = _interopRequireDefault(_Teams);
 
-	var _TeamStore = __webpack_require__(474);
+	var _TeamStore = __webpack_require__(475);
 
 	var _TeamStore2 = _interopRequireDefault(_TeamStore);
 
@@ -29882,15 +29882,89 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _class, _desc, _value, _class2, _descriptor;
+	var _class;
 
 	var _react = __webpack_require__(301);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _mobx = __webpack_require__(472);
+	var _TeamSelect = __webpack_require__(472);
 
-	var _mobxReact = __webpack_require__(473);
+	var _TeamSelect2 = _interopRequireDefault(_TeamSelect);
+
+	var _TeamItem = __webpack_require__(477);
+
+	var _TeamItem2 = _interopRequireDefault(_TeamItem);
+
+	var _mobxReact = __webpack_require__(474);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Teams = (0, _mobxReact.observer)(_class = function (_Component) {
+	  _inherits(Teams, _Component);
+
+	  function Teams() {
+	    _classCallCheck(this, Teams);
+
+	    return _possibleConstructorReturn(this, (Teams.__proto__ || Object.getPrototypeOf(Teams)).apply(this, arguments));
+	  }
+
+	  _createClass(Teams, [{
+	    key: 'render',
+	    value: function render() {
+	      var teamStore = this.props.teamStore;
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_TeamSelect2.default, { teamStore: teamStore }),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'row' },
+	          teamStore.selectedTeams.map(function (team) {
+	            return _react2.default.createElement(
+	              'div',
+	              { className: 'col-lg-3 col-md-4 col-sm-6 col-xs-12', key: team.id },
+	              _react2.default.createElement(_TeamItem2.default, { team: team })
+	            );
+	          })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Teams;
+	}(_react.Component)) || _class;
+
+	exports.default = Teams;
+
+/***/ },
+/* 472 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = undefined;
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _class, _desc, _value, _class2, _descriptor;
+
+	var _mobx = __webpack_require__(473);
+
+	var _mobxReact = __webpack_require__(474);
+
+	var _react = __webpack_require__(301);
+
+	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29943,8 +30017,8 @@
 	  throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 	}
 
-	var TeamSelect = (0, _mobxReact.observer)(_class = (_class2 = function (_Component) {
-	  _inherits(TeamSelect, _Component);
+	var TeamSelect = (0, _mobxReact.observer)(_class = (_class2 = function (_React$Component) {
+	  _inherits(TeamSelect, _React$Component);
 
 	  function TeamSelect() {
 	    var _ref;
@@ -29966,7 +30040,7 @@
 	      var teamStore = this.props.teamStore;
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'clearfix' },
+	        { id: 'teams-form', className: 'clearfix' },
 	        _react2.default.createElement(
 	          'form',
 	          { className: 'form-inline', onSubmit: this.onSubmit.bind(this) },
@@ -30003,7 +30077,7 @@
 	  }]);
 
 	  return TeamSelect;
-	}(_react.Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'value', [_mobx.observable], {
+	}(_react2.default.Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'value', [_mobx.observable], {
 	  enumerable: true,
 	  initializer: function initializer() {
 	    return '';
@@ -30013,7 +30087,7 @@
 	exports.default = TeamSelect;
 
 /***/ },
-/* 472 */
+/* 473 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {"use strict";
@@ -32779,12 +32853,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 473 */
+/* 474 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
 		if(true)
-			module.exports = factory(__webpack_require__(472), __webpack_require__(301), __webpack_require__(333));
+			module.exports = factory(__webpack_require__(473), __webpack_require__(301), __webpack_require__(333));
 		else if(typeof define === 'function' && define.amd)
 			define(["mobx", "react", "react-dom"], factory);
 		else if(typeof exports === 'object')
@@ -33817,7 +33891,7 @@
 	;
 
 /***/ },
-/* 474 */
+/* 475 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33831,9 +33905,9 @@
 
 	var _desc, _value, _class, _descriptor, _descriptor2;
 
-	var _mobx = __webpack_require__(472);
+	var _mobx = __webpack_require__(473);
 
-	var _TeamService = __webpack_require__(475);
+	var _TeamService = __webpack_require__(476);
 
 	var _TeamService2 = _interopRequireDefault(_TeamService);
 
@@ -33937,7 +34011,7 @@
 	exports.default = TeamStore;
 
 /***/ },
-/* 475 */
+/* 476 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -33975,7 +34049,7 @@
 	      return jsonData.data.map(function (entry) {
 	        return {
 	          id: entry.id,
-	          code: entry.attributes.id,
+	          code: entry.attributes.code,
 	          name: entry.attributes.name
 	        };
 	      });
@@ -33984,7 +34058,7 @@
 	};
 
 /***/ },
-/* 476 */
+/* 477 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33992,66 +34066,69 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.default = undefined;
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _class;
 
 	var _react = __webpack_require__(301);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _TeamSelect = __webpack_require__(471);
+	var _TeamFlag = __webpack_require__(478);
 
-	var _TeamSelect2 = _interopRequireDefault(_TeamSelect);
-
-	var _mobxReact = __webpack_require__(473);
+	var _TeamFlag2 = _interopRequireDefault(_TeamFlag);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	exports.default = function (props) {
 
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	  return _react2.default.createElement(
+	    'div',
+	    { className: '_team-box _emblem-with-team-name _team-name-24' },
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'pull-left' },
+	      _react2.default.createElement(_TeamFlag2.default, { teamCode: props.team.code, size: 24 }),
+	      props.team.name
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'pull-right' },
+	      _react2.default.createElement(
+	        'a',
+	        { href: '' },
+	        _react2.default.createElement('i', { className: 'fa fa-trash-o' })
+	      )
+	    )
+	  );
+	};
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+/***/ },
+/* 478 */
+/***/ function(module, exports, __webpack_require__) {
 
-	var Teams = (0, _mobxReact.observer)(_class = function (_Component) {
-	  _inherits(Teams, _Component);
+	'use strict';
 
-	  function Teams() {
-	    _classCallCheck(this, Teams);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
-	    return _possibleConstructorReturn(this, (Teams.__proto__ || Object.getPrototypeOf(Teams)).apply(this, arguments));
+	var _react = __webpack_require__(301);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function (props) {
+	  var flagTag = void 0;
+	  var teamCode = props.teamCode;
+	  var size = props.size;
+
+	  if (teamCode.startsWith('CLUB_')) {
+	    flagTag = _react2.default.createElement('i', { className: "club-logo club-logo-" + size + " fa fa-soccer-ball-o" });
+	  } else {
+	    flagTag = _react2.default.createElement('image', { src: 'blank.gif', className: "flag flag-" + size + teamCode.toLowerCase() });
 	  }
 
-	  _createClass(Teams, [{
-	    key: 'render',
-	    value: function render() {
-	      var teamStore = this.props.teamStore;
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(_TeamSelect2.default, { teamStore: teamStore }),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'row' },
-	          teamStore.selectedTeams.map(function (team) {
-	            return _react2.default.createElement(
-	              'div',
-	              { className: 'col-lg-3 col-md-4 col-sm-6 col-xs-12' },
-	              team.name
-	            );
-	          })
-	        )
-	      );
-	    }
-	  }]);
-
-	  return Teams;
-	}(_react.Component)) || _class;
-
-	exports.default = Teams;
+	  return flagTag;
+	};
 
 /***/ }
 /******/ ]);

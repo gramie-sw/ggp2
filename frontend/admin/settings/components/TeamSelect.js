@@ -1,17 +1,16 @@
-import {Component} from 'react';
 import {observable} from 'mobx';
 import {observer} from 'mobx-react';
 import React from 'react';
 
 @observer
-export default class TeamSelect extends Component {
+export default class TeamSelect extends React.Component {
 
   @observable value = '';
 
   render() {
     const teamStore = this.props.teamStore;
     return (
-      <div className="clearfix">
+      <div id="teams-form" className="clearfix">
 
         <form className='form-inline' onSubmit={this.onSubmit.bind(this)}>
 
