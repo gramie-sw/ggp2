@@ -17,7 +17,7 @@ export default class TeamSelect extends React.Component {
           <input value={this.value} list='available-teams-list' onChange={this.onChange.bind(this)}
                  className='form-control col-sm-2'/>
           <datalist id='available-teams-list'>
-            {teamStore.availableTeams.map((team) => {
+            {teamStore.selectableTeams.map((team) => {
               return (<option key={team.code} value={team.name}/>)
             })}
           </datalist>

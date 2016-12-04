@@ -8675,7 +8675,7 @@
 
 	var _Teams2 = _interopRequireDefault(_Teams);
 
-	var _TeamStore = __webpack_require__(475);
+	var _TeamStore = __webpack_require__(477);
 
 	var _TeamStore2 = _interopRequireDefault(_TeamStore);
 
@@ -29892,7 +29892,7 @@
 
 	var _TeamSelect2 = _interopRequireDefault(_TeamSelect);
 
-	var _TeamItem = __webpack_require__(477);
+	var _TeamItem = __webpack_require__(475);
 
 	var _TeamItem2 = _interopRequireDefault(_TeamItem);
 
@@ -30049,7 +30049,7 @@
 	          _react2.default.createElement(
 	            'datalist',
 	            { id: 'available-teams-list' },
-	            teamStore.availableTeams.map(function (team) {
+	            teamStore.selectableTeams.map(function (team) {
 	              return _react2.default.createElement('option', { key: team.code, value: team.name });
 	            })
 	          ),
@@ -33899,6 +33899,79 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+
+	var _react = __webpack_require__(301);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _TeamFlag = __webpack_require__(476);
+
+	var _TeamFlag2 = _interopRequireDefault(_TeamFlag);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function (props) {
+
+	  return _react2.default.createElement(
+	    'div',
+	    { className: '_team-box _emblem-with-team-name _team-name-24' },
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'pull-left' },
+	      _react2.default.createElement(_TeamFlag2.default, { teamCode: props.team.code, size: 24 }),
+	      props.team.name
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'pull-right' },
+	      _react2.default.createElement(
+	        'a',
+	        { href: '' },
+	        _react2.default.createElement('i', { className: 'fa fa-trash-o' })
+	      )
+	    )
+	  );
+	};
+
+/***/ },
+/* 476 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(301);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function (props) {
+	  var flagTag = void 0;
+	  var teamCode = props.teamCode;
+	  var size = props.size;
+
+	  if (teamCode.startsWith('CLUB_')) {
+	    flagTag = _react2.default.createElement('i', { className: "club-logo club-logo-" + size + " fa fa-soccer-ball-o" });
+	  } else {
+	    flagTag = _react2.default.createElement('image', { src: 'blank.gif', className: "flag flag-" + size + teamCode.toLowerCase() });
+	  }
+
+	  return flagTag;
+	};
+
+/***/ },
+/* 477 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	exports.default = undefined;
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -33907,7 +33980,7 @@
 
 	var _mobx = __webpack_require__(473);
 
-	var _TeamService = __webpack_require__(476);
+	var _TeamService = __webpack_require__(478);
 
 	var _TeamService2 = _interopRequireDefault(_TeamService);
 
@@ -33994,6 +34067,17 @@
 	        (_selectedTeams = _this2.selectedTeams).push.apply(_selectedTeams, _toConsumableArray(teams));
 	      });
 	    }
+	  }, {
+	    key: 'selectableTeams',
+	    get: function get() {
+	      var selectedTeamCodes = this.selectedTeams.map(function (team) {
+	        return team.code;
+	      });
+
+	      return this.availableTeams.filter(function (team) {
+	        return !selectedTeamCodes.includes(team.code);
+	      });
+	    }
 	  }]);
 
 	  return TeamStore;
@@ -34007,11 +34091,11 @@
 	  initializer: function initializer() {
 	    return [];
 	  }
-	})), _class);
+	}), _applyDecoratedDescriptor(_class.prototype, 'selectableTeams', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'selectableTeams'), _class.prototype)), _class);
 	exports.default = TeamStore;
 
 /***/ },
-/* 476 */
+/* 478 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -34055,79 +34139,6 @@
 	      });
 	    });
 	  }
-	};
-
-/***/ },
-/* 477 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(301);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _TeamFlag = __webpack_require__(478);
-
-	var _TeamFlag2 = _interopRequireDefault(_TeamFlag);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = function (props) {
-
-	  return _react2.default.createElement(
-	    'div',
-	    { className: '_team-box _emblem-with-team-name _team-name-24' },
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'pull-left' },
-	      _react2.default.createElement(_TeamFlag2.default, { teamCode: props.team.code, size: 24 }),
-	      props.team.name
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'pull-right' },
-	      _react2.default.createElement(
-	        'a',
-	        { href: '' },
-	        _react2.default.createElement('i', { className: 'fa fa-trash-o' })
-	      )
-	    )
-	  );
-	};
-
-/***/ },
-/* 478 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(301);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = function (props) {
-	  var flagTag = void 0;
-	  var teamCode = props.teamCode;
-	  var size = props.size;
-
-	  if (teamCode.startsWith('CLUB_')) {
-	    flagTag = _react2.default.createElement('i', { className: "club-logo club-logo-" + size + " fa fa-soccer-ball-o" });
-	  } else {
-	    flagTag = _react2.default.createElement('image', { src: 'blank.gif', className: "flag flag-" + size + teamCode.toLowerCase() });
-	  }
-
-	  return flagTag;
 	};
 
 /***/ }

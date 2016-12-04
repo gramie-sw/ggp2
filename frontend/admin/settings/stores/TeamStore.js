@@ -1,4 +1,4 @@
-import {observable} from 'mobx';
+import {observable, computed} from 'mobx';
 import TeamService from './TeamService'
 
 export default class TeamStore {
@@ -9,6 +9,16 @@ export default class TeamStore {
   constructor() {
     this._fetchAvailableTeams();
     this._fetchSelectedTeams();
+  }
+
+  @computed get selectableTeams() {
+    const selectedTeamCodes = this.selectedTeams.map((team) => {
+      return team.code;
+    });
+
+    return this.availableTeams.filter((team) => {
+      return !selectedTeamCodes.includes(team.code)
+    });
   }
 
   _fetchAvailableTeams() {
