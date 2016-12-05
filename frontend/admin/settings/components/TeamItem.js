@@ -11,7 +11,10 @@ export default (props) => {
         {props.team.name}
       </div>
       <div className="pull-right">
-        <a href="">
+        <a href="" onClick={(event) => {
+          event.preventDefault();
+          props.teamStore.deselectTeam(props.team);
+        }}>
           <i className="fa fa-trash-o"/>
         </a>
       </div>

@@ -14,13 +14,12 @@ export default class TeamSelect extends React.Component {
 
         <form className='form-inline' onSubmit={this.onSubmit.bind(this)}>
 
-          <input value={this.value} list='available-teams-list' onChange={this.onChange.bind(this)}
-                 className='form-control col-sm-2'/>
-          <datalist id='available-teams-list'>
+          <select value={this.value} onChange={this.onChange.bind(this)} className='form-control col-sm-2'>
+            <option value="" disabled>Bitte wählen</option>
             {teamStore.selectableTeams.map((team) => {
-              return (<option key={team.code} value={team.name}/>)
+              return (<option key={team.code} value={team.code}>{team.name}</option>)
             })}
-          </datalist>
+          </select>
           &nbsp;&nbsp;&nbsp;
           <button type="submit" className="btn btn-primary">Team Hinzufügen</button>
 
@@ -35,7 +34,7 @@ export default class TeamSelect extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-    this.props.store.selectTeam(this.value);
+    this.props.teamStore.selectTeam(this.value);
     this.value = '';
   }
 }

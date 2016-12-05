@@ -16,7 +16,7 @@ export default class Teams extends Component {
         <div className="row">
           {teamStore.selectedTeams.map((team) => {
             return (<div className="col-lg-3 col-md-4 col-sm-6 col-xs-12" key={team.id}>
-              <TeamItem team={team}/>
+              <TeamItem team={team} teamStore={teamStore}/>
             </div>)
           })}
         </div>

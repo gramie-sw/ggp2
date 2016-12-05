@@ -29930,7 +29930,7 @@
 	            return _react2.default.createElement(
 	              'div',
 	              { className: 'col-lg-3 col-md-4 col-sm-6 col-xs-12', key: team.id },
-	              _react2.default.createElement(_TeamItem2.default, { team: team })
+	              _react2.default.createElement(_TeamItem2.default, { team: team, teamStore: teamStore })
 	            );
 	          })
 	        )
@@ -30044,13 +30044,20 @@
 	        _react2.default.createElement(
 	          'form',
 	          { className: 'form-inline', onSubmit: this.onSubmit.bind(this) },
-	          _react2.default.createElement('input', { value: this.value, list: 'available-teams-list', onChange: this.onChange.bind(this),
-	            className: 'form-control col-sm-2' }),
 	          _react2.default.createElement(
-	            'datalist',
-	            { id: 'available-teams-list' },
+	            'select',
+	            { value: this.value, onChange: this.onChange.bind(this), className: 'form-control col-sm-2' },
+	            _react2.default.createElement(
+	              'option',
+	              { value: '', disabled: true },
+	              'Bitte w\xE4hlen'
+	            ),
 	            teamStore.selectableTeams.map(function (team) {
-	              return _react2.default.createElement('option', { key: team.code, value: team.name });
+	              return _react2.default.createElement(
+	                'option',
+	                { key: team.code, value: team.code },
+	                team.name
+	              );
 	            })
 	          ),
 	          '\xA0\xA0\xA0',
@@ -30071,7 +30078,7 @@
 	    key: 'onSubmit',
 	    value: function onSubmit(event) {
 	      event.preventDefault();
-	      this.props.store.selectTeam(this.value);
+	      this.props.teamStore.selectTeam(this.value);
 	      this.value = '';
 	    }
 	  }]);
@@ -33926,7 +33933,10 @@
 	      { className: 'pull-right' },
 	      _react2.default.createElement(
 	        'a',
-	        { href: '' },
+	        { href: '', onClick: function onClick(event) {
+	            event.preventDefault();
+	            props.teamStore.deselectTeam(props.team);
+	          } },
 	        _react2.default.createElement('i', { className: 'fa fa-trash-o' })
 	      )
 	    )
@@ -33980,7 +33990,7 @@
 
 	var _mobx = __webpack_require__(473);
 
-	var _TeamService = __webpack_require__(478);
+	var _TeamService = __webpack_require__(479);
 
 	var _TeamService2 = _interopRequireDefault(_TeamService);
 
@@ -34046,6 +34056,35 @@
 	  }
 
 	  _createClass(TeamStore, [{
+	    key: 'deselectTeam',
+	    value: function deselectTeam(team) {
+	      var index = this.selectedTeams.indexOf(team);
+	      this.selectedTeams.splice(index, 1);
+	    }
+	  }, {
+	    key: 'selectTeam',
+	    value: function selectTeam(teamCode) {
+	      var selectedTeam = this.availableTeams.find(function (team) {
+	        return team.code === teamCode;
+	      });
+
+	      this.selectedTeams.push(selectedTeam);
+	      this._sortSelectedTeams();
+	    }
+	  }, {
+	    key: '_sortSelectedTeams',
+	    value: function _sortSelectedTeams() {
+	      this.selectedTeams = this.selectedTeams.sort(function (team1, team2) {
+	        if (team1.name < team2.name) {
+	          return -1;
+	        } else if (team2.name > team1.name) {
+	          return 1;
+	        } else {
+	          return 0;
+	        }
+	      });
+	    }
+	  }, {
 	    key: '_fetchAvailableTeams',
 	    value: function _fetchAvailableTeams() {
 	      var _this = this;
@@ -34091,11 +34130,12 @@
 	  initializer: function initializer() {
 	    return [];
 	  }
-	}), _applyDecoratedDescriptor(_class.prototype, 'selectableTeams', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'selectableTeams'), _class.prototype)), _class);
+	}), _applyDecoratedDescriptor(_class.prototype, 'selectableTeams', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'selectableTeams'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'deselectTeam', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'deselectTeam'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'selectTeam', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'selectTeam'), _class.prototype)), _class);
 	exports.default = TeamStore;
 
 /***/ },
-/* 478 */
+/* 478 */,
+/* 479 */
 /***/ function(module, exports) {
 
 	'use strict';
