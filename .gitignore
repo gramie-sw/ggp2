@@ -28,5 +28,6 @@ Capfile
 !/config/deploy/staging.example
 
 /.idea
+/node_modules
 .ruby-version
 node_modules
