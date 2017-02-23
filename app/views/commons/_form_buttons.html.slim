@@ -1,5 +1,5 @@
 .form-group
   .btn-toolbar._submit-group
-    = submit_tag t('general.save'), class: 'btn btn-primary'
+    = submit_tag (defined?(submit_label) ? submit_label : t('general.save')), class: 'btn btn-primary'
     - if defined? cancel_path
       = link_to I18n.t('general.cancel'), cancel_path, class: "btn btn-default"

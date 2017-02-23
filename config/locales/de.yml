@@ -252,6 +252,7 @@ de:
     save: Speichern
     search: Suchen
     show: Anzeigen
+    send: Senden
     settings: Einstellungen
     searchterm: Suchbegriff
     select_all: Alle
@@ -381,7 +382,7 @@ de:
 
   help:
     forgot_password:
-      description: Geb einfach deine e-Mail an, wir schicken Dir ein neues zu.
+      description: Geb einfach deine e-Mail an, wir schicken dir ein neues zu.
 
     ranking:
       titleholder: markiert den Titelverteidiger
