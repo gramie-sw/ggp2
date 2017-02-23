@@ -20,11 +20,11 @@ de:
       unconfirmed: "Du musst Deinen Account bestätigen, bevor Du fortfahren kannst."
     mailer:
       confirmation_instructions:
-        subject: "Anleitung zur Bestätigung Deines Accounts"
+        subject: "Anleitung zur Bestätigung deines Accounts"
       reset_password_instructions:
-        subject: "Anleitung um Dein Passwort zurückzusetzen"
+        subject: "Anleitung um dein Passwort zurückzusetzen"
       unlock_instructions:
-        subject: "Anleitung um Deinen Account freizuschalten"
+        subject: "Anleitung um deinen Account freizuschalten"
     omniauth_callbacks:
       failure: "Du konntest nicht Deinem %{kind}-Account angemeldet werden, weil '%{reason}'."
       success: "Du hast Dich erfolgreich mit Deinem %{kind}-Account angemeldet."
