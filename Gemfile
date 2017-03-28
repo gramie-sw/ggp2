@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.3.1'
+ruby '2.4.1'
 
-gem 'rails', '5.0.1'
+gem 'rails', '5.0.2'
 gem 'actionmailer'
 gem 'virtus'
 gem 'mysql2'
@@ -25,7 +25,7 @@ gem 'kaminari-bootstrap'
 gem 'ancestry'
 gem 'kaminari'
 gem 'devise'
-gem 'recaptcha', :require => 'recaptcha/rails'
+gem 'recaptcha', '3.3.0', :require => 'recaptcha/rails'
 gem 'permissioner'
 
 group :development, :test do
@@ -60,7 +60,7 @@ group :test do
   gem 'factory_girl_rails'
   # require false necessary to remove minitest warning
   #see https://github.com/rspec/rspec-rails/pull/772
-  gem 'forgery'
+  gem 'forgery', git: 'https://github.com/sevenwire/forgery.git'
   gem 'shoulda-matchers'
 end
 

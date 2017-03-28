@@ -108,7 +108,7 @@ describe UsersController, :type => :controller do
                    user_attributes: ActionController::Parameters.new(params[:user]).permit!).
               and_return(user)
 
-      patch :update, {params: params}, headers: {'HTTP_REFERER' => 'aol.com'}
+      patch :update, params: params, headers: {'HTTP_REFERER' => 'aol.com'}
     end
 
     describe 'on success' do
