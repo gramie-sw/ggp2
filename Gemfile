@@ -25,7 +25,7 @@ gem 'kaminari-bootstrap'
 gem 'ancestry'
 gem 'kaminari'
 gem 'devise'
-gem 'recaptcha', '3.3.0', :require => 'recaptcha/rails'
+gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'permissioner'
 
 group :development, :test do
