@@ -3,7 +3,6 @@ lock '3.1.0'
 
 set :application, 'ggp2'
 
-set :scm, :git
 set :repo_url, 'git@github.com:gramie-sw/ggp2.git'
 
 set :deploy_to, "deploy_path"
