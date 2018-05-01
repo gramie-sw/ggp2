@@ -57,7 +57,7 @@ group :test do
   gem 'rails-controller-testing', require: false
   gem 'capybara'
   gem 'fuubar'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   # require false necessary to remove minitest warning
   #see https://github.com/rspec/rspec-rails/pull/772
   gem 'forgery', git: 'https://github.com/sevenwire/forgery.git'

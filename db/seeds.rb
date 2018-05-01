@@ -8,9 +8,9 @@
 if Rails.env == 'development'
 
   require 'forgery'
-  require 'factory_girl'
-  FactoryGirl.find_definitions
-  include FactoryGirl::Syntax::Methods
+  require 'factory_bot'
+  FactoryBot.find_definitions
+  include FactoryBot::Syntax::Methods
 
 
   puts "#---------user creation---------"

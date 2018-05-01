@@ -1,6 +1,6 @@
-require 'factory_girl'
+require 'factory_bot'
 require 'forgery'
 require 'rspec/mocks/standalone'
 
-FactoryGirl.find_definitions
-include FactoryGirl::Syntax::Methods
+FactoryBot.find_definitions
+include FactoryBot::Syntax::Methods

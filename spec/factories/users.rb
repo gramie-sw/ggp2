@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :user, aliases: [:player] do
     sequence(:nickname) { |n| "#{Forgery::Name.first_name}_#{n}" }
     first_name { Forgery::Name.first_name }

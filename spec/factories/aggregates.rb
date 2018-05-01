@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
 
   factory :aggregate, aliases: [:phase] do
     sequence(:position) { |n| n }
