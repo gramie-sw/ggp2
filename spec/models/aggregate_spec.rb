@@ -134,7 +134,7 @@ describe Aggregate, :type => :model do
 
   describe '#message_name' do
 
-    let(:name) {'Aggregate 1'}
+    let(:name) { 'Aggregate 1' }
 
     before :each do
       subject.name = name

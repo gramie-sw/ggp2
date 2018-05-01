@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.4.1'
 
-gem 'rails', '5.0.2'
+gem 'rails', '5.0.7'
 gem 'actionmailer'
 gem 'virtus'
 gem 'mysql2'
