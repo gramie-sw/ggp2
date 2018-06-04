@@ -2,7 +2,7 @@ fieldset._result-fieldset
   div.row.hidden-lg
     div.col-xs-12._text-weaker._legend-horizontal
       = "#{match_presenter.aggregate_name_recursive}, #{l match_presenter.date, format: :short}"
-  = render partial: 'commons/error_messages', locals: {model: result}
+  = render partial: 'commons/error_messages', locals: { model: result }
   .row.form-group
     .col-sm-4.col-md-4.col-lg-3.hidden-xs
       ._emblem-with-team-name._team-name-32

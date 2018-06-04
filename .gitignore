@@ -20,6 +20,7 @@
 /config/database.yml
 /config/instance_config.yml
 /config/recaptcha.yml
+/config/site_notice.yml
 
 Capfile
 /config/deploy.rb

@@ -1,0 +1,19 @@
+.unsecured-site-notice-link {
+  margin-top: 10px;
+  font-size: $font-size-base;
+}
+
+#unsecured-site-notice-layout {
+  margin-top: 50px;
+  padding: 20px 40px;
+  background-color: white;
+
+  @media (max-width: $screen-xs-max) {
+    padding: 20px 20px;
+  }
+
+  .intro {
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+}

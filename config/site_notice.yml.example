@@ -1,0 +1,7 @@
+contact:
+  person: Max Mustermann
+  address:
+    street: Example Street 42
+    postal: 01099
+    city: Dresden
+  email: test@test.com

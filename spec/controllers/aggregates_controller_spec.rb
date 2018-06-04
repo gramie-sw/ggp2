@@ -18,7 +18,7 @@ describe AggregatesController, :type => :controller do
       expect(AggregateFormPresenter).to receive(:new).with(new_aggregate).and_return(:presenter)
       get :new, params: {phase_id: phase_id}
 
-      expect(assigns(:presenter)).to be (:presenter)
+      expect(assigns(:presenter)).to be :presenter
     end
 
     it 'should render template new' do

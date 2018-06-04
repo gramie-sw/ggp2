@@ -267,7 +267,9 @@ de:
     user_administration: Benutzerverwaltung
     user_data: Benutzerdaten
     'yes': Ja
-
+    site_notice_and_privacy: 'Impressum & Datenschutz'
+    site_notice: Impressum
+    privacy: Datenschutzerklärung
 
   form:
     errors:

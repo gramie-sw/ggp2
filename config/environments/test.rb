@@ -46,4 +46,5 @@ Rails.application.configure do
   config.quotations_file = "#{Rails.root}/spec/support/resources/quotations.yml"
   config.badges_file = "#{Rails.root}/spec/support/resources/badges.yml"
   config.color_codes_file = "#{Rails.root}/spec/support/resources/color_codes.yml"
+  config.site_notice_file = "#{Rails.root}/spec/support/resources/site_notice.yml"
 end

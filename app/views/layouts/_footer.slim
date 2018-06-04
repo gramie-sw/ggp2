@@ -2,25 +2,21 @@ footer
   section.top
     .container
       .row
-        .col-xs-12.visible-xs.visible-sm.version-info
+        .col-xs-12.visible-xs.visible-sm
           a href="https://github.com/gramie-sw/ggp2" target="blank"
             'ggp2 - Version
             = Ggp2.config.application_version
             '&nbsp;&middot; &copy;&nbsp;2013-2018&nbsp;gramie
-        .col-md-4.hidden-xs.hidden-sm.version-info
-          p
-            a href="https://github.com/gramie-sw/ggp2" target="blank"
-              'ggp2 - Version
-              = Ggp2.config.application_version
-              br
-              '&copy;&nbsp;2013-2018&nbsp;gramie
-        .col-xs-12.col-md-4
-          p
-            i.fa.fa-lg.fa-child
-            '&nbsp
-            i.fa.fa-lg.fa-trophy
-            '&nbsp
-            i.fa.fa-lg.fa-flag
+
+        .col-xs-12.col-md-4.site-notice
+          = link_to I18n.t('general.site_notice_and_privacy'), site_notices_path
+
+        .col-md-4.hidden-xs.hidden-sm
+          a href="https://github.com/gramie-sw/ggp2" target="blank"
+            'ggp2 - Version
+            = Ggp2.config.application_version
+            br
+            '&copy;&nbsp;2013-2018&nbsp;gramie
         .col-xs-12.col-md-4
           = render 'layouts/copyrights'
   section.bottom

@@ -13,6 +13,7 @@ Ggp2::Application.routes.draw do
   resource  :badges, only: :show
   resources :champion_tips, only: [:edit, :update]
   resources :comments, only: [:new, :create, :edit, :update, :destroy]
+  resource :site_notices, only: [:show]
   resources :matches, except: :index
   resources :match_results, only: [:new, :edit, :create, :update, :destroy]
   resource  :match_schedules, only: :show
