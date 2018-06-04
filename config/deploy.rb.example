@@ -26,7 +26,9 @@ set :linked_files, [
     'config/instance_config.rb',
     'config/secret_token',
     'config/devise_secret_token',
-    'config/puma.rb'
+    'config/puma.rb',
+    'config/recaptcha.yml',
+    'config/site_notice.yml'
 ]
 
 # directories to symlink to specific entries in shared
