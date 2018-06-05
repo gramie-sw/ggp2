@@ -6,7 +6,7 @@
     table.table.table-hover
       tbody
         - for user_ranking_presenter in @presenter.user_ranking_presenters
-          tr class="link-row" data-href="#{profile_path(user_ranking_presenter.user_id)}"
+          tr class="link-row" data-href="#{profile_path(user_ranking_presenter.user_id)}" title="#{user_ranking_presenter.full_name}"
             td._table-full-width-xs-padding-column.hidden-xs
               = "#{user_ranking_presenter.position}."
             td.hidden-xs

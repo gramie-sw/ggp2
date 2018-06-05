@@ -5,6 +5,7 @@ class UserRankingPresenter
 
 
   delegate :nickname,
+           :full_name,
            :badges_count,
            :titleholder?,
            to: :user

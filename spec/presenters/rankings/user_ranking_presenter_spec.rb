@@ -14,9 +14,12 @@ describe UserRankingPresenter do
 
   it 'should delegate User methods to RankingItem#user' do
     user.nickname = 'user_1'
+    user.first_name = 'User'
+    user.last_name = 'One'
     user.titleholder = true
     expect(user).to receive(:badges_count).and_return(5)
 
+    expect(subject.full_name).to eq 'User One'
     expect(subject.nickname).to eq 'user_1'
     expect(subject.titleholder?).to be_truthy
     expect(subject.badges_count).to eq 5
